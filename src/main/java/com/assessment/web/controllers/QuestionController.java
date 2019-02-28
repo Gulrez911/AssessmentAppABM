@@ -350,7 +350,7 @@ public class QuestionController {
 	@RequestMapping(value = "/searchQuestions", method = RequestMethod.GET)
 	public ModelAndView searchQuestions(@RequestParam(name= "page", required = false) Integer pageNumber,@RequestParam String searchText, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -420,7 +420,7 @@ public class QuestionController {
 	
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 	public ModelAndView listQuestions(@RequestParam(name= "page", required = false) Integer pageNumber, HttpServletResponse response, HttpServletRequest request, ModelMap modelMap) throws Exception {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;

@@ -45,9 +45,7 @@
 
 </head>
 
-<body id="top" class="has-header-search">
-
-	<style>
+<style>
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -58,11 +56,6 @@ ul {
 
 li {
 	float: left;
-	border-right: 1px solid #bbb;
-}
-
-li:last-child {
-	border-right: none;
 }
 
 li a {
@@ -96,7 +89,7 @@ background-color
 	background-color: #4CAF50;
 }
 </style>
-
+<body id="top" class="has-header-search">
 
 
 	<!--header start-->
@@ -116,9 +109,8 @@ background-color
 					<ul class="menuzord-menu pull-right menuzord-indented scrollable"
 						style="max-height: 400px;">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="javascript:void(0)">Question
-								Bank</a></li>
-						<li><a href="javascript:void(0)">Tests</a></li>
+						<li class="active"><a href="question_list">Question Bank</a></li>
+						<li><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="javascript:void(0)">Results</a></li>
 						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
@@ -151,12 +143,11 @@ background-color
 							class="material-icons fa fa-upload"></i> Import</a>
 					</div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
-							class="btn waves-effect waves-light col-md-12"><i
+						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
 					</div>
 				</div>
-
+				<!-- navigation -->
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<div class="pagination" style="float: right;">
@@ -185,8 +176,8 @@ background-color
 					<div class="col-md-4">
 						<div class="widget widget_search">
 							<form role="search" method="get" class="search-form">
-								<input type="text" class="form-control" value="" name="s" id="s"
-									placeholder="Search a question">
+								<input type="text" class="form-control" value="" name="s"
+									id="search" placeholder="Search a question">
 								<button type="submit">
 									<i class="fa fa-search"></i>
 								</button>
@@ -208,6 +199,7 @@ background-color
 						</div>
 					</div>
 				</div>
+
 				<div class="col-md-12">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -240,156 +232,7 @@ background-color
 										</a></td>
 									</tr>
 								</c:forEach>
-								<!-- <tr>
-									<th scope="row">1</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">6</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">7</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">8</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">9</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr> -->
+
 							</tbody>
 						</table>
 					</div>
@@ -443,5 +286,161 @@ background-color
 	<script src="./Question List_files/scripts.js.download"></script>
 
 	<div class="hiddendiv common"></div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<script>
+		/* off-canvas sidebar toggle */
+		$('[data-toggle=offcanvas]').click(
+				function() {
+					$('.row-offcanvas').toggleClass('active');
+					$('.collapse').toggleClass('in').toggleClass('hidden-xs')
+							.toggleClass('visible-xs');
+				});
+
+		$('#search').on('click', function() {
+			var text = document.getElementById("searchText").value;
+			if (text.length != 0) {
+				window.location = "searchQuestions?searchText=" + text;
+			}
+		});
+
+		var isXlsx = function(name) {
+			return name.match(/xlsx$/i)
+		};
+
+		$("#btnfile").click(function() {
+			$("#uploadfile").click();
+		});
+
+		function showFileDialog() {
+			$("#fileQuestions").click();
+		}
+
+		$(document)
+				.ready(
+						function() {
+
+							var file = $('[name="fileQuestions"]');
+							var imgContainer = $('#imgContainer');
+
+							$('#uploadLink').on('click', function() {
+								// $("#file").click();
+
+							});
+
+							var fileU = document
+									.getElementById('fileQuestions');
+							fileU
+									.addEventListener(
+											"change",
+											function() {
+												if (fileU.files.length > 0) {
+													var filename = $.trim(file
+															.val());
+
+													if (!(isXlsx(filename))) {
+														notify('Error',
+																'Please select an xlsx file to upload');
+														return;
+													}
+
+													$
+															.ajax(
+																	{
+																		xhr : function() {
+																			var xhr = new window.XMLHttpRequest();
+
+																			return xhr;
+																		},
+																		url : 'upload',
+																		type : "POST",
+																		data : new FormData(
+																				document
+																						.getElementById("fileFormQuestions")),
+																		enctype : 'multipart/form-data',
+																		processData : false,
+																		contentType : false
+																	})
+															.done(
+																	function(
+																			data) {
+																		notify(
+																				'Success',
+																				'File Upload Successful');
+
+																	})
+															.fail(
+																	function(
+																			jqXHR,
+																			textStatus) {
+																		notify(
+																				'Failure',
+																				'File Upload Failed. Please contact Administrator');
+																	});
+													document
+															.getElementById('fileQuestions').value = null;
+													return;
+												}
+
+											});
+
+						});
+
+		function notify(messageType, message) {
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : message,
+					type : messageType,
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		}
+
+		function confirm(id) {
+			(new PNotify({
+				title : 'Confirmation Needed',
+				text : 'Are you sure? Do you really want to delete this Q?',
+				icon : 'glyphicon glyphicon-question-sign',
+				hide : false,
+				confirm : {
+					confirm : true
+				},
+				buttons : {
+					closer : false,
+					sticker : false
+				},
+				history : {
+					history : false
+				}
+			})).get().on('pnotify.confirm', function() {
+				window.location = "removeQuestionFromList?qid=" + id;
+			}).on('pnotify.cancel', function() {
+
+			});
+		}
+	</script>
+
+	<c:if test="${msgtype != null}">
+		<script>
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : '${message}',
+					type : '${msgtype}',
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
+	</c:if>
 </body>
 </html>
