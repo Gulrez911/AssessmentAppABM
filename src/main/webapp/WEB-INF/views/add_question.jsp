@@ -2,134 +2,148 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.assessment.data.*, java.text.*, java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IIHT</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href="css/style.css" rel="stylesheet" type="text/css">
-        <link href="css/responsive.css" rel="stylesheet" type="text/css">
-	<link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
-	<script type="text/javascript" src="scripts/custom.js"></script>
-	
-	 <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-	<script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IIHT</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+<link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+<script>
 	function goback(){
 	window.location = "goback";
 	}
 	</script>
-	
-    </head>
-    <body>
 
-        <div class="maincontainer">            
+</head>
+<body>
 
-            <div class="wrapper">
-                <div class="row row-offcanvas row-offcanvas-left">
-                    <!-- sidebar -->
-                   <jsp:include page="side.jsp" /> 
-                    <!-- /sidebar -->
+	<div class="maincontainer">
 
-                    <!-- main right col -->
-                    <div class="column col-sm-10 col-xs-11" id="main" style="overflow-x:scroll;overflow-y:scroll;">
+		<div class="wrapper">
+			<div class="row row-offcanvas row-offcanvas-left">
+				<!-- sidebar -->
+				<jsp:include page="side.jsp" />
+				<!-- /sidebar -->
 
-                        <div class="rightside" >
+				<!-- main right col -->
+				<div class="column col-sm-10 col-xs-11" id="main"
+					style="overflow-x: scroll; overflow-y: scroll;">
 
-                            <div class="leftdiv" >
+					<div class="rightside">
 
-                                <div class="topmenu text-right">
-                                   
-					  <div class="pagination">
-						<c:if test="${showPreviousPage}">
-						<a href="${callingMethod}?page=${previousPage}${queryParam}"><i class="fa fa-arrow-left"></i></a>
-					    </c:if>
-					    
-					     <c:if test="${selectedPage != null &&  selectedPage > 0}">
+						<div class="leftdiv">
+
+							<div class="topmenu text-right">
+
+								<div class="pagination">
+									<c:if test="${showPreviousPage}">
+										<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
+											class="fa fa-arrow-left"></i></a>
+									</c:if>
+
+									<c:if test="${selectedPage != null &&  selectedPage > 0}">
 						    ${selectedPage} / ${totalNumberOfPages}
 					    </c:if>
-					    
-					    <c:if test="${showNextPage}">
-						    <a href="${callingMethod}?page=${nextPage}${queryParam}"><i class="fa fa-arrow-right"></i></a>
-					    </c:if>
-					</div>
-                                </div>
 
-                                <div class="questiontable" >
-                                    <div class="questionheading">
-                                        <div class="left">
-                                            <h4>Question Bank</h4>
-                                        </div>
-                                        <div class="right">
-                                            <div class="searchdata">
-                                                <input type="text" placeholder="Search a Q" name="searchText" id="searchText">
-                                            <i class="fa fa-search" id="search"></i>
-                                            </div>
+									<c:if test="${showNextPage}">
+										<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
+											class="fa fa-arrow-right"></i></a>
+									</c:if>
+								</div>
+							</div>
 
-                                            <div class="filter">
-                                                <a href="javascript:notify('Information', 'Feature coming soon')"><img src="images/ic_sort.png">Sort</a>
-                                                <a href="javascript:notify('Information', 'Feature coming soon')"><img src="images/ic_filter.png">Filter</a>
-                                            </div>
+							<div class="questiontable">
+								<div class="questionheading">
+									<div class="left">
+										<h4>Question Bank</h4>
+									</div>
+									<div class="right">
+										<div class="searchdata">
+											<input type="text" placeholder="Search a Q" name="searchText"
+												id="searchText"> <i class="fa fa-search" id="search"></i>
+										</div>
 
-                                        </div>
-                                    </div>
+										<div class="filter">
+											<a
+												href="javascript:notify('Information', 'Feature coming soon')"><img
+												src="images/ic_sort.png">Sort</a> <a
+												href="javascript:notify('Information', 'Feature coming soon')"><img
+												src="images/ic_filter.png">Filter</a>
+										</div>
+
+									</div>
+								</div>
 
 
-                                    <div class="questiontablelist" >
-                                    <table class="table" >
-                                        <thead>
-                                            <tr>
-                                                <th><b>No</b></th>
-                                                <th>Question</th>
-                                                <th  style="white-space:nowrap;">Category</th>
-                                                <th>Difficulty Level</th>
-                                                <th  style="white-space:nowrap;">Update</th>
-						<th  style="white-space:nowrap;">Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-					<tbody>
-						                     
-						                       <c:forEach  items="${qs}" var="question" varStatus="loop">   
-						                      	<tr>
+								<div class="questiontablelist">
+									<table class="table">
+										<thead>
+											<tr>
+												<th><b>No</b></th>
+												<th>Question</th>
+												<th style="white-space: nowrap;">Category</th>
+												<th>Difficulty Level</th>
+												<th style="white-space: nowrap;">Update</th>
+												<th style="white-space: nowrap;">Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+										<tbody>
 
-										<td>${loop.count}</td>		
-						                      		<td><c:out value="${question.questionText}"></c:out>  </td>
-						                      		<td> ${question.category}</td>
-						                      		<td><c:out value="${question.difficultyLevel.level}"></c:out>   </td>
-						                      		<td><a  href="addQuestion?qid=${question.id}">Click </a>   </td>
-						                      		<td><a  href="javascript:confirm('${question.id}')">Click </a> </td>
-						                      	</tr>
-						                      	</c:forEach>   
-						                      </tbody>
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
+											<c:forEach items="${qs}" var="question" varStatus="loop">
+												<tr>
 
-                                </div>
+													<td>${loop.count}</td>
+													<td><c:out value="${question.questionText}"></c:out></td>
+													<td>${question.category}</td>
+													<td><c:out value="${question.difficultyLevel.level}"></c:out>
+													</td>
+													<td><a href="addQuestion?qid=${question.id}">Click
+													</a></td>
+													<td><a href="javascript:confirm('${question.id}')">Click
+													</a></td>
+												</tr>
+											</c:forEach>
+										</tbody>
 
-                            </div>	
+										</tbody>
+									</table>
+								</div>
 
-                            <div class="rightdiv" >
-                                <h4 class="heading">${question_label}</h4>
-                                <div class="addqueform" >
-                                     <form name="questionForm"  method="post" modelAttribute="question" action="saveQuestion">
-                                        <div class="formfield">
-                                            <label>Question</label>
-                                            
-					    <form:textarea path="question.questionText" required="true" />
-					    <form:hidden path="question.id" />
-                                        </div>
+							</div>
 
-                                      <!--  <div class="formfield">
+						</div>
+
+						<div class="rightdiv">
+							<h4 class="heading">${question_label}</h4>
+							<div class="addqueform">
+								<form name="questionForm" method="post"
+									modelAttribute="question" action="saveQuestion">
+									<div class="formfield">
+										<label>Question</label>
+
+										<form:textarea path="question.questionText" required="true" />
+										<form:hidden path="question.id" />
+									</div>
+
+									<!--  <div class="formfield">
 					
                                             <select>
                                                 <option>Select Question Type</option>
@@ -139,217 +153,236 @@
                                             </select>
 					   
                                         </div> -->
-					
-					 <div class="formfield">
-					 <label>Question Type</label>
-					<form:select id="questionType" path="question.type" onchange="changeQType()">
-						  
-						     <form:options items="${types}" itemValue="type" itemLabel="type" />
-						</form:select>
-					</div>
 
-                                        <div class="formfield">
-                                            
-					     <form:select path="question.level">
-						  
-						     <form:options items="${levels}" itemValue="level" itemLabel="level" />
-						</form:select>
-                                        </div>
-					
-					<c:choose>
-					    <c:when test="${question.type=='MCQ'}">
-						<div id="mcqDiv" class="formfield"  >
-					    </c:when>    
-					    <c:when test="${question.type=='CODING'}">
-						<div id="mcqDiv" class="formfield"  style="display:none">
-					    </c:when>   
-					</c:choose>
+									<div class="formfield">
+										<label>Question Type</label>
+										<form:select id="questionType" path="question.type"
+											onchange="changeQType()">
 
-                                        
-                                            <div class="selectoptions"  >
-                                                <span>Options</span>
-                                                <span style="float: right;padding-right: 20px;">Correct Choice</span>
+											<form:options items="${types}" itemValue="type"
+												itemLabel="type" />
+										</form:select>
+									</div>
 
-                                                <div id="maindivforaddmore">
-                                                    <div class="option">
-                                                        <span>A</span>
-                                                       <form:input path="question.choice1" name="choice1" id="choice1" required="true"/>
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.one" /> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>B</span>
-                                                       <form:input path="question.choice2" name="choice2" id="choice2" required="true"/>
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.two" /> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>C</span>
-                                                        <form:input path="question.choice3" name="choice3" id="choice3" />
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.three" /> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>D</span>
-                                                        <form:input path="question.choice4" name="choice4" id="choice4" />
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.four" /> 
-                                                        </div>
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>E</span>
-                                                        <form:input path="question.choice5" name="choice5" id="choice5" />
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.five" /> 
-                                                        </div>
-                                                    </div>
-						    
-						    <div class="option">
-                                                        <span>F</span>
-                                                        <form:input path="question.choice6" name="choice6" id="choice6" />
-                                                        <div class="choice">
-                                                            <form:checkbox path="question.six" /> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-				
-                                            
-                                        </div>
-					
-					<c:choose>
-					    <c:when test="${question.type=='MCQ'}">
-						<div id="codingDiv" class="formfield" style="display:none">
-					    </c:when>    
-					    <c:when test="${question.type=='CODING'}">
-						<div id="codingDiv" class="formfield" >
-					    </c:when>   
-					</c:choose>
-					
-					
-					    <div class="formfield">
-						 <label>Programming Language</label>
-						<form:select path="question.lang">
-							  
-							     <form:options items="${languages}" itemValue="language" itemLabel="language" />
-							</form:select>
-					    </div>
-					  
-					  <div class="formfield">
-                                            <label>Code Input</label>
-                                            
-					    <form:textarea path="question.inputCode" style="height:150px;overflow-y: scroll" id="inputCode" />
-					    
-                                          </div>
-					  
-					  <div class="formfield">
-                                            <label>System Input 1</label>
-                                            
-					    <form:textarea path="question.hiddenInputPositive" style="height:30px" id="hiddenInputPositive" />
-					  
-                                          </div>
-						 <div class="formfield">
-                                            <label>System Output 1</label>
-										  
-						<form:textarea path="question.hiddenOutputPositive" style="height:30px" id="hiddenOutputPositive" />
-					  
-                                          </div>
+									<div class="formfield">
+
+										<form:select path="question.level">
+
+											<form:options items="${levels}" itemValue="level"
+												itemLabel="level" />
+										</form:select>
+									</div>
+
+									<c:choose>
+										<c:when test="${question.type=='MCQ'}">
+											<div id="mcqDiv" class="formfield">
+										</c:when>
+										<c:when test="${question.type=='CODING'}">
+											<div id="mcqDiv" class="formfield" style="display: none">
+										</c:when>
+									</c:choose>
+
+
+									<div class="selectoptions">
+										<span>Options</span> <span
+											style="float: right; padding-right: 20px;">Correct
+											Choice</span>
+
+										<div id="maindivforaddmore">
+											<div class="option">
+												<span>A</span>
+												<form:input path="question.choice1" name="choice1"
+													id="choice1" required="true" />
+												<div class="choice">
+													<form:checkbox path="question.one" />
+												</div>
+											</div>
+											<div class="option">
+												<span>B</span>
+												<form:input path="question.choice2" name="choice2"
+													id="choice2" required="true" />
+												<div class="choice">
+													<form:checkbox path="question.two" />
+												</div>
+											</div>
+											<div class="option">
+												<span>C</span>
+												<form:input path="question.choice3" name="choice3"
+													id="choice3" />
+												<div class="choice">
+													<form:checkbox path="question.three" />
+												</div>
+											</div>
+											<div class="option">
+												<span>D</span>
+												<form:input path="question.choice4" name="choice4"
+													id="choice4" />
+												<div class="choice">
+													<form:checkbox path="question.four" />
+												</div>
+											</div>
+											<div class="option">
+												<span>E</span>
+												<form:input path="question.choice5" name="choice5"
+													id="choice5" />
+												<div class="choice">
+													<form:checkbox path="question.five" />
+												</div>
+											</div>
+
+											<div class="option">
+												<span>F</span>
+												<form:input path="question.choice6" name="choice6"
+													id="choice6" />
+												<div class="choice">
+													<form:checkbox path="question.six" />
+												</div>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<c:choose>
+								<c:when test="${question.type=='MCQ'}">
+									<div id="codingDiv" class="formfield" style="display: none">
+								</c:when>
+								<c:when test="${question.type=='CODING'}">
+									<div id="codingDiv" class="formfield">
+								</c:when>
+							</c:choose>
+
+
+							<div class="formfield">
+								<label>Programming Language</label>
+								<form:select path="question.lang">
+
+									<form:options items="${languages}" itemValue="language"
+										itemLabel="language" />
+								</form:select>
+							</div>
+
+							<div class="formfield">
+								<label>Code Input</label>
+
+								<form:textarea path="question.inputCode"
+									style="height:150px;overflow-y: scroll" id="inputCode" />
+
+							</div>
+
+							<div class="formfield">
+								<label>System Input 1</label>
+
+								<form:textarea path="question.hiddenInputPositive"
+									style="height:30px" id="hiddenInputPositive" />
+
+							</div>
+							<div class="formfield">
+								<label>System Output 1</label>
+
+								<form:textarea path="question.hiddenOutputPositive"
+									style="height:30px" id="hiddenOutputPositive" />
+
+							</div>
+							<div class="formfield">
+								<label>System Input 2</label>
+
+								<form:textarea path="question.hiddenInputNegative"
+									style="height:30px" id="hiddenInputNegative" />
+
+							</div>
+							<div class="formfield">
+								<label>System Output 2</label>
+
+								<form:textarea path="question.hiddenOutputNegative"
+									style="height:30px" id="hiddenOutputNegative" />
+
+							</div>
+
+							<div class="formfield">
+								<label>Constraints</label>
+
+								<form:textarea path="question.constrnt" style="height:50px" />
+
+							</div>
+						</div>
+
+
+						<div class="formfield addimagevideo">
+							<a class="addimage" href="#">Add image</a> <a class="addaudio"
+								href="#">Add audio</a> <a class="addvideo" href="#">Add
+								Video</a>
+						</div>
+
 						<div class="formfield">
-                                            <label>System Input 2</label>
-                                            
-					    <form:textarea path="question.hiddenInputNegative" style="height:30px" id="hiddenInputNegative" />
-					  
-                                          </div>
-						 <div class="formfield">
-                                            <label>System Output 2</label>
-										  
-						<form:textarea path="question.hiddenOutputNegative" style="height:30px" id="hiddenOutputNegative" />
-					  
-                                          </div>
-					  
-					  <div class="formfield">
-                                            <label>Constraints</label>
-                                            
-					    <form:textarea path="question.constrnt"  style="height:50px" />
-					    
-                                          </div>
+							<div class="selectoptions">
+								<span>Choose Categories for Question</span>
+
+								<div id="maindivforaddmore">
+									<div class="option">
+										<span>A</span>
+										<form:input path="question.qualifier1" name="qualifier1"
+											id="qualifier1" required="true" />
+
+									</div>
+									<div class="option">
+										<span>B</span>
+										<form:input path="question.qualifier2" name="qualifier2"
+											id="qualifier2" />
+
+									</div>
+									<div class="option">
+										<span>C</span>
+										<form:input path="question.qualifier3" name="qualifier3"
+											id="qualifier3" />
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<label class="queimage"></label> <label class="queaudio"></label>
+						<label class="quevideo"></label> <input type="file"
+							name="addimage" id="addimage" style="display: none;"> <input
+							type="file" name="addaudio" id="addaudio" style="display: none;">
+						<input type="file" name="addvideo" id="addvideo"
+							style="display: none;">
+
+
+						<div class="formfield">
+							<label>Instructions, if any</label>
+							<form:textarea path="question.instructionsIfAny"
+								style="overflow-y: scroll" id="output" />
+						</div>
+
+
+						<div class="formfield savebtn">
+							<input class="save" type="submit" value="Save">
+							<!--   <input type="submit" value="Save and add another"> -->
+							<input type="button" value="Cancel" onClick="goback()">
+						</div>
+
+						</form>
 					</div>
 
+				</div>
 
-                                        <div class="formfield addimagevideo">
-                                            <a class="addimage" href="#">Add image</a>
-                                            <a class="addaudio" href="#">Add audio</a>
-                                            <a class="addvideo" href="#">Add Video</a>
-                                        </div>
-					
-					<div class="formfield">
-                                            <div class="selectoptions">
-                                                <span>Choose Categories for Question</span>
-                                               
-                                                <div id="maindivforaddmore">
-                                                    <div class="option">
-                                                        <span>A</span>
-                                                        <form:input path="question.qualifier1" name="qualifier1" id="qualifier1" required="true"/>
-                                                        
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>B</span>
-                                                        <form:input path="question.qualifier2" name="qualifier2" id="qualifier2" />
-                                                       
-                                                    </div>
-                                                    <div class="option">
-                                                        <span>C</span>
-                                                        <form:input path="question.qualifier3" name="qualifier3" id="qualifier3" />
-                                                       
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-					</div>
-                                        
-                                        <label class="queimage"></label>
-                                        <label class="queaudio"></label>
-                                        <label class="quevideo"></label>
-                                        
-                                        <input type="file" name="addimage" id="addimage" style="display: none;">
-                                        <input type="file" name="addaudio" id="addaudio" style="display: none;">
-                                        <input type="file" name="addvideo" id="addvideo" style="display: none;">
+			</div>
+
+		</div>
+		<!-- /main -->
+	</div>
+	</div>
+
+	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-                                        <div class="formfield">
-                                            <label>Instructions, if any</label>
-                                            <form:textarea path="question.instructionsIfAny" style="overflow-y: scroll" id="output" />
-                                        </div>
 
-
-                                        <div class="formfield savebtn">
-                                            <input class="save" type="submit" value="Save">
-                                         <!--   <input type="submit" value="Save and add another"> -->
-                                            <input type="button" value="Cancel" onClick="goback()">
-                                        </div>
-
-                                    </form>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- /main -->
-                </div>
-            </div>
-   
-        </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-     
-
-        <script>
+	<script>
             /* off-canvas sidebar toggle */
             $('[data-toggle=offcanvas]').click(function () {
                 $('.row-offcanvas').toggleClass('active');
@@ -357,7 +390,7 @@
             });
         </script>
 
-        <script type="text/javascript">
+	<script type="text/javascript">
 	
 	 window.onload = function() {
 		var qtype = '${question.type}';
@@ -410,7 +443,7 @@
 
         </script>
 
-        <script>
+	<script>
             $(function () {
                 $(".addimage").on('click', function (e) {
                     e.preventDefault();
@@ -511,7 +544,7 @@
         </script>
 
 	<c:if test="${msgtype != null}">
-		 <script>
+		<script>
 	 var notification = 'Information';
 	 $(function(){
 		 new PNotify({
@@ -523,7 +556,7 @@
 	     });
 	 }); 	 
       </script>
-</c:if>
-	
-    </body>
+	</c:if>
+
+</body>
 </html>

@@ -60,7 +60,7 @@ public class QuestionController {
 
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
 	public ModelAndView addQuestion(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false)Long qid,HttpServletRequest request,HttpServletResponse response)throws Exception {
-		ModelAndView mav = new ModelAndView("add_question");
+		ModelAndView mav = new ModelAndView("add_question2");
 		
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
@@ -94,7 +94,7 @@ public class QuestionController {
 	
 	@RequestMapping(value = "/removeQuestionFromList", method = RequestMethod.GET)
 	public ModelAndView removeQuestionFromList(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false) Long qid, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		if(qid != null) {
 			Boolean canDelete = questionService.canDeleteQuestion(qid);
 				if(canDelete) {
@@ -124,7 +124,7 @@ public class QuestionController {
 		mav.addObject("levels", DifficultyLevel.values());
 		mav.addObject("types", QuestionType.values());
   		mav.addObject("languages", ProgrammingLanguage.values());
-		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "question_list", null);
+		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "question_list2", null);
 		return mav;
 	}
 	
