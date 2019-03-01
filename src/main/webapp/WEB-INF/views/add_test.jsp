@@ -23,9 +23,36 @@
         <div class="maincontainer">            
             <div class="wrapper">
                 <div class="row row-offcanvas row-offcanvas-left">
-                    <!-- sidebar -->
-                    <jsp:include page="side.jsp" /> 
-                    <!-- /sidebar -->
+                   <header id="header" class="tt-nav nav-border-bottom" style="margin-top: 69px;">
+		<div class="header-sticky light-header ">
+			<div class="container">
+				<div id="materialize-menu" class="menuzord menuzord-responsive">
+					<a href="javascript:void(0)" class="showhide"
+						style="display: none;"><em></em><em></em><em></em></a>
+					<!--logo start-->
+					
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right menuzord-indented scrollable" id="div1" style="max-height:400px;">
+					<li><a href="http://beforesubmit.com/qe-assess/index.html"
+                     class="logo-brand"> <img class="retina" src="images/Logo2.png" alt="">
+					    </a></li>
+						<li><a href="javascript:void(0)">Dashboard</a></li>
+						<li class="active"><a href="javascript:void(0)">QuestionBank</a></li>
+						 <li><a href="javascript:void(0)?testlist">Tests</a></li>
+        <!-- 		<li><a href="testlist"><img src="images/test_icon.png" alt="logo"> <span class="collapse in hidden-xs">Tests</span></a></li> -->
+						<li><a href="javascript:void(0)">Skills</a></li>
+						<li><a href="javascript:void(0)">Results</a></li>
+						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+						<li><a href="javascript:void(0)">Skill based Reports</a></li>
+						<li><a href="javascript:void(0)">Users</a></li>
+						<li class="scrollable-fix"></li>
+					</ul>
+					<!--mega menu end-->
+				</div>
+			</div>
+		</div>
+	</header>
                     <!-- main right col -->
                     <div class="column col-sm-10 col-xs-11" id="main">
                         <div class="rightside">
