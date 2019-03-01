@@ -67,23 +67,165 @@ li a {
 }
 
 li
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
 a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :hover
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
 (
 .active
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
 )
 {
 background-color
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
+
 #111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ;
-
-
 }
 .active {
 	background-color: #4CAF50;
@@ -138,10 +280,17 @@ background-color
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
+						<a href="javascript:showFileDialog();" id="uploadQuestionsLink"
 							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-upload"></i> Import</a>
+							class="material-icons fa fa-plus-circle"></i>Import</a>
 					</div>
+
+					<form id="fileFormQuestions" method="POST"
+						enctype="multipart/form-data">
+						<input type="file" name="fileQuestions" id="fileQuestions"
+							style="display: none" />
+					</form>
+
 					<div class="col-md-2">
 						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
@@ -175,10 +324,18 @@ background-color
 					</div>
 					<div class="col-md-4">
 						<div class="widget widget_search">
-							<form role="search" method="get" class="search-form">
-								<input type="text" class="form-control" value="" name="s"
-									id="search" placeholder="Search a question">
+							<%-- <form role="search" method="get" class="search-form">
+								<input type="text" class="form-control" name="searchText"
+									id="searchQ" placeholder="Search a question">
 								<button type="submit">
+									<i class="fa fa-search"></i>
+								</button>
+							</form> --%>
+							<form action="searchQuestions" method="get">
+								<input type="text" class="form-control"
+									value="${param.searchText}" name="searchText" id="search"
+									placeholder="Search a question">
+								<button type="submit" id="searchQ">
 									<i class="fa fa-search"></i>
 								</button>
 							</form>
@@ -302,7 +459,7 @@ background-color
 							.toggleClass('visible-xs');
 				});
 
-		$('#search').on('click', function() {
+		$('#searchQ').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchQuestions?searchText=" + text;
