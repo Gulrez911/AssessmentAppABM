@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*" %>
-  <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <html lang="en" style="position: fixed;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,11 +17,12 @@
         <link href="css/login.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
-      <body style="height: 100%;margin: 0px;">
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center" style="padding-top: 50px;">
-            <img src="./images/Log.png">
-       
-<section class="section-padding banner-wrapper login-alt banner-6" style="height: 100% !important;margin: 0px;background-image: url(&#39;images/logo2.jpg&#39;);">
+      <body>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          
+      
+     <section class="section-padding banner-wrapper login-alt banner-6" style="height: 120% !important;margin: 0px;background-image: url(&#39;images/api.jpg&#39;);">
+             <img src="./images/Log.png" style="margin-top: -84px;">
             <div class="container">
                 <div class="login-wrapper">
                     <div class="card-wrapper"></div>

@@ -55,9 +55,9 @@ public interface QuestionRepository extends JpaRepository<Question,Long>
 	public List<Question> findQuestionsByQualifier5(@Param("companyId") String companyId, @Param("qualifier1") String qualifier1, @Param("qualifier2") String qualifier2, @Param("qualifier3") String qualifier3, @Param("qualifier4") String qualifier4, @Param("qualifier5") String qualifier5);
 
 	
+	public Page<Question> searchQuestions(@Param("companyId") String companyId, @Param("searchText")  String searchText, Pageable pageable);
 	
 	@Query(value="SELECT q FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%", countQuery="SELECT COUNT(*) FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%")
-	public Page<Question> searchQuestions(@Param("companyId") String companyId, @Param("searchText")  String searchText, Pageable pageable);
 	@Query(value="SELECT q FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%")
 	public List<Question> searchQuestions(@Param("companyId") String companyId, @Param("searchText")  String searchText);
 

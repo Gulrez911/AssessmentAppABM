@@ -22,6 +22,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
+
 </head>
 <body>
 	<div class="maincontainer">
@@ -61,8 +62,8 @@
                                     </c:if>
 
 								<c:if test="${showNextPage}">
-									<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
-										class="fa fa-arrow-right"></i></a>
+									<a href="${callingMethod}?page=${nextPage}${queryParam}">
+									<i class="fa fa-arrow-right"></i></a>
 								</c:if>
 							</div>
 						</div>

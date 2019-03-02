@@ -87,7 +87,7 @@ public class TestController {
 	  public ModelAndView testlist(@RequestParam(name= "page", required = false) Integer pageNumber, HttpServletRequest request, HttpServletResponse response) {
 		    ModelAndView mav = null;	
 		    User user = (User) request.getSession().getAttribute("user");
-		    mav = new ModelAndView("test_list");
+		    mav = new ModelAndView("test_list2");
 		    if(pageNumber == null) {
 				pageNumber = 0;
 			}
@@ -196,7 +196,7 @@ public class TestController {
 	 
 	 @RequestMapping(value = "/searchTests", method = RequestMethod.GET)
 	  public ModelAndView searchTests(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam String searchText, HttpServletRequest request, HttpServletResponse response) {
-	    ModelAndView mav = new ModelAndView("test_list");
+	    ModelAndView mav = new ModelAndView("test_list2");
 	       User user = (User) request.getSession().getAttribute("user");
 	       if(pageNumber == null) {
 				pageNumber = 0;

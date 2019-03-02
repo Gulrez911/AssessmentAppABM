@@ -44,27 +44,31 @@
 	href="./Question List_files/navigation.css">
 
 </head>
-
+<script>
+	function goback() {
+		window.location = "goback";
+	}
+</script>
 <body id="top" class="has-header-search">
 	<!--header start-->
-	<header id="header" class="tt-nav nav-border-bottom" style="margin-top: 69px;">
-		<div class="header-sticky light-header ">
+	<header id="header" class="tt-nav nav-border-bottom">
+		<div class="header-sticky light-header" style=    "padding: 0px;">
 			<div class="container">
 				<div id="materialize-menu" class="menuzord menuzord-responsive">
 					<a href="javascript:void(0)" class="showhide"
 						style="display: none;"><em></em><em></em><em></em></a>
 					<!--logo start-->
-					
+					<a href="http://beforesubmit.com/qe-assess/index.html"
+						class="logo-brand"> <img class="retina" src="images/Logo2.png"
+						alt="">
+					</a>
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right menuzord-indented scrollable" id="div1" style="max-height:400px;">
-					<li><a href="http://beforesubmit.com/qe-assess/index.html"
-                     class="logo-brand"> <img class="retina" src="images/Logo2.png" alt="">
-					    </a></li>
+					<ul class="menuzord-menu pull-right menuzord-indented scrollable" style="max-height: 400px;">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="javascript:void(0)">QuestionBank</a></li>
-						 <li><a href="javascript:void(0)?add_test.jsp">Tests</a></li>
-        <!-- 		<li><a href="testlist"><img src="images/test_icon.png" alt="logo"> <span class="collapse in hidden-xs">Tests</span></a></li> -->
+						<li class="active"><a href="javascript:void(0)">Question
+								Bank</a></li>
+						<li><a href="javascript:void(0)">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="javascript:void(0)">Results</a></li>
 						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
@@ -77,452 +81,341 @@
 			</div>
 		</div>
 	</header>
-	<!--header end-->
+	<div class="maincontainer">
 
+		<div class="wrapper">
+			<div class="row row-offcanvas row-offcanvas-left">
+				<!-- sidebar -->
+				<jsp:include page="side.jsp" />
+				<!-- /sidebar -->
 
+				<!-- main right col -->
+				<div class="column col-sm-10 col-xs-11" id="main"
+					style="overflow-x: scroll; overflow-y: scroll;">
 
-	<section>
-		<div class="container">
-			<div class="row mt-5">
-				<div class="col-md-12">
-					<div class="col-md-6"></div>
-					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
-							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-plus-circle"></i> Add New</a>
-					</div>
-					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
-							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-upload"></i> Import</a>
-					</div>
-					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
-							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-sign-out"></i> Sign Off</a>
-					</div>
-				</div>
+					<div class="rightside">
 
-				<div class="col-md-12">
-					<div class="col-md-12">
-						<div class="pagination" style="float: right;">
-							<c:if test="${showPreviousPage}">
-								<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
-									class="fa fa-arrow-left"></i></a>
-							</c:if>
+						<div class="leftdiv">
 
-							<c:if test="${selectedPage != null &&  selectedPage > 0}">
+							<div class="topmenu text-right">
+
+								<div class="pagination">
+									<c:if test="${showPreviousPage}">
+										<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
+											class="fa fa-arrow-left"></i></a>
+									</c:if>
+
+									<c:if test="${selectedPage != null &&  selectedPage > 0}">
 						    ${selectedPage} / ${totalNumberOfPages}
 					    </c:if>
 
-							<c:if test="${showNextPage}">
-								<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
-									class="fa fa-arrow-right"></i></a>
-							</c:if>
-						</div>
-					</div>
-				</div>
+									<c:if test="${showNextPage}">
+										<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
+											class="fa fa-arrow-right"></i></a>
+									</c:if>
+								</div>
+							</div>
 
-				 
-				<div class="col-md-12">
-					<div class="mt-10"></div>
-					<div class="col-md-5">
-						<h1>Question Bank</h1>
-					</div>
-					<div class="col-md-4">
-						<div class="widget widget_search">
-							<form role="search" method="get" class="search-form">
-								<input type="text" class="form-control" value="" name="s" id="s"
-									placeholder="Search a question">
-								<button type="submit">
-									<i class="fa fa-search"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="mt-10"></div>
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							<a href="http://beforesubmit.com/qe-assess/question_list.html#">
-								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="http://beforesubmit.com/qe-assess/question_list.html#">
-								<i class="fa fa-filter"></i> <span>Filter</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>Question</th>
-									<th>Category</th>
-									<th>Difficulty Level</th>
-									<th>Updated On</th>
-									<th>Update</th>
-									<th>Delete</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${qs}" var="question" varStatus="loop">
-									<tr>
+							<div class="questiontable">
+								<div class="questionheading">
+									<div class="left">
+										<h4>Question Bank</h4>
+									</div>
+									<div class="right">
+										<div class="searchdata">
+											<input type="text" placeholder="Search a Q" name="searchText"
+												id="searchText"> <i class="fa fa-search" id="search"></i>
+										</div>
 
-										<td>${loop.count}</td>
+										<div class="filter">
+											<a
+												href="javascript:notify('Information', 'Feature coming soon')"><img
+												src="images/ic_sort.png">Sort</a> <a
+												href="javascript:notify('Information', 'Feature coming soon')"><img
+												src="images/ic_filter.png">Filter</a>
+										</div>
+
+									</div>
+								</div>
 
 
-										<td><c:out value="${question.questionText}"></c:out></td>
+								<div class="questiontablelist">
+									<table class="table">
+										<thead>
+											<tr>
+												<th><b>No</b></th>
+												<th>Question</th>
+												<th style="white-space: nowrap;">Category</th>
+												<th>Difficulty Level</th>
+												<th style="white-space: nowrap;">Update</th>
+												<th style="white-space: nowrap;">Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tbody>
 
-										<td>${question.category}</td>
-										<td><c:out value="${question.difficultyLevel.level}"></c:out>
-										</td>
-										<td><c:out value="${question.updatedDate}"></c:out></td>
-										<td><a href="addQuestion?qid=${question.id}">Click </a></td>
-										<td><a href="javascript:confirm('${question.id}')">Click
-										</a></td>
-									</tr>
-								</c:forEach>
-								<!-- <tr>
-									<th scope="row">1</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">6</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">7</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">8</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">9</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">10</th>
-									<td>Inputs should be sorted for join component note
-										without using in memory</td>
-									<td><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#">Ab-Inito</a></td>
-									<td>MEDIUM</td>
-									<td>16-Jan-2019</td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-edit"></i></a></td>
-									<td class="text-center"><a
-										href="http://beforesubmit.com/qe-assess/question_list.html#"><i
-											class="fa fa-trash"></i></a></td>
-								</tr> -->
-							</tbody>
-						</table>
-					</div>
+											<c:forEach items="${qs}" var="question" varStatus="loop">
+												<tr>
 
-				</div>
-			</div>
-			<div class="rightdiv">
-				<h4 class="heading">${question_label}</h4>
-				<div class="addqueform">
-					<form name="questionForm" method="post" modelAttribute="question"
-						action="saveQuestion">
-						<div class="formfield">
-							<label>Question</label>
+													<td>${loop.count}</td>
+													<td><c:out value="${question.questionText}"></c:out></td>
+													<td>${question.category}</td>
+													<td><c:out value="${question.difficultyLevel.level}"></c:out>
+													</td>
+													<td><a href="addQuestion?qid=${question.id}">Click
+													</a></td>
+													<td><a href="javascript:confirm('${question.id}')">Click
+													</a></td>
+												</tr>
+											</c:forEach>
+										</tbody>
 
-							<form:textarea path="question.questionText" required="true" />
-							<form:hidden path="question.id" />
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+
 						</div>
 
-						<!--  <div class="formfield">
-					
-                                            <select>
-                                                <option>Select Question Type</option>
-						<option selected>Multi Choice Question</option>
-						<option>Coding Assignment</option>
-						<option>Project Assessment</option>
-                                            </select>
-					   
-                                        </div> -->
+						<div class="rightdiv">
+							<h4 class="heading">${question_label}</h4>
+							<div class="addqueform">
+								<form name="questionForm" method="post"
+									modelAttribute="question" action="saveQuestion">
+									<div class="formfield">
+										<label>Question</label>
 
-						<div class="formfield">
-							<label>Question Type</label>
-							<form:select id="questionType" path="question.type"
-								onchange="changeQType()">
+										<form:textarea path="question.questionText" required="true" />
+										<form:hidden path="question.id" />
+									</div>
 
-								<form:options items="${types}" itemValue="type" itemLabel="type" />
-							</form:select>
+									<div class="formfield">
+										<label>Question Type</label>
+										<form:select id="questionType" path="question.type"
+											onchange="changeQType()">
+
+											<form:options items="${types}" itemValue="type"
+												itemLabel="type" />
+										</form:select>
+									</div>
+
+									<div class="formfield">
+
+										<form:select path="question.level">
+
+											<form:options items="${levels}" itemValue="level"
+												itemLabel="level" />
+										</form:select>
+									</div>
+
+									<c:choose>
+										<c:when test="${question.type=='MCQ'}">
+											<div id="mcqDiv" class="formfield">
+										
+										</c:when>
+										<c:when test="${question.type=='CODING'}">
+											<div id="mcqDiv" class="formfield" style="display: none">
+										
+										</c:when>
+									</c:choose>
+
+
+									<div class="selectoptions">
+										<span>Options</span> <span
+											style="float: right; padding-right: 20px;">Correct
+											Choice</span>
+
+										<div id="maindivforaddmore">
+											<div class="option">
+												<span>A</span>
+												<form:input path="question.choice1" name="choice1"
+													id="choice1" required="true" />
+												<div class="choice">
+													<form:checkbox path="question.one" />
+												</div>
+											</div>
+											<div class="option">
+												<span>B</span>
+												<form:input path="question.choice2" name="choice2"
+													id="choice2" required="true" />
+												<div class="choice">
+													<form:checkbox path="question.two" />
+												</div>
+											</div>
+											<div class="option">
+												<span>C</span>
+												<form:input path="question.choice3" name="choice3"
+													id="choice3" />
+												<div class="choice">
+													<form:checkbox path="question.three" />
+												</div>
+											</div>
+											<div class="option">
+												<span>D</span>
+												<form:input path="question.choice4" name="choice4"
+													id="choice4" />
+												<div class="choice">
+													<form:checkbox path="question.four" />
+												</div>
+											</div>
+											<div class="option">
+												<span>E</span>
+												<form:input path="question.choice5" name="choice5"
+													id="choice5" />
+												<div class="choice">
+													<form:checkbox path="question.five" />
+												</div>
+											</div>
+
+											<div class="option">
+												<span>F</span>
+												<form:input path="question.choice6" name="choice6"
+													id="choice6" />
+												<div class="choice">
+													<form:checkbox path="question.six" />
+												</div>
+											</div>
+										</div>
+									</div>
+							
+							</div>
+
+							<c:choose>
+								<c:when test="${question.type=='MCQ'}">
+									<div id="codingDiv" class="formfield" style="display: none">
+								
+								</c:when>
+								<c:when test="${question.type=='CODING'}">
+									<div id="codingDiv" class="formfield">
+								
+								</c:when>
+							</c:choose>
+
+
+							<div class="formfield">
+								<label>Programming Language</label>
+								<form:select path="question.lang">
+
+									<form:options items="${languages}" itemValue="language"
+										itemLabel="language" />
+								</form:select>
+							</div>
+
+							<div class="formfield">
+								<label>Code Input</label>
+
+								<form:textarea path="question.inputCode"
+									style="height:150px;overflow-y: scroll" id="inputCode" />
+
+							</div>
+
+							<div class="formfield">
+								<label>System Input 1</label>
+
+								<form:textarea path="question.hiddenInputPositive"
+									style="height:30px" id="hiddenInputPositive" />
+
+							</div>
+							<div class="formfield">
+								<label>System Output 1</label>
+
+								<form:textarea path="question.hiddenOutputPositive"
+									style="height:30px" id="hiddenOutputPositive" />
+
+							</div>
+							<div class="formfield">
+								<label>System Input 2</label>
+
+								<form:textarea path="question.hiddenInputNegative"
+									style="height:30px" id="hiddenInputNegative" />
+
+							</div>
+							<div class="formfield">
+								<label>System Output 2</label>
+
+								<form:textarea path="question.hiddenOutputNegative"
+									style="height:30px" id="hiddenOutputNegative" />
+
+							</div>
+
+							<div class="formfield">
+								<label>Constraints</label>
+
+								<form:textarea path="question.constrnt" style="height:50px" />
+
+							</div>
+						</div>
+
+
+						<div class="formfield addimagevideo">
+							<a class="addimage" href="#">Add image</a> <a class="addaudio"
+								href="#">Add audio</a> <a class="addvideo" href="#">Add
+								Video</a>
 						</div>
 
 						<div class="formfield">
+							<div class="selectoptions">
+								<span>Choose Categories for Question</span>
 
-							<form:select path="question.level">
+								<div id="maindivforaddmore">
+									<div class="option">
+										<span>A</span>
+										<form:input path="question.qualifier1" name="qualifier1"
+											id="qualifier1" required="true" />
 
-								<form:options items="${levels}" itemValue="level"
-									itemLabel="level" />
-							</form:select>
-						</div>
-
-						<c:choose>
-							<c:when test="${question.type=='MCQ'}">
-								<div id="mcqDiv" class="formfield">
-							</c:when>
-							<c:when test="${question.type=='CODING'}">
-								<div id="mcqDiv" class="formfield" style="display: none">
-							</c:when>
-						</c:choose>
-
-
-						<div class="selectoptions">
-							<span>Options</span> <span
-								style="float: right; padding-right: 20px;">Correct Choice</span>
-
-							<div id="maindivforaddmore">
-								<div class="option">
-									<span>A</span>
-									<form:input path="question.choice1" name="choice1" id="choice1"
-										required="true" />
-									<div class="choice">
-										<form:checkbox path="question.one" />
 									</div>
-								</div>
-								<div class="option">
-									<span>B</span>
-									<form:input path="question.choice2" name="choice2" id="choice2"
-										required="true" />
-									<div class="choice">
-										<form:checkbox path="question.two" />
-									</div>
-								</div>
-								<div class="option">
-									<span>C</span>
-									<form:input path="question.choice3" name="choice3" id="choice3" />
-									<div class="choice">
-										<form:checkbox path="question.three" />
-									</div>
-								</div>
-								<div class="option">
-									<span>D</span>
-									<form:input path="question.choice4" name="choice4" id="choice4" />
-									<div class="choice">
-										<form:checkbox path="question.four" />
-									</div>
-								</div>
-								<div class="option">
-									<span>E</span>
-									<form:input path="question.choice5" name="choice5" id="choice5" />
-									<div class="choice">
-										<form:checkbox path="question.five" />
-									</div>
-								</div>
+									<div class="option">
+										<span>B</span>
+										<form:input path="question.qualifier2" name="qualifier2"
+											id="qualifier2" />
 
-								<div class="option">
-									<span>F</span>
-									<form:input path="question.choice6" name="choice6" id="choice6" />
-									<div class="choice">
-										<form:checkbox path="question.six" />
 									</div>
+									<div class="option">
+										<span>C</span>
+										<form:input path="question.qualifier3" name="qualifier3"
+											id="qualifier3" />
+
+									</div>
+
 								</div>
 							</div>
 						</div>
-				</div>
 
-				<c:choose>
-					<c:when test="${question.type=='MCQ'}">
-						<div id="codingDiv" class="formfield" style="display: none">
-					</c:when>
-					<c:when test="${question.type=='CODING'}">
-						<div id="codingDiv" class="formfield">
-					</c:when>
-				</c:choose>
+						<label class="queimage"></label> <label class="queaudio"></label>
+						<label class="quevideo"></label> <input type="file"
+							name="addimage" id="addimage" style="display: none;"> <input
+							type="file" name="addaudio" id="addaudio" style="display: none;">
+						<input type="file" name="addvideo" id="addvideo"
+							style="display: none;">
 
 
-				<div class="formfield">
-					<label>Programming Language</label>
-					<form:select path="question.lang">
+						<div class="formfield">
+							<label>Instructions, if any</label>
+							<form:textarea path="question.instructionsIfAny"
+								style="overflow-y: scroll" id="output" />
+						</div>
 
-						<form:options items="${languages}" itemValue="language"
-							itemLabel="language" />
-					</form:select>
-				</div>
 
-				<div class="formfield">
-					<label>Code Input</label>
+						<div class="formfield savebtn">
+							<input class="save" type="submit" value="Save">
+							<!--   <input type="submit" value="Save and add another"> -->
+							<input type="button" value="Cancel" onClick="goback()">
+						</div>
 
-					<form:textarea path="question.inputCode"
-						style="height:150px;overflow-y: scroll" id="inputCode" />
+						</form>
+					</div>
 
 				</div>
 
-				<div class="formfield">
-					<label>System Input 1</label>
-
-					<form:textarea path="question.hiddenInputPositive"
-						style="height:30px" id="hiddenInputPositive" />
-
-				</div>
-				<div class="formfield">
-					<label>System Output 1</label>
-
-					<form:textarea path="question.hiddenOutputPositive"
-						style="height:30px" id="hiddenOutputPositive" />
-
-				</div>
-				<div class="formfield">
-					<label>System Input 2</label>
-
-					<form:textarea path="question.hiddenInputNegative"
-						style="height:30px" id="hiddenInputNegative" />
-
-				</div>
-				<div class="formfield">
-					<label>System Output 2</label>
-
-					<form:textarea path="question.hiddenOutputNegative"
-						style="height:30px" id="hiddenOutputNegative" />
-
-				</div>
-
-				<div class="formfield">
-					<label>Constraints</label>
-
-					<form:textarea path="question.constrnt" style="height:50px" />
-
-				</div>
 			</div>
-			<!-- /.row -->
-
-
 
 		</div>
-		<!-- /.container -->
-	</section>
-
-
+		<!-- /main -->
+	</div>
 
 	<footer class="footer footer-four">
-		<div class="secondary-footer brand-bg darken-2 text-center">
+												<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
 					<li><a href="javascript:void(0)">Dashboard</a></li>
@@ -543,7 +436,7 @@
 	<script src="./Question List_files/materialize.min.js.download"></script>
 	<script src="./Question List_files/menuzord.js.download"></script>
 	<script
-		src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
+												src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
 	<script src="./Question List_files/jquery.easing.min.js.download"></script>
 	<script src="./Question List_files/jquery.sticky.min.js.download"></script>
 	<script src="./Question List_files/smoothscroll.min.js.download"></script>
@@ -554,9 +447,10 @@
 	<script src="./Question List_files/owl.carousel.min.js.download"></script>
 	<script src="./Question List_files/jquery.flexslider-min.js.download"></script>
 	<script
-		src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
+												src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
 	<script src="./Question List_files/scripts.js.download"></script>
 
 	<div class="hiddendiv common"></div>
-</body>
+
+										</body>
 </html>

@@ -29,7 +29,8 @@
 	function goback(){
 	window.location = "goback";
 	}
-	</script>
+	
+</script>
 
 </head>
 <body>
@@ -142,17 +143,6 @@
 										<form:textarea path="question.questionText" required="true" />
 										<form:hidden path="question.id" />
 									</div>
-
-									<!--  <div class="formfield">
-					
-                                            <select>
-                                                <option>Select Question Type</option>
-						<option selected>Multi Choice Question</option>
-						<option>Coding Assignment</option>
-						<option>Project Assessment</option>
-                                            </select>
-					   
-                                        </div> -->
 
 									<div class="formfield">
 										<label>Question Type</label>
