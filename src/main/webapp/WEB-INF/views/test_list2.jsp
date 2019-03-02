@@ -43,7 +43,7 @@
 	href="./Question List_files/navigation.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
-
+ 
 <style>
 ul {
 	list-style-type: none;
@@ -153,9 +153,9 @@ background-color
 							class="material-icons fa fa-upload"></i> Import</a>
 					</div>
 					<div class="col-md-2">
-						<a href="signoff"
-							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-sign-out"></i> Sign Off</a>
+						
+						<a href="signoff" class="btn waves-effect waves-light col-md-12">
+						<i class="material-icons fa fa-sign-out"></i> Sign Off</a>
 					</div>
 				</div>
 
@@ -257,14 +257,12 @@ background-color
 										<td><c:out value="${test.uDate}"></c:out></td>
 										<td><a onClick="confirm(${test.id}); return false;"
 											href="#">Click to Expire</a></td>
-										<td><a href="updateTest?testId=${test.id}">Click to
-												Update</a></td>
-										<td><a href="javascript:void(0);" class="testname"
+										<td><a href="updateTest?testId=${test.id}">Click to Update</a></td>
+						                <td><a href="javascript:void(0);" class="testname"
 											data-name="${test.testName}" data-toggle="modal"
 											onClick="javascript:duplicateOpen('${test.testName}', '${test.companyId}')"><i
 												class="fa fa-copy"></i></a></td>
-										<td><a href="javascript:void(0);" class="testname"
-											data-name="${test.testName}" data-toggle="modal"
+										<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}" data-toggle="modal"
 											onClick="javascript:shareOpen('${test.testName}', '${test.publicUrl}', '${test.id}')"><i
 												class="fa fa-share-alt"></i></a></td>
 									</tr>

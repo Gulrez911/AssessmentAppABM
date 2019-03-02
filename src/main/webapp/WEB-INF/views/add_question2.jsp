@@ -152,7 +152,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tbody>
+										<tbody>
 
 											<c:forEach items="${qs}" var="question" varStatus="loop">
 												<tr>
@@ -212,11 +212,9 @@
 									<c:choose>
 										<c:when test="${question.type=='MCQ'}">
 											<div id="mcqDiv" class="formfield">
-										
 										</c:when>
 										<c:when test="${question.type=='CODING'}">
 											<div id="mcqDiv" class="formfield" style="display: none">
-										
 										</c:when>
 									</c:choose>
 
@@ -278,17 +276,14 @@
 											</div>
 										</div>
 									</div>
-							
 							</div>
 
 							<c:choose>
 								<c:when test="${question.type=='MCQ'}">
 									<div id="codingDiv" class="formfield" style="display: none">
-								
 								</c:when>
 								<c:when test="${question.type=='CODING'}">
 									<div id="codingDiv" class="formfield">
-								
 								</c:when>
 							</c:choose>
 
@@ -415,7 +410,7 @@
 	</div>
 
 	<footer class="footer footer-four">
-												<div class="secondary-footer brand-bg darken-2 text-center">
+		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
 					<li><a href="javascript:void(0)">Dashboard</a></li>
@@ -436,7 +431,7 @@
 	<script src="./Question List_files/materialize.min.js.download"></script>
 	<script src="./Question List_files/menuzord.js.download"></script>
 	<script
-												src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
+		src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
 	<script src="./Question List_files/jquery.easing.min.js.download"></script>
 	<script src="./Question List_files/jquery.sticky.min.js.download"></script>
 	<script src="./Question List_files/smoothscroll.min.js.download"></script>
@@ -447,10 +442,10 @@
 	<script src="./Question List_files/owl.carousel.min.js.download"></script>
 	<script src="./Question List_files/jquery.flexslider-min.js.download"></script>
 	<script
-												src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
+		src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
 	<script src="./Question List_files/scripts.js.download"></script>
 
 	<div class="hiddendiv common"></div>
 
-										</body>
+</body>
 </html>

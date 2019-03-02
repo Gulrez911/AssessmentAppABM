@@ -42,12 +42,7 @@
 <link rel="stylesheet" type="text/css" href="css/newcss/layers.css">
 <link rel="stylesheet" type="text/css"
 	href="./Question List_files/navigation.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
-</head>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <style>
 ul {
 	list-style-type: none;
@@ -69,57 +64,39 @@ li a {
 	padding: 14px 16px;
 	text-decoration: none;
 	background-color: white;
-	color: #000;
+	color:#000;
+	
 }
 
 li
-
  
-
 a
-
-
 :hover
-
-
 :not
-
  
-
 (
 .active
-
  
-
 )
 {
 background-color
-
-
 :
-
  
-
 #111
-
-
 ;
+
+
 }
 .active {
 	background-color: #4CAF50;
 }
-
 .menuzord {
-	width: 100%;
-	float: left;
-	position: relative;
+    width: 100%;
+    float: left;
+    position: relative;
 }
 </style>
-<style>
-.fa fa-search {
-	float: right;
-}
-</style>
+</head>
 <body id="top" class="has-header-search">
 
 
@@ -132,10 +109,8 @@ background-color
 				<div class="container">
 					<div class="row">
 						<div id="materialize-menu" class="menuzord menuzord-responsive">
-							<a href="javascript:void(0)" class="showhide"
-								style="display: none;"></a> <a
-								href="http://beforesubmit.com/qe-assess/index.html"
-								class="logo-brand"> <img class="retina"
+							<a href="javascript:void(0)" class="showhide" style="display: none;"></a> 
+							<a href="http://beforesubmit.com/qe-assess/index.html" class="logo-brand"> <img class="retina"
 								src="images/Logo2.png" alt="">
 							</a>
 
@@ -177,10 +152,17 @@ background-color
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
+						<a href="javascript:showFileDialog();" id="uploadQuestionsLink"
 							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-upload"></i> Import</a>
+							class="material-icons fa fa-plus-circle"></i>Import</a>
 					</div>
+
+					<form id="fileFormQuestions" method="POST"
+						enctype="multipart/form-data">
+						<input type="file" name="fileQuestions" id="fileQuestions"
+							style="display: none" />
+					</form>
+
 					<div class="col-md-2">
 						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
@@ -216,14 +198,15 @@ background-color
 					
 					<div class="col-md-4">
 						<div class="widget widget_search">
-							<form action="searchQuestions" method="get">
+ 							<form action="searchQuestions" method="get">
 								<input type="text" class="form-control"
 									value="${param.searchText}" name="searchText" id="search"
 									placeholder="Search a question" style="margin-left: -158px; display:inline;">
 								<button type="submit" id="searchQ">
-									<i class="fa fa-search"></i>
+ 									<i class="fa fa-search"></i>
 								</button>
-							</form>
+							</form>  
+							 	
 						</div>
 					</div>
 					<div class="col-md-3">
@@ -327,7 +310,7 @@ background-color
 							.toggleClass('visible-xs');
 				});
 
-		$('#search').on('click', function() {
+		$('#searchQ').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchQuestions?searchText=" + text;
