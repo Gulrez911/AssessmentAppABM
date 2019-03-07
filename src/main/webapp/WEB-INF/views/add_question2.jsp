@@ -6,408 +6,391 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
-<html lang="en" class=" js csstransforms csstransforms3d csstransitions"
-	style="height: auto;">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Question List</title>
-<link rel="shortcut icon"
-	href="http://beforesubmit.com/qe-assess/assets/img/ico/favicon.png">
-<link href="./Question List_files/css" rel="stylesheet" type="text/css">
+
+<spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
+
+<link href="${c1}" rel="shortcut icon" />
+
+<spring:url
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	var="c2" />
+
+<link href="${c2}" rel="stylesheet" type="text/css" />
 <!-- Material Icons CSS -->
-<link href="css/newcss/material-icons.css" rel="stylesheet">
+<spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
+	var="c3" />
+
+<link href="${c3}" rel="stylesheet" type="text/css" />
+
 <!-- FontAwesome CSS -->
-<link href="css/newcss/font-awesome.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+	var="c4" />
+
+<link href="${c4}" rel="stylesheet" type="text/css" />
+
 <!-- magnific-popup -->
-<link href="css/newcss/magnific-popup.css" rel="stylesheet">
+<spring:url value="/resources/assets/magnific-popup/magnific-popup.css"
+	var="c5" />
+
+<link href="${c5}" rel="stylesheet" type="text/css" />
+
 <!-- owl.carousel -->
-<link href="css/newcss/owl.carousel.css" rel="stylesheet">
-<link href="css/newcss/owl.theme.default.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
+
+<link href="${c6}" rel="stylesheet" type="text/css" />
+
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+	var="c7" />
+
+<link href="${c7}" rel="stylesheet" type="text/css" />
+
 <!-- flexslider -->
-<link href="css/newcss/flexslider.css" rel="stylesheet">
+<spring:url value="/resources/assets/flexSlider/flexslider.css" var="c8" />
+
+<link href="${c8}" rel="stylesheet" type="text/css" />
+
 <!-- materialize -->
-<link href="css/newcss/materialize.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
+
+<link href="${c9}" rel="stylesheet" type="text/css" />
+
 <!-- Bootstrap -->
-<link href="css/newcss/bootstrap.min.css" rel="stylesheet">
+<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
+	var="c10" />
+
+<link href="${c10}" rel="stylesheet" type="text/css" />
+
 <!-- shortcodes -->
-<link href="css/newcss/shortcodes.css" rel="stylesheet">
+<spring:url value="/resources/assets/css/shortcodes/shortcodes.css"
+	var="c11" />
+
+<link href="${c11}" rel="stylesheet" type="text/css" />
+
 <!-- Style CSS -->
-<link href="css/newcss/style.css" rel="stylesheet">
+<spring:url value="/resources/assets/style.css" var="c12" />
+
+<link href="${c12}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Main Stylesheet -->
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/settings.css">
+<spring:url value="/resources/assets/revolution/css/settings.css"
+	var="c13" />
+
+<link href="${c13}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Layers and Navigation Styles -->
-<link rel="stylesheet" type="text/css" href="css/newcss/layers.css">
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/navigation.css">
+<spring:url value="/resources/assets/revolution/css/layers.css"
+	var="c14" />
+
+<link href="${c14}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/revolution/css/navigation.css"
+	var="c15" />
+
+<link href="${c15}" rel="stylesheet" type="text/css" />
+
 
 </head>
-<script>
-	function goback() {
-		window.location = "goback";
-	}
-</script>
+
 <body id="top" class="has-header-search">
+
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
-		<div class="header-sticky light-header" style=    "padding: 0px;">
+		<div class="header-sticky light-header ">
 			<div class="container">
-				<div id="materialize-menu" class="menuzord menuzord-responsive">
-					<a href="javascript:void(0)" class="showhide"
-						style="display: none;"><em></em><em></em><em></em></a>
+				<div id="materialize-menu" class="menuzord">
 					<!--logo start-->
-					<a href="http://beforesubmit.com/qe-assess/index.html"
-						class="logo-brand"> <img class="retina" src="images/Logo2.png"
-						alt="">
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
 					</a>
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right menuzord-indented scrollable" style="max-height: 400px;">
+					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="javascript:void(0)">Question
-								Bank</a></li>
-						<li><a href="javascript:void(0)">Tests</a></li>
+						<li class="active"><a href="question_list">Question Bank</a></li>
+						<li><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
-						<li><a href="javascript:void(0)">Results</a></li>
+						<li><a href="showReports">Results</a></li>
 						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 						<li><a href="javascript:void(0)">Skill based Reports</a></li>
-						<li><a href="javascript:void(0)">Users</a></li>
-						<li class="scrollable-fix"></li>
+						<li><a href="listUsers">Users</a></li>
 					</ul>
 					<!--mega menu end-->
 				</div>
 			</div>
 		</div>
 	</header>
-	<div class="maincontainer">
+	<!--header end-->
 
-		<div class="wrapper">
-			<div class="row row-offcanvas row-offcanvas-left">
-				<!-- sidebar -->
-				<jsp:include page="side.jsp" />
-				<!-- /sidebar -->
+	<section>
+		<div class="container">
 
-				<!-- main right col -->
-				<div class="column col-sm-10 col-xs-11" id="main"
-					style="overflow-x: scroll; overflow-y: scroll;">
-
-					<div class="rightside">
-
-						<div class="leftdiv">
-
-							<div class="topmenu text-right">
-
-								<div class="pagination">
-									<c:if test="${showPreviousPage}">
-										<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
-											class="fa fa-arrow-left"></i></a>
-									</c:if>
-
-									<c:if test="${selectedPage != null &&  selectedPage > 0}">
-						    ${selectedPage} / ${totalNumberOfPages}
-					    </c:if>
-
-									<c:if test="${showNextPage}">
-										<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
-											class="fa fa-arrow-right"></i></a>
-									</c:if>
-								</div>
-							</div>
-
-							<div class="questiontable">
-								<div class="questionheading">
-									<div class="left">
-										<h4>Question Bank</h4>
-									</div>
-									<div class="right">
-										<div class="searchdata">
-											<input type="text" placeholder="Search a Q" name="searchText"
-												id="searchText"> <i class="fa fa-search" id="search"></i>
-										</div>
-
-										<div class="filter">
-											<a
-												href="javascript:notify('Information', 'Feature coming soon')"><img
-												src="images/ic_sort.png">Sort</a> <a
-												href="javascript:notify('Information', 'Feature coming soon')"><img
-												src="images/ic_filter.png">Filter</a>
-										</div>
-
-									</div>
-								</div>
-
-
-								<div class="questiontablelist">
-									<table class="table">
-										<thead>
-											<tr>
-												<th><b>No</b></th>
-												<th>Question</th>
-												<th style="white-space: nowrap;">Category</th>
-												<th>Difficulty Level</th>
-												<th style="white-space: nowrap;">Update</th>
-												<th style="white-space: nowrap;">Delete</th>
-											</tr>
-										</thead>
-										<tbody>
-										<tbody>
-
-											<c:forEach items="${qs}" var="question" varStatus="loop">
-												<tr>
-
-													<td>${loop.count}</td>
-													<td><c:out value="${question.questionText}"></c:out></td>
-													<td>${question.category}</td>
-													<td><c:out value="${question.difficultyLevel.level}"></c:out>
-													</td>
-													<td><a href="addQuestion?qid=${question.id}">Click
-													</a></td>
-													<td><a href="javascript:confirm('${question.id}')">Click
-													</a></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-
-										</tbody>
-									</table>
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="rightdiv">
-							<h4 class="heading">${question_label}</h4>
-							<div class="addqueform">
-								<form name="questionForm" method="post"
-									modelAttribute="question" action="saveQuestion">
-									<div class="formfield">
-										<label>Question</label>
-
-										<form:textarea path="question.questionText" required="true" />
-										<form:hidden path="question.id" />
-									</div>
-
-									<div class="formfield">
-										<label>Question Type</label>
-										<form:select id="questionType" path="question.type"
-											onchange="changeQType()">
-
-											<form:options items="${types}" itemValue="type"
-												itemLabel="type" />
-										</form:select>
-									</div>
-
-									<div class="formfield">
-
-										<form:select path="question.level">
-
-											<form:options items="${levels}" itemValue="level"
-												itemLabel="level" />
-										</form:select>
-									</div>
-
-									<c:choose>
-										<c:when test="${question.type=='MCQ'}">
-											<div id="mcqDiv" class="formfield">
-										</c:when>
-										<c:when test="${question.type=='CODING'}">
-											<div id="mcqDiv" class="formfield" style="display: none">
-										</c:when>
-									</c:choose>
-
-
-									<div class="selectoptions">
-										<span>Options</span> <span
-											style="float: right; padding-right: 20px;">Correct
-											Choice</span>
-
-										<div id="maindivforaddmore">
-											<div class="option">
-												<span>A</span>
-												<form:input path="question.choice1" name="choice1"
-													id="choice1" required="true" />
-												<div class="choice">
-													<form:checkbox path="question.one" />
-												</div>
-											</div>
-											<div class="option">
-												<span>B</span>
-												<form:input path="question.choice2" name="choice2"
-													id="choice2" required="true" />
-												<div class="choice">
-													<form:checkbox path="question.two" />
-												</div>
-											</div>
-											<div class="option">
-												<span>C</span>
-												<form:input path="question.choice3" name="choice3"
-													id="choice3" />
-												<div class="choice">
-													<form:checkbox path="question.three" />
-												</div>
-											</div>
-											<div class="option">
-												<span>D</span>
-												<form:input path="question.choice4" name="choice4"
-													id="choice4" />
-												<div class="choice">
-													<form:checkbox path="question.four" />
-												</div>
-											</div>
-											<div class="option">
-												<span>E</span>
-												<form:input path="question.choice5" name="choice5"
-													id="choice5" />
-												<div class="choice">
-													<form:checkbox path="question.five" />
-												</div>
-											</div>
-
-											<div class="option">
-												<span>F</span>
-												<form:input path="question.choice6" name="choice6"
-													id="choice6" />
-												<div class="choice">
-													<form:checkbox path="question.six" />
-												</div>
-											</div>
-										</div>
-									</div>
-							</div>
-
-							<c:choose>
-								<c:when test="${question.type=='MCQ'}">
-									<div id="codingDiv" class="formfield" style="display: none">
-								</c:when>
-								<c:when test="${question.type=='CODING'}">
-									<div id="codingDiv" class="formfield">
-								</c:when>
-							</c:choose>
-
-
-							<div class="formfield">
-								<label>Programming Language</label>
-								<form:select path="question.lang">
-
-									<form:options items="${languages}" itemValue="language"
-										itemLabel="language" />
-								</form:select>
-							</div>
-
-							<div class="formfield">
-								<label>Code Input</label>
-
-								<form:textarea path="question.inputCode"
-									style="height:150px;overflow-y: scroll" id="inputCode" />
-
-							</div>
-
-							<div class="formfield">
-								<label>System Input 1</label>
-
-								<form:textarea path="question.hiddenInputPositive"
-									style="height:30px" id="hiddenInputPositive" />
-
-							</div>
-							<div class="formfield">
-								<label>System Output 1</label>
-
-								<form:textarea path="question.hiddenOutputPositive"
-									style="height:30px" id="hiddenOutputPositive" />
-
-							</div>
-							<div class="formfield">
-								<label>System Input 2</label>
-
-								<form:textarea path="question.hiddenInputNegative"
-									style="height:30px" id="hiddenInputNegative" />
-
-							</div>
-							<div class="formfield">
-								<label>System Output 2</label>
-
-								<form:textarea path="question.hiddenOutputNegative"
-									style="height:30px" id="hiddenOutputNegative" />
-
-							</div>
-
-							<div class="formfield">
-								<label>Constraints</label>
-
-								<form:textarea path="question.constrnt" style="height:50px" />
-
-							</div>
-						</div>
-
-
-						<div class="formfield addimagevideo">
-							<a class="addimage" href="#">Add image</a> <a class="addaudio"
-								href="#">Add audio</a> <a class="addvideo" href="#">Add
-								Video</a>
-						</div>
-
-						<div class="formfield">
-							<div class="selectoptions">
-								<span>Choose Categories for Question</span>
-
-								<div id="maindivforaddmore">
-									<div class="option">
-										<span>A</span>
-										<form:input path="question.qualifier1" name="qualifier1"
-											id="qualifier1" required="true" />
-
-									</div>
-									<div class="option">
-										<span>B</span>
-										<form:input path="question.qualifier2" name="qualifier2"
-											id="qualifier2" />
-
-									</div>
-									<div class="option">
-										<span>C</span>
-										<form:input path="question.qualifier3" name="qualifier3"
-											id="qualifier3" />
-
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<label class="queimage"></label> <label class="queaudio"></label>
-						<label class="quevideo"></label> <input type="file"
-							name="addimage" id="addimage" style="display: none;"> <input
-							type="file" name="addaudio" id="addaudio" style="display: none;">
-						<input type="file" name="addvideo" id="addvideo"
-							style="display: none;">
-
-
-						<div class="formfield">
-							<label>Instructions, if any</label>
-							<form:textarea path="question.instructionsIfAny"
-								style="overflow-y: scroll" id="output" />
-						</div>
-
-
-						<div class="formfield savebtn">
-							<input class="save" type="submit" value="Save">
-							<!--   <input type="submit" value="Save and add another"> -->
-							<input type="button" value="Cancel" onClick="goback()">
-						</div>
-
-						</form>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="mb-30">
+						<h2 class="section-title">Add new Question</h2>
 					</div>
+					<form name="questionForm" method="post" modelattribute="question"
+						action="saveQuestion" enctype="multipart/form-data">
 
+						<div class="input-field">
+							<textarea name="questionText" id="questionText"
+								class="materialize-textarea" required=""></textarea>
+							<label for="questionText">Question</label>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 questiontypedrp">
+								<div class="input-field">
+									<select id="questionType" name="type" onchange="changeQType()">
+										<option value="MCQ" selected="selected">MCQ</option>
+										<option value="CODING">CODING</option>
+									</select> <label for="questionType" style="top: -30px;">Question
+										Type</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="input-field">
+									<select id="level" name="level">
+										<option value="EASY" selected="selected">EASY</option>
+										<option value="MEDIUM">MEDIUM</option>
+										<option value="DIFFICULT">DIFFICULT</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<div id="mcqDiv" class="formfield">
+							<div class="row">
+								<div class="col-md-12 mt-20 mb-20" style="padding: 0;">
+									<div class="col-md-1" style="font-weight: 700;">Options</div>
+									<div class="col-md-8"></div>
+									<div class="col-md-3" style="font-weight: 700;">Correct
+										Choice</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">A</div>
+									<div class="col-md-8">
+										<input id="choice1" name="choice1" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="one1" name="one" value="true"
+											class="filled-in" /> <label for="one1"></label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">B</div>
+									<div class="col-md-8">
+										<input id="choice2" name="choice2" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="two1" name="two" value="true"
+											class="filled-in" /> <label for="two1"></label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">C</div>
+									<div class="col-md-8">
+										<input id="choice3" name="choice3" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="three1" name="three" value="true"
+											class="filled-in" /> <label for="three1"></label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">D</div>
+									<div class="col-md-8">
+										<input id="choice4" name="choice4" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="four1" name="four" value="true"
+											class="filled-in" /> <label for="four1"></label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">E</div>
+									<div class="col-md-8">
+										<input id="choice5" name="choice5" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="five1" name="five" value="true"
+											class="filled-in" /> <label for="five1"></label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-1">F</div>
+									<div class="col-md-8">
+										<input id="choice6" name="choice6" required="" type="text"
+											value="">
+									</div>
+									<div class="col-md-3 text-center">
+										<input type="checkbox" id="six1" name="six" value="true"
+											class="filled-in" /> <label for="six1"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div id="codingDiv" class="formfield" style="display: none;">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-field">
+										<select id="lang" name="lang">
+											<option value="JAVA" selected="selected">JAVA</option>
+											<option value="C">C</option>
+											<option value="CPLUSPLUS">CPLUSPLUS</option>
+											<option value="DotNet">DotNet</option>
+											<option value="CHASH">CHASH</option>
+											<option value="PYTHON">PYTHON</option>
+										</select> <label for="lang" style="top: -30px;">Programming
+											Language</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="inputCode" id="inputCode"
+											class="materialize-textarea"></textarea>
+										<label for="inputCode">Code Input</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="hiddenInputPositive" id="hiddenInputPositive"
+											class="materialize-textarea"></textarea>
+										<label for="hiddenInputPositive">System Input 1</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="hiddenOutputPositive"
+											id="hiddenOutputPositive" class="materialize-textarea"></textarea>
+										<label for="hiddenOutputPositive">System Output 1</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="hiddenInputNegative" id="hiddenInputNegative"
+											class="materialize-textarea"></textarea>
+										<label for="hiddenInputNegative">System Input 2</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="hiddenOutputNegative"
+											id="hiddenOutputNegative" class="materialize-textarea"></textarea>
+										<label for="hiddenOutputNegative">System Output 2</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-field">
+										<textarea name="constrnt" id="constrnt"
+											class="materialize-textarea"></textarea>
+										<label for="constrnt">Constraints</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-12 mt-30">
+								<a class="addimage waves-effect waves-light btn"><i
+									class="material-icons left fa fa-picture-o"></i>Add Image</a> <a
+									class="addaudio waves-effect waves-light btn"><i
+									class="material-icons left fa fa-volume-up"></i>Add Audio</a> <a
+									class="addvideo waves-effect waves-light btn"><i
+									class="material-icons left fa fa-video-camera"></i>Add Video</a>
+							</div>
+
+							<input type="file" name="addimage" id="addimage"
+								style="display: none;"> <input type="file"
+								name="addaudio" id="addaudio" style="display: none;"> <input
+								type="file" name="addvideo" id="addvideo" style="display: none;">
+							<div class="col-md-12 mt-30">
+								<label class="queimage" style="font-size: 18px; color: #000;"></label>
+								<label class="queaudio" style="font-size: 18px; color: #000;"></label>
+								<label class="quevideo" style="font-size: 18px; color: #000;"></label>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-12 mt-20 mb-20" style="padding: 0;">
+								<div class="col-md-12" style="font-weight: 700;">Choose
+									Categories for Question</div>
+							</div>
+							<div class="col-md-12">
+								<div class="col-md-1">A</div>
+								<div class="col-md-11">
+									<input id="qualifier1" name="qualifier1" type="text" value=""
+										required="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="col-md-1">B</div>
+								<div class="col-md-11">
+									<input id="qualifier2" name="qualifier2" type="text" value=""
+										required="">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="col-md-1">C</div>
+								<div class="col-md-11">
+									<input id="qualifier3" name="qualifier3" type="text" value=""
+										required="">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="input-field">
+							<textarea name="instructionsIfAny" id="output"
+								class="materialize-textarea"></textarea>
+							<label for="output">Instructions, if any</label>
+						</div>
+
+						<button type="submit" name="submit"
+							class="waves-effect waves-light btn submit-button mt-30">Save</button>
+						<button type="button"
+							class="waves-effect waves-light btn submit-button indigo mt-30"
+							onclick="goback()">Cancel</button>
+						<div class="mb-30"></div>
+					</form>
 				</div>
-
+				<div class="col-md-3"></div>
 			</div>
-
 		</div>
-		<!-- /main -->
-	</div>
+	</section>
 
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
@@ -425,27 +408,103 @@
 			</div>
 		</div>
 	</footer>
-	<!-- jQuery -->
-	<script src="./Question List_files/jquery-2.1.3.min.js.download"></script>
-	<script src="./Question List_files/bootstrap.min.js.download"></script>
-	<script src="./Question List_files/materialize.min.js.download"></script>
-	<script src="./Question List_files/menuzord.js.download"></script>
-	<script
-		src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
-	<script src="./Question List_files/jquery.easing.min.js.download"></script>
-	<script src="./Question List_files/jquery.sticky.min.js.download"></script>
-	<script src="./Question List_files/smoothscroll.min.js.download"></script>
-	<script src="./Question List_files/imagesloaded.js.download"></script>
-	<script src="./Question List_files/jquery.stellar.min.js.download"></script>
-	<script src="./Question List_files/jquery.inview.min.js.download"></script>
-	<script src="./Question List_files/jquery.shuffle.min.js.download"></script>
-	<script src="./Question List_files/owl.carousel.min.js.download"></script>
-	<script src="./Question List_files/jquery.flexslider-min.js.download"></script>
-	<script
-		src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
-	<script src="./Question List_files/scripts.js.download"></script>
 
-	<div class="hiddendiv common"></div>
+	<!-- jQuery -->
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+	<script src="${mainJs2}"></script>
+ <spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	 <spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+	<script src="${mainJs10}"></script>
+		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+ 
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+
+		$(function() {
+			$(".addimage").on('click', function(e) {
+				e.preventDefault();
+				$("#addimage").trigger('click');
+			});
+			$(".addaudio").on('click', function(e) {
+				e.preventDefault();
+				$("#addaudio").trigger('click');
+			});
+			$(".addvideo").on('click', function(e) {
+				e.preventDefault();
+				$("#addvideo").trigger('click');
+			});
+		});
+
+		$('#addimage').change(function() {
+			var file = $('#addimage')[0].files[0].name;
+			$('.queimage').text('Image: ' + file);
+			$('.queimage').css('width', '100%');
+		});
+		$('#addaudio').change(function() {
+			var file = $('#addaudio')[0].files[0].name;
+			$('.queaudio').text('Audio: ' + file);
+			$('.queaudio').css('width', '100%');
+		});
+		$('#addvideo').change(function() {
+			var file = $('#addvideo')[0].files[0].name;
+			$('.quevideo').text('Video: ' + file);
+			$('.quevideo').css('width', '100%');
+		});
+
+		function changeQType() {
+			var selectedValue = $("#questionType").val();
+			$('.questiontypedrp .select-dropdown').html(selectedValue);
+			if (selectedValue == 'CODING') {
+
+				document.getElementById("mcqDiv").style.display = 'none';
+				document.getElementById("codingDiv").style.display = '';
+
+				document.getElementById("choice1").required = false;
+				document.getElementById("choice2").required = false;
+
+				document.getElementById("input").required = true;
+				document.getElementById("output").required = true;
+			} else {
+				document.getElementById("mcqDiv").style.display = '';
+				document.getElementById("codingDiv").style.display = 'none';
+
+				document.getElementById("choice1").required = true;
+				document.getElementById("choice2").required = true;
+				document.getElementById("input").required = false;
+				document.getElementById("output").required = false;
+			}
+		}
+	</script>
+
+
+
 
 </body>
+
 </html>

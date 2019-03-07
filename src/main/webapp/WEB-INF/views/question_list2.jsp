@@ -6,139 +6,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
-<html lang="en" class=" js csstransforms csstransforms3d csstransitions"
-	style="height: auto;">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Question List</title>
-<link rel="shortcut icon"
-	href="http://beforesubmit.com/qe-assess/assets/img/ico/favicon.png">
-<link href="./Question List_files/css" rel="stylesheet" type="text/css">
+
+<spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
+
+<link href="${c1}" rel="shortcut icon" />
+
+
+<spring:url
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	var="c2" />
+
+<link href="${c2}" rel="stylesheet" type="text/css" />
 <!-- Material Icons CSS -->
-<link href="css/newcss/material-icons.css" rel="stylesheet">
+<spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
+	var="c3" />
+
+<link href="${c3}" rel="stylesheet" type="text/css" />
+
 <!-- FontAwesome CSS -->
-<link href="css/newcss/font-awesome.min.css" rel="stylesheet">
+
+<spring:url
+	value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+	var="c4" />
+
+<link href="${c4}" rel="stylesheet" type="text/css" />
+
 <!-- magnific-popup -->
-<link href="css/newcss/magnific-popup.css" rel="stylesheet">
+
+<spring:url value="/resources/assets/magnific-popup/magnific-popup.css"
+	var="c5" />
+
+<link href="${c5}" rel="stylesheet" type="text/css" />
+
+
 <!-- owl.carousel -->
-<link href="css/newcss/owl.carousel.css" rel="stylesheet">
-<link href="css/newcss/owl.theme.default.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
+
+<link href="${c6}" rel="stylesheet" type="text/css" />
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+	var="c7" />
+
+<link href="${c7}" rel="stylesheet" type="text/css" />
+
+
 <!-- flexslider -->
-<link href="css/newcss/flexslider.css" rel="stylesheet">
+<spring:url value="/resources/assets/flexSlider/flexslider.css" var="c8" />
+
+<link href="${c8}" rel="stylesheet" type="text/css" />
+
 <!-- materialize -->
-<link href="css/newcss/materialize.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
+
+<link href="${c9}" rel="stylesheet" type="text/css" />
+
 <!-- Bootstrap -->
-<link href="css/newcss/bootstrap.min.css" rel="stylesheet">
+<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
+	var="c10" />
+
+<link href="${c10}" rel="stylesheet" type="text/css" />
+
+
 <!-- shortcodes -->
-<link href="css/newcss/shortcodes.css" rel="stylesheet">
+<spring:url value="/resources/assets/css/shortcodes/shortcodes.css"
+	var="c11" />
+
+<link href="${c11}" rel="stylesheet" type="text/css" />
+
 <!-- Style CSS -->
-<link href="css/newcss/style.css" rel="stylesheet">
+<spring:url value="/resources/assets/style.css" var="c12" />
+
+<link href="${c12}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Main Stylesheet -->
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/settings.css">
+<spring:url value="/resources/assets/revolution/css/settings.css"
+	var="c13" />
+
+<link href="${c13}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Layers and Navigation Styles -->
-<link rel="stylesheet" type="text/css" href="css/newcss/layers.css">
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/navigation.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
+<spring:url value="/resources/assets/revolution/css/layers.css"
+	var="c14" />
 
-li {
-	float: left;
-}
+<link href="${c14}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/revolution/css/navigation.css"
+	var="c15" />
 
-li a {
-	position:;
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	background-color: white;
-	color:#000;
-	
-}
-
-li
- 
-a
-:hover
-:not
- 
-(
-.active
- 
-)
-{
-background-color
-:
- 
-#111
-;
+<link href="${c15}" rel="stylesheet" type="text/css" />
 
 
-}
-.active {
-	background-color: #4CAF50;
-}
-.menuzord {
-    width: 100%;
-    float: left;
-    position: relative;
-}
-</style>
 </head>
+
 <body id="top" class="has-header-search">
 
-
 	<!--header start-->
-
-	<div class="panel panel-default" id="header" style="width: 100%">
-		<div class="panel-body" style="width: 0px; padding: 0px;">
-			<!--  <header id="header" class="tt-nav nav-border-bottom"> -->
-			<div class="header-sticky light-header ">
-				<div class="container">
-					<div class="row">
-						<div id="materialize-menu" class="menuzord menuzord-responsive">
-							<a href="javascript:void(0)" class="showhide" style="display: none;"></a> 
-							<a href="http://beforesubmit.com/qe-assess/index.html" class="logo-brand"> <img class="retina"
-								src="images/Logo2.png" alt="">
-							</a>
-
-							<ul class="menuzord-menu pull-right menuzord-indented scrollable"
-								style="max-height: 400px;">
-								<li><a href="javascript:void(0)">Dashboard</a></li>
-								<li class="active"><a href="question_list">Question
-										Bank</a></li>
-								<li><a href="testlist">Tests</a></li>
-								<li><a href="">Skills</a></li>
-								<li><a href="showReports">Results</a></li>
-								<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-								<li><a href="javascript:void(0)">Skill based Reports</a></li>
-								<li><a href="listUsers">Users</a></li>
-								<li class="scrollable-fix"></li>
-							</ul>
-
-						</div>
-					</div>
-
+	<header id="header" class="tt-nav nav-border-bottom">
+		<div class="header-sticky light-header ">
+			<div class="container">
+				<div id="materialize-menu" class="menuzord">
+					<!--logo start-->
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
+					</a>
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right">
+						<li><a href="javascript:void(0)">Dashboard</a></li>
+						<li class="active"><a href="question_list">Question Bank</a></li>
+						<li><a href="testlist">Tests</a></li>
+						<li><a href="javascript:void(0)">Skills</a></li>
+						<li><a href="showReports">Results</a></li>
+						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+						<li><a href="javascript:void(0)">Skill based Reports</a></li>
+						<li><a href="listUsers">Users</a></li>
+					</ul>
+					<!--mega menu end-->
 				</div>
 			</div>
-
 		</div>
-	</div>
-
+	</header>
 	<!--header end-->
-
 
 
 	<section>
@@ -147,40 +143,34 @@ background-color
 				<div class="col-md-12">
 					<div class="col-md-6"></div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/question_list.html#"
+						<a href="addQuestion"
 							class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
 						<a href="javascript:showFileDialog();" id="uploadQuestionsLink"
 							class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-plus-circle"></i>Import</a>
+							class="material-icons fa fa-upload"></i> Import</a>
 					</div>
-
-					<form id="fileFormQuestions" method="POST"
-						enctype="multipart/form-data">
-						<input type="file" name="fileQuestions" id="fileQuestions"
-							style="display: none" />
-					</form>
-
 					<div class="col-md-2">
 						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
 					</div>
 				</div>
-				<!-- navigation -->
+
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<div class="pagination" style="float: right;">
+							<!-- <a href="#"><i class="fa fa-arrow-left"></i></a> 2 / 72 <a
+								href="#"><i class="fa fa-arrow-right"></i></a> -->
 							<c:if test="${showPreviousPage}">
-								<a href="${callingMethod}?page=${previousPage}${queryParam}">
-									<i class="fa fa-arrow-left"></i>
-								</a>
+								<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
+									class="fa fa-arrow-left"></i></a>
 							</c:if>
 
 							<c:if test="${selectedPage != null &&  selectedPage > 0}">
-						    ${selectedPage} / ${totalNumberOfPages}
-					    </c:if>
+                                    ${selectedPage} / ${totalNumberOfPages}
+                                </c:if>
 
 							<c:if test="${showNextPage}">
 								<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
@@ -195,36 +185,31 @@ background-color
 					<div class="col-md-5">
 						<h1>Question Bank</h1>
 					</div>
-					
 					<div class="col-md-4">
 						<div class="widget widget_search">
- 							<form action="searchQuestions" method="get">
-								<input type="text" class="form-control"
-									value="${param.searchText}" name="searchText" id="search"
-									placeholder="Search a question" style="margin-left: -158px; display:inline;">
-								<button type="submit" id="searchQ">
- 									<i class="fa fa-search"></i>
+							 
+							<div class="search-form">
+								<input type="text" placeholder="Search a question"
+									name="searchText" id="searchText">
+								<button type="submit" id="search">
+									<i class="fa fa-search"></i>
 								</button>
-							</form>  
-							 	
+							</div>
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" style="padding: 0;">
 						<div class="mt-10"></div>
 						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							<a href="http://beforesubmit.com/qe-assess/question_list.html#">
-								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
+						<div class="col-md-4" style="padding-left: 0;">
+							<a href="#"> <i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
 							</a>
 						</div>
-						<div class="col-md-4">
-							<a href="http://beforesubmit.com/qe-assess/question_list.html#">
-								<i class="fa fa-filter"></i> <span>Filter</span>
+						<div class="col-md-4" style="padding: 0;">
+							<a href="#"> <i class="fa fa-filter"></i> <span>Filter</span>
 							</a>
 						</div>
 					</div>
 				</div>
-
 				<div class="col-md-12">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -232,14 +217,16 @@ background-color
 								<tr>
 									<th>No</th>
 									<th>Question</th>
-									<th>Category</th>
+									<th style="white-space: nowrap;">Category</th>
 									<th>Difficulty Level</th>
-									<th>Updated On</th>
-									<th>Update</th>
-									<th>Delete</th>
+									<th style="white-space: nowrap;">Updated On</th>
+									<th style="white-space: nowrap;">Update</th>
+									<th style="white-space: nowrap;">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
+							<tbody>
+
 								<c:forEach items="${qs}" var="question" varStatus="loop">
 									<tr>
 
@@ -257,8 +244,8 @@ background-color
 										</a></td>
 									</tr>
 								</c:forEach>
-
 							</tbody>
+
 						</table>
 					</div>
 
@@ -272,33 +259,75 @@ background-color
 		<!-- /.container -->
 	</section>
 
-	
+
+
+	<footer class="footer footer-four">
+		<div class="secondary-footer brand-bg darken-2 text-center">
+			<div class="container">
+				<ul>
+					<li><a href="javascript:void(0)">Dashboard</a></li>
+					<li><a href="question_list">Question Bank</a></li>
+					<li><a href="testlist">Tests</a></li>
+					<li><a href="javascript:void(0)">Skills</a></li>
+					<li><a href="showReports">Results</a></li>
+					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+					<li><a href="javascript:void(0)">Skill based Reports</a></li>
+					<li><a href="listUsers">Users</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+
+
 	<!-- jQuery -->
-	<script src="./Question List_files/jquery-2.1.3.min.js.download"></script>
-	<script src="./Question List_files/bootstrap.min.js.download"></script>
-	<script src="./Question List_files/materialize.min.js.download"></script>
-	<script src="./Question List_files/menuzord.js.download"></script>
-	<script
-		src="./Question List_files/bootstrap-tabcollapse.min.js.download"></script>
-	<script src="./Question List_files/jquery.easing.min.js.download"></script>
-	<script src="./Question List_files/jquery.sticky.min.js.download"></script>
-	<script src="./Question List_files/smoothscroll.min.js.download"></script>
-	<script src="./Question List_files/imagesloaded.js.download"></script>
-	<script src="./Question List_files/jquery.stellar.min.js.download"></script>
-	<script src="./Question List_files/jquery.inview.min.js.download"></script>
-	<script src="./Question List_files/jquery.shuffle.min.js.download"></script>
-	<script src="./Question List_files/owl.carousel.min.js.download"></script>
-	<script src="./Question List_files/jquery.flexslider-min.js.download"></script>
-	<script
-		src="./Question List_files/jquery.magnific-popup.min.js.download"></script>
-	<script src="./Question List_files/scripts.js.download"></script>
 
-	<div class="hiddendiv common"></div>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+	
 
 
 	<script>
@@ -310,7 +339,7 @@ background-color
 							.toggleClass('visible-xs');
 				});
 
-		$('#searchQ').on('click', function() {
+		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchQuestions?searchText=" + text;
@@ -436,6 +465,7 @@ background-color
 		}
 	</script>
 
+
 	<c:if test="${msgtype != null}">
 		<script>
 			var notification = 'Information';
@@ -451,4 +481,5 @@ background-color
 		</script>
 	</c:if>
 </body>
+
 </html>

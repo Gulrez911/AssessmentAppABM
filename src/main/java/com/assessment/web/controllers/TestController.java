@@ -101,7 +101,7 @@ public class TestController {
 	 @RequestMapping(value = "/addtest", method = RequestMethod.GET)
 	  public ModelAndView addtest(HttpServletRequest request, HttpServletResponse response ) {
 		    ModelAndView mav = null;
-		    mav = new ModelAndView("add_test");
+		    mav = new ModelAndView("add_test_step1");
 		    Test test = new Test();
 		    mav.addObject("test", test);
 		    User user = (User) request.getSession().getAttribute("user");
@@ -123,7 +123,7 @@ public class TestController {
 	 
 	 @RequestMapping(value = "/updateTest", method = RequestMethod.GET)
 	  public ModelAndView updateTest(@RequestParam String testId, HttpServletRequest request, HttpServletResponse response) {
-	    ModelAndView mav = new ModelAndView("add_test");
+	    ModelAndView mav = new ModelAndView("add_test_step1");
 	    User user = (User) request.getSession().getAttribute("user");
 	   // testService.f
 	    Test test = testService.findTestById(Long.valueOf(testId));
@@ -244,7 +244,7 @@ public class TestController {
 	 
 	 @RequestMapping(value = "/saveAndGoToStep2", method = RequestMethod.POST)
 	 public ModelAndView saveAndGoToStep2(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
-		 	ModelAndView mav = new ModelAndView("add_test_step2");
+		 	ModelAndView mav = new ModelAndView("add_test_step2_new");
 		 		
 		    User user = (User) request.getSession().getAttribute("user");
 		    	if(!(user.getUserType().getType().equals(UserType.ADMIN.getType()) || user.getUserType().getType().equals(UserType.SUPER_ADMIN.getType()))) {
@@ -868,7 +868,7 @@ public class TestController {
 	 
 	  @RequestMapping(value = "/searchQs", method = RequestMethod.GET)
 	  public ModelAndView searchQuestions(@RequestParam String searchText, HttpServletRequest request, HttpServletResponse response) {
-	    ModelAndView mav = new ModelAndView("add_test_step2");
+	    ModelAndView mav = new ModelAndView("add_test_step2_new");
 	       User user = (User) request.getSession().getAttribute("user");
   		List<Question> questions = questionService.searchQuestions(user.getCompanyId(), searchText);
   		Test test = (Test)request.getSession().getAttribute("test");

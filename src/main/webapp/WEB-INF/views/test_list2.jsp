@@ -5,137 +5,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
-<html lang="en" class=" js csstransforms csstransforms3d csstransitions"
-	style="height: auto;">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
-<link rel="shortcut icon"
-	href="http://beforesubmit.com/qe-assess/assets/img/ico/favicon.png">
-<link href="./Question List_files/css" rel="stylesheet" type="text/css">
+<title>Tests</title>
+
+<spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
+
+<link href="${c1}" rel="shortcut icon" />
+
+<spring:url
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	var="c2" />
+
+<link href="${c2}" rel="stylesheet" type="text/css" />
+
 <!-- Material Icons CSS -->
-<link href="css/newcss/material-icons.css" rel="stylesheet">
+<spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
+	var="c3" />
+
+<link href="${c3}" rel="stylesheet" type="text/css" />
+
 <!-- FontAwesome CSS -->
-<link href="css/newcss/font-awesome.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+	var="c4" />
+
+<link href="${c4}" rel="stylesheet" type="text/css" />
+
 <!-- magnific-popup -->
-<link href="css/newcss/magnific-popup.css" rel="stylesheet">
+<spring:url value="/resources/assets/magnific-popup/magnific-popup.css"
+	var="c5" />
+
+<link href="${c5}" rel="stylesheet" type="text/css" />
+
 <!-- owl.carousel -->
-<link href="css/newcss/owl.carousel.css" rel="stylesheet">
-<link href="css/newcss/owl.theme.default.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
+
+<link href="${c6}" rel="stylesheet" type="text/css" />
+
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+	var="c7" />
+
+<link href="${c7}" rel="stylesheet" type="text/css" />
+
 <!-- flexslider -->
-<link href="css/newcss/flexslider.css" rel="stylesheet">
+
+<spring:url value="/resources/assets/flexSlider/flexslider.css" var="c8" />
+
+<link href="${c8}" rel="stylesheet" type="text/css" />
+
 <!-- materialize -->
-<link href="css/newcss/materialize.min.css" rel="stylesheet">
+<spring:url
+	value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
+
+<link href="${c9}" rel="stylesheet" type="text/css" />
+
 <!-- Bootstrap -->
-<link href="css/newcss/bootstrap.min.css" rel="stylesheet">
+<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
+	var="c10" />
+
+<link href="${c10}" rel="stylesheet" type="text/css" />
+
 <!-- shortcodes -->
-<link href="css/newcss/shortcodes.css" rel="stylesheet">
+<spring:url value="/resources/assets/css/shortcodes/shortcodes.css"
+	var="c11" />
+
+<link href="${c11}" rel="stylesheet" type="text/css" />
+
 <!-- Style CSS -->
-<link href="css/newcss/style.css" rel="stylesheet">
+<spring:url value="/resources/assets/style.css" var="c12" />
+
+<link href="${c12}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Main Stylesheet -->
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/settings.css">
+<spring:url value="/resources/assets/revolution/css/settings.css"
+	var="c13" />
+
+<link href="${c13}" rel="stylesheet" type="text/css" />
+
 <!-- RS5.0 Layers and Navigation Styles -->
-<link rel="stylesheet" type="text/css" href="css/newcss/layers.css">
-<link rel="stylesheet" type="text/css"
-	href="./Question List_files/navigation.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<spring:url value="/resources/assets/revolution/css/navigation.css"
+	var="c14" />
+
+<link href="${c14}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/revolution/css/layers.css"
+	var="c15" />
+
+<link href="${c15}" rel="stylesheet" type="text/css" />
+
+
 </head>
- 
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	position:;
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	background-color: white;
-	color:#000;
-	
-}
-
-li
- 
-a
-:hover
-:not
- 
-(
-.active
- 
-)
-{
-background-color
-:
- 
-#111
-;
-
-
-}
-.active {
-	background-color: #4CAF50;
-}
-.menuzord {
-    width: 100%;
-    float: left;
-    position: relative;
-}</style>
 
 <body id="top" class="has-header-search">
-
 	<!--header start-->
-	 <div class="panel panel-default" id="header" style="width:100%">
-    <div class="panel-body" style="width:0px;padding:0px;">
-   <!--  <header id="header" class="tt-nav nav-border-bottom"> -->
+	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
 			<div class="container">
-			<div class="row">
-				<div id="materialize-menu" class="menuzord menuzord-responsive">
-					<a href="javascript:void(0)" class="showhide"style="display: none;"></a>
-	
-					<a href="http://beforesubmit.com/qe-assess/index.html"
-						class="logo-brand"> <img class="retina" src="images/Logo2.png"
-						alt="">
+				<div id="materialize-menu" class="menuzord">
+					<!--logo start-->
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
 					</a>
-					
-					<ul class="menuzord-menu pull-right menuzord-indented scrollable"
-						style="max-height: 400px;">
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="question_list">Question Bank</a></li>
-						<li><a href="testlist">Tests</a></li>
-						<li><a href="">Skills</a></li>
+						<li><a href="question_list">Question Bank</a></li>
+						<li class="active"><a href="testlist">Tests</a></li>
+						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
 						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 						<li><a href="javascript:void(0)">Skill based Reports</a></li>
 						<li><a href="listUsers">Users</a></li>
-						<li class="scrollable-fix"></li>
 					</ul>
-					
+					<!--mega menu end-->
 				</div>
 			</div>
-			
-		</div> 
-    </div>
- 
-  </div>
-</div>
-	<!-- header end -->
+		</div>
+	</header>
+	<!--header end-->
+
 
 	<section>
 		<div class="container">
@@ -143,40 +138,37 @@ background-color
 				<div class="col-md-12">
 					<div class="col-md-6"></div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/tests.html#"
-							class="btn waves-effect waves-light col-md-12"><i
+						<a href="addtest" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
-						<a href="http://beforesubmit.com/qe-assess/tests.html#"
+						<a
+							href="javascript:notify('Information', 'Feature to upload Tests coming soon. Right now we have capability to upload Users and Questions.');"
 							class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-upload"></i> Import</a>
 					</div>
 					<div class="col-md-2">
-						
-						<a href="signoff" class="btn waves-effect waves-light col-md-12">
-						<i class="material-icons fa fa-sign-out"></i> Sign Off</a>
+						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
+							class="material-icons fa fa-sign-out"></i> Sign Off</a>
 					</div>
 				</div>
 
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<div class="pagination" style="float: right;">
-							<div class="pagination">
-								<c:if test="${showPreviousPage}">
-									<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
-										class="fa fa-arrow-left"></i></a>
-								</c:if>
+							<c:if test="${showPreviousPage}">
+								<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
+									class="fa fa-arrow-left"></i></a>
+							</c:if>
 
-								<c:if test="${selectedPage != null &&  selectedPage > 0}">
-	                                    ${selectedPage} / ${totalNumberOfPages}
-                                    </c:if>
+							<c:if test="${selectedPage != null &&  selectedPage > 0}">
+                                    ${selectedPage} / ${totalNumberOfPages}
+                                </c:if>
 
-								<c:if test="${showNextPage}">
-									<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
-										class="fa fa-arrow-right"></i></a>
-								</c:if>
-							</div>
+							<c:if test="${showNextPage}">
+								<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
+									class="fa fa-arrow-right"></i></a>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -186,39 +178,27 @@ background-color
 					<div class="col-md-5">
 						<h1>Test Bank</h1>
 					</div>
-					<%-- <div class="col-md-4">
-						<div class="widget widget_search">
-							<form  method="get" class="search-form">
-								<input type="text" class="form-control" name="searchText" 
-									placeholder="Search a Test">
-								<button type="submit" id="search">
-									<i class="fa fa-search"></i>
-								</button>
-							</form>
-						</div>
-					</div> --%>
 					<div class="col-md-4">
 						<div class="widget widget_search">
-							<form action="searchTests" method="get" class="search-form">
-								<input type="text" class="form-control" name="searchText"
-									placeholder="Search a Test">
+
+							<div class="search-form">
+								<input type="text" placeholder="Search a question"
+									name="searchText" id="searchText">
 								<button type="submit" id="search">
 									<i class="fa fa-search"></i>
 								</button>
-							</form>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-3" style="padding: 0;">
 						<div class="mt-10"></div>
 						<div class="col-md-4"></div>
 						<div class="col-md-4" style="padding-left: 0;">
-							<a href="http://beforesubmit.com/qe-assess/tests.html#"> <i
-								class="fa fa-sort-amount-asc"></i> <span>Sort</span>
+							<a href="#"> <i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
 							</a>
 						</div>
 						<div class="col-md-4" style="padding: 0;">
-							<a href="http://beforesubmit.com/qe-assess/tests.html#"> <i
-								class="fa fa-filter"></i> <span>Filter</span>
+							<a href="#"> <i class="fa fa-filter"></i> <span>Filter</span>
 							</a>
 						</div>
 					</div>
@@ -229,7 +209,7 @@ background-color
 							<thead>
 								<tr>
 									<th><input type="checkbox" id="chkall" name="chkall"
-										class="filled-in"> <label for="chkall"></label></th>
+										class="filled-in" /> <label for="chkall"></label></th>
 									<th class="title">Test Title</th>
 									<th>Category</th>
 									<th>Test Time In Minutes</th>
@@ -243,26 +223,30 @@ background-color
 								</tr>
 							</thead>
 							<tbody>
+
 								<c:forEach items="${tests}" var="test">
 									<tr>
-										<td><input type="checkbox"></td>
+										<td><input type="checkbox" class="filled-in" /> <label
+											for="chkall"></label></td>
 
 										<td><c:out value="${test.testName}"></c:out></td>
 
 										<td>${test.category}</td>
 										<td>${test.testTimeInMinutes}</td>
-					     				<td>${test.passPercent}</td>
+										<td>${test.passPercent}</td>
 
 										<td><c:out value="${test.cDate}"></c:out></td>
 										<td><c:out value="${test.uDate}"></c:out></td>
 										<td><a onClick="confirm(${test.id}); return false;"
 											href="#">Click to Expire</a></td>
-										<td><a href="updateTest?testId=${test.id}">Click to Update</a></td>
-						                <td><a href="javascript:void(0);" class="testname"
+										<td><a href="updateTest?testId=${test.id}">Click to
+												Update</a></td>
+										<td><a href="javascript:void(0);" class="testname"
 											data-name="${test.testName}" data-toggle="modal"
 											onClick="javascript:duplicateOpen('${test.testName}', '${test.companyId}')"><i
 												class="fa fa-copy"></i></a></td>
-										<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}" data-toggle="modal"
+										<td><a href="javascript:void(0);" class="testname"
+											data-name="${test.testName}" data-toggle="modal"
 											onClick="javascript:shareOpen('${test.testName}', '${test.publicUrl}', '${test.id}')"><i
 												class="fa fa-share-alt"></i></a></td>
 									</tr>
@@ -282,15 +266,15 @@ background-color
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
-				<ul>
+				<ul class="menuzord-menu pull-right">
 					<li><a href="javascript:void(0)">Dashboard</a></li>
-					<li><a href="javascript:void(0)">Question Bank</a></li>
-					<li><a href="javascript:void(0)">Tests</a></li>
+					<li><a href="question_list">Question Bank</a></li>
+					<li class="active"><a href="testlist">Tests</a></li>
 					<li><a href="javascript:void(0)">Skills</a></li>
-					<li><a href="javascript:void(0)">Results</a></li>
+					<li><a href="showReports">Results</a></li>
 					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 					<li><a href="javascript:void(0)">Skill based Reports</a></li>
-					<li><a href="javascript:void(0)">Users</a></li>
+					<li><a href="listUsers">Users</a></li>
 				</ul>
 			</div>
 		</div>
@@ -303,26 +287,21 @@ background-color
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Duplicate Test</h4>
 				</div>
 				<div class="modal-body">
-					<form method="GET"
-						action="http://beforesubmit.com/qe-assess/duplicateTest">
-						<label class="active">Existing test name</label> <input
-							id="existing_name" value="Sample Test " type="text" disabled="">
-						<label class="active">New Test Name</label> <input id="newTest"
-							type="text" required=""> <label class="active">Qualifier
-							1</label> <input id="newQual1" type="text" required=""> <label
-							class="active">Qualifier 2</label> <input id="newQual2"
-							type="text">
+					<form method="GET" action="duplicateTest">
+						<label>Existing test name</label> <input id="existing_name"
+							value="Sample Test " type="text" disabled /> <label>New
+							Test Name</label> <input id="newTest" type="text" required /> <label>Qualifier
+							1</label> <input id="newQual1" type="text" required /> <label>Qualifier
+							2</label> <input id="newQual2" type="text" />
 						<div class="buttons text-center" style="padding-top: 20px;">
-							<i class="waves-effect waves-light btn waves-input-wrapper"
-								style=""><input type="button" class="waves-button-input"
-								value="Duplicate" onclick="javascript:dup()"></i> <i
-								class="waves-effect waves-light btn waves-input-wrapper"
-								style=""><input class="waves-button-input" type="button"
-								data-dismiss="modal" value="Cancel"></i>
+							<input type="button" class="waves-effect waves-light btn"
+								value="Duplicate" onClick="javascript:dup()" /> <input
+								class="waves-effect waves-light btn" type="button"
+								data-dismiss="modal" value="Cancel" />
 						</div>
 					</form>
 				</div>
@@ -330,212 +309,225 @@ background-color
 		</div>
 	</div>
 
+	
 	<!-- Share Test Popup -->
 	<div id="modalshare" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Share Test</h4>
 				</div>
 				<div class="modal-body">
-					<form method="POST"
-						action="http://beforesubmit.com/qe-assess/sharePublicTest">
+					<form method="POST" action="sharePublicTest">
 						<label>Existing test name</label> <input id="existing_name1"
-							type="text"> <label>First Name</label> <input
-							id="firstName" type="text"> <label>Last name</label> <input
-							id="lastName" type="text"> <label>Email Id</label> <input
-							id="userEmail" type="text"> <label>Public Test
-							URL</label> <input id="publicTestUrl" type="text"> <input
-							type="hidden" name="testId" id="testId" value="">
+							type="text" /> <label>First Name</label> <input id="firstName"
+							type="text" /> <label>Last name</label> <input id="lastName"
+							type="text" /> <label>Email Id</label> <input id="userEmail"
+							type="text" /> <label>Public Test URL</label> <input
+							id="publicTestUrl" type="text" /> <input type="hidden"
+							name="testId" id="testId" value="" />
 						<div class="buttons text-center" style="padding-top: 20px;">
-							<i class="waves-effect waves-light btn waves-input-wrapper"
-								style=""><input class="waves-button-input" type="button"
+							<input class="waves-effect waves-light btn" type="button"
 								value="Copy in your Clipboard"
-								onclick="javascript:copyUrlInClipBoard()"></i> <i
-								class="waves-effect waves-light btn waves-input-wrapper"
-								style=""><input class="waves-button-input" type="button"
-								value="Share" onclick="javascript:shareTest()"></i> <i
-								class="waves-effect waves-light btn waves-input-wrapper"
-								style=""><input class="waves-button-input" type="button"
-								value="Close" data-dismiss="modal"></i>
+								onClick="javascript:copyUrlInClipBoard()" /> <input
+								class="waves-effect waves-light btn" type="button" value="Share"
+								onClick="javascript:shareTest()" /> <input
+								class="waves-effect waves-light btn" type="button" value="Close"
+								data-dismiss="modal" />
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- jQuery -->
 
-
-	<script src="./Tests_files/jquery-2.1.3.min.js.download"></script>
-	<script src="./Tests_files/bootstrap.min.js.download"></script>
-	<script src="./Tests_files/materialize.min.js.download"></script>
-	<script src="./Tests_files/menuzord.js.download"></script>
-	<script src="./Tests_files/bootstrap-tabcollapse.min.js.download"></script>
-	<script src="./Tests_files/jquery.easing.min.js.download"></script>
-	<script src="./Tests_files/jquery.sticky.min.js.download"></script>
-	<script src="./Tests_files/smoothscroll.min.js.download"></script>
-	<script src="./Tests_files/imagesloaded.js.download"></script>
-	<script src="./Tests_files/jquery.stellar.min.js.download"></script>
-	<script src="./Tests_files/jquery.inview.min.js.download"></script>
-	<script src="./Tests_files/jquery.shuffle.min.js.download"></script>
-	<script src="./Tests_files/owl.carousel.min.js.download"></script>
-	<script src="./Tests_files/jquery.flexslider-min.js.download"></script>
-	<script src="./Tests_files/jquery.magnific-popup.min.js.download"></script>
-	<script src="./Tests_files/scripts.js.download"></script>
-
-
-	<div class="hiddendiv common"></div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+	
 	<script>
-	
-	function dup(){
-	 var existing_name = document.getElementById("existing_name").value;
-	 var newTest = document.getElementById("newTest").value;
-	var newQual1 = document.getElementById("newQual1").value;
-	var newQual2 = document.getElementById("newQual2").value;
-		if(newTest == '' || newTest == null){
-		notify('Info', 'Enter a name for the new Test');
-		}
-		else if(newQual1 == '' || newQual1 == null){
-		notify('Info', 'Enter a Qualifier name for the new Test');
-		}
-		else{
-		window.location = "duplicateTest?existing_name="+existing_name+"&newTest="+newTest+"&newQual1="+newQual1+"&newQual2="+newQual2;
-		}
-	
-	}
-	
-	function duplicateOpen(testName, tenantId){
-	   var name = $(this).attr('data-name');
-		 console.log('here '+testName);
-		 console.log(tenantId);
-		 document.getElementById("existing_name").value=testName;
-	$('#modalcopy').modal('show');
-	$('#modalshare').modal('hide');
-	}
+        function dup() {
+            var existing_name = document.getElementById("existing_name").value;
+            var newTest = document.getElementById("newTest").value;
+            var newQual1 = document.getElementById("newQual1").value;
+            var newQual2 = document.getElementById("newQual2").value;
+            if (newTest == '' || newTest == null) {
+                notify('Info', 'Enter a name for the new Test');
+            } else if (newQual1 == '' || newQual1 == null) {
+                notify('Info', 'Enter a Qualifier name for the new Test');
+            } else {
+                window.location = "duplicateTest?existing_name=" + existing_name + "&newTest=" + newTest + "&newQual1=" + newQual1 + "&newQual2=" + newQual2;
+            }
 
-	function shareOpen(testName, testPublicUrl, testId){
-	   var name = $(this).attr('data-name');
-		 console.log('here '+testName);
-		
-		 document.getElementById("existing_name1").value=testName;
-		 document.getElementById("publicTestUrl").value=testPublicUrl;
-		  document.getElementById("testId").value=testId;
-	$('#modalcopy').modal('hide');
-	$('#modalshare').modal('show');
-	}
-	
-	function copyUrlInClipBoard(){
-	el = document.createElement('textarea');
-	  el.value = document.getElementById("publicTestUrl").value;
-	  document.body.appendChild(el);
-	  el.select();
-	  document.execCommand('copy');
-	  document.body.removeChild(el);
-	//$('#modalshare').modal('hide');
-	}
-	
-	function copyUrlClose(){
-	$('#modalshare').modal('hide');
-	}
-	
-	function shareTest(){
-	 var existing_name1 = document.getElementById("existing_name1").value;
-	 var firstName = document.getElementById("firstName").value;
-	var lastName = document.getElementById("lastName").value;
-	var userEmail = document.getElementById("userEmail").value;
-	var testId = document.getElementById("testId").value;
-		if(firstName == '' || firstName == null){
-			notify('Info', 'First Name can not be blank');
-		}
-		else if(lastName == '' || lastName == null){
-		notify('Info', 'Last Name can not be blank');
-		}
-		else if(userEmail == '' || userEmail == null){
-		notify('Info', 'Email can not be blank');
-		}
-		else if(!validateEmail(userEmail)){
-		notify('Info', 'Enter a valid email');
-		}
-		else{
-		window.location = "sharePublicTest?existing_name1="+existing_name1+"&firstName="+firstName+"&lastName="+lastName+"&userEmail="+userEmail+"&testId="+testId;
-		}
-	
-	}
-	
-	function validateEmail(email) {
-	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	  return re.test(email);
-	}
-	
-	 $('#search').on('click',function(){
-	    var text = document.getElementById("searchText").value;
-		if(text.length != 0){
-		window.location="searchTests?searchText="+text;
-		}
-	    });
-	    
-	
-	
-	function confirm(id) {
-           (new PNotify({
-		    title: 'Confirmation Needed',
-		    text: 'Are you sure? Students having the link to this exam may no longer be able to take the exam',
-		    icon: 'glyphicon glyphicon-question-sign',
-		    hide: false,
-		    confirm: {
-			confirm: true
-		    },
-		    buttons: {
-			closer: false,
-			sticker: false
-		    },
-		    history: {
-			history: false
-		    }
-		})).get().on('pnotify.confirm', function() {
-		    window.location = "retireTest?testId="+id;
-		}).on('pnotify.cancel', function() {
-		   
-		});
         }
-	
-	function notify(messageType, message){
-		 var notification = 'Information';
-			 $(function(){
-				 new PNotify({
-				 title: notification,
-				 text: message,
-				 type: messageType,
-				 styling: 'bootstrap3',
-				 hide: true
-			     });
-			 }); 	
-		}
-		
-		
-	</script>
+
+        function duplicateOpen(testName, tenantId) {
+            var name = $(this).attr('data-name');
+            console.log('here ' + testName);
+            console.log(tenantId);
+            document.getElementById("existing_name").value = testName;
+            $('#modalcopy').modal('show');
+            $('#modalshare').modal('hide');
+        }
+
+        function shareOpen(testName, testPublicUrl, testId) {
+            var name = $(this).attr('data-name');
+            console.log('here ' + testName);
+
+            document.getElementById("existing_name1").value = testName;
+            document.getElementById("publicTestUrl").value = testPublicUrl;
+            document.getElementById("testId").value = testId;
+            $('#modalcopy').modal('hide');
+            $('#modalshare').modal('show');
+        }
+
+        function copyUrlInClipBoard() {
+            el = document.createElement('textarea');
+            el.value = document.getElementById("publicTestUrl").value;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            //$('#modalshare').modal('hide');
+        }
+
+        function copyUrlClose() {
+            $('#modalshare').modal('hide');
+        }
+
+        function shareTest() {
+            var existing_name1 = document.getElementById("existing_name1").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var userEmail = document.getElementById("userEmail").value;
+            var testId = document.getElementById("testId").value;
+            if (firstName == '' || firstName == null) {
+                notify('Info', 'First Name can not be blank');
+            } else if (lastName == '' || lastName == null) {
+                notify('Info', 'Last Name can not be blank');
+            } else if (userEmail == '' || userEmail == null) {
+                notify('Info', 'Email can not be blank');
+            } else if (!validateEmail(userEmail)) {
+                notify('Info', 'Enter a valid email');
+            } else {
+                window.location = "sharePublicTest?existing_name1=" + existing_name1 + "&firstName=" + firstName + "&lastName=" + lastName + "&userEmail=" + userEmail + "&testId=" + testId;
+            }
+
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+        $('#search').on('click', function() {
+            var text = document.getElementById("searchText").value;
+            if (text.length != 0) {
+                window.location = "searchTests?searchText=" + text;
+            }
+        });
+
+
+
+        function confirm(id) {
+            (new PNotify({
+                title: 'Confirmation Needed',
+                text: 'Are you sure? Students having the link to this exam may no longer be able to take the exam',
+                icon: 'glyphicon glyphicon-question-sign',
+                hide: false,
+                confirm: {
+                    confirm: true
+                },
+                buttons: {
+                    closer: false,
+                    sticker: false
+                },
+                history: {
+                    history: false
+                }
+            })).get().on('pnotify.confirm', function() {
+                window.location = "retireTest?testId=" + id;
+            }).on('pnotify.cancel', function() {
+
+            });
+        }
+
+        function notify(messageType, message) {
+            var notification = 'Information';
+            $(function() {
+                new PNotify({
+                    title: notification,
+                    text: message,
+                    type: messageType,
+                    styling: 'bootstrap3',
+                    hide: true
+                });
+            });
+        }
+
+    </script>
 
 
 	<c:if test="${msgtype != null}">
 		<script>
-		 var notification = 'Information';
-		 $(function(){
-			 new PNotify({
-			 title: notification,
-			 text: '${message}',
-			 type: '${msgtype}',
-			 styling: 'bootstrap3',
-			 hide: true
-		     });
-		 }); 	 
-	      </script>
+            var notification = 'Information';
+            $(function() {
+                new PNotify({
+                    title: notification,
+                    text: '${message}',
+                    type: '${msgtype}',
+                    styling: 'bootstrap3',
+                    hide: true
+                });
+            });
+
+        </script>
 	</c:if>
 </body>
+
 </html>
