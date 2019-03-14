@@ -92,21 +92,18 @@
 										<a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
 										<!--logo start-->
 										<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-												src="./addtest_step2_files/Logo.png" alt="">
+												src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
 										</a>
 										<!--logo end-->
-										<!--mega menu start-->
-										<ul class="menuzord-menu pull-right menuzord-indented scrollable"
-												style="max-height: 400px;">
+										<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li><a href="javascript:void(0)">Question Bank</a></li>
-												<li class="active"><a href="javascript:void(0)">Tests</a></li>
+												<li><a href="question_list">Question Bank</a></li>
+												<li class="active"><a href="testlist">Tests</a></li>
 												<li><a href="javascript:void(0)">Skills</a></li>
-												<li><a href="javascript:void(0)">Results</a></li>
+												<li><a href="showReports">Results</a></li>
 												<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 												<li><a href="javascript:void(0)">Skill based Reports</a></li>
-												<li><a href="javascript:void(0)">Users</a></li>
-												<li class="scrollable-fix"></li>
+												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
 								</div>
@@ -188,13 +185,13 @@
 						<div class="container">
 								<ul>
 										<li><a href="javascript:void(0)">Dashboard</a></li>
-										<li><a href="javascript:void(0)">Question Bank</a></li>
-										<li><a href="javascript:void(0)">Tests</a></li>
+										<li><a href="question_list">Question Bank</a></li>
+										<li><a href="testlist">Tests</a></li>
 										<li><a href="javascript:void(0)">Skills</a></li>
-										<li><a href="javascript:void(0)">Results</a></li>
+										<li><a href="showReports">Results</a></li>
 										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
-										<li><a href="javascript:void(0)">Users</a></li>
+										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
 				</div>
@@ -215,9 +212,12 @@
 										<div class="col-md-12 mb-20">
 												<a href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
 														class="btn waves-effect waves-light">Show All Parent Categories</a> <a
+														href="javascript:showSelected();" id="showSelected"
+														class="btn waves-effect waves-light green"> Show Selected</a>
+												<!--  <a
 														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
-														class="btn waves-effect waves-light green">Show Selected</a> <a
-														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
+														class="btn waves-effect waves-light green">Show Selected</a>  -->
+												<a href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
 														class="btn waves-effect waves-light red">Clear All</a> <a
 														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
 														class="btn waves-effect waves-light">Save Section</a>
@@ -238,11 +238,10 @@
 										</div>
 
 										<div class="col-md-12">
-												<div class="table-responsive">
+												<div class="table-responsive ">
 														<table class="table table-striped">
 																<thead>
 																		<tr>
-																				<th>No</th>
 																				<th>Question</th>
 																				<th>Category</th>
 																				<th>Level</th>
@@ -250,65 +249,49 @@
 																				<th>Select</th>
 																		</tr>
 																</thead>
+
 																<tbody>
-																		<tr>
-																				<th scope="row">1</th>
-																				<td>When is Acceptance testing performed in agile development?</td>
-																				<td><a href="http://beforesubmit.com/qe-assess/addtest_step2.html#">Self
-																								Esteem</a></td>
-																				<td>EASY</td>
-																				<td>1</td>
-																				<td class="text-center"><a
-																						href="http://beforesubmit.com/qe-assess/addtest_step2.html#"><i
-																								class="fa fa-plus-square"></i></a></td>
-																		</tr>
-																		<tr>
-																				<th scope="row">2</th>
-																				<td>When is Acceptance testing performed in agile development?</td>
-																				<td><a href="http://beforesubmit.com/qe-assess/addtest_step2.html#">Self
-																								Esteem</a></td>
-																				<td>EASY</td>
-																				<td>1</td>
-																				<td class="text-center"><a
-																						href="http://beforesubmit.com/qe-assess/addtest_step2.html#"><i
-																								class="fa fa-plus-square"></i></a></td>
-																		</tr>
-																		<tr>
-																				<th scope="row">3</th>
-																				<td>When is Acceptance testing performed in agile development?</td>
-																				<td><a href="http://beforesubmit.com/qe-assess/addtest_step2.html#">Self
-																								Esteem</a></td>
-																				<td>EASY</td>
-																				<td>1</td>
-																				<td class="text-center"><a
-																						href="http://beforesubmit.com/qe-assess/addtest_step2.html#"><i
-																								class="fa fa-plus-square"></i></a></td>
-																		</tr>
-																		<tr>
-																				<th scope="row">4</th>
-																				<td>When is Acceptance testing performed in agile development?</td>
-																				<td><a href="http://beforesubmit.com/qe-assess/addtest_step2.html#">Self
-																								Esteem</a></td>
-																				<td>EASY</td>
-																				<td>1</td>
-																				<td class="text-center"><a
-																						href="http://beforesubmit.com/qe-assess/addtest_step2.html#"><i
-																								class="fa fa-plus-square"></i></a></td>
-																		</tr>
-																		<tr>
-																				<th scope="row">5</th>
-																				<td>When is Acceptance testing performed in agile development?</td>
-																				<td><a href="http://beforesubmit.com/qe-assess/addtest_step2.html#">Self
-																								Esteem</a></td>
-																				<td>EASY</td>
-																				<td>1</td>
-																				<td class="text-center"><a
-																						href="http://beforesubmit.com/qe-assess/addtest_step2.html#"><i
-																								class="fa fa-plus-square"></i></a></td>
-																		</tr>
+																		<%
+																			int count = 0;
+																		%>
+																		<c:forEach items="${qs}" var="ques">
+																				<tr id="${ques.id}" bgcolor="${ques.selected? '#33FFF9':'transparent'}">
+
+
+																						<td><c:out value="${ques.questionText}"></c:out></td>
+
+																						<td>${ques.testCategory}</td>
+																						<td><c:out value="${ques.difficultyLevel.level}"></c:out></td>
+
+																						<td><input type="text" placeholder="Marks, if Correct" value="1  "
+																								disabled style="width: 100%;"></td>
+
+																						<td id="${ques.id}-add" style="${ques.selected? 'display: none;':''}"><a
+																								href="javascript:addQ('${ques.id}', 'Core Java');">Click to Add</a></td>
+																						<td id="${ques.id}-remove" style="${ques.selected? '':'display: none;'}"><a
+																								href="javascript:removeQ('${ques.id}', 'Core Java');">Click to Remove</a></td>
+																				</tr>
+																				<%
+																					count++;
+																				%>
+																		</c:forEach>
 																</tbody>
 														</table>
 												</div>
+
+												<table id="table1" class="selectedQ" border="1">
+														<thead>
+																<tr>
+																		<th>Question</th>
+																		<th>Category</th>
+																		<th>Level</th>
+																		<th>Points</th>
+																		<th>Select</th>
+																</tr>
+														</thead>
+
+												</table>
+
 
 												<a data-dismiss="modal"
 														class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a> <a
@@ -322,11 +305,37 @@
 
 
 		<!-- jQuery -->
-		<script src="./addtest_step2_files/jquery-2.1.3.min.js.download"></script>
-		<script src="./addtest_step2_files/bootstrap.min.js.download"></script>
-		<script src="./addtest_step2_files/materialize.min.js.download"></script>
-		<script src="./addtest_step2_files/menuzord.js.download"></script>
-		<script src="./addtest_step2_files/scripts.js.download"></script>
+
+		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+		<script src="${mainJs1}"></script>
+		<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+		<script src="${mainJs2}"></script>
+		<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
+		<script src="${mainJs3}"></script>
+		<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+		<script src="${mainJs4}"></script>
+		<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+		<script src="${mainJs5}"></script>
+		<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+		<script src="${mainJs6}"></script>
+		<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+		<script src="${mainJs7}"></script>
+		<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+		<script src="${mainJs8}"></script>
+		<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+		<script src="${mainJs9}"></script>
+		<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+		<script src="${mainJs10}"></script>
+		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
+		<script src="${mainJs11}"></script>
+		<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
+		<script src="${mainJs12}"></script>
+		<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
+		<script src="${mainJs13}"></script>
+		<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+		<script src="${mainJs14}"></script>
+		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+		<script src="${mainJs15}"></script>
 
 		<script>
 			// Add section
@@ -337,7 +346,9 @@
 			//                                        });
 
 			$(document).on('click', '.addquestion', function() {
+				$('.selectedQ').hide();
 				$('#modalsection').modal('show');
+
 			});
 
 			var counter = 1;
@@ -356,7 +367,116 @@
 							});
 		</script>
 
+		<script type="text/javascript">
+			function addQ(qid, sectionName) {
 
+				//window.location = "addQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
+				var url = "addQuestionToSectionAjax?sectionName=" + sectionName
+						+ "&questionId=" + qid;
+				console.log('here url ' + url);
+				$
+						.ajax({
+							url : url,
+							success : function(data) {
+								console.log("SUCCESS: ", data);
+								var tr = document.getElementById(qid);
+								var tds = tr.getElementsByTagName("td");
+								var tdadd = document.getElementById(qid
+										+ "-add");
+								var tdremove = document.getElementById(qid
+										+ "-remove");
+								console.log(tr);
+								console.log(tds);
+								console.log(tdadd);
+								tr.style.backgroundColor = '#33FFF9';
+								tdadd.style.display = "none";
+								tdremove.style.display = "";
+
+								//document.getElementById("no-"+sectionName).innerHTML = data;
+
+							},
+							error : function(e) {
+								console.log("ERROR: ", e);
+
+							}
+						});
+
+			}
+			function removeQ(qid, sectionName) {
+				//window.location = "removeQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
+				var url = "removeQuestionToSectionAjax?sectionName="
+						+ sectionName + "&questionId=" + qid;
+				console.log('here url ' + url);
+				$
+						.ajax({
+							url : url,
+							success : function(data) {
+								console.log("SUCCESS: ", data);
+								var tr = document.getElementById(qid);
+								var tds = tr.getElementsByTagName("td");
+								var tdadd = document.getElementById(qid
+										+ "-add");
+								var tdremove = document.getElementById(qid
+										+ "-remove");
+								console.log(tr);
+								console.log(tds);
+								console.log(tdadd);
+								tr.style.backgroundColor = 'transparent';
+								tdadd.style.display = "";
+								tdremove.style.display = "none";
+
+								//document.getElementById("no-"+sectionName).innerHTML = data;
+
+							},
+							error : function(e) {
+								console.log("ERROR: ", e);
+
+							}
+						});
+			}
+			function showSelected() {
+				$(".table-responsive").hide();
+				$(".selectedQ").show();
+				load();
+			}
+
+			// 			function showSelected() {
+			// 				window.location = "showSectionsQuestions";
+			// 			}
+			dta="";
+			load = function() {
+				$
+						.ajax({
+							url : 'showSectionsQuestions',
+							type : 'GET',
+							success : function(response) {
+
+								alert("test");
+								console.log("hello");
+								console.log("test",response.qs[0].questionText);
+								console.log("test",response.qs[0].testCategory);
+								console.log("test",response.qs[0].questionText);
+								console.log("test",response.qs[0].questionText);
+								console.log("test",response.qs[0].questionText);
+								data = response.qs;
+							
+								for (i = 0; i < response.qs.length; i++) {
+									console.log(data[i].questionText);
+									$("#table1")
+											.append(
+													"<tr class='tr'> <td> "
+															+ response.data[i].questionText
+															+ " </td>  <td> <a href='#' onclick= edit("
+															+ i
+															+ ");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("
+															+ response.data[i].questionText
+															+ ");'> Delete </a>  </td> </tr>");
+
+								}
+							}
+						});
+			};
+		</script>
 		<div class="hiddendiv common"></div>
 </body>
 </html>

@@ -57,7 +57,7 @@ body{
     background-color: #fff;
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
-    -webkit-overflow-scrolling: auto;
+    -webkit-overflow-scrolling: touch;
     -webkit-font-smoothing: antialiased !important;
 }
 
@@ -2372,26 +2372,22 @@ KEY FRAME
 .stepsitem.active i{
     color: #0288d1 !important;
 }
-
 .addteststeps2 label.addquestion{
-    font-size: 20px;
+    font-size: 18px;
     color: #000;
-    width: 100%;
     float: left;
     font-weight: normal;
     cursor: pointer;
+    padding-top: 20px;
 }
 .step2sections label.addquestion span {
     color: #fff;
-    font-size: 30px;
-    float: right;
+    font-size: 22px;
     padding-right: 20px;
-    position: relative;
-    top: -4px;
     font-weight: normal;
     background-color: #0288d1;
     border-radius: 50%;
-    padding: 1px 10px;
+    padding: 0px 9px;
 }
 .quesectiondiv{
     float: left;
@@ -2401,8 +2397,29 @@ KEY FRAME
     margin-bottom: 0;
 }
 .quesectiondiv .quesection{
-    background-color: #b5e7a0;
+    background-color: #0288d1;
     padding: 10px;
-    cursor: pointer;
     border: 1px solid #eef5fb;
+    color: #fff;
 }
+.quesectiondiv .quesection a{
+    color: #fff;
+    float: right;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.formfields{
+    padding-bottom: 30px;
+}
+.formfields .fieldtitle{
+    font-size: 14px;
+    color: #333;
+    float: left;
+    width: 100%;
+}
+.formfields .input-field{
+    margin-top: 0;
+}
+label{font-size:1.5rem;
+color:#040404;}
