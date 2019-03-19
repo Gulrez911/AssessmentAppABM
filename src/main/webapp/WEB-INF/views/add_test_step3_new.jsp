@@ -251,60 +251,32 @@
 																						<th>Grade</th>
 																				</tr>
 																		</thead>
-																		<tbody>
-																				<tr>
-																						<td>Tikam Singh</td>
-																						<td>contact@thev2technologies.com</td>
-																						<td>IT</td>
-																						<td>First</td>
-																						<td class="text-center"><a
-																								href="http://beforesubmit.com/qe-assess/addtest_step3.html#"><i
-																										class="fa fa-plus-square"></i></a></td>
-																				</tr>
-																				<tr>
-																						<td>Tikam Singh</td>
-																						<td>contact@thev2technologies.com</td>
-																						<td>IT</td>
-																						<td>First</td>
-																						<td class="text-center"><a
-																								href="http://beforesubmit.com/qe-assess/addtest_step3.html#"><i
-																										class="fa fa-plus-square"></i></a></td>
-																				</tr>
-																				<tr>
-																						<td>Tikam Singh</td>
-																						<td>contact@thev2technologies.com</td>
-																						<td>IT</td>
-																						<td>First</td>
-																						<td class="text-center"><a
-																								href="http://beforesubmit.com/qe-assess/addtest_step3.html#"><i
-																										class="fa fa-plus-square"></i></a></td>
-																				</tr>
-																				<tr>
-																						<td>Tikam Singh</td>
-																						<td>contact@thev2technologies.com</td>
-																						<td>IT</td>
-																						<td>First</td>
-																						<td class="text-center"><a
-																								href="http://beforesubmit.com/qe-assess/addtest_step3.html#"><i
-																										class="fa fa-plus-square"></i></a></td>
-																				</tr>
-																				<tr>
-																						<td>Tikam Singh</td>
-																						<td>contact@thev2technologies.com</td>
-																						<td>IT</td>
-																						<td>First</td>
-																						<td class="text-center"><a
-																								href="http://beforesubmit.com/qe-assess/addtest_step3.html#"><i
-																										class="fa fa-plus-square"></i></a></td>
-																				</tr>
-																		</tbody>
-																</table>
-														</div>
+																							       
+						 <tbody>
+						    					       
+						       <c:forEach  items="${users}" var="us" >   
+							   <tr bgcolor="${us.selected? '#33FFF9':'transparent'}">
+								
+										
+								<td>${us.firstName} ${us.lastName} </td>
+								
+								<td> ${us.email}</td>
+								<td>${us.department}   </td>
+								
+								<td>${us.groupOfUser}</td>
+								
+								<td style="${us.selected? 'display: none;':''}"><a href="javascript:addU('${us.id}');">Click to Add</a> </td>
+								<td style="${us.selected? '':'display: none;'}"><a href="javascript:removeU('${us.id}');">Click to Remove</a></td>
+							</tr>
+							
+							</c:forEach>   
+						      </tbody>
+			   
+			
+									</table>
+									</div>
 
-
-
-
-												</div>
+										</div>
 
 												<div class="col-md-12">
 														<h2 class="txt">PreView</h2>
@@ -466,7 +438,7 @@
 										<h4 class="modal-title">Share Test</h4>
 								</div>
 								<div class="modal-body">
-										<form method="POST" action="http://beforesubmit.com/qe-assess/sharePublicTest">
+										<form method="POST" action="sharePublicTest">
 												<label>Existing test name</label> <input id="existing_name1" type="text"> <label>First
 														Name</label> <input id="firstName" type="text"> <label>Last name</label> <input
 														id="lastName" type="text"> <label>Email Id</label> <input id="userEmail"
@@ -740,5 +712,140 @@
 						</div>
 				</div>
 		</footer>
+		<script type="text/javascript">
+	$('#search').on('click',function(){
+	    var text = document.getElementById("searchText").value;
+		if(text.length != 0){
+		window.location="searchUsers?searchText="+text;
+		}
+	    });
+	
+	function addU(uid){
+  
+		window.location = "addUserToTest?userId="+uid;
+		    
+	}
+
+function removeU(uid){
+	window.location = "removeUserToTest?userId="+uid;
+	    
+}
+
+function showSelected(){
+	
+	window.location = "showSelectedUsers";
+}
+	
+function shareOpen(testName, testPublicUrl, testId) {
+    var name = $(this).attr('data-name');
+    console.log('here ' + testName);
+
+    document.getElementById("existing_name1").value = testName;
+    document.getElementById("publicTestUrl").value = testPublicUrl;
+    document.getElementById("testId").value = testId;
+    $('#modalcopy').modal('hide');
+    $('#modalshare').modal('show');
+}
+
+function copyUrlInClipBoard() {
+    el = document.createElement('textarea');
+    el.value = document.getElementById("publicTestUrl").value;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    //$('#modalshare').modal('hide');
+}
+
+function copyUrlClose() {
+    $('#modalshare').modal('hide');
+}
+
+function shareTest() {
+    var existing_name1 = document.getElementById("existing_name1").value;
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var userEmail = document.getElementById("userEmail").value;
+    var testId = document.getElementById("testId").value;
+    if (firstName == '' || firstName == null) {
+        notify('Info', 'First Name can not be blank');
+    } else if (lastName == '' || lastName == null) {
+        notify('Info', 'Last Name can not be blank');
+    } else if (userEmail == '' || userEmail == null) {
+        notify('Info', 'Email can not be blank');
+    } else if (!validateEmail(userEmail)) {
+        notify('Info', 'Enter a valid email');
+    } else {
+        window.location = "sharePublicTest?existing_name1=" + existing_name1 + "&firstName=" + firstName + "&lastName=" + lastName + "&userEmail=" + userEmail + "&testId=" + testId;
+    }
+
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+$('#search').on('click', function() {
+    var text = document.getElementById("searchText").value;
+    if (text.length != 0) {
+        window.location = "searchTests?searchText=" + text;
+    }
+});
+
+
+
+function confirm(id) {
+    (new PNotify({
+        title: 'Confirmation Needed',
+        text: 'Are you sure? Students having the link to this exam may no longer be able to take the exam',
+        icon: 'glyphicon glyphicon-question-sign',
+        hide: false,
+        confirm: {
+            confirm: true
+        },
+        buttons: {
+            closer: false,
+            sticker: false
+        },
+        history: {
+            history: false
+        }
+    })).get().on('pnotify.confirm', function() {
+        window.location = "retireTest?testId=" + id;
+    }).on('pnotify.cancel', function() {
+
+    });
+}
+
+function notify(messageType, message) {
+    var notification = 'Information';
+    $(function() {
+        new PNotify({
+            title: notification,
+            text: message,
+            type: messageType,
+            styling: 'bootstrap3',
+            hide: true
+        });
+    });
+}
+
+</script>
+<c:if test="${msgtype != null}">
+		<script>
+            var notification = 'Information';
+            $(function() {
+                new PNotify({
+                    title: notification,
+                    text: '${message}',
+                    type: '${msgtype}',
+                    styling: 'bootstrap3',
+                    hide: true
+                });
+            });
+
+        </script>
+	</c:if>
 </body>
 </html>

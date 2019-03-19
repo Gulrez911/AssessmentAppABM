@@ -96,13 +96,13 @@
                     <tbody>
 						    					       
 						       <c:forEach  items="${users}" var="us" >   
-							<tr bgcolor="${us.selected? '#33FFF9':'transparent'}">
+							  <tr bgcolor="${us.selected? '#33FFF9':'transparent'}">
 								
 										
 								<td>${us.firstName} ${us.lastName} </td>
 								
 								<td> ${us.email}</td>
-								<td>${us.department}   </td>
+								<td>${us.department}  </td>
 								
 								<td>${us.groupOfUser}</td>
 								
@@ -187,8 +187,7 @@
 	    });
 	
 	function addU(uid){
-	
-			    
+    
 		window.location = "addUserToTest?userId="+uid;
 		    
 	}

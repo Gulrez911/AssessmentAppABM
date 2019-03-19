@@ -817,7 +817,7 @@ public class TestController {
 	@RequestMapping(value = "/addUserToTest", method = RequestMethod.GET)
 	public ModelAndView addUserToTest(@RequestParam String userId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step3");
+		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -831,7 +831,7 @@ public class TestController {
 
 	@RequestMapping(value = "/removeAllUsers", method = RequestMethod.GET)
 	public ModelAndView removeAllUsers(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step3");
+		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -845,7 +845,7 @@ public class TestController {
 	@RequestMapping(value = "/removeUserToTest", method = RequestMethod.GET)
 	public ModelAndView removeUserToTest(@RequestParam String userId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step3");
+		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -860,7 +860,7 @@ public class TestController {
 	@RequestMapping(value = "/searchUsers", method = RequestMethod.GET)
 	public ModelAndView searchUsers(@RequestParam String searchText, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step3");
+		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -1062,7 +1062,7 @@ public class TestController {
 			@RequestParam String firstName, @RequestParam String lastName,
 			@RequestParam String existing_name1, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list");
+		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		// Test test = (Test) request.getSession().getAttribute("test");
 //		  String userEmail = request.getParameter("userEmail");
