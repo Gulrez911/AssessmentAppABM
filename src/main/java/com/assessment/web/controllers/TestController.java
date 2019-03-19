@@ -169,7 +169,7 @@ public class TestController {
 	@RequestMapping(value = "/addteststep3", method = RequestMethod.GET)
 	public ModelAndView addteststep3(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
-		mav = new ModelAndView("add_test_step3");
+		mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		// mav.addObject("qs", questions);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -350,11 +350,12 @@ public class TestController {
 		mav.addObject("languages", ProgrammingLanguage.values());
 		mav.addObject("test", test);
 		return mav;
+
 	}
 
 	@RequestMapping(value = "/addNewSection", method = RequestMethod.GET)
 	public ModelAndView addNewSection(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -382,7 +383,7 @@ public class TestController {
 	@RequestMapping(value = "/goToSection", method = RequestMethod.GET)
 	public ModelAndView goToSection(@RequestParam String sectionName, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -646,7 +647,7 @@ public class TestController {
 	public ModelAndView saveSection(@RequestParam String sectionTopic, @RequestParam String percentage,
 			HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("test") Test test) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("redirect:/addNewSection");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 

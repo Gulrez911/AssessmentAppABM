@@ -151,12 +151,24 @@
 										<div class="col-md-12">
 												<div class="step2sections">
 														<label style="font-size: 20px; color: #333;">Sections</label>
-														<div class="quesectiondiv">
-																<div class="quesection">
-																		Main Section <a id="delete"><i class="fa fa-trash"></i></a> <a id="update"><i
-																				class="fa fa-edit"></i></a>
+
+
+
+														<c:forEach items="${test.sectionDtos}" var="section">
+																<div class="quesectiondiv">
+																		<div class="quesection">
+																				${section.sectionName}- ${section.noOfQuestions} <a id="delete"><i
+																						class="fa fa-trash"></i></a><a id='update'
+																						onclick="highlight('${section.sectionName}');return false"><i
+																						class='fa fa-edit'></i></a>
+																		</div>
 																</div>
-														</div>
+														</c:forEach>
+														<!--  new added end-->
+														<!-- 																		Java Section <a id="delete"><i class="fa fa-trash"></i></a> <a id="update"><i -->
+														<!-- 																				class="fa fa-edit"></i></a> -->
+
+
 
 														<label class="addquestion"><span>+</span> Add Section </label>
 												</div>
@@ -167,8 +179,7 @@
 																class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a> <a
 																class="waves-effect waves-light btn cyan mt-20 mb-20"
 																href="http://beforesubmit.com/qe-assess/addtest.html">Back</a> <a
-																class="waves-effect waves-light btn mt-20 mb-20"
-																href="http://beforesubmit.com/qe-assess/addtest_step3.html">Next</a>
+																class="waves-effect waves-light btn mt-20 mb-20" href="addteststep3">Next</a>
 												</div>
 
 										</div>
@@ -217,16 +228,16 @@
 												<!--  <a
 														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
 														class="btn waves-effect waves-light green">Show Selected</a>  -->
-												<a href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
-														class="btn waves-effect waves-light red">Clear All</a> <a
-														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
-														class="btn waves-effect waves-light">Save Section</a>
+												<a href="javascript:saveSection();" class="btn waves-effect waves-light red">Clear
+														All</a>
+												<!-- 														<a href="javascript:saveSection();" class="btn waves-effect waves-light">Save Section</a> -->
 										</div>
 
 										<div class="col-md-12 mb-20">
 												<div class="col-md-3" style="padding: 0;">
 														<div class="widget widget_search">
-																<input type="text" class="form-control" value="Main Section">
+																<input type="text" class="form-control" id="sectionTopic"
+																		value="${sectionDto.sectionName}" placeholder="Enter Section Name">
 														</div>
 												</div>
 												<div class="col-md-9">
@@ -279,29 +290,18 @@
 														</table>
 												</div>
 
-												<table id="table1" class="selectedQ" border="1">
-														<thead>
-																<tr>
-																		<th>Question</th>
-																		<th>Category</th>
-																		<th>Level</th>
-																		<th>Points</th>
-																		<th>Select</th>
-																</tr>
-														</thead>
-
-												</table>
-
 
 												<a data-dismiss="modal"
 														class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a> <a
-														id="savesection" class="waves-effect waves-light btn mt-20 mb-20">Save</a>
+														href="javascript:saveSection();" id="savesection"
+														class="waves-effect waves-light btn mt-20 mb-20">Save</a>
 
 										</div>
 								</div>
 						</div>
 				</div>
 		</div>
+
 
 
 		<!-- jQuery -->
@@ -336,38 +336,71 @@
 		<script src="${mainJs14}"></script>
 		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 		<script src="${mainJs15}"></script>
+		<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+		<script src="${mainJs16}"></script>
 
 		<script>
-			// Add section
-			//                                        var counter = 1;
-			//                                        $(document).on('click', '.addquestion', function () {
-			//                                            counter++;
-			//                                            $(".quesectiondiv").append("<div class='quesection'><h4>Section " + counter + "</h4></div>");
-			//                                        });
-
 			$(document).on('click', '.addquestion', function() {
-				$('.selectedQ').hide();
 				$('#modalsection').modal('show');
 
 			});
+		</script>
+		<script>
+			function highlight(sectionName) {
+				window.location = "goToSection?sectionName=" + sectionName;
+			}
+		</script>
+		<script>
+			var point = false;
+			var count = 0;
+			function check(e, value) {
 
-			var counter = 1;
-			$(document)
-					.on(
-							'click',
-							'#savesection',
-							function() {
-								$('#modalsection').modal('hide');
-								counter++;
-								$(".quesectiondiv")
-										.append(
-												"<div class='quesection'>Section "
-														+ counter
-														+ "<a id='delete'><i class='fa fa-trash'></i><a id='update'><i class='fa fa-edit'></i></a></a></div>");
-							});
+				//Check Charater
+				debugger;
+				if (count == 3)
+					return false;
+				var unicode = e.charCode ? e.charCode : e.keyCode;
+
+				if (unicode == 46 && point == true)
+					return false;
+				if (unicode == 46 && point == false) {
+					point = true;
+				}
+				if (unicode != 8)
+					if ((unicode<48||unicode>57) && unicode != 46)
+						return false;
+				if (point == true)
+					count++;
+			}
+			function checkLength() {
+				var fieldVal = document.getElementById('txtF').value;
+				//Suppose u want 3 number of character
+				if (fieldVal <= 100) {
+					return true;
+				} else {
+					var str = document.getElementById('txtF').value;
+					str = str.substring(0, str.length - 1);
+					document.getElementById('txtF').value = str;
+				}
+			}
 		</script>
 
 		<script type="text/javascript">
+			function saveSection() {
+				var name = document.getElementById('sectionTopic').value;
+				var txtFValue = document.getElementById('txtF').value;
+				if (name.trim().length == 0) {
+					notify('Information',
+							'Please enter a meaningful name for your section before saving. ');
+
+				} else {
+					// 					window.location='addNewSection';
+					window.location = 'saveSection?sectionTopic=' + name
+							+ '&percentage=' + txtFValue;
+
+				}
+
+			}
 			function addQ(qid, sectionName) {
 
 				//window.location = "addQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
@@ -443,7 +476,7 @@
 			// 			function showSelected() {
 			// 				window.location = "showSectionsQuestions";
 			// 			}
-			dta="";
+			dta = "";
 			load = function() {
 				$
 						.ajax({
@@ -453,13 +486,23 @@
 
 								alert("test");
 								console.log("hello");
-								console.log("test",response.qs[0].questionText);
-								console.log("test",response.qs[0].testCategory);
-								console.log("test",response.qs[0].questionText);
-								console.log("test",response.qs[0].questionText);
-								console.log("test",response.qs[0].questionText);
+								console
+										.log("test",
+												response.qs[0].questionText);
+								console
+										.log("test",
+												response.qs[0].testCategory);
+								console
+										.log("test",
+												response.qs[0].questionText);
+								console
+										.log("test",
+												response.qs[0].questionText);
+								console
+										.log("test",
+												response.qs[0].questionText);
 								data = response.qs;
-							
+
 								for (i = 0; i < response.qs.length; i++) {
 									console.log(data[i].questionText);
 									$("#table1")
