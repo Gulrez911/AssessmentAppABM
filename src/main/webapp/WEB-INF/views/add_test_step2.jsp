@@ -134,7 +134,7 @@
                 <label class="addquestion">Sections <span>+</span>  </label>
 
                 <div class="quesectiondiv">
-			<c:forEach items="${test.sectionDtos}" var="section" >
+			 <c:forEach items="${test.sectionDtos}" var="section" >
 			    <div style="${section.style}" >
 				<h4 style="font-size: 14;font-weight: bold;" onclick="highlight('${section.sectionName}');return false">${section.sectionName}  - </h4> 
 				<h4 id="no-${section.sectionName}" style="font-size: 14;font-weight: bold;" >${section.noOfQuestions} </h4> 

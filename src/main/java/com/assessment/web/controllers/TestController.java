@@ -408,7 +408,7 @@ public class TestController {
 	@RequestMapping(value = "/removeSection", method = RequestMethod.GET)
 	public ModelAndView removeSection(@RequestParam String sectionName, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
