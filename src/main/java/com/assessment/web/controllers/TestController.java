@@ -145,7 +145,7 @@ public class TestController {
 	@RequestMapping(value = "/addteststep2", method = RequestMethod.GET)
 	public ModelAndView addteststep2(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
-		mav = new ModelAndView("add_test_step2");
+		mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
 		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
@@ -511,7 +511,7 @@ public class TestController {
 	@RequestMapping(value = "/removeAllQuestions", method = RequestMethod.GET)
 	public ModelAndView removeAllQuestions(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("test") Test test) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
@@ -587,67 +587,35 @@ public class TestController {
 		return users;
 	}
 
-//	 @RequestMapping(value = "/showSectionsQuestions", method = RequestMethod.GET)
-//	 public ModelAndView showSectionsQuestions( HttpServletRequest request, HttpServletResponse response,  @ModelAttribute("test") Test test) {
-//		 	ModelAndView mav = new ModelAndView("add_test_step2");
-//		 	 User user = (User) request.getSession().getAttribute("user");
-//		 	 mav.addObject("user", user);
-//			SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
-//			
-//			Set<Question> questions = sectionDto.getQuestions();
-//			for(Question q : questions) {
-//				q.setSelected(true);
-//			}
-//			 mav.addObject("qs", questions);
-//	  		
-//	  		mav.addObject("levels", DifficultyLevel.values());
-//	  		mav.addObject("types", QuestionType.values());
-//	  		mav.addObject("languages", ProgrammingLanguage.values());
-//	  		mav.addObject("sectionDto", sectionDto);
-//	  		Test test2 = (Test) request.getSession().getAttribute("test");
-//	  		mav.addObject("test", test2);
-//			return mav;
-//		  }
-	@RequestMapping(value = "/showSectionsQuestions", method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String, Object> showSectionsQuestions(HttpServletRequest request, HttpServletResponse response) {
-		Map<String, Object> map = new HashMap<>();
-
-//		ModelAndView mav = new ModelAndView("add_test_step2");
-//		User user = (User) request.getSession().getAttribute("user");
-//		mav.addObject("user", user);
-		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
-
-		Set<Question> questions = sectionDto.getQuestions();
-		for (Question q : questions) {
-			q.setSelected(true);
-		}
-//		mav.addObject("qs", questions);
-//		mav.addObject("levels", DifficultyLevel.values());
-//		mav.addObject("types", QuestionType.values());
-//		mav.addObject("languages", ProgrammingLanguage.values());
-//		mav.addObject("sectionDto", sectionDto);
-//		Test test2 = (Test) request.getSession().getAttribute("test");
-//		mav.addObject("test", test2);
-//
-		map.put("qs", questions);
-		map.put("levels", DifficultyLevel.values());
-		map.put("types", QuestionType.values());
-		map.put("languages", ProgrammingLanguage.values());
-		map.put("sectionDto", sectionDto);
-		Test test3 = (Test) request.getSession().getAttribute("test");
-		map.put("test", test3);
-		System.out.println("test Ajax...........   " + test3);
-		String n = "test";
-		return map;
-	}
+	 @RequestMapping(value = "/showSectionsQuestions", method = RequestMethod.GET)
+	 public ModelAndView showSectionsQuestions( HttpServletRequest request, HttpServletResponse response,  @ModelAttribute("test") Test test) {
+		 	ModelAndView mav = new ModelAndView("add_test_step2_new3");
+		 	 User user = (User) request.getSession().getAttribute("user");
+		 	 mav.addObject("user", user);
+			SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
+			
+			Set<Question> questions = sectionDto.getQuestions();
+			for(Question q : questions) {
+				q.setSelected(true);
+			}
+			 mav.addObject("qs", questions);
+	  		
+	  		mav.addObject("levels", DifficultyLevel.values());
+	  		mav.addObject("types", QuestionType.values());
+	  		mav.addObject("languages", ProgrammingLanguage.values());
+	  		mav.addObject("sectionDto", sectionDto);
+	  		Test test2 = (Test) request.getSession().getAttribute("test");
+	  		mav.addObject("test", test2);
+			return mav;
+		  }
+	 
 
 	@RequestMapping(value = "/saveSection", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView saveSection(@RequestParam String sectionTopic, @RequestParam String percentage,
 			HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("test") Test test) {
-		ModelAndView mav = new ModelAndView("redirect:/addNewSection");
+		ModelAndView mav = new ModelAndView();
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 
@@ -712,8 +680,10 @@ public class TestController {
 												// as
 												// label
 				mav.addObject("msgtype", "Information");
+				
 				return mav;
 			}
+			mav.setViewName("redirect:/addNewSection");
 			section = new Section();
 			section.setCompanyId(user.getCompanyId());
 			section.setCompanyName(user.getCompanyName());
@@ -737,9 +707,10 @@ public class TestController {
 												// as
 												// label
 				mav.addObject("msgtype", "Information");
+				
 				return mav;
 			}
-
+			mav.setViewName("add_test_step2_new2");
 			section = sectionService.getSectionById(sectionDto.getSectionId());
 		}
 
@@ -775,6 +746,7 @@ public class TestController {
 											// as
 											// label
 		mav.addObject("msgtype", "Information");
+		
 		return mav;
 
 	}
