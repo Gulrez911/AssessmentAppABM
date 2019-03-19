@@ -79,6 +79,9 @@
 <spring:url value="/resources/assets/revolution/css/navigation.css" var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/revolution/css/pnotify.custom.min.css" var="c16" />
+
+<link href="${c16}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -157,7 +160,8 @@
 														<c:forEach items="${test.sectionDtos}" var="section">
 																<div class="quesectiondiv">
 																		<div class="quesection">
-																				${section.sectionName}- ${section.noOfQuestions} <a id="delete"><i
+																				${section.sectionName}- ${section.noOfQuestions} <a
+																						href="javascript:removeSection('${section.sectionName}');" id="delete"><i
 																						class="fa fa-trash"></i></a><a id='update'
 																						onclick="highlight('${section.sectionName}');return false"><i
 																						class='fa fa-edit'></i></a>
@@ -221,15 +225,13 @@
 								</div>
 								<div class="modal-body">
 										<div class="col-md-12 mb-20">
-												<a href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
-														class="btn waves-effect waves-light">Show All Parent Categories</a> <a
-														href="javascript:showSelected();" id="showSelected"
+												<a href="addteststep2" class="btn waves-effect waves-light">Show All Parent
+														Categories</a> <a href="javascript:showSelected();" id="showSelected"
 														class="btn waves-effect waves-light green"> Show Selected</a>
 												<!--  <a
 														href="http://beforesubmit.com/qe-assess/addtest_step2.html#"
 														class="btn waves-effect waves-light green">Show Selected</a>  -->
-												<a href="javascript:saveSection();" class="btn waves-effect waves-light red">Clear
-														All</a>
+												<a href="removeAllQuestions" class="btn waves-effect waves-light red">Clear All</a>
 												<!-- 														<a href="javascript:saveSection();" class="btn waves-effect waves-light">Save Section</a> -->
 										</div>
 
@@ -338,6 +340,8 @@
 		<script src="${mainJs15}"></script>
 		<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
 		<script src="${mainJs16}"></script>
+		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
+		<script src="${mainJs17}"></script>
 
 		<script>
 			$(document).on('click', '.addquestion', function() {
@@ -348,6 +352,46 @@
 		<script>
 			function highlight(sectionName) {
 				window.location = "goToSection?sectionName=" + sectionName;
+			}
+
+			function removeSection(sectionName) {
+				(new PNotify({
+					title : 'Confirmation Needed',
+					text : 'Are you sure you want to delete the section '
+							+ sectionName,
+					icon : 'glyphicon glyphicon-question-sign',
+					hide : false,
+					confirm : {
+						confirm : true
+					},
+					buttons : {
+						closer : false,
+						sticker : false
+					},
+					history : {
+						history : false
+					}
+				})).get().on(
+						'pnotify.confirm',
+						function() {
+							window.location = "removeSection?sectionName="
+									+ sectionName;
+						}).on('pnotify.cancel', function() {
+
+				});
+			}
+
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
 			}
 		</script>
 		<script>
