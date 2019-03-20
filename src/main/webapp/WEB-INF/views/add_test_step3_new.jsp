@@ -12,7 +12,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Add Test</title>
-
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -96,6 +95,10 @@
 	var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/css/pnotify.custom.min.css"
+	var="c16" />
+
+<link href="${c16}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -135,9 +138,7 @@
 
 
 	<section>
-		<%
-			Test test = (Test) request.getSession().getAttribute("test");
-		%>
+
 		<div class="container">
 			<div class="row no-gutter">
 				<div class="col-md-2 mb-20">
@@ -174,98 +175,108 @@
 				<div class="addteststeps2 col-md-10">
 
 					<div class="col-md-12">
+
+						<form:form method="POST" action="sharePublicTest" modelAttribute="tests">
 						<div class="col-md-12">
-							<div class="mt-10"></div>
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											 
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+											<input type="text" name="testId" id="testId" value="${tests.id}" hidden="true"> 
+											 <%-- <form:hidden path="test.id"  /> --%>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
 							<div class="col-md-12">
-								<h2>Share Test</h2>
-							</div>
-						</div>
-
-
-
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="row formfields">
-									<div class="col-md-4">
-										<label class="fieldtitle">Existing test name</label>
-									</div>
-									<div class="col-md-8">
-										<div class="input-field">
-											<input id="testName" name="testName" type="text" value=""
-												required="">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											<label>Existing test name</label>
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+												<input id="existing_name1" value="${tests.testName}" type="text" readonly="readonly"/>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="row formfields">
-									<div class="col-md-4">
-										<label class="fieldtitle">First Name</label>
-									</div>
-									<div class="col-md-8">
-										<div class="input-field">
-											<input id="testName" name="testName" type="text" value=""
-												required="">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											<label>First Name</label>
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+												<input id="firstName" type="text" />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="row formfields">
-									<div class="col-md-4">
-										<label class="fieldtitle">Last name</label>
-									</div>
-									<div class="col-md-8">
-										<div class="input-field">
-											<input id="testName" name="testName" type="text" value=""
-												required="">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											<label>Last name</label>
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+												<input id="lastName" type="text" />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="row formfields">
-									<div class="col-md-4">
-										<label class="fieldtitle">Email Id</label>
-									</div>
-									<div class="col-md-8">
-										<div class="input-field">
-											<input id="testName" name="testName" type="text" value=""
-												required="">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											<label>Email Id</label>
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+												<input id="userEmail" type="text" />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="col-md-6">
-								<div class="row formfields">
-									<div class="col-md-4">
-										<label class="fieldtitle">Public Test URL</label>
-									</div>
-									<div class="col-md-8">
-										<div class="input-field">
-											<input id="testName" name="testName" type="text" value=""
-												required="">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<div class="col-md-4">
+											<label>Public Test URL</label>
+										</div>
+										<div class="col-md-8">
+											<div class="input-field">
+												<input id="publicTestUrl" type="text" value="${tests.publicUrl}" />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-12">
 
-							<button type="submit" class="btn btn-primary popupbtn">Share</button>
+							<!-- <div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row formfields">
+										<input type="text" name="test. testId" id="testId" />
+									</div>
+								</div>
+							</div> -->
+							<div class="col-md-12">
 
-
-
-						</div>
-
+								<input type="button" value="Share"
+									onClick="javascript:shareTest()" />
+							</div>
+						</form:form>
 						<div class="col-md-12">
 							<h2>Add Candidates</h2>
 							<div class="table-responsive">
@@ -309,84 +320,75 @@
 						</div>
 
 						<div class="col-md-12">
-
-							<h2 class="txt">
-								Test:
-								<%=test.getTestName()%>. Click on Section below to see a preview
-							</h2>
-							<div class="panel-group feature-accordion brand-accordion icon angle-icon" id="accordion-one">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                          
-
+							<h2 class="txt">PreView</h2>
+							<div
+								class="panel-group feature-accordion brand-accordion icon angle-icon"
+								id="accordion-one">
 								<c:forEach var="section" items="${test.sectionDtos}">
-									<button class="accordion">${section.sectionName}</button>
+									<%
+										int counter = 1;
+									%>
 									<div class="panel panel-default">
-										  <h3 class="panel-title">
-                                             <a data-toggle="collapse" data-parent="#accordion-one" href="http://beforesubmit.com/qe-assess/addtest_step3.html#collapse-one" aria-expanded="false" class="collapsed">
-                                                   
-                                               
-											<%
-												int count = 1;
-											%>
+										<div class="panel-heading">
+											<h3 class="panel-title">
+												<a class="collapsed" data-toggle="collapse"
+													data-parent="#accordion-one" href="#${section.sectionId}"
+													aria-expanded="false">${section.sectionName}</a>
+											</h3>
+										</div>
+
+										<%
+											int count = 1;
+										%>
+										<div id="${section.sectionId}" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+
 											<c:forEach var="ques" varStatus="status"
 												items="${section.questions}">
-												<div class="title">
-													<span><%=count%></span>
-													<p>Question - ${ques.questionText}</p>
+												<div class="panel-body qus">
+													<h3>
+														<span><%=count%></span>&nbsp;&nbsp;${ques.questionText}
+													</h3>
+													<h4
+														style="${ques.choice1 == null || ques.choice1.length() == 0? 'display: none;':''}">Choice
+														1: &nbsp;&nbsp; ${ques.choice1}</h4>
+													<h4
+														style="${ques.choice2 == null || ques.choice2.length() == 0? 'display: none;':''}">Choice
+														2: &nbsp;&nbsp; ${ques.choice2}</h4>
+													<h4
+														style="${quest.choice3 == null || quest.choice3.length() == 0? 'display: none;':''}">Choice
+														3: &nbsp;&nbsp; ${ques.choice3}</h4>
+													<h4
+														style="${ques.choice4 == null || ques.choice4.trim().length() == 0? 'display: none;':''}">Choice
+														4: &nbsp;&nbsp; ${ques.choice4}</h4>
+													<h4
+														style="${ques.choice5 == null || ques.choice5.trim().length() == 0? 'display: none;':''}">Choice
+														5: &nbsp;&nbsp; ${ques.choice5}</h4>
+													<h4
+														style="${ques.choice6 == null || ques.choice6.length() == 0? 'display: none;':''}">Choice
+														6: &nbsp;&nbsp; ${ques.choice6}</h4>
 												</div>
-												<div class="options">
-													<ul>
-														<li
-															style="${ques.choice1 == null || ques.choice1.length() == 0? 'display: none;':''}">Choice
-															1: &nbsp;&nbsp; ${ques.choice1}</li>
-														<li
-															style="${ques.choice2 == null || ques.choice2.length() == 0? 'display: none;':''}">Choice
-															2: &nbsp;&nbsp; ${ques.choice2}</li>
-														<li
-															style="${quest.choice3 == null || quest.choice3.length() == 0? 'display: none;':''}">Choice
-															3: &nbsp;&nbsp; ${ques.choice3}</li>
-														<li
-															style="${ques.choice4 == null || ques.choice4.trim().length() == 0? 'display: none;':''}">Choice
-															4: &nbsp;&nbsp; ${ques.choice4}</li>
-														<li
-															style="${ques.choice5 == null || ques.choice5.trim().length() == 0? 'display: none;':''}">Choice
-															5: &nbsp;&nbsp; ${ques.choice5}</li>
-														<li
-															style="${ques.choice6 == null || ques.choice6.length() == 0? 'display: none;':''}">Choice
-															6: &nbsp;&nbsp; ${ques.choice6}</li>
-													</ul>
-													Answer: ${ques.rightChoices}
-												</div>
+
 												<%
 													count++;
 												%>
-											
 											</c:forEach>
-	                                        </a>
-                                            </h3>
-
-
 
 										</div>
-
-
-</c:forEach>
-
 									</div>
-								
-
+									<%
+										counter++;
+									%>
+								</c:forEach>
 							</div>
-</div>
-</div>
-
-
 						</div>
-
 					</div>
+
+
 				</div>
+
 			</div>
-	
+		</div>
 	</section>
 	<!-- Share Test Popup -->
 	<div id="modalshare" class="modal fade modalcopy" role="dialog">
@@ -410,13 +412,12 @@
 							<i class="waves-effect waves-light btn waves-input-wrapper"
 								style=""><input class="waves-button-input" type="button"
 								value="Copy in your Clipboard"
-								onclick="javascript:copyUrlInClipBoard()"></i> 
-								<!-- <i
+								onclick="javascript:copyUrlInClipBoard()"></i>
+							<!-- <i
 								class="waves-effect waves-light btn waves-input-wrapper"
 								style=""><input class="waves-button-input" type="button"
 								value="Share" onclick="javascript:shareTest()"></i> -->
-									<a href="javascript:shareTest();"> Share</a>
-								 <i
+							<a href="javascript:shareTest();"> Share</a> <i
 								class="waves-effect waves-light btn waves-input-wrapper"
 								style=""><input class="waves-button-input" type="button"
 								value="Close" data-dismiss="modal"></i>
@@ -426,7 +427,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- jQuery -->
 
@@ -477,6 +477,9 @@
 	<script src="${mainJs15}"></script>
 	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
 	<script src="${mainJs16}"></script>
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
+	<script src="${mainJs17}"></script>
 
 	<script>
 		// Add section
@@ -485,12 +488,9 @@
 		//                                            counter++;
 		//                                            $(".quesectiondiv").append("<div class='quesection'><h4>Section " + counter + "</h4></div>");
 		//                                        });
-
 		$(document).on('click', '#update', function() {
 			$('#modalsection').modal('show');
-
 		});
-
 		// 			var counter = 1;
 		// 			$(document)
 		// 					.on(
@@ -511,13 +511,11 @@
 		var point = false;
 		var count = 0;
 		function check(e, value) {
-
 			//Check Charater
 			debugger;
 			if (count == 3)
 				return false;
 			var unicode = e.charCode ? e.charCode : e.keyCode;
-
 			if (unicode == 46 && point == true)
 				return false;
 			if (unicode == 46 && point == false) {
@@ -549,17 +547,13 @@
 			if (name.trim().length == 0) {
 				notify('Information',
 						'Please enter a meaningful name for your section before saving. ');
-
 			} else {
 				// 					window.location='addNewSection';
 				window.location = 'saveSection?sectionTopic=' + name
 						+ '&percentage=' + txtFValue;
-
 			}
-
 		}
 		function addQ(qid, sectionName) {
-
 			//window.location = "addQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
 			var url = "addQuestionToSectionAjax?sectionName=" + sectionName
 					+ "&questionId=" + qid;
@@ -578,16 +572,12 @@
 					tr.style.backgroundColor = '#33FFF9';
 					tdadd.style.display = "none";
 					tdremove.style.display = "";
-
 					//document.getElementById("no-"+sectionName).innerHTML = data;
-
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
-
 				}
 			});
-
 		}
 		function removeQ(qid, sectionName) {
 			//window.location = "removeQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
@@ -608,13 +598,10 @@
 					tr.style.backgroundColor = 'transparent';
 					tdadd.style.display = "";
 					tdremove.style.display = "none";
-
 					//document.getElementById("no-"+sectionName).innerHTML = data;
-
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
-
 				}
 			});
 		}
@@ -623,7 +610,6 @@
 			$(".selectedQ").show();
 			load();
 		}
-
 		// 			function showSelected() {
 		// 				window.location = "showSectionsQuestions";
 		// 			}
@@ -634,7 +620,6 @@
 						url : 'showSectionsQuestions',
 						type : 'GET',
 						success : function(response) {
-
 							alert("test");
 							console.log("hello");
 							console.log("test", response.qs[0].questionText);
@@ -643,7 +628,6 @@
 							console.log("test", response.qs[0].questionText);
 							console.log("test", response.qs[0].questionText);
 							data = response.qs;
-
 							for (i = 0; i < response.qs.length; i++) {
 								console.log(data[i].questionText);
 								$("#table1")
@@ -655,7 +639,6 @@
 														+ ");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("
 														+ response.data[i].questionText
 														+ ");'> Delete </a>  </td> </tr>");
-
 							}
 						}
 					});
@@ -685,34 +668,24 @@
 				window.location = "searchUsers?searchText=" + text;
 			}
 		});
-
 		function addU(uid) {
-
 			window.location = "addUserToTest?userId=" + uid;
-
 		}
-
 		function removeU(uid) {
 			window.location = "removeUserToTest?userId=" + uid;
-
 		}
-
 		function showSelected() {
-
 			window.location = "showSelectedUsers";
 		}
-
 		function shareOpen(testName, testPublicUrl, testId) {
 			var name = $(this).attr('data-name');
 			console.log('here ' + testName);
-
 			document.getElementById("existing_name1").value = testName;
 			document.getElementById("publicTestUrl").value = testPublicUrl;
 			document.getElementById("testId").value = testId;
 			$('#modalcopy').modal('hide');
 			$('#modalshare').modal('show');
 		}
-
 		function copyUrlInClipBoard() {
 			el = document.createElement('textarea');
 			el.value = document.getElementById("publicTestUrl").value;
@@ -722,11 +695,9 @@
 			document.body.removeChild(el);
 			//$('#modalshare').modal('hide');
 		}
-
 		function copyUrlClose() {
 			$('#modalshare').modal('hide');
 		}
-
 		function shareTest() {
 			var existing_name1 = document.getElementById("existing_name1").value;
 			var firstName = document.getElementById("firstName").value;
@@ -749,19 +720,16 @@
 			}
 
 		}
-
 		function validateEmail(email) {
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
 		}
-
 		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchTests?searchText=" + text;
 			}
 		});
-
 		function confirm(id) {
 			(new PNotify(
 					{
@@ -782,10 +750,8 @@
 					})).get().on('pnotify.confirm', function() {
 				window.location = "retireTest?testId=" + id;
 			}).on('pnotify.cancel', function() {
-
 			});
 		}
-
 		function notify(messageType, message) {
 			var notification = 'Information';
 			$(function() {
