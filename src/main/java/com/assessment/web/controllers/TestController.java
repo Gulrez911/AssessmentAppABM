@@ -1034,9 +1034,10 @@ public class TestController {
 			@RequestParam String firstName, @RequestParam String lastName,
 			@RequestParam String existing_name1, HttpServletRequest request,
 			HttpServletResponse response) {
+		System.out.println("TestController.sharePublicTest()");
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
-		// Test test = (Test) request.getSession().getAttribute("test");
+		 Test test = (Test) request.getSession().getAttribute("test");
 //		  String userEmail = request.getParameter("userEmail");
 //		  String testId = request.getParameter("testId");
 //		  String firstName = request.getParameter("firstName");
