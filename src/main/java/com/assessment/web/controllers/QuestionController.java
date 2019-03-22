@@ -174,7 +174,7 @@ public class QuestionController {
 		} catch (AssessmentGenericException e) {
 			// TODO Auto-generated catch block
 			questions = questionService.findQuestions(user.getCompanyId());
-			mav = new ModelAndView("add_question");
+			mav = new ModelAndView("add_question2");
 			mav.addObject("question", question);
 			mav.addObject("message", "Select atleast 1 Correct answer");// later put it as label
 			mav.addObject("msgtype", "failure");
@@ -203,7 +203,7 @@ public class QuestionController {
 //		mav = new ModelAndView("question_list");
 //		mav.addObject("qs", questions);
 //		return mav;
-		mav = new ModelAndView("add_question");
+		mav = new ModelAndView("add_question2");
 		mav.addObject("message", "Question Save Success");// later put it as label
 		mav.addObject("msgtype", "Success");
 		//return listQuestions(null, response, request, mav.getModelMap());

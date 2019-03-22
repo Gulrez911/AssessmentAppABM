@@ -392,7 +392,7 @@
 
 	<script type="text/javascript">
 		$(document).on('click', '.addquestion', function() {
-			$('#modalsection').modal('show');
+			   window.location="addNewSection";
 
 		});
 

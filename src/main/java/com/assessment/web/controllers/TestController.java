@@ -357,7 +357,8 @@ public class TestController {
 
 	@RequestMapping(value = "/addNewSection", method = RequestMethod.GET)
 	public ModelAndView addNewSection(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2_new2");
+//		ModelAndView mav = new ModelAndView("add_test_step2_new2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -674,7 +675,7 @@ public class TestController {
 
 				return mav;
 			}
-			mav.setViewName("redirect:/addNewSection");
+			mav.setViewName("add_test_step2_new2");
 			section = new Section();
 			section.setCompanyId(user.getCompanyId());
 			section.setCompanyName(user.getCompanyName());

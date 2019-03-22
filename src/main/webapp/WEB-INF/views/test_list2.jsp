@@ -390,7 +390,7 @@
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
 	
-	<script>
+	 <script>
         function dup() {
             var existing_name = document.getElementById("existing_name").value;
             var newTest = document.getElementById("newTest").value;
@@ -425,7 +425,7 @@
             $('#modalcopy').modal('hide');
             $('#modalshare').modal('show');
         }
-
+      
         function copyUrlInClipBoard() {
             el = document.createElement('textarea');
             el.value = document.getElementById("publicTestUrl").value;
@@ -510,23 +510,33 @@
             });
         }
 
-    </script>
-
-
-	<c:if test="${msgtype != null}">
+ 
+function notify(messageType, message) {
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : message,
+					type : messageType,
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		}
+</script>
+  	<c:if test="${msgtype != null}">
 		<script>
-            var notification = 'Information';
-            $(function() {
-                new PNotify({
-                    title: notification,
-                    text: '${message}',
-                    type: '${msgtype}',
-                    styling: 'bootstrap3',
-                    hide: true
-                });
-            });
-
-        </script>
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : '${message}',
+					type : '${msgtype}',
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
 	</c:if>
 </body>
 
