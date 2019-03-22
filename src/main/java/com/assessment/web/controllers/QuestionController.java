@@ -50,7 +50,7 @@ public class QuestionController {
 	
 	@RequestMapping(value = "/goback", method = RequestMethod.GET)
 	public ModelAndView goback(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 //		List<Question> questions = questionService.findQuestions(user.getCompanyId());
 //		mav.addObject("qs", questions);
@@ -124,7 +124,7 @@ public class QuestionController {
 		mav.addObject("levels", DifficultyLevel.values());
 		mav.addObject("types", QuestionType.values());
   		mav.addObject("languages", ProgrammingLanguage.values());
-		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "question_list2", null);
+		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "question_list222", null);
 		return mav;
 	}
 	
@@ -174,7 +174,7 @@ public class QuestionController {
 		} catch (AssessmentGenericException e) {
 			// TODO Auto-generated catch block
 			questions = questionService.findQuestions(user.getCompanyId());
-			mav = new ModelAndView("add_question");
+			mav = new ModelAndView("add_question2");
 			mav.addObject("question", question);
 			mav.addObject("message", "Select atleast 1 Correct answer");// later put it as label
 			mav.addObject("msgtype", "failure");
@@ -200,10 +200,10 @@ public class QuestionController {
 			}
 		
 //		questions = questionService.findQuestions(user.getCompanyId());
-//		mav = new ModelAndView("question_list");
+//		mav = new ModelAndView("question_list2");
 //		mav.addObject("qs", questions);
 //		return mav;
-		mav = new ModelAndView("add_question");
+		mav = new ModelAndView("add_question2");
 		mav.addObject("message", "Question Save Success");// later put it as label
 		mav.addObject("msgtype", "Success");
 		//return listQuestions(null, response, request, mav.getModelMap());
@@ -225,7 +225,7 @@ public class QuestionController {
 	// RequestMethod.GET)
 	// public ModelAndView searchQByQualifier1(@PathVariable String qualifier1,
 	// HttpServletRequest request, HttpServletResponse response) {
-	// ModelAndView mav = new ModelAndView("question_list");
+	// ModelAndView mav = new ModelAndView("question_list2");
 	// User user = (User) request.getSession().getAttribute("user");
 	// List<Question> questions =
 	// questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
@@ -238,7 +238,7 @@ public class QuestionController {
 	public ModelAndView searchQByQualifier1(@RequestParam(name= "page", required = false) Integer pageNumber,@RequestParam String qualifier1, HttpServletRequest request,
 			HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -258,7 +258,7 @@ public class QuestionController {
 	public ModelAndView searchQByQualifier1And2(@RequestParam(name= "page", required = false) Integer pageNumber,@RequestParam String qualifier1, @RequestParam String qualifier2,
 			HttpServletRequest request, HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -279,7 +279,7 @@ public class QuestionController {
 	@RequestMapping(value = "/searchQByQualifier1And2And3", method = RequestMethod.GET)
 	public ModelAndView searchQByQualifier1And2And3(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam String qualifier1, @RequestParam String qualifier2,
 			@RequestParam String qualifier3, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -302,7 +302,7 @@ public class QuestionController {
 	public ModelAndView searchQByQualifier1And2And3And4(@RequestParam(name= "page", required = false) Integer pageNumber,@RequestParam String qualifier1,
 			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
 			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -326,7 +326,7 @@ public class QuestionController {
 	public ModelAndView searchQByQualifier1And2And3And4And5(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam String qualifier1,
 			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
 			@RequestParam String qualifier5, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("question_list");
+		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
@@ -418,7 +418,7 @@ public class QuestionController {
 		}
 	}
 	
-	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/question_list2", method = RequestMethod.GET)
 	public ModelAndView listQuestions(@RequestParam(name= "page", required = false) Integer pageNumber, HttpServletResponse response, HttpServletRequest request, ModelMap modelMap) throws Exception {
 		ModelAndView mav = new ModelAndView("question_list2");
 		User user = (User) request.getSession().getAttribute("user");
@@ -430,7 +430,7 @@ public class QuestionController {
 		mav.addObject("levels", DifficultyLevel.values());
 		mav.addObject("types", QuestionType.values());
   		mav.addObject("languages", ProgrammingLanguage.values());
-		CommonUtil.setCommonAttributesOfPagination(questions, modelMap, pageNumber, "question_list", null);
+		CommonUtil.setCommonAttributesOfPagination(questions, modelMap, pageNumber, "question_list2", null);
 		return mav;
 	}
 }

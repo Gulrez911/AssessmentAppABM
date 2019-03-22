@@ -121,7 +121,7 @@
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li><a href="question_list">Question Bank</a></li>
+						<li><a href="question_list2">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>

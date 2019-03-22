@@ -121,8 +121,8 @@
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="question_list">Question Bank</a></li>
-						<li><a href="testlist">Tests</a></li>
+						<li class="active"><a href="question_list2">Question Bank</a></li>
+						<li><a href="testlist2">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
 						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
@@ -183,7 +183,7 @@
 				<div class="col-md-12">
 					<div class="mt-10"></div>
 					<div class="col-md-5">
-						<h1>Question Bank</h1>
+						<h1 style="color:#b07c2a;"><b>Question Bank</b></h1>
 					</div>
 					<div class="col-md-4">
 						<div class="widget widget_search">
@@ -213,7 +213,7 @@
 				<div class="col-md-12">
 					<div class="table-responsive">
 						<table class="table table-striped">
-							<thead>
+						<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>No</th>
 									<th>Question</th>

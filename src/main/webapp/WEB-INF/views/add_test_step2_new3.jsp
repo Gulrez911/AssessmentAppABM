@@ -120,7 +120,7 @@
 					<!--logo end-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li><a href="question_list">Question Bank</a></li>
+						<li><a href="question_list2">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
@@ -326,7 +326,7 @@
 
 						<a data-dismiss="modal"
 							class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
-						<a href="javascript:saveSection();" id="savesection"
+						<a style="color:#020014;" href="javascript:saveSection();" id="savesection"
 							class="waves-effect waves-light btn mt-20 mb-20">Save</a>
 
 					</div>
@@ -459,8 +459,7 @@
 
 			} else {
 
-				window.location = 'saveSection?sectionTopic=' + name
-						+ '&percentage=' + txtFValue;
+				window.location = 'saveSection?sectionTopic=' + name+ '&percentage=' + txtFValue;
 
 			}
 

@@ -144,9 +144,10 @@
 						action="saveQuestion" enctype="multipart/form-data">
 
 						<div class="input-field">
-							<textarea name="questionText" id="questionText"
-								class="materialize-textarea" required=""></textarea>
-							<label for="questionText">Question</label>
+						<label for="questionText">Question</label>
+							<input type="text" name="questionText" id="questionText"
+						   class="materialize-textarea" required=""></textarea>
+							
 						</div>
 
 						<div class="row">
@@ -237,7 +238,7 @@
 								<div class="col-md-12">
 									<div class="col-md-1">F</div>
 									<div class="col-md-8">
-										<input id="choice6" name="choice6" required="" type="text"
+										<input id="choice6" name="choice6"  type="text"
 											value="">
 									</div>
 									<div class="col-md-3 text-center">
@@ -325,11 +326,11 @@
 						<div class="row">
 							<div class="col-md-12 mt-30">
 								<a class="addimage waves-effect waves-light btn"><i
-									class="material-icons left fa fa-picture-o"></i>Add Image</a> <a
-									class="addaudio waves-effect waves-light btn"><i
-									class="material-icons left fa fa-volume-up"></i>Add Audio</a> <a
+									class="addimage"></i>Add Image</a> 
+									<a class="addaudio waves-effect waves-light btn"><i
+									class="addaudio"></i>Add Audio</a> <a
 									class="addvideo waves-effect waves-light btn"><i
-									class="material-icons left fa fa-video-camera"></i>Add Video</a>
+									class="addvideo"></i>Add Video</a>
 							</div>
 
 							<input type="file" name="addimage" id="addimage"

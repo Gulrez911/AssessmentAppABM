@@ -359,6 +359,9 @@ public class TestController {
 	public ModelAndView addNewSection(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
+		if(user!=null) {
+			ModelAndView mav1 = new ModelAndView("add_test_step2_new2");
+		}
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
 		List<SectionDto> sectionDtos = test.getSectionDtos();
@@ -623,6 +626,7 @@ public class TestController {
 			user.setPassword("1234");
 			user.setCompanyName("IIHT");
 			mav.addObject("user", user);
+			mav.addObject("user", "Please Fill the Correct Field test now!");
 			return mav;
 		}
 
@@ -1028,9 +1032,7 @@ public class TestController {
 		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1);
 		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " " + lastName);// later
 																														// put
-																														// it
-																														// as
-																														// label
+																									// label
 		mav.addObject("msgtype", "Success");
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));

@@ -116,7 +116,7 @@
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li><a href="question_list">Question Bank</a></li>
+						<li><a href="question_list2">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
@@ -206,7 +206,7 @@
 				<div class="col-md-12">
 					<div class="table-responsive testslisttable">
 						<table class="table table-striped">
-							<thead>
+							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th><input type="checkbox" id="chkall" name="chkall"
 										class="filled-in" /> <label for="chkall"></label></th>

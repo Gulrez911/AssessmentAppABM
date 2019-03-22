@@ -182,8 +182,8 @@
 									<div class="quesection">
 										${section.sectionName}- ${section.noOfQuestions} <a
 											href="javascript:removeSection('${section.sectionName}');"
-											id="delete"><i class="fa fa-trash"></i></a> <a id='update'
-											onclick="highlight('${section.sectionName}');return false"><i
+											id="delete"><i class="fa fa-trash"></i></a> 
+											<a id='update' onclick="highlight('${section.sectionName}');"><i
 											class='fa fa-edit'></i></a>
 									</div>
 								</div>
@@ -397,6 +397,7 @@
 		});
 
 		function highlight(sectionName) {
+		
 			window.location = "goToSection?sectionName=" + sectionName;
 		}
 
