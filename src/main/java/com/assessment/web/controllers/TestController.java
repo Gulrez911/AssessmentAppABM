@@ -189,7 +189,7 @@ public class TestController {
 	@RequestMapping(value = "/addteststep4", method = RequestMethod.GET)
 	public ModelAndView addteststep4(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
-		mav = new ModelAndView("add_test_step4");
+		mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		// mav.addObject("qs", questions);
 		Test test2 = (Test) request.getSession().getAttribute("test");

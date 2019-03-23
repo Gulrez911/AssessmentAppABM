@@ -161,10 +161,9 @@
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<div class="pagination" style="float: right;">
-							<!-- <a href="#"><i class="fa fa-arrow-left"></i></a> 2 / 72 <a
-								href="#"><i class="fa fa-arrow-right"></i></a> -->
+							
 							<c:if test="${showPreviousPage}">
-								<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
+								<a href="${question_list}?page=${previousPage}${queryParam}"><i
 									class="fa fa-arrow-left"></i></a>
 							</c:if>
 
@@ -173,7 +172,7 @@
                                 </c:if>
 
 							<c:if test="${showNextPage}">
-								<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
+								<a href="${question_list}?page=${nextPage}${queryParam}"><i
 									class="fa fa-arrow-right"></i></a>
 							</c:if>
 						</div>
@@ -240,8 +239,7 @@
 										</td>
 										<td><c:out value="${question.updatedDate}"></c:out></td>
 										<td><a href="addQuestion?qid=${question.id}">Click </a></td>
-										<td><a href="javascript:confirm('${question.id}')">Click
-										</a></td>
+										<td><a href="javascript:confirm('${question.id}')">Click</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -366,7 +364,7 @@
 							var imgContainer = $('#imgContainer');
 
 							$('#uploadLink').on('click', function() {
-								// $("#file").click();
+								//$("#file").click();
 
 							});
 

@@ -264,20 +264,14 @@
 								</div>
 							</div>
 
-							<!-- <div class="col-md-12">
-								<div class="col-md-6">
-									<div class="row formfields">
-										<input type="text" name="test. testId" id="testId" />
-									</div>
-								</div>
-							</div> -->
+				
 							<div class="col-md-12">
 
 								<input type="button" value="Share"
 									onClick="javascript:shareTest()" />
 							</div>
 						</form:form>
-						<div class="col-md-12">
+						   <div class="col-md-12">
 							<h2>Add Candidates</h2>
 							<div class="table-responsive">
 								<table class="table table-striped">
@@ -380,15 +374,23 @@
 										counter++;
 									%>
 								</c:forEach>
-							</div>
+						<div class="col-md-12 text-right">
+						<a href="testlist" class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
+						<a class="waves-effect waves-light btn cyan mt-20 mb-20" href="addteststep2">Back</a> 
+						<a class="waves-effect waves-light btn mt-20 mb-20" href="addteststep4">Next</a>
 						</div>
+							</div>
+							
+						</div>
+                       
+                      </div>
 					</div>
 
 
 				</div>
 
 			</div>
-		</div>
+		
 	</section>
 	<!-- Share Test Popup -->
 	<div id="modalshare" class="modal fade modalcopy" role="dialog">
@@ -488,9 +490,9 @@
 		//                                            counter++;
 		//                                            $(".quesectiondiv").append("<div class='quesection'><h4>Section " + counter + "</h4></div>");
 		//                                        });
-		$(document).on('click', '#update', function() {
-			$('#modalsection').modal('show');
-		});
+													$(document).on('click', '#update', function() {
+														$('#modalsection').modal('show');
+													});
 		// 			var counter = 1;
 		// 			$(document)
 		// 					.on(
@@ -669,7 +671,10 @@
 			}
 		});
 		function addU(uid) {
-			window.location = "addUserToTest?userId=" + uid;
+			//window.location = "addUserToTest?userId=" + uid;
+			$.ajax({
+				// ajx here
+			})
 		}
 		function removeU(uid) {
 			window.location = "removeUserToTest?userId=" + uid;

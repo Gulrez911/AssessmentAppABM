@@ -1,3 +1,4 @@
+
 package com.assessment.web.controllers;
 
 import java.io.File;
@@ -91,7 +92,6 @@ public class QuestionController {
 		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "addQuestion", null);
 		return mav;
 	}
-	
 	@RequestMapping(value = "/removeQuestionFromList", method = RequestMethod.GET)
 	public ModelAndView removeQuestionFromList(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false) Long qid, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("question_list2");

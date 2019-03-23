@@ -9,14 +9,21 @@
 
 <html lang="en" style="position: fixed;">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login</title>
-<!--  Start from here -->
-<spring:url value="/resources/css/mystyle.css" var="mainCss" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IIHT</title>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="${pageContext.request.contextPath}/resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/resources/css/responsive_new.css" rel="stylesheet" type="text/css">
+	    <link href="${pageContext.request.contextPath}/resources/css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/css/mystyle.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/" rel="stylesheet" type="text/css">
+	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.min.js"></script>
+	
+	<!-- // changes -->
+	<spring:url value="/resources/css/mystyle.css" var="mainCss" />
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 <link href="${c1}" rel="shortcut icon" />
@@ -40,7 +47,10 @@
 <spring:url value="/resources/assets/style.css" var="c7" />
 <link href="${c7}" rel="stylesheet" type='text/css' />
 
-</head>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/pnotify.custom.min.js">
+
+</script>
+    </head>
 <body>
 	<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 
@@ -90,9 +100,10 @@
 
 		</section>
 	</div>
-	<script src="css/jquery-2.1.3.min.js.download"></script>
-	<script src="css/bootstrap.min.js.download"></script>
-	<script type="text/javascript">
+
+	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
 		function myFunction() {
 			var x = document.getElementById("userpassword");
 			if (x.type === "password") {
