@@ -59,7 +59,7 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-	public ModelAndView addQuestion(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false)Long qid,HttpServletRequest request,HttpServletResponse response)throws Exception {
+	public ModelAndView addQuestion(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false) Long qid, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("add_question2");
 		
 		User user = (User) request.getSession().getAttribute("user");
@@ -180,6 +180,7 @@ public class QuestionController {
 			mav.addObject("msgtype", "failure");
 			mav.addObject("qs", questions);
 			mav.addObject("levels", DifficultyLevel.values());
+			System.out.println("question failed to add.....");
 			return mav;
 		}
 		question.setCompanyId(user.getCompanyId());

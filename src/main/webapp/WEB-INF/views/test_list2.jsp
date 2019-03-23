@@ -51,9 +51,7 @@
 	var="c7" />
 
 <link href="${c7}" rel="stylesheet" type="text/css" />
-
 <!-- flexslider -->
-
 <spring:url value="/resources/assets/flexSlider/flexslider.css" var="c8" />
 
 <link href="${c8}" rel="stylesheet" type="text/css" />
@@ -88,15 +86,18 @@
 <link href="${c13}" rel="stylesheet" type="text/css" />
 
 <!-- RS5.0 Layers and Navigation Styles -->
-<spring:url value="/resources/assets/revolution/css/navigation.css"
+<spring:url value="/resources/assets/revolution/css/layers.css"
 	var="c14" />
 
 <link href="${c14}" rel="stylesheet" type="text/css" />
-<spring:url value="/resources/assets/revolution/css/layers.css"
+<spring:url value="/resources/assets/revolution/css/navigation.css"
 	var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
+<spring:url value="/resources/assets/css/pnotify.custom.min.css"
+	var="c16" />
 
+<link href="${c16}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -263,24 +264,29 @@
 		<!-- /.container -->
 	</section>
 
-	<footer class="footer footer-four">
-		<div class="secondary-footer brand-bg darken-2 text-center">
-			<div class="container">
-				<ul class="menuzord-menu pull-right">
-					<li><a href="javascript:void(0)">Dashboard</a></li>
-					<li><a href="question_list">Question Bank</a></li>
-					<li class="active"><a href="testlist">Tests</a></li>
-					<li><a href="javascript:void(0)">Skills</a></li>
-					<li><a href="showReports">Results</a></li>
-					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-					<li><a href="javascript:void(0)">Skill based Reports</a></li>
-					<li><a href="listUsers">Users</a></li>
-				</ul>
-			</div>
-		</div>
-	</footer>
-	<!-- jQuery -->
 
+
+		<footer class="footer footer-four">
+				<div class="secondary-footer brand-bg darken-2 text-center">
+						<div class="container">
+								<ul>
+										<li><a href="javascript:void(0)">Dashboard</a></li>
+										<li><a href="question_list">Question Bank</a></li>
+										<li><a href="testlist">Tests</a></li>
+										<li><a href="javascript:void(0)">Skills</a></li>
+										<li><a href="showReports">Results</a></li>
+										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+										<li><a href="javascript:void(0)">Skill based Reports</a></li>
+										<li><a href="listUsers">Users</a></li>
+								</ul>
+						</div>
+				</div>
+		</footer>
+
+
+
+
+	 
 	<!-- Duplicate Test Popup -->
 	<div id="modalcopy" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
@@ -342,7 +348,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- jQuery -->
+	 
+	 <!-- jQuery -->
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
 		var="mainJs1" />
@@ -389,6 +396,11 @@
 	<script src="${mainJs14}"></script>
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
+	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+	<script src="${mainJs16}"></script>
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
+	<script src="${mainJs17}"></script>
 	
 	 <script>
         function dup() {
