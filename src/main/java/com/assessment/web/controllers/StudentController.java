@@ -105,7 +105,7 @@ public class StudentController {
 		 StudentTestForm studentTest= new StudentTestForm();
 		 userId=decodeUserId((String)request.getParameter("userId"));
 		 companyId=(String)request.getParameter("companyId");
-		 ModelAndView model= new ModelAndView("intro");
+		 ModelAndView model= new ModelAndView("intro2");
 		 SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
 	     String time = localDateFormat.format(new Date());
 	     studentTest.setCurrentTime(time);
