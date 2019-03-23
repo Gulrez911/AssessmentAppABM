@@ -63,7 +63,7 @@ public class LoginController {
 	// it shows public data
 	@RequestMapping(value = "/publicTest", method = RequestMethod.GET)
 	public ModelAndView showPublicTest(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("publicTest");
+		ModelAndView mav = new ModelAndView("publicTest2");
 		User user = new User();
 		TestUserData testUserData = new TestUserData();
 		String testId = request.getParameter("testId");

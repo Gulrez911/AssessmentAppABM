@@ -28,58 +28,62 @@
 		<script src="scripts/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-        <form:form id="studentIntro" method="POST" action="studentJourney"  modelAttribute="studentTestForm">
-            <div class="header">
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="logo">
-							<a href="#"><img src="images/logoiiht.png"></a>
+		<form:form id="studentIntro" method="POST" action="studentJourney"
+				modelAttribute="studentTestForm">
+				<div class="header">
+						<div class="col-md-12">
+								<div class="col-md-6">
+										<div class="logo">
+												<a href="#"><img src="images/logoiiht.png"></a>
+										</div>
+								</div>
+								<div class="col-md-6">
+										<div class="userheader">
+												<div class="userinfo">
+														<h4>
+																Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
+														</h4>
+														<img src="images/userimg.png">
+												</div>
+										</div>
+								</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="userheader">
-							<div class="userinfo">
-								<h4>Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span></h4>
-								<img src="images/userimg.png">
-							</div>
-						</div>
-					</div>
 				</div>
-			</div>
-			
-			<div class="creationtimeline">
-				<div class="col-md-12">
-					<div class="col-md-6 text-center">
-						<img src="images/starttestimg.png">
-					</div>
-					<div class="col-md-6">
-						<div class="starttestinfo">
-							<div class="testname">
-								<img src="images/testimage.png">
-								<h3>${studentTestForm.testName}</h3>
-							</div>
-							<div class="totalque">
-								<span>Total Questions &nbsp;&nbsp;  ${studentTestForm.totalQuestions}</span>
-								<span>Duration &nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
-							</div>
-							<div class="publishdate">
-								<span>Published on <br> ${studentTestForm.formattedPublishedDate}</span>
-								<span>To be completed by <br> Within 1 session</span>
-							</div>
-							<div class="startbutton">
-								<a href="javascript:start()">START TEST</a>
-							</div>
-							<div class="publishdate">
-								<span><i class="fa fa-user"></i>System Administrator</span>
-								<span><i class="fa fa-envelope"></i>reachus@iiht.com</span>
-							</div>
+
+				<div class="creationtimeline">
+						<div class="col-md-12">
+								<div class="col-md-6 text-center">
+										<img src="images/starttestimg.png">
+								</div>
+								<div class="col-md-6">
+										<div class="starttestinfo">
+												<div class="testname">
+														<img src="images/testimage.png">
+														<h3>${studentTestForm.testName}</h3>
+												</div>
+												<div class="totalque">
+														<span>Total Questions &nbsp;&nbsp; ${studentTestForm.totalQuestions}</span> <span>Duration
+																&nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
+												</div>
+												<div class="publishdate">
+														<span>Published on <br> ${studentTestForm.formattedPublishedDate}
+														</span> <span>To be completed by <br> Within 1 session
+														</span>
+												</div>
+												<div class="startbutton">
+														<a href="javascript:start()">START TEST</a>
+												</div>
+												<div class="publishdate">
+														<span><i class="fa fa-user"></i>System Administrator</span> <span><i
+																class="fa fa-envelope"></i>reachus@iiht.com</span>
+												</div>
+										</div>
+								</div>
 						</div>
-					</div>
 				</div>
-			</div>
-			</form:form>
-			
-			<div class="importantinstruction">
+		</form:form>
+
+		<div class="importantinstruction">
 				<div class="col-md-12">
 					<h3>Important Instructions</h3>
 					<p>McClintock's eye for detail certainly helped narrow the whereabouts of lorem ipsum's origin, however, 

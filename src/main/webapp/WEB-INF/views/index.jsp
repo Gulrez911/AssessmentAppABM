@@ -9,21 +9,14 @@
 
 <html lang="en" style="position: fixed;">
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IIHT</title>
-        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="${pageContext.request.contextPath}/resources/css/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
-        <link href="${pageContext.request.contextPath}/resources/css/responsive_new.css" rel="stylesheet" type="text/css">
-	    <link href="${pageContext.request.contextPath}/resources/css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
-	<link href="${pageContext.request.contextPath}/resources/css/mystyle.css" rel="stylesheet" type="text/css">
-	<link href="${pageContext.request.contextPath}/" rel="stylesheet" type="text/css">
-	<script src="${pageContext.request.contextPath}/resources/scripts/jquery.min.js"></script>
-	
-	<!-- // changes -->
-	<spring:url value="/resources/css/mystyle.css" var="mainCss" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<!--  Start from here -->
+<spring:url value="/resources/css/mystyle.css" var="mainCss" />
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 <link href="${c1}" rel="shortcut icon" />
@@ -46,13 +39,14 @@
 <link href="${c6}" rel="stylesheet" type='text/css' />
 <spring:url value="/resources/assets/style.css" var="c7" />
 <link href="${c7}" rel="stylesheet" type='text/css' />
+<spring:url value="/resources/assets/css/pnotify.custom.min.css"
+	var="c16" />
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/pnotify.custom.min.js">
+<link href="${c16}" rel="stylesheet" type="text/css" />
 
-</script>
-    </head>
+</head>
 <body>
-	<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 
 
 		<section
@@ -100,10 +94,59 @@
 
 		</section>
 	</div>
+	 <!-- jQuery -->
 
-	
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+	<script src="${mainJs16}"></script>
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
+	<script src="${mainJs17}"></script>
+	<script type="text/javascript">
 		function myFunction() {
 			var x = document.getElementById("userpassword");
 			if (x.type === "password") {

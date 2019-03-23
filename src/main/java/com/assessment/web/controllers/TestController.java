@@ -995,7 +995,7 @@ public class TestController {
 
 	@RequestMapping(value = "/shareTestWithUsers", method = RequestMethod.GET)
 	public ModelAndView shareTests(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list");
+		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");

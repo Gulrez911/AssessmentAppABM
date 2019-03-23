@@ -377,7 +377,7 @@
 						<div class="col-md-12 text-right">
 						<a href="testlist" class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
 						<a class="waves-effect waves-light btn cyan mt-20 mb-20" href="addteststep2">Back</a> 
-						<a class="waves-effect waves-light btn mt-20 mb-20" href="addteststep4">Next</a>
+						<a class="waves-effect waves-light btn mt-20 mb-20" href="shareTestWithUsers">Next</a>
 						</div>
 							</div>
 							
@@ -671,10 +671,8 @@
 			}
 		});
 		function addU(uid) {
-			//window.location = "addUserToTest?userId=" + uid;
-			$.ajax({
-				// ajx here
-			})
+			window.location = "addUserToTest?userId=" + uid;
+			
 		}
 		function removeU(uid) {
 			window.location = "removeUserToTest?userId=" + uid;
@@ -723,7 +721,6 @@
 						+ "&lastName=" + lastName + "&userEmail=" + userEmail
 						+ "&testId=" + testId;
 			}
-
 		}
 		function validateEmail(email) {
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
