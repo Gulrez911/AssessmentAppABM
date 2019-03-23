@@ -116,7 +116,7 @@
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li class="active"><a href="question_list">Question Bank</a></li>
+						<li class="active"><a href="question_list2">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
@@ -144,10 +144,11 @@
 						action="saveQuestion" enctype="multipart/form-data">
 
 						<div class="input-field">
-						<label for="questionText">Question</label>
-							<input type="text" name="questionText" id="questionText"
-						   class="materialize-textarea" required=""></textarea>
-							
+							<label for="questionText">Question</label> <input type="text"
+								name="questionText" id="questionText"
+								class="materialize-textarea" required="">
+							</textarea>
+
 						</div>
 
 						<div class="row">
@@ -238,8 +239,7 @@
 								<div class="col-md-12">
 									<div class="col-md-1">F</div>
 									<div class="col-md-8">
-										<input id="choice6" name="choice6"  type="text"
-											value="">
+										<input id="choice6" name="choice6" type="text" value="">
 									</div>
 									<div class="col-md-3 text-center">
 										<input type="checkbox" id="six1" name="six" value="true"
@@ -326,8 +326,8 @@
 						<div class="row">
 							<div class="col-md-12 mt-30">
 								<a class="addimage waves-effect waves-light btn"><i
-									class="addimage"></i>Add Image</a> 
-									<a class="addaudio waves-effect waves-light btn"><i
+									class="addimage"></i>Add Image</a> <a
+									class="addaudio waves-effect waves-light btn"><i
 									class="addaudio"></i>Add Audio</a> <a
 									class="addvideo waves-effect waves-light btn"><i
 									class="addvideo"></i>Add Video</a>
@@ -396,52 +396,67 @@
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
-				<ul>
-					<li><a href="javascript:void(0)">Dashboard</a></li>
-					<li><a href="javascript:void(0)">Question Bank</a></li>
-					<li><a href="javascript:void(0)">Tests</a></li>
-					<li><a href="javascript:void(0)">Skills</a></li>
-					<li><a href="javascript:void(0)">Results</a></li>
-					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-					<li><a href="javascript:void(0)">Skill based Reports</a></li>
-					<li><a href="javascript:void(0)">Users</a></li>
-				</ul>
+					<ul class="menuzord-menu pull-right">
+						<li><a href="javascript:void(0)">Dashboard</a></li>
+						<li><a href="question_list">Question Bank</a></li>
+						<li class="active"><a href="testlist">Tests</a></li>
+						<li><a href="javascript:void(0)">Skills</a></li>
+						<li><a href="showReports">Results</a></li>
+						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+						<li><a href="javascript:void(0)">Skill based Reports</a></li>
+						<li><a href="listUsers">Users</a></li>
+					</ul>
 			</div>
 		</div>
 	</footer>
 
 	<!-- jQuery -->
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
 	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
 	<script src="${mainJs2}"></script>
- <spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
 	<script src="${mainJs3}"></script>
-	 <spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
 	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
 	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
 	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
 	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
 	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
 	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
 	<script src="${mainJs10}"></script>
-		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
 	<script src="${mainJs11}"></script>
-	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
 	<script src="${mainJs12}"></script>
-	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
 	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
 	<script src="${mainJs14}"></script>
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
- 
+
 	<script>
 		$(document).ready(function() {
 			$('select').material_select();

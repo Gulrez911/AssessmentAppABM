@@ -180,10 +180,12 @@
 							<c:forEach items="${test.sectionDtos}" var="section">
 								<div class="quesectiondiv">
 									<div class="quesection">
+
 										${section.sectionName}- ${section.noOfQuestions} <a
 											href="javascript:removeSection('${section.sectionName}');"
 											id="delete"><i class="fa fa-trash"></i></a> 
 											<a id='update' onclick="highlight('${section.sectionName}');"><i
+
 											class='fa fa-edit'></i></a>
 									</div>
 								</div>
@@ -206,7 +208,6 @@
 								class="waves-effect waves-light btn mt-20 mb-20"
 								href="addteststep3">Next</a>
 						</div>
-
 					</div>
 
 				</div>
@@ -295,7 +296,7 @@
 									%>
 									<c:forEach items="${qs}" var="ques">
 										<tr id="${ques.id}"
-											bgcolor="${ques.selected? '#33FFF9':'transparent'}">
+											bgcolor="${ques.selected? '':'transparent'}">
 
 
 											<td><c:out value="${ques.questionText}"></c:out></td>
@@ -392,9 +393,9 @@
 
 	<script type="text/javascript">
 		$(document).on('click', '.addquestion', function() {
-			$('#modalsection').modal('show');
-
+			   window.location="addNewSection";
 		});
+ 
 
 		function highlight(sectionName) {
 		

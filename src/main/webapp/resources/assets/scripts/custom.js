@@ -129,12 +129,12 @@ $(document).on('click','.backstep3',function () {
 
 // Add section
 var counter = 1;
-$(document).on('click', '.addquestion21', function () {  
+$(document).on('click', '.addquestion2', function () {  
   // counter++;
     // $(".quesectiondiv").append("<div style='border-bottom: 1px solid
 	// #ddd;'><h4>Section " + counter + "</h4></div>");
     // sendMsg('Information', 'Add multiple sections coming in next release');
-    window.location="addNewSection";
+//    window.location="addNewSection";
 });
 
 

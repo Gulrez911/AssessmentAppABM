@@ -116,7 +116,7 @@
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
 						<li><a href="javascript:void(0)">Dashboard</a></li>
-						<li><a href="question_list2">Question Bank</a></li>
+						<li><a href="question_list">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="javascript:void(0)">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
@@ -176,7 +176,7 @@
 				<div class="col-md-12">
 					<div class="mt-10"></div>
 					<div class="col-md-5">
-						<h1>Test Bank</h1>
+					<h1 style="color:#b07c2a;"><b>Test Bank</b></h1>
 					</div>
 					<div class="col-md-4">
 						<div class="widget widget_search">
@@ -390,7 +390,7 @@
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
 	
-	<script>
+	 <script>
         function dup() {
             var existing_name = document.getElementById("existing_name").value;
             var newTest = document.getElementById("newTest").value;
@@ -425,7 +425,7 @@
             $('#modalcopy').modal('hide');
             $('#modalshare').modal('show');
         }
-
+      
         function copyUrlInClipBoard() {
             el = document.createElement('textarea');
             el.value = document.getElementById("publicTestUrl").value;
@@ -510,23 +510,33 @@
             });
         }
 
-    </script>
-
-
-	<c:if test="${msgtype != null}">
+ 
+function notify(messageType, message) {
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : message,
+					type : messageType,
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		}
+</script>
+  	<c:if test="${msgtype != null}">
 		<script>
-            var notification = 'Information';
-            $(function() {
-                new PNotify({
-                    title: notification,
-                    text: '${message}',
-                    type: '${msgtype}',
-                    styling: 'bootstrap3',
-                    hide: true
-                });
-            });
-
-        </script>
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : '${message}',
+					type : '${msgtype}',
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
 	</c:if>
 </body>
 
