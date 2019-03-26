@@ -236,19 +236,37 @@
 																				</div>
 																				<div class="col-md-8">
 																						<div class="input-field">
-																								<input id="publicTestUrl" type="text" value="${tests.publicUrl}" />
+																								<input id="publicTestUrl" type="text" value="${tests.publicUrl}"
+																										readonly="readonly" />
 																						</div>
 																				</div>
 																		</div>
 																</div>
 														</div>
-
 														<div class="col-md-12">
-																
-															 
+
+																<input type="button" value="Share" onClick="javascript:shareTest()" class="btn btn-primary popupbtn"/>
+<!-- 																<button class="btn btn-primary popupbtn"  onClick="javascript:shareTest()" >Share</button> -->
 														</div>
 												</form:form>
-												<button class="btn btn-primary popupbtn" onClick="javascript:shareTest()">Share</button>
+
+
+
+												<!--  Search User start here-->
+												<div class="col-md-4">
+														<div class="widget widget_search">
+
+																<div class="search-form">
+																		<form action="searchUsers" method="get">
+																				<input type="text" placeholder="Search a User" name="searchText" id="searchText">
+																				<button type="submit" id="search">
+																						<i class="fa fa-search"></i>
+																				</button>
+																		</form>
+																</div>
+														</div>
+												</div>
+												<!--  Search User End Here-->
 												<div class="col-md-12">
 														<h2>Add Candidates</h2>
 														<div class="table-responsive">
@@ -358,7 +376,6 @@
 														</div>
 
 												</div>
-
 										</div>
 								</div>
 
@@ -739,6 +756,7 @@
 				});
 			}
 		</script>
+
 		<c:if test="${msgtype != null}">
 				<script>
 					var notification = 'Information';

@@ -341,7 +341,7 @@ public class StudentController {
 	 
 	 @RequestMapping(value = "/changeSection", method = RequestMethod.GET)
 	  public ModelAndView changeSection(@RequestParam String sectionName, @RequestParam String timeCounter, HttpServletRequest request, HttpServletResponse response,@ModelAttribute("studentTestForm") StudentTestForm studentForm) {
-		 ModelAndView model= new ModelAndView("test");
+		 ModelAndView model= new ModelAndView("test2");
 		 User user = (User) request.getSession().getAttribute("user");
 		 Test test = (Test) request.getSession().getAttribute("test");
 		 
@@ -615,7 +615,7 @@ public class StudentController {
 	 
 	 @RequestMapping(value = "/nextQuestion", method = RequestMethod.POST)
 	  public ModelAndView nextQuestion(@RequestParam String questionId, @RequestParam String timeCounter,HttpServletRequest request, HttpServletResponse response,@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion) {
-		 ModelAndView model= new ModelAndView("test");
+		 ModelAndView model= new ModelAndView("test2");
 		 User user = (User) request.getSession().getAttribute("user");
 		 Test test = (Test) request.getSession().getAttribute("test");
 		 List<SectionInstanceDto> sectionInstanceDtos = (List<SectionInstanceDto>) request.getSession().getAttribute("sectionInstanceDtos");

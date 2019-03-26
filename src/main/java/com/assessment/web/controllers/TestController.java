@@ -94,7 +94,8 @@ public class TestController {
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), pageNumber);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
 
-		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "testlist", null);
+		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "testlist",
+				null);
 		return mav;
 	}
 
@@ -180,7 +181,7 @@ public class TestController {
 
 //		edited
 		Test tests = testService.findbyTest(test.getTestName(), user.getCompanyId());
-		System.out.println("test Name::::>>>   "+tests.getId());
+		System.out.println("test Name::::>>>   " + tests.getId());
 		mav.addObject("tests", tests);
 //		end
 		return mav;
@@ -205,7 +206,8 @@ public class TestController {
 
 	@RequestMapping(value = "/searchTests", method = RequestMethod.GET)
 	public ModelAndView searchTests(@RequestParam(name = "page", required = false) Integer pageNumber,
-			@RequestParam String searchText, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String searchText, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		if (pageNumber == null) {
@@ -215,14 +217,15 @@ public class TestController {
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
 		Map<String, String> params = new HashMap<>();
 		params.put("searchText", searchText);
-		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "searchTests", params);
+		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "searchTests",
+				params);
 		return mav;
 	}
 
 	@RequestMapping(value = "/retireTest", method = RequestMethod.GET)
 	public ModelAndView retireTest(@RequestParam String testId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list");
+		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		testService.removeTest(user.getCompanyId(), Long.valueOf(testId));
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
@@ -232,7 +235,7 @@ public class TestController {
 
 	@RequestMapping(value = "/gobackStep1Test", method = RequestMethod.GET)
 	public ModelAndView gobackStep1Test(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test");
+		ModelAndView mav = new ModelAndView("add_test_step1_new");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("user", user);
@@ -292,7 +295,8 @@ public class TestController {
 		mav.addObject("test", test);
 		SectionDto sectionDto = null;
 
-		List<Section> sections = sectionService.getSectionsForTest(test.getTestName(), user.getCompanyId());
+		List<Section> sections = sectionService.getSectionsForTest(test.getTestName(),
+				user.getCompanyId());
 		if (sections.size() == 0) {
 			sectionDto = new SectionDto();
 			sectionDto.setCompanyId(user.getCompanyId());
@@ -320,8 +324,10 @@ public class TestController {
 				dto.setSectionName(section.getSectionName());
 				dto.setPercentQuestionsAsked(section.getPercentQuestionsAsked());
 				dto.setNoOfQuestions(s.getNoOfQuestions());
-				List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(test.getTestName(),
-						section.getSectionName(), user.getCompanyId());
+				List<QuestionMapper> questionMappers = sectionService
+						.getQuestionsForSection(test.getTestName(),
+								section.getSectionName(),
+								user.getCompanyId());
 				for (QuestionMapper mapper : questionMappers) {
 					dto.getQuestions().add(mapper.getQuestion());
 				}
@@ -360,7 +366,7 @@ public class TestController {
 //		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		if(user!=null) {
+		if (user != null) {
 			ModelAndView mav1 = new ModelAndView("add_test_step2_new2");
 		}
 		mav.addObject("user", user);
@@ -401,7 +407,8 @@ public class TestController {
 				request.getSession().setAttribute("sectionDTO", dto);
 				mav.addObject("sectionDto", dto);
 				// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-				List<Question> questions = questionService.getAllLevel1Questions(user.getCompanyId());
+				List<Question> questions = questionService
+						.getAllLevel1Questions(user.getCompanyId());
 				mav.addObject("qs", process(questions, dto));
 				mav.addObject("test", test);
 			}
@@ -423,7 +430,8 @@ public class TestController {
 			SectionDto dto = (SectionDto) request.getSession().getAttribute("sectionDto");
 			mav.addObject("test", test);
 			mav.addObject("sectionDto", dto);
-			mav.addObject("message", "You can not have a Test with no sections. This section can not be deleted ");// later
+			mav.addObject("message",
+					"You can not have a Test with no sections. This section can not be deleted ");// later
 			// put
 			// it
 			// as
@@ -437,7 +445,8 @@ public class TestController {
 			if (dto.getSectionName().equals(sectionName)) {
 
 				if (dto.getSectionId() != null) {
-					Section section = sectionService.getSectionById(dto.getSectionId());
+					Section section = sectionService
+							.getSectionById(dto.getSectionId());
 					sectionService.removeSection(section);
 				}
 				mav.addObject("message", "Section - " + dto.getSectionName() + " deleted");// later
@@ -457,7 +466,8 @@ public class TestController {
 				mav.addObject("sectionDto", dto);
 				request.getSession().setAttribute("sectionDTO", dto);
 				// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-				List<Question> questions = questionService.getAllLevel1Questions(user.getCompanyId());
+				List<Question> questions = questionService
+						.getAllLevel1Questions(user.getCompanyId());
 				mav.addObject("qs", process(questions, dto));
 
 			}
@@ -471,7 +481,8 @@ public class TestController {
 
 	@RequestMapping(value = "/addQuestionToSection", method = RequestMethod.GET)
 	public ModelAndView addQuestionsToSection(@RequestParam String sectionName, @RequestParam String questionId,
-			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
+			HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("test") Test test) {
 		ModelAndView mav = new ModelAndView("add_test_step2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
@@ -493,7 +504,8 @@ public class TestController {
 
 	@RequestMapping(value = "/addQuestionToSectionAjax", method = RequestMethod.GET)
 	public @ResponseBody String addQuestionsToSectionAjax(@RequestParam String sectionName,
-			@RequestParam String questionId, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String questionId, HttpServletRequest request,
+			HttpServletResponse response) {
 
 		User user = (User) request.getSession().getAttribute("user");
 
@@ -529,8 +541,9 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/removeQuestionToSection", method = RequestMethod.GET)
-	public ModelAndView removeQuestionToSection(@RequestParam String sectionName, @RequestParam String questionId,
-			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
+	public ModelAndView removeQuestionToSection(@RequestParam String sectionName,
+			@RequestParam String questionId, HttpServletRequest request,
+			HttpServletResponse response, @ModelAttribute("test") Test test) {
 		ModelAndView mav = new ModelAndView("add_test_step2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
@@ -553,7 +566,8 @@ public class TestController {
 
 	@RequestMapping(value = "/removeQuestionToSectionAjax", method = RequestMethod.GET)
 	public @ResponseBody String removeQuestionToSectionAjax(@RequestParam String sectionName,
-			@RequestParam String questionId, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String questionId, HttpServletRequest request,
+			HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 		Question delete = new Question();
@@ -611,8 +625,9 @@ public class TestController {
 	@RequestMapping(value = "/saveSection", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView saveSection(@RequestParam String sectionTopic, @RequestParam String percentage,
-			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
-		ModelAndView mav = new ModelAndView();
+			HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("test") Test test) {
+		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 
@@ -627,7 +642,6 @@ public class TestController {
 			user.setPassword("1234");
 			user.setCompanyName("IIHT");
 			mav.addObject("user", user);
-			mav.addObject("user", "Please Fill the Correct Field test now!");
 			return mav;
 		}
 
@@ -646,16 +660,18 @@ public class TestController {
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
 		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
 
-		boolean edit = questionMapperInstanceService.canEditTest(sectionTopic, test.getTestName(), user.getCompanyId());
+		boolean edit = questionMapperInstanceService.canEditTest(sectionTopic, test.getTestName(),
+				user.getCompanyId());
 		if (!edit) {
 			mav.addObject("sectionDto", sectionDto);
 			mav.addObject("qs", process(qs, sectionDto));
 			mav.addObject("test", test);
-			mav.addObject("message", "Users have started taking this test. You can't edit the test now!");// later
-			// put
-			// it
-			// as
-			// label
+			mav.addObject("message",
+					"Users have started taking this test. You can't edit the test now!");// later
+												// put
+												// it
+												// as
+												// label
 			mav.addObject("msgtype", "Information");
 			return mav;
 		}
@@ -671,15 +687,13 @@ public class TestController {
 				mav.addObject("test", test);
 				mav.addObject("message", "Section - " + sectionDto.getSectionName()
 						+ " already exists for the given Test. Use a different name");// later
-				// put
-				// it
-				// as
-				// label
+												// put
+												// it
+												// as
+												// label
 				mav.addObject("msgtype", "Information");
-
 				return mav;
 			}
-			mav.setViewName("add_test_step2_new2");
 			section = new Section();
 			section.setCompanyId(user.getCompanyId());
 			section.setCompanyName(user.getCompanyName());
@@ -698,30 +712,30 @@ public class TestController {
 				mav.addObject("test", test);
 				mav.addObject("message", "Section - " + sectionDto.getSectionName()
 						+ " already exists for the given Test. Use a different name");// later
-				// put
-				// it
-				// as
-				// label
+												// put
+												// it
+												// as
+												// label
 				mav.addObject("msgtype", "Information");
-
 				return mav;
 			}
-			mav.setViewName("add_test_step2_new2");
+
 			section = sectionService.getSectionById(sectionDto.getSectionId());
 		}
 
 		// oldSectionName
 		// sectionService.removeQuestionsFromSection(section.getSectionName(),
 		// section.getTestName(), user.getCompanyId());
-		sectionService.removeQuestionsFromSection(oldSectionName, section.getTestName(), user.getCompanyId());
+		sectionService.removeQuestionsFromSection(oldSectionName, section.getTestName(),
+				user.getCompanyId());
 
 		/**
 		 * V. Imp
 		 */
 		section.setSectionName(sectionTopic);
 		section.setPercentQuestionsAsked(sectionDto.getPercentQuestionsAsked());
-		sectionService.changeSectionNameAndPercent(section, sectionTopic, sectionDto.getPercentQuestionsAsked(),
-				sectionDto.getQuestions().size());
+		sectionService.changeSectionNameAndPercent(section, sectionTopic,
+				sectionDto.getPercentQuestionsAsked(), sectionDto.getQuestions().size());
 		Set<Question> questions = sectionDto.getQuestions();
 		for (Question question : questions) {
 
@@ -736,12 +750,12 @@ public class TestController {
 		mav.addObject("test", test);
 		mav.addObject("message", "Section - " + sectionDto.getSectionName()
 				+ " has been renamed and the entire section has been saved successfully.");// later
-		// put
-		// it
-		// as
-		// label
+											// put
+											// it
+											// as
+											// label
 		mav.addObject("msgtype", "Information");
-
+		System.out.println("gulrez");
 		return mav;
 
 	}
@@ -782,17 +796,22 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/addUserToTest", method = RequestMethod.GET)
-	public ModelAndView addUserToTest(@RequestParam String userId, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView addUserToTest(@ModelAttribute("test") Test test2, @RequestParam String userId,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
+//		
+		test2 = (Test) request.getSession().getAttribute("test");
+		mav.addObject("test", test2);
+//
 		Test test = (Test) request.getSession().getAttribute("test");
 		User u = userService.findById(Long.valueOf(userId));
 		u.setSelected(true);
 		test.getUsers().add(u);
 		List<User> users = userService.findByCompany(user.getCompanyId());
 		mav.addObject("users", process(users, test));
+
 		return mav;
 	}
 
@@ -810,12 +829,17 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/removeUserToTest", method = RequestMethod.GET)
-	public ModelAndView removeUserToTest(@RequestParam String userId, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView removeUserToTest(@ModelAttribute("test") Test test2, @RequestParam String userId,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
+
+//		
+		test2 = (Test) request.getSession().getAttribute("test");
+		mav.addObject("test", test2);
+//	
 		User delete = new User();
 		delete.setId(Long.valueOf(userId));
 		test.getUsers().remove(delete);
@@ -841,12 +865,13 @@ public class TestController {
 	public ModelAndView searchQByQualifier1(@RequestParam String qualifier1, HttpServletRequest request,
 			HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
-		List<Question> questions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
+		List<Question> questions = questionService.findQuestionsByQualifier1(user.getCompanyId(),
+				qualifier1);
 		mav.addObject("user", user);
 		mav.addObject("sectionDto", sectionDto);
 		mav.addObject("test", test);
@@ -861,10 +886,10 @@ public class TestController {
 	public ModelAndView searchQByQualifier1And2(@RequestParam String qualifier1, @RequestParam String qualifier2,
 			HttpServletRequest request, HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		List<Question> questions = questionService.findQuestionsByQualifier2(user.getCompanyId(), qualifier1,
-				qualifier2);
+		List<Question> questions = questionService.findQuestionsByQualifier2(user.getCompanyId(),
+				qualifier1, qualifier2);
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("user", user);
@@ -878,12 +903,13 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/searchQByQ1And2And3", method = RequestMethod.GET)
-	public ModelAndView searchQByQualifier1And2And3(@RequestParam String qualifier1, @RequestParam String qualifier2,
-			@RequestParam String qualifier3, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+	public ModelAndView searchQByQualifier1And2And3(@RequestParam String qualifier1,
+			@RequestParam String qualifier2, @RequestParam String qualifier3,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		List<Question> questions = questionService.findQuestionsByQualifier3(user.getCompanyId(), qualifier1,
-				qualifier2, qualifier3);
+		List<Question> questions = questionService.findQuestionsByQualifier3(user.getCompanyId(),
+				qualifier1, qualifier2, qualifier3);
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("user", user);
@@ -898,12 +924,13 @@ public class TestController {
 
 	@RequestMapping(value = "/searchQByQ1And2And3And4", method = RequestMethod.GET)
 	public ModelAndView searchQByQualifier1And2And3And4(@RequestParam String qualifier1,
-			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+			@RequestParam String qualifier2, @RequestParam String qualifier3,
+			@RequestParam String qualifier4, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		List<Question> questions = questionService.findQuestionsByQualifier4(user.getCompanyId(), qualifier1,
-				qualifier2, qualifier3, qualifier4);
+		List<Question> questions = questionService.findQuestionsByQualifier4(user.getCompanyId(),
+				qualifier1, qualifier2, qualifier3, qualifier4);
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("user", user);
@@ -918,12 +945,13 @@ public class TestController {
 
 	@RequestMapping(value = "/searchQByQ1And2And3And4And5", method = RequestMethod.GET)
 	public ModelAndView searchQByQualifier1And2And3And4And5(@RequestParam String qualifier1,
-			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
-			@RequestParam String qualifier5, HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step2");
+			@RequestParam String qualifier2, @RequestParam String qualifier3,
+			@RequestParam String qualifier4, @RequestParam String qualifier5,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		List<Question> questions = questionService.findQuestionsByQualifier5(user.getCompanyId(), qualifier1,
-				qualifier2, qualifier3, qualifier4, qualifier5);
+		List<Question> questions = questionService.findQuestionsByQualifier5(user.getCompanyId(),
+				qualifier1, qualifier2, qualifier3, qualifier4, qualifier5);
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("user", user);
@@ -954,7 +982,8 @@ public class TestController {
 		return mav;
 	}
 
-	private void shareTest(String email, Long testId, String cid, String firstName, String lastName, String testName) {
+	private void shareTest(String email, Long testId, String cid, String firstName, String lastName,
+			String testName) {
 		User user = userService.findByPrimaryKey(email, cid);
 		if (user == null) {
 			User us = new User();
@@ -979,14 +1008,17 @@ public class TestController {
 			welcomeMailData = welcomeMailData.replace("{TEST_NAME}", testName);
 			welcomeMailData = welcomeMailData.replace("{URL}", url);
 			EmailGenericMessageThread client = new EmailGenericMessageThread(email,
-					"Test Link - " + testName + " Sent by IIHT", welcomeMailData, propertyConfig);
+					"Test Link - " + testName + " Sent by IIHT", welcomeMailData,
+					propertyConfig);
 			Thread th = new Thread(client);
+			System.out.println("email name........    " + email);
 			th.start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			String message = "Test link mail could not be sent for " + email;
-			EmailGenericMessageThread client = new EmailGenericMessageThread("jatin.sutaria@thev2technologies.com",
+			EmailGenericMessageThread client = new EmailGenericMessageThread(
+					"jatin.sutaria@thev2technologies.com",
 					"Can not send Test link email", message, propertyConfig);
 			Thread th = new Thread(client);
 			th.start();
@@ -1001,8 +1033,8 @@ public class TestController {
 		Test test = (Test) request.getSession().getAttribute("test");
 
 		for (User u : test.getUsers()) {
-			shareTest(u.getEmail(), test.getId(), user.getCompanyId(), u.getFirstName(), u.getLastName(),
-					test.getTestName());
+			shareTest(u.getEmail(), test.getId(), user.getCompanyId(), u.getFirstName(),
+					u.getLastName(), test.getTestName());
 
 		}
 		mav.addObject("message", "Congratulations! - Email with Test Links shared with users. ");// later
@@ -1019,8 +1051,9 @@ public class TestController {
 
 	@RequestMapping(value = "/sharePublicTest", method = RequestMethod.GET)
 	public ModelAndView sharePublicTest(@RequestParam String userEmail, @RequestParam String testId,
-			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String existing_name1,
-			HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String firstName, @RequestParam String lastName,
+			@RequestParam String existing_name1, HttpServletRequest request,
+			HttpServletResponse response) {
 		System.out.println("TestController.sharePublicTest()");
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
@@ -1030,10 +1063,12 @@ public class TestController {
 //		  String firstName = request.getParameter("firstName");
 //		  String lastName = request.getParameter("lastName");
 //		  String testName = request.getParameter("existing_name1");
-		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1);
-		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " " + lastName);// later
-																														// put
-																									// label
+		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName,
+				existing_name1);
+		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " "
+				+ lastName);// later
+						// put
+						// label
 		mav.addObject("msgtype", "Success");
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
@@ -1044,16 +1079,17 @@ public class TestController {
 	private String getUrlForUser(String user, Long testId, String companyId) {
 		String userBytes = Base64.getEncoder().encodeToString(user.getBytes());
 
-		String after = "userId=" + URLEncoder.encode(userBytes) + "&testId=" + URLEncoder.encode(testId.toString())
-				+ "&companyId=" + URLEncoder.encode(companyId);
+		String after = "userId=" + URLEncoder.encode(userBytes) + "&testId="
+				+ URLEncoder.encode(testId.toString()) + "&companyId="
+				+ URLEncoder.encode(companyId);
 		String url = propertyConfig.getBaseUrl() + "startTestSession?" + after;
 		return url;
 	}
 
 	@RequestMapping(value = "/duplicateTest", method = RequestMethod.GET)
 	public ModelAndView duplicateTest(@RequestParam String existing_name, @RequestParam String newTest,
-			@RequestParam String newQual1, @RequestParam String newQual2, HttpServletRequest request,
-			HttpServletResponse response) {
+			@RequestParam String newQual1, @RequestParam String newQual2,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("test_list");
 		User user = (User) request.getSession().getAttribute("user");
 		//
@@ -1065,14 +1101,16 @@ public class TestController {
 		Test old = testService.findbyTest(testToDuplicate, user.getCompanyId());
 		Test exist = testService.findbyTest(newTest, user.getCompanyId());
 		if (exist != null) {
-			mav.addObject("message", "Test with a name- " + newTest + " exists. Please use a different name!");// later
-																												// put
-																												// it as
+			mav.addObject("message", "Test with a name- " + newTest
+					+ " exists. Please use a different name!");// later
+									// put
+									// it as
 			// label
 			mav.addObject("msgtype", "Information");
 			Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
 			mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
-			CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), 0, "testlist", null);
+			CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), 0, "testlist",
+					null);
 			return mav;
 		}
 		Test newTestObj = new Test();
@@ -1096,17 +1134,17 @@ public class TestController {
 			newNection.setTestName(newTest);
 			sectionService.createSection(newNection);
 
-			List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(testToDuplicate, sectionName,
-					user.getCompanyId());
+			List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(
+					testToDuplicate, sectionName, user.getCompanyId());
 			for (QuestionMapper mapper : questionMappers) {
 				Question q = mapper.getQuestion();
 				sectionService.addQuestionToSection(q, newNection, 1);
 			}
 		}
-		mav.addObject("message",
-				"Congratulations. Test with a name- " + newTest + " duplicated from " + old.getTestName());// later put
-																											// it as
-																											// label
+		mav.addObject("message", "Congratulations. Test with a name- " + newTest + " duplicated from "
+				+ old.getTestName());// later put
+						// it as
+						// label
 		mav.addObject("msgtype", "Success");
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));

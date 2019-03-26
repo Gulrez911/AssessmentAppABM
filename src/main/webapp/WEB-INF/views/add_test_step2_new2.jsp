@@ -81,8 +81,96 @@
 <link href="${c15}" rel="stylesheet" type="text/css" />
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
-<link href="${c16}" rel="stylesheet" type="text/css" />
+<!-- jQuery -->
 
+<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+<script src="${mainJs1}"></script>
+<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+<script src="${mainJs2}"></script>
+<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
+<script src="${mainJs3}"></script>
+<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+<script src="${mainJs4}"></script>
+<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+<script src="${mainJs5}"></script>
+<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+<script src="${mainJs6}"></script>
+<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+<script src="${mainJs7}"></script>
+<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+<script src="${mainJs8}"></script>
+<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+<script src="${mainJs9}"></script>
+<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+<script src="${mainJs10}"></script>
+<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
+<script src="${mainJs11}"></script>
+<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
+<script src="${mainJs12}"></script>
+<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
+<script src="${mainJs13}"></script>
+<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+<script src="${mainJs14}"></script>
+<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+<script src="${mainJs15}"></script>
+<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+<script src="${mainJs16}"></script>
+<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
+<script src="${mainJs17}"></script>
+
+<link href="${c16}" rel="stylesheet" type="text/css" />
+<c:if test="${msgtype != null}">
+		<script>
+			var notification = 'Information';
+			var mtp = "${msgtype}";
+			var msg = "${message}";
+			console.log(mtp + ' ' + msg);
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : msg,
+					type : mtp,
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
+</c:if>
+
+<script>
+	var point = false;
+	var count = 0;
+	function check(e, value) {
+
+		//Check Charater
+		debugger;
+		if (count == 3)
+			return false;
+		var unicode = e.charCode ? e.charCode : e.keyCode;
+
+		if (unicode == 46 && point == true)
+			return false;
+		if (unicode == 46 && point == false) {
+			point = true;
+		}
+		if (unicode != 8)
+			if ((unicode<48||unicode>57) && unicode != 46)
+				return false;
+		if (point == true)
+			count++;
+	}
+	function checkLength() {
+		var fieldVal = document.getElementById('txtF').value;
+		//Suppose u want 3 number of character
+		if (fieldVal <= 100) {
+			return true;
+		} else {
+			var str = document.getElementById('txtF').value;
+			str = str.substring(0, str.length - 1);
+			document.getElementById('txtF').value = str;
+		}
+	}
+</script>
 </head>
 <body id="top" class="has-header-search">
 
@@ -317,98 +405,10 @@
 
 
 
-		<!-- jQuery -->
-
-		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
-		<script src="${mainJs1}"></script>
-		<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
-		<script src="${mainJs2}"></script>
-		<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
-		<script src="${mainJs3}"></script>
-		<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
-		<script src="${mainJs4}"></script>
-		<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
-		<script src="${mainJs5}"></script>
-		<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
-		<script src="${mainJs6}"></script>
-		<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
-		<script src="${mainJs7}"></script>
-		<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
-		<script src="${mainJs8}"></script>
-		<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
-		<script src="${mainJs9}"></script>
-		<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
-		<script src="${mainJs10}"></script>
-		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
-		<script src="${mainJs11}"></script>
-		<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
-		<script src="${mainJs12}"></script>
-		<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
-		<script src="${mainJs13}"></script>
-		<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
-		<script src="${mainJs14}"></script>
-		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
-		<script src="${mainJs15}"></script>
-		<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
-		<script src="${mainJs16}"></script>
-		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
-		<script src="${mainJs17}"></script>
-
 		<script type="text/javascript">
 			$(document).on('click', '.addquestion', function() {
 				window.location = "addNewSection";
 			});
-
-			function highlight(sectionName) {
-
-				window.location = "goToSection?sectionName=" + sectionName;
-			}
-
-			function notify(messageType, message) {
-				var notification = 'Information';
-				$(function() {
-					new PNotify({
-						title : notification,
-						text : message,
-						type : messageType,
-						styling : 'bootstrap3',
-						hide : true
-					});
-				});
-			}
-
-			var point = false;
-			var count = 0;
-			function check(e, value) {
-
-				//Check Charater
-				debugger;
-				if (count == 3)
-					return false;
-				var unicode = e.charCode ? e.charCode : e.keyCode;
-
-				if (unicode == 46 && point == true)
-					return false;
-				if (unicode == 46 && point == false) {
-					point = true;
-				}
-				if (unicode != 8)
-					if ((unicode<48||unicode>57) && unicode != 46)
-						return false;
-				if (point == true)
-					count++;
-			}
-			function checkLength() {
-				var fieldVal = document.getElementById('txtF').value;
-				//Suppose u want 3 number of character
-				if (fieldVal <= 100) {
-					return true;
-				} else {
-					var str = document.getElementById('txtF').value;
-					str = str.substring(0, str.length - 1);
-					document.getElementById('txtF').value = str;
-				}
-			}
 
 			function saveSection() {
 				var name = document.getElementById('sectionTopic').value;
@@ -418,15 +418,16 @@
 							'Please enter a meaningful name for your section before saving. ');
 
 				} else {
-
 					window.location = 'saveSection?sectionTopic=' + name
 							+ '&percentage=' + txtFValue;
 
 				}
 
 			}
+
 			function addQ(qid, sectionName) {
 
+				//window.location = "addQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
 				var url = "addQuestionToSectionAjax?sectionName=" + sectionName
 						+ "&questionId=" + qid;
 				console.log('here url ' + url);
@@ -458,6 +459,7 @@
 						});
 
 			}
+
 			function removeQ(qid, sectionName) {
 				//window.location = "removeQuestionToSection?sectionName="+sectionName+"&questionId="+qid;
 				var url = "removeQuestionToSectionAjax?sectionName="
@@ -492,58 +494,15 @@
 			}
 
 			function showSelected() {
+				//$.ajax({url: "showSectionsQuestions", success: function(result){
+				//		notify("Success", "All Questions Selected so far..");
+				//	    }});
 				window.location = "showSectionsQuestions";
 			}
-			dta = "";
-			load = function() {
-				$
-						.ajax({
-							url : 'showSectionsQuestions',
-							type : 'GET',
-							success : function(response) {
 
-								alert("test");
-								console.log("hello");
-								console
-										.log("test",
-												response.qs[0].questionText);
-								console
-										.log("test",
-												response.qs[0].testCategory);
-								console
-										.log("test",
-												response.qs[0].questionText);
-								console
-										.log("test",
-												response.qs[0].questionText);
-								console
-										.log("test",
-												response.qs[0].questionText);
-								data = response.qs;
-
-								for (i = 0; i < response.qs.length; i++) {
-									console.log(data[i].questionText);
-									$("#table1")
-											.append(
-													"<tr class='tr'> <td> "
-															+ response.data[i].questionText
-															+ " </td>  <td> <a href='#' onclick= edit("
-															+ i
-															+ ");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("
-															+ response.data[i].questionText
-															+ ");'> Delete </a>  </td> </tr>");
-
-								}
-							}
-						});
-			};
-
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchQuestions2?searchText=" + text;
-				}
-			});
+			function highlight(sectionName) {
+				window.location = "goToSection?sectionName=" + sectionName;
+			}
 
 			function removeSection(sectionName) {
 				(new PNotify({
@@ -570,7 +529,67 @@
 						}).on('pnotify.cancel', function() {
 
 				});
+			}
 
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
+			}
+
+			$('#search').on('click', function() {
+				var text = document.getElementById("searchText").value;
+				if (text.length != 0) {
+					window.location = "searchQs?searchText=" + text;
+				}
+			});
+
+			$(function() {
+				$(".addimage").on('click', function(e) {
+					e.preventDefault();
+					$("#addimage").trigger('click');
+				});
+				$(".addaudio").on('click', function(e) {
+					e.preventDefault();
+					$("#addaudio").trigger('click');
+				});
+				$(".addvideo").on('click', function(e) {
+					e.preventDefault();
+					$("#addvideo").trigger('click');
+				});
+			});
+
+			$('#addimage').change(function() {
+				var file = $('#addimage')[0].files[0].name;
+				$('.queimage').text('Image: ' + file);
+			});
+			$('#addaudio').change(function() {
+				var file = $('#addaudio')[0].files[0].name;
+				$('.queaudio').text('Audio: ' + file);
+			});
+			$('#addvideo').change(function() {
+				var file = $('#addvideo')[0].files[0].name;
+				$('.quevideo').text('Video: ' + file);
+			});
+
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
 			}
 		</script>
 		<div class="hiddendiv common"></div>

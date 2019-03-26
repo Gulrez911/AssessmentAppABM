@@ -415,7 +415,7 @@
 
 										</form>
 										<div class="col-md-12 text-right">
-												<button type="button" class="waves-effect waves-light btn submit-button indigo mt-30">Cancel</button>
+												<a  type="button" class="waves-effect waves-light btn submit-button indigo mt-30" href="testlist">Cancel</a>
 												<a id="next" class="waves-effect waves-light btn mt-30" href="#">Next</a>
 										</div>
 								</div>
