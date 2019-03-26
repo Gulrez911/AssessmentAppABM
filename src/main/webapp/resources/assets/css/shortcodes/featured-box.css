@@ -518,14 +518,15 @@ Flat Border Box Style
 
 @media (max-width: 991px) {
     .featured-item.flat-border-box {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     } 
 }
 
 
 .featured-item img {
     width: inherit !important;
-    margin: 0 auto;
+   
+    margin-top: 11px;
 }
 
 

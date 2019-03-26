@@ -249,7 +249,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input id="passPercent" name="passPercent" type="text" value="">
+                                        <input id="passPercent" name="passPercent" type="text" value="60.0">
                                         <label for="passPercent">Passmark in Percentage</label>
                                     </div>
                                 </div>
@@ -285,7 +285,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-field">
-                                        <input id="domainEmailSupported" name="domainEmailSupported" type="text" value="">
+                                        <input id="domainEmailSupported" name="domainEmailSupported" type="text" value="*">
                                         <label for="domainEmailSupported">Email Domain for Test Givers </label>
                                     </div>
                                 </div>
