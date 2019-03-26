@@ -1,3 +1,4 @@
+
 package com.assessment.web.controllers;
 
 import java.io.File;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,10 +34,12 @@ import com.assessment.data.DifficultyLevel;
 import com.assessment.data.ProgrammingLanguage;
 import com.assessment.data.Question;
 import com.assessment.data.QuestionType;
+import com.assessment.data.Test;
 import com.assessment.data.User;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionService;
 import com.assessment.services.UserService;
+import com.assessment.web.dto.SectionDto;
 
 @Controller
 public class QuestionController {
@@ -91,7 +95,6 @@ public class QuestionController {
 		CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), pageNumber, "addQuestion", null);
 		return mav;
 	}
-	
 	@RequestMapping(value = "/removeQuestionFromList", method = RequestMethod.GET)
 	public ModelAndView removeQuestionFromList(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false) Long qid, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("question_list2");
@@ -370,13 +373,29 @@ public class QuestionController {
 	@RequestMapping(value = "/searchQuestions2", method = RequestMethod.GET)
 	public ModelAndView searchQuestions2(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam String searchText, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_question");
+		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		Question question = new Question();
 		mav.addObject("question", question);
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {
 			pageNumber = 0;
 		}
+//		
+		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
+
+		Set<Question> questions2 = sectionDto.getQuestions();
+		for (Question q : questions2) {
+			q.setSelected(true);
+		}
+		mav.addObject("qs", questions2);
+
+		mav.addObject("levels", DifficultyLevel.values());
+		mav.addObject("types", QuestionType.values());
+		mav.addObject("languages", ProgrammingLanguage.values());
+		mav.addObject("sectionDto", sectionDto);
+		Test test2 = (Test) request.getSession().getAttribute("test");
+		mav.addObject("test", test2);
+//		
 		Page<Question> questions = questionService.searchQuestions(user.getCompanyId(), searchText, pageNumber);
 		mav.addObject("qs", questions.getContent());
 		mav.addObject("levels", DifficultyLevel.values());

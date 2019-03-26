@@ -125,7 +125,7 @@ public class TestController {
 	@RequestMapping(value = "/updateTest", method = RequestMethod.GET)
 	public ModelAndView updateTest(@RequestParam String testId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step1");
+		ModelAndView mav = new ModelAndView("add_test_step1_new");
 		User user = (User) request.getSession().getAttribute("user");
 		// testService.f
 		Test test = testService.findTestById(Long.valueOf(testId));
@@ -189,7 +189,7 @@ public class TestController {
 	@RequestMapping(value = "/addteststep4", method = RequestMethod.GET)
 	public ModelAndView addteststep4(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = null;
-		mav = new ModelAndView("add_test_step4");
+		mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		// mav.addObject("qs", questions);
 		Test test2 = (Test) request.getSession().getAttribute("test");
@@ -995,7 +995,7 @@ public class TestController {
 
 	@RequestMapping(value = "/shareTestWithUsers", method = RequestMethod.GET)
 	public ModelAndView shareTests(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list");
+		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");

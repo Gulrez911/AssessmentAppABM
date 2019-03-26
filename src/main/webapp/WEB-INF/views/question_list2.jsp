@@ -170,10 +170,12 @@
 												<div class="widget widget_search">
 
 														<div class="search-form">
+														<form action="searchQuestions" method="get">
 																<input type="text" placeholder="Search a question" name="searchText" id="searchText">
 																<button type="submit" id="search">
 																		<i class="fa fa-search"></i>
 																</button>
+															</form>
 														</div>
 												</div>
 										</div>

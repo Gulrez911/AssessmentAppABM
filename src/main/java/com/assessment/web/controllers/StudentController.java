@@ -241,7 +241,7 @@ public class StudentController {
 	 
 	 @RequestMapping(value = "/studentJourney", method = RequestMethod.POST)
 	 public ModelAndView studentStartExam(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("studentTestForm") StudentTestForm studentForm) {
-		 ModelAndView model= new ModelAndView("test");
+		 ModelAndView model= new ModelAndView("test2");
 		 User user = (User) request.getSession().getAttribute("user");
 		 Test test = (Test) request.getSession().getAttribute("test");
 		 request.getSession().setAttribute("testStartDate", new Date());

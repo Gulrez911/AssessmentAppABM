@@ -81,9 +81,12 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-
+<script>
+	function goback(){
+	window.location = "goback";
+	}
+	</script>
 </head>
-
 <body id="top" class="has-header-search">
 
 		<!--header start-->
@@ -394,6 +397,7 @@
 		</footer>
 
 		<!-- jQuery -->
+
 		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
 		<script src="${mainJs1}"></script>
 		<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
@@ -424,6 +428,11 @@
 		<script src="${mainJs14}"></script>
 		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 		<script src="${mainJs15}"></script>
+		<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+		<script src="${mainJs16}"></script>
+		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
+		<script src="${mainJs17}"></script>
+
 
 		<script>
 			$(document).ready(function() {
