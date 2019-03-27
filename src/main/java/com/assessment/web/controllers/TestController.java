@@ -61,6 +61,8 @@ public class TestController {
 	@Autowired
 	TestService testService;
 
+	
+	
 	@Autowired
 	SkillService skillService;
 
@@ -865,7 +867,9 @@ public class TestController {
 	public ModelAndView searchQByQualifier1(@RequestParam String qualifier1, HttpServletRequest request,
 			HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
+
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
+
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");

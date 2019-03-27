@@ -245,10 +245,10 @@
 		</section>
 
 
-
+       
 		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
-						<div class="container">
+						<div class="row">
 								<ul>
 										<li><a href="javascript:void(0)">Dashboard</a></li>
 										<li><a href="question_list">Question Bank</a></li>

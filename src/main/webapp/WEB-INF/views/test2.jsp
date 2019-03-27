@@ -53,7 +53,7 @@
 <spring:url value="/resources/assets/style.css" var="c12" />
 
 <link href="${c12}" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
+  <script type="text/javascript">
 		var active = 'true';
 		var studentNameTaken = localStorage.getItem('${studentTestForm.firstName}${studentTestForm.lastName}');
 		var testNameTaken = localStorage.getItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}');
@@ -311,8 +311,9 @@ body * {
 					<div class="promo-btn">
 						<div class="durationinfo" style="font-size: 20px;">
 							<span><i class="fa fa-clock-o" style="font-size: 25px;"></i>
-									<span class="time" id="timer"><i id="hours"></i><sub>h</sub><i id="min"></i><sub> min</sub><i id="sec"></i> <sub> sec</sub></span>  </span>
-						</div>
+									 <span class="time"
+						id="timer"><i id="hours"></i><sub>h</sub><i id="min"></i><sub>
+								min</sub><i id="sec"></i> <sub> sec</sub></span>
 					</div>
 				</div>
 			</div>
@@ -428,10 +429,6 @@ body * {
 											<form:textarea id="editor" path="code" />
 											<form:hidden path="code" id="codeOfEditor" />
 
-
-
-
-
 											<label>Input</label>
 											<form:textarea path="input" style="height:30px" id="input"
 												placeholder="Enter input" />
@@ -514,13 +511,14 @@ body * {
 						<div class="row">
 							<div class="col-md-4">
 								<div class="progress-section">
-									<span class="progress-title">0 of 42 Answered</span>
+									<span class="progress-title">${noAnswered} of
+								${totalQuestions} answered</span>
 									<div class="progress">
 										<div
 											class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
 											role="progressbar" aria-valuenow="65" aria-valuemin="0"
-											aria-valuemax="100" style="width: 90%;">
-											<span>65%</span>
+											aria-valuemax="100" style="width: ${percentage}%;">
+											<span>${percentage}%</span>
 										</div>
 									</div>
 								</div>

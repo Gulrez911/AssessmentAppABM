@@ -56,9 +56,9 @@ body{
     font-weight: 500;
     color: #000;
     background-color: #fff;
-    overflow-x: hidden;
+     overflow-x: scroll;
     -webkit-text-size-adjust: 100%;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     -webkit-font-smoothing: antialiased !important;
 }
 
