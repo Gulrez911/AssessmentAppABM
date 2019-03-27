@@ -511,18 +511,6 @@
             });
         }
 
-        function notify(messageType, message) {
-            var notification = 'Information';
-            $(function() {
-                new PNotify({
-                    title: notification,
-                    text: message,
-                    type: messageType,
-                    styling: 'bootstrap3',
-                    hide: true
-                });
-            });
-        }
 
  
 function notify(messageType, message) {

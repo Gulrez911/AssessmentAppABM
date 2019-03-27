@@ -377,19 +377,6 @@
 				window.location = "goToSection?sectionName=" + sectionName;
 			}
 
-			function notify(messageType, message) {
-				var notification = 'Information';
-				$(function() {
-					new PNotify({
-						title : notification,
-						text : message,
-						type : messageType,
-						styling : 'bootstrap3',
-						hide : true
-					});
-				});
-			}
-
 			var point = false;
 			var count = 0;
 			function check(e, value) {
@@ -577,7 +564,20 @@
 
 				});
 
-			}
+			};
+			
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
+			};
 		</script>
 		<div class="hiddendiv common"></div>
 </body>

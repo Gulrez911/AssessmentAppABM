@@ -135,6 +135,10 @@
 														class="material-icons fa fa-sign-out"></i> Sign Off</a>
 										</div>
 								</div>
+								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
+								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
+
+								<%-- 								</form> --%>
 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data">
 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" />
 								</form>
@@ -170,12 +174,13 @@
 												<div class="widget widget_search">
 
 														<div class="search-form">
-														<form action="searchQuestions" method="get">
-																<input type="text" placeholder="Search a question" name="searchText" id="searchText">
-																<button type="submit" id="search">
-																		<i class="fa fa-search"></i>
-																</button>
-															</form>
+																<form action="searchQuestions" method="get">
+																		<input type="text" placeholder="Search a question" name="searchText"
+																				id="searchText">
+																		<button type="submit" id="search">
+																				<i class="fa fa-search"></i>
+																		</button>
+																</form>
 														</div>
 												</div>
 										</div>
