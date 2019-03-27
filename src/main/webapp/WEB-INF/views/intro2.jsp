@@ -201,7 +201,9 @@
 								<div class="col-md-4 col-sm-6">
 										<div class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
 												<div class="icon radius-4">
-														<img style="width: 60% !important; margin-top:11px"
+
+														<img style="width: 60% !important; margin-top: 11px"
+
 																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon1.png">
 												</div>
 												<div class="desc">
@@ -213,7 +215,9 @@
 										</div>
 										<div class="featured-item feature-icon icon-hover icon-hover-brand right-icon mb-80">
 												<div class="icon radius-4">
-														<img style="width: 60% !important;margin-top:11px"
+
+														<img style="width: 60% !important;margin-top: 11px"
+
 																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon2.png">
 												</div>
 												<div class="desc">
@@ -255,7 +259,9 @@
 								<div class="col-md-4 col-sm-6">
 										<div class="featured-item feature-icon icon-hover icon-hover-brand mt-50 mb-80">
 												<div class="icon radius-4">
-														<img style="width: 60% !important;margin-top:11px"
+
+														<img style="width: 60% !important; margin-top: 11px"
+
 																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon3.png">
 												</div>
 												<div class="desc">
@@ -267,7 +273,9 @@
 										</div>
 										<div class="featured-item feature-icon icon-hover icon-hover-brand mb-80">
 												<div class="icon radius-4">
-														<img style="width: 60% !important;margin-top:11px"
+
+														<img style="width: 60% !important; margin-top: 11px"
+
 																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon4.png">
 												</div>
 												<div class="desc">

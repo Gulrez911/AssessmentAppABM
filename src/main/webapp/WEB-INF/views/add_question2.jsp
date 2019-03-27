@@ -10,7 +10,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Question List</title>
-
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -82,9 +81,12 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-
+<script>
+	function goback(){
+	window.location = "goback";
+	}
+	</script>
 </head>
-
 <body id="top" class="has-header-search">
 
 		<!--header start-->
@@ -128,8 +130,6 @@
 												enctype="multipart/form-data">
 
 												<div class="input-field">
-														<!-- 														<textarea name="questionText" id="questionText" class="materialize-textarea" -->
-														<!-- 																required=""></textarea> -->
 														<form:textarea path="question.questionText" required="true"
 																class="materialize-textarea" />
 														<form:hidden path="question.id" />
@@ -139,10 +139,6 @@
 												<div class="row">
 														<div class="col-md-6 questiontypedrp">
 																<div class="input-field">
-																		<!-- 																		<select id="questionType" name="type" onchange="changeQType()"> -->
-																		<!-- 																				<option value="MCQ" selected="selected">MCQ</option> -->
-																		<!-- 																				<option value="CODING">CODING</option> -->
-																		<!-- 																		</select> -->
 																		<form:select id="questionType" path="question.type" onchange="changeQType()">
 
 																				<form:options items="${types}" itemValue="type" itemLabel="type" />
@@ -158,9 +154,7 @@
 																		</form:select>
 																</div>
 														</div>
-
 												</div>
-
 
 												<div id="mcqDiv" class="formfield">
 														<div class="row">
@@ -173,19 +167,16 @@
 																		<div class="col-md-1">A</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice1" name="choice1" id="choice1" required="true" />
-																				<!--  																				<input id="choice1" name="choice1" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
-																				<input type="checkbox" id="one1" name="question.one" value="question.one"
-																						class="filled-in" /> <label for="one1"></label>
+																				<input type="checkbox" id="one1" name="one" value="true" class="filled-in" /> <label
+																						for="one1"></label>
 																		</div>
 																</div>
-
 																<div class="col-md-12">
 																		<div class="col-md-1">B</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice2" name="choice2" id="choice2" required="true" />
-																				<!-- 																				<input id="choice2" name="choice2" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
 																				<input type="checkbox" id="two1" name="two" value="true" class="filled-in" /> <label
@@ -196,7 +187,6 @@
 																		<div class="col-md-1">C</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice3" name="choice3" id="choice3" />
-																				<!-- 																				<input id="choice3" name="choice3" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
 																				<input type="checkbox" id="three1" name="three" value="true" class="filled-in" />
@@ -207,7 +197,6 @@
 																		<div class="col-md-1">D</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice4" name="choice4" id="choice4" />
-																				<!-- 																				<input id="choice4" name="choice4" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
 																				<input type="checkbox" id="four1" name="four" value="true" class="filled-in" />
@@ -218,7 +207,6 @@
 																		<div class="col-md-1">E</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice5" name="choice5" id="choice5" />
-																				<!-- 																				<input id="choice5" name="choice5" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
 																				<input type="checkbox" id="five1" name="five" value="true" class="filled-in" />
@@ -229,7 +217,6 @@
 																		<div class="col-md-1">F</div>
 																		<div class="col-md-8">
 																				<form:input path="question.choice6" name="choice6" id="choice6" />
-																				<!-- 																				<input id="choice6" name="choice6" required="" type="text" value=""> -->
 																		</div>
 																		<div class="col-md-3 text-center">
 																				<input type="checkbox" id="six1" name="six" value="true" class="filled-in" /> <label
@@ -244,66 +231,83 @@
 														<div class="row">
 																<div class="col-md-6">
 																		<div class="input-field">
-																				<select id="lang" name="lang">
-																						<option value="JAVA" selected="selected">JAVA</option>
-																						<option value="C">C</option>
-																						<option value="CPLUSPLUS">CPLUSPLUS</option>
-																						<option value="DotNet">DotNet</option>
-																						<option value="CHASH">CHASH</option>
-																						<option value="PYTHON">PYTHON</option>
-																				</select> <label for="lang" style="top: -30px;">Programming Language</label>
+																				<!-- 																				<select id="lang" name="lang"> -->
+																				<!-- 																						<option value="JAVA" selected="selected">JAVA</option> -->
+																				<!-- 																						<option value="C">C</option> -->
+																				<!-- 																						<option value="CPLUSPLUS">CPLUSPLUS</option> -->
+																				<!-- 																						<option value="DotNet">DotNet</option> -->
+																				<!-- 																						<option value="CHASH">CHASH</option> -->
+																				<!-- 																						<option value="PYTHON">PYTHON</option> -->
+																				<!-- 																				</select> -->
+																				<form:select path="question.lang">
+
+																						<form:options items="${languages}" itemValue="language" itemLabel="language" />
+																				</form:select>
+																				<label for="lang" style="top: -30px;">Programming Language</label>
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="inputCode" id="inputCode" class="materialize-textarea"></textarea>
-																				<label for="inputCode">Code Input</label>
+																				<label for="inputCode">Code Input</label><br>
+																				<form:textarea path="question.inputCode" style="height:150px;overflow-y: scroll"
+																						id="inputCode" />
+																				<!-- 																				<textarea name="inputCode" id="inputCode" class="materialize-textarea"></textarea> -->
+
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="hiddenInputPositive" id="hiddenInputPositive"
-																						class="materialize-textarea"></textarea>
-																				<label for="hiddenInputPositive">System Input 1</label>
+																				<label for="hiddenInputPositive">System Input 1</label><br>
+																				<!-- 																				<textarea name="hiddenInputPositive" id="hiddenInputPositive" -->
+																				<!-- 																						class="materialize-textarea"></textarea> -->
+																				<form:textarea path="question.hiddenInputPositive" id="hiddenInputPositive" />
+
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="hiddenOutputPositive" id="hiddenOutputPositive"
-																						class="materialize-textarea"></textarea>
-																				<label for="hiddenOutputPositive">System Output 1</label>
+																				<!-- 																				<textarea name="hiddenOutputPositive" id="hiddenOutputPositive" -->
+																				<!-- 																						class="materialize-textarea"></textarea> -->
+																				<label for="hiddenOutputPositive">System Output 1</label><br>
+																				<form:textarea path="question.hiddenOutputPositive" style="height:30px"
+																						id="hiddenOutputPositive" />
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="hiddenInputNegative" id="hiddenInputNegative"
-																						class="materialize-textarea"></textarea>
-																				<label for="hiddenInputNegative">System Input 2</label>
+																				<!-- 																				<textarea name="hiddenInputNegative" id="hiddenInputNegative" -->
+																				<!-- 																						class="materialize-textarea"></textarea> -->
+																				<label for="hiddenInputNegative">System Input 2</label><br>
+																				<form:textarea path="question.hiddenInputNegative" style="height:30px"
+																						id="hiddenInputNegative" />
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="hiddenOutputNegative" id="hiddenOutputNegative"
-																						class="materialize-textarea"></textarea>
-																				<label for="hiddenOutputNegative">System Output 2</label>
+																				<!-- 																				<textarea name="hiddenOutputNegative" id="hiddenOutputNegative" -->
+																				<!-- 																						class="materialize-textarea"></textarea> -->
+																				<label for="hiddenOutputNegative">System Output 2</label><br>
+																				<form:textarea path="question.hiddenOutputNegative" style="height:30px"
+																						id="hiddenOutputNegative" />
 																		</div>
 																</div>
 														</div>
 														<div class="row">
 																<div class="col-md-12">
 																		<div class="input-field">
-																				<textarea name="constrnt" id="constrnt" class="materialize-textarea"></textarea>
-																				<label for="constrnt">Constraints</label>
+																				<!-- 																				<textarea name="constrnt" id="constrnt" class="materialize-textarea"></textarea> -->
+																				<label for="constrnt">Constraints</label><br>
+																				<form:textarea path="question.constrnt" style="height:50px" />
 																		</div>
 																</div>
 														</div>
@@ -312,11 +316,11 @@
 
 												<div class="row">
 														<div class="col-md-12 mt-30">
-																<a class="addimage waves-effect waves-light btn"><i
+																<a class="addimage waves-effect waves-light btn" href="#"><i
 																		class="material-icons left fa fa-picture-o"></i>Add Image</a> <a
-																		class="addaudio waves-effect waves-light btn"><i
+																		class="addaudio waves-effect waves-light btn" href="#"><i
 																		class="material-icons left fa fa-volume-up"></i>Add Audio</a> <a
-																		class="addvideo waves-effect waves-light btn"><i
+																		class="addvideo waves-effect waves-light btn" href="#"><i
 																		class="material-icons left fa fa-video-camera"></i>Add Video</a>
 														</div>
 
@@ -341,21 +345,18 @@
 																<div class="col-md-11">
 																		<form:input path="question.qualifier1" name="qualifier1" id="qualifier1"
 																				required="true" />
-																		<!-- 																		<input id="qualifier1" name="qualifier1" type="text" value="" required=""> -->
 																</div>
 														</div>
 														<div class="col-md-12">
 																<div class="col-md-1">B</div>
 																<div class="col-md-11">
 																		<form:input path="question.qualifier2" name="qualifier2" id="qualifier2" />
-																		<!-- 																		<input id="qualifier2" name="qualifier2" type="text" value="" required=""> -->
 																</div>
 														</div>
 														<div class="col-md-12">
 																<div class="col-md-1">C</div>
 																<div class="col-md-11">
 																		<form:input path="question.qualifier3" name="qualifier3" id="qualifier3" />
-																		<!-- 																		<input id="qualifier3" name="qualifier3" type="text" value="" required=""> -->
 																</div>
 														</div>
 												</div>
@@ -395,7 +396,6 @@
 				</div>
 		</footer>
 
-
 		<!-- jQuery -->
 
 		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
@@ -433,7 +433,12 @@
 		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 		<script src="${mainJs17}"></script>
 
+
 		<script>
+			$(document).ready(function() {
+				$('select').material_select();
+			});
+
 			$(function() {
 				$(".addimage").on('click', function(e) {
 					e.preventDefault();
@@ -452,62 +457,22 @@
 			$('#addimage').change(function() {
 				var file = $('#addimage')[0].files[0].name;
 				$('.queimage').text('Image: ' + file);
+				$('.queimage').css('width', '100%');
 			});
 			$('#addaudio').change(function() {
 				var file = $('#addaudio')[0].files[0].name;
 				$('.queaudio').text('Audio: ' + file);
+				$('.queaudio').css('width', '100%');
 			});
 			$('#addvideo').change(function() {
 				var file = $('#addvideo')[0].files[0].name;
 				$('.quevideo').text('Video: ' + file);
+				$('.quevideo').css('width', '100%');
 			});
-
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchQuestions2?searchText=" + text;
-				}
-			});
-
-			function notify(messageType, message) {
-				var notification = 'Information';
-				$(function() {
-					new PNotify({
-						title : notification,
-						text : message,
-						type : messageType,
-						styling : 'bootstrap3',
-						hide : true
-					});
-				});
-			}
-
-			function confirm(id) {
-				(new PNotify(
-						{
-							title : 'Confirmation Needed',
-							text : 'Are you sure? Do you really want to delete this Q?',
-							icon : 'glyphicon glyphicon-question-sign',
-							hide : false,
-							confirm : {
-								confirm : true
-							},
-							buttons : {
-								closer : false,
-								sticker : false
-							},
-							history : {
-								history : false
-							}
-						})).get().on('pnotify.confirm', function() {
-					window.location = "removeQuestion?qid=" + id;
-				}).on('pnotify.cancel', function() {
-
-				});
-			}
 
 			function changeQType() {
 				var selectedValue = $("#questionType").val();
+				$('.questiontypedrp .select-dropdown').html(selectedValue);
 				if (selectedValue == 'CODING') {
 
 					document.getElementById("mcqDiv").style.display = 'none';
@@ -530,20 +495,22 @@
 			}
 		</script>
 
-		<c:if test="${msgtype != null}">
-				<script>
-					var notification = 'Information';
-					$(function() {
-						new PNotify({
-							title : notification,
-							text : '${message}',
-							type : '${msgtype}',
-							styling : 'bootstrap3',
-							hide : true
-						});
-					});
-				</script>
-		</c:if>
+ <c:if test="${msgtype != null}">
+        <script>
+            var notification = 'Information';
+            $(function() {
+                new PNotify({
+                    title: notification,
+                    text: '${message}',
+                    type: '${msgtype}',
+                    styling: 'bootstrap3',
+                    hide: true
+                });
+            });
+
+        </script>
+    </c:if>
+
 
 </body>
 

@@ -61,6 +61,8 @@ public class TestController {
 	@Autowired
 	TestService testService;
 
+	
+	
 	@Autowired
 	SkillService skillService;
 
@@ -125,7 +127,7 @@ public class TestController {
 	@RequestMapping(value = "/updateTest", method = RequestMethod.GET)
 	public ModelAndView updateTest(@RequestParam String testId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("add_test_step1");
+		ModelAndView mav = new ModelAndView("add_test_step1_new");
 		User user = (User) request.getSession().getAttribute("user");
 		// testService.f
 		Test test = testService.findTestById(Long.valueOf(testId));
@@ -841,7 +843,7 @@ public class TestController {
 	public ModelAndView searchQByQualifier1(@RequestParam String qualifier1, HttpServletRequest request,
 			HttpServletResponse response) {
 		String referer = request.getHeader("Referer");
-		ModelAndView mav = new ModelAndView("add_test_step2");
+		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");
