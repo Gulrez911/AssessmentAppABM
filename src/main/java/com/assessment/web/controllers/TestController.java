@@ -225,7 +225,7 @@ public class TestController {
 	@RequestMapping(value = "/retireTest", method = RequestMethod.GET)
 	public ModelAndView retireTest(@RequestParam String testId, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list2");
+		ModelAndView mav = new ModelAndView("redirect:/testlist");
 		User user = (User) request.getSession().getAttribute("user");
 		testService.removeTest(user.getCompanyId(), Long.valueOf(testId));
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);

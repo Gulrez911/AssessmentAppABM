@@ -412,7 +412,9 @@ public class QuestionController {
 			Long size = multipartFile.getSize();
 			String contentType = multipartFile.getContentType();
 			InputStream stream = multipartFile.getInputStream();
-			File file = new File("questions.xml");
+			String XmlPath = "C:/Users/user/Desktop/questions.xml";
+			File file = new File(XmlPath);
+//			File file = new File("questions.xml");
 			List<Question> questions = ExcelReader.parseExcelFileToBeans(stream, file);
 			logger.info("in upload method qs size "+questions.size());
 				if(questions.size() == 0) {
