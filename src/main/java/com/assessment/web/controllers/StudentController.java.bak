@@ -107,7 +107,7 @@ public class StudentController {
 		StudentTestForm studentTest = new StudentTestForm();
 		userId = decodeUserId((String) request.getParameter("userId"));
 		companyId = (String) request.getParameter("companyId");
-		ModelAndView model = new ModelAndView("intro2");
+		ModelAndView model = new ModelAndView("intro");
 		SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
 		String time = localDateFormat.format(new Date());
 		studentTest.setCurrentTime(time);
@@ -244,7 +244,7 @@ public class StudentController {
 	@RequestMapping(value = "/studentJourney", method = RequestMethod.POST)
 	public ModelAndView studentStartExam(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("studentTestForm") StudentTestForm studentForm) {
-		ModelAndView model = new ModelAndView("test2");
+		ModelAndView model = new ModelAndView("test");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
 		request.getSession().setAttribute("testStartDate", new Date());
@@ -368,7 +368,7 @@ public class StudentController {
 	public ModelAndView changeSection(@RequestParam String sectionName, @RequestParam String timeCounter,
 			HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("studentTestForm") StudentTestForm studentForm) {
-		ModelAndView model = new ModelAndView("test2");
+		ModelAndView model = new ModelAndView("test");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
 
@@ -718,7 +718,7 @@ public class StudentController {
 	public ModelAndView nextQuestion(@RequestParam String questionId, @RequestParam String timeCounter,
 			HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion) {
-		ModelAndView model = new ModelAndView("test2");
+		ModelAndView model = new ModelAndView("test");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
 		List<SectionInstanceDto> sectionInstanceDtos = (List<SectionInstanceDto>) request.getSession()
@@ -863,7 +863,7 @@ public class StudentController {
 	public ModelAndView prevQuestion(@RequestParam String questionId, @RequestParam String timeCounter,
 			HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion) {
-		ModelAndView model = new ModelAndView("test2");
+		ModelAndView model = new ModelAndView("test");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
 		List<SectionInstanceDto> sectionInstanceDtos = (List<SectionInstanceDto>) request.getSession()
@@ -1075,7 +1075,7 @@ public class StudentController {
 			String message = "Results can not be sent for " + user.getEmail() + " for test "
 					+ test.getTestName();
 			EmailGenericMessageThread client = new EmailGenericMessageThread(
-					"gulfarooqui1@gmail.com",
+					"jatin.sutaria@thev2technologies.com",
 					"Can not send Test link email", message, propertyConfig);
 			Thread th = new Thread(client);
 			th.start();

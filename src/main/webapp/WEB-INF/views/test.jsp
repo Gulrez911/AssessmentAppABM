@@ -4,8 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <!DOCTYPE html>
 <html>
@@ -13,16 +12,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IIHT</title>
-<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Muli:300,400,700'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet'
+		type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Muli:300,400,700' rel='stylesheet'
+		type='text/css'>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="css/font-awesome_new.css" rel="stylesheet" type="text/css">
 <link href="css/style_new.css" rel="stylesheet" type="text/css">
@@ -30,13 +28,11 @@
 <link href="css/style_testjourney.css" rel="stylesheet" type="text/css">
 <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 <script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
 <script type="text/javascript" src="scripts/html2canvas.js"></script>
-<script src="scripts/src-min-noconflict/ace.js" type="text/javascript"
-	charset="utf-8"></script>
+<script src="scripts/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
 
 
@@ -181,43 +177,42 @@ body * {
 
 
 
-	<form:form id="testForm" name="testForm" method="POST"
-		modelAttribute="currentQuestion">
-		<div class="header">
-			<div class="col-md-12">
-				<div class="col-md-6">
-					<div class="logo">
-						<a href="#"><img src="images/logoiiht.png"></a>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="userheader">
-						<div class="userinfo">
-							<h4>
-								Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
-							</h4>
-							<img src="images/userimg.png">
+		<form:form id="testForm" name="testForm" method="POST" modelAttribute="currentQuestion">
+				<div class="header">
+						<div class="col-md-12">
+								<div class="col-md-6">
+										<div class="logo">
+												<a href="#"><img src="images/logoiiht.png"></a>
+										</div>
+								</div>
+								<div class="col-md-6">
+										<div class="userheader">
+												<div class="userinfo">
+														<h4>
+																Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
+														</h4>
+														<img src="images/userimg.png">
+												</div>
+										</div>
+								</div>
 						</div>
-					</div>
 				</div>
-			</div>
-		</div>
 
-		<div class="testheader" id="screenShotId">
-			<div class="testinfo">
-				<div class="testimg">
-					<img src="images/testimage.png">
-				</div>
-				<div class="testname">
-					<h3>${studentTestForm.testName}</h3>
-					<span>Assessment</span>
-				</div>
-			</div>
-			<div class="durationinfo">
-				<span><i class="fa fa-clock-o"> <span class="time"
-						id="timer"><i id="hours"></i><sub>h</sub><i id="min"></i><sub>
-								min</sub><i id="sec"></i> <sub> sec</sub></span>
-				</i> <!-- <c:choose>
+				<div class="testheader" id="screenShotId">
+						<div class="testinfo">
+								<div class="testimg">
+										<img src="images/testimage.png">
+								</div>
+								<div class="testname">
+										<h3>${studentTestForm.testName}</h3>
+										<span>Assessment</span>
+								</div>
+						</div>
+						<div class="durationinfo">
+								<span><i class="fa fa-clock-o"> <span class="time" id="timer"><i
+														id="hours"></i><sub>h</sub><i id="min"></i><sub> min</sub><i id="sec"></i> <sub>
+																sec</sub></span>
+								</i> <!-- <c:choose>
 						 <c:when test="${currentSection.last==true}">
 						<span class="finish"><a href="javascript:submitTest();"><i></i>END</a></span>
 						 </c:when>    
@@ -227,217 +222,207 @@ body * {
 				    </c:otherwise>
 						</c:choose>
 						-->
-			</div>
-		</div>
+						</div>
+				</div>
 
 
-		<div class="examquestions">
-			<div class="menuitem">
-				<ul>
-					<c:forEach var="sectionInstance" varStatus="status"
-						items="${sectionInstanceDtos}">
-						<li ${sectionInstance.style}
-							onclick="javascript:changeSection('${sectionInstance.section.sectionName}');">
+				<div class="examquestions">
+						<div class="menuitem">
+								<ul>
+										<c:forEach var="sectionInstance" varStatus="status" items="${sectionInstanceDtos}">
+												<li ${sectionInstance.style}
+														onclick="javascript:changeSection('${sectionInstance.section.sectionName}');"><a>${sectionInstance.section.sectionName}</a></li>
 
-							<a>${sectionInstance.section.sectionName}</a>
-						</li>
-
-					</c:forEach>
-				</ul>
-			</div>
-
-			<c:choose>
-				<c:when
-					test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='MCQ' || currentQuestion.questionMapperInstance.questionMapper.question.type ==null}">
-
-					<div class="queanscenter" id="section1_content">
-						<div class="queprogress">
-							<span style="float: left; width: 100%;">${noAnswered} of
-								${totalQuestions} answered</span>
-							<div class="progressing">
-								<span style="width: ${percentage}%;"></span>
-							</div>
-							<span class="quepercent">${percentage}%</span>
+										</c:forEach>
+								</ul>
 						</div>
 
-						<div class="questionname">
-							<div class="verticalline"></div>
-							<div class="queno">
-								<span>${currentQuestion.position}</span>
-							</div>
-							<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>
+						<c:choose>
+								<c:when
+										test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='MCQ' || currentQuestion.questionMapperInstance.questionMapper.question.type ==null}">
 
-							<div class="answers">
-								<ul>
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
+										<div class="queanscenter" id="section1_content">
+												<div class="queprogress">
+														<span style="float: left; width: 100%;">${noAnswered} of ${totalQuestions}
+																answered</span>
+														<div class="progressing">
+																<span style="width: ${percentage}%;"></span>
+														</div>
+														<span class="quepercent">${percentage}%</span>
+												</div>
 
-		                  	currentQuestion.questionMapperInstance.questionMapper.question.choice1.trim().length() == 0? 'display: none;':'clear:left; font-size: 14px;'}">
+												<div class="questionname">
+														<div class="verticalline"></div>
+														<div class="queno">
+																<span>${currentQuestion.position}</span>
+														</div>
+														<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>
 
-										<form:checkbox path="one" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice1}
-									</li>
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice2 == null || 
+														<div class="answers">
+																<ul>
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
 
-			     currentQuestion.questionMapperInstance.questionMapper.question.choice2.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+			currentQuestion.questionMapperInstance.questionMapper.question.choice1.trim().length() == 0? 'display: none;':'clear:left; font-size: 14px;'}">
 
-										<form:checkbox path="two" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice2}
-									</li>
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice3 == null || 
+																				<form:checkbox path="one" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice1}
+																		</li>
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice2 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice2.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+
+																				<form:checkbox path="two" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice2}
+																		</li>
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice3 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice3.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-										<form:checkbox path="three" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice3}
-									</li>
+																				<form:checkbox path="three" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice3}
+																		</li>
 
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice4 == null || 
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice4 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice4.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-										<form:checkbox path="four" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice4}
-									</li>
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice5 == null || 
+																				<form:checkbox path="four" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice4}
+																		</li>
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice5 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice5.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-										<form:checkbox path="five" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice5}
-									</li>
-									<li
-										style="${currentQuestion.questionMapperInstance.questionMapper.question.choice6 == null || 
+																				<form:checkbox path="five" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice5}
+																		</li>
+																		<li
+																				style="${currentQuestion.questionMapperInstance.questionMapper.question.choice6 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice6.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-										<form:checkbox path="six" />
-										${currentQuestion.questionMapperInstance.questionMapper.question.choice6}
-									</li>
-								</ul>
-							</div>
+																				<form:checkbox path="six" />
+																				${currentQuestion.questionMapperInstance.questionMapper.question.choice6}
+																		</li>
+																</ul>
+														</div>
 
 
 
-						</div>
-				</c:when>
-				<c:when
-					test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='CODING'}">
+												</div>
+								</c:when>
+								<c:when
+										test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='CODING'}">
 
 
-					<!--Code for coding Q -->
-					<div class="queanscenter" id="section2_content">
+										<!--Code for coding Q -->
+										<div class="queanscenter" id="section2_content">
 
-						<div class="col-md-12">
-							<div class="col-md-7 leftside">
-								<b>Java</b> <a class="runcode"
-									href="javascript:runCodeSystemTestCase();">Run System Test
-									Case </a> <a class="runcode" href="javascript:runCode();">Run
-									Code</a> <label>Code</label>
+												<div class="col-md-12">
+														<div class="col-md-7 leftside">
+																<b>Java</b> <a class="runcode" href="javascript:runCodeSystemTestCase();">Run
+																		System Test Case </a> <a class="runcode" href="javascript:runCode();">Run Code</a> <label>Code</label>
 
-								<form:textarea id="editor" path="code" />
-								<form:hidden path="code" id="codeOfEditor" />
-
-
-
-
-
-								<label>Input</label>
-								<form:textarea path="input" style="height:30px" id="input"
-									placeholder="Enter input" />
-
-								<label>Output</label>
-								<form:textarea style="overflow-y: scroll" path="output"
-									id="output" disabled="true" />
-							</div>
-							<div class="col-md-5 rightside">
-								<div class="description">
-									<label>DESCRIPTION</label>
-									<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
-									<code> Update code in Code Editor </code>
-									<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
-									<h4>Constraint</h4>
-									<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
-
-									<h4>Input</h4>
-									<code>
-										${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}
-									</code>
-
-									<h4>Output</h4>
-									<code>
-										${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}
-									</code>
-
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-
-				</c:when>
-			</c:choose>
+																<form:textarea id="editor" path="code" />
+																<form:hidden path="code" id="codeOfEditor" />
 
 
 
 
 
-		</div>
+																<label>Input</label>
+																<form:textarea path="input" style="height:30px" id="input" placeholder="Enter input" />
+
+																<label>Output</label>
+																<form:textarea style="overflow-y: scroll" path="output" id="output" disabled="true" />
+														</div>
+														<div class="col-md-5 rightside">
+																<div class="description">
+																		<label>DESCRIPTION</label>
+																		<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
+																		<code> Update code in Code Editor </code>
+																		<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
+																		<h4>Constraint</h4>
+																		<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
+
+																		<h4>Input</h4>
+																		<code>
+																				${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}
+																		</code>
+
+																		<h4>Output</h4>
+																		<code>
+																				${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}
+																		</code>
+
+																</div>
+														</div>
+												</div>
+
+										</div>
 
 
-		<!-- <div class="flagdiv">
+								</c:when>
+						</c:choose>
+
+
+
+
+
+				</div>
+
+
+				<!-- <div class="flagdiv">
 				<a href="#"><i class="fa fa-flag-checkered"></i>FLAG</a>
 			</div> -->
 
+				</div>
+
+
+				<div class="flagdiv">
+						<a href="#"><i class="fa fa-flag-checkered"></i>FLAG</a>
+				</div>
+
+				</div>
+
+				<!--  End code for coding Q-->
+
+
+				<div class="backprevbtn">
+
+						<div class="center">
+								<c:choose>
+										<c:when test="${currentSection.first==true}">
+										</c:when>
+										<c:otherwise>
+												<a class="back" href="javascript:prev();">Back</a>
+												<!-- <i class="fa fa-long-arrow-left"></i> -->
+										</c:otherwise>
+								</c:choose>
+								<c:choose>
+										<c:when test="${currentSection.last==true}">
+
+												<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
+										</c:when>
+										<c:otherwise>
+												<a class="next" href="javascript:next();" id="next">Next</a>
+												<!-- <i class="fa fa-long-arrow-right"></i>-->
+										</c:otherwise>
+								</c:choose>
+						</div>
+				</div>
+		</form:form>
+		<div class="logincopyright">
+				<div class="col-md-12">
+						<p>Copyrigh Â© 2018 IIHT. All Rights Reserved â Privacy Policy For enterprise solutions</p>
+				</div>
 		</div>
 
-
-		<div class="flagdiv">
-			<a href="#"><i class="fa fa-flag-checkered"></i>FLAG</a>
-		</div>
-
-		</div>
-
-		<!--  End code for coding Q-->
-
-
-		<div class="backprevbtn">
-
-			<div class="center">
-				<c:choose>
-					<c:when test="${currentSection.first==true}">
-					</c:when>
-					<c:otherwise>
-						<a class="back" href="javascript:prev();">Back</a>
-						<!-- <i class="fa fa-long-arrow-left"></i> -->
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${currentSection.last==true}">
-
-						<a class="next" href="javascript:submitTest();" id="next">SUBMIT
-							TEST</a>
-					</c:when>
-					<c:otherwise>
-						<a class="next" href="javascript:next();" id="next">Next</a>
-						<!-- <i class="fa fa-long-arrow-right"></i>-->
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div>
-	</form:form>
-	<div class="logincopyright">
-		<div class="col-md-12">
-			<p>Copyrigh Â© 2018 IIHT. All Rights Reserved â Privacy Policy
-				For enterprise solutions</p>
-		</div>
-	</div>
-
-	<!-- <script src="js/jquery.min.js"></script>
+		<!-- <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script> -->
 
-	<!-- <script>
+		<!-- <script>
 			$(document).ready(function(){
 				$('.questionname .answers input').change(function(){
 					$('.backprevbtn .center a.next').show();
@@ -447,7 +432,7 @@ body * {
 			});
 		</script> -->
 
-	<script>
+		<script>
 	    var editor = ace.edit("editor");
 	    editor.setTheme("ace/theme/solarized_light");
 	   //editor.setTheme("ace/theme/theme-github");
@@ -464,7 +449,7 @@ body * {
 
 	</script>
 
-	<style>
+		<style>
 .ace_editor div {
 	font: inherit !important
 }
@@ -484,17 +469,27 @@ body * {
 	font-family: monospace !important
 }
 editor
+
+
 .container
+
+
 .style
+
+
 .fontFamily
+
  
+
 =
 "
 monospace
+
+
 ";
 </style>
 
-	<script>
+		<script>
 	function changeSection(sectionName){
 		window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
 		localStorage.setItem('timeCounter', timeCounter);
@@ -648,18 +643,18 @@ monospace
 
 	</script>
 
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
 
-		<!-- Modal content -->
-		<div class="modal-content">
-			<span class="close">&times;</span>
-			<p id="showAlert">Some text in the Modal..</p>
+				<!-- Modal content -->
+				<div class="modal-content">
+						<span class="close">&times;</span>
+						<p id="showAlert">Some text in the Modal..</p>
+				</div>
+
 		</div>
 
-	</div>
-
-	<script>
+		<script>
 		// Get the modal
 		var modal = document.getElementById('myModal');
 
