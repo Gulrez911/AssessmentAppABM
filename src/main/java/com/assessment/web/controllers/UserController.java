@@ -333,7 +333,20 @@ Logger logger =LoggerFactory.getLogger(UserController.class);
 	  public ModelAndView listUsers(HttpServletResponse response, HttpServletRequest request ) throws Exception {
 		 User user = (User) request.getSession().getAttribute("user");
 		 List<User> users = userService.findByCompany(user.getCompanyId());
-		 ModelAndView mav = new ModelAndView("add_user");
+		 ModelAndView mav = new ModelAndView("add_user2");
+		 mav.addObject("users", users);
+		 User usr = new User();
+		 usr.setCompanyId(user.getCompanyId());
+		 usr.setCompanyName(user.getCompanyName());
+		 mav.addObject("usr", usr);
+		 return mav;
+		}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	  public ModelAndView addUser(HttpServletResponse response, HttpServletRequest request ) throws Exception {
+		 User user = (User) request.getSession().getAttribute("user");
+		 List<User> users = userService.findByCompany(user.getCompanyId());
+		 ModelAndView mav = new ModelAndView("add_user3");
 		 mav.addObject("users", users);
 		 User usr = new User();
 		 usr.setCompanyId(user.getCompanyId());
@@ -346,7 +359,7 @@ Logger logger =LoggerFactory.getLogger(UserController.class);
 	  public ModelAndView searchUsers(@RequestParam String searchText, HttpServletResponse response, HttpServletRequest request ) throws Exception {
 		 User user = (User) request.getSession().getAttribute("user");
 		 List<User> users = userService.searchUsers(user.getCompanyId(), searchText);
-		 ModelAndView mav = new ModelAndView("add_user");
+		 ModelAndView mav = new ModelAndView("add_user2");
 		 mav.addObject("users", users);
 		 User usr = new User();
 		 usr.setCompanyId(user.getCompanyId());
@@ -358,7 +371,7 @@ Logger logger =LoggerFactory.getLogger(UserController.class);
 	 @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
 	  public ModelAndView saveUser(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("usr") User usr) {
 		 User user = (User) request.getSession().getAttribute("user");
-		 ModelAndView mav= new ModelAndView("add_user");
+		 ModelAndView mav= new ModelAndView("add_user2");
 		 usr.setCompanyId(user.getCompanyId());
 		 usr.setCompanyName(user.getCompanyName());
 		 userService.saveOrUpdate(usr);

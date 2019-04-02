@@ -169,9 +169,9 @@
 																				<form:input path="question.choice1" name="choice1" id="choice1" required="true" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																				<form:checkbox path="question.one" id="one1" class="filled-in" label=""/>
-<!-- 																					<input type="checkbox" id="one1" name="one" value="true" class="filled-in" />  -->
-<!-- 																				<label for="one1"></label> -->
+																				<form:checkbox path="question.one" id="one1" class="filled-in" label="" />
+																				<!-- 																					<input type="checkbox" id="one1" name="one" value="true" class="filled-in" />  -->
+																				<!-- 																				<label for="one1"></label> -->
 																		</div>
 																</div>
 																<div class="col-md-12">
@@ -180,10 +180,10 @@
 																				<form:input path="question.choice2" name="choice2" id="choice2" required="true" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																			<form:checkbox path="question.two" id="two1" label=""/>
-<!-- 																				<input type="checkbox" id="two1" name="two" value="true" class="filled-in" /> -->
-<!-- 																				 <label -->
-<!-- 																						for="two1"></label> -->
+																				<form:checkbox path="question.two" id="two1" label="" />
+																				<!-- 																				<input type="checkbox" id="two1" name="two" value="true" class="filled-in" /> -->
+																				<!-- 																				 <label -->
+																				<!-- 																						for="two1"></label> -->
 																		</div>
 																</div>
 																<div class="col-md-12">
@@ -192,9 +192,9 @@
 																				<form:input path="question.choice3" name="choice3" id="choice3" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																		<form:checkbox path="question.three" label="" id="three1"/>
-<!-- 																				<input type="checkbox" id="three1" name="three" value="true" class="filled-in" /> -->
-<!-- 																				<label for="three1"></label> -->
+																				<form:checkbox path="question.three" label="" id="three1" />
+																				<!-- 																				<input type="checkbox" id="three1" name="three" value="true" class="filled-in" /> -->
+																				<!-- 																				<label for="three1"></label> -->
 																		</div>
 																</div>
 																<div class="col-md-12">
@@ -203,9 +203,9 @@
 																				<form:input path="question.choice4" name="choice4" id="choice4" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																				<form:checkbox path="question.four" id="four1" label=""/>
-<!-- 																				<input type="checkbox" id="four1" name="four" value="true" class="filled-in" /> -->
-<!-- 																				<label for="four1"></label> -->
+																				<form:checkbox path="question.four" id="four1" label="" />
+																				<!-- 																				<input type="checkbox" id="four1" name="four" value="true" class="filled-in" /> -->
+																				<!-- 																				<label for="four1"></label> -->
 																		</div>
 																</div>
 																<div class="col-md-12">
@@ -214,9 +214,9 @@
 																				<form:input path="question.choice5" name="choice5" id="choice5" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																		<form:checkbox path="question.five" id="five1" label=""/>
-<!-- 																				<input type="checkbox" id="five1" name="five" value="true" class="filled-in" /> -->
-<!-- 																				<label for="five1"></label> -->
+																				<form:checkbox path="question.five" id="five1" label="" />
+																				<!-- 																				<input type="checkbox" id="five1" name="five" value="true" class="filled-in" /> -->
+																				<!-- 																				<label for="five1"></label> -->
 																		</div>
 																</div>
 																<div class="col-md-12">
@@ -225,9 +225,9 @@
 																				<form:input path="question.choice6" name="choice6" id="choice6" />
 																		</div>
 																		<div class="col-md-3 text-center">
-																			<form:checkbox path="question.six" id="six1" label=""/>
-<!-- 																				<input type="checkbox" id="six1" name="six" value="true" class="filled-in" /> <label -->
-<!-- 																						for="six1"></label> -->
+																				<form:checkbox path="question.six" id="six1" label="" />
+																				<!-- 																				<input type="checkbox" id="six1" name="six" value="true" class="filled-in" /> <label -->
+																				<!-- 																						for="six1"></label> -->
 																		</div>
 																</div>
 														</div>
@@ -370,7 +370,7 @@
 
 
 												<div class="input-field">
-														<textarea name="instructionsIfAny" id="output" class="materialize-textarea"></textarea>
+														<form:textarea path="question.instructionsIfAny" id="output" class="materialize-textarea"/>
 														<label for="output">Instructions, if any</label>
 												</div>
 

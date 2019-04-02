@@ -44,6 +44,8 @@
 <spring:url value="/resources/assets/style.css" var="c12" />
 
 <link href="${c12}" rel="stylesheet" type="text/css" />
+
+
 <script type="text/javascript">
 		var active = 'true';
 		var studentNameTaken = localStorage.getItem('${studentTestForm.firstName}${studentTestForm.lastName}');
@@ -349,7 +351,7 @@ body * {
 																		test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='MCQ' || currentQuestion.questionMapperInstance.questionMapper.question.type ==null}">
 
 
-																	 
+
 																		<section class="padding-bottom-50">
 																				<div class="container">
 																						<div class="row equal-height-row">
@@ -370,22 +372,24 @@ body * {
 																																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice1.trim().length() == 0? 'display: none;':'clear:left; font-size: 14px;'}">
-<%-- 																																<form:checkbox path="one" label="" /> --%>
-<!-- 																																<input id="one1_1" name="one" type="checkbox" value="true"> -->
-<%-- 																																<label><form:checkbox path="one" label=""/></label> --%>
+																																<%-- 																																<form:checkbox path="one" label="" /> --%>
+																																<!-- 																																																																																																<input id="one1_1" name="one" type="checkbox" value="true"> -->
+																																<%-- 																																<label><form:checkbox path="one" label=""/></label> --%>
 																																<label for="one1_1"
-																																style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox path="one" label=""/>
-																																		${currentQuestion.questionMapperInstance.questionMapper.question.choice1}</label>
-																																<input type="hidden" name="_one_1" value="on">
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																																		<form:checkbox path="one" label="" id="one1_1" />
+																																		${currentQuestion.questionMapperInstance.questionMapper.question.choice1}
+																														</label> <input type="hidden" name="_one_1" value="on">
 																														</li>
 																														<li
 																																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice2 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice2.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
 																																<%-- 																																<form:checkbox path="two" />  --%>
-<!-- 																																<input id="two1_1" name="two" type="checkbox" value="true"> -->
+																																<!-- 																																																																<input id="two1_1" name="two" type="checkbox" value="true"> -->
 																																<label for="two1_1"
-																																style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox path="two" label=""/>
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																																		<form:checkbox path="two" label="" id="two1_1" />
 																																		${currentQuestion.questionMapperInstance.questionMapper.question.choice2}
 																														</label>
 																														</li>
@@ -393,10 +397,11 @@ body * {
 																																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice3 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice3.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-<!-- 																																<input id="three1_1" name="three" type="checkbox" value="true"> -->
-																																<%-- 																																<form:checkbox path="three" /> --%>
+																																<!-- 																																																																<input id="three1_1" name="three" type="checkbox" value="true"> -->
+																																<%-- 																																																																<form:checkbox path="three" /> --%>
 																																<label for="three1_1"
-																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">	<form:checkbox path="three" label=""/>
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																																		<form:checkbox path="three" label="" id="three1_1" />
 																																		${currentQuestion.questionMapperInstance.questionMapper.question.choice3}
 																														</label>
 																														</li>
@@ -406,9 +411,10 @@ body * {
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice4.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
 																																<%-- 																																<form:checkbox path="four" /> --%>
-<!-- 																																<input id="four1_1" name="four" type="checkbox" value="true"> -->
+																																<!-- 																																																																<input id="four1_1" name="four" type="checkbox" value="true"> -->
 																																<label for="four1_1"
-																																style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox path="four" label=""/>
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																																		<form:checkbox path="four" label="" id="four1_1" />
 																																		${currentQuestion.questionMapperInstance.questionMapper.question.choice4}
 																														</label>
 																														</li>
@@ -416,15 +422,17 @@ body * {
 																																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice5 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice5.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-																																<form:checkbox path="five" />
-																																${currentQuestion.questionMapperInstance.questionMapper.question.choice5}
+																																<label for="five1_1"
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox path="five" label="" id="five1_1"/>
+																																${currentQuestion.questionMapperInstance.questionMapper.question.choice5}</label>
 																														</li>
 																														<li
 																																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice6 == null || 
 
 			currentQuestion.questionMapperInstance.questionMapper.question.choice6.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-																																<form:checkbox path="six" />
-																																${currentQuestion.questionMapperInstance.questionMapper.question.choice6}
+																																<label for="six1_1"
+																																style="font-size: 15px; font-weight: normal; color: #0d0d0d">	<form:checkbox path="six" label=" " id="six1_1"/>
+																																${currentQuestion.questionMapperInstance.questionMapper.question.choice6}</label>
 																														</li>
 																												</ul>
 																										</div>
@@ -450,15 +458,9 @@ body * {
 
 																						<%-- 																						<form:textarea id="editor" path="code" wrap="physical" /> --%>
 																						<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
-<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
-																				<form:textarea id="editor" path="code" wrap="physical" />
-																				 <input type="hidden" id="codeOfEditor" name="code" value="3487"/>
-
-
-
-
-
-																						<label>Input</label>
+																						<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
+																						<form:textarea id="editor" path="code" wrap="physical" />
+																						<input type="hidden" id="codeOfEditor" name="code" value="3487" /> <label>Input</label>
 																						<form:textarea path="input" style="height:30px" id="input"
 																								placeholder="Enter input" />
 
@@ -488,6 +490,79 @@ body * {
 																						</div>
 																				</div>
 																		</div>
+																</c:when>
+																<c:when
+																		test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='FULL_STACK_JAVA'}">
+
+
+
+																		<div class="queanscenter" id="section3_content">
+
+																				<div class="col-md-12">
+																						<div class="col-md-7 leftside">
+																								<b>${currentQuestion.questionMapperInstance.questionMapper.question.qualifier1}
+																										${currentQuestion.questionMapperInstance.questionMapper.question.qualifier2}
+																										${currentQuestion.questionMapperInstance.questionMapper.question.qualifier3}
+																										${currentQuestion.questionMapperInstance.questionMapper.question.qualifier4}
+																										${currentQuestion.questionMapperInstance.questionMapper.question.qualifier5}</b>
+																								&nbsp; &nbsp; &nbsp;
+																								<c:if
+																										test="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
+																										<img
+																												src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}"
+																												height="400" width="500">
+																								</c:if>
+
+																								<c:if
+																										test="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
+							   &nbsp; &nbsp; &nbsp;  <audio controls
+																												src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
+																												Your browser does not support the
+																												<code>audio</code>
+																												element.
+																										</audio>
+
+																								</c:if>
+
+																								<c:if
+																										test="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
+								&nbsp; &nbsp; &nbsp; <video width="400" height="300" controls>
+																												<source
+																														src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}">
+
+																												Your browser does not support the video tag.
+																										</video>
+																								</c:if>
+
+																								<br /> <label>Click to Open</label> <a href="javascript:showAndNavigate();">Open
+																										Project Documentation Template</a> <br /> <label>Click to Open</label> <a
+																										href="${currentQuestion.questionMapperInstance.workspaceUrl}"
+																										target="_blank">Open Code IDE in new Window</a> <br /> <label>Upload
+																										Project Documentation</label> <a class="addimage" href="#">Upload
+																										Documentation</a> <input type="file" name="addimage" id="addimage"
+																										style="display: none;"> <label class="queimage"></label> <br /> <a
+																										class="runcode"
+																										href="javascript:confirmWorkspace('${currentQuestion.questionMapperInstance.id}');">Submit
+																										my Workspace </a>
+																						</div>
+																						<div class="col-md-5 rightside">
+																								<div class="description">
+																										<label>DESCRIPTION</label>
+																										<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
+																										<code> Click on 'Open Code IDE..' to start coding. </code>
+																										<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
+																										<h4>Constraint</h4>
+																										<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
+
+
+
+																								</div>
+																						</div>
+																				</div>
+
+																		</div>
+
+
 																</c:when>
 														</c:choose>
 
@@ -747,160 +822,510 @@ body * {
 		<script src="${mainJs16}"></script>
 		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 		<script src="${mainJs17}"></script>
+		<spring:url value="/resources/scripts/src-min-noconflict/ace.js" var="mainJs18" />
+		<script src="${mainJs18}"></script>
+		<spring:url value="/resources/scripts/html2canvas.js" var="mainJs19" />
+		<script src="${mainJs19}"></script>
 
 		<script>
-						function changeSection(sectionName){
-							window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
-							localStorage.setItem('timeCounter', timeCounter);
-						}
-						
-						function runCode(){
-						//editor
-						//var editor = ace.edit("editor");
-						var code = editor.getValue();
-						var input = document.getElementById('input').value;
-						var lang = '8';
-						var url = 'compile';
-						var data = {}; 
-						data.language = lang;
-						data.code = code;
-						data.stdin = input;
-						//var json = "{language:"+lang+", code:"+code+", stdin:"+input+"}";
-						document.getElementById('output').value = 'Executing your code...';	
-						document.getElementById("output").focus();
-						document.getElementById("output").scrollIntoView();
-						dta = JSON.stringify(data);
-						//dta = dta.slice(1,-1);
-						//dat = "'"+dta+"'";
-							$.ajax({
-									type : 'POST',
-									url : url,
-									contentType: "application/json; charset=utf-8",
-									data: dta,
-									success : function(data) {
-										
-										document.getElementById('output').value = data;
-										//document.getElementById('output').value = 'eee';
-										console.log("SUCCESS: ", data);
-									},
-									error : function(e) {
-										console.log("ERROR: ", e);
-										
-									}
-								});
-						}
-						
-						function runCodeSystemTestCase(){
-							//var editor = ace.edit("editor");
-						var code = editor.getValue();
-						var input = '${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}';
-						document.getElementById('input').value = input;
-						var lang = '8';
-						var url = 'compileAndRunSystemTest';
-						
-						var data = {}; 
-						data.language = lang;
-						data.code = code;
-						data.stdin = input;
-						document.getElementById('output').value = 'Executing your code...';	
-						document.getElementById("output").focus();
-						document.getElementById("output").scrollIntoView();
-						dta = JSON.stringify(data);
-						
-							$.ajax({
-									type : 'POST',
-									url : url,
-									contentType: "application/json; charset=utf-8",
-									data: dta,
-									success : function(data) {
-										console.log("SUCCESS: ", data);
-										//document.getElementById('output').value = data;
-										if(data == '${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}'){
-											document.getElementById('output').value = (data + '\n' +'SUCCESS');
-										}
-										else{
-										document.getElementById('output').value = (data + '\n' +'FAILED');
-										}
-										
-									},
-									error : function(e) {
-										console.log("ERROR: ", e);
-										
-									}
-								});
-						}
-						
-						function next(){
-						var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
-						if(qType == 'CODING'){
-							var textarea = document.getElementById('codeOfEditor');
-					 		edt = editor.getSession().getValue();
-							textarea.value = edt;
-						}
-					 
-					//edt.value = editor.getSession().getValue();
-						var linktext=document.getElementById('next').text;
-							if(linktext == 'Finish Test'){
-							submitTest();
-							}
-							else{
-							document.testForm.action = "nextQuestion?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
-							storeTimeLocal();
-						 document.testForm.submit();
-							}
-						
-						}
-						
-						function prev(){
-						var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
-						if(qType == 'CODING'){
-							var textarea = document.getElementById('codeOfEditor');
-					 		edt = editor.getSession().getValue();
-							textarea.value = edt;
-						}
-						//var textarea = document.getElementById('codeOfEditor');
-					 	//edt = editor.getSession().getValue();
-						//textarea.value = edt;
-						document.testForm.action = "prevQuestion?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
-						storeTimeLocal();
-						document.testForm.submit();
-						}
-						
-						function submitTest(){
-						var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
-						if(qType == 'CODING'){
-							var textarea = document.getElementById('codeOfEditor');
-					 		edt = editor.getSession().getValue();
-							textarea.value = edt;
-						}
-						//var textarea = document.getElementById('codeOfEditor');
-					 	//edt = editor.getSession().getValue();
-						//textarea.value = edt;
-						document.testForm.action = "submitTest?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
-						resetTimeLocal();
-						//modal.style.display = "block";
-						//document.getElementById("showAlert").innerHTML = 'You have exceeded your time limit to complete the test. The test will auto submit in a moment...';
-						document.testForm.submit();
-						submitTest = 'true';
-						
-						}
-						
-						function storeTimeLocal(){
-						localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'yes');
-						localStorage.setItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}', '${studentTestForm.firstName}${studentTestForm.lastName}-'+
+	    var editor = ace.edit("editor");
+	    editor.setTheme("ace/theme/solarized_light");
+	   //editor.setTheme("ace/theme/theme-github");
+	   
+	   var language = '${currentQuestion.questionMapperInstance.questionMapper.question.language.language}';
+		if(language == 'JAVA'){
+			editor.session.setMode("ace/mode/java");
+		}
+		else if(language == 'C'){
+			editor.session.setMode("ace/mode/c_cpp");
+		}
+		else if(language == 'C++'){
+			editor.session.setMode("ace/mode/c_cpp");
+		}
+		else if(language == 'C#'){
+			editor.session.setMode("ace/mode/csharp");
+		}
+		else if(language == 'PYTHON'){
+			editor.session.setMode("ace/mode/python");
+		}
+	    
+		
+		editor.setValue('${currentQuestion.code}');
+	    editor.setOptions({
+	   enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
+	   enableLiveAutocompletion: true, // the editor completes the statement while you are typing
+	   showPrintMargin: false, // hides the vertical limiting strip
+	   maxLines: Infinity,
+	   fontSize: "100%" // ensures that the editor fits in the environment
+	});
 
-					'${studentTestForm.testName}');
-						localStorage.setItem('timeCounter-${studentTestForm.firstName}${studentTestForm.lastName}', timeCounter);
-						}
-						
-						function resetTimeLocal(){
-						localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'no');
-						localStorage.setItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}', null);
-						localStorage.setItem('timeCounter-${studentTestForm.firstName}${studentTestForm.lastName}', 0);
-						}
-						
+	</script>
 
-						</script>
+		<style>
+.ace_editor div {
+	font: inherit !important
+}
+
+#editor {
+	height: 400px;
+	width: 100%;
+	color: #000;
+	margin: 0;
+}
+
+#editor {
+	font-family: monospace
+}
+
+.ace_editor {
+	font-family: monospace !important
+}
+editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.style
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fontFamily
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+=
+"
+monospace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+";
+</style>
+
+		<script>
+	$(function () {
+                $(".addimage").on('click', function (e) {
+                    e.preventDefault();
+                    $("#addimage").trigger('click');
+                });
+               
+            });
+	
+	 $('#addimage').change(function () {
+                var file = $('#addimage')[0].files[0].name;
+                $('.queimage').text('Document to upload: '+file);
+				uploadProjectDocs();
+            });
+
+	function changeSection(sectionName){
+		//window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
+		//localStorage.setItem('timeCounter', timeCounter);
+		var tp = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
+			if(tp == 'CODING'){
+				confirm(sectionName);
+			}
+			else{
+				window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
+				localStorage.setItem('timeCounter', timeCounter);
+			}
+		
+	}
+	
+	function get_center_pos(width, top){
+    // top is empty when creating a new notification and is set when recentering
+		if (!top){
+			top = 30;
+			// this part is needed to avoid notification stacking on top of each other
+			$('.ui-pnotify').each(function() { top += $(this).outerHeight() + 20; });
+		}
+
+		return {"top": top, "left": ($(window).width() / 2) - (width / 2)}
+	}
+	
+	function confirm(sectionName) {
+           (new PNotify({
+		    title: 'Confirmation Needed',
+		    text: 'For a coding Question if you change a section you may loose your changes. Either copy your code somewhere and then change section or use Next/Back to navigate',
+		    icon: 'glyphicon glyphicon-question-sign',
+		    hide: false,
+		    confirm: {
+			confirm: true
+		    },
+		    buttons: {
+			closer: false,
+			sticker: false
+		    },
+		    history: {
+			history: false
+		    },
+			 before_open: function (PNotify) {
+            PNotify.get().css(get_center_pos(PNotify.get().width()));
+			}
+		})).get().on('pnotify.confirm', function() {
+		   window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
+			localStorage.setItem('timeCounter', timeCounter);
+		}).on('pnotify.cancel', function() {
+		   
+		});
+    }
+	
+	function runCode(){
+	//editor
+	//var editor = ace.edit("editor");
+	var code = editor.getValue();
+	var input = document.getElementById('input').value;
+	var lang = '8';
+	var language = '${currentQuestion.questionMapperInstance.questionMapper.question.language.language}';
+		if(language == 'JAVA'){
+			lang = '8';
+		}
+		else if(language == 'C'){
+			lang = '7';
+		}
+		else if(language == 'CPLUSPLUS'){
+			lang = '7';
+		}
+		else if(language == 'CHASH'){
+			lang = '10';
+		}
+		else if(language == 'DotNet'){
+			lang = '10';
+		}
+		else if(language == 'PYTHON'){
+			lang = '0';
+		}
+	
+	var url = 'compile';
+	var data = {}; 
+	data.language = lang;
+	data.code = code;
+	data.stdin = input;
+	//var json = "{language:"+lang+", code:"+code+", stdin:"+input+"}";
+	document.getElementById('output').value = 'Executing your code...';	
+	document.getElementById("output").focus();
+	document.getElementById("output").scrollIntoView();
+	dta = JSON.stringify(data);
+	//dta = dta.slice(1,-1);
+	//dat = "'"+dta+"'";
+		$.ajax({
+				type : 'POST',
+				url : url,
+				contentType: "application/json; charset=utf-8",
+				data: dta,
+				success : function(data) {
+					
+					document.getElementById('output').value = data;
+					//document.getElementById('output').value = 'eee';
+					console.log("SUCCESS: ", data);
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+					
+				}
+			});
+	}
+	
+	function runCodeSystemTestCase(){
+		//var editor = ace.edit("editor");
+	var code = editor.getValue();
+	var input = '${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}';
+	document.getElementById('input').value = input;
+	var lang = '8';
+	var language = '${currentQuestion.questionMapperInstance.questionMapper.question.language.language}';
+		if(language == 'JAVA'){
+			lang = '8';
+		}
+		else if(language == 'C'){
+			lang = '7';
+		}
+		else if(language == 'CPLUSPLUS'){
+			lang = '7';
+		}
+		else if(language == 'CHASH'){
+			lang = '10';
+		}
+		else if(language == 'DotNet'){
+			lang = '10';
+		}
+		else if(language == 'PYTHON'){
+			lang = '0';
+		}
+	
+	var url = 'compileAndRunSystemTest';
+	
+	var data = {}; 
+	data.language = lang;
+	data.code = code;
+	data.stdin = input;
+	document.getElementById('output').value = 'Executing your code...';	
+	document.getElementById("output").focus();
+	document.getElementById("output").scrollIntoView();
+	dta = JSON.stringify(data);
+	
+		$.ajax({
+				type : 'POST',
+				url : url,
+				contentType: "application/json; charset=utf-8",
+				data: dta,
+				success : function(data) {
+					console.log("SUCCESS: ", data);
+					//document.getElementById('output').value = data;
+					if(data == '${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}'){
+						document.getElementById('output').value = (data + '\n' +'SUCCESS');
+					}
+					else{
+					document.getElementById('output').value = (data + '\n' +'FAILED');
+					}
+					
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+					
+				}
+			});
+	}
+	
+	function next(){
+	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
+	if(qType == 'CODING'){
+		var textarea = document.getElementById('codeOfEditor');
+ 		edt = editor.getSession().getValue();
+		textarea.value = edt;
+	}
+ 
+//edt.value = editor.getSession().getValue();
+	var linktext=document.getElementById('next').text;
+		if(linktext == 'Finish Test'){
+		submitTest();
+		}
+		else{
+		document.testForm.action = "nextQuestion?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
+		storeTimeLocal();
+	 document.testForm.submit();
+		}
+	
+	}
+	
+	function prev(){
+	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
+	if(qType == 'CODING'){
+		var textarea = document.getElementById('codeOfEditor');
+ 		edt = editor.getSession().getValue();
+		textarea.value = edt;
+	}
+	
+	document.testForm.action = "prevQuestion?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
+	storeTimeLocal();
+	document.testForm.submit();
+	}
+	
+	function submitTest(){
+	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
+	if(qType == 'CODING'){
+		var textarea = document.getElementById('codeOfEditor');
+ 		edt = editor.getSession().getValue();
+		textarea.value = edt;
+	}
+	//var textarea = document.getElementById('codeOfEditor');
+	//edt = editor.getSession().getValue();
+	//textarea.value = edt;
+	document.testForm.action = "submitTest?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
+	resetTimeLocal();
+	//modal.style.display = "block";
+	//document.getElementById("showAlert").innerHTML = 'You have exceeded your time limit to complete the test. The test will auto submit in a moment...';
+	document.testForm.submit();
+	submitTest = 'true';
+	
+	}
+	
+	function storeTimeLocal(){
+	localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'yes');
+	localStorage.setItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}', '${studentTestForm.firstName}${studentTestForm.lastName}-'+
+
+'${studentTestForm.testName}');
+	localStorage.setItem('timeCounter-${studentTestForm.firstName}${studentTestForm.lastName}', timeCounter);
+	}
+	
+	function resetTimeLocal(){
+	localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'no');
+	localStorage.setItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}', null);
+	localStorage.setItem('timeCounter-${studentTestForm.firstName}${studentTestForm.lastName}', 0);
+	}
+	
+	function confirmWorkspace(qMapperInstanceId){
+		(new PNotify({
+		    title: 'Confirmation Needed',
+		    text: 'Are you sure you have uploaded the project documentation. Your reviewer may take a dim view of your efforts if no documentation is found? If yes you can submit the workspace?',
+		    icon: 'glyphicon glyphicon-question-sign',
+		    hide: false,
+		    confirm: {
+			confirm: true
+		    },
+		    buttons: {
+			closer: false,
+			sticker: false
+		    },
+		    history: {
+			history: false
+		    }
+		})).get().on('pnotify.confirm', function() {
+		    submitFullStackCode(qMapperInstanceId);
+		}).on('pnotify.cancel', function() {
+		   
+		});
+	}
+	
+	function showAndNavigate(){
+		(new PNotify({
+		    title: 'About this',
+		    text: 'Yes to this will download a Project Documentation template that you are expected to update and then upload. Kindly make sure the How-to use part is crystal clear for your reviewer to gro through and start your app. Do you want to proceed now?',
+		    icon: 'glyphicon glyphicon-question-sign',
+		    hide: false,
+		    confirm: {
+			confirm: true
+		    },
+		    buttons: {
+			closer: false,
+			sticker: false
+		    },
+		    history: {
+			history: false
+		    }
+		})).get().on('pnotify.confirm', function() {
+		    window.open('http://159.65.148.176/file-server/assessment/docs/Project_ReadMe.docx', '_blank');
+		}).on('pnotify.cancel', function() {
+		   
+		});
+	}
+	
+	
+	function submitFullStackCode(qMapperInstanceId){
+		
+		
+		
+		var url = 'submitFullStackCode?qMapperInstanceId='+qMapperInstanceId;
+	
+	var data = {}; 
+	
+	
+		$.ajax({
+				type : 'GET',
+				url : url,
+				contentType: "application/json; charset=utf-8",
+				data: data,
+				success : function(data) {
+					console.log("SUCCESS: ", data);
+					notify('Information', data);
+					
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+					
+				}
+			});
+	}
+	
+	function uploadProjectDocs(){
+		qMapperInstanceId = '${currentQuestion.questionMapperInstance.id}';
+		 var formData = new FormData();
+		  var file = $('#addimage')[0].files[0];
+		  console.log('1 file is '+file);
+		  if(file != null){
+			formData.append('addimage', file);
+            console.log("form data " + formData);
+            $.ajax({
+                url : 'uploadProjectDocs?qMapperInstanceId='+qMapperInstanceId,
+				enctype: 'multipart/form-data',
+                data : formData,
+                processData : false,
+                contentType : false,
+                type : 'POST',
+                success : function(data) {
+                     notify('Information','Your file has been uploaded. Check this link <br\>-<a href="'+data+'" >Click here</a> ');
+                },
+                error : function(err) {
+                   notify('Information',err);
+                }
+            });
+		  }
+		  else{
+			  notify('Information', 'Kindly upload the Project Documentations word file');
+		  }
+            
+	}
+
+	</script>
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+						<span class="close">&times;</span>
+						<p id="showAlert">Some text in the Modal..</p>
+				</div>
+
+		</div>
+
 		<script>
 		// Get the modal
 		var modal = document.getElementById('myModal');
@@ -923,6 +1348,7 @@ body * {
 				 title: notification,
 				 text: message,
 				 type: messageType,
+				 width: '60%',
 				 styling: 'bootstrap3',
 				 hide: false
 			     });
