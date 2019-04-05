@@ -6215,7 +6215,7 @@ form p:last-child {
 
 /* Unchecked styles */
 [type="checkbox"]:not(:checked) + label:before {
-  top: 0px;
+  top: 16px;
   width: 18px;
   height: 18px;
   border: 2px solid #5a5a5a; }
@@ -6223,7 +6223,7 @@ form p:last-child {
 /* Checked styles */
 [type="checkbox"]:checked + label:before {
   left: -3px;
-  top: -4px;
+  top: 10px;
   width: 12px;
   height: 22px;
   border-top: 2px solid transparent;

@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
+<title>User List</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -100,7 +100,7 @@
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li ><a href="question_list">Question Bank</a></li>
+												<li><a href="question_list">Question Bank</a></li>
 												<li><a href="testlist">Tests</a></li>
 												<li><a href="javascript:void(0)">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
@@ -126,10 +126,15 @@
 														class="material-icons fa fa-plus-circle"></i> Add New</a>
 										</div>
 										<div class="col-md-2">
-												<a href="javascript:showFileDialog();" id="uploadQuestionsLink"
+												<a href="javascript:showFileDialog();" id="uploadUsersLink"
 														class="btn waves-effect waves-light col-md-12"><i
 														class="material-icons fa fa-upload"></i> Import</a>
 										</div>
+
+										<form id="fileFormUsers" method="POST" enctype="multipart/form-data">
+												<input type="file" name="fileFromUserForm" id="fileFromUserForm" style="display: none" />
+										</form>
+
 										<div class="col-md-2">
 												<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 														class="material-icons fa fa-sign-out"></i> Sign Off</a>
@@ -139,9 +144,7 @@
 								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
 
 								<%-- 								</form> --%>
-								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data">
-										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" />
-								</form>
+
 								<div class="col-md-12">
 										<div class="col-md-12">
 												<div class="pagination" style="float: right;">
@@ -238,7 +241,7 @@
 
 
 
-	<footer class="footer footer-four">
+		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
 						<div class="container">
 								<ul>
@@ -304,6 +307,120 @@
 				}
 			});
 		</script>
+		<script>
+			var isXlsx = function(name) {
+				return name.match(/xlsx$/i)
+			};
+
+			$("#btnfile").click(function() {
+				$("#uploadfile").click();
+			});
+
+			function showFileDialog() {
+				$("#fileFromUserForm").click();
+			}
+
+			$(document)
+					.ready(
+							function() {
+
+								var file = $('[name="fileFromUserForm"]');
+								var imgContainer = $('#imgContainer');
+
+								var fileU = document
+										.getElementById('fileFromUserForm');
+								fileU
+										.addEventListener(
+												"change",
+												function() {
+													if (fileU.files.length > 0) {
+														var filename = $
+																.trim(file
+																		.val());
+
+														if (!(isXlsx(filename))) {
+															notify('Error',
+																	'Please select an xlsx file to upload');
+															return;
+														}
+
+														$
+																.ajax(
+																		{
+																			xhr : function() {
+																				var xhr = new window.XMLHttpRequest();
+
+																				return xhr;
+																			},
+																			url : 'uploadUsers',
+																			type : "POST",
+																			data : new FormData(
+																					document
+																							.getElementById("fileFormUsers")),
+																			enctype : 'multipart/form-data',
+																			processData : false,
+																			contentType : false
+																		})
+																.done(
+																		function(
+																				data) {
+																			notify(
+																					'Success',
+																					'File Upload Successful');
+
+																		})
+																.fail(
+																		function(
+																				jqXHR,
+																				textStatus) {
+																			notify(
+																					'Failure',
+																					'File Upload Failed. Please contact Administrator');
+																		});
+														document
+																.getElementById('fileQuestions').value = null;
+														return;
+													}
+
+												});
+
+							});
+
+			$('#search').on('click', function() {
+				var text = document.getElementById("searchText").value;
+				if (text.length != 0) {
+					window.location = "searchUsrs?searchText=" + text;
+				}
+			});
+
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
+			}
+		</script>
+
+		<c:if test="${msgtype != null}">
+				<script>
+					var notification = 'Information';
+					$(function() {
+						new PNotify({
+							title : notification,
+							text : '${message}',
+							type : '${msgtype}',
+							styling : 'bootstrap3',
+							hide : true
+						});
+					});
+				</script>
+		</c:if>
 </body>
 
 </html>

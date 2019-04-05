@@ -413,6 +413,7 @@ public class QuestionController {
 			String contentType = multipartFile.getContentType();
 			InputStream stream = multipartFile.getInputStream();
 			String XmlPath = "C:/Users/user/Desktop/questions.xml";
+//			String XmlPath = "/opt/apache-tomcat-8.5.35/bin/questions.xml";
 			File file = new File(XmlPath);
 //			File file = new File("questions.xml");
 			List<Question> questions = ExcelReader.parseExcelFileToBeans(stream, file);

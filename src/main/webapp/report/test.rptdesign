@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201706222054</property>
-    <list-property name="propertyBindings">
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">7</property>
-        </structure>
-    </list-property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
@@ -61,7 +47,7 @@
             <parameters>
                 <scalar-parameter name="FromDate" id="52">
                     <text-property name="helpText">dd/MM/yyyy</text-property>
-                    <text-property name="promptText">FromDate</text-property>
+                    <text-property name="promptText">FromDate:input date in dd/MM/yyyy</text-property>
                     <property name="valueType">static</property>
                     <property name="isRequired">false</property>
                     <property name="dataType">date</property>
@@ -77,7 +63,7 @@
                 </scalar-parameter>
                 <scalar-parameter name="ToDate" id="53">
                     <text-property name="helpText">dd/MM/yyyy</text-property>
-                    <text-property name="promptText">ToDate</text-property>
+                    <text-property name="promptText">ToDate:input date in dd/MM/yyyy</text-property>
                     <property name="valueType">static</property>
                     <property name="isRequired">false</property>
                     <property name="dataType">date</property>
@@ -107,39 +93,43 @@
                     <list-property name="selectionList">
                         <structure>
                             <property name="value">10</property>
-                            <property name="label">10</property>
+                            <property name="label">10%</property>
                         </structure>
                         <structure>
                             <property name="value">20</property>
-                            <property name="label">20</property>
+                            <property name="label">20%</property>
                         </structure>
                         <structure>
                             <property name="value">30</property>
-                            <property name="label">30</property>
+                            <property name="label">30%</property>
                         </structure>
                         <structure>
                             <property name="value">40</property>
-                            <property name="label">40</property>
+                            <property name="label">40%</property>
                         </structure>
                         <structure>
                             <property name="value">50</property>
-                            <property name="label">50</property>
+                            <property name="label">50%</property>
                         </structure>
                         <structure>
                             <property name="value">70</property>
-                            <property name="label">60</property>
+                            <property name="label">70%</property>
                         </structure>
                         <structure>
                             <property name="value">80</property>
-                            <property name="label">80</property>
+                            <property name="label">80%</property>
                         </structure>
                         <structure>
                             <property name="value">90</property>
-                            <property name="label">90</property>
+                            <property name="label">90%</property>
                         </structure>
                         <structure>
                             <property name="value">100</property>
-                            <property name="label">100</property>
+                            <property name="label">100%</property>
+                        </structure>
+                        <structure>
+                            <property name="value">60</property>
+                            <property name="label">60%</property>
                         </structure>
                     </list-property>
                     <property name="paramType">simple</property>
@@ -160,48 +150,44 @@
                     <property name="distinct">true</property>
                     <list-property name="selectionList">
                         <structure>
-                            <property name="value">0</property>
-                            <property name="label">0</property>
-                        </structure>
-                        <structure>
                             <property name="value">10</property>
-                            <property name="label">10</property>
+                            <property name="label">10%</property>
                         </structure>
                         <structure>
                             <property name="value">20</property>
-                            <property name="label">20</property>
+                            <property name="label">20%</property>
                         </structure>
                         <structure>
                             <property name="value">30</property>
-                            <property name="label">30</property>
+                            <property name="label">30%</property>
                         </structure>
                         <structure>
                             <property name="value">40</property>
-                            <property name="label">40</property>
+                            <property name="label">40%</property>
                         </structure>
                         <structure>
                             <property name="value">50</property>
-                            <property name="label">50</property>
+                            <property name="label">50%</property>
                         </structure>
                         <structure>
                             <property name="value">60</property>
-                            <property name="label">60</property>
+                            <property name="label">60%</property>
                         </structure>
                         <structure>
                             <property name="value">70</property>
-                            <property name="label">70</property>
+                            <property name="label">70%</property>
                         </structure>
                         <structure>
                             <property name="value">80</property>
-                            <property name="label">80</property>
+                            <property name="label">80%</property>
                         </structure>
                         <structure>
                             <property name="value">90</property>
-                            <property name="label">90</property>
+                            <property name="label">90%</property>
                         </structure>
                         <structure>
                             <property name="value">100</property>
-                            <property name="label">100</property>
+                            <property name="label">100%</property>
                         </structure>
                     </list-property>
                     <property name="paramType">simple</property>
@@ -216,7 +202,7 @@
         </parameter-group>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="ass_new" id="4">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="New Server Data Source" id="381">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -234,8 +220,9 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/ass_new</property>
-            <property name="odaUser">root</property>
+            <property name="odaURL">jdbc:mysql://159.65.148.176:3306/new_ass</property>
+            <property name="odaUser">new_ass_user</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">V2VsY29tZUAxMjM=</encrypted-property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -423,54 +410,50 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">ass_new</property>
+            <property name="dataSource">New Server Data Source</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
                     <property name="name">testName</property>
                     <property name="nativeName">testName</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">user</property>
                     <property name="nativeName">user</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">percentageMarksRecieved</property>
                     <property name="nativeName">percentageMarksRecieved</property>
                     <property name="dataType">float</property>
-                    <property name="nativeDataType">7</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">updateDate</property>
                     <property name="nativeName">updateDate</property>
                     <property name="dataType">date-time</property>
-                    <property name="nativeDataType">93</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select usertestsession.testName,usertestsession.user,usertestsession.percentageMarksRecieved,usertestsession.updateDate
-from usertestsession 
+            <xml-property name="queryText"><![CDATA[select UserTestSession.testName,UserTestSession.user,UserTestSession.percentageMarksRecieved,UserTestSession.updateDate
+from UserTestSession 
 where 
 case
 when ?<>''
  then 
-usertestsession.testName=?  and usertestsession.user=?
+UserTestSession.testName=?  and UserTestSession.user=?
 when ? is not null and ? is not null
 then
-usertestsession.testName=? and usertestsession.updateDate>? and usertestsession.updateDate<?
+UserTestSession.testName=? and UserTestSession.updateDate>? and UserTestSession.updateDate<?
 when ?<>''
 then
-usertestsession.testName=? and usertestsession.percentageMarksRecieved>? and usertestsession.percentageMarksRecieved<?
+UserTestSession.testName=? and UserTestSession.percentageMarksRecieved>? and UserTestSession.percentageMarksRecieved<?
 else
-usertestsession.testName=? 
+UserTestSession.testName=? 
 end
- order by usertestsession.percentageMarksRecieved;]]></xml-property>
+ order by UserTestSession.percentageMarksRecieved;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -508,10 +491,12 @@ end
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">testName</property>
+                    <property name="analysis">dimension</property>
                     <text-property name="displayName">testName</text-property>
                     <text-property name="heading">testName</text-property>
                 </structure>
             </list-property>
+            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -521,18 +506,17 @@ end
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">ass_new</property>
+            <property name="dataSource">New Server Data Source</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
                     <property name="name">testName</property>
                     <property name="nativeName">testName</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select usertestsession.testName
-from usertestsession;]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select UserTestSession.testName
+from UserTestSession;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -569,39 +553,35 @@ from usertestsession;]]></xml-property>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="orientation">portrait</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">medium</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">medium</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">medium</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">medium</property>
+            <property name="orientation">auto</property>
             <page-footer>
                 <text id="3">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">medium</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">medium</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">medium</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">medium</property>
                     <property name="contentType">html</property>
-         Today's Date is:<text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                    <text-property name="content"><![CDATA[Date:<value-of>new Date()</value-of>]]></text-property>
                 </text>
             </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
         <label id="6">
+            <property name="backgroundColor">#0000A0</property>
             <property name="fontSize">12pt</property>
             <property name="fontWeight">bold</property>
+            <property name="color">white</property>
             <text-property name="text">                                                                                     TEST REPORT</text-property>
         </label>
-        <table id="21">
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">medium</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">medium</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">medium</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">medium</property>
-            <property name="width">7.927083333333333in</property>
+        <label id="382"/>
+        <table id="383">
+            <property name="canShrink">true</property>
+            <property name="width">7.947916666666667in</property>
             <property name="dataSet">TestName</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -629,97 +609,137 @@ from usertestsession;]]></xml-property>
                     <property name="dataType">date-time</property>
                 </structure>
             </list-property>
-            <column id="45">
-                <property name="width">1.4166666666666667in</property>
+            <column id="407">
+                <property name="width">1.7604166666666667in</property>
             </column>
-            <column id="46">
-                <property name="width">2.6145833333333335in</property>
+            <column id="408">
+                <property name="width">1.8541666666666667in</property>
             </column>
-            <column id="47">
-                <property name="width">1.8958333333333333in</property>
+            <column id="409">
+                <property name="width">2.2395833333333335in</property>
             </column>
-            <column id="48">
+            <column id="410">
                 <property name="width">1.9791666666666667in</property>
             </column>
             <header>
-                <row id="22">
-                    <property name="backgroundColor">aqua</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">medium</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">medium</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">medium</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">medium</property>
-                    <cell id="23">
-                        <label id="24">
-                            <property name="textAlign">left</property>
-                            <text-property name="text">TESTNAME</text-property>
+                <row id="384">
+                    <property name="backgroundColor">maroon</property>
+                    <property name="fontSize">10pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">white</property>
+                    <cell id="385">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <label id="386">
+                            <property name="fontSize">10pt</property>
+                            <text-property name="text">TEST NAME</text-property>
                         </label>
                     </cell>
-                    <cell id="25">
-                        <label id="26">
-                            <property name="textAlign">left</property>
-                            <text-property name="text">USER NAME</text-property>
+                    <cell id="387">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <label id="388">
+                            <text-property name="text">USER</text-property>
                         </label>
                     </cell>
-                    <cell id="27">
-                        <label id="28">
-                            <property name="textAlign">left</property>
+                    <cell id="389">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <label id="390">
                             <text-property name="text">MARKS</text-property>
                         </label>
                     </cell>
-                    <cell id="29">
-                        <label id="30">
-                            <property name="textAlign">left</property>
+                    <cell id="391">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <label id="392">
                             <text-property name="text">TEST DATE</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="31">
-                    <property name="backgroundColor">silver</property>
-                    <property name="fontFamily">sans-serif</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">medium</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">medium</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">medium</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">medium</property>
-                    <cell id="32">
-                        <data id="33">
+                <row id="393">
+                    <property name="backgroundColor">aqua</property>
+                    <property name="textAlign">center</property>
+                    <cell id="394">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <data id="395">
                             <property name="resultSetColumn">testName</property>
                         </data>
                     </cell>
-                    <cell id="34">
-                        <data id="35">
+                    <cell id="396">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <data id="397">
                             <property name="resultSetColumn">user</property>
                         </data>
                     </cell>
-                    <cell id="36">
-                        <data id="37">
+                    <cell id="398">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <data id="399">
                             <property name="resultSetColumn">percentageMarksRecieved</property>
                         </data>
                     </cell>
-                    <cell id="38">
-                        <data id="39">
+                    <cell id="400">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <data id="401">
                             <property name="resultSetColumn">updateDate</property>
                         </data>
                     </cell>
                 </row>
             </detail>
-            <footer>
-                <row id="40">
-                    <cell id="41"/>
-                    <cell id="42"/>
-                    <cell id="43"/>
-                    <cell id="44"/>
-                </row>
-            </footer>
         </table>
     </body>
 </report>

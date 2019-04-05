@@ -9,7 +9,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Add User</title>
+<title>User List</title>
+
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -81,12 +82,9 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-<script>
-	function goback() {
-		window.location = "goback";
-	}
-</script>
+
 </head>
+
 <body id="top" class="has-header-search">
 
 		<!--header start-->
@@ -105,10 +103,10 @@
 												<li><a href="question_list">Question Bank</a></li>
 												<li><a href="testlist">Tests</a></li>
 												<li><a href="javascript:void(0)">Skills</a></li>
-												<li><a href="showReports">Results</a></li>
+												<li class="active"><a href="showReports">Results</a></li>
 												<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 												<li><a href="javascript:void(0)">Skill based Reports</a></li>
-												<li class="active"><a href="listUsers">Users</a></li>
+												<li ><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
 								</div>
@@ -117,93 +115,89 @@
 		</header>
 		<!--header end-->
 
+
 		<section>
 				<div class="container">
+						<div class="row mt-5"><a href="downloadTestReport"><img src="<%=request.getContextPath()%>/resources/images/testsReport.png"> All Tests
+																Report</a> <a href="downloadUserReport"><img src="<%=request.getContextPath()%>/resources/images/usersReport.png">All
+																User Sessions Report</a> <a target="_blank"
+																href="/AssesmentApp/frameset?__report=qs.rptdesign">Report By Questions</a> <a
+																target="_blank" href="/AssesmentApp/frameset?__report=finalreport2new.rptdesign">Report
+																By Percentile</a> <a target="_blank" href="/AssesmentApp/frameset?__report=test.rptdesign"><img
+																src="<%=request.getContextPath()%>/resources/images/usersReport.png">Report By Testname</a>
+								 
+								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
+								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
 
-						<div class="row">
-								<div class="col-md-3"></div>
-								<div class="col-md-6">
-										<div class="mb-30">
-												<h2 class="section-title">Add New User</h2>
+								<%-- 								</form> --%>
+						 
+								<div class="col-md-12">
+										<div class="mt-10"></div>
+										<div class="col-md-5">
+												<h1 style="color: #b07c2a;">
+														<b style="font-size: x-large;;;">${reportType}</b>
+												</h1>
 										</div>
-										<form name="userForm" method="post" modelAttribute="usr" action="saveUser">
-												<div class="row">
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.firstName" name="firstName" id="firstName" required="true" />
-																		<label>First Name</label>
-																</div>
-														</div>
+										 
+								<div class="col-md-12">
+										<div class="table-responsive">
+												<table class="table table-striped">
+														<thead style="background-color: #03a9f4;">
+																<tr>
+																		<th><b>No</b></th>
+																		<th><b>Test Title</b></th>
+																		<th><b>Sections</b></th>
+																		<th><b>Sessions</b></th>
+																		<th><b>Passed </b></th>
+																		<th><b>Average Score</b></th>
+																		<th><b>Highest Score</b></th>
+																		<th><b>Top 3</b></th>
+																		<th><b>Contact</b></th>
+																		<th><b>Basic Report</b></th>
+																		<th><b>Full Reports</b></th>
+																</tr>
+														</thead>
+														<tbody>
+														<tbody>
 
+																<c:forEach items="${testsessions}" var="session" varStatus="loop">
+																		<tr>
+																				<td>${loop.count}</td>
 
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.lastName" name="lastName" id="lastName" required="true" />
-																		<label>Last Name</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.email" name="email" id="email" required="true" />
-																		<label>Email</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:password path="usr.password" name="password" id="password" required="true" />
-																		<label>Password</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.mobileNumber" name="mobileNumber" id="mobileNumber" />
-																		<label>Mobile</label>
+																				<td>${session.testName}</td>
 
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.department" name="department" id="department" />
-																		<label>Department</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.groupOfUser" name="groupOfUser" id="groupOfUser" />
-																		<label>User Group</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<form:input path="usr.grade" name="grade" id="grade" />
-																		<label>User Grade</label>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="input-field">
-																		<label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Is Internal User?</label>
-																		<form:checkbox path="usr.internalUser" label="" />
-																</div>
-														</div>
-												</div>
+																				<td>${session.sectionsInfo}</td>
+																				<td>${session.noOfSessions}</td>
+																				<td>${session.noOfPassResults}</td>
 
-												<!-- 												<div class="formfield savebtn"> -->
-												<!-- 														<input class="save" type="submit" value="Save User"> -->
-												<!-- 														  <input type="submit" value="Save and add another"> -->
-												<!-- 														<input type="button" value="Cancel" onClick="goback()"> -->
-												<!-- 												</div> -->
+																				<td>${session.averageScore}</td>
+																				<td>${session.highestScore}</td>
+																				<td>${session.topCandidates}</td>
+																				<td>${session.topCandidatesEmail}</td>
+																				<td><a href="downloadUserReportsForTest?testName=${session.testName}">Click
+																				</a></td>
+																				<td><a
+																						href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
+																				</a></td>
 
-												<button type="submit" name="submit"
-														class="waves-effect waves-light btn submit-button mt-30">Save</button>
-												<button type="button" class="waves-effect waves-light btn submit-button indigo mt-30"
-														onclick="goback()">Cancel</button>
-												<div class="mb-30"></div>
-										</form>
+																		</tr>
+																</c:forEach>
+														</tbody>
+
+												</table>
+										</div>
+
 								</div>
-								<div class="col-md-3"></div>
 						</div>
+						<!-- /.row -->
+
+
+
 				</div>
+				<!-- /.container -->
 		</section>
+
+
 
 		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
@@ -221,6 +215,9 @@
 						</div>
 				</div>
 		</footer>
+
+
+
 
 
 		<!-- jQuery -->
@@ -260,84 +257,14 @@
 		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 		<script src="${mainJs17}"></script>
 
-
 		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-			});
-
-			$(function() {
-				$(".addimage").on('click', function(e) {
-					e.preventDefault();
-					$("#addimage").trigger('click');
-				});
-				$(".addaudio").on('click', function(e) {
-					e.preventDefault();
-					$("#addaudio").trigger('click');
-				});
-				$(".addvideo").on('click', function(e) {
-					e.preventDefault();
-					$("#addvideo").trigger('click');
-				});
-			});
-
-			$('#addimage').change(function() {
-				var file = $('#addimage')[0].files[0].name;
-				$('.queimage').text('Image: ' + file);
-				$('.queimage').css('width', '100%');
-			});
-			$('#addaudio').change(function() {
-				var file = $('#addaudio')[0].files[0].name;
-				$('.queaudio').text('Audio: ' + file);
-				$('.queaudio').css('width', '100%');
-			});
-			$('#addvideo').change(function() {
-				var file = $('#addvideo')[0].files[0].name;
-				$('.quevideo').text('Video: ' + file);
-				$('.quevideo').css('width', '100%');
-			});
-
-			function changeQType() {
-				var selectedValue = $("#questionType").val();
-				$('.questiontypedrp .select-dropdown').html(selectedValue);
-				if (selectedValue == 'CODING') {
-
-					document.getElementById("mcqDiv").style.display = 'none';
-					document.getElementById("codingDiv").style.display = '';
-
-					document.getElementById("choice1").required = false;
-					document.getElementById("choice2").required = false;
-
-					document.getElementById("input").required = true;
-					document.getElementById("output").required = true;
-				} else {
-					document.getElementById("mcqDiv").style.display = '';
-					document.getElementById("codingDiv").style.display = 'none';
-
-					document.getElementById("choice1").required = true;
-					document.getElementById("choice2").required = true;
-					document.getElementById("input").required = false;
-					document.getElementById("output").required = false;
+			$('#search').on('click', function() {
+				var text = document.getElementById("searchText").value;
+				if (text.length != 0) {
+					window.location = "searchUsrs?searchText=" + text;
 				}
-			}
+			});
 		</script>
-
-		<c:if test="${msgtype != null}">
-				<script>
-					var notification = 'Information';
-					$(function() {
-						new PNotify({
-							title : notification,
-							text : '${message}',
-							type : '${msgtype}',
-							styling : 'bootstrap3',
-							hide : true
-						});
-					});
-				</script>
-		</c:if>
-
-
 </body>
 
 </html>

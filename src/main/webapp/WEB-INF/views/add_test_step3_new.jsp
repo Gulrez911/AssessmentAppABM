@@ -343,7 +343,7 @@
 																												style="${ques.choice2 == null || ques.choice2.length() == 0? 'display: none;':''}">Choice
 																												2: &nbsp;&nbsp; ${ques.choice2}</h4>
 																										<h4
-																												style="${quest.choice3 == null || quest.choice3.length() == 0? 'display: none;':''}">Choice
+																												style="${ques.choice3 == null || ques.choice3.length() == 0? 'display: none;':''}">Choice
 																												3: &nbsp;&nbsp; ${ques.choice3}</h4>
 																										<h4
 																												style="${ques.choice4 == null || ques.choice4.trim().length() == 0? 'display: none;':''}">Choice

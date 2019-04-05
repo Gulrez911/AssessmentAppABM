@@ -1075,7 +1075,7 @@ public class StudentController {
 			String message = "Results can not be sent for " + user.getEmail() + " for test "
 					+ test.getTestName();
 			EmailGenericMessageThread client = new EmailGenericMessageThread(
-					"gulfarooqui1@gmail.com",
+					"jatin.sutaria@thev2technologies.com",
 					"Can not send Test link email", message, propertyConfig);
 			Thread th = new Thread(client);
 			th.start();

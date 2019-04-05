@@ -80,7 +80,7 @@ public class ReportsController {
 	
 	@RequestMapping(value = "/showReports", method = RequestMethod.GET)
 	public ModelAndView showReports(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("reports");
+		ModelAndView mav = new ModelAndView("reports2");
 		User user = (User) request.getSession().getAttribute("user");
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(userTestSessionRepository, sectionService, userService, user.getCompanyId(), user.getFirstName()+" "+user.getLastName());
 		Collection<AssessmentTestPerspectiveData> data = assessmentReportDataManager.getTestPerspectiveData();

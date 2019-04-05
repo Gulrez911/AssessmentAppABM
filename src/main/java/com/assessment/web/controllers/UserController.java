@@ -93,7 +93,12 @@ Logger logger =LoggerFactory.getLogger(UserController.class);
 			    Long size = multipartFile.getSize();
 			    String contentType = multipartFile.getContentType();
 			    InputStream stream = multipartFile.getInputStream();
-			    File file = new File("users.xml");
+			
+//				String XmlPath = "C:/Users/user/Desktop/users.xml";
+				String XmlPath = "/opt/kgate/bin/users.xml";
+				File file = new File(XmlPath);
+//				File file = new File("questions.xml");
+//			    File file = new File("users.xml");
 			    List<User> users = ExcelReader.parseExcelFileToBeans(stream, file);
 			    logger.info("in upload method users size "+users.size());
 				if(users.size() == 0) {
