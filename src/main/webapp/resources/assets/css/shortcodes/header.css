@@ -264,7 +264,7 @@ header.sticky .menuzord-menu>li>a,
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     text-transform: capitalize;
-    letter-spacing: .5px;
+    letter-spacing: .1px;
     font-weight: normal;
 }
 .menuzord {

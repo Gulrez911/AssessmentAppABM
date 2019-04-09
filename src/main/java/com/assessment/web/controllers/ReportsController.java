@@ -314,7 +314,7 @@ public class ReportsController {
 	@RequestMapping(value = "/showSkillTags", method = RequestMethod.GET)
 	public ModelAndView showSkillTags(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		User user = (User) request.getSession().getAttribute("user");
-		ModelAndView mav = new ModelAndView("skill_reports");
+		ModelAndView mav = new ModelAndView("skill_reports2");
 		Set<Qualifiers> qs = questionRepository.getAllUniqueQualifiers(user.getCompanyId());
 		mav.addObject("skills", qs);
 		return mav;

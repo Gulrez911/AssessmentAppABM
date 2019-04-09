@@ -29,7 +29,7 @@ public class SkillController {
 	@RequestMapping(value = "/skills", method = RequestMethod.GET)
 	  public ModelAndView getSkills(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
-		ModelAndView mav = new ModelAndView("skills");
+		ModelAndView mav = new ModelAndView("skills2");
 		java.util.List<Skill> skills = skillRepository.getSkillsByCompanyId(user.getCompanyId());
 		mav.addObject("skills", skills);
 		return mav;
@@ -38,7 +38,7 @@ public class SkillController {
 	@RequestMapping(value = "/addSkill", method = RequestMethod.GET)
 	  public ModelAndView addSkill(@RequestParam(name= "skillId", required = false) Long skillId,HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
-		 ModelAndView mav = new ModelAndView("addSkill");
+		 ModelAndView mav = new ModelAndView("addSkill2");
 		 Skill skill = null;
 		 	if(skillId == null){
 		 		skill = new Skill();

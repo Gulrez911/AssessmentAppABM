@@ -61,7 +61,7 @@
 
 .starttestinfo .testname h3 {
 	color: #001021;
-	font-size: 28px;
+	font-size: 20px;
 	font-weight: 700;
 	line-height: 34px;
 	margin-top: 10px;
@@ -178,7 +178,7 @@
 																		Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
 																</h4>
 
-																<img src="http://localhost/iiht_login_html/images/userimg.png">
+																<img src="<%=request.getContextPath()%>/resources/images/userimg.png">
 														</div>
 												</div>
 										</div>
@@ -234,7 +234,7 @@
 										<div class="col-md-4">
 												<div class="starttestinfo">
 														<div class="testname">
-																<img src="http://localhost/iiht_login_html/images/testimage.png">
+																<img src="<%=request.getContextPath()%>/resources/images/testimage.png">
 																<h3>${studentTestForm.testName}</h3>
 														</div>
 														<div class="totalque">

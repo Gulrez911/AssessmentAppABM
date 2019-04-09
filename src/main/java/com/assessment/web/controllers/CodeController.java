@@ -67,7 +67,7 @@ public class CodeController {
 	
 	@RequestMapping(value = "/codingSessions", method = RequestMethod.GET)
 	public ModelAndView addQuestion(@RequestParam(name= "page", required = false) Integer pageNumber, @RequestParam(name= "qid", required = false) Long qid, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("reports_Coding");
+		ModelAndView mav = new ModelAndView("reports_Coding2");
 		
 		User user = (User) request.getSession().getAttribute("user");
 		if(pageNumber == null) {

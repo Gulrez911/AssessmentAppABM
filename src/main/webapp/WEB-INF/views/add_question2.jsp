@@ -100,14 +100,15 @@
 										</a>
 										<!--logo end-->
 										<!--mega menu start-->
-										<ul class="menuzord-menu pull-right">
+									<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
 												<li class="active"><a href="question_list">Question Bank</a></li>
-												<li><a href="testlist">Tests</a></li>
-												<li><a href="javascript:void(0)">Skills</a></li>
+												<li ><a href="testlist">Tests</a></li>
+												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
-												<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-												<li><a href="javascript:void(0)">Skill based Reports</a></li>
+												<li><a href="codingSessions">Code Analysis Reports</a></li>
+												<li><a href="showSkillTags">Skill based Reports</a></li>
+												<li><a href="showProfileParams">Recomm Setting</a></li>
 												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
@@ -370,7 +371,8 @@
 
 
 												<div class="input-field">
-														<form:textarea path="question.instructionsIfAny" id="output" class="materialize-textarea"/>
+														<form:textarea path="question.instructionsIfAny" id="output"
+																class="materialize-textarea" />
 														<label for="output">Instructions, if any</label>
 												</div>
 
@@ -391,13 +393,14 @@
 						<div class="container">
 								<ul>
 										<li><a href="javascript:void(0)">Dashboard</a></li>
-										<li><a href="javascript:void(0)">Question Bank</a></li>
-										<li><a href="javascript:void(0)">Tests</a></li>
+										<li><a href="question_list">Question Bank</a></li>
+										<li><a href="testlist">Tests</a></li>
 										<li><a href="javascript:void(0)">Skills</a></li>
-										<li><a href="javascript:void(0)">Results</a></li>
+										<li><a href="showReports">Results</a></li>
 										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
-										<li><a href="javascript:void(0)">Users</a></li>
+										<li><a href="showProfileParams">Recomm Setting</a></li>
+										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
 				</div>

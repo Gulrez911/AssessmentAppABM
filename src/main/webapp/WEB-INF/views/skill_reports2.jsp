@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>User List</title>
+<title>Question List</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -100,12 +100,12 @@
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li><a href="question_list">Question Bank</a></li>
-												<li><a href="testlist">Tests</a></li>
+												<li ><a href="question_list">Question Bank</a></li>
+												<li ><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
-												<li class="active"><a href="showReports">Results</a></li>
+												<li><a href="showReports">Results</a></li>
 												<li><a href="codingSessions">Code Analysis Reports</a></li>
-												<li><a href="showSkillTags">Skill based Reports</a></li>
+												<li class="active"><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
 												<li ><a href="listUsers">Users</a></li>
 										</ul>
@@ -120,86 +120,96 @@
 		<section>
 				<div class="container">
 						<div class="row mt-5">
-								<a href="downloadTestReport"><img
-										src="<%=request.getContextPath()%>/resources/images/testsReport.png"> All Tests
-										Report</a> <a href="downloadUserReport"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">All User
-										Sessions Report</a> <a target="_blank" href="/AssesmentApp/frameset?__report=qs.rptdesign">Report
-										By Questions</a> <a target="_blank"
-										href="/AssesmentApp/frameset?__report=finalreport2new.rptdesign">Report By Percentile</a>
-								<a target="_blank" href="/AssesmentApp/frameset?__report=test.rptdesign"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">Report By
-										Testname</a>
-
-								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
-								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
-
-								<%-- 								</form> --%>
 
 								<div class="col-md-12">
 										<div class="mt-10"></div>
 										<div class="col-md-5">
-												<h1 style="color: #b07c2a;">
-														<b style="font-size: x-large;">${reportType}</b>
+												<h1 style="color: #b07c2a; font-size: 20px">
+														<b>Find Candidates by Skill Tags</b>
 												</h1>
 										</div>
-
-										<div class="col-md-12">
-												<div class="table-responsive">
-														<table class="table table-striped">
-																<thead style="background-color: #03a9f4;">
-																		<tr>
-																				<th><b>No</b></th>
-																				<th><b>Test Title</b></th>
-																				<th><b>Sections</b></th>
-																				<th><b>Sessions</b></th>
-																				<th><b>Passed </b></th>
-																				<th><b>Average Score</b></th>
-																				<th><b>Highest Score</b></th>
-																				<th><b>Top 3</b></th>
-																				<th><b>Contact</b></th>
-																				<th><b>Basic Report</b></th>
-																				<th><b>Full Reports</b></th>
-																		</tr>
-																</thead>
-																<tbody>
-																<tbody>
-
-																		<c:forEach items="${testsessions}" var="session" varStatus="loop">
-																				<tr>
-																						<td>${loop.count}</td>
-
-																						<td>${session.testName}</td>
-
-																						<td>${session.sectionsInfo}</td>
-																						<td>${session.noOfSessions}</td>
-																						<td>${session.noOfPassResults}</td>
-
-																						<td>${session.averageScore}</td>
-																						<td>${session.highestScore}</td>
-																						<td>${session.topCandidates}</td>
-																						<td>${session.topCandidatesEmail}</td>
-																						<td><a href="downloadUserReportsForTest?testName=${session.testName}">Click
-																						</a></td>
-																						<td><a
-																								href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
-																						</a></td>
-
-																				</tr>
-																		</c:forEach>
-																</tbody>
-
-														</table>
-												</div>
-
-										</div>
 								</div>
-								<!-- /.row -->
+								<div class="col-md-12">
+										<div class="table-responsive">
+												<table class="table table-striped">
+														<thead style="background-color: #03a9f4;">
+																<tr>
+																		<th><b>No</b></th>
+																		<th><b>Skill Level 1</b></th>
+																		<th><b>Skill Level 2</b></th>
+																		<th><b>Skill Level 3</b></th>
+																		<th><b>Skill Level 4</b></th>
+																		<th><b>Skill Level 5</b></th>
+																</tr>
+														</thead>
+														<tbody>
+														<tbody>
+
+																<c:forEach items="${skills}" var="skill" varStatus="loop">
+																		<tr>
+																				<td>${loop.count}</td>
+
+																				<td><a href="downloadUserReportsForSkill?skillName=${skill.qualifier1}">${skill.qualifier1}
+																				</a></td>
+
+																				<td><c:choose>
+																								<c:when test="${skill.qualifier2.length() > 0}">
+																										<a href="downloadUserReportsForSkill?skillName=${skill.qualifier2}">${skill.qualifier2}
+																										</a>
+																								</c:when>
+																								<c:otherwise>
+																NA
+																
+															</c:otherwise>
+																						</c:choose></td>
+																				<td><c:choose>
+																								<c:when test="${skill.qualifier3.length() > 0}">
+																										<a href="downloadUserReportsForSkill?skillName=${skill.qualifier3}">${skill.qualifier3}
+																										</a>
+																								</c:when>
+																								<c:otherwise>
+																NA
+																
+															</c:otherwise>
+																						</c:choose></td>
+																				<td><c:choose>
+																								<c:when test="${skill.qualifier4.length() > 0}">
+																										<a href="downloadUserReportsForSkill?skillName=${skill.qualifier4}">${skill.qualifier4}
+																										</a>
+																								</c:when>
+																								<c:otherwise>
+																NA
+																
+															</c:otherwise>
+																						</c:choose></td>
+																				<td><c:choose>
+																								<c:when test="${skill.qualifier5.length() > 0}">
+																										<a href="downloadUserReportsForSkill?skillName=${skill.qualifier2}">${skill.qualifier5}
+																										</a>
+																								</c:when>
+																								<c:otherwise>
+																NA
+																
+															</c:otherwise>
+																						</c:choose></td>
 
 
 
+																		</tr>
+																</c:forEach>
+														</tbody>
+
+												</table>
+										</div>
+
+								</div>
 						</div>
-						<!-- /.container -->
+						<!-- /.row -->
+
+
+
+				</div>
+				<!-- /.container -->
 		</section>
 
 
@@ -213,8 +223,9 @@
 										<li><a href="testlist">Tests</a></li>
 										<li><a href="javascript:void(0)">Skills</a></li>
 										<li><a href="showReports">Results</a></li>
-										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+										<li><a href="codingSessions">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
+										<li><a href="showProfileParams">Recomm Setting</a></li>
 										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
@@ -263,13 +274,157 @@
 		<script src="${mainJs17}"></script>
 
 		<script>
+			/* off-canvas sidebar toggle */
+			$('[data-toggle=offcanvas]').click(
+					function() {
+						$('.row-offcanvas').toggleClass('active');
+						$('.collapse').toggleClass('in').toggleClass(
+								'hidden-xs').toggleClass('visible-xs');
+					});
+
 			$('#search').on('click', function() {
 				var text = document.getElementById("searchText").value;
 				if (text.length != 0) {
-					window.location = "searchUsrs?searchText=" + text;
+					window.location = "searchQuestions?searchText=" + text;
 				}
 			});
+
+			var isXlsx = function(name) {
+				return name.match(/xlsx$/i)
+			};
+
+			$("#btnfile").click(function() {
+				$("#uploadfile").click();
+			});
+
+			function showFileDialog() {
+				$("#fileQuestions	").click();
+			}
+
+			$(document)
+					.ready(
+							function() {
+
+								var file = $('[name="fileQuestions"]');
+								var imgContainer = $('#imgContainer');
+
+								$('#uploadLink').on('click', function() {
+									// $("#file").click();
+
+								});
+
+								var fileU = document
+										.getElementById('fileQuestions');
+								fileU
+										.addEventListener(
+												"change",
+												function() {
+													if (fileU.files.length > 0) {
+														var filename = $
+																.trim(file
+																		.val());
+
+														if (!(isXlsx(filename))) {
+															notify('Error',
+																	'Please select an xlsx file to upload');
+															return;
+														}
+
+														$
+																.ajax(
+																		{
+																			xhr : function() {
+																				var xhr = new window.XMLHttpRequest();
+
+																				return xhr;
+																			},
+																			url : 'upload',
+																			type : "POST",
+																			data : new FormData(
+																					document
+																							.getElementById("fileFormQuestions")),
+																			enctype : 'multipart/form-data',
+																			processData : false,
+																			contentType : false
+																		})
+																.done(
+																		function(
+																				data) {
+																			notify(
+																					'Success',
+																					'File Upload Successful');
+
+																		})
+																.fail(
+																		function(
+																				jqXHR,
+																				textStatus) {
+																			notify(
+																					'Failure',
+																					'File Upload Failed. Please contact Administrator');
+																		});
+														document
+																.getElementById('fileQuestions').value = null;
+														return;
+													}
+
+												});
+
+							});
+
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
+			}
+
+			function confirm(id) {
+				(new PNotify(
+						{
+							title : 'Confirmation Needed',
+							text : 'Are you sure? Do you really want to delete this Q?',
+							icon : 'glyphicon glyphicon-question-sign',
+							hide : false,
+							confirm : {
+								confirm : true
+							},
+							buttons : {
+								closer : false,
+								sticker : false
+							},
+							history : {
+								history : false
+							}
+						})).get().on('pnotify.confirm', function() {
+					window.location = "removeQuestionFromList?qid=" + id;
+				}).on('pnotify.cancel', function() {
+
+				});
+			}
 		</script>
+
+
+		<c:if test="${msgtype != null}">
+				<script>
+					var notification = 'Information';
+					$(function() {
+						new PNotify({
+							title : notification,
+							text : '${message}',
+							type : '${msgtype}',
+							styling : 'bootstrap3',
+							hide : true
+						});
+					});
+				</script>
+		</c:if>
 </body>
 
 </html>

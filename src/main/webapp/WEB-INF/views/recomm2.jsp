@@ -9,8 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
-
+<title>Add User</title>
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -82,9 +81,12 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-
+<script>
+	function goback() {
+		window.location = "goback";
+	}
+</script>
 </head>
-
 <body id="top" class="has-header-search">
 
 		<!--header start-->
@@ -98,15 +100,15 @@
 										</a>
 										<!--logo end-->
 										<!--mega menu start-->
-									<ul class="menuzord-menu pull-right">
+										<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li class="active"><a href="question_list">Question Bank</a></li>
-												<li ><a href="testlist">Tests</a></li>
+												<li><a href="question_list">Question Bank</a></li>
+												<li><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
 												<li><a href="codingSessions">Code Analysis Reports</a></li>
 												<li><a href="showSkillTags">Skill based Reports</a></li>
-												<li><a href="showProfileParams">Recomm Setting</a></li>
+												<li class="active"><a href="showProfileParams">Recomm Setting</a></li>
 												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
@@ -116,138 +118,124 @@
 		</header>
 		<!--header end-->
 
-
 		<section>
 				<div class="container">
-						<div class="row mt-5">
-								<div class="col-md-12">
-										<div class="col-md-6"></div>
-										<div class="col-md-2">
-												<a href="addQuestion" class="btn waves-effect waves-light col-md-12"><i
-														class="material-icons fa fa-plus-circle"></i> Add New</a>
+
+						<div class="row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+										<div class="mb-30">
+												<h2 class="section-title">Create New Setting</h2>
 										</div>
-										<div class="col-md-2">
-												<a href="javascript:showFileDialog();" id="uploadQuestionsLink"
-														class="btn waves-effect waves-light col-md-12"><i
-														class="material-icons fa fa-upload"></i> Import</a>
-										</div>
-										<div class="col-md-2">
-												<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
-														class="material-icons fa fa-sign-out"></i> Sign Off</a>
-										</div>
-								</div>
-								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
-								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
+										<div class="addqueform">
+												<form name="profileForm" method="post" modelAttribute="params"
+														action="saveProfileParams">
 
-								<%-- 								</form> --%>
-								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data">
-										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" />
-								</form>
-								<div class="col-md-12">
-										<div class="col-md-12">
-												<div class="pagination" style="float: right;">
 
-														<c:if test="${showPreviousPage}">
-																<a href="question_list?page=${previousPage}${queryParam}"><i
-																		class="fa fa-arrow-left"></i></a>
-														</c:if>
 
-														<c:if test="${selectedPage != null &&  selectedPage > 0}">
-                                    ${selectedPage} / ${totalNumberOfPages}
-                                </c:if>
 
-														<c:if test="${showNextPage}">
-																<a href="question_list?page=${nextPage}${queryParam}"><i
-																		class="fa fa-arrow-right"></i></a>
-														</c:if>
-												</div>
-										</div>
-								</div>
+														<div class="formfield">
+																<div class="selectoptions">
 
-								<div class="col-md-12">
-										<div class="mt-10"></div>
-										<div class="col-md-5">
-												<h1 style="color: #b07c2a;">
-														<b>Question Bank</b>
-												</h1>
-										</div>
-										<div class="col-md-4">
-												<div class="widget widget_search">
 
-														<div class="search-form">
-																<form action="searchQuestions" method="get">
-																		<input type="text" placeholder="Search a question" name="searchText"
-																				id="searchText">
-																		<button type="submit" id="search">
-																				<i class="fa fa-search"></i>
-																		</button>
-																</form>
+																		<div id="maindivforaddmore">
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Select Context</label>
+
+																						<form:select id="context" path="params.context" onchange="changeContext()">
+
+																								<form:options items="${qualifiers}" />
+																						</form:select>
+																				</div>
+
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Qualifier 1</label>
+
+																						<form:input path="params.qualifier1" name="qualifier1" id="qualifier1"
+																								readonly="true" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Qualifier 2</label>
+
+																						<form:input path="params.qualifier2" name="qualifier2" id="qualifier2"
+																								readonly="true" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Qualifier 3</label>
+
+																						<form:input path="params.qualifier3" name="qualifier3" id="qualifier3"
+																								readonly="true" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Qualifier 4</label>
+
+																						<form:input path="params.qualifier4" name="qualifier4" id="qualifier4"
+																								readonly="true" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 14px">Qualifier 5</label>
+
+																						<form:input path="params.qualifier5" name="qualifier5" id="qualifier5"
+																								readonly="true" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 12px">LESS_THAN_TWENTY_PERCENT</label>
+
+																						<form:textarea path="params.LESS_THAN_TWENTY_PERCENT"
+																								name="LESS_THAN_TWENTY_PERCENT" id="LESS_THAN_TWENTY_PERCENT" rows="5"
+																								cols="60" />
+																				</div>
+
+																				<div class="option">
+																						<label style="color: black; font-size: 12px">BETWEEN_TWENTY_AND_FIFTY</label>
+
+																						<form:textarea path="params.BETWEEN_TWENTY_AND_FIFTY"
+																								name="BETWEEN_TWENTY_AND_FIFTY" id="BETWEEN_TWENTY_AND_FIFTY" rows="5"
+																								cols="60" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 12px">BETWEEN_FIFTY_AND_SEVENTYFIVE</label>
+
+																						<form:textarea path="params.BETWEEN_FIFTY_AND_SEVENTYFIVE"
+																								name="BETWEEN_FIFTY_AND_SEVENTYFIVE" id="BETWEEN_FIFTY_AND_SEVENTYFIVE"
+																								rows="5" cols="60" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 12px">BETWEEN_SEVENTYFIVE_AND_NINETY</label>
+
+																						<form:textarea path="params.BETWEEN_SEVENTYFIVE_AND_NINETY"
+																								name="BETWEEN_SEVENTYFIVE_AND_NINETY" id="BETWEEN_SEVENTYFIVE_AND_NINETY"
+																								rows="5" cols="60" />
+																				</div>
+																				<div class="option">
+																						<label style="color: black; font-size: 12px">MORE_THAN_NINETY</label>
+
+																						<form:textarea path="params.MORE_THAN_NINETY" name="MORE_THAN_NINETY"
+																								id="MORE_THAN_NINETY" rows="5" cols="60" />
+																				</div>
+
+																				<div class="formfield savebtn">
+																						<input class="save" type="submit" value="Save Setting">
+
+
+																				</div>
+																		</div>
+																</div>
+
+
 														</div>
-												</div>
-										</div>
-										<div class="col-md-3" style="padding: 0;">
-												<div class="mt-10"></div>
-												<div class="col-md-4"></div>
-												<div class="col-md-4" style="padding-left: 0;">
-														<a href="javascript:notify('Information', 'Feature coming soon')"> <i
-																class="fa fa-sort-amount-asc"></i> <span>Sort</span>
-														</a>
-												</div>
-												<div class="col-md-4" style="padding: 0;">
-														<a href="javascript:notify('Information', 'Feature coming soon')"> <i
-																class="fa fa-filter"></i> <span>Filter</span>
-														</a>
-												</div>
+
+
+
+
+
+												</form>
 										</div>
 								</div>
-								<div class="col-md-12">
-										<div class="table-responsive">
-												<table class="table table-striped">
-														<thead style="background-color: #03a9f4;">
-																<tr>
-																		<th>No</th>
-																		<th>Question</th>
-																		<th style="white-space: nowrap;">Category</th>
-																		<th>Difficulty Level</th>
-																		<th style="white-space: nowrap;">Updated On</th>
-																		<th style="white-space: nowrap;">Update</th>
-																		<th style="white-space: nowrap;">Delete</th>
-																</tr>
-														</thead>
-														<tbody>
-														<tbody>
-
-																<c:forEach items="${qs}" var="question" varStatus="loop">
-																		<tr>
-
-																				<td>${loop.count}</td>
-
-
-																				<td><c:out value="${question.questionText}"></c:out></td>
-
-																				<td>${question.category}</td>
-																				<td><c:out value="${question.difficultyLevel.level}"></c:out></td>
-																				<td><c:out value="${question.updatedDate}"></c:out></td>
-																				<td><a href="addQuestion?qid=${question.id}">Click </a></td>
-																				<td><a href="javascript:confirm('${question.id}')">Click </a></td>
-																		</tr>
-																</c:forEach>
-														</tbody>
-
-												</table>
-										</div>
-
-								</div>
+								<div class="col-md-3"></div>
 						</div>
-						<!-- /.row -->
-
-
-
 				</div>
-				<!-- /.container -->
 		</section>
-
-
 
 		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
@@ -258,7 +246,7 @@
 										<li><a href="testlist">Tests</a></li>
 										<li><a href="javascript:void(0)">Skills</a></li>
 										<li><a href="showReports">Results</a></li>
-										<li><a href="codingSessions">Code Analysis Reports</a></li>
+										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
 										<li><a href="showProfileParams">Recomm Setting</a></li>
 										<li><a href="listUsers">Users</a></li>
@@ -266,9 +254,6 @@
 						</div>
 				</div>
 		</footer>
-
-
-
 
 
 		<!-- jQuery -->
@@ -309,103 +294,13 @@
 		<script src="${mainJs17}"></script>
 
 		<script>
-			/* off-canvas sidebar toggle */
-			$('[data-toggle=offcanvas]').click(
-					function() {
-						$('.row-offcanvas').toggleClass('active');
-						$('.collapse').toggleClass('in').toggleClass(
-								'hidden-xs').toggleClass('visible-xs');
-					});
-
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchQuestions?searchText=" + text;
-				}
-			});
-
-			var isXlsx = function(name) {
-				return name.match(/xlsx$/i)
-			};
-
-			$("#btnfile").click(function() {
-				$("#uploadfile").click();
-			});
-
-			function showFileDialog() {
-				$("#fileQuestions	").click();
+			function changeContext() {
+				var selectedValue = $("#context").val();
+				console.log(selectedValue);
+				selectedValue = encodeURIComponent(selectedValue);
+				console.log(selectedValue);
+				window.location = "showProfileParams?qual=" + selectedValue;
 			}
-
-			$(document)
-					.ready(
-							function() {
-
-								var file = $('[name="fileQuestions"]');
-								var imgContainer = $('#imgContainer');
-
-								$('#uploadLink').on('click', function() {
-									// $("#file").click();
-
-								});
-
-								var fileU = document
-										.getElementById('fileQuestions');
-								fileU
-										.addEventListener(
-												"change",
-												function() {
-													if (fileU.files.length > 0) {
-														var filename = $
-																.trim(file
-																		.val());
-
-														if (!(isXlsx(filename))) {
-															notify('Error',
-																	'Please select an xlsx file to upload');
-															return;
-														}
-
-														$
-																.ajax(
-																		{
-																			xhr : function() {
-																				var xhr = new window.XMLHttpRequest();
-
-																				return xhr;
-																			},
-																			url : 'upload',
-																			type : "POST",
-																			data : new FormData(
-																					document
-																							.getElementById("fileFormQuestions")),
-																			enctype : 'multipart/form-data',
-																			processData : false,
-																			contentType : false
-																		})
-																.done(
-																		function(
-																				data) {
-																			notify(
-																					'Success',
-																					'File Upload Successful');
-
-																		})
-																.fail(
-																		function(
-																				jqXHR,
-																				textStatus) {
-																			notify(
-																					'Failure',
-																					'File Upload Failed. Please contact Administrator');
-																		});
-														document
-																.getElementById('fileQuestions').value = null;
-														return;
-													}
-
-												});
-
-							});
 
 			function notify(messageType, message) {
 				var notification = 'Information';
@@ -438,13 +333,73 @@
 								history : false
 							}
 						})).get().on('pnotify.confirm', function() {
-					window.location = "removeQuestionFromList?qid=" + id;
+					window.location = "removeQuestion?qid=" + id;
 				}).on('pnotify.cancel', function() {
 
 				});
 			}
 		</script>
 
+		<script>
+			$(document).ready(function() {
+				$('select').material_select();
+			});
+
+			$(function() {
+				$(".addimage").on('click', function(e) {
+					e.preventDefault();
+					$("#addimage").trigger('click');
+				});
+				$(".addaudio").on('click', function(e) {
+					e.preventDefault();
+					$("#addaudio").trigger('click');
+				});
+				$(".addvideo").on('click', function(e) {
+					e.preventDefault();
+					$("#addvideo").trigger('click');
+				});
+			});
+
+			$('#addimage').change(function() {
+				var file = $('#addimage')[0].files[0].name;
+				$('.queimage').text('Image: ' + file);
+				$('.queimage').css('width', '100%');
+			});
+			$('#addaudio').change(function() {
+				var file = $('#addaudio')[0].files[0].name;
+				$('.queaudio').text('Audio: ' + file);
+				$('.queaudio').css('width', '100%');
+			});
+			$('#addvideo').change(function() {
+				var file = $('#addvideo')[0].files[0].name;
+				$('.quevideo').text('Video: ' + file);
+				$('.quevideo').css('width', '100%');
+			});
+
+			function changeQType() {
+				var selectedValue = $("#questionType").val();
+				$('.questiontypedrp .select-dropdown').html(selectedValue);
+				if (selectedValue == 'CODING') {
+
+					document.getElementById("mcqDiv").style.display = 'none';
+					document.getElementById("codingDiv").style.display = '';
+
+					document.getElementById("choice1").required = false;
+					document.getElementById("choice2").required = false;
+
+					document.getElementById("input").required = true;
+					document.getElementById("output").required = true;
+				} else {
+					document.getElementById("mcqDiv").style.display = '';
+					document.getElementById("codingDiv").style.display = 'none';
+
+					document.getElementById("choice1").required = true;
+					document.getElementById("choice2").required = true;
+					document.getElementById("input").required = false;
+					document.getElementById("output").required = false;
+				}
+			}
+		</script>
 
 		<c:if test="${msgtype != null}">
 				<script>
@@ -460,6 +415,8 @@
 					});
 				</script>
 		</c:if>
+
+
 </body>
 
 </html>

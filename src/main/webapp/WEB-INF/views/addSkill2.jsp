@@ -9,8 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>User List</title>
-
+<title>Add User</title>
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -82,9 +81,12 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-
+<script>
+	function goback() {
+		window.location = "goback";
+	}
+</script>
 </head>
-
 <body id="top" class="has-header-search">
 
 		<!--header start-->
@@ -98,12 +100,12 @@
 										</a>
 										<!--logo end-->
 										<!--mega menu start-->
-										<ul class="menuzord-menu pull-right">
+											<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li><a href="question_list">Question Bank</a></li>
-												<li><a href="testlist">Tests</a></li>
-												<li><a href="skills">Skills</a></li>
-												<li class="active"><a href="showReports">Results</a></li>
+												<li ><a href="question_list">Question Bank</a></li>
+												<li ><a href="testlist">Tests</a></li>
+												<li class="active"><a href="skills">Skills</a></li>
+												<li><a href="showReports">Results</a></li>
 												<li><a href="codingSessions">Code Analysis Reports</a></li>
 												<li><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
@@ -116,93 +118,46 @@
 		</header>
 		<!--header end-->
 
-
 		<section>
 				<div class="container">
-						<div class="row mt-5">
-								<a href="downloadTestReport"><img
-										src="<%=request.getContextPath()%>/resources/images/testsReport.png"> All Tests
-										Report</a> <a href="downloadUserReport"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">All User
-										Sessions Report</a> <a target="_blank" href="/AssesmentApp/frameset?__report=qs.rptdesign">Report
-										By Questions</a> <a target="_blank"
-										href="/AssesmentApp/frameset?__report=finalreport2new.rptdesign">Report By Percentile</a>
-								<a target="_blank" href="/AssesmentApp/frameset?__report=test.rptdesign"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">Report By
-										Testname</a>
 
-								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
-								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
-
-								<%-- 								</form> --%>
-
-								<div class="col-md-12">
-										<div class="mt-10"></div>
-										<div class="col-md-5">
-												<h1 style="color: #b07c2a;">
-														<b style="font-size: x-large;">${reportType}</b>
-												</h1>
+						<div class="row">
+								<div class="col-md-3"></div>
+								<div class="col-md-6">
+										<div class="mb-30">
+												<h2 class="section-title">Add New User</h2>
 										</div>
+										<form name="tenantForm" method="post" modelAttribute="skill" action="saveSkill">
+												<div class="row">
+														<div class="col-md-6">
+																<div class="input-field">
+																		<form:input path="skill.skillName" name="skillName" id="skillName" required="true" />
+																		<label>Skill Name</label>
+																</div>
+														</div>
 
-										<div class="col-md-12">
-												<div class="table-responsive">
-														<table class="table table-striped">
-																<thead style="background-color: #03a9f4;">
-																		<tr>
-																				<th><b>No</b></th>
-																				<th><b>Test Title</b></th>
-																				<th><b>Sections</b></th>
-																				<th><b>Sessions</b></th>
-																				<th><b>Passed </b></th>
-																				<th><b>Average Score</b></th>
-																				<th><b>Highest Score</b></th>
-																				<th><b>Top 3</b></th>
-																				<th><b>Contact</b></th>
-																				<th><b>Basic Report</b></th>
-																				<th><b>Full Reports</b></th>
-																		</tr>
-																</thead>
-																<tbody>
-																<tbody>
 
-																		<c:forEach items="${testsessions}" var="session" varStatus="loop">
-																				<tr>
-																						<td>${loop.count}</td>
+														<div class="col-md-6">
+																<div class="input-field">
+																		<form:select path="skill.level">
 
-																						<td>${session.testName}</td>
+																				<form:options items="${levels}" itemValue="level" itemLabel="level" />
+																		</form:select>
 
-																						<td>${session.sectionsInfo}</td>
-																						<td>${session.noOfSessions}</td>
-																						<td>${session.noOfPassResults}</td>
-
-																						<td>${session.averageScore}</td>
-																						<td>${session.highestScore}</td>
-																						<td>${session.topCandidates}</td>
-																						<td>${session.topCandidatesEmail}</td>
-																						<td><a href="downloadUserReportsForTest?testName=${session.testName}">Click
-																						</a></td>
-																						<td><a
-																								href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
-																						</a></td>
-
-																				</tr>
-																		</c:forEach>
-																</tbody>
-
-														</table>
-												</div>
-
-										</div>
+																		<form:hidden path="skill.id" />
+																		<label>Skill Level</label>
+																</div>
+														</div>
+														<div class="formfield savebtn">
+																<input class="save" type="submit" value="${label} Skill"> <input
+																		type="button" value="Cancel" onClick="location.href='skills';">
+														</div>
+										</form>
 								</div>
-								<!-- /.row -->
-
-
-
+								<div class="col-md-3"></div>
 						</div>
-						<!-- /.container -->
+				</div>
 		</section>
-
-
 
 		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
@@ -215,14 +170,12 @@
 										<li><a href="showReports">Results</a></li>
 										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
+										<li><a href="showProfileParams">Recomm Setting</a></li>
 										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
 				</div>
 		</footer>
-
-
-
 
 
 		<!-- jQuery -->
@@ -262,14 +215,84 @@
 		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 		<script src="${mainJs17}"></script>
 
+
 		<script>
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchUsrs?searchText=" + text;
-				}
+			$(document).ready(function() {
+				$('select').material_select();
 			});
+
+			$(function() {
+				$(".addimage").on('click', function(e) {
+					e.preventDefault();
+					$("#addimage").trigger('click');
+				});
+				$(".addaudio").on('click', function(e) {
+					e.preventDefault();
+					$("#addaudio").trigger('click');
+				});
+				$(".addvideo").on('click', function(e) {
+					e.preventDefault();
+					$("#addvideo").trigger('click');
+				});
+			});
+
+			$('#addimage').change(function() {
+				var file = $('#addimage')[0].files[0].name;
+				$('.queimage').text('Image: ' + file);
+				$('.queimage').css('width', '100%');
+			});
+			$('#addaudio').change(function() {
+				var file = $('#addaudio')[0].files[0].name;
+				$('.queaudio').text('Audio: ' + file);
+				$('.queaudio').css('width', '100%');
+			});
+			$('#addvideo').change(function() {
+				var file = $('#addvideo')[0].files[0].name;
+				$('.quevideo').text('Video: ' + file);
+				$('.quevideo').css('width', '100%');
+			});
+
+			function changeQType() {
+				var selectedValue = $("#questionType").val();
+				$('.questiontypedrp .select-dropdown').html(selectedValue);
+				if (selectedValue == 'CODING') {
+
+					document.getElementById("mcqDiv").style.display = 'none';
+					document.getElementById("codingDiv").style.display = '';
+
+					document.getElementById("choice1").required = false;
+					document.getElementById("choice2").required = false;
+
+					document.getElementById("input").required = true;
+					document.getElementById("output").required = true;
+				} else {
+					document.getElementById("mcqDiv").style.display = '';
+					document.getElementById("codingDiv").style.display = 'none';
+
+					document.getElementById("choice1").required = true;
+					document.getElementById("choice2").required = true;
+					document.getElementById("input").required = false;
+					document.getElementById("output").required = false;
+				}
+			}
 		</script>
+
+		<c:if test="${msgtype != null}">
+				<script>
+					var notification = 'Information';
+					$(function() {
+						new PNotify({
+							title : notification,
+							text : '${message}',
+							type : '${msgtype}',
+							styling : 'bootstrap3',
+							hide : true
+						});
+					});
+				</script>
+		</c:if>
+
+
 </body>
 
 </html>

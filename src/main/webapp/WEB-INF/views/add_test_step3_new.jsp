@@ -102,10 +102,11 @@
 												<li><a href="javascript:void(0)">Dashboard</a></li>
 												<li><a href="question_list">Question Bank</a></li>
 												<li class="active"><a href="testlist">Tests</a></li>
-												<li><a href="javascript:void(0)">Skills</a></li>
+												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
-												<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-												<li><a href="javascript:void(0)">Skill based Reports</a></li>
+												<li><a href="codingSessions">Code Analysis Reports</a></li>
+												<li><a href="showSkillTags">Skill based Reports</a></li>
+												<li><a href="showProfileParams">Recomm Setting</a></li>
 												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
@@ -245,8 +246,9 @@
 														</div>
 														<div class="col-md-12">
 
-																<input type="button" value="Share" onClick="javascript:shareTest()" class="btn btn-primary popupbtn"/>
-<!-- 																<button class="btn btn-primary popupbtn"  onClick="javascript:shareTest()" >Share</button> -->
+																<input type="button" value="Share" onClick="javascript:shareTest()"
+																		class="btn btn-primary popupbtn" />
+																<!-- 																<button class="btn btn-primary popupbtn"  onClick="javascript:shareTest()" >Share</button> -->
 														</div>
 												</form:form>
 

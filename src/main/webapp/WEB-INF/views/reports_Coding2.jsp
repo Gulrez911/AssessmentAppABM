@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>User List</title>
+<title>Question List</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -82,7 +82,55 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
+<style>
+q {
+	display: inline;
+}
 
+q:before {
+	content: open-quote;
+}
+
+q:after {
+	content: close-quote;
+}
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body id="top" class="has-header-search">
@@ -100,12 +148,12 @@
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
 												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li><a href="question_list">Question Bank</a></li>
-												<li><a href="testlist">Tests</a></li>
+												<li ><a href="question_list">Question Bank</a></li>
+												<li ><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
-												<li class="active"><a href="showReports">Results</a></li>
-												<li><a href="codingSessions">Code Analysis Reports</a></li>
-												<li><a href="showSkillTags">Skill based Reports</a></li>
+												<li><a href="showReports">Results</a></li>
+												<li class="active"><a href="codingSessions">Code Analysis Reports</a></li>
+												<li ><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
 												<li ><a href="listUsers">Users</a></li>
 										</ul>
@@ -120,86 +168,74 @@
 		<section>
 				<div class="container">
 						<div class="row mt-5">
-								<a href="downloadTestReport"><img
-										src="<%=request.getContextPath()%>/resources/images/testsReport.png"> All Tests
-										Report</a> <a href="downloadUserReport"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">All User
-										Sessions Report</a> <a target="_blank" href="/AssesmentApp/frameset?__report=qs.rptdesign">Report
-										By Questions</a> <a target="_blank"
-										href="/AssesmentApp/frameset?__report=finalreport2new.rptdesign">Report By Percentile</a>
-								<a target="_blank" href="/AssesmentApp/frameset?__report=test.rptdesign"><img
-										src="<%=request.getContextPath()%>/resources/images/usersReport.png">Report By
-										Testname</a>
 
-								<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
-								<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
-
-								<%-- 								</form> --%>
 
 								<div class="col-md-12">
 										<div class="mt-10"></div>
 										<div class="col-md-5">
-												<h1 style="color: #b07c2a;">
-														<b style="font-size: x-large;">${reportType}</b>
+												<h1 style="color: #b07c2a; font-size: 20px">
+														<b>All Coding Tests Report</b>
 												</h1>
 										</div>
-
-										<div class="col-md-12">
-												<div class="table-responsive">
-														<table class="table table-striped">
-																<thead style="background-color: #03a9f4;">
-																		<tr>
-																				<th><b>No</b></th>
-																				<th><b>Test Title</b></th>
-																				<th><b>Sections</b></th>
-																				<th><b>Sessions</b></th>
-																				<th><b>Passed </b></th>
-																				<th><b>Average Score</b></th>
-																				<th><b>Highest Score</b></th>
-																				<th><b>Top 3</b></th>
-																				<th><b>Contact</b></th>
-																				<th><b>Basic Report</b></th>
-																				<th><b>Full Reports</b></th>
-																		</tr>
-																</thead>
-																<tbody>
-																<tbody>
-
-																		<c:forEach items="${testsessions}" var="session" varStatus="loop">
-																				<tr>
-																						<td>${loop.count}</td>
-
-																						<td>${session.testName}</td>
-
-																						<td>${session.sectionsInfo}</td>
-																						<td>${session.noOfSessions}</td>
-																						<td>${session.noOfPassResults}</td>
-
-																						<td>${session.averageScore}</td>
-																						<td>${session.highestScore}</td>
-																						<td>${session.topCandidates}</td>
-																						<td>${session.topCandidatesEmail}</td>
-																						<td><a href="downloadUserReportsForTest?testName=${session.testName}">Click
-																						</a></td>
-																						<td><a
-																								href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
-																						</a></td>
-
-																				</tr>
-																		</c:forEach>
-																</tbody>
-
-														</table>
-												</div>
-
-										</div>
 								</div>
-								<!-- /.row -->
+								<div class="col-md-12">
+										<div class="table-responsive">
+												<table class="table table-striped">
+														<thead style="background-color: #03a9f4;">
+																<tr>
+																		<th><b>No</b></th>
+																		<th><b>First Name</b></th>
+																		<th><b>Last Name</b></th>
+																		<th><b>Email</b></th>
+																		<th><b>Test Title</b></th>
+
+																		<th><b>Overall Score </b></th>
+																		<th><b>Passed </b></th>
+																		<th><b>Coding Problem</b></th>
+																		<th><b>Code by Programmer</b></th>
+
+																		<th><b>Download Code Report</b></th>
 
 
+																</tr>
+														</thead>
+														<tbody>
 
+																<c:forEach items="${data}" var="session" varStatus="loop">
+																		<tr>
+																				<td>${loop.count}</td>
+
+																				<td>${session.firstName}</td>
+
+																				<td>${session.lastName}</td>
+																				<td>${session.email}</td>
+																				<td>${session.testName}</td>
+
+																				<td>${session.overallScore}</td>
+																				<td>${session.pass}</td>
+																				<td><a href="javascript:void(0);"
+																						onclick="showCode('${session.problemStatement}');">See Code </a></td>
+																				<td><a href="javascript:void(0);"
+																						onclick="showCode('${session.outputCode}');">See Code </a></td>
+																				<td><c:if test="${session.analysisApplicable}">
+																								<a href="downloadCodeAnalysis?id=${session.questionMapperInstanceId}">Get
+																										Code Analysis Report </a>
+																						</c:if></td>
+
+																		</tr>
+																</c:forEach>
+														</tbody>
+												</table>
+										</div>
+
+								</div>
 						</div>
-						<!-- /.container -->
+						<!-- /.row -->
+
+
+
+				</div>
+				<!-- /.container -->
 		</section>
 
 
@@ -215,6 +251,7 @@
 										<li><a href="showReports">Results</a></li>
 										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
+										<li><a href="showProfileParams">Recomm Setting</a></li>
 										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
@@ -223,7 +260,15 @@
 
 
 
+		<div id="myModal" class="modal">
 
+				<!-- Modal content -->
+				<div class="modal-content">
+						<span class="close">&times;</span>
+						<code id="code">Some text in the Modal..</code>
+				</div>
+
+		</div>
 
 		<!-- jQuery -->
 
@@ -263,13 +308,52 @@
 		<script src="${mainJs17}"></script>
 
 		<script>
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchUsrs?searchText=" + text;
-				}
-			});
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				var modal = document.getElementById('myModal');
+				modal.style.display = "none";
+			}
+
+			function showCode(code) {
+				var modal = document.getElementById('myModal');
+				document.getElementById("code").innerHTML = code;
+				modal.style.display = "block";
+			}
 		</script>
+
+		<script>
+			function notify(messageType, message) {
+				var notification = 'Information';
+				$(function() {
+					new PNotify({
+						title : notification,
+						text : message,
+						type : messageType,
+						styling : 'bootstrap3',
+						hide : true
+					});
+				});
+			}
+		</script>
+
+
+		<c:if test="${msgtype != null}">
+				<script>
+					var notification = 'Information';
+					$(function() {
+						new PNotify({
+							title : notification,
+							text : '${message}',
+							type : '${msgtype}',
+							styling : 'bootstrap3',
+							hide : true
+						});
+					});
+				</script>
+		</c:if>
 </body>
 
 </html>
