@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
+<title>Code Analysis Report</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -147,15 +147,16 @@ q:after {
 										<!--logo end-->
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
-												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li ><a href="question_list">Question Bank</a></li>
-												<li ><a href="testlist">Tests</a></li>
+											<li><a
+														href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+												<li><a href="question_list">Question Bank</a></li>
+												<li><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
 												<li class="active"><a href="codingSessions">Code Analysis Reports</a></li>
-												<li ><a href="showSkillTags">Skill based Reports</a></li>
+												<li><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
-												<li ><a href="listUsers">Users</a></li>
+												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
 								</div>

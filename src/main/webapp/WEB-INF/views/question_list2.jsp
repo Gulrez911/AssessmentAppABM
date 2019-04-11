@@ -99,7 +99,7 @@
 										<!--logo end-->
 										<!--mega menu start-->
 									<ul class="menuzord-menu pull-right">
-												<li><a href="javascript:void(0)">Dashboard</a></li>
+												<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 												<li class="active"><a href="question_list">Question Bank</a></li>
 												<li ><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>

@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
+<title>Skill Based Reports</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -99,15 +99,16 @@
 										<!--logo end-->
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
-												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li ><a href="question_list">Question Bank</a></li>
-												<li ><a href="testlist">Tests</a></li>
+												<li><a
+														href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+												<li><a href="question_list">Question Bank</a></li>
+												<li><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
 												<li><a href="codingSessions">Code Analysis Reports</a></li>
 												<li class="active"><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
-												<li ><a href="listUsers">Users</a></li>
+												<li><a href="listUsers">Users</a></li>
 										</ul>
 										<!--mega menu end-->
 								</div>
@@ -273,105 +274,7 @@
 		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 		<script src="${mainJs17}"></script>
 
-		<script>
-			/* off-canvas sidebar toggle */
-			$('[data-toggle=offcanvas]').click(
-					function() {
-						$('.row-offcanvas').toggleClass('active');
-						$('.collapse').toggleClass('in').toggleClass(
-								'hidden-xs').toggleClass('visible-xs');
-					});
-
-			$('#search').on('click', function() {
-				var text = document.getElementById("searchText").value;
-				if (text.length != 0) {
-					window.location = "searchQuestions?searchText=" + text;
-				}
-			});
-
-			var isXlsx = function(name) {
-				return name.match(/xlsx$/i)
-			};
-
-			$("#btnfile").click(function() {
-				$("#uploadfile").click();
-			});
-
-			function showFileDialog() {
-				$("#fileQuestions	").click();
-			}
-
-			$(document)
-					.ready(
-							function() {
-
-								var file = $('[name="fileQuestions"]');
-								var imgContainer = $('#imgContainer');
-
-								$('#uploadLink').on('click', function() {
-									// $("#file").click();
-
-								});
-
-								var fileU = document
-										.getElementById('fileQuestions');
-								fileU
-										.addEventListener(
-												"change",
-												function() {
-													if (fileU.files.length > 0) {
-														var filename = $
-																.trim(file
-																		.val());
-
-														if (!(isXlsx(filename))) {
-															notify('Error',
-																	'Please select an xlsx file to upload');
-															return;
-														}
-
-														$
-																.ajax(
-																		{
-																			xhr : function() {
-																				var xhr = new window.XMLHttpRequest();
-
-																				return xhr;
-																			},
-																			url : 'upload',
-																			type : "POST",
-																			data : new FormData(
-																					document
-																							.getElementById("fileFormQuestions")),
-																			enctype : 'multipart/form-data',
-																			processData : false,
-																			contentType : false
-																		})
-																.done(
-																		function(
-																				data) {
-																			notify(
-																					'Success',
-																					'File Upload Successful');
-
-																		})
-																.fail(
-																		function(
-																				jqXHR,
-																				textStatus) {
-																			notify(
-																					'Failure',
-																					'File Upload Failed. Please contact Administrator');
-																		});
-														document
-																.getElementById('fileQuestions').value = null;
-														return;
-													}
-
-												});
-
-							});
-
+		<script type="text/javascript">
 			function notify(messageType, message) {
 				var notification = 'Information';
 				$(function() {
@@ -384,47 +287,8 @@
 					});
 				});
 			}
-
-			function confirm(id) {
-				(new PNotify(
-						{
-							title : 'Confirmation Needed',
-							text : 'Are you sure? Do you really want to delete this Q?',
-							icon : 'glyphicon glyphicon-question-sign',
-							hide : false,
-							confirm : {
-								confirm : true
-							},
-							buttons : {
-								closer : false,
-								sticker : false
-							},
-							history : {
-								history : false
-							}
-						})).get().on('pnotify.confirm', function() {
-					window.location = "removeQuestionFromList?qid=" + id;
-				}).on('pnotify.cancel', function() {
-
-				});
-			}
 		</script>
 
-
-		<c:if test="${msgtype != null}">
-				<script>
-					var notification = 'Information';
-					$(function() {
-						new PNotify({
-							title : notification,
-							text : '${message}',
-							type : '${msgtype}',
-							styling : 'bootstrap3',
-							hide : true
-						});
-					});
-				</script>
-		</c:if>
 </body>
 
 </html>

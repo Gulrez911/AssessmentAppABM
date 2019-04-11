@@ -52,6 +52,14 @@ public class Test extends Base {
 	
 	Boolean sentToStudent = false;
 	
+	Boolean sendRecommReport = false;
+	
+	public Boolean getSendRecommReport() {
+		return sendRecommReport;
+	}
+	public void setSendRecommReport(Boolean sendRecommReport) {
+		this.sendRecommReport = sendRecommReport;
+	}
 	@Transient
 	String category;
 	

@@ -99,8 +99,9 @@
 										<!--logo end-->
 										<!--mega menu start-->
 										<ul class="menuzord-menu pull-right">
-												<li><a href="javascript:void(0)">Dashboard</a></li>
-												<li ><a href="question_list">Question Bank</a></li>
+												<li><a
+														href="javascript:notify('Information', 'We will release the feature pretty soon! Pease wait for our next release');">Dashboard</a></li>
+												<li><a href="question_list">Question Bank</a></li>
 												<li class="active"><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
@@ -190,7 +191,8 @@
 																		</div>
 																		<div class="col-md-8">
 																				<div class="input-field">
-																					 <form:input path="test.qualifier2" name="qualifier2" id="qualifier2" placeholder="Choose Sub Category" />
+																						<form:input path="test.qualifier2" name="qualifier2" id="qualifier2"
+																								placeholder="Choose Sub Category" />
 																				</div>
 																		</div>
 																</div>
@@ -202,7 +204,8 @@
 																		</div>
 																		<div class="col-md-8">
 																				<div class="input-field">
-																						<form:input path="test.qualifier3" name="qualifier3" id="qualifier3" placeholder="Choose Category of a Sub Category" />
+																						<form:input path="test.qualifier3" name="qualifier3" id="qualifier3"
+																								placeholder="Choose Category of a Sub Category" />
 																				</div>
 																		</div>
 																</div>
@@ -216,21 +219,20 @@
 																		</div>
 																		<div class="col-md-8">
 																				<div class="input-field">
-																				<input type="text" placeholder="Eg. Hire Java Freshers" value="Java" disabled>
-<!-- 																						<select name="skls"> -->
-<!-- 																								<option value="3">Java-BASIC</option> -->
-<!-- 																								<option value="4">Java-INTERMEDIATE</option> -->
-<!-- 																								<option value="5">Java-EXPERT</option> -->
-<!-- 																								<option value="90">Testing-BASIC</option> -->
-<!-- 																								<option value="92">Test Management-EXPERT</option> -->
-<!-- 																								<option value="102">Testing-INTERMEDIATE</option> -->
-<!-- 																								<option value="105">1-BASIC</option> -->
-<!-- 																								<option value="112">Project mangement-INTERMEDIATE</option> -->
-<!-- 																								<option value="113">testing expert-EXPERT</option> -->
-<!-- 																								<option value="119">Software Testing-INTERMEDIATE</option> -->
-<!-- 																								<option value="2963">General Knowledge-BASIC</option> -->
-<!-- 																								<option value="2964">Attitude-BASIC</option> -->
-<!-- 																						</select> -->
+																						<select name="skls">
+																								<option value="3">Java-BASIC</option>
+																								<option value="4">Java-INTERMEDIATE</option>
+																								<option value="5">Java-EXPERT</option>
+																								<option value="90">Testing-BASIC</option>
+																								<option value="92">Test Management-EXPERT</option>
+																								<option value="102">Testing-INTERMEDIATE</option>
+																								<option value="105">1-BASIC</option>
+																								<option value="112">Project mangement-INTERMEDIATE</option>
+																								<option value="113">testing expert-EXPERT</option>
+																								<option value="119">Software Testing-INTERMEDIATE</option>
+																								<option value="2963">General Knowledge-BASIC</option>
+																								<option value="2964">Attitude-BASIC</option>
+																						</select>
 																				</div>
 																		</div>
 																</div>
@@ -277,20 +279,41 @@
 																		<div class="col-md-4">
 																				<label class="fieldtitle">Conducted by</label>
 																		</div>
-																		<!-- 																		<div class="col-md-8"> -->
-																		<!-- 																				<div class="input-field"> -->
-																		<!-- 																						<input id="email" name="email" type="text" disabled="" -->
-																		<!-- 																								value="contact@thev2technologies.com"> -->
-																		<!-- 																				</div> -->
-																		<!-- 																		</div> -->
-																		<div class="formfield">
-
-																				<form:input path="user.email" name="email" id="email" style="width: 25%;"
-																						value="" disabled="true" />
+																		<div class="col-md-8">
+																				<div class="input-field">
+																						<form:input path="user.email" name="email" id="email" value="" disabled="true" />
+																				</div>
 																		</div>
 																</div>
 														</div>
 												</div>
+
+												<div class="col-md-12">
+														<div class="col-md-6">
+																<div class="row formfields">
+																		<div class="col-md-4">
+																				<label class="fieldtitle">Share Recommendation Engine by Email</label>
+																		</div>
+																		<div class="col-md-8">
+																				<label> <form:checkbox path="test.sendRecommReport"
+																								id="sendRecommReport" label="" />
+																				</label>
+																		</div>
+																</div>
+														</div>
+														<div class="col-md-6">
+																<div class="row formfields">
+																		<div class="col-md-4">
+																				<label class="fieldtitle">Shuffle Questions in Test</label>
+																		</div>
+																		<div class="col-md-8">
+																				<label> <form:checkbox path="test.randomQuestions" id="random" label="" /></label>
+																		</div>
+																</div>
+														</div>
+												</div>
+
+
 												<div class="col-md-12">
 														<div class="col-md-6">
 																<div class="row formfields">
@@ -308,21 +331,8 @@
 																		</div>
 																</div>
 														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Shuffle Questions in Test</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<input type="checkbox" id="random" name="randomQuestions" value="true"
-																								checked="checked"> <label for="randomQuestions"></label> <input
-																								type="hidden" name="_randomQuestions" value="on">
-																				</div>
-																		</div>
-																</div>
-														</div>
 												</div>
+
 												<div class="col-md-12">
 														<div class="col-md-6">
 																<div class="row formfields">
@@ -344,18 +354,14 @@
 																		</div>
 																		<div class="col-md-8">
 																				<div class="input-field">
-																						<div class="select-wrapper">
-																								<span class="select-dropdown "
-																										data-activates="select-options-b49cea6e-e54b-7d1a-c7f6-464102cf7424">Java</span><select
-																										id="testType" name="testType" class="initialized">
-																										<option value="Java" selected="selected">Java</option>
-																										<option value="Microsoft technologies">Microsoft technologies</option>
-																										<option value="C/C++">C/C++</option>
-																										<option value="Python">Python</option>
-																										<option value="General Knowledge">General Knowledge</option>
-																										<option value="Composite Test">Composite Test</option>
-																								</select>
-																						</div>
+																						<select id="testType" name="testType">
+																								<option value="Java" selected="selected">Java</option>
+																								<option value="Microsoft technologies">Microsoft technologies</option>
+																								<option value="C/C++">C/C++</option>
+																								<option value="Python">Python</option>
+																								<option value="General Knowledge">General Knowledge</option>
+																								<option value="Composite Test">Composite Test</option>
+																						</select>
 																				</div>
 																		</div>
 																</div>
@@ -412,12 +418,11 @@
 																</div>
 														</div>
 												</div>
-
-
 										</form>
 										<div class="col-md-12 text-right">
-												<a  type="button" class="waves-effect waves-light btn submit-button indigo mt-30" href="testlist">Cancel</a>
-												<a id="next" class="waves-effect waves-light btn mt-30" href="#">Next</a>
+												<a type="button" class="waves-effect waves-light btn submit-button indigo mt-30"
+														href="testlist">Cancel</a> <a id="next" class="waves-effect waves-light btn mt-30"
+														href="#">Next</a>
 										</div>
 								</div>
 						</div>
@@ -429,13 +434,15 @@
 				<div class="secondary-footer brand-bg darken-2 text-center">
 						<div class="container">
 								<ul>
-										<li><a href="javascript:void(0)">Dashboard</a></li>
+										<li><a
+												href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 										<li><a href="question_list">Question Bank</a></li>
-										<li><a href="testlist">Tests</a></li>
-										<li><a href="javascript:void(0)">Skills</a></li>
+										<li class="active"><a href="testlist">Tests</a></li>
+										<li><a href="skills">Skills</a></li>
 										<li><a href="showReports">Results</a></li>
-										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-										<li><a href="javascript:void(0)">Skill based Reports</a></li>
+										<li><a href="codingSessions">Code Analysis Reports</a></li>
+										<li><a href="showSkillTags">Skill based Reports</a></li>
+										<li><a href="showProfileParams">Recomm Setting</a></li>
 										<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>

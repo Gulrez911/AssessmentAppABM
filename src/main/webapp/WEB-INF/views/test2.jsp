@@ -256,7 +256,7 @@ body * {
 }
 </style>
 </head>
-<body id="top" class="has-header-search">
+<body id="top" class="has-header-search" onload="setTimeOnLoad()">
 
 		<form:form id="testForm" name="testForm" method="POST" modelAttribute="currentQuestion">
 				<!--header start-->
@@ -335,10 +335,11 @@ body * {
 																<div class="col-md-4">
 																		<div class="progress-section">
 																				<span class="progress-title">${noAnswered} of ${totalQuestions} answered</span>
+																				<label></label>
 																				<div class="progress">
 																						<div class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
-																								role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-																								style="width: ${percentage}%;";">
+																								role="progressbar" aria-valuenow="${percentage}%" aria-valuemin="0" aria-valuemax="100"
+																								style="width: ${percentage}%;">
 																								<span style="color: #0d0d0d">${percentage}%</span>
 																						</div>
 																				</div>
@@ -361,7 +362,25 @@ body * {
 																														<div class="queno">
 																																<span>${currentQuestion.position}</span>
 																														</div>
-																														<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>
+																														<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>&nbsp; &nbsp; &nbsp;   <c:if test = "${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
+								<img src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}" height="400" width="500">
+							  </c:if>
+							  
+							  <c:if test = "${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
+							   &nbsp; &nbsp; &nbsp;  <audio controls src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
+										Your browser does not support the
+										<code>audio</code> element.
+								</audio>
+								
+							  </c:if>
+							  
+							  <c:if test = "${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
+								&nbsp; &nbsp; &nbsp; <video width="400" height="300" controls>
+									  <source src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}" >
+									 
+									  Your browser does not support the video tag.
+									</video>
+							  </c:if>
 																												</div>
 																										</div>
 																								</div>
@@ -861,107 +880,10 @@ body * {
 
 	</script>
 
-		<style>
-.ace_editor div {
-	font: inherit !important
-}
+	 
 
-#editor {
-	height: 400px;
-	width: 100%;
-	color: #000;
-	margin: 0;
-}
-
-#editor {
-	font-family: monospace
-}
-
-.ace_editor {
-	font-family: monospace !important
-}
-editor
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.container
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.style
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.fontFamily
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-=
-"
-monospace
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-";
-</style>
-
-		<script>
+		
+<script>
 	$(function () {
                 $(".addimage").on('click', function (e) {
                     e.preventDefault();
@@ -1314,19 +1236,19 @@ monospace
 	}
 
 	</script>
+	
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
 
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <p id="showAlert">Some text in the Modal..</p>
+	  </div>
 
-				<!-- Modal content -->
-				<div class="modal-content">
-						<span class="close">&times;</span>
-						<p id="showAlert">Some text in the Modal..</p>
-				</div>
-
-		</div>
-
-		<script>
+	</div>
+	
+	<script>
 		// Get the modal
 		var modal = document.getElementById('myModal');
 

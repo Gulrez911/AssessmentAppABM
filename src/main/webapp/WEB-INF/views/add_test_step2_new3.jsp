@@ -98,7 +98,7 @@
 										</a>
 										<!--logo end-->
 										<ul class="menuzord-menu pull-right">
-												<li><a href="javascript:void(0)">Dashboard</a></li>
+												<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Pease wait for our next release');">Dashboard</a></li>
 												<li><a href="question_list">Question Bank</a></li>
 												<li class="active"><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
@@ -197,14 +197,16 @@
 				<div class="secondary-footer brand-bg darken-2 text-center">
 						<div class="container">
 								<ul>
-										<li><a href="javascript:void(0)">Dashboard</a></li>
-										<li><a href="question_list">Question Bank</a></li>
-										<li><a href="testlist">Tests</a></li>
-										<li><a href="javascript:void(0)">Skills</a></li>
-										<li><a href="showReports">Results</a></li>
-										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-										<li><a href="javascript:void(0)">Skill based Reports</a></li>
-										<li><a href="listUsers">Users</a></li>
+										<li><a
+														href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+												<li><a href="question_list">Question Bank</a></li>
+												<li class="active"><a href="testlist">Tests</a></li>
+												<li><a href="skills">Skills</a></li>
+												<li><a href="showReports">Results</a></li>
+												<li><a href="codingSessions">Code Analysis Reports</a></li>
+												<li><a href="showSkillTags">Skill based Reports</a></li>
+												<li><a href="showProfileParams">Recomm Setting</a></li>
+												<li><a href="listUsers">Users</a></li>
 								</ul>
 						</div>
 				</div>

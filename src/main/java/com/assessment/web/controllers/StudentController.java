@@ -1165,6 +1165,29 @@ public class StudentController {
 			client.setCcArray(cc);
 			Thread th = new Thread(client);
 			th.start();
+		} else if (test.getSendRecommReport() != null && test.getSendRecommReport()) {
+			String file = reportsService.generatedetailedReportForCompositeTest(
+					user.getCompanyId(), test.getTestName(), user.getEmail());
+			String email = "";
+			if (user.getEmail().lastIndexOf("[") > 0) {
+				email = user.getEmail().substring(0, user.getEmail().lastIndexOf("["));
+			} else {
+				email = user.getEmail();
+			}
+			String cc[] = { email };
+			EmailGenericMessageThread client = new EmailGenericMessageThread(test.getCreatedBy(),
+					"Test Results for " + user.getFirstName() + " "
+							+ user.getLastName() + " for test- "
+							+ test.getTestName(),
+					html, user.getEmail(), propertyConfig, file,
+					user.getFirstName() + " " + user.getLastName() + "-"
+							+ test.getTestName());
+			if (test.getSentToStudent() != null && test.getSentToStudent()) {
+				client.setCcArray(cc);
+			}
+
+			Thread th = new Thread(client);
+			th.start();
 		} else {
 			EmailGenericMessageThread client = new EmailGenericMessageThread(test.getCreatedBy(),
 					"Test Results for " + user.getFirstName() + " "
