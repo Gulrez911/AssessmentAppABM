@@ -94,7 +94,7 @@
 								<div id="materialize-menu" class="menuzord">
 										<!--logo start-->
 										<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-												src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+												src="<%=request.getContextPath()%>/resources/assets/images/Logo.png" alt="" />
 										</a>
 										<!--logo end-->
 										<!--mega menu start-->

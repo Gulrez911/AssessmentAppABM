@@ -24,16 +24,16 @@
 <div class="container">
 	
 	<div class="jumbotron">
-	 <h1 style="color:red">Sorry! The system has unexpectedly suffered a problem.</h1>
-    <h2>The system has, through automation, send an email to the Site Admin with the error stack detail to help in further investigations</h2>
-   
+	 <h1 style="color:red">Sorry! ${studentTestForm.firstName} ${studentTestForm.lastName} - You can't apear for this test as its wrongly configured</h1>
+    <h2>Test Administrator has not selected any questions for this test</h2>
+    <h2>You can contact ${studentTestForm.testCreatedBy} to inform him/her of the same.</h2>
     
     </div>
 <div class="container">
   <div class="page-header" style="background-color:#DAA300;color:#fff">
-    <h1>If you feel to raise an escalation, Write to <a href="mailto:admin@assess.com">Click here</a></h1>      
+    <h1>If you want to try this test again Write to <a href="mailto:jatin.sutaria@thev2technologies.com">Click here</a></h1>      
   </div>
-  <p>If you want to provide any help to us on the your usage pattern that caused the problem -  Write to <a href="mailto:admin@e-assess.com">Click here</a></p>      
+  <p>If you want to provide any feedback on the test Write to <a href="mailto:feedback@iiht.com">Click here</a></p>      
    
 </div>
 

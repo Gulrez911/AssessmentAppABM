@@ -16,7 +16,8 @@
 
 <link href="${c1}" rel="shortcut icon" />
 
-<spring:url value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
+<spring:url
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
 
@@ -26,7 +27,8 @@
 <link href="${c3}" rel="stylesheet" type="text/css" />
 
 <!-- FontAwesome CSS -->
-<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css" var="c4" />
+<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+	var="c4" />
 
 <link href="${c4}" rel="stylesheet" type="text/css" />
 
@@ -40,7 +42,8 @@
 
 <link href="${c6}" rel="stylesheet" type="text/css" />
 
-<spring:url value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css" var="c7" />
+<spring:url value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+	var="c7" />
 
 <link href="${c7}" rel="stylesheet" type="text/css" />
 <!-- flexslider -->
@@ -86,415 +89,413 @@
 
 <body id="top" class="has-header-search">
 
-		<!--header start-->
-		<header id="header" class="tt-nav nav-border-bottom">
-				<div class="header-sticky light-header ">
-						<div class="container">
-								<div id="materialize-menu" class="menuzord menuzord-responsive">
-										<a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
-										<!--logo start-->
-										<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-												src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
-										</a>
-										<!--logo end-->
-										<!--mega menu start-->
-										<ul class="menuzord-menu pull-right">
-												<li><a
-														href="javascript:notify('Information', 'We will release the feature pretty soon! Pease wait for our next release');">Dashboard</a></li>
-												<li><a href="question_list">Question Bank</a></li>
-												<li class="active"><a href="testlist">Tests</a></li>
-												<li><a href="skills">Skills</a></li>
-												<li><a href="showReports">Results</a></li>
-												<li><a href="codingSessions">Code Analysis Reports</a></li>
-												<li><a href="showSkillTags">Skill based Reports</a></li>
-												<li><a href="showProfileParams">Recomm Setting</a></li>
-												<li><a href="listUsers">Users</a></li>
-										</ul>
-										<!--mega menu end-->
-								</div>
-						</div>
+	<!--header start-->
+	<header id="header" class="tt-nav nav-border-bottom">
+		<div class="header-sticky light-header ">
+			<div class="container">
+				<div id="materialize-menu" class="menuzord menuzord-responsive">
+					<a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
+					<!--logo start-->
+					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					</a>
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right">
+						<li><a href="javascript:void(0)">Dashboard</a></li>
+						<li><a href="question_list">Question Bank</a></li>
+						<li class="active"><a href="testlist">Tests</a></li>
+						<li><a href="javascript:void(0)">Skills</a></li>
+						<li><a href="showReports">Results</a></li>
+						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+						<li><a href="javascript:void(0)">Skill based Reports</a></li>
+						<li><a href="listUsers">Users</a></li>
+					</ul>
+					<!--mega menu end-->
 				</div>
-		</header>
-		<!--header end-->
+			</div>
+		</div>
+	</header>
+	<!--header end-->
 
 
-		<section>
-				<div class="container">
-						<div class="row no-gutter">
-								<div class="col-md-2 mb-20">
-										<div class="col-md-12 col-sm-6 text-center">
-												<div class="stepsitem active">
-														<span>1</span>
-														<div class="intro-header">
-																<i class="fa fa-cog"></i>
-																<h2 class="white-text">Set Your Test</h2>
-														</div>
-												</div>
-										</div>
-										<div class="col-md-12 col-sm-6 text-center">
-												<div class="stepsitem" style="border-bottom: 1px solid #eef5fb;">
-														<span>2</span>
-														<div class="intro-header">
-																<i class="fa fa-question-circle"></i>
-																<h2 class="white-text">Add Questions</h2>
-														</div>
-												</div>
-										</div>
-										<div class="col-md-12 col-sm-6 text-center">
-												<div class="stepsitem">
-														<span>3</span>
-														<div class="intro-header">
-																<i class="fa fa-share-alt"></i>
-																<h2 class="white-text">Share Test</h2>
-														</div>
-												</div>
-										</div>
-								</div>
-
-
-								<div class="col-md-10 mb-20 addtestform">
-										<form id="step1" method="POST" action="saveAndGoToStep2" modelattribute="test">
-
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Test Title</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<form:input path="test.testName" name="testName" id="testName" required="true"
-																								placeholder="Test Name" />
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Category</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<form:input path="test.qualifier1" name="qualifier1" id="qualifier1"
-																								required="true" placeholder="Category" />
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Sub Category</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<form:input path="test.qualifier2" name="qualifier2" id="qualifier2"
-																								placeholder="Choose Sub Category" />
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Category of Sub Category</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<form:input path="test.qualifier3" name="qualifier3" id="qualifier3"
-																								placeholder="Choose Category of a Sub Category" />
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Skills</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<select name="skls">
-																								<option value="3">Java-BASIC</option>
-																								<option value="4">Java-INTERMEDIATE</option>
-																								<option value="5">Java-EXPERT</option>
-																								<option value="90">Testing-BASIC</option>
-																								<option value="92">Test Management-EXPERT</option>
-																								<option value="102">Testing-INTERMEDIATE</option>
-																								<option value="105">1-BASIC</option>
-																								<option value="112">Project mangement-INTERMEDIATE</option>
-																								<option value="113">testing expert-EXPERT</option>
-																								<option value="119">Software Testing-INTERMEDIATE</option>
-																								<option value="2963">General Knowledge-BASIC</option>
-																								<option value="2964">Attitude-BASIC</option>
-																						</select>
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Duration (Enter time in minutes)</label>
-																		</div>
-																		<div class="col-md-4">
-																				<div class="input-field">
-																						<input id="testTimeInMinutes" name="testTimeInMinutes" type="text" value="">
-																				</div>
-																		</div>
-																		<div class="col-md-4">
-																				<div class="input-field">
-																						<div class="select-wrapper">
-																								<span class="select-dropdown "
-																										data-activates="select-options-929d5f36-9ec3-d673-a141-5fd2a86c6930">Minutes</span><select
-																										class="initialized">
-																										<option selected="">Minutes</option>
-																								</select>
-																						</div>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Passmark in Percentage</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<input id="passPercent" name="passPercent" type="text" value="">
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Conducted by</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<form:input path="user.email" name="email" id="email" value="" disabled="true" />
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Share Recommendation Engine by Email</label>
-																		</div>
-																		<div class="col-md-8">
-																				<label> <form:checkbox path="test.sendRecommReport"
-																								id="sendRecommReport" label="" />
-																				</label>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Shuffle Questions in Test</label>
-																		</div>
-																		<div class="col-md-8">
-																				<label> <form:checkbox path="test.randomQuestions" id="random" label="" /></label>
-																		</div>
-																</div>
-														</div>
-												</div>
-
-
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-12">
-																				<label class="fieldtitle">Displayed upon exam completion and email
-																						communications relating to the exam</label>
-																		</div>
-																		<div class="col-md-12">
-																				<div class="input-field">
-																						<input type="checkbox" id="sentToStudent1" name="sentToStudent1" value="true">
-																						<label style="font-size: 12px;" for="sentToStudent1">Email a copy of
-																								the student's results to above contact</label> <input type="hidden"
-																								name="_sentToStudent" value="on">
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Email Domain for Test Givers </label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<input id="domainEmailSupported" name="domainEmailSupported" type="text"
-																								value="">
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Test Type </label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<select id="testType" name="testType">
-																								<option value="Java" selected="selected">Java</option>
-																								<option value="Microsoft technologies">Microsoft technologies</option>
-																								<option value="C/C++">C/C++</option>
-																								<option value="Python">Python</option>
-																								<option value="General Knowledge">General Knowledge</option>
-																								<option value="Composite Test">Composite Test</option>
-																						</select>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-4">
-																				<label class="fieldtitle">Proctor Settings</label>
-																		</div>
-																		<div class="col-md-8">
-																				<div class="input-field">
-																						<input type="checkbox" checked="" disabled=""> <label
-																								style="font-size: 12px;" for="sentToStudent1">Allow webcam
-																								proctoring </label> <input type="hidden" name="_sentToStudent" value="on">
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="col-md-12">
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-12">
-																				<label class="fieldtitle" style="font-size: 14px;">Notification &amp;
-																						Messages</label> <label class="fieldtitle" style="font-size: 14px;">Exam
-																						Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Users
-																						see this text just before they begin the exam</label>
-																		</div>
-																		<div class="col-md-12">
-																				<div class="input-field">
-																						<textarea id="intro" name="intro" class="materialize-textarea"></textarea>
-																						<label for="intro"></label>
-																				</div>
-																		</div>
-																</div>
-														</div>
-														<div class="col-md-6">
-																<div class="row formfields">
-																		<div class="col-md-12">
-																				<label class="fieldtitle" style="font-size: 14px;">Text - Completion
-																						Success</label> <label class="fieldtitle" style="font-size: 14px;">Exam
-																						Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Shown
-																						to the user if they pass the exam. A copy is also sent via email</label>
-																		</div>
-																		<div class="col-md-12">
-																				<div class="input-field">
-																						<textarea id="postTestCompletionText" name="postTestCompletionText"
-																								class="materialize-textarea"></textarea>
-																						<label for="intro"></label>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-										</form>
-										<div class="col-md-12 text-right">
-												<a type="button" class="waves-effect waves-light btn submit-button indigo mt-30"
-														href="testlist">Cancel</a> <a id="next" class="waves-effect waves-light btn mt-30"
-														href="#">Next</a>
-										</div>
-								</div>
+	<section>
+		<div class="container">
+			<div class="row no-gutter">
+				<div class="col-md-2 mb-20">
+					<div class="col-md-12 col-sm-6 text-center">
+						<div class="stepsitem active">
+							<span>1</span>
+							<div class="intro-header">
+								<i class="fa fa-cog"></i>
+								<h2 class="white-text">Set Your Test</h2>
+							</div>
 						</div>
-				</div>
-		</section>
-
-
-		<footer class="footer footer-four">
-				<div class="secondary-footer brand-bg darken-2 text-center">
-						<div class="container">
-								<ul>
-										<li><a
-												href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-										<li><a href="question_list">Question Bank</a></li>
-										<li class="active"><a href="testlist">Tests</a></li>
-										<li><a href="skills">Skills</a></li>
-										<li><a href="showReports">Results</a></li>
-										<li><a href="codingSessions">Code Analysis Reports</a></li>
-										<li><a href="showSkillTags">Skill based Reports</a></li>
-										<li><a href="showProfileParams">Recomm Setting</a></li>
-										<li><a href="listUsers">Users</a></li>
-								</ul>
+					</div>
+					<div class="col-md-12 col-sm-6 text-center">
+						<div class="stepsitem" style="border-bottom: 1px solid #eef5fb;">
+							<span>2</span>
+							<div class="intro-header">
+								<i class="fa fa-question-circle"></i>
+								<h2 class="white-text">Add Questions</h2>
+							</div>
 						</div>
+					</div>
+					<div class="col-md-12 col-sm-6 text-center">
+						<div class="stepsitem">
+							<span>3</span>
+							<div class="intro-header">
+								<i class="fa fa-share-alt"></i>
+								<h2 class="white-text">Share Test</h2>
+							</div>
+						</div>
+					</div>
 				</div>
-		</footer>
-		<!-- jQuery -->
-
-		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
-		<script src="${mainJs1}"></script>
-		<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
-		<script src="${mainJs2}"></script>
-		<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
-		<script src="${mainJs3}"></script>
-		<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
-		<script src="${mainJs4}"></script>
-		<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
-		<script src="${mainJs5}"></script>
-		<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
-		<script src="${mainJs6}"></script>
-		<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
-		<script src="${mainJs7}"></script>
-		<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
-		<script src="${mainJs8}"></script>
-		<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
-		<script src="${mainJs9}"></script>
-		<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
-		<script src="${mainJs10}"></script>
-		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
-		<script src="${mainJs11}"></script>
-		<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
-		<script src="${mainJs12}"></script>
-		<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
-		<script src="${mainJs13}"></script>
-		<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
-		<script src="${mainJs14}"></script>
-		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
-		<script src="${mainJs15}"></script>
 
 
-		<script>
-			$(document).ready(function() {
-				$('select').material_select();
-			});
-		</script>
-		<script>
-			$('#next').on('click', function() {
-				//addteststep2
-				document.getElementById("step1").submit();
-			});
-		</script>
-		<spring:url value="/resources/scripts/custom.js" var="mainJs" />
-		<script src="${mainJs}"></script>
+				<div class="col-md-10 mb-20 addtestform">
+					<form id="step1" method="POST" action="saveAndGoToStep2" modelattribute="test">
+
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Test Title</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="test.testName" name="testName" id="testName"
+												required="true" placeholder="Test Name" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Category</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="test.qualifier1" name="qualifier1" id="qualifier1"
+												required="true" placeholder="Category" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Sub Category</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="test.qualifier2" name="qualifier2" id="qualifier2"
+												placeholder="Choose Sub Category" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Category of Sub Category</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="test.qualifier3" name="qualifier3" id="qualifier3"
+												placeholder="Choose Category of a Sub Category" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Skills</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:select path="test.skls" multiple="multiple"
+												class="multiselect col-md-4" >
+												<form:options items="${skls}" itemValue="" itemLabel="label"  />
+											</form:select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Duration (Enter time in minutes)</label>
+									</div>
+									<div class="col-md-4">
+										<div class="input-field">
+											<input id="testTimeInMinutes" name="testTimeInMinutes" type="text"
+												value="60" required="true">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="input-field">
+											<div class="select-wrapper">
+												<span class="select-dropdown "
+													data-activates="select-options-929d5f36-9ec3-d673-a141-5fd2a86c6930">Minutes</span><select
+													class="initialized">
+													<option selected="">Minutes</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Passmark in Percentage</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<input id="passPercent" name="passPercent" type="text" value="60.0"
+												required="true">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Conducted by</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="user.email" name="email" id="email" value=""
+												disabled="true" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-12">
+										<label class="fieldtitle">Displayed upon exam completion and email
+											communications relating to the exam</label>
+									</div>
+									<div class="col-md-12">
+										<div class="input-field">
+											<input type="checkbox" id="sentToStudent1" name="sentToStudent1"
+												value="true"> <label style="font-size: 12px;"
+												for="sentToStudent1">Email a copy of the student's results to
+												above contact</label> <input type="hidden" name="_sentToStudent" value="on">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--  -->
+
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Share Recommendation Engine by Email</label>
+									</div>
+									<div class="col-md-8">
+										<label> <form:checkbox path="test.sendRecommReport"
+												id="sendRecommReport" label="" />
+										</label>
+									</div>
+								</div>
+							</div>
+							<!--  -->
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Shuffle Questions in Test</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:checkbox path="test.randomQuestions" id="random" label="" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Email Domain for Test Givers </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<input id="domainEmailSupported" name="domainEmailSupported" type="text"
+												value="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Test Type </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<select id="testType" name="testType">
+												<option value="Java" selected="selected">Java</option>
+												<option value="Microsoft technologies">Microsoft technologies</option>
+												<option value="C/C++">C/C++</option>
+												<option value="Python">Python</option>
+												<option value="General Knowledge">General Knowledge</option>
+												<option value="Composite Test">Composite Test</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Proctor Settings</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<input type="checkbox" checked="" disabled=""> <label
+												style="font-size: 12px;" for="sentToStudent1">Allow webcam
+												proctoring </label> <input type="hidden" name="_sentToStudent" value="on">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-12">
+										<label class="fieldtitle" style="font-size: 14px;">Notification
+											&amp; Messages</label> <label class="fieldtitle" style="font-size: 14px;">Exam
+											Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Users
+											see this text just before they begin the exam</label>
+									</div>
+									<div class="col-md-12">
+										<div class="input-field">
+											<textarea id="intro" name="intro" class="materialize-textarea"></textarea>
+											<label for="intro"></label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-12">
+										<label class="fieldtitle" style="font-size: 14px;">Text -
+											Completion Success</label> <label class="fieldtitle" style="font-size: 14px;">Exam
+											Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Shown
+											to the user if they pass the exam. A copy is also sent via email</label>
+									</div>
+									<div class="col-md-12">
+										<div class="input-field">
+											<textarea id="postTestCompletionText" name="postTestCompletionText"
+												class="materialize-textarea"></textarea>
+											<label for="intro"></label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 text-right">
+							<a type="button"
+								class="waves-effect waves-light btn submit-button indigo mt-30"
+								href="testlist">Cancel</a>
+								 <input type="submit"
+								class="waves-effect waves-light btn mt-30" value="NEXT">
+
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<footer class="footer footer-four">
+		<div class="secondary-footer brand-bg darken-2 text-center">
+			<div class="container">
+				<ul>
+					<li><a href="javascript:void(0)">Dashboard</a></li>
+					<li><a href="question_list">Question Bank</a></li>
+					<li><a href="testlist">Tests</a></li>
+					<li><a href="javascript:void(0)">Skills</a></li>
+					<li><a href="showReports">Results</a></li>
+					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+					<li><a href="javascript:void(0)">Skill based Reports</a></li>
+					<li><a href="listUsers">Users</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<!-- jQuery -->
+
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+
+
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+	</script>
+	<script>
+		$('#next').on('click', function() {
+			//addteststep2
+			document.getElementById("step1").submit();
+		});
+	</script>
+	<spring:url value="/resources/scripts/custom.js" var="mainJs" />
+	<script src="${mainJs}"></script>
 </body>
 </html>
 </html>

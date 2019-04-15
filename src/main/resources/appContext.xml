@@ -37,9 +37,9 @@
 		<bean class="com.assessment.common.PropertyConfig">
 				<property name="baseUrl" value="${baseUrl}"></property>
 				<property name="testLinkHtmlLocation"
-						value="/opt/apache-tomcat-8.5.35/bin/test_assessment/sendTestLink.html"></property>
+						value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property>
 				<property name="resultLinkHtmlLocation"
-						value="/opt/apache-tomcat-8.5.35/bin/test_assessment/sendTestResultInfo.html"></property>
+						value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property>
 				<!-- <property name="testLinkHtmlLocation" -->
 				<!-- value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property> -->
 				<!-- <property name="resultLinkHtmlLocation" -->
@@ -85,9 +85,9 @@
 				<property name="user" value="new_ass_user" />
 				<property name="password" value="Welcome@123" />
 
-				<!-- <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/assessment" /> -->
-				<!-- <property name="user" value="root" /> -->
-				<!-- <property name="password" value="" /> -->
+				<!-- <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/assessment" />
+				<property name="user" value="root" />
+				<property name="password" value="" /> -->
 
 				<!-- <property name="jdbcUrl" value="jdbc:mysql://13.233.2.169:3306/assessment" /> -->
 				<!-- <property name="user" value="iiht_user" /> -->

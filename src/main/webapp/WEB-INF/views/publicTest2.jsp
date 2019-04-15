@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IIHT</title>
+<title>E-Assess</title>
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -125,8 +125,8 @@
 										<div class="col-md-6">
 												<div class="userheader headerinfos mt-20">
 														<ul>
-																<li><i class="fa fa-envelope"></i>reachus@iiht.com</li>
-																<li><i class="fa fa-phone"></i>1800-123-321-5</li>
+																<!-- 																<li><i class="fa fa-envelope"></i>admin@e-assess.com</li> -->
+																<li><i class="fa fa-phone"></i>+91 97696 06550</li>
 														</ul>
 												</div>
 										</div>
@@ -216,7 +216,7 @@
 												</div>
 
 										</form>
- 
+
 								</div>
 
 								<div class="col-md-4 col-sm-6">
@@ -245,8 +245,8 @@
 		<footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
 						<div class="container">
-								<p style="margin-bottom: 0;">Copyrigh © 2018 IIHT. All Rights Reserved – Privacy Policy
-										For enterprise solutions</p>
+								<p style="margin-bottom: 0;">Copyrigh © 2019 E-Assess. All Rights Reserved – Privacy
+										Policy For E-Assess Inc.</p>
 						</div>
 				</div>
 		</footer>

@@ -1,4 +1,4 @@
- /********************************************************
+/********************************************************
     Template Name: materialize
     Created By: TrendyTheme
     Envato Profile: https://themeforest.net/user/trendytheme
@@ -35,8 +35,6 @@
 */
 
 /* Import css files */
-
-
 @import url("assets/fonts/flaticon/flaticon.css");
 
 /* Google Web Fonts */
@@ -1016,17 +1014,29 @@ thead {
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
 0);
 transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
@@ -1042,17 +1052,29 @@ keyframes cloudLoop { 0% {
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
 0);
 transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
@@ -1109,23 +1131,47 @@ translate3d
 30%
 {
 top
+
+
 :
-10px;
+
+
+10
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 1;
 }
 100%
 {
 top
+
+
 :
-25px;
+
+
+25
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 0;
 }
 }
@@ -1138,23 +1184,47 @@ keyframes drop { 0% {
 30%
 {
 top
+
+
 :
-10px;
+
+
+10
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 1;
 }
 100%
 {
 top
+
+
 :
-25px;
+
+
+25
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 0;
 }
 }
@@ -1883,25 +1953,37 @@ KEY FRAME
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -1913,25 +1995,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -1943,25 +2037,37 @@ keyframes LeftToRight { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -1975,25 +2081,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2005,25 +2123,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2035,25 +2165,37 @@ keyframes RightToLeft { 49% {
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2067,25 +2209,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2097,25 +2251,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2127,25 +2293,37 @@ keyframes BottomToTop { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2159,25 +2337,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2189,25 +2379,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2219,25 +2421,37 @@ keyframes TopToBottom { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -2658,15 +2872,15 @@ opacity
 }
 
 .modalcopy input[type="text"]:focus:not ([readonly] ) +label, .modalcopy input[type="password"]:focus:not
-	([readonly] ) +label, .modalcopy input[type="email"]:focus:not ([readonly]
-	) +label, .modalcopy input[type="url"]:focus:not ([readonly] ) +label,
+	 ([readonly] ) +label, .modalcopy input[type="email"]:focus:not ([readonly]
+	 ) +label, .modalcopy input[type="url"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="time"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="date"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="datetime-local"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="tel"]:focus:not ([readonly] ) +label, .modalcopy input[type="number"]:focus:not
-	([readonly] ) +label, .modalcopy input[type="search"]:focus:not ([readonly]
-	) +label, .modalcopy textarea.materialize-textarea:focus:not ([readonly]
-	) +label {
+	 ([readonly] ) +label, .modalcopy input[type="search"]:focus:not ([readonly]
+	 ) +label, .modalcopy textarea.materialize-textarea:focus:not ([readonly]
+	 ) +label {
 	color: #000 !important;
 }
 
@@ -3817,17 +4031,29 @@ thead {
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
 0);
 transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
@@ -3843,17 +4069,29 @@ keyframes cloudLoop { 0% {
 100%
 {
 -webkit-transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
 0);
 transform
+
+
 :
+
  
+
 translate3d
+
+
 (-50%
 ,
 0,
@@ -3910,23 +4148,47 @@ translate3d
 30%
 {
 top
+
+
 :
-10px;
+
+
+10
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 1;
 }
 100%
 {
 top
+
+
 :
-25px;
+
+
+25
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 0;
 }
 }
@@ -3939,23 +4201,47 @@ keyframes drop { 0% {
 30%
 {
 top
+
+
 :
-10px;
+
+
+10
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 1;
 }
 100%
 {
 top
+
+
 :
-25px;
+
+
+25
+px
+;
+
  
+
 opacity
+
+
 :
+
  
+
 0;
 }
 }
@@ -4684,25 +4970,37 @@ KEY FRAME
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4714,25 +5012,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4744,25 +5054,37 @@ keyframes LeftToRight { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4776,25 +5098,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4806,25 +5140,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4836,25 +5182,37 @@ keyframes RightToLeft { 49% {
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translate
-(-100%);
 
-    
+ 
+
+:
+
+ 
+
+translate
+
+
+(-100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4868,25 +5226,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4898,25 +5268,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4928,25 +5310,37 @@ keyframes BottomToTop { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4960,25 +5354,37 @@ opacity
 50%
 {
 opacity
+
            
+
 :
+
  
+
 0;
 -webkit-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -4990,25 +5396,37 @@ opacity
 50%
 {
 opacity
+
         
+
 :
+
  
+
 0;
 -moz-transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -5020,25 +5438,37 @@ keyframes TopToBottom { 49% {
 50%
 {
 opacity
+
    
+
 :
+
  
+
 0;
 transform
- 
-:
- 
-translateY
-(100%);
 
-    
+ 
+
+:
+
+ 
+
+translateY
+
+
+(100%);
 }
 51%
 {
 opacity
+
  
+
 :
+
  
+
 1;
 }
 }
@@ -5459,15 +5889,15 @@ opacity
 }
 
 .modalcopy input[type="text"]:focus:not ([readonly] ) +label, .modalcopy input[type="password"]:focus:not
-	([readonly] ) +label, .modalcopy input[type="email"]:focus:not ([readonly]
-	) +label, .modalcopy input[type="url"]:focus:not ([readonly] ) +label,
+	 ([readonly] ) +label, .modalcopy input[type="email"]:focus:not ([readonly]
+	 ) +label, .modalcopy input[type="url"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="time"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="date"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="datetime-local"]:focus:not ([readonly] ) +label,
 	.modalcopy input[type="tel"]:focus:not ([readonly] ) +label, .modalcopy input[type="number"]:focus:not
-	([readonly] ) +label, .modalcopy input[type="search"]:focus:not ([readonly]
-	) +label, .modalcopy textarea.materialize-textarea:focus:not ([readonly]
-	) +label {
+	 ([readonly] ) +label, .modalcopy input[type="search"]:focus:not ([readonly]
+	 ) +label, .modalcopy textarea.materialize-textarea:focus:not ([readonly]
+	 ) +label {
 	color: #000 !important;
 }
 
@@ -5612,4 +6042,19 @@ opacity
 
 .qus h4 {
 	padding-left: 55px;
+}
+
+input[type=submit] {
+	font-style:normal;
+	background-color: #03a9f4;
+	border: none;
+	color: white;
+	padding: 0px 15px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.example {
+  overflow-wrap: break-word;
 }
