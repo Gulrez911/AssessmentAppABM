@@ -83,7 +83,15 @@
 <spring:url value="/resources/assets/revolution/css/navigation.css" var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
-
+<!-- <script type="text/javascript">
+function doSomething(val)
+{
+   
+         alert('Hey moron, define this bad boy.');
+         document.getElementById('s').value='newvalue';
+         console.log(val);
+}
+</script> -->
 
 </head>
 
@@ -105,10 +113,11 @@
 						<li><a href="javascript:void(0)">Dashboard</a></li>
 						<li><a href="question_list">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
-						<li><a href="javascript:void(0)">Skills</a></li>
+						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
-						<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
-						<li><a href="javascript:void(0)">Skill based Reports</a></li>
+						<li><a href="codingSessions">Code Analysis Reports</a></li>
+						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
 					</ul>
 					<!--mega menu end-->
@@ -212,6 +221,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-12">
 							<div class="col-md-6">
 								<div class="row formfields">
@@ -221,8 +231,8 @@
 									<div class="col-md-8">
 										<div class="input-field">
 											<form:select path="test.skls" multiple="multiple"
-												class="multiselect col-md-4" >
-												<form:options items="${skls}" itemValue="" itemLabel="label"  />
+												class="multiselect col-md-4">
+												<form:options items="${skls}" itemLabel="label"></form:options>
 											</form:select>
 										</div>
 									</div>
@@ -416,8 +426,7 @@
 						<div class="col-md-12 text-right">
 							<a type="button"
 								class="waves-effect waves-light btn submit-button indigo mt-30"
-								href="testlist">Cancel</a>
-								 <input type="submit"
+								href="testlist">Cancel</a> <input type="submit"
 								class="waves-effect waves-light btn mt-30" value="NEXT">
 
 						</div>
@@ -494,8 +503,8 @@
 			document.getElementById("step1").submit();
 		});
 	</script>
-	<spring:url value="/resources/scripts/custom.js" var="mainJs" />
-	<script src="${mainJs}"></script>
+	<%-- 	<spring:url value="/resources/scripts/custom.js" var="mainJs" /> --%>
+	<%-- 	<script src="${mainJs}"></script> --%>
 </body>
 </html>
 </html>

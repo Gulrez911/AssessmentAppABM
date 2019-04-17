@@ -63,7 +63,7 @@ public class LoginController {
 	// it shows public data
 	@RequestMapping(value = "/publicTest", method = RequestMethod.GET)
 	public ModelAndView showPublicTest(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("publicTest2");
+		ModelAndView mav = new ModelAndView("publicTest3");
 		User user = new User();
 		TestUserData testUserData = new TestUserData();
 		String testId = request.getParameter("testId");
@@ -192,7 +192,7 @@ public class LoginController {
 			request.getSession().setAttribute("companyId", user.getCompanyId());
 			// request.getSession().setAttribute("questions", questions);
 			System.out.println("test3.........    " + user);
-			mav = new ModelAndView("question_list2");
+			mav = new ModelAndView("redirect:/showReports");
 			mav.addObject("qs", questions.getContent());
 			mav.addObject("levels", DifficultyLevel.values());
 			CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), 0, "question_list", null);

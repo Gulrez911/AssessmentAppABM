@@ -200,7 +200,7 @@
 				<!-- 								<p class="section-sub" </p> -->
 			</div>
 			<div class="row">
-				<div class="col-md-4 col-sm-6">
+				<div class="col-md-6 col-sm-6">
 					<div
 						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
 						<div class="icon radius-4">
@@ -212,8 +212,7 @@
 							<h2>
 								<b>Web Proctored Tests</b>
 							</h2>
-							<p>McClintock's eye for detail certainly helped narrow the whereabouts of
-								lorem</p>
+
 						</div>
 					</div>
 					<div
@@ -227,43 +226,11 @@
 							<h2>
 								<b>Multiple Coding Plateform</b>
 							</h2>
-							<p>McClintock's eye for detail certainly helped narrow the whereabouts of
-								lorem</p>
-						</div>
-					</div>
-				</div>
-				<form:form id="studentIntro" method="POST" action="studentJourney"
-					modelAttribute="studentTestForm">
 
-					<div class="col-md-4">
-						<div class="starttestinfo">
-							<div class="testname">
-								<img src="<%=request.getContextPath()%>/resources/images/testimage.png">
-								<div class="example">
-									<h3>${studentTestForm.testName}</h3>
-								</div>
-							</div>
-							<div class="totalque">
-								<span>Total Questions &nbsp;&nbsp; ${studentTestForm.totalQuestions}</span> <span>Duration
-									&nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
-							</div>
-							<div class="publishdate">
-								<span>Published on <br> ${studentTestForm.formattedPublishedDate}
-								</span> <span>To be completed by <br> Within 1 session
-								</span>
-							</div>
-							<div class="startbutton">
-								<a href="javascript:start()">START TEST</a>
-							</div>
-							<div class="publishdate foot">
-								<span><i class="fa fa-user"></i>&nbsp;System Administrator</span> <span><i
-									class="fa fa-envelope"></i>&nbsp;admin@e-assess.com</span>
-							</div>
 						</div>
 					</div>
-				</form:form>
-				<div class="col-md-4 col-sm-6">
-					<div class="featured-item feature-icon icon-hover icon-hover-brand mt-50 mb-80">
+					<div
+						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
 						<div class="icon radius-4">
 
 							<img style="width: 60% !important; margin-top: 11px"
@@ -273,11 +240,11 @@
 							<h2>
 								<b>Full Stack Support</b>
 							</h2>
-							<p>McClintock's eye for detail certainly helped narrow the whereabouts of
-								lorem</p>
+
 						</div>
 					</div>
-					<div class="featured-item feature-icon icon-hover icon-hover-brand mb-80">
+					<div
+						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mb-80">
 						<div class="icon radius-4">
 
 							<img style="width: 60% !important; margin-top: 11px"
@@ -285,15 +252,48 @@
 						</div>
 						<div class="desc">
 							<h2>
-								<b>Comprehensive Profiling by Recomm Engine</b>
+									<b>Comprehensive Profiling by Recomm Engine</b>
 							</h2>
-							<p>McClintock's eye for detail certainly helped narrow the whereabouts of
-								lorem</p>
+
+						</div>
+					</div>
+					 
+				</div>
+				<form:form id="studentIntro" method="POST" action="studentJourney"
+					modelAttribute="studentTestForm">
+
+
+				</form:form>
+				<div class="col-md-5 col-sm-6"></div>
+				<div class="col-md-4">
+					<div class="starttestinfo">
+						<div class="testname">
+							<img src="<%=request.getContextPath()%>/resources/images/testimage.png">
+							<div class="example">
+								<h3>${studentTestForm.testName}</h3>
+							</div>
+						</div>
+						<div class="totalque">
+							<span>Total Questions &nbsp;&nbsp; ${studentTestForm.totalQuestions}</span> <span>Duration
+								&nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
+						</div>
+						<div class="publishdate">
+							<span>Published on <br> ${studentTestForm.formattedPublishedDate}
+							</span> <span>To be completed by <br> Within 1 session
+							</span>
+						</div>
+						<div class="startbutton">
+							<a href="javascript:start()">START TEST</a>
+						</div>
+						<div class="publishdate foot">
+							<span><i class="fa fa-user"></i>&nbsp;System Administrator</span> <span><i
+								class="fa fa-envelope"></i>&nbsp;admin@e-assess.com</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</section>
 
 	<footer class="footer footer-four">
