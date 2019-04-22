@@ -48,7 +48,6 @@
 <body>
 	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 
-
 		<section
 			style="height: 100% !important; margin: 0px; background-image: url('<%=request.getContextPath()%>/resources/images/loginbg2.jpg');">
 			<img src="<%=request.getContextPath()%>/resources/images/Logo.png"
@@ -58,6 +57,8 @@
 					<div class="card-wrapper"></div>
 					<div class="card-wrapper">
 						<h1 class="title">Login</h1>
+						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a>
+						
 						<form name="userloginform" class="userform" method="post"
 							modelAttribute="user" action="authenticate">
 							<div class="input-container">
@@ -88,6 +89,7 @@
 									your password?</a>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</div>

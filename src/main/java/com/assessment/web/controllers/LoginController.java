@@ -48,9 +48,9 @@ public class LoginController {
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("index");
 		User user = new User();
-		user.setEmail("system@iiht.com");
+		user.setEmail("admin@e-assess.com");
 		user.setPassword("system@iiht.com");
-		user.setCompanyName("IIHT");
+		user.setCompanyName("e-assess");
 		mav.addObject("user", user);
 		return mav;
 	}

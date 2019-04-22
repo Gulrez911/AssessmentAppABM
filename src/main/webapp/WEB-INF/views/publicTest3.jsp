@@ -11,54 +11,47 @@
 <title>Login V9</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <spring:url value="/resources/assets/student/images/icons/favicon.ico" var="c1" />
 
 <link href="${c1}" rel="icon" type="image/png" />
 
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/vendor/bootstrap/css/bootstrap.min.css" var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
 	var="c3" />
 
-<link href="${c3}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
-<spring:url value="/resources/assets/student/fonts/iconic/css/material-design-iconic-font.min.css"
-	var="c4" />
+<spring:url value="/resources/assets/student/images/icons/favicon.ico" var="c01" />
 
-<link href="${c4}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
+<link href="${c01}" rel="icon" type="image/png" />
+
+<link href="${c3}" rel="stylesheet" type="text/css" />
 <spring:url value="/resources/assets/student/vendor/animate/animate.css" var="c5" />
 
 <link href="${c5}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/vendor/css-hamburgers/hamburgers.min.css" var="c6" />
 
 <link href="${c6}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/vendor/animsition/css/animsition.min.css" var="c7" />
 
 <link href="${c7}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/vendor/select2/select2.min.css" var="c8" />
 
 <link href="${c8}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/vendor/daterangepicker/daterangepicker.css" var="c9" />
 
 <link href="${c9}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/css/util.css" var="c10" />
 
 <link href="${c10}" rel="stylesheet" type="text/css" />
-<!--===============================================================================================-->
 <spring:url value="/resources/assets/student/css/main.css" var="c11" />
 
 <link href="${c11}" rel="stylesheet" type="text/css" />
+
+
 <!--  Start from here   -->
-<spring:url value="/resources/assets/img/ico/favicon.png" var="a1" />
+<%-- <spring:url value="/resources/assets/img/ico/favicon.png" var="a1" />
 
 <link href="${a1}" rel="shortcut icon" />
 
@@ -128,7 +121,7 @@
 <link href="${a15}" rel="stylesheet" type="text/css" />
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="a16" />
 
-<link href="${a16}" rel="stylesheet" type="text/css" />
+<link href="${a16}" rel="stylesheet" type="text/css" /> --%>
 <!--  -->
 </head>
 <body>

@@ -2,8 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <html>
 <head>
@@ -18,8 +17,7 @@
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
@@ -56,8 +54,7 @@
                                     </c:if>
 
 								<c:if test="${showNextPage}">
-									<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
-										class="fa fa-arrow-right"></i></a>
+									<a href="${callingMethod}?page=${nextPage}${queryParam}"><i class="fa fa-arrow-right"></i></a>
 								</c:if>
 							</div>
 						</div>
@@ -69,13 +66,11 @@
 								<div class="right">
 									<div class="searchdata">
 
-										<input type="text" placeholder="Search a Test"
-											name="searchText" id="searchText"> <i
-											class="fa fa-search" id="search"></i>
+										<input type="text" placeholder="Search a Test" name="searchText" id="searchText">
+										<i class="fa fa-search" id="search"></i>
 									</div>
 									<div class="filter">
-										<a
-											href="javascript:notify('Information', 'Feature coming soon')"><img
+										<a href="javascript:notify('Information', 'Feature coming soon')"><img
 											src="images/ic_sort.png">Sort</a> <a
 											href="javascript:notify('Information', 'Feature coming soon')"><img
 											src="images/ic_filter.png">Filter</a>
@@ -87,8 +82,7 @@
 									<thead>
 										<tr>
 											<th><input type="checkbox"></th>
-											<th><img src="images/icon-selectionmode.png">Test
-												Title</th>
+											<th><img src="images/icon-selectionmode.png">Test Title</th>
 
 											<th>Category</th>
 											<th>Test Time In Minutes</th>
@@ -116,16 +110,14 @@
 
 												<td><c:out value="${test.cDate}"></c:out></td>
 												<td><c:out value="${test.uDate}"></c:out></td>
-												<td><a onClick="confirm(${test.id}); return false;"
-													href="#">Click to Expire</a></td>
-												<td><a href="updateTest?testId=${test.id}">Click to
-														Update</a></td>
-												<td><a href="javascript:void(0);" class="testname"
-													data-name="${test.testName}" data-toggle="modal"
+												<td><a onClick="confirm(${test.id}); return false;" href="#">Click to Expire</a></td>
+												<td><a href="updateTest?testId=${test.id}">Click to Update</a></td>
+												<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}"
+													data-toggle="modal"
 													onClick="javascript:duplicateOpen('${test.testName}', '${test.companyId}')"><i
 														class="fa fa-copy"></i></a></td>
-												<td><a href="javascript:void(0);" class="testname"
-													data-name="${test.testName}" data-toggle="modal"
+												<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}"
+													data-toggle="modal"
 													onClick="javascript:shareOpen('${test.testName}', '${test.publicUrl}', '${test.id}')"><i
 														class="fa fa-share-alt"></i></a></td>
 											</tr>
@@ -159,14 +151,13 @@
 				</div>
 				<div class="modal-body">
 					<form method="GET" action="duplicateTest">
-						<label>Existing test name</label> <input id="existing_name"
-							type="text" disabled /> <label>New Test Name</label> <input
-							id="newTest" type="text" required /> <label>Qualifier 1</label> <input
-							id="newQual1" type="text" required /> <label>Qualifier 2</label>
-						<input id="newQual2" type="text" />
+						<label>Existing test name</label> <input id="existing_name" type="text" disabled /> <label>New
+							Test Name</label> <input id="newTest" type="text" required /> <label>Qualifier 1</label> <input
+							id="newQual1" type="text" required /> <label>Qualifier 2</label> <input id="newQual2"
+							type="text" />
 						<div class="buttons" style="padding-top: 20px;">
-							<input type="button" value="Duplicate" onClick="javascript:dup()" />
-							<input type="button" data-dismiss="modal" value="Cancel" />
+							<input type="button" value="Duplicate" onClick="javascript:dup()" /> <input type="button"
+								data-dismiss="modal" value="Cancel" />
 						</div>
 					</form>
 				</div>
@@ -185,29 +176,23 @@
 				</div>
 				<div class="modal-body">
 					<form method="POST" action="sharePublicTest">
-						<label>Existing test name</label> <input id="existing_name1"
-							type="text" /> <label>First Name</label> <input id="firstName"
-							type="text" /> <label>Last name</label> <input id="lastName"
-							type="text" /> <label>Email Id</label> <input id="userEmail"
-							type="text" /> <label>Public Test URL</label> <input
-							id="publicTestUrl" type="text" /> <input type="hidden"
-							name="testId" id="testId" value="" />
+						<label>Existing test name</label> <input id="existing_name1" type="text" /> <label>First
+							Name</label> <input id="firstName" type="text" /> <label>Last name</label> <input id="lastName"
+							type="text" /> <label>Email Id</label> <input id="userEmail" type="text" /> <label>Public
+							Test URL</label> <input id="publicTestUrl" type="text" /> <input type="hidden" name="testId"
+							id="testId" value="" />
 						<div class="buttons" style="padding-top: 20px;">
-							<input type="button" value="Copy in your Clipboard"
-								onClick="javascript:copyUrlInClipBoard()" /> <input
-								type="button" value="Share" onClick="javascript:shareTest()" />
-							<input type="button" value="Close"
-								onClick="javascript:copyUrlClose()" />
+							<input type="button" value="Copy in your Clipboard" onClick="javascript:copyUrlInClipBoard()" />
+							<input type="button" value="Share" onClick="javascript:shareTest()" /> <input type="button"
+								value="Close" onClick="javascript:copyUrlClose()" />
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script>
 	
