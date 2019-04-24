@@ -58,7 +58,7 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/OnetPage", method = RequestMethod.GET)
 	public ModelAndView onetpage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("onetdisplayqs");
+		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 		User user = (User) request.getSession().getAttribute("user");
 		/*
 		 * String ans=""; request.getSession().setAttribute("ans",ans);
@@ -119,7 +119,7 @@ public class OnetQsController {
 			@RequestParam(required = false) int Page, HttpServletRequest request,
 			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("onetdisplayqs");
+		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		/*
@@ -197,7 +197,7 @@ public class OnetQsController {
 			@RequestParam(required = false) int Page, HttpServletRequest request,
 			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
 			throws Exception {
-		ModelAndView mav = new ModelAndView("onetdisplayqs");
+		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		onetQsDto ot = (onetQsDto) request.getSession().getAttribute("onetQsdto");
