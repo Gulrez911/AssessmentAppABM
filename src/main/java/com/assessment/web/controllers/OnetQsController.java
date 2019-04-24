@@ -126,8 +126,11 @@ public class OnetQsController {
 		 * String ans1=(String)request.getSession().getAttribute("ans");
 		 * ans1=ans1.concat(ans);
 		 */
+		try {
+			setAns(onetQsdto, request);
+		} catch (NullPointerException e) {
 
-		setAns(onetQsdto, request);
+		}
 
 		// answer=answer+ans;
 		// System.out.println(answer+" added");
@@ -273,12 +276,7 @@ public class OnetQsController {
 		ModelAndView mav = new ModelAndView("onetdisplayresult2");
 
 		User user1 = (User) request.getSession().getAttribute("user");
-//		setAns(onetQsdto, request);
-		try {
-			setAns(onetQsdto, request);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		setAns(onetQsdto, request);
 		String ans1 = (String) request.getSession().getAttribute("ans");
 		System.out.println("submitAnswer " + ans1);
 		/*
@@ -367,7 +365,6 @@ public class OnetQsController {
 	}
 
 	private void setAns(onetQsDto onetQsdto, HttpServletRequest request) {
-		System.out.println("setAns"+onetQsdto);
 		String ans = "";
 		String ans1 = (String) request.getSession().getAttribute("ans");
 
@@ -375,226 +372,29 @@ public class OnetQsController {
 			// ans=ans+ans1;
 		}
 		int pge = (int) request.getSession().getAttribute("pg");
-		/*
-		 * if(pge==1 && ans.length()>=12) {
-		 * 
-		 * ans=ans1.substring(0,0)+ans+ans1.substring(12); }else if(pge==2 &&
-		 * ans.length()>=24 ) { ans=ans1.substring(12)+ans+ans1.substring(24);
-		 * 
-		 * }else if(pge==3 && ans.length()>=24) {
-		 * ans=ans1.substring(25)+ans+ans1.substring(36); }else if(pge==4 &&
-		 * ans.length()>=36) { ans=ans1.substring(37)+ans+ans1.substring(48); }else
-		 * if(pge==5 && ans.length()>=48) { ans = ans1.substring(0) + ans +
-		 * ans1.substring(12);} else {
-		 */
-		if (onetQsdto.getOne()) {
-			ans = ans + "1";
-			onetQsdto.setOne(true);
-		} else if (onetQsdto.getTwo()) {
-			ans = ans + "2";
-			onetQsdto.setTwo(true);
 
-		} else if (onetQsdto.getThree()) {
-			ans = ans + "3";
-			onetQsdto.setThree(true);
-		} else if (onetQsdto.getFour()) {
-			ans = ans + "4";
-			onetQsdto.setFour(true);
-		}
+		ans = ans + onetQsdto.getOne1() + onetQsdto.getTwo1() + onetQsdto.getThree1() + onetQsdto.getFour1()
+				+ onetQsdto.getFive1() + onetQsdto.getSix1() + onetQsdto.getSeven1()
+				+ onetQsdto.getEight1() + onetQsdto.getNine1() + onetQsdto.getTen1()
+				+ onetQsdto.getEleven1() + onetQsdto.getTwelve1();
 
-		else if (onetQsdto.getFive()) {
-			ans = ans + "5";
-			onetQsdto.setFive(true);
-		}
-		if (onetQsdto.getSix()) {
-			ans = ans + "1";
-			onetQsdto.setSix(true);
-		} else if (onetQsdto.getSeven()) {
-			ans = ans + "2";
-			onetQsdto.setSeven(true);
-		} else if (onetQsdto.getEight()) {
-			ans = ans + "3";
-			onetQsdto.setEight(true);
-		} else if (onetQsdto.getNine()) {
-			ans = ans + "4";
-			onetQsdto.setNine(true);
-		} else if (onetQsdto.getTen()) {
-			ans = ans + "5";
-			onetQsdto.setTen(true);
-		}
-		if (onetQsdto.getEleven()) {
-			ans = ans + "1";
-			onetQsdto.setEleven(true);
-		} else if (onetQsdto.getTwelve()) {
-			ans = ans + "2";
-			onetQsdto.setTwelve(true);
-		} else if (onetQsdto.getThirteen()) {
-			ans = ans + "3";
-			onetQsdto.setThirteen(true);
-		} else if (onetQsdto.getFourteen()) {
-			ans = ans + "4";
-			onetQsdto.setFourteen(true);
-		} else if (onetQsdto.getFifteen()) {
-			ans = ans + "5";
-			onetQsdto.setFifteen(true);
-		}
-		if (onetQsdto.getSixteen()) {
-			ans = ans + "1";
-			onetQsdto.setSixteen(true);
-		} else if (onetQsdto.getSeventeen()) {
-			ans = ans + "2";
-			onetQsdto.setSeventeen(true);
-		} else if (onetQsdto.getEighteen()) {
-			ans = ans + "3";
-			onetQsdto.setEighteen(true);
-		} else if (onetQsdto.getNineteen()) {
-			ans = ans + "4";
-			onetQsdto.setNineteen(true);
-		} else if (onetQsdto.getTwenty()) {
-			ans = ans + "5";
-			onetQsdto.setTwenty(true);
-		}
-		if (onetQsdto.getTwentyone()) {
-			ans = ans + "1";
-			onetQsdto.setTwentyone(true);
-		} else if (onetQsdto.getTwentytwo()) {
-			ans = ans + "2";
-			onetQsdto.setTwentytwo(true);
-		} else if (onetQsdto.getTwentythree()) {
-			ans = ans + "3";
-			onetQsdto.setTwentythree(true);
-		} else if (onetQsdto.getTwentyfour()) {
-			ans = ans + "4";
-			onetQsdto.setTwentyfour(true);
-		} else if (onetQsdto.getTwentyfive()) {
-			ans = ans + "5";
-			onetQsdto.setTwentyfive(true);
-		}
-		if (onetQsdto.getTwentysix()) {
-			ans = ans + "1";
-			onetQsdto.setTwentysix(true);
-		} else if (onetQsdto.getTwentyseven()) {
-			ans = ans + "2";
-			onetQsdto.setTwentyseven(true);
-		} else if (onetQsdto.getTwentyeight()) {
-			ans = ans + "3";
-			onetQsdto.setTwentyeight(true);
-		} else if (onetQsdto.getTwentynine()) {
-			ans = ans + "4";
-			onetQsdto.setTwentynine(true);
-		} else if (onetQsdto.getThirty()) {
-			ans = ans + "5";
-			onetQsdto.setThirty(true);
-		}
-		if (onetQsdto.getThirtyone()) {
-			ans = ans + "1";
-			onetQsdto.setThirtyone(true);
-		} else if (onetQsdto.getThirtytwo()) {
-			ans = ans + "2";
-			onetQsdto.setThirtytwo(true);
-		} else if (onetQsdto.getThirtythree()) {
-			ans = ans + "3";
-			onetQsdto.setThirtythree(true);
-		} else if (onetQsdto.getThirtyfour()) {
-			ans = ans + "4";
-			onetQsdto.setThirtyfour(true);
-		} else if (onetQsdto.getThirtyfive()) {
-			ans = ans + "5";
-			onetQsdto.setThirtyfive(true);
-		}
-		if (onetQsdto.getThirtysix()) {
-			ans = ans + "1";
-			onetQsdto.setThirtysix(true);
-		} else if (onetQsdto.getThirtyseven()) {
-			ans = ans + "2";
-			onetQsdto.setThirtyseven(true);
-		} else if (onetQsdto.getThirtyeight()) {
-			ans = ans + "3";
-			onetQsdto.setThirtyeight(true);
-		} else if (onetQsdto.getThirtynine()) {
-			ans = ans + "4";
-			onetQsdto.setThirtynine(true);
-		} else if (onetQsdto.getForty()) {
-			ans = ans + "5";
-			onetQsdto.setForty(true);
-		}
-		if (onetQsdto.getFortyone()) {
-			ans = ans + "1";
-			onetQsdto.setFortyone(true);
-		} else if (onetQsdto.getFortytwo()) {
-			ans = ans + "2";
-			onetQsdto.setFortytwo(true);
-		} else if (onetQsdto.getFortythree()) {
-			ans = ans + "3";
-			onetQsdto.setFortythree(true);
-		} else if (onetQsdto.getFortyfour()) {
-			ans = ans + "4";
-			onetQsdto.setFortyfour(true);
-		} else if (onetQsdto.getFortyfive()) {
-			ans = ans + "5";
-			onetQsdto.setFortyfive(true);
-		}
-		if (onetQsdto.getFortysix()) {
-			ans = ans + "1";
-			onetQsdto.setFortysix(true);
-		} else if (onetQsdto.getFortyseven()) {
-			ans = ans + "2";
-			onetQsdto.setFortyseven(true);
-		} else if (onetQsdto.getFortyeight()) {
-			ans = ans + "3";
-			onetQsdto.setFortyeight(true);
-		} else if (onetQsdto.getFortynine()) {
-			ans = ans + "4";
-			onetQsdto.setFortynine(true);
-		} else if (onetQsdto.getFifty()) {
-			ans = ans + "5";
-			onetQsdto.setFifty(true);
-		}
-		if (onetQsdto.getFiftyone()) {
-			ans = ans + "1";
-			onetQsdto.setFiftyone(true);
-		} else if (onetQsdto.getFiftytwo()) {
-			ans = ans + "2";
-			onetQsdto.setFiftytwo(true);
-		} else if (onetQsdto.getFiftythree()) {
-			ans = ans + "3";
-			onetQsdto.setFiftythree(true);
-		} else if (onetQsdto.getFiftyfour()) {
-			ans = ans + "4";
-			onetQsdto.setFiftyfour(true);
-		} else if (onetQsdto.getFiftyfive()) {
-			ans = ans + "5";
-			onetQsdto.setFiftyfive(true);
-		}
-		if (onetQsdto.getFiftysix()) {
-			ans = ans + "1";
-			onetQsdto.setFiftysix(true);
-		} else if (onetQsdto.getFiftyseven()) {
-			ans = ans + "2";
-			onetQsdto.setFiftyseven(true);
-		} else if (onetQsdto.getFiftyeight()) {
-			ans = ans + "3";
-			onetQsdto.setFiftyeight(true);
-		} else if (onetQsdto.getFiftynine()) {
-			ans = ans + "4";
-			onetQsdto.setFiftynine(true);
-		} else if (onetQsdto.getSixty()) {
-			ans = ans + "5";
-			onetQsdto.setSixty(true);
-		}
-
-		/*
-		 * if(Page>0) { if(Page==1 && ans.length()>=11) {
-		 * 
-		 * } else if(Page==2 && ans.length()>=22) {
-		 * 
-		 * } }
-		 */
-
-		/* else { ans=ans+ans; } */
-
+		onetQsdto.setOne1(onetQsdto.getOne1());
+		onetQsdto.setTwo1(onetQsdto.getTwo1());
+		onetQsdto.setThree1(onetQsdto.getThree1());
+		onetQsdto.setFour1(onetQsdto.getFour1());
+		onetQsdto.setFive1(onetQsdto.getFive1());
+		onetQsdto.setSix1(onetQsdto.getSix1());
+		onetQsdto.setSeven1(onetQsdto.getSeven1());
+		onetQsdto.setEight1(onetQsdto.getEight1());
+		onetQsdto.setNine1(onetQsdto.getNine1());
+		onetQsdto.setTen1(onetQsdto.getTen1());
+		onetQsdto.setEleven1(onetQsdto.getEleven1());
+		onetQsdto.setTwelve1(onetQsdto.getTwelve1());
 		ans = ans.replace("null", "");
+		
 		request.getSession().setAttribute("onetQsdto", onetQsdto);
+		
+		
 		request.getSession().setAttribute("ans", ans);
 		System.out.println("Answer12 " + ans);
 
@@ -602,8 +402,7 @@ public class OnetQsController {
 		double rad = (double) request.getSession().getAttribute("rad");
 
 		OnetString onetstring = new OnetString();
-//		onetstring.setUsername(user.getEmail());
-		onetstring.setUsername("gulfarooqui1@gmail.com");
+		onetstring.setUsername(user.getEmail());
 		onetstring.setResult(ans);
 		onetstring.setPg(pge);
 		onetstring.setCompanyId(user.getCompanyId());

@@ -1,7 +1,7 @@
-package com.assessment.web.dto;
+package com.assessment.data;
 
-public class onetQsDto {
-	
+public class OnetAnswer {
+
 	private int one1;
 	private int two1;
 	private int three1;

@@ -12,8 +12,7 @@
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
-<spring:url
-	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
+<spring:url value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
 <!-- Material Icons CSS -->
@@ -21,8 +20,7 @@
 
 <link href="${c3}" rel="stylesheet" type="text/css" />
 <!-- FontAwesome CSS -->
-<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
-	var="c4" />
+<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css" var="c4" />
 
 <link href="${c4}" rel="stylesheet" type="text/css" />
 <!-- materialize -->
@@ -162,196 +160,189 @@
 </style>
 </head>
 <body id="top" class="has-header-search">
-	<!--header start-->
-	<header id="header" class="header tt-nav nav-border-bottom sticky"
-		style="height: auto;">
-		<div class="header-sticky light-header ">
-			<div class="container">
-				<div class="col-md-12">
-					<div class="col-md-6">
-						<div class="logo">
-							<a href="javascript:void(0);"><img class="retina"
-								src="<%=request.getContextPath()%>/resources/assets/images/Logo.png" alt=""></a>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="userheader mt-15">
-							<div class="userinfo">
+		<!--header start-->
+		<header id="header" class="header tt-nav nav-border-bottom sticky" style="height: auto;">
+				<div class="header-sticky light-header ">
+						<div class="container">
+								<div class="col-md-12">
+										<div class="col-md-6">
+												<div class="logo">
+														<a href="javascript:void(0);"><img class="retina"
+																src="<%=request.getContextPath()%>/resources/assets/images/Logo.png" alt=""></a>
+												</div>
+										</div>
+										<div class="col-md-6">
+												<div class="userheader mt-15">
+														<div class="userinfo">
 
-								<h4>
-									Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
-								</h4>
+																<h4>
+																		Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
+																</h4>
 
-								<img src="<%=request.getContextPath()%>/resources/images/userimg.png">
-							</div>
+																<img src="<%=request.getContextPath()%>/resources/images/userimg.png">
+														</div>
+												</div>
+										</div>
+								</div>
 						</div>
-					</div>
 				</div>
-			</div>
-		</div>
-	</header>
-	<!--header end-->
+		</header>
+		<!--header end-->
 
-	<section class="feature-presentation padding-top-50 padding-bottom-20">
-		<div class="container">
+		<section class="feature-presentation padding-top-50 padding-bottom-20">
+				<div class="container">
 
-			<div class="text-center mb-40">
-				<!-- 								<h2 class="section-title text-bold">Important Instructions</h2> -->
-				<!-- 								<p class="section-sub" </p> -->
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-sm-6">
-					<div
-						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
-						<div class="icon radius-4">
-
-							<img style="width: 60% !important; margin-top: 11px"
-								src="<%=request.getContextPath()%>/resources/assets/images/serviceicon1.png">
+						<div class="text-center mb-40">
+								<!-- 								<h2 class="section-title text-bold">Important Instructions</h2> -->
+								<!-- 								<p class="section-sub" </p> -->
 						</div>
-						<div class="desc">
-							<h2>
-								<b>Web Proctored Tests</b>
-							</h2>
+						<div class="row">
+								<div class="col-md-4 col-sm-6">
+										<div class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
+												<div class="icon radius-4">
 
-						</div>
-					</div>
-					<div
-						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mb-80">
-						<div class="icon radius-4">
+														<img style="width: 60% !important; margin-top: 11px"
+																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon1.png">
+												</div>
+												<div class="desc">
+														<h2>
+																<b>Web Proctored Tests</b>
+														</h2>
+														<p>Secured tests with capabilities to detect potential attempts of a candidate to
+																move away from test screen.</p>
+												</div>
+										</div>
+										<div class="featured-item feature-icon icon-hover icon-hover-brand right-icon mb-80">
+												<div class="icon radius-4">
 
-							<img style="width: 60% !important; margin-top: 11px"
-								src="<%=request.getContextPath()%>/resources/assets/images/serviceicon2.png">
-						</div>
-						<div class="desc">
-							<h2>
-								<b>Multiple Coding Plateform</b>
-							</h2>
+														<img style="width: 60% !important; margin-top: 11px"
+																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon2.png">
+												</div>
+												<div class="desc">
+														<h2>
+																<b>Multiple Coding Plateform</b>
+														</h2>
+														<p>Support coding tests on Java/C/C++/Python/Perl/Javascript and host of other
+																languages</p>
+												</div>
+										</div>
+								</div>
+								<form:form id="studentIntro" method="POST" action="studentJourney"
+										modelAttribute="studentTestForm">
 
-						</div>
-					</div>
-					<div
-						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mt-50 mb-80">
-						<div class="icon radius-4">
+										<div class="col-md-4">
+												<div class="starttestinfo">
+														<div class="testname">
+																<img src="<%=request.getContextPath()%>/resources/images/testimage.png">
+																<div class="example">
+																		<h3>${studentTestForm.testName}</h3>
+																</div>
+														</div>
+														<div class="totalque">
+																<span>Total Questions &nbsp;&nbsp; ${studentTestForm.totalQuestions}</span> <span>Duration
+																		&nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
+														</div>
+														<div class="publishdate">
+																<span>Published on <br> ${studentTestForm.formattedPublishedDate}
+																</span> <span>To be completed by <br> Within 1 session
+																</span>
+														</div>
+														<div class="startbutton">
+																<a href="javascript:start()">START TEST</a>
+														</div>
+														<div class="publishdate foot">
+																<span><i class="fa fa-user"></i>&nbsp;System Administrator</span> <span><i
+																		class="fa fa-envelope"></i>&nbsp;admin@e-assess.com</span>
+														</div>
+												</div>
+										</div>
+								</form:form>
+								<div class="col-md-4 col-sm-6">
+										<div class="featured-item feature-icon icon-hover icon-hover-brand mt-50 mb-80">
+												<div class="icon radius-4">
 
-							<img style="width: 60% !important; margin-top: 11px"
-								src="<%=request.getContextPath()%>/resources/assets/images/serviceicon3.png">
-						</div>
-						<div class="desc">
-							<h2>
-								<b>Full Stack Support</b>
-							</h2>
+														<img style="width: 60% !important; margin-top: 11px"
+																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon3.png">
+												</div>
+												<div class="desc">
+														<h2>
+																<b>Full Stack Support</b>
+														</h2>
+														<p>Support online test for a Full Stack Applilaction with embedded Web server and
+																Database support</p>
+												</div>
+										</div>
+										<div class="featured-item feature-icon icon-hover icon-hover-brand mb-80">
+												<div class="icon radius-4">
 
+														<img style="width: 60% !important; margin-top: 11px"
+																src="<%=request.getContextPath()%>/resources/assets/images/serviceicon4.png">
+												</div>
+												<div class="desc">
+														<h2>
+																<b>Comprehensive Profiling by Recomm Engine</b>
+														</h2>
+														<p>Reports a Candidate's performance on a very granular level specifying the
+																strengths of an individuals in specific and sub-specific technology areas</p>
+												</div>
+										</div>
+								</div>
 						</div>
-					</div>
-					<div
-						class="featured-item feature-icon icon-hover icon-hover-brand right-icon mb-80">
-						<div class="icon radius-4">
-
-							<img style="width: 60% !important; margin-top: 11px"
-								src="<%=request.getContextPath()%>/resources/assets/images/serviceicon4.png">
-						</div>
-						<div class="desc">
-							<h2>
-									<b>Comprehensive Profiling by Recomm Engine</b>
-							</h2>
-
-						</div>
-					</div>
-					 
 				</div>
-				<form:form id="studentIntro" method="POST" action="studentJourney"
-					modelAttribute="studentTestForm">
+		</section>
 
-
-				</form:form>
-				<div class="col-md-5 col-sm-6"></div>
-				<div class="col-md-4">
-					<div class="starttestinfo">
-						<div class="testname">
-							<img src="<%=request.getContextPath()%>/resources/images/testimage.png">
-							<div class="example">
-								<h3>${studentTestForm.testName}</h3>
-							</div>
+		<footer class="footer footer-four">
+				<div class="secondary-footer brand-bg darken-2 text-center">
+						<div class="container">
+								<p style="margin-bottom: 0;">Copyrigh © 2019 E-Assess. All Rights Reserved – Privacy
+										Policy For enterprise solutions</p>
 						</div>
-						<div class="totalque">
-							<span>Total Questions &nbsp;&nbsp; ${studentTestForm.totalQuestions}</span> <span>Duration
-								&nbsp;&nbsp; ${studentTestForm.duration} minutes</span>
-						</div>
-						<div class="publishdate">
-							<span>Published on <br> ${studentTestForm.formattedPublishedDate}
-							</span> <span>To be completed by <br> Within 1 session
-							</span>
-						</div>
-						<div class="startbutton">
-							<a href="javascript:start()">START TEST</a>
-						</div>
-						<div class="publishdate foot">
-							<span><i class="fa fa-user"></i>&nbsp;System Administrator</span> <span><i
-								class="fa fa-envelope"></i>&nbsp;admin@e-assess.com</span>
-						</div>
-					</div>
 				</div>
-			</div>
-		</div>
-
-	</section>
-
-	<footer class="footer footer-four">
-		<div class="secondary-footer brand-bg darken-2 text-center">
-			<div class="container">
-				<p style="margin-bottom: 0;">Copyrigh © 2019 E-Assess. All Rights Reserved –
-					Privacy Policy For enterprise solutions</p>
-			</div>
-		</div>
-	</footer>
-	<!-- jQuery -->
+		</footer>
+		<!-- jQuery -->
 
 
 
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
-	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
-	<script src="${mainJs2}"></script>
-	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
-		var="mainJs3" />
-	<script src="${mainJs3}"></script>
-	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
-	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
-	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
-	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
-	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
-	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
-	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
-	<script src="${mainJs10}"></script>
-	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
-		var="mainJs11" />
-	<script src="${mainJs11}"></script>
-	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js"
-		var="mainJs12" />
-	<script src="${mainJs12}"></script>
-	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
-		var="mainJs13" />
-	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
-	<script src="${mainJs14}"></script>
-	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
-	<script src="${mainJs15}"></script>
-	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
-	<script src="${mainJs16}"></script>
-	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
-	<script src="${mainJs17}"></script>
-	<script type="text/javascript">
-		function start() {
+		<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+		<script src="${mainJs1}"></script>
+		<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+		<script src="${mainJs2}"></script>
+		<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
+		<script src="${mainJs3}"></script>
+		<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+		<script src="${mainJs4}"></script>
+		<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+		<script src="${mainJs5}"></script>
+		<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+		<script src="${mainJs6}"></script>
+		<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+		<script src="${mainJs7}"></script>
+		<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+		<script src="${mainJs8}"></script>
+		<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+		<script src="${mainJs9}"></script>
+		<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+		<script src="${mainJs10}"></script>
+		<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
+		<script src="${mainJs11}"></script>
+		<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
+		<script src="${mainJs12}"></script>
+		<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
+		<script src="${mainJs13}"></script>
+		<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+		<script src="${mainJs14}"></script>
+		<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+		<script src="${mainJs15}"></script>
+		<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+		<script src="${mainJs16}"></script>
+		<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
+		<script src="${mainJs17}"></script>
+		<script type="text/javascript">
+			function start() {
 
-			document.getElementById("studentIntro").submit();
-		}
-	</script>
+				document.getElementById("studentIntro").submit();
+			}
+		</script>
 
 </body>
 </html>

@@ -108,6 +108,7 @@
 												<li><a href="showSkillTags">Skill based Reports</a></li>
 												<li><a href="showProfileParams">Recomm Setting</a></li>
 												<li><a href="listUsers">Users</a></li>
+													<a href="/AssesmentApp/OnetPage">Assessment Profiler</a>
 										</ul>
 										<!--mega menu end-->
 								</div>

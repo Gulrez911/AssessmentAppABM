@@ -31,7 +31,6 @@
 <script type="text/javascript" src="scripts/html2canvas.js"></script>
 <script src="scripts/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	 
 	function able(id, which) {
 
 		//var item = document.forms['testForm'].elements[id];
@@ -65,9 +64,9 @@
 </head>
 <body>
 
-	 
-				<form:form id="testForm" name="testForm" method="POST" modelAttribute="qd">
-
+		<p>${ans.next-12}</p>
+		<form:form id="testForm" name="testForm" method="POST" modelAttribute="ans"
+				action="nextOnetQuestion2">
 
 
 				<span><b><font size="3" color="red">${oo.questionText}</font></b></span>
@@ -298,27 +297,27 @@
 				<form:radiobutton path="twelve1" value="5" id="res12" />
 				<br>
 				<br>
+				<!-- 				<input type="submit" value="Next"> -->
 
+				<c:choose>
+						<c:when test="${ans.first==true}">
+						</c:when>
+						<c:otherwise>
+								<a class="back" href="javascript:prev();">Back</a>
+								<!-- <i class="fa fa-long-arrow-left"></i> -->
+						</c:otherwise>
+				</c:choose>
+				<c:choose>
+						<c:when test="${ans.last==true}">
 
-						<c:choose>
-								<c:when test="${qd.first==true}">
-								</c:when>
-								<c:otherwise>
-										<a class="back" href="javascript:prev();">Back</a>
-										<!-- <i class="fa fa-long-arrow-left"></i> -->
-								</c:otherwise>
-						</c:choose>
-						<c:choose>
-								<c:when test="${qd.last==true}">
+								<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
+						</c:when>
+						<c:otherwise>
+								<a class="next" href="javascript:next();" id="next">Next</a>
 
-										<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
-								</c:when>
-								<c:otherwise>
-										<a class="next" href="javascript:next();" id="next">Next</a>
-
-								</c:otherwise>
-						</c:choose>
-				</form:form>
+						</c:otherwise>
+				</c:choose>
+		</form:form>
 		<%-- 		</center> --%>
 
 		<script type="text/javascript">
@@ -357,18 +356,18 @@
 
 			function next() {
 				window.localStorage.setItem('str', str);
-				document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page}";
+				document.testForm.action = "nextOnetQuestion2?para=${ans.next+12}&Page=${ans.page}";
 				document.testForm.submit();
 			}
 
 			function prev() {
-				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page}";
+				document.testForm.action = "prevOnetQuestion?para=${ans.next-12}&Page=${ans.page}";
 				document.testForm.submit();
 			}
 
 			function submitTest() {
 
-				document.testForm.action = "submitTest1?para=${qd.next+12}&ans="
+				document.testForm.action = "submitTest1?para=${ans.next+12}&ans="
 						+ str;
 				document.testForm.submit();
 			}
