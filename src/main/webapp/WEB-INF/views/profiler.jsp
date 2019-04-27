@@ -9,7 +9,6 @@
 <html lang="en" class="">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="alternate" type="application/rss+xml" href="https://www.onetcenter.org/rss/whatsnew.xml">
 <link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/bubblepop-1.0.css">
@@ -466,11 +465,6 @@ $(document).ready(function(){
 	margin-right: 17px;
 }
 </style>
-<script type="text/javascript"> 
-  function  myArea(area) {
-	windows.location="profiler?param="+area;
-}
-</script>
 </head>
 <body>
 		<!--[if lte IE 6]>
@@ -546,24 +540,22 @@ $(document).ready(function(){
 						<div id="content">
 								<a name="postnav" tabindex="1"></a>
 								<!-- begin content -->
-								<img src="./resources/assets/emoticons/blank.gif"
-										style="position: absolute; left: -10000px; width: 1px; height: 1px" alt="">
 								<form action="https://www.mynextmove.org/explore/ip" method="POST" name="toolsform">
 										<input type="hidden" name="page" value="S1"> <input type="hidden" name="subpage"
-												value=""> <input type="hidden" name="results"
-												value="444444444444444444444444444444444444444444444444444444444444"> <input
-												type="hidden" name="scores" value="404040404040"> <input type="hidden"
+												value="R"> <input type="hidden" name="results"
+												value="333333333333444444444444333333333333333333333333334444433333"> <input
+												type="hidden" name="scores" value="323434333232"> <input type="hidden"
 												name="zone" value="0"> <input type="hidden" name="maxvisit" value="S1">
 										<input type="hidden" name="client" value=""> <input type="hidden" name="random"
 												value="0"> <input type="hidden" name="accessible" value="0">
 										<table cellspacing="0" cellpadding="0" border="0"
-												style="width: 850px; margin: 32px auto 0; height: 56px">
+												style="width: 850px; margin: 32px auto 0; height: 67px">
 												<tbody>
 														<tr>
 																<td
-																		style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topleft.gif)"></td>
+																		style="width: 49px; height: 67px; background-image: url(https://www.mynextmove.org/image/ip/sub_topleft.gif)"></td>
 																<td
-																		style="height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_top.gif)"><div
+																		style="height: 67px; background-image: url(https://www.mynextmove.org/image/ip/sub_top.gif)"><div
 																				style="float: right">
 																				<a href="https://www.mynextmove.org/explore/ip-help" target="_new"
 																						onclick="return helpwin()"><img
@@ -571,7 +563,7 @@ $(document).ready(function(){
 																		</div> <img src="./resources/assets/emoticons/main_title.gif" width="232" height="39"
 																		alt="O*NET Interest Profiler"></td>
 																<td
-																		style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topright.gif)"></td>
+																		style="width: 49px; height: 67px; background-image: url(https://www.mynextmove.org/image/ip/sub_topright.gif)"></td>
 														</tr>
 												</tbody>
 										</table>
@@ -579,17 +571,30 @@ $(document).ready(function(){
 												<tbody>
 														<tr>
 																<td
-																		style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_left.gif)">&nbsp;</td>
+																		style="width: 20px; background-image: url(https://www.mynextmove.org/image/ip/sub_left.gif)">&nbsp;</td>
 																<td style="background-color: #ddd">
 																		<div class="inner">
+																				<ul style="display: none">
+																						<li><input type="submit" name="submit_page_S1_R" value="Realistic"
+																								class="link"></li>
+																						<li><input type="submit" name="submit_page_S1_I" value="Investigative"
+																								class="link"></li>
+																						<li><input type="submit" name="submit_page_S1_A" value="Artistic"
+																								class="link"></li>
+																						<li><input type="submit" name="submit_page_S1_S" value="Social"
+																								class="link"></li>
+																						<li><input type="submit" name="submit_page_S1_E" value="Enterprising"
+																								class="link"></li>
+																						<li><input type="submit" name="submit_page_S1_C" value="Conventional"
+																								class="link"></li>
+																				</ul>
 																				<div>
 																						<table cellpadding="0" cellspacing="0" border="0" width="100%">
 																								<tbody>
 																										<tr>
-																												<td width="40%" style="margin: 0; padding: 11px 16px 0 0">
+																												<td width="40%" style="margin: 0; padding: 0 16px 0 29px">
 																														<div style="margin: 0 0 32px">
 																																<table cellspacing="0" cellpadding="0">
-
 																																		<tbody>
 																																				<tr>
 																																						<c:forEach items="${rs}" var="rs">
@@ -627,7 +632,6 @@ $(document).ready(function(){
 																																						</c:forEach>
 																																				</tr>
 																																		</tbody>
-
 																																</table>
 
 																														</div>
@@ -660,71 +664,25 @@ $(document).ready(function(){
 																												</td>
 																												<td width="60%"
 																														style="vertical-align: top; background-color: #fff; border-bottom: solid 1px #aaa; border-right: solid 1px #aaa; padding: 0 16px">
-																														<p style="font-size: 16px">Here are your Interest Profiler
-																																results!</p>
+																														<p style="font-size: 16px; color: #00802A; font-weight: bold">${area}</p>
+																														<p>
+																																People with <b style="color: #00802A">${area}</b>
 
-																														<p>Think of your interests as work you like to do.</p>
+																																<c:set var="string" value="${param2}" />
+																																<c:set var="a" value="${area}" />
+																																<c:set var="re" value="${fn:substringAfter(string, a)}" />
+																																<c:set var="string2" value="${fn:substringBefore(re, 'They like')}" />
+																																${string2}
 
-																														<p>Your interests can help you find careers you might like to
-																																explore. The more a career meets your interests, the more likely it
-																																will be satisfying and rewarding to you.</p>
 
-																														<p style="margin-bottom: 8px">
-																																You can click on any interest below to learn more. When you're
-																																ready, click <b>Next</b> to continue.
+
 																														</p>
+																														<p>They like:</p>
 
-																														<div style="margin: 8px 0 16px">
-																																<table>
-																																		<tbody>
-																																				<tr>
-																																						<td width="50%">
-																																								<ul style="margin-top: 0; padding-top: 0">
-
-																																										<li><a href="/AssesmentApp/profiler?param=Realistic"
-																																												name="submit_page_S1_R"
-																																												onmouseover="graphhover(1, &#39;Realistic&#39;)"
-																																												onmouseout="graphhover(0, &#39;Realistic&#39;)"
-																																												class="link">Realistic</a></li>
-																																										<li><a
-																																												href="/AssesmentApp/profiler?param=Investigative"
-																																												name="submit_page_S1_I"
-																																												onmouseover="graphhover(1, &#39;Investigative&#39;)"
-																																												onmouseout="graphhover(0, &#39;Investigative&#39;)"
-																																												class="link">Investigative</a></li>
-																																										<li><a href="/AssesmentApp/profiler?param=Artistic"
-																																												name="submit_page_S1_A"
-																																												onmouseover="graphhover(1, &#39;Artistic&#39;)"
-																																												onmouseout="graphhover(0, &#39;Artistic&#39;)"
-																																												class="link">Artistic</a></li>
-
-																																								</ul>
-																																						</td>
-																																						<td width="50%">
-																																								<ul style="margin-top: 0; padding-top: 0">
-																																										<li><a href="/AssesmentApp/profiler?param=Social"
-																																												name="submit_page_S1_S"
-																																												onmouseover="graphhover(1, &#39;Social&#39;)"
-																																												onmouseout="graphhover(0, &#39;Social&#39;)"
-																																												class="link">Social</a></li>
-																																										<li><a
-																																												href="/AssesmentApp/profiler?param=Enterprising"
-																																												name="submit_page_S1_E"
-																																												onmouseover="graphhover(1, &#39;Enterprising&#39;)"
-																																												onmouseout="graphhover(0, &#39;Enterprising&#39;)"
-																																												class="link">Enterprising</a></li>
-																																										<li><a
-																																												href="/AssesmentApp/profiler?param=Conventional"
-																																												name="submit_page_S1_C"
-																																												onmouseover="graphhover(1, &#39;Conventional&#39;)"
-																																												onmouseout="graphhover(0, &#39;Conventional&#39;)"
-																																												class="link">Conventional</a></li>
-																																								</ul>
-																																						</td>
-																																				</tr>
-																																		</tbody>
-																																</table>
-																														</div>
+																														<ul>
+																																<li>${str1}</li>
+																																<li>${str2}</li>
+																														</ul>
 																												</td>
 																										</tr>
 																								</tbody>
@@ -732,7 +690,7 @@ $(document).ready(function(){
 																				</div>
 																				<div style="text-align: right; padding-top: 8px">
 																						<a
-																								href="https://www.mynextmove.org/explore/ip-print?t=i&amp;z=0&amp;i=404040404040"
+																								href="https://www.mynextmove.org/explore/ip-print?t=i&amp;z=0&amp;i=323434333232"
 																								id="printbtn" target="_ipprint"><img
 																								src="./resources/assets/emoticons/print_small.gif" alt="Print" width="64"
 																								height="22"></a>
@@ -740,49 +698,23 @@ $(document).ready(function(){
 																		</div>
 																</td>
 																<td
-																		style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_right.gif)">&nbsp;</td>
+																		style="width: 20px; background-image: url(https://www.mynextmove.org/image/ip/sub_right.gif)">&nbsp;</td>
 														</tr>
 												</tbody>
 										</table>
 										<table cellspacing="0" cellpadding="0" border="0"
-												style="width: 850px; margin: 0 auto; height: 44px">
+												style="width: 850px; margin: 0 auto; height: 51px">
 												<tbody>
 														<tr>
 																<td
-																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botleft.gif)"><input
-																		type="image" name="submit_page_I16" id="backbtn" accesskey="b" value="Back"
-																		src="./resources/assets/emoticons/back.gif" alt="Back"></td>
+																		style="width: 49px; height: 51px; background-image: url(https://www.mynextmove.org/image/ip/sub_botleft.gif)"></td>
 																<td
-																		style="height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_bot.gif)"><table
-																				cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; height: 44px">
-																				<tbody>
-																						<tr>
-																								<td style="height: 44px"><input type="image" name="submit_page_D1"
-																										id="tab1" value="Start" src="https://www.mynextmove.org/image/ip/tab1.gif"
-																										alt="Start" onmouseover="hover(&#39;tab1&#39;, true)"
-																										onmouseout="hover(&#39;tab1&#39;, false)"></td>
-																								<td style="height: 44px"><input type="image" name="submit_page_I1"
-																										id="tab2" value="Interests"
-																										src="https://www.mynextmove.org/image/ip/tab2.gif" alt="Interests"
-																										onmouseover="hover(&#39;tab2&#39;, true)"
-																										onmouseout="hover(&#39;tab2&#39;, false)"></td>
-																								<td style="height: 44px"><input type="image" name="submit_page_S1"
-																										id="tab3" value="Results"
-																										src="https://www.mynextmove.org/image/ip/tab3_sel.gif" alt="Results"
-																										onmouseover="hover(&#39;tab3&#39;, true)"
-																										onmouseout="hover(&#39;tab3&#39;, false)"></td>
-																								<td style="height: 44px; padding: 0"><img
-																										src="./resources/assets/emoticons/tab4_dis.gif" alt="Job Zones"></td>
-																								<td style="height: 44px; padding: 0"><img
-																										src="./resources/assets/emoticons/tab5_dis.gif" alt="Careers"></td>
-																						</tr>
-																				</tbody>
-																		</table></td>
+																		style="height: 51px; background-image: url(https://www.mynextmove.org/image/ip/sub_bot.gif); text-align: center">
+																		<img src="./resources/assets/emoticons/close.gif" alt="Close" value="Close"
+																		onclick="myClose()" />
+																</td>
 																<td
-																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
-																		type="image" name="submit_page_S2" id="nextbtn" accesskey="n" value="Next"
-																		src="./resources/assets/emoticons/next.gif" alt="Next"
-																		onclick="return check_next()"></td>
+																		style="width: 49px; height: 51px; background-image: url(https://www.mynextmove.org/image/ip/sub_botright.gif)"></td>
 														</tr>
 												</tbody>
 										</table>
@@ -880,7 +812,7 @@ $(document).ready(function(){
 																				<div class="bg_br"></div>
 																		</div>
 																		<div class="bubblepop_content">
-																				<a class="close_btn" href="/AssesmentApp/submitTest1"><span class="label">Close</span></a>
+																				<a class="close_btn"><span class="label">Close</span></a>
 																				<div class="content_placeholder"></div>
 																		</div>
 																</div>
@@ -1013,7 +945,10 @@ $(document).ready(function(){
 
 		</div>
 		<script type="text/javascript">
- 
+function myClose() {
+	window.location = "profiler2";
+}
 </script>
+
 </body>
 </html>

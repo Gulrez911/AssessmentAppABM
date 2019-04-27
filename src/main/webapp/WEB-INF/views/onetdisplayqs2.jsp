@@ -11,32 +11,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="alternate" type="application/rss+xml" href="https://www.onetcenter.org/rss/whatsnew.xml">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/bubblepop-1.0.css">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/base.css">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/header.css">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/css_main.css">
-<link rel="stylesheet" type="text/css"
-		href="./O_NET Interest Profiler at My Next Move_files/main.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/bubblepop-1.0.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/base.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/header.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/css_main.css">
+<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/main.css">
+<script type="text/javascript" src="./resources/assets/emoticons/jquery-1.9.1.min.js.download"></script>
 <script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/jquery-1.9.1.min.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/jquery-migrate-1.1.1.min.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/bubblepop-1.0.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/linktrack.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/jquery.fancybox.pack.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/base.js.download"></script>
-<script type="text/javascript"
-		src="./O_NET Interest Profiler at My Next Move_files/js_main.js.download"></script>
+		src="./resources/assets/emoticons/jquery-migrate-1.1.1.min.js.download"></script>
+<script type="text/javascript" src="./resources/assets/emoticons/bubblepop-1.0.js.download"></script>
+<script type="text/javascript" src="./resources/assets/emoticons/linktrack.js.download"></script>
+<script type="text/javascript" src="./resources/assets/emoticons/jquery.fancybox.pack.js.download"></script>
+<script type="text/javascript" src="./resources/assets/emoticons/base.js.download"></script>
+<script type="text/javascript" src="./resources/assets/emoticons/js_main.js.download"></script>
 <style type="text/css">
 </style>
 <script type="text/javascript">
@@ -117,6 +105,7 @@ function graphhover(start, which)
 
 function able(id, which)
 {
+	
   var item = document.forms['toolsform'].elements[id];
   if (item)
   {
@@ -146,6 +135,8 @@ function disable(id)
   able(id, true);
 }
 
+
+
 var nextDisabled = '';
 function set_next(msg)
 {
@@ -153,9 +144,9 @@ function set_next(msg)
   
   var btn = document.getElementById('nextbtn');
   if (msg.length > 0)
-    btn.src = '/image/ip/next_dis.gif';
+    btn.src = './resources/assets/emoticons/next.gif';
   else
-    btn.src = '/image/ip/next.gif';
+    btn.src = './resources/assets/emoticons/next.gif';
 }
 function check_next()
 {
@@ -521,23 +512,22 @@ $(document).ready(function(){
 				<a href="https://www.mynextmove.org/explore/ip#postnav" id="skipnav" class="screenreader">Skip
 						navigation</a>
 				<div id="headprint" style="display: none; width: 500px">
-						<img src="./O_NET Interest Profiler at My Next Move_files/onet_logo_print.png" alt="O*NET"
-								width="100" height="74" style="width: 100px"><img
-								src="./O_NET Interest Profiler at My Next Move_files/header_mynextmove_print.png"
-								width="400" height="74" alt="My Next Move" style="width: 400px">
+						<img src="./resources/assets/emoticons/onet_logo_print.png" alt="O*NET" width="100"
+								height="74" style="width: 100px"><img
+								src="./resources/assets/emoticons/header_mynextmove_print.png" width="400" height="74"
+								alt="My Next Move" style="width: 400px">
 				</div>
 				<div id="head" style="position: relative; height: 54px; width: 938px; margin: 0 auto">
 						<div
 								style="position: absolute; left: 0; top: 36px; width: 755px; height: 2px; overflow: hidden; background: #ddd"></div>
 						<a href="https://www.mynextmove.org/"
 								style="position: absolute; left: 30px; top: 0; height: 74px; width: 323px; padding-left: 10px; background: white"><img
-								src="./resources/assets/emoticons/mnm_white.png" alt="My Next Move"
-								width="323" height="74"></a>
+								src="./resources/assets/emoticons/mnm_white.png" alt="My Next Move" width="323" height="74"></a>
 						<div
 								style="position: absolute; left: 754px; top: 20px; height: 34px; width: 2px; background: #ddd; overflow: hidden"></div>
 						<div style="position: absolute; left: 650px; top: 10px; height: 54px; width: 65px">
-								<img src="./resources/assets/emoticons/header_init.png" alt="O*NET in-it"
-										width="65" height="54">
+								<img src="./resources/assets/emoticons/header_init.png" alt="O*NET in-it" width="65"
+										height="54">
 						</div>
 
 						<div style="position: absolute; right: 0; top: 10px; height: 54px; width: 176px">
@@ -553,7 +543,7 @@ $(document).ready(function(){
 								<div
 										style="position: absolute; overflow: hidden; left: 44px; top: 0px; width: 44px; height: 54px">
 										<a href="https://www.mynextmove.org/find/search"><img
-												src="./O_NET Interest Profiler at My Next Move_files/buttons_header.png"
+												src="./resources/assets/emoticons/buttons_header.png"
 												style="position: relative; left: -44px; top: 0" alt="Search careers with key words."
 												title="Search careers with key words."
 												onmouseover="this.style.left = &#39;-44px&#39;; this.style.top = &#39;-54px&#39;; return true"
@@ -562,7 +552,7 @@ $(document).ready(function(){
 								<div
 										style="position: absolute; overflow: hidden; left: 88px; top: 0px; width: 44px; height: 54px">
 										<a href="https://www.mynextmove.org/find/browse"><img
-												src="./O_NET Interest Profiler at My Next Move_files/buttons_header.png"
+												src="./resources/assets/emoticons/buttons_header.png"
 												style="position: relative; left: -88px; top: 0" alt="Browse careers by industry."
 												title="Browse careers by industry."
 												onmouseover="this.style.left = &#39;-88px&#39;; this.style.top = &#39;-54px&#39;; return true"
@@ -571,7 +561,7 @@ $(document).ready(function(){
 								<div
 										style="position: absolute; overflow: hidden; left: 132px; top: 0px; width: 44px; height: 54px">
 										<a href="https://www.mynextmove.org/explore/ip"><img
-												src="./O_NET Interest Profiler at My Next Move_files/buttons_header.png"
+												src="./resources/assets/emoticons/buttons_header.png"
 												style="position: relative; left: -132px; top: 0" alt="Discover your interests."
 												title="Discover your interests."
 												onmouseover="this.style.left = &#39;-132px&#39;; this.style.top = &#39;-54px&#39;; return true"
@@ -584,11 +574,11 @@ $(document).ready(function(){
 						<div id="content">
 								<a name="postnav" tabindex="1"></a>
 								<!-- begin content -->
-								<img src="./O_NET Interest Profiler at My Next Move_files/blank.gif"
+								<img src="./resources/assets/emoticons/blank.gif"
 										style="position: absolute; left: -10000px; width: 1px; height: 1px" alt="">
 								<%-- 								<form action="https://www.mynextmove.org/explore/ip" method="POST" name="toolsform"> --%>
 								<form:form id="testForm" name="testForm" method="POST" modelAttribute="qd">
-									 
+
 										<table cellspacing="0" cellpadding="0" border="0"
 												style="width: 850px; margin: 32px auto 0; height: 56px">
 												<tbody>
@@ -658,7 +648,8 @@ $(document).ready(function(){
 																														</div></td>
 																												<td style="text-align: right; vertical-align: middle; width: 144px"><div
 																																style="font-size: 11px">
-																																Page 1 of 5<br> <span id="answered">0</span> of 60 questions
+																																Page ${param.Page} of 5<br> <span id="answered">${param.para}</span>
+																																of 60 questions
 																														</div></td>
 																										</tr>
 																								</tbody>
@@ -666,401 +657,372 @@ $(document).ready(function(){
 																				</div>
 																				<div class="ipquesRealistic"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres1" style="margin-right: 10px; text-decoration: underline;">1</span>
+																						<span id="numres1" style="margin-right: 10px; text-decoration: underline;">${num}
+																						</span>
 																				</div>
 																				<div class="ipquesRealistic"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Build
-																								kitchen cabinets</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${oo.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res1" value="0" onclick="answer(1)"
-																										title="Strongly Dislike">
+																										<form:radiobutton path="one1" value="1" onclick="enable('res2')" id="res1" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res1" value="1" onclick="answer(1)"
-																										title="Dislike">
+																										<form:radiobutton path="one1" value="2" onclick="enable('res2')" id="res1" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res1" value="2" onclick="answer(1)"
-																										title="Unsure">
+																										<form:radiobutton path="one1" value="3" id="res1" onclick="enable('res2')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res1" value="3" onclick="answer(1)" title="Like">
+																										<form:radiobutton path="one1" value="4" id="res1" onclick="enable('res2')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res1" value="4" onclick="answer(1)"
-																										title="Strongly Like">
+																										<form:radiobutton path="one1" value="5" id="res1" onclick="enable('res2')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesRealistic2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres2" style="margin-right: 10px">2</span>
+																						<span id="numres2" style="margin-right: 10px">${num+1}</span>
 																				</div>
 																				<div class="ipquesRealistic2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Lay
-																								brick or tile</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o1.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res2" value="0" onclick="answer(2)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="two1" id="res2" value="1" onclick="enable('res3')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res2" value="1" onclick="answer(2)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="two1" id="res2" value="2" onclick="enable('res3')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res2" value="2" onclick="answer(2)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="two1" id="res2" value="3" onclick="enable('res3')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res2" value="3" onclick="answer(2)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="two1" id="res2" value="4" onclick="enable('res3')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res2" value="4" onclick="answer(2)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="two1" id="res2" value="5" onclick="enable('res3')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesInvestigative"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres3" style="margin-right: 10px">3</span>
+																						<span id="numres3" style="margin-right: 10px">${num+2}</span>
 																				</div>
 																				<div class="ipquesInvestigative"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Develop
-																								a new medicine</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o2.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res3" value="0" onclick="answer(3)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="three1" id="res3" value="1" name="res3"
+																												onclick="enable('res4')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res3" value="1" onclick="answer(3)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="three1" id="res3" value="2" name="res3"
+																												onclick="enable('res4')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res3" value="2" onclick="answer(3)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="three1" id="res3" value="3" name="res3"
+																												onclick="enable('res4')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res3" value="3" onclick="answer(3)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="three1" id="res3" value="4" name="res3"
+																												onclick="enable('res4')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res3" value="4" onclick="answer(3)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="three1" id="res3" value="5" name=" res3"
+																												onclick="enable('res4')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesInvestigative2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres4" style="margin-right: 10px">4</span>
+																						<span id="numres4" style="margin-right: 10px">${num+3}</span>
 																				</div>
 																				<div class="ipquesInvestigative2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Study
-																								ways to reduce water pollution</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o3.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res4" value="0" onclick="answer(4)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="four1" value="1" id="res4"
+																												onclick="enable('res5')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res4" value="1" onclick="answer(4)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="four1" value="2" id="res4"
+																												onclick="enable('res5')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res4" value="2" onclick="answer(4)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="four1" value="3" id="res4"
+																												onclick="enable('res5')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res4" value="3" onclick="answer(4)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="four1" value="4" id="res4"
+																												onclick="enable('res5')" />
+
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res4" value="4" onclick="answer(4)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="four1" value="5" id="res4"
+																												onclick="enable('res5')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesArtistic"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres5" style="margin-right: 10px">5</span>
+																						<span id="numres5" style="margin-right: 10px">${num+4}</span>
 																				</div>
 																				<div class="ipquesArtistic"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Write
-																								books or plays</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o4.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res5" value="0" onclick="answer(5)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="five1" value="1" id="res5"
+																												onclick="enable('res6')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res5" value="1" onclick="answer(5)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="five1" value="2" id="res5"
+																												onclick="enable('res6')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res5" value="2" onclick="answer(5)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="five1" value="3" id="res5"
+																												onclick="enable('res6')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res5" value="3" onclick="answer(5)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="five1" value="4" id="res5"
+																												onclick="enable('res6')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res5" value="4" onclick="answer(5)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="five1" value="5" id="res5"
+																												onclick="enable('res6')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesArtistic2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres6" style="margin-right: 10px">6</span>
+																						<span id="numres6" style="margin-right: 10px">${num+5}</span>
 																				</div>
 																				<div class="ipquesArtistic2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Play a
-																								musical instrument</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o5.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res6" value="0" onclick="answer(6)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="six1" value="1" id="res6" onclick="enable('res7')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res6" value="1" onclick="answer(6)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="six1" value="2" id="res6" onclick="enable('res7')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res6" value="2" onclick="answer(6)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="six1" value="3" id="res6" onclick="enable('res7')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res6" value="3" onclick="answer(6)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="six1" value="4" id="res6" onclick="enable('res7')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res6" value="4" onclick="answer(6)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="six1" value="5" id="res6" onclick="enable('res7')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesSocial"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres7" style="margin-right: 10px">7</span>
+																						<span id="numres7" style="margin-right: 10px">${num+6}</span>
 																				</div>
 																				<div class="ipquesSocial"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Teach
-																								an individual an exercise routine</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o6.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res7" value="0" onclick="answer(7)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="seven1" value="1" id="res7"
+																												onclick="enable('res8')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res7" value="1" onclick="answer(7)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="seven1" value="2" id="res7"
+																												onclick="enable('res8')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res7" value="2" onclick="answer(7)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="seven1" value="3" id="res7"
+																												onclick="enable('res8')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res7" value="3" onclick="answer(7)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="seven1" value="4" id="res7"
+																												onclick="enable('res8')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res7" value="4" onclick="answer(7)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="seven1" value="5" id="res7"
+																												onclick="enable('res8')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesSocial2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres8" style="margin-right: 10px">8</span>
+																						<span id="numres8" style="margin-right: 10px">${num+7}</span>
 																				</div>
 																				<div class="ipquesSocial2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Help
-																								people with personal or emotional problems</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o7.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res8" value="0" onclick="answer(8)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="eight1" value="1" id="res8"
+																												onclick="enable('res9')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res8" value="1" onclick="answer(8)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="eight1" value="2" id="res8"
+																												onclick="enable('res9')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res8" value="2" onclick="answer(8)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="eight1" value="3" id="res8"
+																												onclick="enable('res9')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res8" value="3" onclick="answer(8)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="eight1" value="4" id="res8"
+																												onclick="enable('res9')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res8" value="4" onclick="answer(8)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="eight1" value="5" id="res8"
+																												onclick="enable('res9')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesEnterprising"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres9" style="margin-right: 10px">9</span>
+																						<span id="numres9" style="margin-right: 10px">${num+8}</span>
 																				</div>
 																				<div class="ipquesEnterprising"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Buy and
-																								sell stocks and bonds</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o8.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res9" value="0" onclick="answer(9)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="nine1" value="1" id="res9"
+																												onclick="enable('res10')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res9" value="1" onclick="answer(9)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="nine1" value="2" id="res9"
+																												onclick="enable('res10')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res9" value="2" onclick="answer(9)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="nine1" value="3" id="res9"
+																												onclick="enable('res10')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res9" value="3" onclick="answer(9)" title="Like"
-																										disabled="">
+																										<form:radiobutton path="nine1" value="4" id="res9"
+																												onclick="enable('res10')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res9" value="4" onclick="answer(9)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="nine1" value="5" id="res9"
+																												onclick="enable('res10')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesEnterprising2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres10" style="margin-right: 10px">10</span>
+																						<span id="numres10" style="margin-right: 10px">${num+9}</span>
 																				</div>
 																				<div class="ipquesEnterprising2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Manage
-																								a retail store</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o9.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res10" value="0" onclick="answer(10)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="ten1" value="1" id="res10"
+																												onclick="enable('res11')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res10" value="1" onclick="answer(10)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="ten1" value="2" id="res10"
+																												onclick="enable('res11')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res10" value="2" onclick="answer(10)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="ten1" value="3" id="res10"
+																												onclick="enable('res11')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res10" value="3" onclick="answer(10)"
-																										title="Like" disabled="">
+																										<form:radiobutton path="ten1" value="4" id="res10"
+																												onclick="enable('res11')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res10" value="4" onclick="answer(10)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="ten1" value="5" id="res10"
+																												onclick="enable('res11')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesConventional"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres11" style="margin-right: 10px">11</span>
+																						<span id="numres11" style="margin-right: 10px">${num+10}</span>
 																				</div>
 																				<div class="ipquesConventional"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Develop
-																								a spreadsheet using computer software</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${ten.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res11" value="0" onclick="answer(11)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="eleven1" value="1" id="res11"
+																												onclick="enable('res12')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res11" value="1" onclick="answer(11)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="eleven1" value="2" id="res11"
+																												onclick="enable('res12')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res11" value="2" onclick="answer(11)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="eleven1" value="3" id="res11"
+																												onclick="enable('res12')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res11" value="3" onclick="answer(11)"
-																										title="Like" disabled="">
+																										<form:radiobutton path="eleven1" value="4" id="res11"
+																												onclick="enable('res12')" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res11" value="4" onclick="answer(11)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="eleven1" value="5" id="res11"
+																												onclick="enable('res12')" />
 																								</span>
 																						</div>
 																				</div>
 																				<div class="ipquesConventional2"
 																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres12" style="margin-right: 10px">12</span>
+																						<span id="numres12" style="margin-right: 10px">${num+11}</span>
 																				</div>
 																				<div class="ipquesConventional2"
 																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">Proofread
-																								records or forms</div>
+																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${eleven.questionText}</div>
 																						<div
 																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
 																								<span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res12" value="0" onclick="answer(12)"
-																										title="Strongly Dislike" disabled="">
+																										<form:radiobutton path="twelve1" value="1" id="res12" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res12" value="1" onclick="answer(12)"
-																										title="Dislike" disabled="">
+																										<form:radiobutton path="twelve1" value="2" id="res12" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res12" value="2" onclick="answer(12)"
-																										title="Unsure" disabled="">
+																										<form:radiobutton path="twelve1" value="2" id="res12" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res12" value="3" onclick="answer(12)"
-																										title="Like" disabled="">
+																										<form:radiobutton path="twelve1" value="4" id="res12" />
 																								</span> <span
 																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<input type="radio" name="res12" value="4" onclick="answer(12)"
-																										title="Strongly Like" disabled="">
+																										<form:radiobutton path="twelve1" value="5" id="res12" />
 																								</span>
 																						</div>
 																				</div>
 																				<div style="border-top: solid 1px #ddd; height: 1px; overflow: hidden"></div>
-																				<script type="text/javascript">disable('res2');
+																				<!-- 																				<script type="text/javascript">disable('res2');
 disable('res3');
 disable('res4');
 disable('res5');
@@ -1072,6 +1034,7 @@ disable('res10');
 disable('res11');
 disable('res12');
 </script>
+			 -->
 																		</div>
 																</td>
 																<td
@@ -1086,7 +1049,8 @@ disable('res12');
 																<td
 																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botleft.gif)"><input
 																		type="image" name="submit_page_D4" id="backbtn" accesskey="b" value="Back"
-																		src="./resources/assets/emoticons/back.gif" alt="Back"></td>
+																		src="./resources/assets/emoticons/back.gif" alt="Back"
+																		onclick="javascript:prev();"></td>
 																<td
 																		style="height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_bot.gif)"><table
 																				cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; height: 44px">
@@ -1110,32 +1074,33 @@ disable('res12');
 																						</tr>
 																				</tbody>
 																		</table></td>
-																<!-- <td
+																<td
 																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
 																		type="image" name="submit_page_I2" id="nextbtn" accesskey="n" value="Next"
-																		src="./resources/assets/emoticons/next_dis.gif" alt="Next"
-																		onclick="return check_next()"></td> -->
-																<c:choose>
-																		<c:when test="${qd.first==true}">
-																		</c:when>
-																		<c:otherwise>
-																				<a class="back" href="javascript:prev();">Back</a>
-																				<!-- <i class="fa fa-long-arrow-left"></i> -->
-																		</c:otherwise>
-																</c:choose>
-																<c:choose>
-																		<c:when test="${qd.last==true}">
+																		src="./resources/assets/emoticons/next.gif" alt="Next"
+																		onclick="javascript:next();"></td>
 
-																				<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
-																		</c:when>
-																		<c:otherwise>
-																				<a class="next" href="javascript:next();" id="next">Next</a>
-
-																		</c:otherwise>
-																</c:choose>
 														</tr>
 												</tbody>
 										</table>
+										<%-- 	<c:choose>
+												<c:when test="${qd.first==true}">
+												</c:when>
+												<c:otherwise>
+														<a class="back" href="javascript:prev();">Back</a>
+														<!-- <i class="fa fa-long-arrow-left"></i> -->
+												</c:otherwise>
+										</c:choose>
+										<c:choose>
+												<c:when test="${qd.last==true}">
+
+														<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
+												</c:when>
+												<c:otherwise>
+														<a class="next" href="javascript:next();" id="next">Next</a>
+
+												</c:otherwise>
+										</c:choose> --%>
 								</form:form>
 								<%-- 								</form> --%>
 								<div style="width: 700px; height: 75px; margin: 15px auto 0">
@@ -1380,7 +1345,7 @@ set_next('Please answer all 12 questions on this page.');
 
 		</div>
 		<script type="text/javascript">
-			if (document.getElementById("res2").checked
+			if (/*  document.getElementById("res2").checked
 					&& document.getElementById("res3").checked
 					&& document.getElementById("res4").checked
 					&& document.getElementById("res5").checked
@@ -1390,7 +1355,11 @@ set_next('Please answer all 12 questions on this page.');
 					&& document.getElementById("res9").checked
 					&& document.getElementById("res10").checked
 					&& document.getElementById("res11").checked
-					&& document.getElementById("res12").checked) {
+					&& document.getElementById("res12").checked  */
+					
+					${qd.one1>0}
+					
+			) {
 			} else {
 				disable('res2');
 				disable('res3');
@@ -1408,26 +1377,31 @@ set_next('Please answer all 12 questions on this page.');
 
 
 		<script type="text/javascript">
-			var str = window.localStorage.getItem('str', str);
-			if (str) {
-				var str = '';
-			}
 
-			function next() {
-				window.localStorage.setItem('str', str);
-				document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page}";
+		function next() {
+			if(${qd.Page}<=5){
+				
+				var para =${qd.next+12} ;
+				var page=${qd.page+1};
+				window.location="nextOnetQuestion?para="+para"&Page="+page;
+			} 
+			
+		}
+		 
+		/* 	function next() {
+				document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page+1}";
 				document.testForm.submit();
-			}
+			} */
 
 			function prev() {
-				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page}";
+				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page-1}";
 				document.testForm.submit();
 			}
 
 			function submitTest() {
 
-				document.testForm.action = "submitTest1?para=${qd.next+12}&ans="
-						+ str;
+				document.testForm.action = "submitTest1?para=${qd.next+12}";
+						
 				document.testForm.submit();
 			}
 		</script>

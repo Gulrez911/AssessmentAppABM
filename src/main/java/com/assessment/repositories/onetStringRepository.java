@@ -17,5 +17,8 @@ public interface onetStringRepository extends JpaRepository<OnetString,Long> {
 	//@Query("select q from OnetString q where q.rand=:rand group by q.pg order by q.pg")
 	@Query("select q from OnetString q where q.id in(select max(q.id) from OnetString q where q.rand=:rand group by q.pg)")
 	public List<OnetString> getall(@Param("rand")double rand);
+	
+	@Query("select q from OnetString q where q.id in(select max(q.id) from OnetString q where q.rand=:rand and q.pg=:pge)")
+	public OnetString getbypage(@Param("rand")double rand,@Param("pge") int pge);
 
 }

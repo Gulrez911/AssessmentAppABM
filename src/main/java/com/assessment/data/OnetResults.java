@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class OnetResults extends Base {
+public class OnetResults extends Base{
 	
 	    @Column
 	    private Result[] result;

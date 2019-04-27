@@ -1,6 +1,5 @@
 package com.assessment.web.controllers;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.catalina.util.URLEncoder;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,29 +17,28 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.assessment.data.OnetLogin;
 import com.assessment.data.OnetQsAllResult;
 import com.assessment.data.OnetQuestions;
 import com.assessment.data.OnetResults;
 import com.assessment.data.OnetString;
-import com.assessment.data.Question;
 import com.assessment.data.Result;
 import com.assessment.data.User;
 import com.assessment.services.OnetQsResultService;
 import com.assessment.services.OnetQsService;
 import com.assessment.services.OnetstringService;
-import com.assessment.web.dto.QuestionDto;
 import com.assessment.web.dto.onetQsDto;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 @Controller
+@SessionAttributes("onetLogin")
 public class OnetQsController {
 
 	@Autowired
@@ -59,7 +55,9 @@ public class OnetQsController {
 	@RequestMapping(value = "/OnetPage", method = RequestMethod.GET)
 	public ModelAndView onetpage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
-		User user = (User) request.getSession().getAttribute("user");
+//		User user = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+
 		/*
 		 * String ans=""; request.getSession().setAttribute("ans",ans);
 		 */
@@ -68,17 +66,6 @@ public class OnetQsController {
 		qd.setFirst(true);
 		qd.setPage(1);
 		List<OnetQuestions> oq = onetQsService.showOnetQuestions();
-		// System.out.println("dataa "+oq);
-		/*
-		 * List<OnetQuestions> os= new ArrayList<>();
-		 * 
-		 * for(int i=0;i<=11;i++) { OnetQuestions oo=oq.get(i); os.add(oo);
-		 * 
-		 * }
-		 * 
-		 * 
-		 * mav.addObject("onetq",os);
-		 */
 
 		OnetQuestions oo = oq.get(0);
 		OnetQuestions o1 = oq.get(1);
@@ -107,9 +94,11 @@ public class OnetQsController {
 		mav.addObject("o9", o9);
 		mav.addObject("ten", ten);
 		mav.addObject("eleven", eleven);
-
+		String user = onetLogin.getEmail();
 		mav.addObject("user", user);
 		mav.addObject("qd", qd);
+		int num = 1;
+		mav.addObject("num", num);
 		return mav;
 
 	}
@@ -120,18 +109,22 @@ public class OnetQsController {
 			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
-		User user = (User) request.getSession().getAttribute("user");
-
+//		User user = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
 		/*
 		 * String ans1=(String)request.getSession().getAttribute("ans");
 		 * ans1=ans1.concat(ans);
 		 */
-		try {
-			setAns(onetQsdto, request);
-		} catch (NullPointerException e) {
 
+		setAns(onetQsdto, request);
+		int num = 1;
+		if (Page == 1) {
+			num = Page;
+		} else {
+			num = para + 1;
 		}
 
+		mav.addObject("num", num);
 		// answer=answer+ans;
 		// System.out.println(answer+" added");
 
@@ -148,9 +141,10 @@ public class OnetQsController {
 		 */
 
 		int opara = para;
+		System.out.println("idhar: " + opara);
 		// int a=para+11;
 
-		OnetQuestions oo = oq.get(para);
+		OnetQuestions oo = oq.get(para++);
 		OnetQuestions o1 = oq.get(para++);
 		OnetQuestions o2 = oq.get(para++);
 		OnetQuestions o3 = oq.get(para++);
@@ -175,19 +169,59 @@ public class OnetQsController {
 		mav.addObject("o9", o9);
 		mav.addObject("ten", ten);
 		mav.addObject("eleven", eleven);
+
 		onetQsDto qd = new onetQsDto();
 		qd.setNext(opara);
 		qd.setFirst(false);
-		qd.setPage(Page + 1);
-		// qd.setPage(Page+1);
+		int c = Page + 1;
+		qd.setPage(Page);
 		if (para == 59) {
 			qd.setLast(true);
 		}
+		String user = onetLogin.getEmail();
 
 		mav.addObject("onetq", os);
 		mav.addObject("user", user);
-		mav.addObject("qd", qd);
-		request.getSession().setAttribute("pg", Page + 1);
+
+		String rs = "";
+		double rand = (double) request.getSession().getAttribute("rad");
+		OnetString ls = onerstringservice.gellbypage(rand, Page);
+		if (ls == null)
+			rs = "000000000000";
+		else
+			rs = ls.getResult();
+
+		System.out.println("anilgaudresult:" + rs);
+		System.out.println("anilgaudindex:" + rs.charAt(0));
+		onetQsDto ot1 = new onetQsDto();
+		ot1.setOne1(Character.getNumericValue(rs.charAt(0)));
+		ot1.setTwo1(Character.getNumericValue(rs.charAt(1)));
+		ot1.setThree1(Character.getNumericValue(rs.charAt(2)));
+		ot1.setFour1(Character.getNumericValue(rs.charAt(3)));
+		ot1.setFive1(Character.getNumericValue(rs.charAt(4)));
+		ot1.setSix1(Character.getNumericValue(rs.charAt(5)));
+		ot1.setSeven1(Character.getNumericValue(rs.charAt(6)));
+		ot1.setEight1(Character.getNumericValue(rs.charAt(7)));
+		ot1.setNine1(Character.getNumericValue(rs.charAt(8)));
+		ot1.setTen1(Character.getNumericValue(rs.charAt(9)));
+		ot1.setEleven1(Character.getNumericValue(rs.charAt(10)));
+		ot1.setTwelve1(Character.getNumericValue(rs.charAt(11)));
+		System.out.println("Opara.... " + opara);
+		if (opara == 48) {
+			ot1.setLast(true);
+		}
+		if (opara == 0)
+			ot1.setFirst(true);
+
+		ot1.setNext(opara);
+		// int c=Page - 1;
+		System.out.println("anilpage=" + Page);
+		ot1.setPage(Page);
+		// mav.addObject("qd", qd);
+		mav.addObject("qd", ot1);
+		// request.getSession().setAttribute("pg", Page + 1);
+		request.getSession().setAttribute("pg", Page);
+		mav.addObject("num", num);
 		return mav;
 
 	}
@@ -198,11 +232,13 @@ public class OnetQsController {
 			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
-		User user = (User) request.getSession().getAttribute("user");
+//		User user = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
 
 		onetQsDto ot = (onetQsDto) request.getSession().getAttribute("onetQsdto");
 
-		request.getSession().setAttribute("pg", Page);
+		// request.getSession().setAttribute("pg", Page);
+		setAns(onetQsdto, request);
 
 		List<OnetQuestions> oq = onetQsService.showOnetQuestions();
 		/*
@@ -215,8 +251,14 @@ public class OnetQsController {
 		 */
 		int opara = para;
 		// int a=para+11;
-
-		OnetQuestions oo = oq.get(para);
+		int num = 1;
+		if (Page == 1) {
+			num = Page;
+		} else {
+			num = para + 1;
+		}
+		mav.addObject("num", num);
+		OnetQuestions oo = oq.get(para++);
 		OnetQuestions o1 = oq.get(para++);
 		OnetQuestions o2 = oq.get(para++);
 		OnetQuestions o3 = oq.get(para++);
@@ -242,16 +284,11 @@ public class OnetQsController {
 		mav.addObject("ten", ten);
 		mav.addObject("eleven", eleven);
 
-		onetQsDto qd = new onetQsDto();
-		qd.setNext(opara);
-		qd.setPage(Page);
-		// qd.setFirst(false);
-		if (opara == 60) {
-			qd.setLast(true);
-		}
-		if (opara == 0)
-			qd.setFirst(true);
-
+		/*
+		 * onetQsDto qd = new onetQsDto(); qd.setNext(opara); qd.setPage(Page); //
+		 * qd.setFirst(false); if (opara == 60) { qd.setLast(true); } if (opara == 0)
+		 * qd.setFirst(true);
+		 */
 		if (opara == 60) {
 			ot.setLast(true);
 		}
@@ -259,12 +296,46 @@ public class OnetQsController {
 			ot.setFirst(true);
 
 		ot.setNext(opara);
-		ot.setPage(Page - 1);
+		int c = Page - 1;
+		System.out.println("anilpage=" + c);
+		ot.setPage(Page);
+
+		double rand = (double) request.getSession().getAttribute("rad");
+		OnetString ls = onerstringservice.gellbypage(rand, Page);
+		String rs = ls.getResult();
+		System.out.println("anilgaudresult:" + rs);
+		System.out.println("anilgaudindex:" + rs.charAt(0));
+		onetQsDto ot1 = new onetQsDto();
+		ot1.setOne1(Character.getNumericValue(rs.charAt(0)));
+		ot1.setTwo1(Character.getNumericValue(rs.charAt(1)));
+		ot1.setThree1(Character.getNumericValue(rs.charAt(2)));
+		ot1.setFour1(Character.getNumericValue(rs.charAt(3)));
+		ot1.setFive1(Character.getNumericValue(rs.charAt(4)));
+		ot1.setSix1(Character.getNumericValue(rs.charAt(5)));
+		ot1.setSeven1(Character.getNumericValue(rs.charAt(6)));
+		ot1.setEight1(Character.getNumericValue(rs.charAt(7)));
+		ot1.setNine1(Character.getNumericValue(rs.charAt(8)));
+		ot1.setTen1(Character.getNumericValue(rs.charAt(9)));
+		ot1.setEleven1(Character.getNumericValue(rs.charAt(10)));
+		ot1.setTwelve1(Character.getNumericValue(rs.charAt(11)));
+		if (opara == 60) {
+			ot1.setLast(true);
+		}
+		if (opara == 0)
+			ot1.setFirst(true);
+
+		ot1.setNext(opara);
+		// int c=Page - 1;
+		System.out.println("anilpage=" + Page);
+		ot1.setPage(Page);
+
 		// mav.addObject("onetq",os);
-		mav.addObject("user", user);
+		mav.addObject("user", onetLogin);
 		// mav.addObject("qd",qd);
-		mav.addObject("qd", ot);
-		request.getSession().setAttribute("pg", Page - 1);
+		mav.addObject("qd", ot1);
+		// request.getSession().setAttribute("pg", Page - 1);
+		request.getSession().setAttribute("pg", Page);
+
 		return mav;
 	}
 
@@ -275,7 +346,9 @@ public class OnetQsController {
 			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayresult2");
 
-		User user1 = (User) request.getSession().getAttribute("user");
+//		User user1 = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+
 		setAns(onetQsdto, request);
 		String ans1 = (String) request.getSession().getAttribute("ans");
 		System.out.println("submitAnswer " + ans1);
@@ -293,10 +366,9 @@ public class OnetQsController {
 				+ alldata.get(3).getResult() + alldata.get(4).getResult();
 		System.out.println("original " + og);
 
-		String url = "https://services.onetcenter.org/ws/mnm/interestprofiler/results?answers="
-				+ URLEncoder.encode(og, "UTF-8");
-		// String url =
-		// "https://services.onetcenter.org/ws/mnm/interestprofiler/results?answers=553421321134342523523523254115342111351145453111231155343444";
+//		String url = "https://services.onetcenter.org/ws/mnm/interestprofiler/results?answers="
+//				+ URLEncoder.encode(og, "UTF-8");
+		String url = "https://services.onetcenter.org/ws/mnm/interestprofiler/results?answers=553421321134342523523523254115342111351145453111231155343444";
 		String name = "kgate";
 		String password = "7252zku";
 		String authString = name + ":" + password;
@@ -331,10 +403,10 @@ public class OnetQsController {
 			oar.setStart(or.getStart());
 			oar.setTotal(or.getTotal());
 
-			oar.setCompanyId(user1.getCompanyId());
-			oar.setCompanyDescription(user1.getCompanyDescription());
-			oar.setCompanyName(user1.getCompanyName());
-			oar.setEmail(user1.getEmail());
+			oar.setCompanyId("ih");
+			oar.setCompanyDescription("any");
+			oar.setCompanyName("IIHT");
+			oar.setEmail(onetLogin.getEmail());
 			oar.setTestName("dfcsd");
 			oar.setName("Priti");
 			oar.setCreateDate(new Date());
@@ -352,7 +424,7 @@ public class OnetQsController {
 			onetqsresultservice.saveorupdate(oar);
 			System.out.println("success");
 		}
-		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(user1.getEmail());
+		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());
 		List<OnetQsAllResult> dispgraph = new ArrayList<>();
 
 		for (int i = 0; i <= 5; i++) {
@@ -391,26 +463,105 @@ public class OnetQsController {
 		onetQsdto.setEleven1(onetQsdto.getEleven1());
 		onetQsdto.setTwelve1(onetQsdto.getTwelve1());
 		ans = ans.replace("null", "");
-		
+
 		request.getSession().setAttribute("onetQsdto", onetQsdto);
-		
-		
+
 		request.getSession().setAttribute("ans", ans);
 		System.out.println("Answer12 " + ans);
 
-		User user = (User) request.getSession().getAttribute("user");
+//		User user = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
 		double rad = (double) request.getSession().getAttribute("rad");
 
 		OnetString onetstring = new OnetString();
-		onetstring.setUsername(user.getEmail());
+		onetstring.setUsername(onetLogin.getEmail());
 		onetstring.setResult(ans);
 		onetstring.setPg(pge);
-		onetstring.setCompanyId(user.getCompanyId());
-		onetstring.setCompanyName(user.getCompanyName());
+		onetstring.setCompanyId("ih");
+//		onetstring.setCompanyDescription("any");
+		onetstring.setCompanyName("IIHT");
 		onetstring.setUpdateDate(new Date());
 		onetstring.setRand(rad);
 		onerstringservice.saveString(onetstring);
-
 	}
 
+//	Profiler controller
+
+	@RequestMapping(value = "/profiler", method = RequestMethod.GET)
+	public ModelAndView profiler(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto, @RequestParam("param") String param)
+			throws Exception {
+		ModelAndView mav = new ModelAndView("profiler");
+
+//		User user1 = (User) request.getSession().getAttribute("user");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+
+		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());
+		List<OnetQsAllResult> dispgraph = new ArrayList<>();
+		OnetQsAllResult all = rsget.get(0);
+
+		System.out.println("test...... ");
+
+		for (int i = 0; i <= 5; i++) {
+			dispgraph.add(rsget.get(i));
+		}
+		String param2 = "";
+		String area = param;
+		for (int i = 0; i <= 5; i++) {
+			if (dispgraph.get(i).getArea().equals(param)) {
+				param2 = dispgraph.get(i).getDescription();
+			}
+		}
+		String str1 = "";
+		String str2 = "";
+		if (param.equals("Realistic")) {
+			str1 = "Working with plants and animals";
+			str2 = "Real-world materials like wood, tools, and machinery";
+		} else if (param.equals("Investigative")) {
+			str1 = "Searching for facts";
+			str2 = "Figuring out problems";
+		} else if (param.equals("Artistic")) {
+			str1 = "Creativity in their work";
+			str2 = "Work that can be done without following a set of rules";
+		} else if (param.equals("Social")) {
+			str1 = "Giving advice";
+			str2 = "Helping and being of service to people";
+		} else if (param.equals("Enterprising")) {
+			str1 = "Persuading and leading people";
+			str2 = "Making decisions";
+		} else if (param.equals("Conventional")) {
+			str1 = "Working with clear rules";
+			str2 = "Following a strong leader";
+		}
+
+		System.out.println("data " + rsget);
+		System.out.println("dspgraph::" + dispgraph);
+		mav.addObject("rs", dispgraph);
+		System.out.println("test...... " + all.getArea());
+		System.out.println("test...... " + all.getDescription());
+		System.out.println("param.....  " + param2);
+		mav.addObject("param2", param2);
+		mav.addObject("area", area);
+		mav.addObject("str1", str1);
+		mav.addObject("str2", str2);
+		return mav;
+	}
+
+	@RequestMapping(value = "/profiler2", method = RequestMethod.GET)
+	public ModelAndView profiler2(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
+		ModelAndView mav = new ModelAndView("onetdisplayresult2");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+
+		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());
+		List<OnetQsAllResult> dispgraph = new ArrayList<>();
+
+		for (int i = 0; i <= 5; i++) {
+			dispgraph.add(rsget.get(i));
+		}
+		System.out.println("data " + rsget);
+		System.out.println("dspgraph::" + dispgraph);
+		mav.addObject("rs", dispgraph);
+		return mav;
+	}
 }
