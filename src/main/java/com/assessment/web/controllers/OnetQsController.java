@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -105,9 +106,8 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/nextOnetQuestion", method = RequestMethod.POST)
 	public ModelAndView nextOnetQuestion(@RequestParam(required = false) int para,
-			@RequestParam(required = false) int Page, HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
-			throws Exception {
+			@RequestParam(required = false) int Page, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 //		User user = (User) request.getSession().getAttribute("user");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
@@ -228,9 +228,8 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/prevOnetQuestion", method = RequestMethod.POST)
 	public ModelAndView prevOnetQuestion(@RequestParam(required = false) int para,
-			@RequestParam(required = false) int Page, HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
-			throws Exception {
+			@RequestParam(required = false) int Page, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 //		User user = (User) request.getSession().getAttribute("user");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
@@ -341,9 +340,8 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/submitTest1", method = RequestMethod.POST)
 	public ModelAndView OnetsubmitTest(@RequestParam(required = false) int para,
-			@RequestParam(required = false) String ans, HttpServletRequest request,
-			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
-			throws Exception {
+			@RequestParam(required = false) String ans, HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayresult2");
 
 //		User user1 = (User) request.getSession().getAttribute("user");
@@ -379,8 +377,7 @@ public class OnetQsController {
 		Client restClient = Client.create();
 		WebResource webResource = restClient.resource(url);
 		ClientResponse resp = webResource.accept("application/json")
-				.header("Authorization", "Basic a2dhdGU6NzI1MnprdQ== " + authString)
-				.get(ClientResponse.class);
+				.header("Authorization", "Basic a2dhdGU6NzI1MnprdQ== " + authString).get(ClientResponse.class);
 		if (resp.getStatus() != 200) {
 			System.err.println("Unable to connect to the server");
 		}
@@ -446,9 +443,8 @@ public class OnetQsController {
 		int pge = (int) request.getSession().getAttribute("pg");
 
 		ans = ans + onetQsdto.getOne1() + onetQsdto.getTwo1() + onetQsdto.getThree1() + onetQsdto.getFour1()
-				+ onetQsdto.getFive1() + onetQsdto.getSix1() + onetQsdto.getSeven1()
-				+ onetQsdto.getEight1() + onetQsdto.getNine1() + onetQsdto.getTen1()
-				+ onetQsdto.getEleven1() + onetQsdto.getTwelve1();
+				+ onetQsdto.getFive1() + onetQsdto.getSix1() + onetQsdto.getSeven1() + onetQsdto.getEight1()
+				+ onetQsdto.getNine1() + onetQsdto.getTen1() + onetQsdto.getEleven1() + onetQsdto.getTwelve1();
 
 		onetQsdto.setOne1(onetQsdto.getOne1());
 		onetQsdto.setTwo1(onetQsdto.getTwo1());
@@ -489,8 +485,7 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/profiler", method = RequestMethod.GET)
 	public ModelAndView profiler(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onetQsdto") onetQsDto onetQsdto, @RequestParam("param") String param)
-			throws Exception {
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto, @RequestParam("param") String param) throws Exception {
 		ModelAndView mav = new ModelAndView("profiler");
 
 //		User user1 = (User) request.getSession().getAttribute("user");
@@ -562,6 +557,60 @@ public class OnetQsController {
 		System.out.println("data " + rsget);
 		System.out.println("dspgraph::" + dispgraph);
 		mav.addObject("rs", dispgraph);
+		return mav;
+	}
+
+	@GetMapping("jobZone")
+	public ModelAndView jobZone(@RequestParam(value = "name", required = false) Integer name) {
+		ModelAndView mav = new ModelAndView("jobZone");
+		System.out.println("job..." + name);
+		mav.addObject("ex", name);
+		return mav;
+	}
+
+	@GetMapping("exploreJob")
+	public ModelAndView exploreJob(@RequestParam("ex") int ex) {
+		ModelAndView mav = new ModelAndView("exploreJob");
+		System.out.println("param... " + ex);
+		mav.addObject("ex", ex);
+		return mav;
+	}
+
+	@GetMapping("jobZone2")
+	public ModelAndView jobZone2(@RequestParam(value = "name", required = false) Integer name,
+			HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) {
+		ModelAndView mav = new ModelAndView("jobZone2");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());
+		List<OnetQsAllResult> dispgraph = new ArrayList<>();
+
+		for (int i = 0; i <= 5; i++) {
+			dispgraph.add(rsget.get(i));
+		}
+		mav.addObject("rs", dispgraph);
+//		
+		System.out.println("job2..." + name);
+		mav.addObject("ex", name);
+		return mav;
+	}
+	
+	@GetMapping("career")
+	public ModelAndView career(@RequestParam(value = "name", required = false) Integer name,
+			HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) {
+		ModelAndView mav = new ModelAndView("career");
+		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
+		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());
+		List<OnetQsAllResult> dispgraph = new ArrayList<>();
+
+		for (int i = 0; i <= 5; i++) {
+			dispgraph.add(rsget.get(i));
+		}
+		mav.addObject("rs", dispgraph);
+//		
+		System.out.println("career..." + name);
+		mav.addObject("ex", name);
 		return mav;
 	}
 }

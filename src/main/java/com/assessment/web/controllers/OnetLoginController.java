@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,8 +34,16 @@ public class OnetLoginController {
 	@RequestMapping(value = "onetLogin", method = RequestMethod.POST)
 	public ModelAndView save(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("onetLogin") OnetLogin onetLogin) {
-		ModelAndView mav = new ModelAndView("redirect:/OnetPage");
+		ModelAndView mav = new ModelAndView("onet_index");
 		onetLoginService.save(onetLogin);
+		return mav;
+	}
+	@RequestMapping(value = "onetHome", method = RequestMethod.GET)
+	public ModelAndView onetHome(@RequestParam(value = "name", required = false) Integer name,HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("onetLogin") OnetLogin onetLogin) {
+		ModelAndView mav = new ModelAndView("onet_index");
+		System.out.println("onetHome..." + name);
+		mav.addObject("ex", name);
 		return mav;
 	}
 }

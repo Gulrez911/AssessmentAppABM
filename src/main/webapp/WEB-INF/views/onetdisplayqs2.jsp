@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- saved from url=(0037)https://www.mynextmove.org/explore/ip -->
@@ -10,21 +11,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="alternate" type="application/rss+xml" href="https://www.onetcenter.org/rss/whatsnew.xml">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/bubblepop-1.0.css">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/base.css">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/header.css">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/css_main.css">
-<link rel="stylesheet" type="text/css" href="./resources/assets/emoticons/main.css">
-<script type="text/javascript" src="./resources/assets/emoticons/jquery-1.9.1.min.js.download"></script>
+<link rel="alternate" type="application/rss+xml"
+	href="https://www.onetcenter.org/rss/whatsnew.xml">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/bubblepop-1.0.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/base.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/header.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/css_main.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/assets/emoticons/main.css">
 <script type="text/javascript"
-		src="./resources/assets/emoticons/jquery-migrate-1.1.1.min.js.download"></script>
-<script type="text/javascript" src="./resources/assets/emoticons/bubblepop-1.0.js.download"></script>
-<script type="text/javascript" src="./resources/assets/emoticons/linktrack.js.download"></script>
-<script type="text/javascript" src="./resources/assets/emoticons/jquery.fancybox.pack.js.download"></script>
-<script type="text/javascript" src="./resources/assets/emoticons/base.js.download"></script>
-<script type="text/javascript" src="./resources/assets/emoticons/js_main.js.download"></script>
+	src="./resources/assets/emoticons/jquery-1.9.1.min.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/jquery-migrate-1.1.1.min.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/bubblepop-1.0.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/linktrack.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/jquery.fancybox.pack.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/base.js.download"></script>
+<script type="text/javascript"
+	src="./resources/assets/emoticons/js_main.js.download"></script>
 <style type="text/css">
 </style>
 <script type="text/javascript">
@@ -144,9 +158,9 @@ function set_next(msg)
   
   var btn = document.getElementById('nextbtn');
   if (msg.length > 0)
-    btn.src = './resources/assets/emoticons/next.gif';
+      btn.src = './resources/assets/emoticons/next.gif';
   else
-    btn.src = './resources/assets/emoticons/next.gif';
+      btn.src = './resources/assets/emoticons/next.gif';
 }
 function check_next()
 {
@@ -501,528 +515,590 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-		<!--[if lte IE 6]>
+	<!--[if lte IE 6]>
 <script type="text/javascript" src="/shared/base_ie6.js"></script>
 <![endif]-->
-		<!--[if lte IE 7]>
+	<!--[if lte IE 7]>
 <script type="text/javascript" src="/shared/base_ie7.js"></script>
 <![endif]-->
-		<a name="top"></a>
-		<div id="allcontent">
-				<a href="https://www.mynextmove.org/explore/ip#postnav" id="skipnav" class="screenreader">Skip
-						navigation</a>
-				<div id="headprint" style="display: none; width: 500px">
-						<img src="./resources/assets/emoticons/onet_logo_print.png" alt="O*NET" width="100"
-								height="74" style="width: 100px"><img
-								src="./resources/assets/emoticons/header_mynextmove_print.png" width="400" height="74"
-								alt="My Next Move" style="width: 400px">
+	<a name="top"></a>
+	<div id="allcontent">
+		<a href="https://www.mynextmove.org/explore/ip#postnav" id="skipnav"
+			class="screenreader">Skip navigation</a>
+		<div id="headprint" style="display: none; width: 500px">
+			<img src="./resources/assets/emoticons/onet_logo_print.png"
+				alt="O*NET" width="100" height="74" style="width: 100px"><img
+				src="./resources/assets/emoticons/header_mynextmove_print.png"
+				width="400" height="74" alt="My Next Move" style="width: 400px">
+		</div>
+		<div id="head"
+			style="position: relative; height: 54px; width: 938px; margin: 0 auto">
+			<div
+				style="position: absolute; left: 0; top: 36px; width: 755px; height: 2px; overflow: hidden; background: #ddd"></div>
+			<a href="https://www.mynextmove.org/"
+				style="position: absolute; left: 30px; top: 0; height: 74px; width: 323px; padding-left: 10px; background: white"><img
+				src="./resources/assets/emoticons/mnm_white.png" alt="My Next Move"
+				width="323" height="74"></a>
+			<div
+				style="position: absolute; left: 754px; top: 20px; height: 34px; width: 2px; background: #ddd; overflow: hidden"></div>
+			<div
+				style="position: absolute; left: 650px; top: 10px; height: 54px; width: 65px">
+				<img src="./resources/assets/emoticons/header_init.png"
+					alt="O*NET in-it" width="65" height="54">
+			</div>
+
+			<div
+				style="position: absolute; right: 0; top: 10px; height: 54px; width: 176px">
+				<div
+					style="position: absolute; overflow: hidden; left: 0px; top: 0px; width: 44px; height: 54px">
+					<a href="https://www.mynextmove.org/"><img
+						src="./resources/assets/emoticons/buttons_header.png"
+						style="position: relative; left: 0; top: 0"
+						alt="Return to home page." title="Return to home page."
+						onmouseover="this.style.left = &#39;0&#39;; this.style.top = &#39;-54px&#39;; return true"
+						onmouseout="this.style.left = &#39;0&#39;; this.style.top = &#39;0&#39;; return true"></a>
 				</div>
-				<div id="head" style="position: relative; height: 54px; width: 938px; margin: 0 auto">
-						<div
-								style="position: absolute; left: 0; top: 36px; width: 755px; height: 2px; overflow: hidden; background: #ddd"></div>
-						<a href="https://www.mynextmove.org/"
-								style="position: absolute; left: 30px; top: 0; height: 74px; width: 323px; padding-left: 10px; background: white"><img
-								src="./resources/assets/emoticons/mnm_white.png" alt="My Next Move" width="323" height="74"></a>
-						<div
-								style="position: absolute; left: 754px; top: 20px; height: 34px; width: 2px; background: #ddd; overflow: hidden"></div>
-						<div style="position: absolute; left: 650px; top: 10px; height: 54px; width: 65px">
-								<img src="./resources/assets/emoticons/header_init.png" alt="O*NET in-it" width="65"
-										height="54">
-						</div>
-
-						<div style="position: absolute; right: 0; top: 10px; height: 54px; width: 176px">
-								<div
-										style="position: absolute; overflow: hidden; left: 0px; top: 0px; width: 44px; height: 54px">
-										<a href="https://www.mynextmove.org/"><img
-												src="./resources/assets/emoticons/buttons_header.png"
-												style="position: relative; left: 0; top: 0" alt="Return to home page."
-												title="Return to home page."
-												onmouseover="this.style.left = &#39;0&#39;; this.style.top = &#39;-54px&#39;; return true"
-												onmouseout="this.style.left = &#39;0&#39;; this.style.top = &#39;0&#39;; return true"></a>
-								</div>
-								<div
-										style="position: absolute; overflow: hidden; left: 44px; top: 0px; width: 44px; height: 54px">
-										<a href="https://www.mynextmove.org/find/search"><img
-												src="./resources/assets/emoticons/buttons_header.png"
-												style="position: relative; left: -44px; top: 0" alt="Search careers with key words."
-												title="Search careers with key words."
-												onmouseover="this.style.left = &#39;-44px&#39;; this.style.top = &#39;-54px&#39;; return true"
-												onmouseout="this.style.left = &#39;-44px&#39;; this.style.top = &#39;0&#39;; return true"></a>
-								</div>
-								<div
-										style="position: absolute; overflow: hidden; left: 88px; top: 0px; width: 44px; height: 54px">
-										<a href="https://www.mynextmove.org/find/browse"><img
-												src="./resources/assets/emoticons/buttons_header.png"
-												style="position: relative; left: -88px; top: 0" alt="Browse careers by industry."
-												title="Browse careers by industry."
-												onmouseover="this.style.left = &#39;-88px&#39;; this.style.top = &#39;-54px&#39;; return true"
-												onmouseout="this.style.left = &#39;-88px&#39;; this.style.top = &#39;0&#39;; return true"></a>
-								</div>
-								<div
-										style="position: absolute; overflow: hidden; left: 132px; top: 0px; width: 44px; height: 54px">
-										<a href="https://www.mynextmove.org/explore/ip"><img
-												src="./resources/assets/emoticons/buttons_header.png"
-												style="position: relative; left: -132px; top: 0" alt="Discover your interests."
-												title="Discover your interests."
-												onmouseover="this.style.left = &#39;-132px&#39;; this.style.top = &#39;-54px&#39;; return true"
-												onmouseout="this.style.left = &#39;-132px&#39;; this.style.top = &#39;0&#39;; return true"></a>
-								</div>
-						</div>
+				<div
+					style="position: absolute; overflow: hidden; left: 44px; top: 0px; width: 44px; height: 54px">
+					<a href="https://www.mynextmove.org/find/search"><img
+						src="./resources/assets/emoticons/buttons_header.png"
+						style="position: relative; left: -44px; top: 0"
+						alt="Search careers with key words."
+						title="Search careers with key words."
+						onmouseover="this.style.left = &#39;-44px&#39;; this.style.top = &#39;-54px&#39;; return true"
+						onmouseout="this.style.left = &#39;-44px&#39;; this.style.top = &#39;0&#39;; return true"></a>
 				</div>
+				<div
+					style="position: absolute; overflow: hidden; left: 88px; top: 0px; width: 44px; height: 54px">
+					<a href="https://www.mynextmove.org/find/browse"><img
+						src="./resources/assets/emoticons/buttons_header.png"
+						style="position: relative; left: -88px; top: 0"
+						alt="Browse careers by industry."
+						title="Browse careers by industry."
+						onmouseover="this.style.left = &#39;-88px&#39;; this.style.top = &#39;-54px&#39;; return true"
+						onmouseout="this.style.left = &#39;-88px&#39;; this.style.top = &#39;0&#39;; return true"></a>
+				</div>
+				<div
+					style="position: absolute; overflow: hidden; left: 132px; top: 0px; width: 44px; height: 54px">
+					<a href="https://www.mynextmove.org/explore/ip"><img
+						src="./resources/assets/emoticons/buttons_header.png"
+						style="position: relative; left: -132px; top: 0"
+						alt="Discover your interests." title="Discover your interests."
+						onmouseover="this.style.left = &#39;-132px&#39;; this.style.top = &#39;-54px&#39;; return true"
+						onmouseout="this.style.left = &#39;-132px&#39;; this.style.top = &#39;0&#39;; return true"></a>
+				</div>
+			</div>
+		</div>
 
-				<div id="realcontent">
-						<div id="content">
-								<a name="postnav" tabindex="1"></a>
-								<!-- begin content -->
-								<img src="./resources/assets/emoticons/blank.gif"
-										style="position: absolute; left: -10000px; width: 1px; height: 1px" alt="">
-								<%-- 								<form action="https://www.mynextmove.org/explore/ip" method="POST" name="toolsform"> --%>
-								<form:form id="testForm" name="testForm" method="POST" modelAttribute="qd">
+		<div id="realcontent">
+			<div id="content">
+				<a name="postnav" tabindex="1"></a>
+				<!-- begin content -->
+				<img src="./resources/assets/emoticons/blank.gif"
+					style="position: absolute; left: -10000px; width: 1px; height: 1px"
+					alt="">
+				<%-- 								<form action="https://www.mynextmove.org/explore/ip" method="POST" name="toolsform"> --%>
+				<form:form id="testForm" name="testForm" method="POST"
+					modelAttribute="qd">
 
-										<table cellspacing="0" cellpadding="0" border="0"
-												style="width: 850px; margin: 32px auto 0; height: 56px">
+					<table cellspacing="0" cellpadding="0" border="0"
+						style="width: 850px; margin: 32px auto 0; height: 56px">
+						<tbody>
+							<tr>
+								<td
+									style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topleft.gif)"></td>
+								<td
+									style="height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_top.gif)"><div
+										style="float: right">
+										<a href="https://www.mynextmove.org/explore/ip-help"
+											target="_new" onclick="return helpwin()"><img
+											src="./resources/assets/emoticons/help.gif" width="19"
+											height="39" alt="Help"></a>
+									</div> <img src="./resources/assets/emoticons/main_title.gif"
+									width="232" height="39" alt="O*NET Interest Profiler"></td>
+								<td
+									style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topright.gif)"></td>
+							</tr>
+						</tbody>
+					</table>
+					<table cellspacing="0" cellpadding="0" border="0"
+						style="width: 850px; margin: 0 auto">
+						<tbody>
+							<tr>
+								<td
+									style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_left.gif)">&nbsp;</td>
+								<td style="background-color: #ddd">
+									<div class="inner">
+										<div style="margin: 0 0 0 47px">
+											<table cellpadding="0" cellspacing="0" border="0"
+												width="100%">
 												<tbody>
-														<tr>
-																<td
-																		style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topleft.gif)"></td>
-																<td
-																		style="height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_top.gif)"><div
-																				style="float: right">
-																				<a href="https://www.mynextmove.org/explore/ip-help" target="_new"
-																						onclick="return helpwin()"><img
-																						src="./resources/assets/emoticons/help.gif" width="19" height="39" alt="Help"></a>
-																		</div> <img src="./resources/assets/emoticons/main_title.gif" width="232" height="39"
-																		alt="O*NET Interest Profiler"></td>
-																<td
-																		style="width: 49px; height: 56px; background-image: url(https://www.mynextmove.org/image/ip/main_topright.gif)"></td>
-														</tr>
+													<tr>
+														<td
+															style="text-align: left; vertical-align: bottom; width: 210px"><img
+															src="./resources/assets/emoticons/ques_header_strongly_dislike.png"
+															width="40" height="40" alt="Strongly Dislike"
+															title="Strongly Dislike"><img
+															src="./resources/assets/emoticons/ques_header_dislike.png"
+															width="40" height="40" alt="Dislike" title="Dislike"><img
+															src="./resources/assets/emoticons/ques_header_unsure.png"
+															width="40" height="40" alt="Unsure" title="Unsure"><img
+															src="./resources/assets/emoticons/ques_header_like.png"
+															width="40" height="40" alt="Like" title="Like"><img
+															src="./resources/assets/emoticons/ques_header_strongly_like.png"
+															width="40" height="40" alt="Strongly Like"
+															title="Strongly Like"></td>
+														<td
+															style="text-align: right; padding-right: 10px; vertical-align: middle;">
+															<div style="font-size: 11px; font-weight: bold">Progress:</div>
+														</td>
+														<td style="width: 200px; vertical-align: middle">
+															<div
+																style="margin: 0 auto; height: 24px; width: 186px; position: relative; overflow: hidden">
+
+																<div
+																	style="background-color: #A03; height: 6px; overflow: hidden; width: 0px; position: absolute; left: 3px; top: 9px"
+																	id="progressbar"></div>
+
+																<img src="./resources/assets/emoticons/end_left.gif"
+																	alt="" width="3" height="24"
+																	style="position: absolute; left: 0; top: 0"> <img
+																	src="./resources/assets/emoticons/end_right.gif" alt=""
+																	width="3" height="24"
+																	style="position: absolute; right: 0; top: 0"> <img
+																	src="./resources/assets/emoticons/left_sel.gif" alt=""
+																	width="36" height="24"
+																	style="position: absolute; left: 3px; top: 0px">
+																<img src="./resources/assets/emoticons/mid.gif" alt=""
+																	width="36" height="24"
+																	style="position: absolute; left: 39px; top: 0px">
+																<img src="./resources/assets/emoticons/mid.gif" alt=""
+																	width="36" height="24"
+																	style="position: absolute; left: 75px; top: 0px">
+																<img src="./resources/assets/emoticons/mid.gif" alt=""
+																	width="36" height="24"
+																	style="position: absolute; left: 111px; top: 0px">
+																<img src="./resources/assets/emoticons/right.gif" alt=""
+																	width="36" height="24"
+																	style="position: absolute; left: 147px; top: 0px">
+															</div>
+														</td>
+														<td
+															style="text-align: right; vertical-align: middle; width: 144px">
+															<div style="font-size: 11px">
+																Page ${param.Page} of 5<br> <span id="answered">${param.para}</span>
+																of 60 questions
+															</div>
+														</td>
+													</tr>
 												</tbody>
-										</table>
-										<table cellspacing="0" cellpadding="0" border="0" style="width: 850px; margin: 0 auto">
-												<tbody>
-														<tr>
-																<td
-																		style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_left.gif)">&nbsp;</td>
-																<td style="background-color: #ddd">
-																		<div class="inner">
-																				<div style="margin: 0 0 0 47px">
-																						<table cellpadding="0" cellspacing="0" border="0" width="100%">
-																								<tbody>
-																										<tr>
-																												<td style="text-align: left; vertical-align: bottom; width: 210px"><img
-																														src="./resources/assets/emoticons/ques_header_strongly_dislike.png"
-																														width="40" height="40" alt="Strongly Dislike" title="Strongly Dislike"><img
-																														src="./resources/assets/emoticons/ques_header_dislike.png" width="40"
-																														height="40" alt="Dislike" title="Dislike"><img
-																														src="./resources/assets/emoticons/ques_header_unsure.png" width="40"
-																														height="40" alt="Unsure" title="Unsure"><img
-																														src="./resources/assets/emoticons/ques_header_like.png" width="40"
-																														height="40" alt="Like" title="Like"><img
-																														src="./resources/assets/emoticons/ques_header_strongly_like.png"
-																														width="40" height="40" alt="Strongly Like" title="Strongly Like"></td>
-																												<td
-																														style="text-align: right; padding-right: 10px; vertical-align: middle;"><div
-																																style="font-size: 11px; font-weight: bold">Progress:</div></td>
-																												<td style="width: 200px; vertical-align: middle"><div
-																																style="margin: 0 auto; height: 24px; width: 186px; position: relative; overflow: hidden">
+											</table>
+										</div>
+										<div class="ipquesRealistic"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres1"
+												style="margin-right: 10px; text-decoration: underline;">${num}
+											</span>
+										</div>
+										<div class="ipquesRealistic"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${oo.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="one1" value="1"
+														onclick="enable('res2')" id="res1"
+														title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="one1" value="2"
+														onclick="enable('res2')" id="res1" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="one1" value="3" id="res1"
+														onclick="enable('res2')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="one1" value="4" id="res1"
+														onclick="enable('res2')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="one1" value="5" id="res1"
+														onclick="enable('res2')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesRealistic2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres2" style="margin-right: 10px">${num+1}</span>
+										</div>
+										<div class="ipquesRealistic2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o1.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="two1" id="res2" value="1"
+														onclick="enable('res3')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="two1" id="res2" value="2"
+														onclick="enable('res3')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="two1" id="res2" value="3"
+														onclick="enable('res3')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="two1" id="res2" value="4"
+														onclick="enable('res3')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="two1" id="res2" value="5"
+														onclick="enable('res3')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesInvestigative"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres3" style="margin-right: 10px">${num+2}</span>
+										</div>
+										<div class="ipquesInvestigative"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o2.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="three1" id="res3" value="1"
+														name="res3" onclick="enable('res4')"
+														title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="three1" id="res3" value="2"
+														name="res3" onclick="enable('res4')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="three1" id="res3" value="3"
+														name="res3" onclick="enable('res4')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="three1" id="res3" value="4"
+														name="res3" onclick="enable('res4')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="three1" id="res3" value="5"
+														name=" res3" onclick="enable('res4')"
+														title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesInvestigative2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres4" style="margin-right: 10px">${num+3}</span>
+										</div>
+										<div class="ipquesInvestigative2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o3.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="four1" value="1" id="res4"
+														onclick="enable('res5')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="four1" value="2" id="res4"
+														onclick="enable('res5')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="four1" value="3" id="res4"
+														onclick="enable('res5')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="four1" value="4" id="res4"
+														onclick="enable('res5')" title="Like" />
 
-																																<div
-																																		style="background-color: #A03; height: 6px; overflow: hidden; width: 0px; position: absolute; left: 3px; top: 9px"
-																																		id="progressbar"></div>
-
-																																<img src="./resources/assets/emoticons/end_left.gif" alt=""
-																																		width="3" height="24" style="position: absolute; left: 0; top: 0">
-																																<img src="./resources/assets/emoticons/end_right.gif" alt=""
-																																		width="3" height="24" style="position: absolute; right: 0; top: 0">
-																																<img src="./resources/assets/emoticons/left_sel.gif" alt=""
-																																		width="36" height="24"
-																																		style="position: absolute; left: 3px; top: 0px"> <img
-																																		src="./resources/assets/emoticons/mid.gif" alt="" width="36"
-																																		height="24" style="position: absolute; left: 39px; top: 0px">
-																																<img src="./resources/assets/emoticons/mid.gif" alt="" width="36"
-																																		height="24" style="position: absolute; left: 75px; top: 0px">
-																																<img src="./resources/assets/emoticons/mid.gif" alt="" width="36"
-																																		height="24" style="position: absolute; left: 111px; top: 0px">
-																																<img src="./resources/assets/emoticons/right.gif" alt="" width="36"
-																																		height="24" style="position: absolute; left: 147px; top: 0px">
-																														</div></td>
-																												<td style="text-align: right; vertical-align: middle; width: 144px"><div
-																																style="font-size: 11px">
-																																Page ${param.Page} of 5<br> <span id="answered">${param.para}</span>
-																																of 60 questions
-																														</div></td>
-																										</tr>
-																								</tbody>
-																						</table>
-																				</div>
-																				<div class="ipquesRealistic"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres1" style="margin-right: 10px; text-decoration: underline;">${num}
-																						</span>
-																				</div>
-																				<div class="ipquesRealistic"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${oo.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="one1" value="1" onclick="enable('res2')" id="res1" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="one1" value="2" onclick="enable('res2')" id="res1" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="one1" value="3" id="res1" onclick="enable('res2')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="one1" value="4" id="res1" onclick="enable('res2')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="one1" value="5" id="res1" onclick="enable('res2')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesRealistic2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres2" style="margin-right: 10px">${num+1}</span>
-																				</div>
-																				<div class="ipquesRealistic2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o1.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="two1" id="res2" value="1" onclick="enable('res3')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="two1" id="res2" value="2" onclick="enable('res3')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="two1" id="res2" value="3" onclick="enable('res3')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="two1" id="res2" value="4" onclick="enable('res3')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="two1" id="res2" value="5" onclick="enable('res3')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesInvestigative"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres3" style="margin-right: 10px">${num+2}</span>
-																				</div>
-																				<div class="ipquesInvestigative"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o2.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="three1" id="res3" value="1" name="res3"
-																												onclick="enable('res4')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="three1" id="res3" value="2" name="res3"
-																												onclick="enable('res4')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="three1" id="res3" value="3" name="res3"
-																												onclick="enable('res4')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="three1" id="res3" value="4" name="res3"
-																												onclick="enable('res4')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="three1" id="res3" value="5" name=" res3"
-																												onclick="enable('res4')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesInvestigative2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres4" style="margin-right: 10px">${num+3}</span>
-																				</div>
-																				<div class="ipquesInvestigative2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o3.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="four1" value="1" id="res4"
-																												onclick="enable('res5')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="four1" value="2" id="res4"
-																												onclick="enable('res5')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="four1" value="3" id="res4"
-																												onclick="enable('res5')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="four1" value="4" id="res4"
-																												onclick="enable('res5')" />
-
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="four1" value="5" id="res4"
-																												onclick="enable('res5')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesArtistic"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres5" style="margin-right: 10px">${num+4}</span>
-																				</div>
-																				<div class="ipquesArtistic"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o4.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="five1" value="1" id="res5"
-																												onclick="enable('res6')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="five1" value="2" id="res5"
-																												onclick="enable('res6')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="five1" value="3" id="res5"
-																												onclick="enable('res6')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="five1" value="4" id="res5"
-																												onclick="enable('res6')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="five1" value="5" id="res5"
-																												onclick="enable('res6')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesArtistic2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres6" style="margin-right: 10px">${num+5}</span>
-																				</div>
-																				<div class="ipquesArtistic2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o5.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="six1" value="1" id="res6" onclick="enable('res7')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="six1" value="2" id="res6" onclick="enable('res7')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="six1" value="3" id="res6" onclick="enable('res7')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="six1" value="4" id="res6" onclick="enable('res7')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="six1" value="5" id="res6" onclick="enable('res7')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesSocial"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres7" style="margin-right: 10px">${num+6}</span>
-																				</div>
-																				<div class="ipquesSocial"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o6.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="seven1" value="1" id="res7"
-																												onclick="enable('res8')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="seven1" value="2" id="res7"
-																												onclick="enable('res8')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="seven1" value="3" id="res7"
-																												onclick="enable('res8')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="seven1" value="4" id="res7"
-																												onclick="enable('res8')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="seven1" value="5" id="res7"
-																												onclick="enable('res8')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesSocial2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres8" style="margin-right: 10px">${num+7}</span>
-																				</div>
-																				<div class="ipquesSocial2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o7.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eight1" value="1" id="res8"
-																												onclick="enable('res9')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eight1" value="2" id="res8"
-																												onclick="enable('res9')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eight1" value="3" id="res8"
-																												onclick="enable('res9')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eight1" value="4" id="res8"
-																												onclick="enable('res9')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eight1" value="5" id="res8"
-																												onclick="enable('res9')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesEnterprising"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres9" style="margin-right: 10px">${num+8}</span>
-																				</div>
-																				<div class="ipquesEnterprising"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o8.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="nine1" value="1" id="res9"
-																												onclick="enable('res10')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="nine1" value="2" id="res9"
-																												onclick="enable('res10')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="nine1" value="3" id="res9"
-																												onclick="enable('res10')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="nine1" value="4" id="res9"
-																												onclick="enable('res10')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="nine1" value="5" id="res9"
-																												onclick="enable('res10')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesEnterprising2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres10" style="margin-right: 10px">${num+9}</span>
-																				</div>
-																				<div class="ipquesEnterprising2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${o9.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="ten1" value="1" id="res10"
-																												onclick="enable('res11')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="ten1" value="2" id="res10"
-																												onclick="enable('res11')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="ten1" value="3" id="res10"
-																												onclick="enable('res11')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="ten1" value="4" id="res10"
-																												onclick="enable('res11')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="ten1" value="5" id="res10"
-																												onclick="enable('res11')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesConventional"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres11" style="margin-right: 10px">${num+10}</span>
-																				</div>
-																				<div class="ipquesConventional"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${ten.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eleven1" value="1" id="res11"
-																												onclick="enable('res12')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eleven1" value="2" id="res11"
-																												onclick="enable('res12')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eleven1" value="3" id="res11"
-																												onclick="enable('res12')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eleven1" value="4" id="res11"
-																												onclick="enable('res12')" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="eleven1" value="5" id="res11"
-																												onclick="enable('res12')" />
-																								</span>
-																						</div>
-																				</div>
-																				<div class="ipquesConventional2"
-																						style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
-																						<span id="numres12" style="margin-right: 10px">${num+11}</span>
-																				</div>
-																				<div class="ipquesConventional2"
-																						style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
-																						<div style="margin-left: 215px; height: 22px; line-height: 22px">${eleven.questionText}</div>
-																						<div
-																								style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
-																								<span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="twelve1" value="1" id="res12" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="twelve1" value="2" id="res12" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="twelve1" value="2" id="res12" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="twelve1" value="4" id="res12" />
-																								</span> <span
-																										style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
-																										<form:radiobutton path="twelve1" value="5" id="res12" />
-																								</span>
-																						</div>
-																				</div>
-																				<div style="border-top: solid 1px #ddd; height: 1px; overflow: hidden"></div>
-																				<!-- 																				<script type="text/javascript">disable('res2');
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="four1" value="5" id="res4"
+														onclick="enable('res5')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesArtistic"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres5" style="margin-right: 10px">${num+4}</span>
+										</div>
+										<div class="ipquesArtistic"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o4.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="five1" value="1" id="res5"
+														onclick="enable('res6')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="five1" value="2" id="res5"
+														onclick="enable('res6')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="five1" value="3" id="res5"
+														onclick="enable('res6')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="five1" value="4" id="res5"
+														onclick="enable('res6')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="five1" value="5" id="res5"
+														onclick="enable('res6')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesArtistic2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres6" style="margin-right: 10px">${num+5}</span>
+										</div>
+										<div class="ipquesArtistic2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o5.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="six1" value="1" id="res6"
+														onclick="enable('res7')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="six1" value="2" id="res6"
+														onclick="enable('res7')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="six1" value="3" id="res6"
+														onclick="enable('res7')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="six1" value="4" id="res6"
+														onclick="enable('res7')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="six1" value="5" id="res6"
+														onclick="enable('res7')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesSocial"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres7" style="margin-right: 10px">${num+6}</span>
+										</div>
+										<div class="ipquesSocial"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o6.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="seven1" value="1" id="res7"
+														onclick="enable('res8')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="seven1" value="2" id="res7"
+														onclick="enable('res8')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="seven1" value="3" id="res7"
+														onclick="enable('res8')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="seven1" value="4" id="res7"
+														onclick="enable('res8')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="seven1" value="5" id="res7"
+														onclick="enable('res8')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesSocial2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres8" style="margin-right: 10px">${num+7}</span>
+										</div>
+										<div class="ipquesSocial2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o7.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eight1" value="1" id="res8"
+														onclick="enable('res9')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eight1" value="2" id="res8"
+														onclick="enable('res9')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eight1" value="3" id="res8"
+														onclick="enable('res9')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eight1" value="4" id="res8"
+														onclick="enable('res9')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eight1" value="5" id="res8"
+														onclick="enable('res9')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesEnterprising"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres9" style="margin-right: 10px">${num+8}</span>
+										</div>
+										<div class="ipquesEnterprising"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o8.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="nine1" value="1" id="res9"
+														onclick="enable('res10')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="nine1" value="2" id="res9"
+														onclick="enable('res10')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="nine1" value="3" id="res9"
+														onclick="enable('res10')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="nine1" value="4" id="res9"
+														onclick="enable('res10')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="nine1" value="5" id="res9"
+														onclick="enable('res10')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesEnterprising2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres10" style="margin-right: 10px">${num+9}</span>
+										</div>
+										<div class="ipquesEnterprising2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${o9.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="ten1" value="1" id="res10"
+														onclick="enable('res11')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="ten1" value="2" id="res10"
+														onclick="enable('res11')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="ten1" value="3" id="res10"
+														onclick="enable('res11')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="ten1" value="4" id="res10"
+														onclick="enable('res11')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="ten1" value="5" id="res10"
+														onclick="enable('res11')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesConventional"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres11" style="margin-right: 10px">${num+10}</span>
+										</div>
+										<div class="ipquesConventional"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${ten.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eleven1" value="1" id="res11"
+														onclick="enable('res12')" title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eleven1" value="2" id="res11"
+														onclick="enable('res12')" title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eleven1" value="3" id="res11"
+														onclick="enable('res12')" title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eleven1" value="4" id="res11"
+														onclick="enable('res12')" title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="eleven1" value="5" id="res11"
+														onclick="enable('res12')" title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div class="ipquesConventional2"
+											style="margin: 0; float: left; width: 48px; text-align: right; color: #555; background-color: transparent">
+											<span id="numres12" style="margin-right: 10px">${num+11}</span>
+										</div>
+										<div class="ipquesConventional2"
+											style="padding: 0; margin-bottom: 0; height: 22px; position: relative">
+											<div
+												style="margin-left: 215px; height: 22px; line-height: 22px">${eleven.questionText}</div>
+											<div
+												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+												<span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="twelve1" value="1" id="res12"
+														title="Strongly Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="twelve1" value="2" id="res12"
+														title="Dislike" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="twelve1" value="2" id="res12"
+														title="Unsure" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="twelve1" value="4" id="res12"
+														title="Like" />
+												</span> <span
+													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
+													<form:radiobutton path="twelve1" value="5" id="res12"
+														title="Strongly Like" />
+												</span>
+											</div>
+										</div>
+										<div
+											style="border-top: solid 1px #ddd; height: 1px; overflow: hidden"></div>
+										<!-- 																				<script type="text/javascript">disable('res2');
 disable('res3');
 disable('res4');
 disable('res5');
@@ -1035,86 +1111,91 @@ disable('res11');
 disable('res12');
 </script>
 			 -->
-																		</div>
-																</td>
-																<td
-																		style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_right.gif)">&nbsp;</td>
-														</tr>
-												</tbody>
-										</table>
-										<table cellspacing="0" cellpadding="0" border="0"
-												style="width: 850px; margin: 0 auto; height: 44px">
-												<tbody>
-														<tr>
-																<td
-																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botleft.gif)"><input
-																		type="image" name="submit_page_D4" id="backbtn" accesskey="b" value="Back"
-																		src="./resources/assets/emoticons/back.gif" alt="Back"
-																		onclick="javascript:prev();"></td>
-																<td
-																		style="height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_bot.gif)"><table
-																				cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; height: 44px">
-																				<tbody>
-																						<tr>
-																								<td style="height: 44px"><input type="image" name="submit_page_D1"
-																										id="tab1" value="Start" src="./resources/assets/emoticons/tab1.gif"
-																										alt="Start" onmouseover="hover(&#39;tab1&#39;, true)"
-																										onmouseout="hover(&#39;tab1&#39;, false)"></td>
-																								<td style="height: 44px"><input type="image" name="submit_page_I1"
-																										id="tab2" value="Interests"
-																										src="./resources/assets/emoticons/tab2_sel.gif" alt="Interests"
-																										onmouseover="hover(&#39;tab2&#39;, true)"
-																										onmouseout="hover(&#39;tab2&#39;, false)"></td>
-																								<td style="height: 44px; padding: 0"><img
-																										src="./resources/assets/emoticons/tab3_dis.gif" alt="Results"></td>
-																								<td style="height: 44px; padding: 0"><img
-																										src="./resources/assets/emoticons/tab4_dis.gif" alt="Job Zones"></td>
-																								<td style="height: 44px; padding: 0"><img
-																										src="./resources/assets/emoticons/tab5_dis.gif" alt="Careers"></td>
-																						</tr>
-																				</tbody>
-																		</table></td>
-																<td
-																		style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
-																		type="image" name="submit_page_I2" id="nextbtn" accesskey="n" value="Next"
-																		src="./resources/assets/emoticons/next.gif" alt="Next"
-																		onclick="javascript:next();"></td>
+									</div>
+								</td>
+								<td
+									style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_right.gif)">&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+					<table cellspacing="0" cellpadding="0" border="0"
+						style="width: 850px; margin: 0 auto; height: 44px">
+						<tbody>
+							<tr>
 
-														</tr>
-												</tbody>
-										</table>
-										<%-- 	<c:choose>
-												<c:when test="${qd.first==true}">
-												</c:when>
-												<c:otherwise>
-														<a class="back" href="javascript:prev();">Back</a>
-														<!-- <i class="fa fa-long-arrow-left"></i> -->
-												</c:otherwise>
-										</c:choose>
-										<c:choose>
-												<c:when test="${qd.last==true}">
+								<c:choose>
+									<c:when test="${qd.first==true}">
+										<td
+											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botleft.gif)">
+											<img src="./resources/assets/emoticons/back.gif" alt="Back"
+											onclick="javascript:prev1();">
+										</td>
+									</c:when>
+									<c:otherwise>
+										<td
+											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botleft.gif)"><input
+											type="image" name="submit_page_D4" id="backbtn" accesskey="b"
+											value="Back" src="./resources/assets/emoticons/back.gif"
+											alt="Back" onclick="javascript:prev();"></td>
 
-														<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
-												</c:when>
-												<c:otherwise>
-														<a class="next" href="javascript:next();" id="next">Next</a>
+									</c:otherwise>
+								</c:choose>
 
-												</c:otherwise>
-										</c:choose> --%>
-								</form:form>
-								<%-- 								</form> --%>
-								<div style="width: 700px; height: 75px; margin: 15px auto 0">
-										<a href="https://www.dol.gov/" target="_blank"><img
-												src="./resources/assets/emoticons/dol.svg" alt="U.S. Department of Labor"
-												style="float: left; padding: 10px 10px 5px 50px; width: 60px; height: 60px"></a>
-										<div
-												style="padding-top: 25px; padding-right: 120px; text-align: center; font-size: x-small; font-family: Verdana; color: black">
-												O*NET Interest Profiler is sponsored by the U.S. Department of Labor,<br> <a
-														href="https://www.doleta.gov/" target="_blank">Employment &amp; Training
-														Administration</a>,<br> and developed by the National Center for O*NET Development.
-										</div>
-								</div>
-								<script type="text/javascript">
+								<td
+									style="height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_bot.gif)"><table
+										cellpadding="0" cellspacing="0" border="0"
+										style="margin: 0 auto; height: 44px">
+										<tbody>
+											<tr>
+												<td style="height: 44px"><a
+													href="/AssesmentApp/onetHome"><img
+														name="submit_page_D1" id="tab1" value="Start"
+														src="./resources/assets/emoticons/tab1.gif" alt="Start"></a></td>
+												<td style="height: 44px"><img name="submit_page_I1"
+													id="tab2" value="Interests"
+													src="./resources/assets/emoticons/tab2_sel.gif"
+													alt="Interests"></td>
+												<td style="height: 44px"><img name="submit_page_S1"
+													id="tab3" value="Results"
+													src="./resources/assets/emoticons/tab3_dis.gif"
+													alt="Results"></td>
+												<td style="height: 44px"><img name="submit_page_S2"
+													id="tab4" value="Job Zones"
+													src="https://www.mynextmove.org/image/ip/tab4_dis.gif"
+													alt="Job Zones"></td>
+												<td style="height: 44px; padding: 0"><img
+													src="./resources/assets/emoticons/tab5_dis.gif"
+													alt="Careers"></td>
+											</tr>
+										</tbody>
+									</table></td>
+								<c:choose>
+									<c:when test="${qd.last==true}">
+
+										<td
+											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
+											type="image" name="submit_page_I2" id="nextbtn" accesskey="n"
+											value="Next" src="./resources/assets/emoticons/next.gif"
+											alt="Next" onclick="javascript:submitTest();"></td>
+									</c:when>
+									<c:otherwise>
+										<td
+											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
+											type="image" name="submit_page_I2" id="nextbtn" accesskey="n"
+											value="Next" src="./resources/assets/emoticons/next.gif"
+											alt="Next" onclick="javascript:next();"></td>
+
+									</c:otherwise>
+								</c:choose>
+
+
+							</tr>
+						</tbody>
+					</table>
+
+				</form:form>
+
+				<script type="text/javascript">
 allQuestions.push('res1');
 allQuestions.push('res2');
 allQuestions.push('res3');
@@ -1130,221 +1211,15 @@ allQuestions.push('res12');
 setCurrentQ(0);
 set_next('Please answer all 12 questions on this page.');
 </script>
-								<!-- end content -->
-						</div>
-				</div>
-				<div id="menubarb">
-						<div id="bpopup_help_btn">
-								<a id="bpopup_help_href" class="popupbutton_out"
-										href="https://www.mynextmove.org/help/about/">Help</a>
-								<ul id="bpopup_help_menu" style="display: none">
-										<li><a href="https://www.mynextmove.org/">Home</a></li>
-										<li><a href="https://www.mynextmove.org/help/about/">About this Site</a></li>
-										<li><a href="https://www.mynextmove.org/help/deskaid/">Desk Aid</a></li>
-										<li><a href="https://www.mynextmove.org/shared/jobhelp">Job Seeker Help</a></li>
-										<li><a href="https://www.mynextmove.org/help/accom/">Job Accommodations</a></li>
-								</ul>
-						</div>
-						<div id="bpopup_explore_btn">
-								<a id="bpopup_explore_href" class="popupbutton_out"
-										href="https://www.mynextmove.org/find/search">Explore</a>
-								<ul id="bpopup_explore_menu" style="display: none">
-										<li><a href="https://www.mynextmove.org/find/search">Search careers with key
-														words</a></li>
-										<li><a href="https://www.mynextmove.org/find/browse">Browse careers by industry</a></li>
-										<li><a href="https://www.mynextmove.org/explore/ip">Discover your interests</a></li>
-								</ul>
-						</div>
-						<div id="bpopup_list_btn">
-								<a id="bpopup_list_href" class="popupbutton_out"
-										href="https://www.mynextmove.org/find/browse?c=0">Careers</a>
-								<ul id="bpopup_list_menu" style="display: none">
-										<li><a href="https://www.mynextmove.org/find/browse?c=0">See all careers</a></li>
-										<li><a href="https://www.mynextmove.org/find/bright">Bright Outlook</a></li>
-										<li><a href="https://www.mynextmove.org/find/green">Green</a></li>
-										<li><a href="https://www.mynextmove.org/find/interests">Interests</a></li>
-										<li><a href="https://www.mynextmove.org/find/zone">Job Preparation</a></li>
-										<li><a href="https://www.mynextmove.org/find/videos">Videos</a></li>
-								</ul>
-						</div>
-						<div id="bpopup_network_btn">
-								<a id="bpopup_network_href" class="popupbutton_out"
-										href="https://www.onetcenter.org/sites.html">O*NET Sites</a>
-								<ul id="bpopup_network_menu" style="display: none">
-										<li><a href="https://www.miproximopaso.org/">Mi Próximo Paso</a></li>
-										<li><a href="https://www.mynextmove.org/vets/">My Next Move for Veterans</a></li>
-										<li><a href="https://www.onetonline.org/">O*NET OnLine</a></li>
-										<li><a href="https://www.onetcenter.org/">Resource Center</a></li>
-										<li><a href="https://services.onetcenter.org/">O*NET Web Services</a></li>
-										<li><a href="https://www.onetcodeconnector.org/">Code Connector</a></li>
-										<li><a href="http://www.onetacademy.org/">O*NET Academy</a></li>
-										<li><a href="https://onet.rti.org/">Data Collection Program</a></li>
-										<li><a href="https://www.doleta.gov/programs/onet/eta_default.cfm">U.S.
-														Department of Labor</a></li>
-										<li><a href="https://www.onetcenter.org/links.html">Related Sites</a></li>
-								</ul>
-						</div>
-
-				</div>
-
-				<div id="foot">
-						<div class="ftest">
-								<div class="block">
-										<div class="imgline">
-												&nbsp; <span class="thumbsline"><span style="padding-right: 5px"
-														class="thumbslabel">Was this page helpful?</span>
-														<div class="bubblepop_wrapper">
-																<a
-																		href="https://www.mynextmove.org/shared/rate?h=y&amp;u=https%3A//www.mynextmove.org/explore/ip%23interests&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move&amp;ajax=1"
-																		target="window_2" class="helpful_popup thumbsup" title="Yes, it was helpful"><img
-																		src="./resources/assets/emoticons/thumbs_up.svg" style="width: 24px; height: 24px"
-																		alt="Yes" title="Yes, it was helpful"></a>
-																<div class="bubblepop_outer" style="display: none;">
-																		<div class="bg">
-																				<div class="bg_tl"></div>
-																				<div class="bg_tm"></div>
-																				<div class="bg_tr"></div>
-																				<div class="bg_ml"></div>
-																				<div class="bg_mm"></div>
-																				<div class="bg_mr"></div>
-																				<div class="bg_bl"></div>
-																				<div class="bg_bm"></div>
-																				<div class="bg_br"></div>
-																		</div>
-																		<div class="bubblepop_content">
-																				<a class="close_btn"><span class="label">Close</span></a>
-																				<div class="content_placeholder"></div>
-																		</div>
-																</div>
-														</div>
-														<div class="bubblepop_wrapper">
-																<a
-																		href="https://www.mynextmove.org/shared/rate?h=n&amp;u=https%3A//www.mynextmove.org/explore/ip%23interests&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move&amp;ajax=1"
-																		target="window_2" class="helpful_popup thumbsdown" title="No, it was not helpful"><img
-																		src="./resources/assets/emoticons/thumbs_down.svg"
-																		style="width: 24px; height: 24px" alt="No" title="No, it was not helpful"></a>
-																<div class="bubblepop_outer" style="display: none;">
-																		<div class="bg">
-																				<div class="bg_tl"></div>
-																				<div class="bg_tm"></div>
-																				<div class="bg_tr"></div>
-																				<div class="bg_ml"></div>
-																				<div class="bg_mm"></div>
-																				<div class="bg_mr"></div>
-																				<div class="bg_bl"></div>
-																				<div class="bg_bm"></div>
-																				<div class="bg_br"></div>
-																		</div>
-																		<div class="bubblepop_content">
-																				<a class="close_btn"><span class="label">Close</span></a>
-																				<div class="content_placeholder"></div>
-																		</div>
-																</div>
-														</div></span> &nbsp;
-										</div>
-										<div>
-												<a href="https://www.mynextmove.org/shared/jobhelp?from=footer" class="popup_jobhelp"
-														target="window_2">Job Seeker Help</a> • <a
-														href="https://www.mynextmove.org/shared/contact?from=footer&amp;u=https%3A//www.mynextmove.org/explore/ip"
-														class="popup_contact_footer" target="window_2">Contact Us</a><span class="mailto_exp">
-														(onet@onetcenter.org)</span>
-										</div>
-								</div>
-								<div class="block">
-										<div class="imgline">
-												<span style="padding-right: 5px">Share:</span> <span class="imgwrap"><a
-														href="https://www.onetcenter.org/share/f?u=https%3A//www.mynextmove.org/explore/ip&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-														title="Facebook"><img src="./resources/assets/emoticons/icon-facebook.svg"
-																style="width: 16px; height: 16px" alt="Facebook" title="Facebook"></a></span> <span
-														class="imgwrap"><a
-														href="https://www.onetcenter.org/share/t?u=https%3A//www.mynextmove.org/explore/ip&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-														title="Twitter"><img src="./resources/assets/emoticons/icon-twitter.svg"
-																style="width: 16px; height: 16px" alt="Twitter" title="Twitter"></a></span> <span
-														class="imgwrap"><a
-														href="https://www.onetcenter.org/share/i?u=https%3A//www.mynextmove.org/explore/ip&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-														title="LinkedIn"><img src="./resources/assets/emoticons/icon-linkedin.svg"
-																style="width: 16px; height: 16px" alt="LinkedIn" title="LinkedIn"></a></span> <span
-														class="imgwrap"><a
-														href="https://www.onetcenter.org/share/r?u=https%3A//www.mynextmove.org/explore/ip&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-														title="Reddit"><img src="./resources/assets/emoticons/icon-reddit.svg"
-																style="width: 16px; height: 16px" alt="Reddit" title="Reddit"></a></span> <span
-														class="imgwrap"><a
-														href="mailto:?body=https%3A//www.mynextmove.org/explore/ip&amp;subject=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-														title="Email"><img src="./resources/assets/emoticons/icon-email.svg"
-																style="width: 16px; height: 16px" alt="Email" title="Email"></a></span>
-										</div>
-										<div>
-												<a href="https://www.onetcenter.org/linkToOnet.html">Link to Us</a> •
-												<div class="bubblepop_wrapper">
-														<a
-																href="https://www.mynextmove.org/shared/cite?u=https%3A//www.mynextmove.org/explore/ip&amp;t=O%2ANET%20Interest%20Profiler%20at%20My%20Next%20Move"
-																class="citation" target="window_2">Cite this Page</a>
-														<div class="bubblepop_outer cite_popup" style="display: none;">
-																<div class="bg">
-																		<div class="bg_tl"></div>
-																		<div class="bg_tm"></div>
-																		<div class="bg_tr"></div>
-																		<div class="bg_ml"></div>
-																		<div class="bg_mm"></div>
-																		<div class="bg_mr"></div>
-																		<div class="bg_bl"></div>
-																		<div class="bg_bm"></div>
-																		<div class="bg_br"></div>
-																</div>
-																<div class="bubblepop_content">
-																		<a class="close_btn"><span class="label">Close</span></a>
-																		<div class="content_placeholder"></div>
-																</div>
-														</div>
-												</div>
-										</div>
-										<div>
-												<a href="https://www.mynextmove.org/help/license/" title="License"><img
-														src="./resources/assets/emoticons/license-footer.svg"
-														style="width: 48px; height: 24px; vertical-align: middle"></a> <a
-														href="https://www.mynextmove.org/help/license/">License</a>
-										</div>
-										<div style="display: none">
-												<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">O*NET Interest
-														Profiler</span> by <a xmlns:cc="http://creativecommons.org/ns#"
-														href="https://www.mynextmove.org/explore/ip#interests" property="cc:attributionName"
-														rel="cc:attributionURL">U.S. Department of Labor, Employment and Training
-														Administration</a> is licensed under a <a rel="license"
-														href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
-														4.0 International License</a>.
-										</div>
-
-								</div>
-								<div class="block">
-										<div class="imgline">
-												<span style="padding-right: 5px">Follow us:</span> <span class="imgwrap"><a
-														href="https://www.onetcenter.org/follow/facebook" title="O*NET on Facebook"><img
-																src="./resources/assets/emoticons/icon-facebook.svg"
-																style="width: 16px; height: 16px" alt="Facebook" title="O*NET on Facebook"></a></span> <span
-														class="imgwrap"><a href="https://www.onetcenter.org/follow/twitter"
-														title="O*NET on Twitter"><img src="./resources/assets/emoticons/icon-twitter.svg"
-																style="width: 16px; height: 16px" alt="Twitter" title="O*NET on Twitter"></a></span> <span
-														class="imgwrap"><a href="https://www.onetcenter.org/follow/rss-feed"
-														title="O*NET RSS Feed"><img src="./resources/assets/emoticons/icon-rss.svg"
-																style="width: 16px; height: 16px" alt="RSS" title="O*NET RSS Feed"></a></span> <span
-														class="imgwrap"><a href="https://www.onetcenter.org/follow/mailing-list"
-														title="O*NET Updates mailing list"><img
-																src="./resources/assets/emoticons/icon-email.svg" style="width: 16px; height: 16px"
-																alt="Email" title="O*NET Updates mailing list"></a></span>
-										</div>
-										<div>
-												<a href="https://www.mynextmove.org/help/about/">About this Site</a> • <a
-														href="https://www.mynextmove.org/help/privacy/">Privacy</a> • <a
-														href="https://www.mynextmove.org/help/disclaimer/">Disclaimer</a>
-										</div>
-										<div>Site updated April 23, 2019</div>
-								</div>
-								<div style="clear: both; height: 10px"></div>
-						</div>
-				</div>
-
+				<!-- end content -->
+			</div>
 		</div>
-		<script type="text/javascript">
+
+
+
+
+	</div>
+	<script type="text/javascript">
 			if (/*  document.getElementById("res2").checked
 					&& document.getElementById("res3").checked
 					&& document.getElementById("res4").checked
@@ -1376,22 +1251,17 @@ set_next('Please answer all 12 questions on this page.');
 		</script>
 
 
-		<script type="text/javascript">
+	<script type="text/javascript">
+			var str = window.localStorage.getItem('str', str);
+			if (str) {
+				var str = '';
+			}
 
-		function next() {
-			if(${qd.Page}<=5){
-				
-				var para =${qd.next+12} ;
-				var page=${qd.page+1};
-				window.location="nextOnetQuestion?para="+para"&Page="+page;
-			} 
-			
-		}
-		 
-		/* 	function next() {
+			function next() {
+				window.localStorage.setItem('str', str);
 				document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page+1}";
 				document.testForm.submit();
-			} */
+			}
 
 			function prev() {
 				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page-1}";
@@ -1404,6 +1274,10 @@ set_next('Please answer all 12 questions on this page.');
 						
 				document.testForm.submit();
 			}
+			
+			function prev1() {
+				window.location = "/AssesmentApp/onetHome?name=4";
+			};
 		</script>
 </body>
 </html>
