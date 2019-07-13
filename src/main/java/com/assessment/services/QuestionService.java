@@ -45,4 +45,6 @@ public interface QuestionService {
 	public void updateQuestion(Question q);
 	
 	public void removeQuestion(Long id);
+
+	public List<String> getQualifier(String companyId);
 }

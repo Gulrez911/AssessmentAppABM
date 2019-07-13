@@ -38,14 +38,19 @@
 	<!-- String smtpPort; -->
 	<bean class="com.assessment.common.PropertyConfig">
 		<property name="baseUrl" value="${baseUrl}"></property>
-		<property name="testLinkHtmlLocation"
+		<!-- server testLinkHtmlLocation -->
+		<!-- <property name="testLinkHtmlLocation"
 			value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property>
 		<property name="resultLinkHtmlLocation"
-			value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property>
-		<!-- <property name="testLinkHtmlLocation" -->
-		<!-- value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property> -->
-		<!-- <property name="resultLinkHtmlLocation" -->
-		<!-- value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property> -->
+			value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
+			
+			<!-- local testLinkHtmlLocation -->
+			
+		<property name="testLinkHtmlLocation"
+		value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
+		<property name="resultLinkHtmlLocation"
+		value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property>
+		
 		<property name="hostName" value="${hostName}"></property>
 		<property name="sendFrom" value="${sendFrom}"></property>
 		<property name="sendFromName" value="${sendFromName}"></property>
@@ -74,8 +79,10 @@
 			value="http://localhost/pmd-server-0.0.1-SNAPSHOT/"></property>
 	</bean>
 
-	<context:component-scan base-package="com.assessment" />
-	<jpa:repositories base-package="com.assessment.repositories" />
+	<context:component-scan
+		base-package="com.assessment" />
+	<jpa:repositories
+		base-package="com.assessment.repositories" />
 
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
@@ -83,19 +90,20 @@
 
 
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<!-- Connection Details -->
-		<!-- <property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/new_ass" 
-			/> -->
-		<!-- <property name="user" value="new_ass_user" /> -->
-		<!-- <property name="password" value="Welcome@123" /> -->
+		<!-- Server Connection Details -->
+		<property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/new_ass" 
+			/> <property name="user" value="new_ass_user" /> <property name="password" 
+			value="Welcome@123" />
 
-		<property name="jdbcUrl"
+		<!--Local Connection Details -->
+		<!-- <property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/assessment" />
 		<property name="user" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="" /> -->
 
 		<!-- <property name="jdbcUrl" value="jdbc:mysql://13.233.2.169:3306/assessment" 
 			/> -->
@@ -127,7 +135,8 @@
 	</bean>
 
 	<bean id="dataSourceRoot"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- Connection Details -->
 		<property name="jdbcUrl"
@@ -164,7 +173,8 @@
 		<!--TODO: suppose to work without classpath -->
 		<property name="persistenceXmlLocation"
 			value="classpath:META-INF/persistence.xml" />
-		<property name="persistenceUnitName" value="V2CRM_PersistenceUnit" />
+		<property name="persistenceUnitName"
+			value="V2CRM_PersistenceUnit" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean
@@ -187,7 +197,8 @@
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
 		<property name="defaultTimeout" value="1800"></property>
 	</bean>
 

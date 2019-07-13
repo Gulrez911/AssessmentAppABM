@@ -156,8 +156,8 @@ public class LoginController {
 	@RequestMapping(value = "/signoff", method = RequestMethod.GET)
 	public ModelAndView signoff(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
-		ModelAndView mav = new ModelAndView("index");
 		User user = new User();
+		ModelAndView mav = new ModelAndView("index");
 		user.setEmail("system@iiiht.com");
 		user.setPassword("1234");
 		user.setCompanyName("IIHT");
@@ -192,7 +192,7 @@ public class LoginController {
 			request.getSession().setAttribute("companyId", user.getCompanyId());
 			// request.getSession().setAttribute("questions", questions);
 			System.out.println("test3.........    " + user);
-			mav = new ModelAndView("redirect:/showReports");
+			mav = new ModelAndView("redirect:/question_list");
 			mav.addObject("qs", questions.getContent());
 			mav.addObject("levels", DifficultyLevel.values());
 			CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), 0, "question_list", null);

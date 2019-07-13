@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 /**
  * pk - user & test & companyId
+ * 
  * @author jsutaria
  *
  */
@@ -19,40 +21,41 @@ public class UserTestSession extends Base {
 	String user;
 	@NotNull
 	String testName;
-	
+
 	Integer timeTakenInMimnutes;
 	@ManyToOne
 	Test test;
-	
+
 	Boolean complete = false;
-	
+
 	Integer noOfAttempts;
-	
+
 	Float percentageMarksRecieved;
-	
+
 	Integer totalMarksRecieved;
-	
+
 	Integer totalMarks;
-	
+
 	String sectionResults;
-	
+
 	Boolean pass = false;
-	
+
 	Date testInviteSent;
-	
+
 	Boolean sharedDirect = false;
-	
+
 	Integer noOfQuestionsAnswered;
-	
+
 	String sectionsNoOfQuestionsNotAnswered;
-	
+
 	public Boolean getSharedDirect() {
 		return sharedDirect;
 	}
+
 	public void setSharedDirect(Boolean sharedDirect) {
 		this.sharedDirect = sharedDirect;
 	}
-	
+
 //	@OneToMany
 //	List<QuestionMapperInstance> questionMappersInstances;
 
@@ -151,20 +154,32 @@ public class UserTestSession extends Base {
 	public void setTestInviteSent(Date testInviteSent) {
 		this.testInviteSent = testInviteSent;
 	}
+
 	public Integer getNoOfQuestionsAnswered() {
 		return noOfQuestionsAnswered;
 	}
+
 	public void setNoOfQuestionsAnswered(Integer noOfQuestionsAnswered) {
 		this.noOfQuestionsAnswered = noOfQuestionsAnswered;
 	}
+
 	public String getSectionsNoOfQuestionsNotAnswered() {
 		return sectionsNoOfQuestionsNotAnswered;
 	}
+
 	public void setSectionsNoOfQuestionsNotAnswered(String sectionsNoOfQuestionsNotAnswered) {
 		this.sectionsNoOfQuestionsNotAnswered = sectionsNoOfQuestionsNotAnswered;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "UserTestSession [user=" + user + ", testName=" + testName + ", timeTakenInMimnutes="
+				+ timeTakenInMimnutes + ", test=" + test + ", complete=" + complete + ", noOfAttempts=" + noOfAttempts
+				+ ", percentageMarksRecieved=" + percentageMarksRecieved + ", totalMarksRecieved=" + totalMarksRecieved
+				+ ", totalMarks=" + totalMarks + ", sectionResults=" + sectionResults + ", pass=" + pass
+				+ ", testInviteSent=" + testInviteSent + ", sharedDirect=" + sharedDirect + ", noOfQuestionsAnswered="
+				+ noOfQuestionsAnswered + ", sectionsNoOfQuestionsNotAnswered=" + sectionsNoOfQuestionsNotAnswered
+				+ "]";
+	}
+
 }

@@ -175,6 +175,7 @@ $(document).ready(function() {
 								<td
 									style="width: 49px; background-image: url(https://www.mynextmove.org/image/ip/main_left.gif)">&nbsp;</td>
 								<td style="background-color: #ddd">
+
 									<div class="inner" id="tbl1">
 										<div style="padding-bottom: 16px">
 											<table cellpadding="0" cellspacing="0" border="0">
@@ -184,44 +185,69 @@ $(document).ready(function() {
 															<table cellspacing="0" cellpadding="0">
 																<tbody>
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<td
-																				style="height: 32px; width: ${rs.score }px; vertical-align: bottom"
-																				title="${rs.area }: ${rs.score }"><a
-																				href="/AssesmentApp/profiler?param=${rs.area}">
-																					<div id="graph${rs.area }" class="graph${rs.area }"
-																						style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
-																						onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
-																						onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					</div>
-																			</a></td>
-																		</c:forEach>
+																		<td
+																			style="height: 32px; width: 40px; vertical-align: bottom"
+																			title="Realistic: 16">
+																			<div id="graphRealistic" class="graphRealistic"
+																				style="margin: 0 4px; height: 12.8px;"></div>
+																		</td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Investigative: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Artistic: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Social: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Enterprising: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Conventional: 0"></td>
 																	</tr>
-
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<c:set var="string1" value="${rs.area }" />
-																			<c:set var="string2"
-																				value="${fn:substring(string1, 0, 1)}" />
-
-																			<td
-																				style="width: 40px; text-align: center; border-top: solid 1px #555"
-																				title="${rs.area }: ${rs.score }">
-																				<div id="legend${rs.area }"
-																					class="legend${rs.area }"
-																					style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold; cursor: pointer;"
-																					onmouseover="
-																																												graphhover(1, &#39;${rs.area }&#39;)"
-																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					<a style="text-decoration: none; color: black;"
-																						href="/AssesmentApp/profiler?param=${rs.area}">${string2}</a>
-																				</div>
-																			</td>
-																		</c:forEach>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Realistic: 16">
+																			<div id="legendRealistic" class="legendRealistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">R</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Investigative: 0">
+																			<div id="legendInvestigative"
+																				class="legendInvestigative"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">I</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Artistic: 0">
+																			<div id="legendArtistic" class="legendArtistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">A</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Social: 0">
+																			<div id="legendSocial" class="legendSocial"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">S</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Enterprising: 0">
+																			<div id="legendEnterprising"
+																				class="legendEnterprising"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">E</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Conventional: 0">
+																			<div id="legendConventional"
+																				class="legendConventional"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">C</div>
+																		</td>
 																	</tr>
-
 																</tbody>
 															</table>
 
@@ -239,21 +265,28 @@ $(document).ready(function() {
 																	style="width: 180px; height: 36px">
 																	<tbody>
 																		<tr>
-																			<td><img
-																				src="./resources/assets/emoticons/zone1_sel.gif"
+																			<td><img src="./car1_files/zone1_sel.gif"
 																				alt="Job Zone One" width="36" height="36"></td>
-																			<td><a href="career?name=2"><img alt=""
-																					src="./resources/assets/emoticons/zone2.gif"></a>
-																			</td>
-																			<td><a href="career?name=3"><img alt=""
-																					src="./resources/assets/emoticons/zone3.gif"></a>
-																			</td>
-																			<td><a href="career?name=4"><img alt=""
-																					src="./resources/assets/emoticons/zone4.gif"></a>
-																			</td>
-																			<td><a href="career?name=5"><img alt=""
-																					src="./resources/assets/emoticons/zone5.gif"></a>
-																			</td>
+																			<td><input type="image" name="changezone2"
+																				id="zone2" value="2" src="./car1_files/zone2.gif"
+																				alt="Select Job Zone Two"
+																				onmouseover="hover(&#39;zone2&#39;, true)"
+																				onmouseout="hover(&#39;zone2&#39;, false)"></td>
+																			<td><input type="image" name="changezone3"
+																				id="zone3" value="3" src="./car1_files/zone3.gif"
+																				alt="Select Job Zone Three"
+																				onmouseover="hover(&#39;zone3&#39;, true)"
+																				onmouseout="hover(&#39;zone3&#39;, false)"></td>
+																			<td><input type="image" name="changezone4"
+																				id="zone4" value="4" src="./car1_files/zone4.gif"
+																				alt="Select Job Zone Four"
+																				onmouseover="hover(&#39;zone4&#39;, true)"
+																				onmouseout="hover(&#39;zone4&#39;, false)"></td>
+																			<td><input type="image" name="changezone5"
+																				id="zone5" value="5" src="./car1_files/zone5.gif"
+																				alt="Select Job Zone Five"
+																				onmouseover="hover(&#39;zone5&#39;, true)"
+																				onmouseout="hover(&#39;zone5&#39;, false)"></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -281,7 +314,7 @@ $(document).ready(function() {
 												<div class="tableheader"
 													style="position: relative; margin: 0; padding: 0; border: none; height: 26px">
 													<div style="float: left">
-														<img src="./resources/assets/emoticons/strong_legend.gif"
+														<img src="./car1_files/strong_legend.gif"
 															alt="Best fit, great fit"
 															title="Best matches are listed first">
 													</div>
@@ -297,13 +330,25 @@ $(document).ready(function() {
 													<tbody>
 														<tr>
 															<th><span class="screenreader">Career name</span><img
-																src="./resources/assets/emoticons/blank.gif" alt=" "></th>
+																src="./car1_files/blank(1).gif" alt=" "></th>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-6011.00">Bridge
+																	&amp; Lock Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -312,7 +357,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-2051.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -322,10 +367,10 @@ $(document).ready(function() {
 																	Masons &amp; Concrete Finishers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -334,10 +379,10 @@ $(document).ready(function() {
 																	Operators &amp; Tenders</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -346,7 +391,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-5011.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -356,10 +401,35 @@ $(document).ready(function() {
 																	Operators, Oil &amp; Gas</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/35-9011.00">Dining
+																	Room &amp; Cafeteria Attendants &amp; Bartender Helpers</a>
+															</td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/35-9021.00">Dishwashers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -368,10 +438,10 @@ $(document).ready(function() {
 																	Menders</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -380,10 +450,10 @@ $(document).ready(function() {
 															</td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -392,10 +462,10 @@ $(document).ready(function() {
 																	&amp; Laborers, Crop</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -404,10 +474,10 @@ $(document).ready(function() {
 																	Farm, Ranch, &amp; Aquacultural Animals</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -416,7 +486,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/45-3011.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -426,10 +496,10 @@ $(document).ready(function() {
 																	&amp; Related Fishing Workers</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -438,10 +508,10 @@ $(document).ready(function() {
 																	&amp; Polishing Workers, Hand</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -450,10 +520,10 @@ $(document).ready(function() {
 																	Paperhangers, Plasterers, &amp; Stucco Masons</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -462,7 +532,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/45-3021.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -472,10 +542,10 @@ $(document).ready(function() {
 																	&amp; Trappers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -484,7 +554,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/37-3011.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -494,10 +564,10 @@ $(document).ready(function() {
 																	&amp; Groundskeeping Workers</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -506,10 +576,10 @@ $(document).ready(function() {
 																	&amp; Dry-Cleaning Workers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -518,10 +588,10 @@ $(document).ready(function() {
 																	Equipment Operators</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -530,10 +600,10 @@ $(document).ready(function() {
 																	Poultry, &amp; Fish Cutters &amp; Trimmers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -542,10 +612,22 @@ $(document).ready(function() {
 																	&amp; Stucco Masons</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6021.00">Pressers,
+																	Textile, Garment, &amp; Related Materials</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -556,8 +638,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -566,7 +648,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-5071.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -578,8 +660,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -588,7 +670,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-4071.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car1_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -600,8 +682,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car1_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -612,26 +694,70 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car1_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/35-9021.00">Dishwashers</a>
-															</td>
+																href="https://www.mynextmove.org/profile/summary/35-2011.00">Cooks,
+																	Fast Food</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car1_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/35-2021.00"
+																			class="popup_bright"><img
+																			src="./car1_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/35-2021.00">Food
+																	Preparation Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6021.00">Pressers,
-																	Textile, Garment, &amp; Related Materials</a></td>
+																href="https://www.mynextmove.org/profile/summary/45-2041.00">Graders
+																	&amp; Sorters, Agricultural Products</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car1_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/39-2021.00"
+																			class="popup_bright"><img
+																			src="./car1_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/39-2021.00">Nonfarm
+																	Animal Caretakers</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -640,10 +766,10 @@ $(document).ready(function() {
 										<div style="margin: 10px 0; font-size: 11px">
 											<div style="float: right; padding-left: 32px">
 												<a
-													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=1&amp;i=210804000000"
+													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=1&amp;i=160000000000"
 													id="printbtn" target="_ipprint"><img
-													src="./resources/assets/emoticons/print_small.gif"
-													alt="Print" width="64" height="22"></a>
+													src="./car1_files/print_small.gif" alt="Print" width="64"
+													height="22"></a>
 											</div>
 											Click on a career to learn what they do.
 										</div>
@@ -657,44 +783,69 @@ $(document).ready(function() {
 															<table cellspacing="0" cellpadding="0">
 																<tbody>
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<td
-																				style="height: 32px; width: ${rs.score }px; vertical-align: bottom"
-																				title="${rs.area }: ${rs.score }"><a
-																				href="/AssesmentApp/profiler?param=${rs.area}">
-																					<div id="graph${rs.area }" class="graph${rs.area }"
-																						style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
-																						onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
-																						onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					</div>
-																			</a></td>
-																		</c:forEach>
+																		<td
+																			style="height: 32px; width: 40px; vertical-align: bottom"
+																			title="Realistic: 16">
+																			<div id="graphRealistic" class="graphRealistic"
+																				style="margin: 0 4px; height: 12.8px;"></div>
+																		</td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Investigative: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Artistic: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Social: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Enterprising: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Conventional: 0"></td>
 																	</tr>
-
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<c:set var="string1" value="${rs.area }" />
-																			<c:set var="string2"
-																				value="${fn:substring(string1, 0, 1)}" />
-
-																			<td
-																				style="width: 40px; text-align: center; border-top: solid 1px #555"
-																				title="${rs.area }: ${rs.score }">
-																				<div id="legend${rs.area }"
-																					class="legend${rs.area }"
-																					style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold; cursor: pointer;"
-																					onmouseover="
-																																												graphhover(1, &#39;${rs.area }&#39;)"
-																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					<a style="text-decoration: none; color: black;"
-																						href="/AssesmentApp/profiler?param=${rs.area}">${string2}</a>
-																				</div>
-																			</td>
-																		</c:forEach>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Realistic: 16">
+																			<div id="legendRealistic" class="legendRealistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">R</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Investigative: 0">
+																			<div id="legendInvestigative"
+																				class="legendInvestigative"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">I</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Artistic: 0">
+																			<div id="legendArtistic" class="legendArtistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">A</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Social: 0">
+																			<div id="legendSocial" class="legendSocial"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">S</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Enterprising: 0">
+																			<div id="legendEnterprising"
+																				class="legendEnterprising"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">E</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Conventional: 0">
+																			<div id="legendConventional"
+																				class="legendConventional"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">C</div>
+																		</td>
 																	</tr>
-
 																</tbody>
 															</table>
 
@@ -712,20 +863,28 @@ $(document).ready(function() {
 																	style="width: 180px; height: 36px">
 																	<tbody>
 																		<tr>
-																			<td><a href="career?name=1"><img alt=""
-																					src="./resources/assets/emoticons/zone1.gif"></a></td>
-																			<td><img
-																				src="./resources/assets/emoticons/zone2_sel.gif"
+																			<td><input type="image" name="changezone1"
+																				id="zone1" value="1" src="./car2_files/zone1.gif"
+																				alt="Select Job Zone One"
+																				onmouseover="hover(&#39;zone1&#39;, true)"
+																				onmouseout="hover(&#39;zone1&#39;, false)"></td>
+																			<td><img src="./car2_files/zone2_sel.gif"
 																				alt="Job Zone Two" width="36" height="36"></td>
-																			<td><a href="career?name=3"><img alt=""
-																					src="./resources/assets/emoticons/zone3.gif"></a>
-																			</td>
-																			<td><a href="career?name=4"><img alt=""
-																					src="./resources/assets/emoticons/zone4.gif"></a>
-																			</td>
-																			<td><a href="career?name=5"><img alt=""
-																					src="./resources/assets/emoticons/zone5.gif"></a>
-																			</td>
+																			<td><input type="image" name="changezone3"
+																				id="zone3" value="3" src="./car2_files/zone3.gif"
+																				alt="Select Job Zone Three"
+																				onmouseover="hover(&#39;zone3&#39;, true)"
+																				onmouseout="hover(&#39;zone3&#39;, false)"></td>
+																			<td><input type="image" name="changezone4"
+																				id="zone4" value="4" src="./car2_files/zone4.gif"
+																				alt="Select Job Zone Four"
+																				onmouseover="hover(&#39;zone4&#39;, true)"
+																				onmouseout="hover(&#39;zone4&#39;, false)"></td>
+																			<td><input type="image" name="changezone5"
+																				id="zone5" value="5" src="./car2_files/zone5.gif"
+																				alt="Select Job Zone Five"
+																				onmouseover="hover(&#39;zone5&#39;, true)"
+																				onmouseout="hover(&#39;zone5&#39;, false)"></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -752,7 +911,7 @@ $(document).ready(function() {
 												<div class="tableheader"
 													style="position: relative; margin: 0; padding: 0; border: none; height: 26px">
 													<div style="float: left">
-														<img src="./resources/assets/emoticons/strong_legend.gif"
+														<img src="./car2_files/strong_legend.gif"
 															alt="Best fit, great fit"
 															title="Best matches are listed first">
 													</div>
@@ -768,13 +927,13 @@ $(document).ready(function() {
 													<tbody>
 														<tr>
 															<th><span class="screenreader">Career name</span><img
-																src="./resources/assets/emoticons/blank.gif" alt=" "></th>
+																src="./car2_files/blank.gif" alt=" "></th>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -785,8 +944,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -797,8 +956,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -809,8 +968,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -822,8 +981,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -834,1997 +993,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/39-2011.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/39-2011.00">Animal
-																	Trainers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3021.00">Automotive
-																	Body &amp; Related Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-3091.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3091.00">Bicycle
-																	Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8099.01">Biofuels
-																	Processing Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8099.03">Biomass
-																	Plant Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2021.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2021.00">Brickmasons
-																	&amp; Blockmasons</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7011.00">Cabinetmakers
-																	&amp; Bench Carpenters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2041.00">Carpet
-																	Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9011.00">Chemical
-																	Equipment Operators &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8091.00">Chemical
-																	Plant &amp; System Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7061.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7061.00">Cleaners
-																	of Vehicles &amp; Equipment</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9192.00">Cleaning,
-																	Washing, &amp; Metal Pickling Equipment Operators &amp;
-																	Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9121.00">Coating,
-																	Painting, &amp; Spraying Machine Setters, Operators,
-																	&amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2021.00">Coil
-																	Winders, Tapers, &amp; Finishers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2031.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2031.01">Construction
-																	Carpenters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2061.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2061.00">Construction
-																	Laborers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5041.00">Continuous
-																	Mining Machine Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9193.00">Cooling
-																	&amp; Freezing Equipment Operators &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9021.00">Crushing,
-																	Grinding, &amp; Polishing Machine Setters, Operators,
-																	&amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9032.00">Cutting
-																	&amp; Slicing Machine Setters, Operators, &amp; Tenders</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/51-9081.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9081.00">Dental
-																	Laboratory Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7031.00">Dredge
-																	Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4032.00">Drilling
-																	&amp; Boring Machine Tool Setters, Operators, &amp;
-																	Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-5021.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5021.00">Earth
-																	Drillers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2022.00">Electrical
-																	&amp; Electronic Equipment Assemblers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2023.00">Electromechanical
-																	Equipment Assemblers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2031.00">Engine
-																	&amp; Other Machine Assemblers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9194.00">Etchers
-																	&amp; Engravers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7032.00">Excavating
-																	&amp; Loading Machine &amp; Dragline Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5031.00">Explosives
-																	Workers, Ordnance Handling Experts, &amp; Blasters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4021.00">Extruding
-																	&amp; Drawing Machine Setters, Operators, &amp;
-																	Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6091.00">Extruding
-																	&amp; Forming Machine Setters, Operators, &amp;
-																	Tenders, Synthetic &amp; Glass Fibers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2091.00">Fiberglass
-																	Laminators &amp; Fabricators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2043.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2043.00">Floor
-																	Sanders &amp; Finishers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-3091.00">Food
-																	&amp; Tobacco Roasting, Baking, &amp; Drying Machine
-																	Operators &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4022.00">Forging
-																	Machine Setters, Operators, &amp; Tenders, Metal &amp;
-																	Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4071.00">Foundry
-																	Mold &amp; Coremakers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9051.00">Furnace,
-																	Kiln, Oven, Drier, &amp; Kettle Operators &amp; Tenders</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7021.00">Furniture
-																	Finishers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7071.00">Gas
-																	Compressor &amp; Gas Pumping Station Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9099.01">Geothermal
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2121.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2121.00">Glaziers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4033.00">Grinding,
-																	Lapping, Polishing, &amp; Buffing Machine Tool Setters,
-																	Operators, &amp; Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4191.00">Heat
-																	Treating Equipment Setters, Operators, &amp; Tenders,
-																	Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-3032.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-3032.00">Heavy
-																	&amp; Tractor-Trailer Truck Drivers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-3011.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-3011.00">Helpers--Brickmasons,
-																	Blockmasons, Stonemasons, &amp; Tile &amp; Marble
-																	Setters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-3012.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-3012.00">Helpers--Carpenters</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-3013.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-3013.00">Helpers--Electricians</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-5081.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5081.00">Helpers--Extraction
-																	Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-3015.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-3015.00">Helpers--Pipelayers,
-																	Plumbers, Pipefitters, &amp; Steamfitters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/51-9198.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9198.00">Helpers--Production
-																	Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4051.00">Highway
-																	Maintenance Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7041.00">Hoist
-																	&amp; Winch Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7051.00">Industrial
-																	Truck &amp; Tractor Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2131.00">Insulation
-																	Workers, Floor, Ceiling, &amp; Wall</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2132.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2132.00">Insulation
-																	Workers, Mechanical</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7062.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7062.00">Laborers
-																	&amp; Freight, Stock, &amp; Material Movers, Hand</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4034.00">Lathe
-																	&amp; Turning Machine Tool Setters, Operators, &amp;
-																	Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4192.00">Layout
-																	Workers, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7033.00">Loading
-																	Machine Operators, Underground Mining</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9094.00">Locksmiths
-																	&amp; Safe Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7063.00">Machine
-																	Feeders &amp; Offbearers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9095.00">Manufactured
-																	Building &amp; Mobile Home Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9011.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9011.00">Mechanical
-																	Door Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4051.00">Metal-Refining
-																	Furnace Operators &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4035.00">Milling
-																	&amp; Planing Machine Setters, Operators, &amp;
-																	Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9044.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9044.00">Millwrights</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5042.00">Mine
-																	Cutting &amp; Channeling Machine Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7111.00">Mine
-																	Shuttle Car Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9023.00">Mixing
-																	&amp; Blending Machine Setters, Operators, &amp;
-																	Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9195.07">Molding
-																	&amp; Casting Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4072.00">Molding,
-																	Coremaking, &amp; Casting Machine Setters, Operators,
-																	&amp; Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4081.00">Multiple
-																	Machine Tool Setters, Operators, &amp; Tenders, Metal
-																	&amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.01">Non-Destructive
-																	Testing Specialists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/45-2092.01">Nursery
-																	Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2073.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2073.00">Operating
-																	Engineers &amp; Other Construction Equipment Operators</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/51-9083.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9083.00">Ophthalmic
-																	Laboratory Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-3053.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3053.00">Outdoor
-																	Power Equipment &amp; Other Small Engine Mechanics</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7064.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7064.00">Packers
-																	&amp; Packagers, Hand</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2141.00">Painters,
-																	Construction &amp; Maintenance</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9122.00">Painters,
-																	Transportation Equipment</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9123.00">Painting,
-																	Coating, &amp; Decorating Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2142.00">Paperhangers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2071.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2071.00">Paving,
-																	Surfacing, &amp; Tamping Equipment Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/37-3012.00">Pesticide
-																	Handlers, Sprayers, &amp; Applicators, Vegetation</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2072.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2072.00">Pile-Driver
-																	Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2151.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2151.00">Pipelayers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4193.00">Plating
-																	&amp; Coating Machine Setters, Operators, &amp;
-																	Tenders, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4052.00">Pourers
-																	&amp; Casters, Metal</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7072.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7072.00">Pump
-																	Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3043.00">Rail
-																	Car Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-4013.00">Rail
-																	Yard Engineers, Dinkey Operators, &amp; Hostlers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4061.00">Rail-Track
-																	Laying &amp; Maintenance Equipment Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-4021.00">Railroad
-																	Brake, Signal, &amp; Switch Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3092.00">Recreational
-																	Vehicle Service Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9045.00">Refractory
-																	Materials Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7081.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7081.00">Refuse
-																	&amp; Recyclable Material Collectors</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2171.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2171.00">Reinforcing
-																	Iron &amp; Rebar Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9096.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9096.00">Riggers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5061.00">Roof
-																	Bolters, Mining</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2181.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2181.00">Roofers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2031.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2031.02">Rough
-																	Carpenters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7041.00">Sawing
-																	Machine Setters, Operators, &amp; Tenders, Wood</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4091.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4091.00">Segmental
-																	Pavers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9141.00">Semiconductor
-																	Processors</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9012.00">Separating,
-																	Filtering, Clarifying, Precipitating, &amp; Still
-																	Machine Setters, Operators, &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-5013.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-5013.00">Service
-																	Unit Operators, Oil, Gas, &amp; Mining</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2211.00">Sheet
-																	Metal Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6042.00">Shoe
-																	Machine Operators &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2231.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2231.00">Solar
-																	Photovoltaic Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4121.07">Solderers
-																	&amp; Brazers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2221.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2221.00">Structural
-																	Iron &amp; Steel Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2082.00">Tapers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9052.00">Telecommunications
-																	Line Installers &amp; Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2053.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2053.00">Terrazzo
-																	Workers &amp; Finishers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6061.00">Textile
-																	Bleaching &amp; Dyeing Machine Operators &amp; Tenders</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6062.00">Textile
-																	Cutting Machine Setters, Operators, &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6064.00">Textile
-																	Winding, Twisting, &amp; Drawing Out Machine Setters,
-																	Operators, &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2044.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2044.00">Tile
-																	&amp; Marble Setters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2093.00">Timing
-																	Device Assemblers &amp; Adjusters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9197.00">Tire
-																	Builders</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3093.00">Tire
-																	Repairers &amp; Changers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4194.00">Tool
-																	Grinders, Filers, &amp; Sharpeners</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/37-3013.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/37-3013.00">Tree
-																	Trimmers &amp; Pruners</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-6093.00">Upholsterers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4099.03"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4099.03">Weatherization
-																	Installers &amp; Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/53-7073.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-7073.00">Wellhead
-																	Pumpers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7042.00">Woodworking
-																	Machine Setters, Operators, &amp; Tenders</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2835,8 +1005,42 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/39-2011.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/39-2011.00">Animal
+																	Trainers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/27-2021.00">Athletes
+																	&amp; Sports Competitors</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -2845,7 +1049,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/53-6031.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -2857,8 +1061,20 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3021.00">Automotive
+																	Body &amp; Related Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2867,10 +1083,22 @@ $(document).ready(function() {
 																	Glass Installers &amp; Repairers</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/39-6011.00">Baggage
+																	Porters &amp; Bellhops</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2881,8 +1109,88 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-3091.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3091.00">Bicycle
+																	Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8099.01">Biofuels
+																	Processing Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8099.03">Biomass
+																	Plant Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2021.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2021.00">Brickmasons
+																	&amp; Blockmasons</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-3022.00">Bus
+																	Drivers, School or Special Client</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2891,10 +1199,130 @@ $(document).ready(function() {
 																	Drivers, Transit &amp; Intercity</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-3021.00">Butchers
+																	&amp; Meat Cutters</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7011.00">Cabinetmakers
+																	&amp; Bench Carpenters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2041.00">Carpet
+																	Installers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9011.00">Chemical
+																	Equipment Operators &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8091.00">Chemical
+																	Plant &amp; System Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7061.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7061.00">Cleaners
+																	of Vehicles &amp; Equipment</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9192.00">Cleaning,
+																	Washing, &amp; Metal Pickling Equipment Operators &amp;
+																	Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9121.00">Coating,
+																	Painting, &amp; Spraying Machine Setters, Operators,
+																	&amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2021.00">Coil
+																	Winders, Tapers, &amp; Finishers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2906,8 +1334,64 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2031.01"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2031.01">Construction
+																	Carpenters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2061.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2061.00">Construction
+																	Laborers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5041.00">Continuous
+																	Mining Machine Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -2916,7 +1400,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/35-2014.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -2926,10 +1410,22 @@ $(document).ready(function() {
 																	Restaurant</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9193.00">Cooling
+																	&amp; Freezing Equipment Operators &amp; Tenders</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -2938,7 +1434,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/43-5021.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -2950,8 +1446,21 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9021.00">Crushing,
+																	Grinding, &amp; Polishing Machine Setters, Operators,
+																	&amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2960,10 +1469,23 @@ $(document).ready(function() {
 																	&amp; Trimmers, Hand</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9032.00">Cutting
+																	&amp; Slicing Machine Setters, Operators, &amp; Tenders</a>
+															</td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2975,8 +1497,20 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7031.00">Dredge
+																	Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2985,10 +1519,118 @@ $(document).ready(function() {
 																	&amp; Ceiling Tile Installers</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-5021.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5021.00">Earth
+																	Drillers</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2022.00">Electrical
+																	&amp; Electronic Equipment Assemblers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2023.00">Electromechanical
+																	Equipment Assemblers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2031.00">Engine
+																	&amp; Other Machine Assemblers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9194.00">Etchers
+																	&amp; Engravers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7032.00">Excavating
+																	&amp; Loading Machine &amp; Dragline Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4021.00">Extruding
+																	&amp; Drawing Machine Setters, Operators, &amp;
+																	Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6091.00">Extruding
+																	&amp; Forming Machine Setters, Operators, &amp;
+																	Tenders, Synthetic &amp; Glass Fibers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -2998,10 +1640,10 @@ $(document).ready(function() {
 																	Operators, &amp; Tenders</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3010,7 +1652,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-4031.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3020,10 +1662,22 @@ $(document).ready(function() {
 																	Erectors</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2091.00">Fiberglass
+																	Laminators &amp; Fabricators</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3032,7 +1686,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-2042.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3044,8 +1698,43 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2043.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2043.00">Floor
+																	Sanders &amp; Finishers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-3091.00">Food
+																	&amp; Tobacco Roasting, Baking, &amp; Drying Machine
+																	Operators &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3056,8 +1745,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3068,42 +1757,285 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9195.04">Glass
-																	Blowers, Molders, Benders, &amp; Finishers</a></td>
+																href="https://www.mynextmove.org/profile/summary/51-4022.00">Forging
+																	Machine Setters, Operators, &amp; Tenders, Metal &amp;
+																	Plastic</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4071.00">Foundry
+																	Mold &amp; Coremakers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9051.00">Furnace,
+																	Kiln, Oven, Drier, &amp; Kettle Operators &amp; Tenders</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7021.00">Furniture
+																	Finishers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7071.00">Gas
+																	Compressor &amp; Gas Pumping Station Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9099.01">Geothermal
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9098.00"
+																			href="https://www.mynextmove.org/profile/bright/47-2121.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
 																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9098.00">Helpers--Installation,
-																	Maintenance, &amp; Repair Workers</a></td>
+																href="https://www.mynextmove.org/profile/summary/47-2121.00">Glaziers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4033.00">Grinding,
+																	Lapping, Polishing, &amp; Buffing Machine Tool Setters,
+																	Operators, &amp; Tenders, Metal &amp; Plastic</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4191.00">Heat
+																	Treating Equipment Setters, Operators, &amp; Tenders,
+																	Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-3032.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-3032.00">Heavy
+																	&amp; Tractor-Trailer Truck Drivers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-3011.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-3011.00">Helpers--Brickmasons,
+																	Blockmasons, Stonemasons, &amp; Tile &amp; Marble
+																	Setters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-3012.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-3012.00">Helpers--Carpenters</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-3013.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-3013.00">Helpers--Electricians</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-5081.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5081.00">Helpers--Extraction
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-3015.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-3015.00">Helpers--Pipelayers,
+																	Plumbers, Pipefitters, &amp; Steamfitters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/51-9198.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9198.00">Helpers--Production
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3112,7 +2044,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-3016.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3124,8 +2056,32 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4051.00">Highway
+																	Maintenance Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7041.00">Hoist
+																	&amp; Winch Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3136,8 +2092,54 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7051.00">Industrial
+																	Truck &amp; Tractor Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2131.00">Insulation
+																	Workers, Floor, Ceiling, &amp; Wall</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2132.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2132.00">Insulation
+																	Workers, Mechanical</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3146,7 +2148,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/37-2011.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3156,10 +2158,57 @@ $(document).ready(function() {
 																	&amp; Cleaners</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7062.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7062.00">Laborers
+																	&amp; Freight, Stock, &amp; Material Movers, Hand</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4034.00">Lathe
+																	&amp; Turning Machine Tool Setters, Operators, &amp;
+																	Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4192.00">Layout
+																	Workers, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3168,7 +2217,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/53-3033.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3180,8 +2229,32 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7033.00">Loading
+																	Machine Operators, Underground Mining</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9094.00">Locksmiths
+																	&amp; Safe Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3192,8 +2265,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3204,8 +2277,185 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/45-4023.00">Log
+																	Graders &amp; Scalers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7063.00">Machine
+																	Feeders &amp; Offbearers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/37-2012.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/37-2012.00">Maids
+																	&amp; Housekeeping Cleaners</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9095.00">Manufactured
+																	Building &amp; Mobile Home Installers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9011.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9011.00">Mechanical
+																	Door Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4035.00">Milling
+																	&amp; Planing Machine Setters, Operators, &amp;
+																	Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9044.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9044.00">Millwrights</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5042.00">Mine
+																	Cutting &amp; Channeling Machine Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7111.00">Mine
+																	Shuttle Car Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9023.00">Mixing
+																	&amp; Blending Machine Setters, Operators, &amp;
+																	Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9195.07">Molding
+																	&amp; Casting Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4072.00">Molding,
+																	Coremaking, &amp; Casting Machine Setters, Operators,
+																	&amp; Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3216,8 +2466,112 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-5022.00">Motorboat
+																	Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4081.00">Multiple
+																	Machine Tool Setters, Operators, &amp; Tenders, Metal
+																	&amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/45-2092.01">Nursery
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2073.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2073.00">Operating
+																	Engineers &amp; Other Construction Equipment Operators</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/51-9083.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9083.00">Ophthalmic
+																	Laboratory Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-3053.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3053.00">Outdoor
+																	Power Equipment &amp; Other Small Engine Mechanics</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3228,8 +2582,66 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7064.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7064.00">Packers
+																	&amp; Packagers, Hand</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2141.00">Painters,
+																	Construction &amp; Maintenance</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9122.00">Painters,
+																	Transportation Equipment</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9123.00">Painting,
+																	Coating, &amp; Decorating Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3240,8 +2652,54 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2142.00">Paperhangers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-3041.00">Parking
+																	Enforcement Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2071.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2071.00">Paving,
+																	Surfacing, &amp; Tamping Equipment Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3250,10 +2708,22 @@ $(document).ready(function() {
 																	Control Workers</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/37-3012.00">Pesticide
+																	Handlers, Sprayers, &amp; Applicators, Vegetation</a></td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3265,8 +2735,77 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2072.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2072.00">Pile-Driver
+																	Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2151.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2151.00">Pipelayers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4193.00">Plating
+																	&amp; Coating Machine Setters, Operators, &amp;
+																	Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4052.00">Pourers
+																	&amp; Casters, Metal</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3277,8 +2816,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3289,8 +2828,168 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7072.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7072.00">Pump
+																	Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3043.00">Rail
+																	Car Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-4013.00">Rail
+																	Yard Engineers, Dinkey Operators, &amp; Hostlers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4061.00">Rail-Track
+																	Laying &amp; Maintenance Equipment Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-4021.00">Railroad
+																	Brake, Signal, &amp; Switch Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3092.00">Recreational
+																	Vehicle Service Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9045.00">Refractory
+																	Materials Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7081.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7081.00">Refuse
+																	&amp; Recyclable Material Collectors</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2171.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2171.00">Reinforcing
+																	Iron &amp; Rebar Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9096.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9096.00">Riggers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3302,8 +3001,42 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5061.00">Roof
+																	Bolters, Mining</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2181.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2181.00">Roofers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3312,7 +3045,7 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/47-5012.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car2_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
@@ -3324,8 +3057,30 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2031.02"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2031.02">Rough
+																	Carpenters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3334,10 +3089,103 @@ $(document).ready(function() {
 																	&amp; Marine Oilers</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7041.00">Sawing
+																	Machine Setters, Operators, &amp; Tenders, Wood</a></td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4091.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4091.00">Segmental
+																	Pavers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9141.00">Semiconductor
+																	Processors</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9012.00">Separating,
+																	Filtering, Clarifying, Precipitating, &amp; Still
+																	Machine Setters, Operators, &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-5013.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5013.00">Service
+																	Unit Operators, Oil, Gas, &amp; Mining</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2211.00">Sheet
+																	Metal Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3346,10 +3194,22 @@ $(document).ready(function() {
 																	&amp; Leather Workers &amp; Repairers</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6042.00">Shoe
+																	Machine Operators &amp; Tenders</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3360,20 +3220,76 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9195.03">Stone
-																	Cutters &amp; Carvers, Manufacturing</a></td>
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2231.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2231.00">Solar
+																	Photovoltaic Installers</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4121.07">Solderers
+																	&amp; Brazers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2221.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2221.00">Structural
+																	Iron &amp; Steel Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-4041.00">Subway
+																	&amp; Streetcar Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3382,10 +3298,81 @@ $(document).ready(function() {
 																	Car, Truck, &amp; Ship Loaders</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2082.00">Tapers</a>
+															</td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9052.00">Telecommunications
+																	Line Installers &amp; Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2053.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2053.00">Terrazzo
+																	Workers &amp; Finishers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6061.00">Textile
+																	Bleaching &amp; Dyeing Machine Operators &amp; Tenders</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6062.00">Textile
+																	Cutting Machine Setters, Operators, &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3397,20 +3384,147 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-6051.07">Transportation
-																	Vehicle, Equipment &amp; Systems Inspectors</a></td>
+																href="https://www.mynextmove.org/profile/summary/51-6064.00">Textile
+																	Winding, Twisting, &amp; Drawing Out Machine Setters,
+																	Operators, &amp; Tenders</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2044.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2044.00">Tile
+																	&amp; Marble Setters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2093.00">Timing
+																	Device Assemblers &amp; Adjusters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9197.00">Tire
+																	Builders</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3093.00">Tire
+																	Repairers &amp; Changers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4194.00">Tool
+																	Grinders, Filers, &amp; Sharpeners</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/37-3013.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/37-3013.00">Tree
+																	Trimmers &amp; Pruners</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6093.00">Upholsterers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4099.03"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4099.03">Weatherization
+																	Installers &amp; Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3419,6 +3533,434 @@ $(document).ready(function() {
 																	Soldering, &amp; Brazing Machine Setters, Operators,
 																	&amp; Tenders</a></td>
 														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-7073.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-7073.00">Wellhead
+																	Pumpers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7042.00">Woodworking
+																	Machine Setters, Operators, &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/53-3011.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-3011.00">Ambulance
+																	Drivers &amp; Attendants</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-3011.00">Bailiffs</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/35-2015.00">Cooks,
+																	Short Order</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-3012.00">Correctional
+																	Officers &amp; Jailers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/51-9081.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9081.00">Dental
+																	Laboratory Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4032.00">Drilling
+																	&amp; Boring Machine Tool Setters, Operators, &amp;
+																	Tenders, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-3031.00">Driver/Sales
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-5031.00">Explosives
+																	Workers, Ordnance Handling Experts, &amp; Blasters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-3092.00">Food
+																	Batchmakers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-9031.00">Gaming
+																	Surveillance Officers &amp; Gaming Investigators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9195.04">Glass
+																	Blowers, Molders, Benders, &amp; Finishers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9098.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9098.00">Helpers--Installation,
+																	Maintenance, &amp; Repair Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-9092.00">Lifeguards,
+																	Ski Patrol, &amp; Other Recreational Protective Service
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/31-9093.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/31-9093.00">Medical
+																	Equipment Preparers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4051.00">Metal-Refining
+																	Furnace Operators &amp; Tenders</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/43-9071.00">Office
+																	Machine Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-6021.00">Parking
+																	Lot Attendants</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9199.01">Recycling
+																	&amp; Reclamation Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/33-9032.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-9032.00">Security
+																	Guards</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6051.00">Sewers,
+																	Hand</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/39-5093.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/39-5093.00">Shampooers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/43-5081.03"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/43-5081.03">Stock
+																	Clerks- Stockroom, Warehouse, or Storage Yard</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9195.03">Stone
+																	Cutters &amp; Carvers, Manufacturing</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-3041.00">Taxi
+																	Drivers &amp; Chauffeurs</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/51-2092.00"
+																			class="popup_bright"><img
+																			src="./car2_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div> <a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2092.00">Team
+																	Assemblers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car2_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-6051.07">Transportation
+																	Vehicle, Equipment &amp; Systems Inspectors</a></td>
+														</tr>
 													</tbody>
 												</table>
 											</div>
@@ -3426,10 +3968,10 @@ $(document).ready(function() {
 										<div style="margin: 10px 0; font-size: 11px">
 											<div style="float: right; padding-left: 32px">
 												<a
-													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=2&amp;i=210804000000"
+													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=2&amp;i=160000000000"
 													id="printbtn" target="_ipprint"><img
-													src="./resources/assets/emoticons/print_small.gif"
-													alt="Print" width="64" height="22"></a>
+													src="./car2_files/print_small.gif" alt="Print" width="64"
+													height="22"></a>
 											</div>
 											Click on a career to learn what they do.
 										</div>
@@ -3443,44 +3985,69 @@ $(document).ready(function() {
 															<table cellspacing="0" cellpadding="0">
 																<tbody>
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<td
-																				style="height: 32px; width: ${rs.score }px; vertical-align: bottom"
-																				title="${rs.area }: ${rs.score }"><a
-																				href="/AssesmentApp/profiler?param=${rs.area}">
-																					<div id="graph${rs.area }" class="graph${rs.area }"
-																						style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
-																						onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
-																						onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					</div>
-																			</a></td>
-																		</c:forEach>
+																		<td
+																			style="height: 32px; width: 40px; vertical-align: bottom"
+																			title="Realistic: 16">
+																			<div id="graphRealistic" class="graphRealistic"
+																				style="margin: 0 4px; height: 12.8px;"></div>
+																		</td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Investigative: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Artistic: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Social: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Enterprising: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Conventional: 0"></td>
 																	</tr>
-
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<c:set var="string1" value="${rs.area }" />
-																			<c:set var="string2"
-																				value="${fn:substring(string1, 0, 1)}" />
-
-																			<td
-																				style="width: 40px; text-align: center; border-top: solid 1px #555"
-																				title="${rs.area }: ${rs.score }">
-																				<div id="legend${rs.area }"
-																					class="legend${rs.area }"
-																					style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold; cursor: pointer;"
-																					onmouseover="
-																																												graphhover(1, &#39;${rs.area }&#39;)"
-																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					<a style="text-decoration: none; color: black;"
-																						href="/AssesmentApp/profiler?param=${rs.area}">${string2}</a>
-																				</div>
-																			</td>
-																		</c:forEach>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Realistic: 16">
+																			<div id="legendRealistic" class="legendRealistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">R</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Investigative: 0">
+																			<div id="legendInvestigative"
+																				class="legendInvestigative"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">I</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Artistic: 0">
+																			<div id="legendArtistic" class="legendArtistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">A</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Social: 0">
+																			<div id="legendSocial" class="legendSocial"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">S</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Enterprising: 0">
+																			<div id="legendEnterprising"
+																				class="legendEnterprising"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">E</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Conventional: 0">
+																			<div id="legendConventional"
+																				class="legendConventional"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">C</div>
+																		</td>
 																	</tr>
-
 																</tbody>
 															</table>
 
@@ -3498,20 +4065,28 @@ $(document).ready(function() {
 																	style="width: 180px; height: 36px">
 																	<tbody>
 																		<tr>
-																			<td><a href="career?name=1"><img alt=""
-																					src="./resources/assets/emoticons/zone1.gif"></a></td>
-																			<td><a href="career?name=2"> <img
-																					src="./resources/assets/emoticons/zone2.gif"
-																					alt="Job Zone Two" width="36" height="36"></a></td>
-																			<td><a href="career?name=3"><img alt=""
-																					src="./resources/assets/emoticons/zone3_sel.gif"></a>
-																			</td>
-																			<td><a href="career?name=4"><img alt=""
-																					src="./resources/assets/emoticons/zone4.gif"></a>
-																			</td>
-																			<td><a href="career?name=5"><img alt=""
-																					src="./resources/assets/emoticons/zone5.gif"></a>
-																			</td>
+																			<td><input type="image" name="changezone1"
+																				id="zone1" value="1" src="./car3_files/zone1.gif"
+																				alt="Select Job Zone One"
+																				onmouseover="hover(&#39;zone1&#39;, true)"
+																				onmouseout="hover(&#39;zone1&#39;, false)"></td>
+																			<td><input type="image" name="changezone2"
+																				id="zone2" value="2" src="./car3_files/zone2.gif"
+																				alt="Select Job Zone Two"
+																				onmouseover="hover(&#39;zone2&#39;, true)"
+																				onmouseout="hover(&#39;zone2&#39;, false)"></td>
+																			<td><img src="./car3_files/zone3_sel.gif"
+																				alt="Job Zone Three" width="36" height="36"></td>
+																			<td><input type="image" name="changezone4"
+																				id="zone4" value="4" src="./car3_files/zone4.gif"
+																				alt="Select Job Zone Four"
+																				onmouseover="hover(&#39;zone4&#39;, true)"
+																				onmouseout="hover(&#39;zone4&#39;, false)"></td>
+																			<td><input type="image" name="changezone5"
+																				id="zone5" value="5" src="./car3_files/zone5.gif"
+																				alt="Select Job Zone Five"
+																				onmouseover="hover(&#39;zone5&#39;, true)"
+																				onmouseout="hover(&#39;zone5&#39;, false)"></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -3538,7 +4113,7 @@ $(document).ready(function() {
 												<div class="tableheader"
 													style="position: relative; margin: 0; padding: 0; border: none; height: 26px">
 													<div style="float: left">
-														<img src="./resources/assets/emoticons/strong_legend.gif"
+														<img src="./car3_files/strong_legend.gif"
 															alt="Best fit, great fit"
 															title="Best matches are listed first">
 													</div>
@@ -3554,25 +4129,13 @@ $(document).ready(function() {
 													<tbody>
 														<tr>
 															<th><span class="screenreader">Career name</span><img
-																src="./resources/assets/emoticons/blank.gif" alt=" "></th>
+																src="./car3_files/blank.gif" alt=" "></th>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4011.01">Agricultural
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3581,32 +4144,10 @@ $(document).ready(function() {
 																	Mechanics &amp; Service Technicians</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/27-4011.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/27-4011.00">Audio
-																	&amp; Video Equipment Technicians</a></td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3617,8 +4158,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3629,8 +4170,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3641,8 +4182,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3653,8 +4194,31 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/39-5011.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/39-5011.00">Barbers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3663,22 +4227,10 @@ $(document).ready(function() {
 															</td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/27-4012.00">Broadcast
-																	Technicians</a></td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3689,8 +4241,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3701,8 +4253,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3711,20 +4263,33 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/49-9092.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car3_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/49-9092.00">Commercial
 																	Divers</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-2012.00">Commercial
+																	Pilots</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3733,10 +4298,10 @@ $(document).ready(function() {
 																	Automated Teller, &amp; Office Machine Repairers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3745,10 +4310,10 @@ $(document).ready(function() {
 																	Machine Tool Operators, Metal &amp; Plastic</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3757,10 +4322,10 @@ $(document).ready(function() {
 																	&amp; Valve Installers &amp; Repairers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3769,10 +4334,10 @@ $(document).ready(function() {
 																	&amp; Tower Operators</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3781,10 +4346,10 @@ $(document).ready(function() {
 																	Motor, Power Tool, &amp; Related Repairers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3794,23 +4359,10 @@ $(document).ready(function() {
 																	Transportation Equipment</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-2094.00">Electrical
-																	&amp; Electronics Repairers, Commercial &amp;
-																	Industrial Equipment</a></td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3822,32 +4374,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3012.02">Electrical
-																	Drafters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3023.03">Electrical
-																	Engineering Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -3856,20 +4384,21 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/49-9051.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car3_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/49-9051.00">Electrical
 																	Power-Line Installers &amp; Repairers</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3880,20 +4409,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3024.00">Electro-Mechanical
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -3902,948 +4419,10 @@ $(document).ready(function() {
 																	Equipment Installers &amp; Repairers, Motor Vehicles</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3023.01">Electronics
-																	Engineering Technicians</a></td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.04">Electronics
-																	Engineering Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4021.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4021.00">Elevator
-																	Installers &amp; Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/31-9099.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/31-9099.02">Endoscopy
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3041.00">Farm
-																	Equipment Mechanics &amp; Service Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4093.00">Forest
-																	&amp; Conservation Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/45-4011.00">Forest
-																	&amp; Conservation Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9071.06">Gem
-																	&amp; Diamond Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4041.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4041.00">Hazardous
-																	Materials Removal Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9021.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9021.01">Heating
-																	&amp; Air Conditioning Mechanics &amp; Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2011.03"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2011.03">Histotechnologists
-																	&amp; Histologic Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8099.04">Hydroelectric
-																	Plant Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9041.00">Industrial
-																	Machinery Mechanics</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4041.00">Machinists</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9071.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9071.00">Maintenance
-																	&amp; Repair Workers, General</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9043.00">Maintenance
-																	Workers, Machinery</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.09">Manufacturing
-																	Production Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3013.00">Mechanical
-																	Drafters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3027.00">Mechanical
-																	Engineering Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.07">Mechanical
-																	Engineering Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/51-9082.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9082.00">Medical
-																	Appliance Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9062.00">Medical
-																	Equipment Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3042.00">Mobile
-																	Heavy Equipment Mechanics</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4061.00">Model
-																	Makers, Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7031.00">Model
-																	Makers, Wood</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3051.00">Motorboat
-																	Mechanics &amp; Service Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-3052.00">Motorcycle
-																	Mechanics</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9063.00">Musical
-																	Instrument Repairers &amp; Tuners</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.12">Nanotechnology
-																	Engineering Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2099.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2099.01">Neurodiagnostic
-																	Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4062.00">Patternmakers,
-																	Metal &amp; Plastic</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-7032.00">Patternmakers,
-																	Wood</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.08">Photonics
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2152.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2152.01">Pipe
-																	Fitters &amp; Steamfitters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2152.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2152.02">Plumbers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9195.05">Potters,
-																	Manufacturing</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9071.07">Precious
-																	Metal Workers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-2021.01">Radio
-																	Mechanics</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-2021.00">Radio,
-																	Cellular, &amp; Tower Equipment Installers &amp;
-																	Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9021.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9021.02">Refrigeration
-																	Mechanics &amp; Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3024.01">Robotics
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-2098.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-2098.00">Security
-																	&amp; Fire Alarm Systems Installers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9097.00">Signal
-																	&amp; Track Switch Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4099.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4099.02">Solar
-																	Thermal Installers &amp; Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8021.00">Stationary
-																	Engineers &amp; Boiler Operators</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-2022.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-2022.00">Stonemasons</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-2041.00">Structural
-																	Metal Fabricators &amp; Fitters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-2022.00">Telecommunications
-																	Equipment Installers &amp; Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4111.00">Tool
-																	&amp; Die Makers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-6041.00">Traffic
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/31-9096.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/31-9096.00">Veterinary
-																	Assistants &amp; Laboratory Animal Caretakers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2056.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2056.00">Veterinary
-																	Technologists &amp; Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9064.00">Watch
-																	Repairers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8031.00">Water
-																	&amp; Wastewater Treatment Plant &amp; System Operators</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-4121.06">Welders,
-																	Cutters, &amp; Welder Fitters</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/49-9081.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/49-9081.00">Wind
-																	Turbine Service Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-6051.01">Aviation
-																	Inspectors</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/27-4031.00">Camera
-																	Operators, Television, Video, &amp; Motion Picture</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4031.00">Chemical
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3011.02">Civil
-																	Drafters</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3022.00">Civil
-																	Engineering Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-2012.00">Commercial
-																	Pilots</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/47-4011.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/47-4011.00">Construction
-																	&amp; Building Inspectors</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4855,8 +4434,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4867,78 +4446,327 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4011.02">Food
-																	Science Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-9071.01">Jewelers</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4051.01">Nuclear
-																	Equipment Operation Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2033.00"
+																			href="https://www.mynextmove.org/profile/bright/31-9099.02"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car3_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2033.00">Nuclear
-																	Medicine Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																</div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4051.02">Nuclear
-																	Monitoring Technicians</a></td>
+																href="https://www.mynextmove.org/profile/summary/31-9099.02">Endoscopy
+																	Technicians</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3041.00">Farm
+																	Equipment Mechanics &amp; Service Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4093.00">Forest
+																	&amp; Conservation Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/45-4011.00">Forest
+																	&amp; Conservation Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9071.06">Gem
+																	&amp; Diamond Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4041.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4041.00">Hazardous
+																	Materials Removal Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9021.01"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9021.01">Heating
+																	&amp; Air Conditioning Mechanics &amp; Installers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8099.04">Hydroelectric
+																	Plant Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9041.00">Industrial
+																	Machinery Mechanics</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9071.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9071.00">Maintenance
+																	&amp; Repair Workers, General</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9043.00">Maintenance
+																	Workers, Machinery</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.09">Manufacturing
+																	Production Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3013.00">Mechanical
+																	Drafters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.07">Mechanical
+																	Engineering Technologists</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/51-9082.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9082.00">Medical
+																	Appliance Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3042.00">Mobile
+																	Heavy Equipment Mechanics</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4061.00">Model
+																	Makers, Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3051.00">Motorboat
+																	Mechanics &amp; Service Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-3052.00">Motorcycle
+																	Mechanics</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-2011.01">Municipal
+																	Firefighters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9063.00">Musical
+																	Instrument Repairers &amp; Tuners</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.12">Nanotechnology
+																	Engineering Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4947,10 +4775,34 @@ $(document).ready(function() {
 																	Power Reactor Operators</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4062.00">Patternmakers,
+																	Metal &amp; Plastic</a></td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7032.00">Patternmakers,
+																	Wood</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4959,22 +4811,80 @@ $(document).ready(function() {
 																	Ship</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2152.01"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/51-8012.00">Power
-																	Distributors &amp; Dispatchers</a></td>
+																href="https://www.mynextmove.org/profile/summary/47-2152.01">Pipe
+																	Fitters &amp; Steamfitters</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2152.02"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2152.02">Plumbers</a>
+															</td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9195.05">Potters,
+																	Manufacturing</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9071.07">Precious
+																	Metal Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4985,8 +4895,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -4997,8 +4907,21 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-2021.00">Radio,
+																	Cellular, &amp; Tower Equipment Installers &amp;
+																	Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -5007,20 +4930,21 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/29-2099.06"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car3_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/29-2099.06">Radiologic
 																	Technicians</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -5029,20 +4953,114 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/29-2034.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car3_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/29-2034.00">Radiologic
 																	Technologists</a></td>
 														</tr>
 														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9021.02"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9021.02">Refrigeration
+																	Mechanics &amp; Installers</a></td>
+														</tr>
+														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3024.01">Robotics
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-2098.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-2098.00">Security
+																	&amp; Fire Alarm Systems Installers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9097.00">Signal
+																	&amp; Track Switch Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4099.02"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4099.02">Solar
+																	Thermal Installers &amp; Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -5053,14 +5071,642 @@ $(document).ready(function() {
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8021.00">Stationary
+																	Engineers &amp; Boiler Operators</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-2022.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-2022.00">Stonemasons</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-2041.00">Structural
+																	Metal Fabricators &amp; Fitters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/51-6052.00">Tailors,
 																	Dressmakers, &amp; Custom Sewers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-2022.00">Telecommunications
+																	Equipment Installers &amp; Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-6041.00">Traffic
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/33-3052.00">Transit
+																	&amp; Railroad Police</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/31-9096.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/31-9096.00">Veterinary
+																	Assistants &amp; Laboratory Animal Caretakers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9064.00">Watch
+																	Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8031.00">Water
+																	&amp; Wastewater Treatment Plant &amp; System Operators</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4121.06">Welders,
+																	Cutters, &amp; Welder Fitters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/49-9081.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9081.00">Wind
+																	Turbine Service Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4011.01">Agricultural
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/27-4011.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/27-4011.00">Audio
+																	&amp; Video Equipment Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/27-4012.00">Broadcast
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/27-4031.00">Camera
+																	Operators, Television, Video, &amp; Motion Picture</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4011.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4011.00">Construction
+																	&amp; Building Inspectors</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-2094.00">Electrical
+																	&amp; Electronics Repairers, Commercial &amp;
+																	Industrial Equipment</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3012.02">Electrical
+																	Drafters</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3023.03">Electrical
+																	Engineering Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3024.00">Electro-Mechanical
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3023.01">Electronics
+																	Engineering Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/47-4021.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/47-4021.00">Elevator
+																	Installers &amp; Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-6092.00">Fabric
+																	&amp; Apparel Patternmakers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/45-1011.07">First-Line
+																	Supervisors of Agricultural Crop &amp; Horticultural
+																	Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-2011.03"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-2011.03">Histotechnologists
+																	&amp; Histologic Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-9071.01">Jewelers</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4041.00">Machinists</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-2035.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-2035.00">Magnetic
+																	Resonance Imaging Technologists</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-9062.00">Medical
+																	Equipment Repairers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-7031.00">Model
+																	Makers, Wood</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-2099.01"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-2099.01">Neurodiagnostic
+																	Technologists</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4051.01">Nuclear
+																	Equipment Operation Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4051.02">Nuclear
+																	Monitoring Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.08">Photonics
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-8012.00">Power
+																	Distributors &amp; Dispatchers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-5111.00">Prepress
+																	Technicians &amp; Workers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/49-2021.01">Radio
+																	Mechanics</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-5031.00">Ship
+																	Engineers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-2055.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-2055.00">Surgical
+																	Technologists</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/15-1143.01">Telecommunications
+																	Engineering Specialists</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/51-4111.00">Tool
+																	&amp; Die Makers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car3_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-2056.00"
+																			class="popup_bright"><img
+																			src="./car3_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-2056.00">Veterinary
+																	Technologists &amp; Technicians</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -5069,10 +5715,10 @@ $(document).ready(function() {
 										<div style="margin: 10px 0; font-size: 11px">
 											<div style="float: right; padding-left: 32px">
 												<a
-													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=3&amp;i=210804000000"
+													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=3&amp;i=160000000000"
 													id="printbtn" target="_ipprint"><img
-													src="./resources/assets/emoticons/print_small.gif"
-													alt="Print" width="64" height="22"></a>
+													src="./car3_files/print_small.gif" alt="Print" width="64"
+													height="22"></a>
 											</div>
 											Click on a career to learn what they do.
 										</div>
@@ -5086,44 +5732,69 @@ $(document).ready(function() {
 															<table cellspacing="0" cellpadding="0">
 																<tbody>
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<td
-																				style="height: 32px; width: ${rs.score }px; vertical-align: bottom"
-																				title="${rs.area }: ${rs.score }"><a
-																				href="/AssesmentApp/profiler?param=${rs.area}">
-																					<div id="graph${rs.area }" class="graph${rs.area }"
-																						style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
-																						onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
-																						onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					</div>
-																			</a></td>
-																		</c:forEach>
+																		<td
+																			style="height: 32px; width: 40px; vertical-align: bottom"
+																			title="Realistic: 16">
+																			<div id="graphRealistic" class="graphRealistic"
+																				style="margin: 0 4px; height: 12.8px;"></div>
+																		</td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Investigative: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Artistic: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Social: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Enterprising: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Conventional: 0"></td>
 																	</tr>
-
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<c:set var="string1" value="${rs.area }" />
-																			<c:set var="string2"
-																				value="${fn:substring(string1, 0, 1)}" />
-
-																			<td
-																				style="width: 40px; text-align: center; border-top: solid 1px #555"
-																				title="${rs.area }: ${rs.score }">
-																				<div id="legend${rs.area }"
-																					class="legend${rs.area }"
-																					style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold; cursor: pointer;"
-																					onmouseover="
-																																												graphhover(1, &#39;${rs.area }&#39;)"
-																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					<a style="text-decoration: none; color: black;"
-																						href="/AssesmentApp/profiler?param=${rs.area}">${string2}</a>
-																				</div>
-																			</td>
-																		</c:forEach>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Realistic: 16">
+																			<div id="legendRealistic" class="legendRealistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">R</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Investigative: 0">
+																			<div id="legendInvestigative"
+																				class="legendInvestigative"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">I</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Artistic: 0">
+																			<div id="legendArtistic" class="legendArtistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">A</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Social: 0">
+																			<div id="legendSocial" class="legendSocial"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">S</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Enterprising: 0">
+																			<div id="legendEnterprising"
+																				class="legendEnterprising"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">E</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Conventional: 0">
+																			<div id="legendConventional"
+																				class="legendConventional"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">C</div>
+																		</td>
 																	</tr>
-
 																</tbody>
 															</table>
 
@@ -5141,20 +5812,28 @@ $(document).ready(function() {
 																	style="width: 180px; height: 36px">
 																	<tbody>
 																		<tr>
-																			<td><a href="career?name=1"><img alt=""
-																					src="./resources/assets/emoticons/zone1.gif"></a></td>
-																			<td><a href="career?name=2"> <img
-																					src="./resources/assets/emoticons/zone2.gif"
-																					alt="Job Zone Two" width="36" height="36"></a></td>
-																			<td><a href="career?name=3"><img alt=""
-																					src="./resources/assets/emoticons/zone3.gif"></a>
-																			</td>
-																			<td><a href="career?name=4"><img alt=""
-																					src="./resources/assets/emoticons/zone4_sel.gif"></a>
-																			</td>
-																			<td><a href="career?name=5"><img alt=""
-																					src="./resources/assets/emoticons/zone5.gif"></a>
-																			</td>
+																			<td><input type="image" name="changezone1"
+																				id="zone1" value="1" src="./car4_files/zone1.gif"
+																				alt="Select Job Zone One"
+																				onmouseover="hover(&#39;zone1&#39;, true)"
+																				onmouseout="hover(&#39;zone1&#39;, false)"></td>
+																			<td><input type="image" name="changezone2"
+																				id="zone2" value="2" src="./car4_files/zone2.gif"
+																				alt="Select Job Zone Two"
+																				onmouseover="hover(&#39;zone2&#39;, true)"
+																				onmouseout="hover(&#39;zone2&#39;, false)"></td>
+																			<td><input type="image" name="changezone3"
+																				id="zone3" value="3" src="./car4_files/zone3.gif"
+																				alt="Select Job Zone Three"
+																				onmouseover="hover(&#39;zone3&#39;, true)"
+																				onmouseout="hover(&#39;zone3&#39;, false)"></td>
+																			<td><img src="./car4_files/zone4_sel.gif"
+																				alt="Job Zone Four" width="36" height="36"></td>
+																			<td><input type="image" name="changezone5"
+																				id="zone5" value="5" src="./car4_files/zone5.gif"
+																				alt="Select Job Zone Five"
+																				onmouseover="hover(&#39;zone5&#39;, true)"
+																				onmouseout="hover(&#39;zone5&#39;, false)"></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -5181,7 +5860,7 @@ $(document).ready(function() {
 												<div class="tableheader"
 													style="position: relative; margin: 0; padding: 0; border: none; height: 26px">
 													<div style="float: left">
-														<img src="./resources/assets/emoticons/strong_legend.gif"
+														<img src="./car4_files/strong_legend.gif"
 															alt="Best fit, great fit"
 															title="Best matches are listed first">
 													</div>
@@ -5197,429 +5876,13 @@ $(document).ready(function() {
 													<tbody>
 														<tr>
 															<th><span class="screenreader">Career name</span><img
-																src="./resources/assets/emoticons/blank.gif" alt=" "></th>
+																src="./car4_files/blank.gif" alt=" "></th>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2021.00">Agricultural
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2141.02">Automotive
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.01">Biochemical
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2041.00">Chemical
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-2051.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2051.00">Civil
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.02">Electrical
-																	Engineering Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.03">Electromechanical
-																	Engineering Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.03">Energy
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/33-3031.00">Fish
-																	&amp; Game Wardens</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-1032.00">Foresters</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-4041.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4041.02">Geological
-																	Sample Test Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.04">Manufacturing
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2141.00">Mechanical
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/25-4013.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/25-4013.00">Museum
-																	Technicians &amp; Conservators</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.11">Nanotechnology
-																	Engineering Technologists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2072.01">Radio
-																	Frequency Identification Device Specialists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-4099.03"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4099.03">Remote
-																	Sensing Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.11">Solar
-																	Energy Systems Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-1022.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-1022.00">Surveyors</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-2051.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2051.01">Transportation
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.10">Wind
-																	Energy Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3021.00">Aerospace
-																	Engineering &amp; Operations Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2011.00">Aerospace
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/53-2011.00">Airline
-																	Pilots, Copilots, &amp; Flight Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-4021.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4021.00">Biological
-																	Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2031.00">Biomedical
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-1021.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-1021.00">Cartographers
-																	&amp; Photogrammetrists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2061.00">Computer
-																	Hardware Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -5630,66 +5893,125 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/15-1199.02">Computer
-																	Systems Engineers/Architects</a></td>
+																href="https://www.mynextmove.org/profile/summary/33-3031.00">Fish
+																	&amp; Game Wardens</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/very_strong.gif" alt=" " width="14"
+																	height="14" title="Best fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2011.01"
+																			href="https://www.mynextmove.org/profile/bright/25-4013.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car4_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2011.01">Cytogenetic
-																	Technologists</a></td>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/25-4013.00">Museum
+																	Technicians &amp; Conservators</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2071.00">Electrical
-																	Engineers</a></td>
+																href="https://www.mynextmove.org/profile/summary/53-2011.00">Airline
+																	Pilots, Copilots, &amp; Flight Engineers</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2072.00">Electronics
+																href="https://www.mynextmove.org/profile/summary/17-2141.02">Automotive
 																	Engineers</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/19-4021.00"
+																			class="popup_bright"><img
+																			src="./car4_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4021.00">Biological
+																	Technicians</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/17-2051.00"
+																			class="popup_bright"><img
+																			src="./car4_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-2051.00">Civil
+																	Engineers</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.02">Electrical
+																	Engineering Technologists</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
@@ -5698,265 +6020,168 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/17-3025.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car4_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/17-3025.00">Environmental
 																	Engineering Technicians</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-4091.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4091.00">Environmental
-																	Science &amp; Protection Technicians, Including Health</a>
-															</td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-2041.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-2041.00">Environmental
-																	Scientists &amp; Specialists, Including Health</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-2042.00"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-2042.00">Geoscientists</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-3029.06">Manufacturing
+																href="https://www.mynextmove.org/profile/summary/19-1032.00">Foresters</a>
+															</td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/53-6051.08">Freight
+																	&amp; Cargo Inspectors</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-2199.04">Manufacturing
+																	Engineers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-3029.11">Nanotechnology
 																	Engineering Technologists</a></td>
 														</tr>
 														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-2072.01">Radio
+																	Frequency Identification Device Specialists</a></td>
+														</tr>
+														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-2121.02"
+																			href="https://www.mynextmove.org/profile/bright/19-4099.03"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car4_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2121.02">Marine
-																	Architects</a></td>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/19-4099.03">Remote
+																	Sensing Technicians</a></td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
+																	style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-2199.11">Solar
+																	Energy Systems Engineers</a></td>
+														</tr>
+														<tr>
+															<td class="title odd"><span
+																style="margin-right: 10px"><img
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-2121.01"
+																			href="https://www.mynextmove.org/profile/bright/17-1022.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car4_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2121.01">Marine
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																</div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2131.00">Materials
-																	Engineers</a></td>
+																href="https://www.mynextmove.org/profile/summary/17-1022.00">Surveyors</a>
+															</td>
 														</tr>
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.05">Mechatronics
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2161.00">Nuclear
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.07">Photonics
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-4099.02"
+																			href="https://www.mynextmove.org/profile/bright/17-2051.01"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car4_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-4099.02">Precision
-																	Agriculture Technicians</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
+																</div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.08">Robotics
+																href="https://www.mynextmove.org/profile/summary/17-2051.01">Transportation
 																	Engineers</a></td>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/13-1199.02"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/13-1199.02">Security
-																	Management Specialists</a></td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
+																	src="./car4_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2199.02">Validation
-																	Engineers</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2081.01">Water/Wastewater
-																	Engineers</a></td>
+																href="https://www.mynextmove.org/profile/summary/17-2199.10">Wind
+																	Energy Engineers</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -5965,10 +6190,10 @@ $(document).ready(function() {
 										<div style="margin: 10px 0; font-size: 11px">
 											<div style="float: right; padding-left: 32px">
 												<a
-													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=4&amp;i=210804000000"
+													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=4&amp;i=160000000000"
 													id="printbtn" target="_ipprint"><img
-													src="./resources/assets/emoticons/print_small.gif"
-													alt="Print" width="64" height="22"></a>
+													src="./car4_files/print_small.gif" alt="Print" width="64"
+													height="22"></a>
 											</div>
 											Click on a career to learn what they do.
 										</div>
@@ -5982,44 +6207,69 @@ $(document).ready(function() {
 															<table cellspacing="0" cellpadding="0">
 																<tbody>
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<td
-																				style="height: 32px; width: ${rs.score }px; vertical-align: bottom"
-																				title="${rs.area }: ${rs.score }"><a
-																				href="/AssesmentApp/profiler?param=${rs.area}">
-																					<div id="graph${rs.area }" class="graph${rs.area }"
-																						style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
-																						onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
-																						onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					</div>
-																			</a></td>
-																		</c:forEach>
+																		<td
+																			style="height: 32px; width: 40px; vertical-align: bottom"
+																			title="Realistic: 16">
+																			<div id="graphRealistic" class="graphRealistic"
+																				style="margin: 0 4px; height: 12.8px;"></div>
+																		</td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Investigative: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Artistic: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Social: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Enterprising: 0"></td>
+																		<td
+																			style="height: 32px; width: 48px; vertical-align: bottom"
+																			title="Conventional: 0"></td>
 																	</tr>
-
 																	<tr>
-																		<c:forEach items="${rs}" var="rs">
-																			<c:set var="string1" value="${rs.area }" />
-																			<c:set var="string2"
-																				value="${fn:substring(string1, 0, 1)}" />
-
-																			<td
-																				style="width: 40px; text-align: center; border-top: solid 1px #555"
-																				title="${rs.area }: ${rs.score }">
-																				<div id="legend${rs.area }"
-																					class="legend${rs.area }"
-																					style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold; cursor: pointer;"
-																					onmouseover="
-																																												graphhover(1, &#39;${rs.area }&#39;)"
-																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
-																					<a style="text-decoration: none; color: black;"
-																						href="/AssesmentApp/profiler?param=${rs.area}">${string2}</a>
-																				</div>
-																			</td>
-																		</c:forEach>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Realistic: 16">
+																			<div id="legendRealistic" class="legendRealistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">R</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Investigative: 0">
+																			<div id="legendInvestigative"
+																				class="legendInvestigative"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">I</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Artistic: 0">
+																			<div id="legendArtistic" class="legendArtistic"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">A</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Social: 0">
+																			<div id="legendSocial" class="legendSocial"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">S</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Enterprising: 0">
+																			<div id="legendEnterprising"
+																				class="legendEnterprising"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">E</div>
+																		</td>
+																		<td
+																			style="width: 40px; text-align: center; border-top: solid 1px #555"
+																			title="Conventional: 0">
+																			<div id="legendConventional"
+																				class="legendConventional"
+																				style="margin: 0 4px; padding: 4px 0; font-size: 10px; font-weight: bold;">C</div>
+																		</td>
 																	</tr>
-
 																</tbody>
 															</table>
 
@@ -6037,20 +6287,28 @@ $(document).ready(function() {
 																	style="width: 180px; height: 36px">
 																	<tbody>
 																		<tr>
-																			<td><a href="career?name=1"><img alt=""
-																					src="./resources/assets/emoticons/zone1.gif"></a></td>
-																			<td><a href="career?name=2"> <img
-																					src="./resources/assets/emoticons/zone2.gif"
-																					alt="Job Zone Two" width="36" height="36"></a></td>
-																			<td><a href="career?name=3"><img alt=""
-																					src="./resources/assets/emoticons/zone3.gif"></a>
-																			</td>
-																			<td><a href="career?name=4"><img alt=""
-																					src="./resources/assets/emoticons/zone4.gif"></a>
-																			</td>
-																			<td><a href="career?name=5"><img alt=""
-																					src="./resources/assets/emoticons/zone5_sel.gif"></a>
-																			</td>
+																			<td><input type="image" name="changezone1"
+																				id="zone1" value="1" src="./car5_files/zone1.gif"
+																				alt="Select Job Zone One"
+																				onmouseover="hover(&#39;zone1&#39;, true)"
+																				onmouseout="hover(&#39;zone1&#39;, false)"></td>
+																			<td><input type="image" name="changezone2"
+																				id="zone2" value="2" src="./car5_files/zone2.gif"
+																				alt="Select Job Zone Two"
+																				onmouseover="hover(&#39;zone2&#39;, true)"
+																				onmouseout="hover(&#39;zone2&#39;, false)"></td>
+																			<td><input type="image" name="changezone3"
+																				id="zone3" value="3" src="./car5_files/zone3.gif"
+																				alt="Select Job Zone Three"
+																				onmouseover="hover(&#39;zone3&#39;, true)"
+																				onmouseout="hover(&#39;zone3&#39;, false)"></td>
+																			<td><input type="image" name="changezone4"
+																				id="zone4" value="4" src="./car5_files/zone4.gif"
+																				alt="Select Job Zone Four"
+																				onmouseover="hover(&#39;zone4&#39;, true)"
+																				onmouseout="hover(&#39;zone4&#39;, false)"></td>
+																			<td><img src="./car5_files/zone5_sel.gif"
+																				alt="Job Zone Five" width="36" height="36"></td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -6078,7 +6336,7 @@ $(document).ready(function() {
 												<div class="tableheader"
 													style="position: relative; margin: 0; padding: 0; border: none; height: 26px">
 													<div style="float: left">
-														<img src="./resources/assets/emoticons/strong_legend.gif"
+														<img src="./car5_files/strong_legend.gif"
 															alt="Best fit, great fit"
 															title="Best matches are listed first">
 													</div>
@@ -6094,13 +6352,13 @@ $(document).ready(function() {
 													<tbody>
 														<tr>
 															<th><span class="screenreader">Career name</span><img
-																src="./resources/assets/emoticons/blank.gif" alt=" "></th>
+																src="./car5_files/blank.gif" alt=" "></th>
 														</tr>
 														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car5_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -6111,30 +6369,8 @@ $(document).ready(function() {
 														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
-																	<div
-																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
-																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/17-2112.01"
-																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
-																			style="position: relative; left: -14px; top: -11px"
-																			alt="Bright Outlook"
-																			title="New job opportunities likely in the future. Click to learn more!"></a>
-																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/17-2112.01">Human
-																	Factors Engineers &amp; Ergonomists</a></td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/very_strong.gif"
-																	alt=" " width="14" height="14" title="Best fit"
+																	src="./car5_files/strong.gif" alt=" " width="14"
+																	height="14" title="Great fit"
 																	style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
@@ -6143,57 +6379,32 @@ $(document).ready(function() {
 																	Sensing Scientists &amp; Technologists</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-1011.00">Animal
-																	Scientists</a></td>
-														</tr>
-														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-3091.02">Archeologists</a>
-															</td>
-														</tr>
-														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/29-2011.02"
+																			href="https://www.mynextmove.org/profile/bright/29-1071.01"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/29-2011.02">Cytotechnologists</a>
-															</td>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-1071.01">Anesthesiologist
+																	Assistants</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
@@ -6201,43 +6412,43 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/19-2041.02"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/19-2041.02">Environmental
 																	Restoration Planners</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
 																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
 																		<a target="_ipocc"
-																			href="https://www.mynextmove.org/profile/bright/19-2043.00"
+																			href="https://www.mynextmove.org/profile/bright/17-2112.01"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-2043.00">Hydrologists</a>
-															</td>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/17-2112.01">Human
+																	Factors Engineers &amp; Ergonomists</a></td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
+															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
 																<a target="_ipocc"
@@ -6245,23 +6456,32 @@ $(document).ready(function() {
 																	Engineers</a></td>
 														</tr>
 														<tr>
-															<td class="title even"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-1029.02">Molecular
-																	&amp; Cellular Biologists</a></td>
-														</tr>
-														<tr>
 															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
+																<div
+																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
+																	<div
+																		style="position: relative; overflow: hidden; width: 14px; height: 11px; margin: 2px auto 0">
+																		<a target="_ipocc"
+																			href="https://www.mynextmove.org/profile/bright/29-1022.00"
+																			class="popup_bright"><img
+																			src="./car5_files/table_markers.png"
+																			style="position: relative; left: -14px; top: -11px"
+																			alt="Bright Outlook"
+																			title="New job opportunities likely in the future. Click to learn more!"></a>
+																	</div>
+																</div>
+																<a target="_ipocc"
+																href="https://www.mynextmove.org/profile/summary/29-1022.00">Oral
+																	&amp; Maxillofacial Surgeons</a></td>
+														</tr>
+														<tr>
+															<td class="title even"><span
+																style="margin-right: 10px"><img
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
@@ -6269,21 +6489,21 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/29-1024.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/29-1024.00">Prosthodontists</a>
 															</td>
 														</tr>
 														<tr>
-															<td class="title even"><span
+															<td class="title odd"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
@@ -6291,33 +6511,21 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/29-1069.10"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/29-1069.10">Radiologists</a>
 															</td>
 														</tr>
 														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-1013.00">Soil
-																	&amp; Plant Scientists</a></td>
-														</tr>
-														<tr>
 															<td class="title even"><span
 																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
+																	src="./car5_files/blank.gif" alt="" width="14"
+																	height="14" style="vertical-align: bottom"></span>
 																<div
 																	style="display: inline-block; width: 16px; margin-right: 10px; text-indent: 0">
 																	<div
@@ -6325,26 +6533,15 @@ $(document).ready(function() {
 																		<a target="_ipocc"
 																			href="https://www.mynextmove.org/profile/bright/29-1131.00"
 																			class="popup_bright"><img
-																			src="./resources/assets/emoticons/table_markers.png"
+																			src="./car5_files/table_markers.png"
 																			style="position: relative; left: -14px; top: -11px"
 																			alt="Bright Outlook"
 																			title="New job opportunities likely in the future. Click to learn more!"></a>
 																	</div>
-																</div> <a target="_ipocc"
+																</div>
+																<a target="_ipocc"
 																href="https://www.mynextmove.org/profile/summary/29-1131.00">Veterinarians</a>
 															</td>
-														</tr>
-														<tr>
-															<td class="title odd"><span
-																style="margin-right: 10px"><img
-																	src="./resources/assets/emoticons/strong.gif" alt=" "
-																	width="14" height="14" title="Great fit"
-																	style="vertical-align: bottom"></span>
-																<div
-																	style="display: inline-block; width: 16px; margin-right: 10px"></div>
-																<a target="_ipocc"
-																href="https://www.mynextmove.org/profile/summary/19-1023.00">Zoologists
-																	&amp; Wildlife Biologists</a></td>
 														</tr>
 													</tbody>
 												</table>
@@ -6353,10 +6550,10 @@ $(document).ready(function() {
 										<div style="margin: 10px 0; font-size: 11px">
 											<div style="float: right; padding-left: 32px">
 												<a
-													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=5&amp;i=210804000000"
+													href="https://www.mynextmove.org/explore/ip-print?t=o&amp;z=5&amp;i=160000000000"
 													id="printbtn" target="_ipprint"><img
-													src="./resources/assets/emoticons/print_small.gif"
-													alt="Print" width="64" height="22"></a>
+													src="./car5_files/print_small.gif" alt="Print" width="64"
+													height="22"></a>
 											</div>
 											Click on a career to learn what they do.
 										</div>

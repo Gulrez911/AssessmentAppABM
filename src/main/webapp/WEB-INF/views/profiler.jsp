@@ -286,9 +286,7 @@ function answer(id)
 
 function chooseInt(id)
 {
-  document.forms['toolsform'].elements['submit_page_S1_' + id].click();
-  cancelEvent(event);
-  return false;
+  window.location="profiler?param="+id;
 }
 
 function chooseInt2(id)
@@ -304,174 +302,7 @@ function charFromCode(code)
     code = code - 48;
   return String.fromCharCode(code).toUpperCase();
 }
-
-function keyShortcut(event)
-{
-  if (!event)
-    event = window.event;
-  
-  var code = event.keyCode || event.which;
-  if (code != 13 && inTextField(event))
-    return;
-  
-  var chrr = charFromCode(code);
-  
-  if (code == 13)
-  {
-    doClick("nextbtn") || doClick("closebtn");
-    cancelEvent(event);
-    return false;
-  }
-  else if (chrr == "B")
-  {
-    doClick("backbtn");
-    cancelEvent(event);
-    return false;
-  }
-  else if (chrr == "C")
-  {
-    doClick("closebtn");
-    cancelEvent(event);
-    return false;
-  }
-  else if (chrr == "N")
-  {
-    doClick("nextbtn");
-    cancelEvent(event);
-    return false;
-  }
-  
-  if (currentQuestion < allQuestions.length)
-  {
-    if (chrr == "1" ||
-        chrr == "2" ||
-        chrr == "3" ||
-        chrr == "4" ||
-        chrr == "5")
-    {
-      var qid = allQuestions[currentQuestion];
-      var elem = document.forms['toolsform'].elements[qid];
-      
-      var idx = parseInt(chrr, 10) - 1;
-      elem[idx].click();
-      cancelEvent(event);
-      if (currentQuestion < allQuestions.length)
-      {
-        // move tab focus to next question
-        qid = allQuestions[currentQuestion];
-        elem = document.forms['toolsform'].elements[qid];
-        elem[0].focus();
-      }
-      return false;
-    }
-  }
-  
-  var page = document.forms['toolsform'].elements['page'].value;
-  var subpage = document.forms['toolsform'].elements['subpage'].value;
-  if (page == "S5" ||
-      (page == "R2" && subpage == "Z"))
-  {
-    if (chrr == "1" ||
-        chrr == "2" ||
-        chrr == "3" ||
-        chrr == "4" ||
-        chrr == "5")
-    {
-      document.forms['toolsform'].elements['newzone'][chrr - 1].click();
-      cancelEvent(event);
-      return false;
-    }
-  }
-}
-
-addHandler(document, "keydown", keyShortcut);
-
-$(document).ready(function(){
-
-    
-      var fbShow = function() {
-        $("#allcontent").attr('aria-hidden', 'true');
-        var fwrap = $(".fancybox-wrap");
-        fwrap.attr('role', 'dialog');
-        fwrap.attr('aria-hidden', 'false');
-        fwrap.focus();
-      };
-      var fbClose = function() {
-        $("#allcontent").attr('aria-hidden', 'false');
-      };
-        
-      $(".popup_ind").fancybox({
-        width : 350,
-        height : 250,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_green").fancybox({
-        width : 350,
-        height : 200,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_t2hot").fancybox({
-        width : 350,
-        height : 200,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_bright").fancybox({
-        width : 350,
-        height : 240,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_jobzone").fancybox({
-        width : 700,
-        height : 450,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_training").fancybox({
-        width : 350,
-        height : 270,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_appren").fancybox({
-        width : 350,
-        height : 270,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_salary").fancybox({
-        width : 350,
-        height : 300,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_jobs").fancybox({
-        width : 350,
-        height : 350,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-      $(".popup_military").fancybox({
-        width : 450,
-        height : 350,
-        afterShow : fbShow,
-        afterClose : fbClose,
-        type : 'iframe'
-      });
-
-});
+ 
 </script>
 <title>O*NET Interest Profiler at My Next Move</title>
 <style type="text/css">
@@ -634,7 +465,7 @@ $(document).ready(function(){
 																							style="margin: 0 4px; height: ${rs.score}px; cursor: pointer;"
 																							onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
 																							onmouseout="graphhover(0, &#39;${rs.area }&#39;)">
-
+																								
 																						</div>
 																				</a></td>
 																			</c:forEach>
@@ -669,10 +500,11 @@ $(document).ready(function(){
 																<table cellpadding="0" cellspacing="0" border="0"
 																	style="width: 240px">
 																	<c:forEach items="${rs}" var="rs">
+
 																		<tbody>
 																			<tr>
 																				<td id="cname${rs.area }" class="chart${rs.area }"
-																					onclick="chooseInt('R')"
+																					onclick="chooseInt('${rs.area}')"
 																					style="width: 200px; font-weight: bold; cursor: pointer;"
 																					onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
 																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)"><a
@@ -680,7 +512,7 @@ $(document).ready(function(){
 																					href="/AssesmentApp/profiler?param=${rs.area}">${rs.area }</a></td>
 																				<td id="cscore${rs.area }" class="chart${rs.area }"
 																					style="text-align: right; font-weight: bold; cursor: pointer;"
-																					onclick="chooseInt(&#39;R&#39;)" )=""
+																					onclick="chooseInt('${rs.area}')"
 																					onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
 																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)"><a
 																					style="text-decoration: none; color: black;"
@@ -698,16 +530,12 @@ $(document).ready(function(){
 																style="font-size: 16px; color: #00802A; font-weight: bold">${area}</p>
 															<p>
 																People with <b style="color: #00802A">${area}</b>
-
 																<c:set var="string" value="${param2}" />
 																<c:set var="a" value="${area}" />
 																<c:set var="re" value="${fn:substringAfter(string, a)}" />
 																<c:set var="string2"
 																	value="${fn:substringBefore(re, 'They like')}" />
 																${string2}
-
-
-
 															</p>
 															<p>They like:</p>
 

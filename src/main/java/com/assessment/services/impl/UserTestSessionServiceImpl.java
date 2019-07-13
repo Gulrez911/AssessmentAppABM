@@ -23,6 +23,7 @@ import com.assessment.repositories.QuestionMapperInstanceRepository;
 import com.assessment.repositories.UserTestSessionRepository;
 import com.assessment.services.TestService;
 import com.assessment.services.UserTestSessionService;
+import com.assessment.web.dto.SectionInstanceDto;
 @Service
 @Transactional
 public class UserTestSessionServiceImpl implements UserTestSessionService{
@@ -60,8 +61,6 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 		validateMandatoryFields(userTestSession);
 		Test test = testService.findbyTest(userTestSession.getTestName(), userTestSession.getCompanyId());
 		
-		
-		
 		UserTestSession userTestSession2 = findUserTestSession(userTestSession.getUser(), userTestSession.getTestName(), userTestSession.getCompanyId());
 		if(userTestSession2 == null) {
 			//create
@@ -70,6 +69,7 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 			userTestSession = calculateResults(userTestSession, test);
 			//userTestSession.setCreateDate(new Date());
 			userTestSessionRep.save(userTestSession);
+			System.out.println("UserTestSessionServiceImpl.saveOrUpdate()>>>>>>> "+userTestSession);
 			return userTestSession;
 		}
 		else {
@@ -79,6 +79,7 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 			userTestSession2.setNoOfAttempts(userTestSession2.getNoOfAttempts() + 1);
 			//userTestSession2.setUpdateDate(new Date());
 			userTestSessionRep.save(userTestSession2);
+			System.out.println("UserTestSessionServiceImpl.saveOrUpdate()>>>>>>> "+userTestSession);
 			return userTestSession2;
 		}
 	}
@@ -98,6 +99,10 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 			userTestSession.setPercentageMarksRecieved(Float.parseFloat(df.format(per)));
 			userTestSession.setTotalMarks(totalMarks);
 			userTestSession.setTotalMarksRecieved(totalMarksRecieved);
+//			SectionInstanceDto sectionInstanceDto = new SectionInstanceDto();
+//			sectionInstanceDto.getNoOfQuestionsNotAnswered()
+//			userTestSession.setNoOfQuestionsAnswered(totalMarks-noOfQuestionsAnswered);
+			System.out.println("UserTestSessionServiceImpl.calculateResults()>>>>>>> "+userTestSession);
 			if(per >= test.getPassPercent() ) {
 				userTestSession.setPass(true);
 			}

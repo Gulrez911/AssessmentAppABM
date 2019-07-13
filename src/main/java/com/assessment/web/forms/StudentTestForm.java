@@ -204,10 +204,4 @@ public class StudentTestForm implements Serializable{
 		this.techLogo = techLogo;
 	}
 	
-	
-	
-	
-	
-	
-	
 }

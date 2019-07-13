@@ -783,6 +783,23 @@ public class Question extends Base{
 	public void setReviewerEmail(String reviewerEmail) {
 		this.reviewerEmail = reviewerEmail;
 	}
+	@Override
+	public String toString() {
+		return "Question [questionText=" + questionText + ", choice1=" + choice1 + ", choice2=" + choice2 + ", choice3="
+				+ choice3 + ", choice4=" + choice4 + ", choice5=" + choice5 + ", choice6=" + choice6 + ", one=" + one
+				+ ", two=" + two + ", three=" + three + ", four=" + four + ", five=" + five + ", six=" + six
+				+ ", rightChoices=" + rightChoices + ", qualifier1=" + qualifier1 + ", qualifier2=" + qualifier2
+				+ ", qualifier3=" + qualifier3 + ", qualifier4=" + qualifier4 + ", qualifier5=" + qualifier5 + ", diff="
+				+ diff + ", difficultyLevel=" + difficultyLevel + ", questionType=" + questionType + ", language="
+				+ language + ", fullstack=" + fullstack + ", lang=" + lang + ", stack=" + stack + ", type=" + type
+				+ ", constrnt=" + constrnt + ", stackProblemDetails=" + stackProblemDetails + ", level=" + level
+				+ ", inputCode=" + inputCode + ", hiddenInputPositive=" + hiddenInputPositive + ", hiddenInputNegative="
+				+ hiddenInputNegative + ", hiddenOutputPositive=" + hiddenOutputPositive + ", hiddenOutputNegative="
+				+ hiddenOutputNegative + ", instructionsIfAny=" + instructionsIfAny + ", category=" + category
+				+ ", testCategory=" + testCategory + ", updatedDate=" + updatedDate + ", selected=" + selected
+				+ ", imageUrl=" + imageUrl + ", videoURL=" + videoURL + ", audioURL=" + audioURL + ", reviewerEmail="
+				+ reviewerEmail + "]";
+	}
 	
 	
 }

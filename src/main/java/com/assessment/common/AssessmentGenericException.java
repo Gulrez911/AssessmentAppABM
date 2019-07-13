@@ -2,6 +2,11 @@ package com.assessment.common;
 
 public class AssessmentGenericException extends RuntimeException{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public AssessmentGenericException() {
 		
 	}

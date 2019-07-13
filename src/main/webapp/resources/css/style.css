@@ -261,15 +261,15 @@ img{
 
 .rightside{
     float: left;
-    width: 100%;
+    width: 	%;
 }
 
 .rightside .topmenu a{
-    font-size: 20px;
-    line-height: 20px;
+        font-size: 17px;
+    line-height: 18px;
     color: rgb(102,102,102);
     font-family: "Segoe UI" !important;
-    /*font-weight: 300;*/
+    /* font-weight: 300; */
     padding: 0 10px;
 }
 .rightside .topmenu .pagination{

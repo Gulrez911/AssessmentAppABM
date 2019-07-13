@@ -250,6 +250,7 @@ public class TestController {
 		for (String s : skls) {
 			Skill skill = skillRepository.findById(Long.parseLong(s)).get();
 			skills.add(skill);
+			System.out.println("Skills>>>>>>>>>>>>>>>>"+skill);
 		}
 		return skills;
 	}
@@ -995,7 +996,9 @@ public class TestController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			String message = "Test link mail could not be sent for " + email;
-			EmailGenericMessageThread client = new EmailGenericMessageThread("jatin.sutaria@thev2technologies.com",
+//			EmailGenericMessageThread client = new EmailGenericMessageThread("jatin.sutaria@thev2technologies.com",
+//					"Can not send Test link email", message, propertyConfig);
+			EmailGenericMessageThread client = new EmailGenericMessageThread("anwarulhasan7860@gmail.com",
 					"Can not send Test link email", message, propertyConfig);
 			Thread th = new Thread(client);
 			th.start();

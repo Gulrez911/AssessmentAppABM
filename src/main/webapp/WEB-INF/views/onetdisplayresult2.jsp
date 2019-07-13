@@ -287,9 +287,7 @@ function answer(id)
 
 function chooseInt(id)
 {
-  document.forms['toolsform'].elements['submit_page_S1_' + id].click();
-  cancelEvent(event);
-  return false;
+  window.location="profiler?param="+id;
 }
 
 function chooseInt2(id)
@@ -669,7 +667,7 @@ $(document).ready(function(){
 																		<tbody>
 																			<tr>
 																				<td id="cname${rs.area }" class="chart${rs.area }"
-																					onclick="chooseInt('R')"
+																					onclick="chooseInt('${rs.area}')"
 																					style="width: 200px; font-weight: bold; cursor: pointer;"
 																					onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
 																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)"><a
@@ -677,7 +675,7 @@ $(document).ready(function(){
 																					href="/AssesmentApp/profiler?param=${rs.area}">${rs.area }</a></td>
 																				<td id="cscore${rs.area }" class="chart${rs.area }"
 																					style="text-align: right; font-weight: bold; cursor: pointer;"
-																					onclick="chooseInt(&#39;R&#39;)" )=""
+																					onclick="chooseInt('${rs.area}')"
 																					onmouseover="graphhover(1, &#39;${rs.area }&#39;)"
 																					onmouseout="graphhover(0, &#39;${rs.area }&#39;)"><a
 																					style="text-decoration: none; color: black;"
@@ -806,7 +804,8 @@ $(document).ready(function(){
 												<td style="height: 44px"><a
 													href="/AssesmentApp/profiler2"><img
 														name="submit_page_S1" id="tab3" value="Results"
-														src="./resources/assets/emoticons/tab3_sel.gif" alt="Results"></a></td>
+														src="./resources/assets/emoticons/tab3_sel.gif"
+														alt="Results"></a></td>
 												<td style="height: 44px"><a
 													href="/AssesmentApp/jobZone"><img name="submit_page_S2"
 														id="tab4" value="Job Zones"

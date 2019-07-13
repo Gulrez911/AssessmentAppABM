@@ -29,15 +29,14 @@ import com.assessment.services.QuestionService;
 public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	QuestionRepository questionRepository;
-	
+
 	@Autowired
 	QuestionMapperRepository questionMapperRepository;
 
 	@Transactional
 	public void createQuestion(Question question) {
 		// questionRepository.f
-		Question q = questionRepository.findByPrimaryKey(
-				question.getQuestionText(), question.getCompanyId());
+		Question q = questionRepository.findByPrimaryKey(question.getQuestionText(), question.getCompanyId());
 		if (q != null) {
 //			throw new AssessmentGenericException("Question already exists");// Make
 //																			// it
@@ -52,70 +51,62 @@ public class QuestionServiceImpl implements QuestionService {
 			mapper.map(question, q);
 			q.setUpdateDate(new Date());
 			questionRepository.save(q);
-		}
-		else {
+		} else {
 			question.setCreateDate(new Date());
 			questionRepository.save(question);
 		}
-		
+
 	}
 
 	@Override
-	public Page<Question> findQuestionsByQualifier1AndPage(String companyId,
-			String qualifier1, Integer pageNumber) {
+	public Page<Question> findQuestionsByQualifier1AndPage(String companyId, String qualifier1, Integer pageNumber) {
 		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier1(companyId,
-				qualifier1, PageRequest.of(pageNumber, 10));
+		return questionRepository.findQuestionsByQualifier1(companyId, qualifier1, PageRequest.of(pageNumber, 10));
 	}
 
-	public Page<Question> findQuestionsByQualifier2AndPage(String companyId,
-			String qualifier1, String qualifier2, Integer pageNumber) {
+	public Page<Question> findQuestionsByQualifier2AndPage(String companyId, String qualifier1, String qualifier2,
+			Integer pageNumber) {
 		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier2(companyId,
-				qualifier1, qualifier2, PageRequest.of(pageNumber, 10));
-	}
-
-	@Override
-	public Page<Question> findQuestionsByQualifier3AndPage(String companyId,
-			String qualifier1, String qualifier2, String qualifier3, Integer pageNumber) {
-		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier3(companyId,
-				qualifier1, qualifier2, qualifier3, PageRequest.of(pageNumber, 10));
+		return questionRepository.findQuestionsByQualifier2(companyId, qualifier1, qualifier2,
+				PageRequest.of(pageNumber, 10));
 	}
 
 	@Override
-	public Page<Question> findQuestionsByQualifier4AndPage(String companyId,
-			String qualifier1, String qualifier2, String qualifier3,
-			String qualifier4, Integer pageNumber) {
+	public Page<Question> findQuestionsByQualifier3AndPage(String companyId, String qualifier1, String qualifier2,
+			String qualifier3, Integer pageNumber) {
 		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier4(companyId,
-				qualifier1, qualifier2, qualifier3, qualifier4, PageRequest.of(pageNumber, 10));
+		return questionRepository.findQuestionsByQualifier3(companyId, qualifier1, qualifier2, qualifier3,
+				PageRequest.of(pageNumber, 10));
 	}
 
 	@Override
-	public Page<Question> findQuestionsByQualifier5AndPage(String companyId,
-			String qualifier1, String qualifier2, String qualifier3,
-			String qualifier4, String qualifier5, Integer pageNumber) {
+	public Page<Question> findQuestionsByQualifier4AndPage(String companyId, String qualifier1, String qualifier2,
+			String qualifier3, String qualifier4, Integer pageNumber) {
 		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier5(companyId,
-				qualifier1, qualifier2, qualifier3, qualifier4, qualifier5, PageRequest.of(pageNumber, 10));
+		return questionRepository.findQuestionsByQualifier4(companyId, qualifier1, qualifier2, qualifier3, qualifier4,
+				PageRequest.of(pageNumber, 10));
+	}
+
+	@Override
+	public Page<Question> findQuestionsByQualifier5AndPage(String companyId, String qualifier1, String qualifier2,
+			String qualifier3, String qualifier4, String qualifier5, Integer pageNumber) {
+		// TODO Auto-generated method stub
+		return questionRepository.findQuestionsByQualifier5(companyId, qualifier1, qualifier2, qualifier3, qualifier4,
+				qualifier5, PageRequest.of(pageNumber, 10));
 	}
 
 	@Transactional
-	public List<Question> uploadQuestionsFromExcelDoc(
-			FileInputStream fileInputStream, File mappingObjectFile) {
+	public List<Question> uploadQuestionsFromExcelDoc(FileInputStream fileInputStream, File mappingObjectFile) {
 		List<Question> questions = null;
 		try {
-			questions = ExcelReader.parseExcelFileToBeans(fileInputStream,
-					mappingObjectFile);
-			if (questions.size()>0) {
+			questions = ExcelReader.parseExcelFileToBeans(fileInputStream, mappingObjectFile);
+			if (questions.size() > 0) {
 				for (Question question : questions) {
 					createQuestion(question);
 				}
 			}
 		} catch (Exception e) {
-			throw new AssessmentGenericException(
-					ErrorCodes.ERROR_WHILE_PARSING_EXCEL_DOCUMENT);
+			throw new AssessmentGenericException(ErrorCodes.ERROR_WHILE_PARSING_EXCEL_DOCUMENT);
 		}
 		return questions;
 	}
@@ -126,7 +117,8 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionRepository.findQuestionsByCompanyId(companyId);
 	}
 
-	public Page<Question> searchQuestions(@Param("companyId") String companyId, @Param("searchText")  String searchText, Integer pageNumber){
+	public Page<Question> searchQuestions(@Param("companyId") String companyId, @Param("searchText") String searchText,
+			Integer pageNumber) {
 		return questionRepository.searchQuestions(companyId, searchText, PageRequest.of(pageNumber, 10));
 	}
 
@@ -136,12 +128,11 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionRepository.findById(id).get();
 	}
 
-	
-
 	@Override
 	public Page<Question> findQuestionsByPage(String companyId, Integer pageNumber) {
 		// TODO Auto-generated method stub
-		//return questionRepository.findQuestionsByCompanyIdAndPageNumber(companyId, PageRequest.of(pageNumber, ApplicationConstants.NUMBER_OF_RECORDS_PER_PAGE));
+		// return questionRepository.findQuestionsByCompanyIdAndPageNumber(companyId,
+		// PageRequest.of(pageNumber, ApplicationConstants.NUMBER_OF_RECORDS_PER_PAGE));
 		return questionRepository.findQuestionsByCompanyIdAndPageNumber(companyId, PageRequest.of(pageNumber, 10));
 	}
 
@@ -151,6 +142,11 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionRepository.findQuestionsByQualifier1(companyId, qualifier1);
 	}
 
+	@Override
+	public List<String> getQualifier(String companyId) {
+		return questionRepository.getQualifier(companyId);
+	}
+ 
 	@Override
 	public List<Question> findQuestionsByQualifier2(String companyId, String qualifier1, String qualifier2) {
 		// TODO Auto-generated method stub
@@ -175,7 +171,8 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<Question> findQuestionsByQualifier5(String companyId, String qualifier1, String qualifier2,
 			String qualifier3, String qualifier4, String qualifier5) {
 		// TODO Auto-generated method stub
-		return questionRepository.findQuestionsByQualifier5(companyId, qualifier1, qualifier2, qualifier3, qualifier4, qualifier5);
+		return questionRepository.findQuestionsByQualifier5(companyId, qualifier1, qualifier2, qualifier3, qualifier4,
+				qualifier5);
 	}
 
 	@Override
@@ -183,34 +180,33 @@ public class QuestionServiceImpl implements QuestionService {
 		// TODO Auto-generated method stub
 		return questionRepository.searchQuestions(companyId, searchText);
 	}
-	
+
 	@Override
-	public List<Question> getAllLevel1Questions(String companyId){
+	public List<Question> getAllLevel1Questions(String companyId) {
 		return questionRepository.getAllLevel1Questions(companyId);
 	}
-	
+
 	public boolean canDeleteQuestion(Long qid) {
 		List<QuestionMapper> mappers = questionMapperRepository.findByQuestion_id(qid);
-			if(mappers.size() > 0) {
-				return false;
-			}
-			else {
-				return true;
-			}
+		if (mappers.size() > 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Override
 	public void updateQuestion(Question q) {
 		// TODO Auto-generated method stub
-		if(q.getId() == null) {
+		if (q.getId() == null) {
 			throw new AssessmentGenericException("QUESTION_WITHOUT_ID_CAN_NOT_BE_UPDATED");
 		}
-		
-		Question q2  = questionRepository.findById(q.getId()).get();
-		if(q2 == null) {
+
+		Question q2 = questionRepository.findById(q.getId()).get();
+		if (q2 == null) {
 			throw new AssessmentGenericException("QUESTION_TO_BE_UPDATED_DOESNT_EXIST");
 		}
-		
+
 		Mapper mapper = new DozerBeanMapper();
 		mapper.map(q, q2);
 		q2.setUpdateDate(new Date());
