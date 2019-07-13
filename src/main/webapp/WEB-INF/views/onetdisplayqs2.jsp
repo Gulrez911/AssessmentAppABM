@@ -142,6 +142,7 @@ function able(id, which)
 }
 function enable(id)
 {
+
   able(id, false);
 }
 function disable(id)
@@ -196,17 +197,18 @@ function checkscores(pg)
 var progress = 0;
 function setprogress(id)
 {
-  var sofar = parseInt(id);
-  if (sofar > progress)
-  {
-    progress = sofar;
-    var num = document.getElementById("answered");
-    if (num)
-      num.replaceChild(document.createTextNode(id), num.firstChild);
+//   var sofar = parseInt(id);
+//   if (sofar > progress)
+//   {
+//     progress = sofar;
+//     var num = document.getElementById("answered");
+//     if (num)
+//       num.replaceChild(document.createTextNode(id), num.firstChild);
     var bar = document.getElementById("progressbar");
-    if (bar)
-      bar.style.width = (sofar * 3) + "px";
-  }
+//     if (bar)
+//       bar.style.width = (sofar * 3) + "px";
+    	  bar.style.width = (id * 3) + "px";
+//   }
 }
 
 function doClick(id)
@@ -483,7 +485,9 @@ $(document).ready(function(){
 }
 </style>
 <script type="text/javascript">
-	 
+	
+
+var barwidth;
 	function able(id, which) {
 
 		//var item = document.forms['testForm'].elements[id];
@@ -509,9 +513,37 @@ $(document).ready(function(){
 	function disable(id) {
 		able(id, true);
 	}
+	var id3;
 	function enable(id) {
 		able(id, false);
+// 		var value=id;
+// 		var removeData=value.replace("res","");
+// 		var id = removeData;
+// 		 var bar = document.getElementById("progressbar");
+// 		 if(id==1){
+// 		 }else if (id!=1) {
+// 			 var id2 = id-1;
+// 			 var bar = document.getElementById("progressbar");
+// 			 var x = bar.style.width;
+// 			 var x = x.replace("px","")
+// 			 var asd = Number(x);
+			 
+			 
+// 			 id3 = asd+(id2*3);
+// 			 alert("test "+asd+(id2*3))
+			 
+// 			 bar.style.width = id3+"px";
+// 			 alert("end: " +bar.style.width);
+			 
+// 			 var b= bar.style.width ;
+			 
+			 
+			 
+// 			 var b2=b.replace("px","");
+// 			 barwidth = b2;
+// 		} 
 	}
+	
 </script>
 </head>
 <body>
@@ -657,7 +689,7 @@ $(document).ready(function(){
 																style="margin: 0 auto; height: 24px; width: 186px; position: relative; overflow: hidden">
 
 																<div
-																	style="background-color: #A03; height: 6px; overflow: hidden; width: 0px; position: absolute; left: 3px; top: 9px"
+																	style="background-color: rgb(170, 0, 51); height: 6px; overflow: hidden; width: ${bar}px; position: absolute; left: 3px; top: 9px"
 																	id="progressbar"></div>
 
 																<img src="./resources/assets/emoticons/end_left.gif"
@@ -686,7 +718,7 @@ $(document).ready(function(){
 														<td
 															style="text-align: right; vertical-align: middle; width: 144px">
 															<div style="font-size: 11px">
-																Page ${param.Page} of 5<br> <span id="answered">${param.para}</span>
+																Page ${qd.page} of 5<br> <span id="answered">${param.para}</span>
 																of 60 questions
 															</div>
 														</td>
@@ -706,6 +738,7 @@ $(document).ready(function(){
 												style="margin-left: 215px; height: 22px; line-height: 22px">${oo.questionText}</div>
 											<div
 												style="position: absolute; top: 0; left: 0; height: 22px; width: 210px; margin: 0; padding: 0; overflow: hidden">
+
 												<span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="one1" value="1"
@@ -1076,23 +1109,23 @@ $(document).ready(function(){
 												<span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="twelve1" value="1" id="res12"
-														title="Strongly Dislike" />
+														title="Strongly Dislike" onclick="go('12')" />
 												</span> <span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="twelve1" value="2" id="res12"
-														title="Dislike" />
+														title="Dislike" onclick="go('12')" />
 												</span> <span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="twelve1" value="2" id="res12"
-														title="Unsure" />
+														title="Unsure" onclick="go('12')" />
 												</span> <span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="twelve1" value="4" id="res12"
-														title="Like" />
+														title="Like" onclick="go('12')" />
 												</span> <span
 													style="float: left; width: 38px; border-right: solid 2px #ddd; overflow: hidden; text-align: center; line-height: 22px; height: 22px; padding: 2px 0; margin: 0">
 													<form:radiobutton path="twelve1" value="5" id="res12"
-														title="Strongly Like" />
+														title="Strongly Like" onclick="go('12')" />
 												</span>
 											</div>
 										</div>
@@ -1176,14 +1209,14 @@ disable('res12');
 											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
 											type="image" name="submit_page_I2" id="nextbtn" accesskey="n"
 											value="Next" src="./resources/assets/emoticons/next.gif"
-											alt="Next" onclick="javascript:submitTest();"></td>
+											alt="Next" onclick="javascript:return submitTest();"></td>
 									</c:when>
 									<c:otherwise>
 										<td
 											style="width: 115px; height: 44px; background-image: url(https://www.mynextmove.org/image/ip/main_botright.gif)"><input
 											type="image" name="submit_page_I2" id="nextbtn" accesskey="n"
 											value="Next" src="./resources/assets/emoticons/next.gif"
-											alt="Next" onclick="javascript:next();"></td>
+											alt="Next" onclick="javascript:return next();"></td>
 
 									</c:otherwise>
 								</c:choose>
@@ -1220,21 +1253,7 @@ set_next('Please answer all 12 questions on this page.');
 
 	</div>
 	<script type="text/javascript">
-			if (/*  document.getElementById("res2").checked
-					&& document.getElementById("res3").checked
-					&& document.getElementById("res4").checked
-					&& document.getElementById("res5").checked
-					&& document.getElementById("res6").checked
-					&& document.getElementById("res7").checked
-					&& document.getElementById("res8").checked
-					&& document.getElementById("res9").checked
-					&& document.getElementById("res10").checked
-					&& document.getElementById("res11").checked
-					&& document.getElementById("res12").checked  */
-					
-					${qd.one1>0}
-					
-			) {
+			if (${qd.one1>0}) {
 			} else {
 				disable('res2');
 				disable('res3');
@@ -1252,32 +1271,66 @@ set_next('Please answer all 12 questions on this page.');
 
 
 	<script type="text/javascript">
+
+	var xx = 0;
+	function go(last){
+		xx = last;
+	}
+</script>
+	<script type="text/javascript">
+	 if(typeof barwidth==="undefined"){
+		 barwidth =0;
+	 }
 			var str = window.localStorage.getItem('str', str);
 			if (str) {
 				var str = '';
 			}
 
+
 			function next() {
-				window.localStorage.setItem('str', str);
-				document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page+1}";
-				document.testForm.submit();
+
+				 var dd = ${qd.twelve1};
+				if (dd>0||xx>0) {
+// 					alert("else "+typeof xx)
+					window.localStorage.setItem('str', str);
+					document.testForm.action = "nextOnetQuestion?para=${qd.next+12}&Page=${qd.page+1}&barwidth="+barwidth;
+					document.testForm.submit();
+				
+					return true;
+				}else if (dd>=0||xx>0) {
+					
+// 					alert("test");
+					alert("Please answer all 12 questions on this page.")
+					return false;
+				}
+				
 			}
 
 			function prev() {
-				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page-1}";
+				document.testForm.action = "prevOnetQuestion?para=${qd.next-12}&Page=${qd.page-1}&barwidth="+barwidth;
 				document.testForm.submit();
 			}
 
 			function submitTest() {
-
-				document.testForm.action = "submitTest1?para=${qd.next+12}";
+				 var dd = ${qd.twelve1};
+	
+				 if (dd>0||xx>0) {
+						document.testForm.action = "submitTest1?para=${qd.next+12}&barwidth="+barwidth;
+						document.testForm.submit();
+					
+						return true;
+					}else if(dd>=0||xx>0) {
 						
-				document.testForm.submit();
-			}
+//	 					alert("test");
+						alert("Please answer all 12 questions on this page.");
+						return false;
+					}
+				}
 			
 			function prev1() {
 				window.location = "/AssesmentApp/onetHome?name=4";
 			};
+			
 		</script>
 </body>
 </html>

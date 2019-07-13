@@ -13,4 +13,5 @@ public interface UserTestSessionService {
 	
 	public List<AssessmentTestData> getAllResultsData(String companyId);
 
+	public UserTestSession findTestByEmail( String p0);
 }

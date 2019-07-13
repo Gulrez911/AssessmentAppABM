@@ -75,5 +75,8 @@ public interface QuestionRepository extends JpaRepository<Question,Long>
 	           "GROUP BY " +
 	           "    q.qualifier1, q.qualifier2, q.qualifier3, q.qualifier4, q.qualifier5")
 	public Set<Qualifiers> getAllUniqueQualifiers(@Param("companyId")String companyId);
+	 
+//	 download Question
+	 
 
 }

@@ -3,11 +3,15 @@ package com.assessment.web.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +21,12 @@ import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +47,11 @@ import com.assessment.data.QuestionType;
 import com.assessment.data.Section;
 import com.assessment.data.Skill;
 import com.assessment.data.Test;
+import com.assessment.data.UniqueUrl;
 import com.assessment.data.User;
 import com.assessment.data.UserType;
 import com.assessment.repositories.SkillRepository;
+import com.assessment.repositories.UniqueUrlRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionMapperInstanceService;
 import com.assessment.services.QuestionService;
@@ -55,6 +64,10 @@ import com.assessment.web.dto.SectionDto;
 @Controller
 @SessionAttributes("test,sectionDTO")
 public class TestController {
+
+	@Autowired
+	UniqueUrlRepository urlrepo;
+
 	@Autowired
 	CompanyService companyService;
 
@@ -962,7 +975,8 @@ public class TestController {
 		return mav;
 	}
 
-	private void shareTest(String email, Long testId, String cid, String firstName, String lastName, String testName) {
+	private void shareTest(String email, Long testId, String cid, String firstName, String lastName, String testName,
+			String random) {
 		User user = userService.findByPrimaryKey(email, cid);
 		if (user == null) {
 			User us = new User();
@@ -977,7 +991,9 @@ public class TestController {
 			us.setPassword("temp123");
 			userService.addUser(us);
 		}
-		String url = getUrlForUser(email, testId, cid);
+		TestController tc = new TestController();
+		String rand = tc.randomId();
+		String url = getUrlForUser(email, testId, cid, random);
 		url += "&inviteSent=" + System.currentTimeMillis();
 		String welcomeMailData;
 		try {
@@ -1002,16 +1018,32 @@ public class TestController {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/shareTestWithUsers", method = RequestMethod.GET)
 	public ModelAndView shareTests(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//			String dateInString = "7-11-2013";
+		Date date = new Date();
+		date.setDate(date.getDate() + 2);
+		System.out.println("inside for loop" + date);
 
 		for (User u : test.getUsers()) {
+//			url changes
+			TestController tc = new TestController();
+			String random = tc.randomId();
+			UniqueUrl urlInfo = new UniqueUrl();
+//			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			urlInfo.setUrlDate(date);
+			urlInfo.setTestId(String.valueOf(test.getId()));
+			urlInfo.setUrlId(random);
+			urlrepo.save(urlInfo);
+//			
 			shareTest(u.getEmail(), test.getId(), user.getCompanyId(), u.getFirstName(), u.getLastName(),
-					test.getTestName());
+					test.getTestName(), random);
 
 		}
 		mav.addObject("message", "Congratulations! - Email with Test Links shared with users. ");// later
@@ -1029,17 +1061,42 @@ public class TestController {
 	@RequestMapping(value = "/sharePublicTest", method = RequestMethod.GET)
 	public ModelAndView sharePublicTest(@RequestParam String userEmail, @RequestParam String testId,
 			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String existing_name1,
-			HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String expId, @RequestParam String uemail, HttpServletRequest request,
+			HttpServletResponse response) {
 		System.out.println("TestController.sharePublicTest()");
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		Test test = (Test) request.getSession().getAttribute("test");
+		System.out.println("testing......" + expId);
+		TestController tc = new TestController();
+		String random = tc.randomId();
+		UniqueUrl urlInfo = new UniqueUrl();
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//		String dateInString = "7-11-2013";
+		Date date = new Date();
+		try {
+
+			date = formatter.parse(expId);
+			System.out.println(date);
+			System.out.println(formatter.format(date));
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		urlInfo.setUrlDate(date);
+		urlInfo.setTestId(testId);
+		urlInfo.setUrlId(random);
+		urlInfo.setEmail(uemail);
+		urlInfo.setTestName(existing_name1);
+		urlrepo.save(urlInfo);
 //		  String userEmail = request.getParameter("userEmail");
 //		  String testId = request.getParameter("testId");
 //		  String firstName = request.getParameter("firstName");
 //		  String lastName = request.getParameter("lastName");
 //		  String testName = request.getParameter("existing_name1");
-		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1);
+		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1,
+				random);
 		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " " + lastName);// later
 		// put
 		// label
@@ -1050,11 +1107,11 @@ public class TestController {
 		return mav;
 	}
 
-	private String getUrlForUser(String user, Long testId, String companyId) {
+	private String getUrlForUser(String user, Long testId, String companyId, String random) {
 		String userBytes = Base64.getEncoder().encodeToString(user.getBytes());
 
 		String after = "userId=" + URLEncoder.encode(userBytes) + "&testId=" + URLEncoder.encode(testId.toString())
-				+ "&companyId=" + URLEncoder.encode(companyId);
+				+ "&companyId=" + URLEncoder.encode(companyId) + "&urlid=" + URLEncoder.encode(random);
 		String url = propertyConfig.getBaseUrl() + "startTestSession?" + after;
 		return url;
 	}
@@ -1063,7 +1120,7 @@ public class TestController {
 	public ModelAndView duplicateTest(@RequestParam String existing_name, @RequestParam String newTest,
 			@RequestParam String newQual1, @RequestParam String newQual2, HttpServletRequest request,
 			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("test_list");
+		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
 		//
 
@@ -1092,7 +1149,7 @@ public class TestController {
 		newTestObj.setTestName(newTest);
 		newTestObj.setQualifier1(newQual1);
 		newTestObj.setQualifier2(newQual2);
-		newTestObj.setSkills(testService.resolveSkills(exist.getSkills()));/// added after making skills
+		newTestObj.setSkills(testService.resolveSkills(old.getSkills()));/// added after making skills
 		/// dynamic
 		testService.saveOrUpdate(newTestObj);
 
@@ -1114,13 +1171,25 @@ public class TestController {
 		}
 		mav.addObject("message",
 				"Congratulations. Test with a name- " + newTest + " duplicated from " + old.getTestName());// later put
-																											// it as
-																											// label
+		// it as
+		// label
 		mav.addObject("msgtype", "Success");
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), 0);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
 		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), 0, "testlist", null);
 		return mav;
 
+	}
+
+	public String randomId() {
+		Random random = new Random();
+		String id = String.format("%04d", random.nextInt(100000));
+		return id;
+	}
+
+	@InitBinder
+	public void initConverter(WebDataBinder binder) {
+		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true);
+		binder.registerCustomEditor(Date.class, dateEditor);
 	}
 }

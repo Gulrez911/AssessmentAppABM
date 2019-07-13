@@ -192,7 +192,7 @@ public class LoginController {
 			request.getSession().setAttribute("companyId", user.getCompanyId());
 			// request.getSession().setAttribute("questions", questions);
 			System.out.println("test3.........    " + user);
-			mav = new ModelAndView("redirect:/showReports");
+			mav = new ModelAndView("redirect:/question_list");
 			mav.addObject("qs", questions.getContent());
 			mav.addObject("levels", DifficultyLevel.values());
 			CommonUtil.setCommonAttributesOfPagination(questions, mav.getModelMap(), 0, "question_list", null);

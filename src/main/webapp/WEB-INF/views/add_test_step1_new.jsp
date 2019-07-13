@@ -2,7 +2,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en">
@@ -17,32 +18,38 @@
 <link href="${c1}" rel="shortcut icon" />
 
 <spring:url
-	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
 
 <!-- Material Icons CSS -->
-<spring:url value="/resources/assets/fonts/iconfont/material-icons.css" var="c3" />
+<spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
+	var="c3" />
 
 <link href="${c3}" rel="stylesheet" type="text/css" />
 
 <!-- FontAwesome CSS -->
-<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+<spring:url
+	value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
 	var="c4" />
 
 <link href="${c4}" rel="stylesheet" type="text/css" />
 
 <!-- magnific-popup -->
-<spring:url value="/resources/assets/magnific-popup/magnific-popup.css" var="c5" />
+<spring:url value="/resources/assets/magnific-popup/magnific-popup.css"
+	var="c5" />
 
 <link href="${c5}" rel="stylesheet" type="text/css" />
 
 <!-- owl.carousel -->
-<spring:url value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
 
 <link href="${c6}" rel="stylesheet" type="text/css" />
 
-<spring:url value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
 	var="c7" />
 
 <link href="${c7}" rel="stylesheet" type="text/css" />
@@ -52,17 +59,20 @@
 <link href="${c8}" rel="stylesheet" type="text/css" />
 
 <!-- materialize -->
-<spring:url value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
+<spring:url
+	value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
 
 <link href="${c9}" rel="stylesheet" type="text/css" />
 
 <!-- Bootstrap -->
-<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css" var="c10" />
+<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
+	var="c10" />
 
 <link href="${c10}" rel="stylesheet" type="text/css" />
 
 <!-- shortcodes -->
-<spring:url value="/resources/assets/css/shortcodes/shortcodes.css" var="c11" />
+<spring:url value="/resources/assets/css/shortcodes/shortcodes.css"
+	var="c11" />
 
 <link href="${c11}" rel="stylesheet" type="text/css" />
 
@@ -72,15 +82,18 @@
 <link href="${c12}" rel="stylesheet" type="text/css" />
 
 <!-- RS5.0 Main Stylesheet -->
-<spring:url value="/resources/assets/revolution/css/settings.css" var="c13" />
+<spring:url value="/resources/assets/revolution/css/settings.css"
+	var="c13" />
 
 <link href="${c13}" rel="stylesheet" type="text/css" />
 
 <!-- RS5.0 Layers and Navigation Styles -->
-<spring:url value="/resources/assets/revolution/css/layers.css" var="c14" />
+<spring:url value="/resources/assets/revolution/css/layers.css"
+	var="c14" />
 
 <link href="${c14}" rel="stylesheet" type="text/css" />
-<spring:url value="/resources/assets/revolution/css/navigation.css" var="c15" />
+<spring:url value="/resources/assets/revolution/css/navigation.css"
+	var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
 <!-- <script type="text/javascript">
@@ -102,10 +115,13 @@ function doSomething(val)
 		<div class="header-sticky light-header ">
 			<div class="container">
 				<div id="materialize-menu" class="menuzord menuzord-responsive">
-					<a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
+					<a href="javascript:void(0)" class="showhide"
+						style="display: none;"><em></em><em></em><em></em></a>
 					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
 					</a>
 					<!--logo end-->
 					<!--mega menu start-->
@@ -163,7 +179,8 @@ function doSomething(val)
 
 
 				<div class="col-md-10 mb-20 addtestform">
-					<form id="step1" method="POST" action="saveAndGoToStep2" modelattribute="test">
+					<form id="step1" method="POST" action="saveAndGoToStep2"
+						modelattribute="test">
 
 						<div class="col-md-12">
 							<div class="col-md-6">
@@ -173,8 +190,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="test.testName" name="testName" id="testName"
-												required="true" placeholder="Test Name" />
+											<form:input path="test.testName" name="testName"
+												id="testName" required="true" placeholder="Test Name" />
 										</div>
 									</div>
 								</div>
@@ -186,8 +203,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="test.qualifier1" name="qualifier1" id="qualifier1"
-												required="true" placeholder="Category" />
+											<form:input path="test.qualifier1" name="qualifier1"
+												id="qualifier1" required="true" placeholder="Category" />
 										</div>
 									</div>
 								</div>
@@ -201,8 +218,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="test.qualifier2" name="qualifier2" id="qualifier2"
-												placeholder="Choose Sub Category" />
+											<form:input path="test.qualifier2" name="qualifier2"
+												id="qualifier2" placeholder="Choose Sub Category" />
 										</div>
 									</div>
 								</div>
@@ -214,7 +231,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="test.qualifier3" name="qualifier3" id="qualifier3"
+											<form:input path="test.qualifier3" name="qualifier3"
+												id="qualifier3"
 												placeholder="Choose Category of a Sub Category" />
 										</div>
 									</div>
@@ -229,24 +247,25 @@ function doSomething(val)
 										<label class="fieldtitle">Skills</label>
 									</div>
 									<div class="col-md-8">
-										<div class="input-field">
-											<form:select path="test.skls" multiple="multiple"
-												class="multiselect col-md-4">
-												<form:options items="${skls}" itemLabel="label"></form:options>
-											</form:select>
-										</div>
+
+										<form:select path="test.skls" multiple="multiple"
+											class="multiselect col-md-4">
+											<form:options items="${skls}" itemValue="id"
+												itemLabel="label" />
+										</form:select>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-4">
-										<label class="fieldtitle">Duration (Enter time in minutes)</label>
+										<label class="fieldtitle">Duration (Enter time in
+											minutes)</label>
 									</div>
 									<div class="col-md-4">
 										<div class="input-field">
-											<input id="testTimeInMinutes" name="testTimeInMinutes" type="text"
-												value="60" required="true">
+											<input id="testTimeInMinutes" name="testTimeInMinutes"
+												type="text" value="60" required="true">
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -271,8 +290,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<input id="passPercent" name="passPercent" type="text" value="60.0"
-												required="true">
+											<input id="passPercent" name="passPercent" type="text"
+												value="60.0" required="true">
 										</div>
 									</div>
 								</div>
@@ -284,8 +303,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="user.email" name="email" id="email" value=""
-												disabled="true" />
+											<form:input path="user.email" name="email" id="email"
+												value="" disabled="true" />
 										</div>
 									</div>
 								</div>
@@ -295,15 +314,16 @@ function doSomething(val)
 							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-12">
-										<label class="fieldtitle">Displayed upon exam completion and email
-											communications relating to the exam</label>
+										<label class="fieldtitle">Displayed upon exam
+											completion and email communications relating to the exam</label>
 									</div>
 									<div class="col-md-12">
 										<div class="input-field">
-											<input type="checkbox" id="sentToStudent1" name="sentToStudent1"
-												value="true"> <label style="font-size: 12px;"
-												for="sentToStudent1">Email a copy of the student's results to
-												above contact</label> <input type="hidden" name="_sentToStudent" value="on">
+											<input type="checkbox" id="sentToStudent1"
+												name="sentToStudent1" value="true"> <label
+												style="font-size: 12px;" for="sentToStudent1">Email
+												a copy of the student's results to above contact</label> <input
+												type="hidden" name="_sentToStudent" value="on">
 										</div>
 									</div>
 								</div>
@@ -314,7 +334,8 @@ function doSomething(val)
 							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-4">
-										<label class="fieldtitle">Share Recommendation Engine by Email</label>
+										<label class="fieldtitle">Share Recommendation Engine
+											by Email</label>
 									</div>
 									<div class="col-md-8">
 										<label> <form:checkbox path="test.sendRecommReport"
@@ -331,7 +352,8 @@ function doSomething(val)
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:checkbox path="test.randomQuestions" id="random" label="" />
+											<form:checkbox path="test.randomQuestions" id="random"
+												label="" />
 										</div>
 									</div>
 								</div>
@@ -341,12 +363,13 @@ function doSomething(val)
 							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-4">
-										<label class="fieldtitle">Email Domain for Test Givers </label>
+										<label class="fieldtitle">Email Domain for Test Givers
+										</label>
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<input id="domainEmailSupported" name="domainEmailSupported" type="text"
-												value="">
+											<input id="domainEmailSupported" name="domainEmailSupported"
+												type="text" value="">
 										</div>
 									</div>
 								</div>
@@ -360,7 +383,8 @@ function doSomething(val)
 										<div class="input-field">
 											<select id="testType" name="testType">
 												<option value="Java" selected="selected">Java</option>
-												<option value="Microsoft technologies">Microsoft technologies</option>
+												<option value="Microsoft technologies">Microsoft
+													technologies</option>
 												<option value="C/C++">C/C++</option>
 												<option value="Python">Python</option>
 												<option value="General Knowledge">General Knowledge</option>
@@ -380,8 +404,9 @@ function doSomething(val)
 									<div class="col-md-8">
 										<div class="input-field">
 											<input type="checkbox" checked="" disabled=""> <label
-												style="font-size: 12px;" for="sentToStudent1">Allow webcam
-												proctoring </label> <input type="hidden" name="_sentToStudent" value="on">
+												style="font-size: 12px;" for="sentToStudent1">Allow
+												webcam proctoring </label> <input type="hidden"
+												name="_sentToStudent" value="on">
 										</div>
 									</div>
 								</div>
@@ -392,13 +417,15 @@ function doSomething(val)
 								<div class="row formfields">
 									<div class="col-md-12">
 										<label class="fieldtitle" style="font-size: 14px;">Notification
-											&amp; Messages</label> <label class="fieldtitle" style="font-size: 14px;">Exam
-											Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Users
-											see this text just before they begin the exam</label>
+											&amp; Messages</label> <label class="fieldtitle"
+											style="font-size: 14px;">Exam Introduction Text</label> <label
+											class="fieldtitle" style="font-size: 12px;">Users see
+											this text just before they begin the exam</label>
 									</div>
 									<div class="col-md-12">
 										<div class="input-field">
-											<textarea id="intro" name="intro" class="materialize-textarea"></textarea>
+											<textarea id="intro" name="intro"
+												class="materialize-textarea"></textarea>
 											<label for="intro"></label>
 										</div>
 									</div>
@@ -407,15 +434,16 @@ function doSomething(val)
 							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-12">
-										<label class="fieldtitle" style="font-size: 14px;">Text -
-											Completion Success</label> <label class="fieldtitle" style="font-size: 14px;">Exam
-											Introduction Text</label> <label class="fieldtitle" style="font-size: 12px;">Shown
-											to the user if they pass the exam. A copy is also sent via email</label>
+										<label class="fieldtitle" style="font-size: 14px;">Text
+											- Completion Success</label> <label class="fieldtitle"
+											style="font-size: 14px;">Exam Introduction Text</label> <label
+											class="fieldtitle" style="font-size: 12px;">Shown to
+											the user if they pass the exam. A copy is also sent via email</label>
 									</div>
 									<div class="col-md-12">
 										<div class="input-field">
-											<textarea id="postTestCompletionText" name="postTestCompletionText"
-												class="materialize-textarea"></textarea>
+											<textarea id="postTestCompletionText"
+												name="postTestCompletionText" class="materialize-textarea"></textarea>
 											<label for="intro"></label>
 										</div>
 									</div>
@@ -456,37 +484,48 @@ function doSomething(val)
 	</footer>
 	<!-- jQuery -->
 
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
 	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
 	<script src="${mainJs2}"></script>
 	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
 		var="mainJs3" />
 	<script src="${mainJs3}"></script>
 	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
 	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
 	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
 	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
 	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
 	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
 	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
 	<script src="${mainJs10}"></script>
 	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
 		var="mainJs11" />
 	<script src="${mainJs11}"></script>
-	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
 		var="mainJs12" />
 	<script src="${mainJs12}"></script>
-	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
 		var="mainJs13" />
 	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
 	<script src="${mainJs14}"></script>
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>

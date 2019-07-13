@@ -41,7 +41,6 @@
 <link href="${c7}" rel="stylesheet" type='text/css' />
 <spring:url value="/resources/assets/css/pnotify.custom.min.css"
 	var="c16" />
-
 <link href="${c16}" rel="stylesheet" type="text/css" />
 
 </head>
