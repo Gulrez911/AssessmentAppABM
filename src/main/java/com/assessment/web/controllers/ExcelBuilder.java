@@ -65,34 +65,34 @@ public class ExcelBuilder extends AbstractXlsView {
 
 		header.createCell(5).setCellValue("Choice5");
 		header.getCell(5).setCellStyle(style);
-		
+
 		header.createCell(6).setCellValue("Choice6");
 		header.getCell(6).setCellStyle(style);
-		
+
 		header.createCell(7).setCellValue("RightChoices");
 		header.getCell(7).setCellStyle(style);
-		
+
 		header.createCell(8).setCellValue("Qualifier1");
 		header.getCell(8).setCellStyle(style);
-		
+
 		header.createCell(9).setCellValue("Qualifier2");
 		header.getCell(9).setCellStyle(style);
-		
+
 		header.createCell(10).setCellValue("Qualifier3");
 		header.getCell(10).setCellStyle(style);
-		
+
 		header.createCell(11).setCellValue("Qualifier4");
 		header.getCell(11).setCellStyle(style);
-		
+
 		header.createCell(12).setCellValue("Qualifier5");
 		header.getCell(12).setCellStyle(style);
-		
+
 		header.createCell(13).setCellValue("Difficulty Level");
 		header.getCell(13).setCellStyle(style);
-		
+
 		header.createCell(14).setCellValue("Instruction If Any");
 		header.getCell(14).setCellStyle(style);
-		
+
 		header.createCell(15).setCellValue("CompanyId");
 		header.getCell(15).setCellStyle(style);
 		// create data rows
@@ -116,7 +116,7 @@ public class ExcelBuilder extends AbstractXlsView {
 			aRow.createCell(13).setCellValue(ques.getDifficultyLevel().getLevel());
 			aRow.createCell(14).setCellValue(ques.getInstructionsIfAny());
 			aRow.createCell(15).setCellValue(ques.getCompanyId());
-			
+
 		}
 	}
 

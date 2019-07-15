@@ -38,19 +38,14 @@
 	<!-- String smtpPort; -->
 	<bean class="com.assessment.common.PropertyConfig">
 		<property name="baseUrl" value="${baseUrl}"></property>
-		<!-- server testLinkHtmlLocation -->
-		<!-- <property name="testLinkHtmlLocation"
-			value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property>
-		<property name="resultLinkHtmlLocation"
-			value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
-			
-			<!-- local testLinkHtmlLocation -->
-			
+		<!-- <property name="testLinkHtmlLocation" -->
+		<!-- value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property> -->
+		<!-- <property name="resultLinkHtmlLocation" -->
+		<!-- value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
 		<property name="testLinkHtmlLocation"
-		value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
+			value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
 		<property name="resultLinkHtmlLocation"
-		value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property>
-		
+			value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property>
 		<property name="hostName" value="${hostName}"></property>
 		<property name="sendFrom" value="${sendFrom}"></property>
 		<property name="sendFromName" value="${sendFromName}"></property>
@@ -60,7 +55,7 @@
 		<!-- -->
 		<!-- <property name="fileServerWebUrl" value="http://localhost:8080/AssesmentApp/Images/"></property> -->
 		<!-- <property name="fileServerLocation" -->
-		<!-- value="C:\Users\user\Desktop\Clone Project\23-03-2019\AssessmentApp\Images"></property> -->
+		<!-- value="C:/Users/user/Desktop/Clone Project/23-03-2019/AssessmentApp/Images"></property> -->
 
 		<property name="fileServerLocation"
 			value="/opt/kgate/webapps/file-server/AssesmentApp"></property>
@@ -87,23 +82,20 @@
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 
-
-
-
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- Server Connection Details -->
-		<property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/new_ass" 
+		<!-- <property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/new_ass" 
 			/> <property name="user" value="new_ass_user" /> <property name="password" 
-			value="Welcome@123" />
+			value="Welcome@123" /> -->
 
 		<!--Local Connection Details -->
-		<!-- <property name="jdbcUrl"
+		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/assessment" />
 		<property name="user" value="root" />
-		<property name="password" value="" /> -->
+		<property name="password" value="" />
 
 		<!-- <property name="jdbcUrl" value="jdbc:mysql://13.233.2.169:3306/assessment" 
 			/> -->

@@ -146,8 +146,7 @@ public class QuestionMapperInstance extends Base {
 
 	public void setCodingOuputBySystemTestCase(String codingOuputBySystemTestCase) {
 		this.codingOuputBySystemTestCase = codingOuputBySystemTestCase;
-		if (getQuestionMapper().getQuestion().getHiddenOutputNegative()
-				.equalsIgnoreCase(codingOuputBySystemTestCase)) {
+		if (getQuestionMapper().getQuestion().getHiddenOutputNegative().equalsIgnoreCase(codingOuputBySystemTestCase)) {
 			setCorrect(true);
 		} else {
 			setCorrect(false);

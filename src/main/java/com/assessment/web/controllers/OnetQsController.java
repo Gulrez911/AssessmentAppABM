@@ -1,6 +1,5 @@
 package com.assessment.web.controllers;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -27,7 +26,6 @@ import com.assessment.data.OnetQuestions;
 import com.assessment.data.OnetResults;
 import com.assessment.data.OnetString;
 import com.assessment.data.Result;
-import com.assessment.data.User;
 import com.assessment.services.OnetQsResultService;
 import com.assessment.services.OnetQsService;
 import com.assessment.services.OnetstringService;
@@ -106,8 +104,9 @@ public class OnetQsController {
 
 	@RequestMapping(value = "/nextOnetQuestion", method = RequestMethod.POST)
 	public ModelAndView nextOnetQuestion(@RequestParam(required = false) int para,
-			@RequestParam(required = false) int Page, HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
+			@RequestParam(required = false) int Page, @RequestParam(required = false) Integer barwidth,
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
+			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 //		User user = (User) request.getSession().getAttribute("user");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
@@ -116,7 +115,7 @@ public class OnetQsController {
 		 * ans1=ans1.concat(ans);
 		 */
 
-		setAns(onetQsdto, request);
+		setAns(onetQsdto, request, barwidth);
 		int num = 1;
 		if (Page == 1) {
 			num = Page;
@@ -186,6 +185,7 @@ public class OnetQsController {
 		String rs = "";
 		double rand = (double) request.getSession().getAttribute("rad");
 		OnetString ls = onerstringservice.gellbypage(rand, Page);
+		OnetString ls2 = onerstringservice.gellbypage(rand, Page-1);
 		if (ls == null)
 			rs = "000000000000";
 		else
@@ -222,14 +222,16 @@ public class OnetQsController {
 		// request.getSession().setAttribute("pg", Page + 1);
 		request.getSession().setAttribute("pg", Page);
 		mav.addObject("num", num);
+		mav.addObject("bar",ls2.getBar());
 		return mav;
 
 	}
 
 	@RequestMapping(value = "/prevOnetQuestion", method = RequestMethod.POST)
-	public ModelAndView prevOnetQuestion(@RequestParam(required = false) int para,
-			@RequestParam(required = false) int Page, HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
+	public ModelAndView prevOnetQuestion(@RequestParam(required = false) Integer barwidth,
+			@RequestParam(required = false) int para, @RequestParam(required = false) int Page,
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
+			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayqs2");
 //		User user = (User) request.getSession().getAttribute("user");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
@@ -237,7 +239,7 @@ public class OnetQsController {
 		onetQsDto ot = (onetQsDto) request.getSession().getAttribute("onetQsdto");
 
 		// request.getSession().setAttribute("pg", Page);
-		setAns(onetQsdto, request);
+		setAns(onetQsdto, request, barwidth);
 
 		List<OnetQuestions> oq = onetQsService.showOnetQuestions();
 		/*
@@ -301,6 +303,7 @@ public class OnetQsController {
 
 		double rand = (double) request.getSession().getAttribute("rad");
 		OnetString ls = onerstringservice.gellbypage(rand, Page);
+		OnetString ls2 = onerstringservice.gellbypage(rand, Page);
 		String rs = ls.getResult();
 		System.out.println("anilgaudresult:" + rs);
 		System.out.println("anilgaudindex:" + rs.charAt(0));
@@ -334,20 +337,21 @@ public class OnetQsController {
 		mav.addObject("qd", ot1);
 		// request.getSession().setAttribute("pg", Page - 1);
 		request.getSession().setAttribute("pg", Page);
-
+		mav.addObject("bar",ls2.getBar());
 		return mav;
 	}
 
 	@RequestMapping(value = "/submitTest1", method = RequestMethod.POST)
-	public ModelAndView OnetsubmitTest(@RequestParam(required = false) int para,
-			@RequestParam(required = false) String ans, HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) throws Exception {
+	public ModelAndView OnetsubmitTest(@RequestParam(required = false) Integer barwidth,
+			@RequestParam(required = false) int para, @RequestParam(required = false) String ans,
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto)
+			throws Exception {
 		ModelAndView mav = new ModelAndView("onetdisplayresult2");
 
 //		User user1 = (User) request.getSession().getAttribute("user");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
 
-		setAns(onetQsdto, request);
+		setAns(onetQsdto, request, barwidth);
 		String ans1 = (String) request.getSession().getAttribute("ans");
 		System.out.println("submitAnswer " + ans1);
 		/*
@@ -433,7 +437,7 @@ public class OnetQsController {
 		return mav;
 	}
 
-	private void setAns(onetQsDto onetQsdto, HttpServletRequest request) {
+	private void setAns(onetQsDto onetQsdto, HttpServletRequest request, int barwid) {
 		String ans = "";
 		String ans1 = (String) request.getSession().getAttribute("ans");
 
@@ -478,6 +482,7 @@ public class OnetQsController {
 		onetstring.setCompanyName("IIHT");
 		onetstring.setUpdateDate(new Date());
 		onetstring.setRand(rad);
+		onetstring.setBar(barwid);
 		onerstringservice.saveString(onetstring);
 	}
 
@@ -594,11 +599,10 @@ public class OnetQsController {
 		mav.addObject("ex", name);
 		return mav;
 	}
-	
+
 	@GetMapping("career")
-	public ModelAndView career(@RequestParam(value = "name", required = false) Integer name,
-			HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("onetQsdto") onetQsDto onetQsdto) {
+	public ModelAndView career(@RequestParam(value = "name", required = false) Integer name, HttpServletRequest request,
+			HttpServletResponse response, @ModelAttribute("onetQsdto") onetQsDto onetQsdto) {
 		ModelAndView mav = new ModelAndView("career");
 		OnetLogin onetLogin = (OnetLogin) request.getSession().getAttribute("onetLogin");
 		List<OnetQsAllResult> rsget = onetqsresultservice.displayallresult(onetLogin.getEmail());

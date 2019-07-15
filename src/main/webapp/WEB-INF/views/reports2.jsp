@@ -189,14 +189,14 @@
 								<thead style="background-color: #03a9f4;">
 									<tr>
 										<th><b>No</b></th>
-										<th><b>Test Title</b></th>
+										<th style="width: 20%"><b>Test Title</b></th>
 										<th><b>Sections</b></th>
-										<th><b>Sessions</b></th>
+										<th style="width: 5%"><b>Sessions</b></th>
 										<th><b>Passed </b></th>
 										<th><b>Average Score</b></th>
 										<th><b>Highest Score</b></th>
 										<th><b>Top 3</b></th>
-										<th><b>Contact</b></th>
+										<th style="width: 20%"><b>Contact</b></th>
 										<th><b>Basic Report</b></th>
 										<th><b>Full Reports</b></th>
 									</tr>

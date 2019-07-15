@@ -500,7 +500,6 @@ function charFromCode(code)
 																<table cellpadding="0" cellspacing="0" border="0"
 																	style="width: 240px">
 																	<c:forEach items="${rs}" var="rs">
-
 																		<tbody>
 																			<tr>
 																				<td id="cname${rs.area }" class="chart${rs.area }"

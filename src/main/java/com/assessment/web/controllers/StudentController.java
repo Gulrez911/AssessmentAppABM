@@ -2,16 +2,16 @@ package com.assessment.web.controllers;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.io.FileUtils;
@@ -37,6 +37,7 @@ import com.assessment.common.QuestionSequence;
 import com.assessment.common.SectionSequence;
 import com.assessment.common.util.EmailGenericMessageThread;
 import com.assessment.data.BeforeSbtChkQusAnsAttempt;
+//github.com/Gulrez911/AssessmentApp.git
 import com.assessment.data.FullStackOptions;
 import com.assessment.data.Question;
 import com.assessment.data.QuestionMapper;
@@ -45,12 +46,15 @@ import com.assessment.data.QuestionType;
 import com.assessment.data.Section;
 import com.assessment.data.SectionInstance;
 import com.assessment.data.Test;
+import com.assessment.data.UniqueUrl;
 import com.assessment.data.User;
 import com.assessment.data.UserNonCompliance;
 import com.assessment.data.UserTestSession;
 import com.assessment.eclipseche.config.response.WorkspaceResponse;
 import com.assessment.eclipseche.services.EclipseCheService;
 import com.assessment.repositories.QuestionMapperInstanceRepository;
+import com.assessment.repositories.UniqueUrlRepository;
+//github.com/Gulrez911/AssessmentApp.git
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionMapperInstanceService;
 import com.assessment.services.QuestionMapperService;
@@ -110,16 +114,45 @@ public class StudentController {
 	ReportsService reportsService;
 	@Autowired
 	QuestionMapperInstanceRepository questionMapperInstanceRep;
+	@Autowired
+	UniqueUrlRepository repo;
 
 	@RequestMapping(value = "/startTestSession", method = RequestMethod.GET)
 	public ModelAndView studentHome(@RequestParam(required = false) String sharedDirect,
 			@RequestParam(required = false) String inviteSent, @RequestParam String userId,
 			@RequestParam String companyId, @RequestParam String testId, HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response, @RequestParam(required = false) String urlid, HttpSession session2)
+			throws ParseException {
 		StudentTestForm studentTest = new StudentTestForm();
 		userId = decodeUserId((String) request.getParameter("userId"));
 		companyId = (String) request.getParameter("companyId");
 		ModelAndView model = new ModelAndView("intro2");
+//		
+		UniqueUrl uniqueUrl = new UniqueUrl();
+		try {
+			uniqueUrl = repo.findurl(testId, urlid);
+			session2.setAttribute("uemail", uniqueUrl.getEmail());
+			session2.setAttribute("utname", uniqueUrl.getTestName());
+			System.out.println("current date:  " + uniqueUrl.getUrlDate());
+			System.out.println("testing......" + uniqueUrl);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		Date currD = new Date();
+		SimpleDateFormat sdfo = new SimpleDateFormat("yyyy-MM-dd");
+		Date d1 = sdfo.parse(sdfo.format(currD));
+		currD = d1;
+		System.out.println("current date:  " + currD);
+		try {
+			if (uniqueUrl.getUrlDate().compareTo(currD) < 0) {
+				model.setViewName("expire");
+				return model;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+//	
 		SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
 		String time = localDateFormat.format(new Date());
 		studentTest.setCurrentTime(time);
@@ -364,6 +397,7 @@ public class StudentController {
 						&& questionInstanceDto.getFive() == false && questionInstanceDto.getSix() == false) {
 					noOfQuestionsNotAnswered++;
 				}
+				System.out.println("noOfQuestionsNotAnswered>>>>>>> " + noOfQuestionsNotAnswered);
 				// noOfQuestions++;
 			}
 			System.out.println("noOfQuestionsNotAnswered>>>>>>> " + noOfQuestionsNotAnswered);
@@ -1180,6 +1214,20 @@ public class StudentController {
 		html = html.replace("{NO_OF_NONCOMPLIANCES}",
 				"<b>(" + (nonCompliance == null ? 0 : nonCompliance.getNoOfNonCompliances()) + ")</b>");
 
+		html = html.replace("{NO_OF_NONCOMPLIANCES}",
+				"<b>(" + (nonCompliance == null ? 0 : nonCompliance.getNoOfNonCompliances()) + ")</b>");
+//
+		String utname = null;
+		String uemail = null;
+		try {
+			uemail = (String) request.getSession().getAttribute("uemail");
+			System.out.println("test email:::: " + uemail);
+			utname = (String) request.getSession().getAttribute("utname");
+			System.out.println("test name:::: " + utname);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+//		
 		if (test.getTestName().equals("General_Technology_Comprehensive")
 				|| test.getTestName().equals("Java_Technology_Behaviour_Experienced")
 				|| test.getTestName().equals("Java_Technology_Behaviour_Freshers")) {
@@ -1193,7 +1241,30 @@ public class StudentController {
 
 			Thread th = new Thread(client);
 			th.start();
-		} else if (test.getTestName().equalsIgnoreCase("Java Developer Infrasoft Intermediate 1.0 ")) {
+		}
+//		
+		else if (test.getTestName().equals(utname)) {
+			String file = reportsService.generatedetailedReportForCompositeTest(user.getCompanyId(), test.getTestName(),
+					user.getEmail());
+			String email = "";
+			if (user.getEmail().lastIndexOf("[") > 0) {
+				email = user.getEmail().substring(0, user.getEmail().lastIndexOf("["));
+			} else {
+				email = user.getEmail();
+			}
+			System.out.println("sender email..................................................." + uemail);
+			String cc[] = { uemail, email };
+			EmailGenericMessageThread client = new EmailGenericMessageThread(test.getCreatedBy(),
+					"Test Results for " + user.getFirstName() + " " + user.getLastName() + " for test- "
+							+ test.getTestName(),
+					html, email, propertyConfig, file,
+					user.getFirstName() + " " + user.getLastName() + "-" + test.getTestName());
+			client.setCcArray(cc);
+			Thread th = new Thread(client);
+			th.start();
+		}
+//		
+		else if (test.getTestName().equalsIgnoreCase("Java Developer Infrasoft Intermediate 1.0")) {
 			String file = reportsService.generatedetailedReportForCompositeTest(user.getCompanyId(), test.getTestName(),
 					user.getEmail());
 			String email = "";
@@ -1294,13 +1365,18 @@ public class StudentController {
 	@ResponseBody
 	public ResponseEntity<?> beforeSubmitTest(HttpServletRequest request,
 			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion, @RequestParam String questionId) {
-		List<SectionInstanceDto> sectionInstanceDtos = (List) request.getSession().getAttribute("sectionInstanceDtos");
+		System.out.println("..............." + questionId);
 		SectionInstanceDto currentSection = (SectionInstanceDto) request.getSession().getAttribute("currentSection");
-		setAnswers(request, currentSection, currentQuestion, questionId);
-		for (SectionInstanceDto sectionInstanceDto : sectionInstanceDtos) {
-			saveSection(sectionInstanceDto, request);
-
+		if (currentQuestion.getCode() != null) {
+			currentQuestion.setCode(currentQuestion.getCode().replaceAll("\r", ""));
+			String rep = "\\\\n";
+			String rept = "\\\\t";
+			currentQuestion.setCode(currentQuestion.getCode().replaceAll("\n", rep));
+			currentQuestion.setCode(currentQuestion.getCode().replaceAll("\t", rept));
 		}
+		setAnswers(request, currentSection, currentQuestion, questionId);
+		saveSection(currentSection, request);
+		List<SectionInstanceDto> sectionInstanceDtos = (List) request.getSession().getAttribute("sectionInstanceDtos");
 		System.out.println(currentSection.getSection().getSectionName());
 		System.out.println(currentSection.getNoOfQuestionsNotAnswered());
 		List<BeforeSbtChkQusAnsAttempt> ansAttempts = new ArrayList<BeforeSbtChkQusAnsAttempt>();

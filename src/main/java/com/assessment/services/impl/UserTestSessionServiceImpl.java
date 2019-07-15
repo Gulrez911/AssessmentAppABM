@@ -116,4 +116,8 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 	public List<AssessmentTestData> getAllResultsData(String companyId){
 		return userTestSessionRep.getAllResultsData(companyId);
 	}
+	 public UserTestSession findTestByEmail(String email)
+	  {
+	    return userTestSessionRep.findTestByEmail(email);
+	  }
 }

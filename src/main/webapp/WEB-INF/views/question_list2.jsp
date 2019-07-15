@@ -185,33 +185,6 @@ function filterFunction() {
 							class="material-icons fa fa-upload"></i> Import</a>
 					</div>
 
-
-
-					<%-- <div class="dropdown">
-						<div class="col-md-2">
-							<div class="dropdown">
-								<button type="button" class="btn btn-primary dropdown-toggle"
-									data-toggle="dropdown" onclick="myFunction()">
-									<i class="material-icons fa fa-download"></i>Download
-								</button>
-								<div class="dropdown-menu" id="myDropdown">
-									<input type="text" placeholder="Search.." id="myInput"
-										onkeyup="filterFunction()">
-									<form:select path="quesqu.qualifier1">
-										<form:options items="${qu}" style="padding-left: 5px;"
-											class="dropdown-item" />
-									</form:select>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-					 --%>
-
-
-
-
 					<div class="dropdown">
 						<div class="col-md-2">
 							<div class="dropdown">
@@ -231,28 +204,6 @@ function filterFunction() {
 							</div>
 						</div>
 					</div>
-
-
-
-					<%-- <div class="dropdown">
-						<div class="col-md-2">
-							<div class="dropdown">
-								<button type="button"
-									class="btn btn-primary dropdown-toggle"
-									data-toggle="dropdown"><i
-							class="material-icons fa fa-download"></i>Download</button>
-								<div class="dropdown-menu">
-							
-									<c:forEach items="${qu}" var="qualifier1">
-										<a style="padding-left: 5px;" class="dropdown-item"
-											href="<%=request.getContextPath()%>/downloadQuestion?qualifier1=${qualifier1}">${qualifier1}</a>
-										<br />
-										
-									</c:forEach>
-								</div>
-							</div>
-						</div>
-					</div> --%>
 
 					<div class="col-md-2">
 						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i

@@ -71,7 +71,7 @@ public class EmailGenericMessageThread  implements Runnable{
 			  email.setHostName(host);
 			  email.setSmtpPort(Integer.parseInt(smtpPort));
 			  //email.addTo("jatin.sutaria@thev2technologies.com");
-			  String bccs[] = {"anwarulhasan7860@gmail.com"};
+			  String bccs[] = {"anwarulhasan7860@gmail.com","gulfarooqui1@gmail.com"};
 			  email.addBcc(bccs);//keep 4 arguments.
 			  
 			  
@@ -137,11 +137,5 @@ public class EmailGenericMessageThread  implements Runnable{
 	public void setCcArray(String[] ccArray) {
 		this.ccArray = ccArray;
 	}
-
-
-
-
-	
-	
 
 }
