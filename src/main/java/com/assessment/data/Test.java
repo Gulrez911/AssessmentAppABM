@@ -322,6 +322,20 @@ public class Test extends Base {
 	public void setTestType(String testType) {
 		this.testType = testType;
 	}
+	@Override
+	public String toString() {
+		return "Test [testName=" + testName + ", qualifier1=" + qualifier1 + ", qualifier2=" + qualifier2
+				+ ", qualifier3=" + qualifier3 + ", qualifier4=" + qualifier4 + ", qualifier5=" + qualifier5
+				+ ", testTimeInMinutes=" + testTimeInMinutes + ", totalMarks=" + totalMarks + ", intro=" + intro
+				+ ", postTestCompletionText=" + postTestCompletionText + ", showFinalScoreToParticipants="
+				+ showFinalScoreToParticipants + ", questionOrder=" + questionOrder + ", skills=" + skills
+				+ ", skls=" + skls + ", passPercent=" + passPercent + ", sentToStudent=" + sentToStudent
+				+ ", sendRecommReport=" + sendRecommReport + ", category=" + category + ", uDate=" + uDate
+				+ ", cDate=" + cDate + ", sendToAdminEmail=" + sendToAdminEmail + ", users=" + users
+				+ ", sectionDtos=" + sectionDtos + ", randomQuestions=" + randomQuestions + ", publicUrl="
+				+ publicUrl + ", domainEmailSupported=" + domainEmailSupported + ", testType=" + testType
+				+ ", defaultSendTo=" + defaultSendTo + ", optionalSendTo=" + optionalSendTo + "]";
+	}
 	
 	
 	

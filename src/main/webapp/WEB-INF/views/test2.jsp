@@ -306,9 +306,17 @@ body * {
 	margin-top: 20px;
 }
 
-.next {
-	float: right;
+/* .next {
+  position: fixed;
+  top: 75%;
+  float: right;
+  margin-left: 1500px; 
 }
+
+#back{
+ position: fixed;
+  top: 75%;
+} */
 
 .border-tab.primary-nav .nav-tabs>li.active>a, .border-tab.primary-nav .nav-tabs.nav-justified>li.active>a
 	{
@@ -327,7 +335,6 @@ body * {
 </style>
 </head>
 <body id="top" class="has-header-search" onload="setTimeOnLoad()">
-
 	<form:form id="testForm" name="testForm" method="POST"
 		modelAttribute="currentQuestion">
 		<!--header start-->
@@ -363,6 +370,7 @@ body * {
 		<div class="promo-box gray-bg border-box">
 			<div class="container">
 				<div class="col-md-12">
+				<div class="col-md-8">
 					<div class="promo-info">
 						<img
 							src="<%=request.getContextPath()%>/resources/assets/images/testimage.png"
@@ -371,238 +379,198 @@ body * {
 							style="color: #000 !important;">${studentTestForm.testName}</h2>
 						<span class="white-text text-uppercase"
 							style="color: #000 !important;">Assessment</span>
+									
 					</div>
+		
+					
+					</div>
+				<div class="col-md-4" style="padding-left: 345px">
 					<div class="promo-btn">
 						<div class="durationinfo" style="font-size: 20px;">
-							<span><i class="fa fa-clock-o" style="font-size: 25px;"></i>
-								<span class="time" id="timer"><i id="hours"></i><sub>h</sub><i
-									id="min"></i><sub> min</sub><i id="sec"></i> <sub> sec</sub></span>
+							<span class="time" id="timer" style="vertical-align: ;"><i id="hours"></i><sub>H</sub><i
+									id="min"></i><sub> Min</sub><i id="sec"></i> <sub> Sec</sub></span>
+									
 						</div>
-					</div>
+				</div>
+							<video autoplay="true" id="videoElement" style="width:85px; height:85px; "></video>
+				</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="border-tab primary-nav mb-50">
-			<ul class="nav nav-tabs nav-justified hidden-xs">
-				<c:forEach var="sectionInstance" varStatus="status"
-					items="${sectionInstanceDtos}">
-					<li ${sectionInstance.style}
-						onclick="javascript:changeSection('${sectionInstance.section.sectionName}');"><a>${sectionInstance.section.sectionName}</a>
-					</li>
+			<div class="border-tab primary-nav mb-50">
+				<ul class="nav nav-tabs nav-justified hidden-xs">
+					<!-- <li class="active"><a href="javascript:void(0);" id="section1"
+					class="waves-effect waves-light">Basic</a></li>
+				<li class=""><a href="javascript:void(0);" id="section2"
+					class="waves-effect waves-light">Spring</a></li>
+				<li class=""><a href="javascript:void(0);" id="section3"
+					class="waves-effect waves-light">Coding</a></li>
+				<li class=""><a href="javascript:void(0);" id="section4"
+					class="waves-effect waves-light">Hibernate</a></li> -->
+					<c:forEach var="sectionInstance" varStatus="status"
+						items="${sectionInstanceDtos}">
+						<li ${sectionInstance.style}
+							onclick="javascript:changeSection('${sectionInstance.section.sectionName}');"><a>${sectionInstance.section.sectionName}</a>
+						</li>
 
-				</c:forEach>
-			</ul>
-		</div>
+					</c:forEach>
+				</ul>
+			</div>
 
 
-		<div class="section">
-			<div class="container">
-				<div class="col-md-12">
-					<div class="queanscenter" id="section1_content">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="progress-section">
-									<span class="progress-title">${noAnswered} of
-										${totalQuestions} answered</span> <label></label>
-									<div class="progress">
-										<div
-											class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
-											role="progressbar" aria-valuenow="${percentage}%"
-											aria-valuemin="0" aria-valuemax="100"
-											style="width: ${percentage}%;">
-											<span style="color: #0d0d0d">${percentage}%</span>
+			<div class="section">
+				<div class="container">
+					<div class="col-md-12">
+						<div class="queanscenter" id="section1_content">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="progress-section">
+										<span class="progress-title">${noAnswered} of
+											${totalQuestions} answered</span> <label></label>
+										<div class="progress">
+											<div
+												class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
+												role="progressbar" aria-valuenow="${percentage}%"
+												aria-valuemin="0" aria-valuemax="100"
+												style="width: ${percentage}%;">
+												<span style="color: #0d0d0d">${percentage}%</span>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<c:choose>
-							<c:when
-								test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='MCQ' || currentQuestion.questionMapperInstance.questionMapper.question.type ==null}">
-
+							<c:choose>
+								<c:when
+									test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='MCQ' || currentQuestion.questionMapperInstance.questionMapper.question.type ==null}">
 
 
-								<section class="padding-bottom-50">
-									<div class="container">
-										<div class="row equal-height-row">
-											<div class="col-md-8 mt-50">
-												<div class="valign-wrapper equal-height-column">
-													<div class="hero-intro valign-cell">
-														<div class="queno">
-															<span>${currentQuestion.position}</span>
-														</div>
-														<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>
-														&nbsp; &nbsp; &nbsp;
-														<c:if
-															test="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
-															<img
-																src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}"
-																height="400" width="500">
-														</c:if>
 
-														<c:if
-															test="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
+									<section class="padding-bottom-50">
+										<div class="container">
+											<div class="row equal-height-row">
+												<div class="col-md-8 mt-50">
+													<div class="valign-wrapper equal-height-column">
+														<div class="hero-intro valign-cell">
+															<div class="queno">
+																<span>${currentQuestion.position}</span>
+															</div>
+															<h3 class="qname">${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</h3>
+															&nbsp; &nbsp; &nbsp;
+															<c:if
+																test="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
+																<img
+																	src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}"
+																	height="400" width="500">
+															</c:if>
+
+															<c:if
+																test="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
 							   &nbsp; &nbsp; &nbsp;  <audio controls
-																src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
-																Your browser does not support the
-																<code>audio</code>
-																element.
-															</audio>
+																	src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
+																	Your browser does not support the
+																	<code>audio</code>
+																	element.
+																</audio>
 
-														</c:if>
+															</c:if>
 
-														<c:if
-															test="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
+															<c:if
+																test="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
 								&nbsp; &nbsp; &nbsp; <video width="400" height="300" controls>
-																<source
-																	src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}">
+																	<source
+																		src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}">
 
-																Your browser does not support the video tag.
-															</video>
-														</c:if>
+																	Your browser does not support the video tag.
+																</video>
+															</c:if>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 hero-thumb equal-height-column">
+													<div class="col-md-12">
+														<ul>
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice1.trim().length() == 0? 'display: none;':'clear:left; font-size: 14px;'}">
+																<%-- 																																<form:checkbox path="one" label="" /> --%>
+																<!-- 																																																																																																<input id="one1_1" name="one" type="checkbox" value="true"> -->
+																<%-- 																																<label><form:checkbox path="one" label=""/></label> --%>
+																<label for="one1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																	<form:checkbox path="one" label="" id="one1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice1}
+															</label> <input type="hidden" name="_one_1" value="on">
+															</li>
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice2 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice2.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+																<%-- 																																<form:checkbox path="two" />  --%>
+																<!-- 																																																																<input id="two1_1" name="two" type="checkbox" value="true"> -->
+																<label for="two1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																	<form:checkbox path="two" label="" id="two1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice2}
+															</label>
+															</li>
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice3 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice3.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+																<!-- 																																																																<input id="three1_1" name="three" type="checkbox" value="true"> -->
+																<%-- 																																																																<form:checkbox path="three" /> --%>
+																<label for="three1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																	<form:checkbox path="three" label="" id="three1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice3}
+															</label>
+															</li>
+
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice4 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice4.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+																<%-- 																																<form:checkbox path="four" /> --%>
+																<!-- 																																																																<input id="four1_1" name="four" type="checkbox" value="true"> -->
+																<label for="four1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																	<form:checkbox path="four" label="" id="four1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice4}
+															</label>
+															</li>
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice5 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice5.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+																<label for="five1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox
+																		path="five" label="" id="five1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice5}</label>
+															</li>
+															<li
+																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice6 == null || 
+
+			currentQuestion.questionMapperInstance.questionMapper.question.choice6.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
+																<label for="six1_1"
+																style="font-size: 15px; font-weight: normal; color: #0d0d0d">
+																	<form:checkbox path="six" label=" " id="six1_1" />
+																	${currentQuestion.questionMapperInstance.questionMapper.question.choice6}
+															</label>
+															</li>
+														</ul>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-4 hero-thumb equal-height-column">
-												<div class="col-md-12">
-													<ul>
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice1.trim().length() == 0? 'display: none;':'clear:left; font-size: 14px;'}">
-															<%-- 																																<form:checkbox path="one" label="" /> --%>
-															<!-- 																																																																																																<input id="one1_1" name="one" type="checkbox" value="true"> -->
-															<%-- 																																<label><form:checkbox path="one" label=""/></label> --%>
-															<label for="one1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d">
-																<form:checkbox path="one" label="" id="one1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice1}
-														</label> <input type="hidden" name="_one_1" value="on">
-														</li>
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice2 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice2.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-															<%-- 																																<form:checkbox path="two" />  --%>
-															<!-- 																																																																<input id="two1_1" name="two" type="checkbox" value="true"> -->
-															<label for="two1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d">
-																<form:checkbox path="two" label="" id="two1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice2}
-														</label>
-														</li>
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice3 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice3.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-															<!-- 																																																																<input id="three1_1" name="three" type="checkbox" value="true"> -->
-															<%-- 																																																																<form:checkbox path="three" /> --%>
-															<label for="three1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d">
-																<form:checkbox path="three" label="" id="three1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice3}
-														</label>
-														</li>
-
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice4 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice4.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-															<%-- 																																<form:checkbox path="four" /> --%>
-															<!-- 																																																																<input id="four1_1" name="four" type="checkbox" value="true"> -->
-															<label for="four1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d">
-																<form:checkbox path="four" label="" id="four1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice4}
-														</label>
-														</li>
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice5 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice5.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-															<label for="five1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d"><form:checkbox
-																	path="five" label="" id="five1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice5}</label>
-														</li>
-														<li
-															style="${currentQuestion.questionMapperInstance.questionMapper.question.choice6 == null || 
-
-			currentQuestion.questionMapperInstance.questionMapper.question.choice6.trim().length() == 0? 'display: none;':'clear:left;font-size: 14px;'}">
-															<label for="six1_1"
-															style="font-size: 15px; font-weight: normal; color: #0d0d0d">
-																<form:checkbox path="six" label=" " id="six1_1" />
-																${currentQuestion.questionMapperInstance.questionMapper.question.choice6}
-														</label>
-														</li>
-													</ul>
-												</div>
-											</div>
 										</div>
-									</div>
-								</section>
-							</c:when>
-							<c:when
-								test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='CODING'}">
+									</section>
+								</c:when>
+								<c:when
+									test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='CODING'}">
 
 
-								<!--Code for coding Q -->
-								<div class="col-md-12">
-									<div class="col-md-7 leftside">
-										<b>${currentQuestion.questionMapperInstance.questionMapper.question.qualifier1}
-											${currentQuestion.questionMapperInstance.questionMapper.question.qualifier2}
-											${currentQuestion.questionMapperInstance.questionMapper.question.qualifier3}
-											${currentQuestion.questionMapperInstance.questionMapper.question.qualifier4}
-											${currentQuestion.questionMapperInstance.questionMapper.question.qualifier5}</b>
-										<a class="runcode" href="javascript:runCodeSystemTestCase();">Run
-											System Test Case </a> <a class="runcode"
-											href="javascript:runCode();">Run Code</a> <label>Code</label>
-
-										<%-- 																						<form:textarea id="editor" path="code" wrap="physical" /> --%>
-										<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
-										<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
-										<form:textarea id="editor" path="code" wrap="physical" />
-										<input type="hidden" id="codeOfEditor" name="code"
-											value="3487" /> <label>Input</label>
-										<form:textarea path="input" style="height:30px" id="input"
-											placeholder="Enter input" />
-
-										<label>Output</label>
-										<form:textarea style="overflow-y: scroll" path="output"
-											id="output" disabled="true" />
-									</div>
-									<div class="col-md-5 rightside">
-										<div class="description">
-											<label>DESCRIPTION</label>
-											<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
-											<code> Update code in Code Editor </code>
-											<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
-											<h4>Constraint</h4>
-											<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
-
-											<h4>Input</h4>
-											<code>
-												${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}
-											</code>
-
-											<h4>Output</h4>
-											<code>
-												${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}
-											</code>
-
-										</div>
-									</div>
-								</div>
-							</c:when>
-							<c:when
-								test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='FULL_STACK_JAVA'}">
-
-
-
-								<div class="queanscenter" id="section3_content">
-
+									<!--Code for coding Q -->
 									<div class="col-md-12">
 										<div class="col-md-7 leftside">
 											<b>${currentQuestion.questionMapperInstance.questionMapper.question.qualifier1}
@@ -610,152 +578,356 @@ body * {
 												${currentQuestion.questionMapperInstance.questionMapper.question.qualifier3}
 												${currentQuestion.questionMapperInstance.questionMapper.question.qualifier4}
 												${currentQuestion.questionMapperInstance.questionMapper.question.qualifier5}</b>
-											&nbsp; &nbsp; &nbsp;
-											<c:if
-												test="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
-												<img
-													src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}"
-													height="400" width="500">
-											</c:if>
+											<a class="runcode" href="javascript:runCodeSystemTestCase();">Run
+												System Test Case </a> <a class="runcode"
+												href="javascript:runCode();">Run Code</a> <label>Code</label>
 
-											<c:if
-												test="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
-							   &nbsp; &nbsp; &nbsp;  <audio controls
-													src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
-													Your browser does not support the
-													<code>audio</code>
-													element.
-												</audio>
+											<%-- 																						<form:textarea id="editor" path="code" wrap="physical" /> --%>
+											<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
+											<%-- 																						<form:hidden path="code" id="codeOfEditor" wrap="physical" /> --%>
+											<form:textarea id="editor" path="code" wrap="physical" />
+											<input type="hidden" id="codeOfEditor" name="code"
+												value="3487" /> <label>Input</label>
+											<form:textarea path="input" style="height:30px" id="input"
+												placeholder="Enter input" />
 
-											</c:if>
-
-											<c:if
-												test="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
-								&nbsp; &nbsp; &nbsp; <video width="400" height="300" controls>
-													<source
-														src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}">
-
-													Your browser does not support the video tag.
-												</video>
-											</c:if>
-
-											<br /> <label>Click to Open</label> <a
-												href="javascript:showAndNavigate();">Open Project
-												Documentation Template</a> <br /> <label>Click to Open</label>
-											<a
-												href="${currentQuestion.questionMapperInstance.workspaceUrl}"
-												target="_blank">Open Code IDE in new Window</a> <br /> <label>Upload
-												Project Documentation</label> <a class="addimage" href="#">Upload
-												Documentation</a> <input type="file" name="addimage"
-												id="addimage" style="display: none;"> <label
-												class="queimage"></label> <br /> <a class="runcode"
-												href="javascript:confirmWorkspace('${currentQuestion.questionMapperInstance.id}');">Submit
-												my Workspace </a>
+											<label>Output</label>
+											<form:textarea style="overflow-y: scroll" path="output"
+												id="output" disabled="true" />
 										</div>
 										<div class="col-md-5 rightside">
 											<div class="description">
 												<label>DESCRIPTION</label>
 												<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
-												<code> Click on 'Open Code IDE..' to start coding. </code>
+												<code> Update code in Code Editor </code>
 												<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
 												<h4>Constraint</h4>
 												<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
 
+												<h4>Input</h4>
+												<code>
+													${currentQuestion.questionMapperInstance.questionMapper.question.hiddenInputPositive}
+												</code>
 
+												<h4>Output</h4>
+												<code>
+													${currentQuestion.questionMapperInstance.questionMapper.question.hiddenOutputPositive}
+												</code>
 
 											</div>
 										</div>
 									</div>
-
-								</div>
-
-
-							</c:when>
-						</c:choose>
-
-					</div>
+								</c:when>
+								<c:when
+									test="${currentQuestion.questionMapperInstance.questionMapper.question.type=='FULL_STACK_JAVA'}">
 
 
-					<div class="queanscenter" id="section2_content"
-						style="display: none;">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="progress-section">
-									<span class="progress-title">${noAnswered} of
-										${totalQuestions} answered</span>
-									<div class="progress">
-										<div
-											class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
-											role="progressbar" aria-valuenow="65" aria-valuemin="0"
-											aria-valuemax="100" style="width: ${percentage}%;">
-											<span>${percentage}%</span>
+
+									<div class="queanscenter" id="section3_content">
+
+										<div class="col-md-12">
+											<div class="col-md-7 leftside">
+												<b>${currentQuestion.questionMapperInstance.questionMapper.question.qualifier1}
+													${currentQuestion.questionMapperInstance.questionMapper.question.qualifier2}
+													${currentQuestion.questionMapperInstance.questionMapper.question.qualifier3}
+													${currentQuestion.questionMapperInstance.questionMapper.question.qualifier4}
+													${currentQuestion.questionMapperInstance.questionMapper.question.qualifier5}</b>
+												&nbsp; &nbsp; &nbsp;
+												<c:if
+													test="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl != null && currentQuestion.questionMapperInstance.questionMapper.question.imageUrl.trim().length() > 0}">
+													<img
+														src="${currentQuestion.questionMapperInstance.questionMapper.question.imageUrl}"
+														height="400" width="500">
+												</c:if>
+
+												<c:if
+													test="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL != null && currentQuestion.questionMapperInstance.questionMapper.question.audioURL.trim().length() > 0}">
+							   &nbsp; &nbsp; &nbsp;  <audio controls
+														src="${currentQuestion.questionMapperInstance.questionMapper.question.audioURL}">
+														Your browser does not support the
+														<code>audio</code>
+														element.
+													</audio>
+
+												</c:if>
+
+												<c:if
+													test="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL != null && currentQuestion.questionMapperInstance.questionMapper.question.videoURL.trim().length() > 0}">
+								&nbsp; &nbsp; &nbsp; <video width="400" height="300" controls>
+														<source
+															src="${currentQuestion.questionMapperInstance.questionMapper.question.videoURL}">
+
+														Your browser does not support the video tag.
+													</video>
+												</c:if>
+
+												<br /> <label>Click to Open</label> <a
+													href="javascript:showAndNavigate();">Open Project
+													Documentation Template</a> <br /> <label>Click to Open</label>
+												<a
+													href="${currentQuestion.questionMapperInstance.workspaceUrl}"
+													target="_blank">Open Code IDE in new Window</a> <br /> <label>Upload
+													Project Documentation</label> <a class="addimage" href="#">Upload
+													Documentation</a> <input type="file" name="addimage"
+													id="addimage" style="display: none;"> <label
+													class="queimage"></label> <br /> <a class="runcode"
+													href="javascript:confirmWorkspace('${currentQuestion.questionMapperInstance.id}');">Submit
+													my Workspace </a>
+											</div>
+											<div class="col-md-5 rightside">
+												<div class="description">
+													<label>DESCRIPTION</label>
+													<p>${currentQuestion.questionMapperInstance.questionMapper.question.questionText}</p>
+													<code> Click on 'Open Code IDE..' to start coding. </code>
+													<p>${currentQuestion.questionMapperInstance.questionMapper.question.instructionsIfAny}</p>
+													<h4>Constraint</h4>
+													<p>${currentQuestion.questionMapperInstance.questionMapper.question.constrnt}</p>
+
+
+
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+
+								</c:when>
+							</c:choose>
+
+						</div>
+
+
+						<div class="queanscenter" id="section2_content"
+							style="display: none;">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="progress-section">
+										<span class="progress-title">${noAnswered} of
+											${totalQuestions} answered</span>
+										<div class="progress">
+											<div
+												class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
+												role="progressbar" aria-valuenow="65" aria-valuemin="0"
+												aria-valuemax="100" style="width: ${percentage}%;">
+												<span>${percentage}%</span>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<section class="padding-bottom-50">
+								<div class="container">
+									<div class="row equal-height-row">
+										<div class="col-md-8 mt-50">
+											<div class="valign-wrapper equal-height-column">
+												<div class="hero-intro valign-cell">
+													<span class="queno">1</span>
+													<p>Datastrutures - The searching technique that takes O
+														(1) time to find a data is ?</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4 hero-thumb equal-height-column">
+											<div class="col-md-12">
+												<div class="input-field">
+													<input id="one1_2" name="one_2" type="checkbox"
+														value="true"> <label for="one1_2"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Linear Search</label> <input type="hidden" name="_one_2"
+														value="on">
+												</div>
+												<div class="input-field">
+													<input id="two1_2" name="two_2" type="checkbox"
+														value="true"> <label for="two1_2"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Binary Search</label> <input type="hidden" name="_two_2"
+														value="on">
+												</div>
+												<div class="input-field">
+													<input id="three1_2" name="three_2" type="checkbox"
+														value="true"> <label for="three1_2"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Hashing</label> <input type="hidden" name="_three_2" value="on">
+												</div>
+												<div class="input-field">
+													<input id="four1_2" name="four_2" type="checkbox"
+														value="true"> <label for="four1_2"
+														style="font-size: 15px; font-weight: normal;">Tree
+														Search</label> <input type="hidden" name="_four_2" value="on">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
 						</div>
-						 
-					</div>
 
-					<div class="queanscenter" id="section3_content"
-						style="display: none;">
-						<div class="col-md-12">
-							<div class="col-md-7 leftside">
-								<div class="col-md-4" style="padding-left: 0;">
+						<div class="queanscenter" id="section3_content"
+							style="display: none;">
+							<div class="col-md-12">
+								<div class="col-md-7 leftside">
+									<div class="col-md-4" style="padding-left: 0;">
+										<h3>
+											<b>Coding_Java</b>
+										</h3>
+									</div>
+									<div class="col-md-8 mb-50">
+										<a class="runcode waves-effect waves-light btn submit-button"
+											href="javascript:runCode();">Run Code</a> <a
+											class="runcode waves-effect waves-light btn submit-button"
+											href="javascript:runCodeSystemTestCase();">Run System
+											Test Case </a>
+									</div>
+
 									<h3>
-										<b>Coding_Java</b>
+										<b>Code</b>
 									</h3>
+									<textarea></textarea>
+
+									<h3>
+										<b>Input</b>
+									</h3>
+									<textarea></textarea>
+
+									<h3>
+										<b>Output</b>
+									</h3>
+									<textarea></textarea>
 								</div>
-								<div class="col-md-8 mb-50">
-									<a class="runcode waves-effect waves-light btn submit-button"
-										href="javascript:runCode();">Run Code</a> <a
-										class="runcode waves-effect waves-light btn submit-button"
-										href="javascript:runCodeSystemTestCase();">Run System Test
-										Case </a>
+								<div class="col-md-5 rightside">
+									<div class="description">
+										<h3>DESCRIPTION</h3>
+										<p>Jack's school teacher gave him an assignment to write a
+											java program which calculates the area of a convex
+											quadrilateral is described by the co-ordinates of four
+											2-dimensional points:</p>
+										<code> class Point: data field: X: integer variable
+											denoting the x co-ordinate of </code>
+										<p>Your task is to create a class named Quadrilateral
+											which should be a subclass of triangle. The description is
+											given below.</p>
+										<h4>Constraint</h4>
+										<p>Your task is to create a class named Quadrilateral
+											which should be a subclass of triangle. The description is
+											given below.</p>
+
+										<h4>Input</h4>
+										<code> Your task is to create a class named
+											Quadrilateral which should be a subclass of triangle. The
+											description is given. </code>
+
+										<h4>Output</h4>
+										<code> Your task is to create a class named
+											Quadrilateral which should be a subclass of triangle. The
+											description is given. </code>
+										<h4>Execution Time Limit</h4>
+										<p>10 Seconds</p>
+									</div>
 								</div>
-
-								<h3>
-									<b>Code</b>
-								</h3>
-								<textarea></textarea>
-
-								<h3>
-									<b>Input</b>
-								</h3>
-								<textarea></textarea>
-
-								<h3>
-									<b>Output</b>
-								</h3>
-								<textarea></textarea>
 							</div>
-							 
 						</div>
+
+
+						<div class="queanscenter" id="section4_content"
+							style="display: none;">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="progress-section">
+										<span class="progress-title">0 of 42 Answered</span>
+										<div class="progress">
+											<div
+												class="progress-bar brand-bg progress-dot six-sec-ease-in-out"
+												role="progressbar" aria-valuenow="65" aria-valuemin="0"
+												aria-valuemax="100" style="width: 90%;">
+												<span>65%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<section class="padding-bottom-50">
+								<div class="container">
+									<div class="row equal-height-row">
+										<div class="col-md-8 mt-50">
+											<div class="valign-wrapper equal-height-column">
+												<div class="hero-intro valign-cell">
+													<span class="queno">1</span>
+													<p>Datastrutures - The searching technique that takes O
+														(1) time to find a data is ?</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4 hero-thumb equal-height-column">
+											<div class="col-md-12">
+												<div class="input-field">
+													<input id="one1_3" name="one_3" type="checkbox"
+														value="true"> <label for="one1_3"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Linear Search</label> <input type="hidden" name="_one_3"
+														value="on">
+												</div>
+												<div class="input-field">
+													<input id="two1_3" name="two_3" type="checkbox"
+														value="true"> <label for="two1_3"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Binary Search</label> <input type="hidden" name="_two_3"
+														value="on">
+												</div>
+												<div class="input-field">
+													<input id="three1_3" name="three_3" type="checkbox"
+														value="true"> <label for="three1_3"
+														style="font-size: 15px; font-weight: normal;">Ideally
+														Hashing</label> <input type="hidden" name="_three_3" value="on">
+												</div>
+												<div class="input-field">
+													<input id="four1_3" name="four_3" type="checkbox"
+														value="true"> <label for="four1_3"
+														style="font-size: 15px; font-weight: normal;">Tree
+														Search</label> <input type="hidden" name="_four_3" value="on">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+
+
+						<!-- 																								<a class="back waves-effect waves-light btn submit-button mt-30" -->
+						<!-- 																										href="javascript:prev();">Back</a> <a -->
+						<!-- 																										class="next waves-effect waves-light btn submit-button mt-30" -->
+						<!-- 																										href="javascript:next();" id="next">Next</a> -->
+
+
+
+
+
+						<c:choose>
+							<c:when test="${currentSection.first==true}">
+							</c:when>
+							<c:otherwise>
+								<a class="back waves-effect waves-light btn submit-button mt-30"
+									href="javascript:prev();" id="back">Back</a>
+								<!-- 																<i class="fa fa-long-arrow-left"></i> -->
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${currentSection.last==true}">
+								<a href="javascript:submitTestCheckNoAnswer();"
+									class="next waves-effect waves-light btn submit-button mt-30"
+									id="next">SUBMIT TEST</a>
+							</c:when>
+							<c:otherwise>
+								<a class="next waves-effect waves-light btn submit-button mt-30"
+									href="javascript:next();" id="next">Next</a>
+								<!-- 																<i class="fa fa-long-arrow-right"></i> -->
+							</c:otherwise>
+						</c:choose>
+
 					</div>
-
-					<c:choose>
-						<c:when test="${currentSection.first==true}">
-						</c:when>
-						<c:otherwise>
-							<a class="back waves-effect waves-light btn submit-button mt-30"
-								href="javascript:prev();">Back</a>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${currentSection.last==true}">
-							<a href="javascript:showAttemptModal();"
-								class="next waves-effect waves-light btn submit-button mt-30">FINISH</a>
-
-						</c:when>
-						<c:otherwise>
-							<a class="next waves-effect waves-light btn submit-button mt-30"
-								href="javascript:next();" id="next">Next</a>
-						</c:otherwise>
-					</c:choose>
-
 				</div>
 			</div>
-		</div>
 	</form:form>
 
 	<footer class="footer footer-four">
@@ -766,95 +938,47 @@ body * {
 			</div>
 		</div>
 	</footer>
-	<div id="attemptModel" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Attempt Information</h4>
-				</div>
-				<div class="modal-body">
-					<table class="table" id="attemptbl">
-						<thead>
-							<tr>
-								<th>Section</th>
-								<th>Not Attempted</th>
-								<th>No of Questions</th>
-							</tr>
-						</thead>
-						<tbody id="attmModl">
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button"
-						class="close,next waves-effect waves-light btn submit-button mt-30"
-						data-dismiss="modal">Close</button>
-					<a href="javascript:submitTest();"
-						class="next waves-effect waves-light btn submit-button mt-30"
-						id="next">SUBMIT TEST</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!-- jQuery -->
 
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
-		var="mainJs1" />
+	<%-- <spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
 	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
-		var="mainJs2" />
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
 	<script src="${mainJs2}"></script>
-	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
-		var="mainJs3" />
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
 	<script src="${mainJs3}"></script>
 	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
 	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
-		var="mainJs5" />
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
 	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js"
-		var="mainJs6" />
+	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
 	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
-		var="mainJs7" />
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
 	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js"
-		var="mainJs8" />
+	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
 	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
-		var="mainJs9" />
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
 	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js"
-		var="mainJs10" />
+	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
 	<script src="${mainJs10}"></script>
-	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
-		var="mainJs11" />
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js" var="mainJs11" />
 	<script src="${mainJs11}"></script>
-	<spring:url
-		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
-		var="mainJs12" />
+	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js" var="mainJs12" />
 	<script src="${mainJs12}"></script>
-	<spring:url
-		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
-		var="mainJs13" />
+	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js" var="mainJs13" />
 	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js"
-		var="mainJs14" />
+	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
 	<script src="${mainJs14}"></script>
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
 	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
 	<script src="${mainJs16}"></script>
-	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
-		var="mainJs17" />
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 	<script src="${mainJs17}"></script>
-	<spring:url value="/resources/scripts/src-min-noconflict/ace.js"
-		var="mainJs18" />
+	<spring:url value="/resources/scripts/src-min-noconflict/ace.js" var="mainJs18" />
 	<script src="${mainJs18}"></script>
 	<spring:url value="/resources/scripts/html2canvas.js" var="mainJs19" />
-	<script src="${mainJs19}"></script>
+	<script src="${mainJs19}"></script> --%>
 
 	<script>
 	    var editor = ace.edit("editor");
@@ -1078,7 +1202,6 @@ body * {
 	
 	function next(){
 	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
-	//alert(qType );
 	if(qType == 'CODING'){
 		var textarea = document.getElementById('codeOfEditor');
  		edt = editor.getSession().getValue();
@@ -1088,12 +1211,10 @@ body * {
 //edt.value = editor.getSession().getValue();
 	var linktext=document.getElementById('next').text;
 		if(linktext == 'Finish Test'){
-			next();
-			//submitTest();
+		submitTest();
 		}
 		else{
 		document.testForm.action = "nextQuestion?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
-		//alert(document.testForm.action );
 		storeTimeLocal();
 	 document.testForm.submit();
 		}
@@ -1123,36 +1244,66 @@ body * {
 	//var textarea = document.getElementById('codeOfEditor');
 	//edt = editor.getSession().getValue();
 	//textarea.value = edt;
-	//use confirm box
 	document.testForm.action = "submitTest?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}&timeCounter="+timeCounter;
 	resetTimeLocal();
 	//modal.style.display = "block";
 	//document.getElementById("showAlert").innerHTML = 'You have exceeded your time limit to complete the test. The test will auto submit in a moment...';
-		
-		document.testForm.submit();
-		submitTest = 'true';
+	document.testForm.submit();
+	submitTest = 'true';
+	
 	}
 
-	function showAttemptModal(){
-		$.ajax({
-			type : 'GET',
-			url : 'beforeSubmitTest?questionId=${currentQuestion.questionMapperInstance.questionMapper.id}',
-			contentType: "application/json; charset=utf-8",
-			success : function(data) {
-				 $('#attemptbl tbody').find("tr").remove();
-				var row="";
-				for(var i=0;i<data.length;i++){
-					row += "<tr><td>"+data[i]['section']+"</td><td>"+data[i]['notAttempt']+"</td><td>"+data[i]['setNoOffQuestion']+"</td></tr>";
-				}
-				 $('#attemptbl tbody').append(row);
-				 $('#attemptModel').modal('show');
-			},
-			error : function(e) {
-				console.log("ERROR: ", e);
+	function submitTestCheckNoAnswer(){
+		var uanswered = '${totalQuestions - (noAnswered+1)}';
+			if(uanswered == '0'||uanswered=='-1'){
+
+				(new PNotify({
+			    title: 'Confirmation Needed',
+			    text: 'Are you sure you want to submit the test?',
+			    icon: 'glyphicon glyphicon-question-sign',
+			    hide: false,
+			    confirm: {
+				confirm: true
+			    },
+			    buttons: {
+				closer: true,
+				sticker: true
+			    },
+			    history: {
+				history: false
+			    }
+			})).get().on('pnotify.confirm', function() {
+			   submitTest();
+			}).on('pnotify.cancel', function() {
+			   
+			});
+			}
+			else{
+				(new PNotify({
+			    title: 'Confirmation Needed',
+			    text: 'Are you sure you want to submit the test? You still have unanswered Questions?',
+			    icon: 'glyphicon glyphicon-question-sign',
+			    hide: false,
+			    confirm: {
+				confirm: true
+			    },
+			    buttons: {
+				closer: true,
+				sticker: true
+			    },
+			    history: {
+				history: false
+			    }
+			})).get().on('pnotify.confirm', function() {
+			   submitTest();
+			}).on('pnotify.cancel', function() {
+			   
+			});
 				
 			}
-		});
-	}
+			
+		}
+	
 	function storeTimeLocal(){
 	localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'yes');
 	localStorage.setItem('testName-${studentTestForm.firstName}${studentTestForm.lastName}', '${studentTestForm.firstName}${studentTestForm.lastName}-'+
@@ -1324,6 +1475,19 @@ body * {
     			});
 		});
 	</script>
+<script>
+var video = document.querySelector("#videoElement");
 
+if (navigator.mediaDevices.getUserMedia) {
+	
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+</script>
 </body>
 </html>

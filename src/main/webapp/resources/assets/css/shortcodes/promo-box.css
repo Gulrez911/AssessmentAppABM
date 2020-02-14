@@ -68,10 +68,12 @@ Promo Box
 
 .promo-btn {
     position: absolute;
-    right: 40px;
-    top: 50%;
+    right: 20px;
+    top: 51%;
     margin-top: -25px;
+    margin-right: 60px;
 }
+
 
 @media screen and (max-width: 767px) {
     .promo-btn {

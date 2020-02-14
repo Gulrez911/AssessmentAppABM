@@ -15,12 +15,16 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	UserTestSession findByPrimaryKey(@Param("user") String user, @Param("testName") String testName,
 			@Param("companyId") String companyId);
 
-	@Query("SELECT " + "    new com.assessment.reports.manager.AssessmentTestData(u.percentageMarksRecieved, u.testName, u.user, u.noOfAttempts, u.pass, u.sectionResults, u.companyId, u.testInviteSent, u.sharedDirect, u.sectionsNoOfQuestionsNotAnswered, u.createDate, u.updateDate) "
+	@Query("SELECT " + "    new com.assessment.reports.manager.AssessmentTestData(u.percentageMarksRecieved,"
+			+ " u.testName, u.user, u.noOfAttempts, u.pass, u.sectionResults, u.companyId, u.testInviteSent,"
+			+ " u.sharedDirect, u.sectionsNoOfQuestionsNotAnswered, u.createDate, u.updateDate) "
 			+ "FROM " + "    UserTestSession u where u.companyId=:companyId " + "GROUP BY "
 			+ "    u.testName, u.user ORDER BY u.createDate desc")
 	List<AssessmentTestData> getAllResultsData(@Param("companyId") String companyId);
 
-	//@Query(value="select percentageMarksRecieved,testName,user,noOfAttempts,pass,sectionResults,companyId,testInviteSent,sharedDirect,\r\n" + 
+	// @Query(value="select
+	// percentageMarksRecieved,testName,user,noOfAttempts,pass,sectionResults,companyId,testInviteSent,sharedDirect,\r\n"
+	// +
 //		"sectionsNoOfQuestionsNotAnswered,createDate,updateDate FROM UserTestSession where companyId=?",nativeQuery = true)
 //	List<AssessmentTestData> getAllResultsData(String companyId);
 
@@ -28,6 +32,6 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	List<UserTestSession> findUserSessionsForTest(@Param("testName") String testName,
 			@Param("companyId") String companyId);
 
-	@Query("SELECT u FROM UserTestSession u WHERE u.user=:email")
-	UserTestSession findTestByEmail(@Param("email") String p0);
+	@Query(value = "SELECT * FROM UserTestSession u WHERE u.user=:email and u.test_id=:testId",nativeQuery = true)
+	UserTestSession findTestByEmail(@Param("email") String p0,@Param("testId") String testId);
 }

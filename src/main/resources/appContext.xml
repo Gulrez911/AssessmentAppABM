@@ -27,6 +27,14 @@
 		<property name="location" value="classpath:config.properties" />
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
+	
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:config2.properties" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>	
+	
+	
 	<!-- String hostName; -->
 
 	<!-- String sendFrom; -->
@@ -38,10 +46,10 @@
 	<!-- String smtpPort; -->
 	<bean class="com.assessment.common.PropertyConfig">
 		<property name="baseUrl" value="${baseUrl}"></property>
-		<!-- <property name="testLinkHtmlLocation" -->
-		<!-- value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property> -->
-		<!-- <property name="resultLinkHtmlLocation" -->
-		<!-- value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
+<!-- 		<property name="testLinkHtmlLocation" -->
+<!-- 		value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property> -->
+<!-- 		<property name="resultLinkHtmlLocation" -->
+<!-- 		value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
 		<property name="testLinkHtmlLocation"
 			value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
 		<property name="resultLinkHtmlLocation"
@@ -87,20 +95,21 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- Server Connection Details -->
-		<!-- <property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/new_ass" 
-			/> <property name="user" value="new_ass_user" /> <property name="password" 
-			value="Welcome@123" /> -->
+<!-- 		<property name="jdbcUrl" -->
+<!-- 			value="jdbc:mysql://159.65.148.176:3306/new_ass" /> -->
+<!-- 		<property name="user" value="new_ass_user" /> -->
+<!-- 		<property name="password" value="Welcome@123" /> -->
 
 		<!--Local Connection Details -->
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/assessment" />
+		value="jdbc:mysql://localhost:3306/assessment" />
 		<property name="user" value="root" />
 		<property name="password" value="" />
 
-		<!-- <property name="jdbcUrl" value="jdbc:mysql://13.233.2.169:3306/assessment" 
-			/> -->
-		<!-- <property name="user" value="iiht_user" /> -->
-		<!-- <property name="password" value="Welcome@123" /> -->
+	<!-- <property name="jdbcUrl" -->
+	<!-- value="jdbc:mysql://13.233.2.169:3306/assessment" /> -->
+	<!-- <property name="user" value="iiht_user" /> -->
+	<!-- <property name="password" value="Welcome@123" /> -->
 
 		<!-- Pooling Details -->
 		<property name="initialPoolSize" value="3" />
@@ -131,10 +140,10 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!-- Connection Details -->
-		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost:3306/assessment" />
-		<property name="user" value="root" />
-		<property name="password" value="" />
+<!-- 		<property name="jdbcUrl" -->
+<!-- 			value="jdbc:mysql://localhost:3306/assessment" /> -->
+<!-- 		<property name="user" value="root" /> -->
+<!-- 		<property name="password" value="" /> -->
 
 		<!-- Pooling Details -->
 		<property name="initialPoolSize" value="1" />

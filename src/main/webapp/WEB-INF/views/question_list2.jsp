@@ -108,27 +108,27 @@
 </style>
 
 <script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+	/* When the user clicks on the button,
+	 toggle between hiding and showing the dropdown content */
+	function myFunction() {
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
 
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
+	function filterFunction() {
+		var input, filter, ul, li, a, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		div = document.getElementById("myDropdown");
+		a = div.getElementsByTagName("a");
+		for (i = 0; i < a.length; i++) {
+			txtValue = a[i].textContent || a[i].innerText;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				a[i].style.display = "";
+			} else {
+				a[i].style.display = "none";
+			}
+		}
+	}
 </script>
 
 </head>
@@ -189,11 +189,12 @@ function filterFunction() {
 						<div class="col-md-2">
 							<div class="dropdown">
 								<button type="button" class="btn btn-primary dropdown-toggle"
-									data-toggle="dropdown" onclick="myFunction()" >
+									data-toggle="dropdown" onclick="myFunction()">
 									<i class="material-icons fa fa-download"></i>Download
 								</button>
 								<div class="dropdown-menu" id="myDropdown">
-									<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+									<input type="text" placeholder="Search.." id="myInput"
+										onkeyup="filterFunction()">
 									<c:forEach items="${qu}" var="qualifier1">
 										<a style="padding-left: 5px;" class="dropdown-item"
 											href="<%=request.getContextPath()%>/downloadQuestion?qualifier1=${qualifier1}">${qualifier1}</a>
@@ -444,33 +445,20 @@ function filterFunction() {
 
 							var fileU = document
 									.getElementById('fileQuestions');
-							fileU
-									.addEventListener(
-											"change",
-											function() {
+							fileU.addEventListener("change",function() {
 												if (fileU.files.length > 0) {
-													var filename = $.trim(file
-															.val());
-
+													var filename = $.trim(file.val());
 													if (!(isXlsx(filename))) {
-														notify('Error',
-																'Please select an xlsx file to upload');
+														notify('Error','Please select an xlsx file to upload');
 														return;
 													}
-
-													$
-															.ajax(
-																	{
-																		xhr : function() {
+													$	.ajax(	{xhr : function() {
 																			var xhr = new window.XMLHttpRequest();
-
 																			return xhr;
 																		},
 																		url : 'upload',
 																		type : "POST",
-																		data : new FormData(
-																				document
-																						.getElementById("fileFormQuestions")),
+																		data : new FormData(document.getElementById("fileFormQuestions")),
 																		enctype : 'multipart/form-data',
 																		processData : false,
 																		contentType : false

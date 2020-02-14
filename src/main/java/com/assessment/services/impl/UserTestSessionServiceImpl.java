@@ -114,10 +114,16 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 
 	@Override
 	public List<AssessmentTestData> getAllResultsData(String companyId){
+		long start=0,end=0;
+		 start=System.currentTimeMillis();
+
+		end=System.currentTimeMillis();
+		 System.out.println("UserTestSessionServiceImpl.getAllResultsData() has taken "+( end-start)+" ms to complete the execution");
+
 		return userTestSessionRep.getAllResultsData(companyId);
 	}
-	 public UserTestSession findTestByEmail(String email)
+	 public UserTestSession findTestByEmail(String email, String testId)
 	  {
-	    return userTestSessionRep.findTestByEmail(email);
+	    return userTestSessionRep.findTestByEmail(email,testId);
 	  }
 }

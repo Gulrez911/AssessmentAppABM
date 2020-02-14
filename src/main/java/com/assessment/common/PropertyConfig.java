@@ -36,7 +36,9 @@ public class PropertyConfig {
 	
 	String fileServerWebUrl;
 	
-	String fullStackCodeLocation = "/opt/eclipse_che/instance/data/workspaces";
+	//String fullStackCodeLocation = "/opt/eclipse_che/instance/data/workspaces";
+	
+	String fullStackCodeLocation = "D:\\apache-tomcat-8.0.3\\bin\\assessment\\eclipseChe";
 	
 	String codeQualityServerLink = "http://13.233.2.97:9000/dashboard?id=";
 	

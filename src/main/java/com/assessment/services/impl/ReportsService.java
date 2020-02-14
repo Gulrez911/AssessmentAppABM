@@ -126,6 +126,11 @@ public class ReportsService {
 			}
 		User usr = 	userService.findByPrimaryKey(user, companyId);
 		ReportManagerTrait managerTrait = new ReportManagerTrait();
+		System.out.println("Traits: "+traits);
+		System.out.println("skillAreas: "+skillAreas);
+		System.out.println("testName: "+testName);
+		System.out.println("usr.usr.getFirstName()(): "+usr.getFirstName());
+		System.out.println("usr.getLastName(: "+usr.getLastName());
 		String fileName = managerTrait.buildComprehensiveReport(traits, skillAreas, testName, usr.getFirstName()+" "+usr.getLastName());//this should not be hard coded
 		return fileName;
 	}

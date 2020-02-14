@@ -38,7 +38,7 @@
 </style>
 <script type="text/javascript">
 function go(num){
-	window location = "career?name="+num;
+	window.location = "career?name="+num;
 }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

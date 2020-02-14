@@ -5,42 +5,56 @@ import java.util.Date;
 
 /**
  * Only for test purpose
+ * 
  * @author jsutaria
  *
  */
 public class AssessmentTestData {
 
 	Float percentageMarksRecieved;
-	
+
 	String testName;
-	
+
 	String user;
-	
+
 	Integer noOfAttempts;
-	
+
 	Boolean pass;
-	
+
 	String sectionResults;
-	
+
 	String companyId;
-	
+
 	String resultInString;
-	
+
 	Date testInviteSent;
-	
+
 	Boolean sharedDirect = false;
-	
+
 	String noOfQuestionsNotAnswered;
-	
+
 	Date testStartDate;
-	
+
 	Date testEndDate;
-	
-	public AssessmentTestData() {
-		
+
+	Integer noOfNonCompliances;
+
+	public Integer getNoOfNonCompliances() {
+		return noOfNonCompliances;
 	}
-	
-	public AssessmentTestData(Float percentageMarksRecieved, String testName, String user, Integer noOfAttempts, Boolean pass, String sectionResults,String companyId, Date testInviteSent, Boolean sharedDirect, String noOfQuestionsNotAnswered, Date testStartDate, Date testEndDate) {
+
+	public void setNoOfNonCompliances(Integer noOfNonCompliances) {
+		this.noOfNonCompliances = noOfNonCompliances;
+	}
+
+	public AssessmentTestData() {
+
+	}
+
+	public AssessmentTestData(Float percentageMarksRecieved, String testName, String user, Integer noOfAttempts,
+			Boolean pass, String sectionResults, String companyId, Date testInviteSent, Boolean sharedDirect,
+			String noOfQuestionsNotAnswered, Date testStartDate, Date testEndDate, Integer noOfNonCompliances) {
+		super();
 		this.percentageMarksRecieved = percentageMarksRecieved;
 		this.testName = testName;
 		this.user = user;
@@ -48,7 +62,25 @@ public class AssessmentTestData {
 		this.pass = pass;
 		this.sectionResults = sectionResults;
 		this.companyId = companyId;
-		
+		this.testInviteSent = testInviteSent;
+		this.sharedDirect = sharedDirect;
+		this.noOfQuestionsNotAnswered = noOfQuestionsNotAnswered;
+		this.testStartDate = testStartDate;
+		this.testEndDate = testEndDate;
+		this.noOfNonCompliances = noOfNonCompliances;
+	}
+
+	public AssessmentTestData(Float percentageMarksRecieved, String testName, String user, Integer noOfAttempts,
+			Boolean pass, String sectionResults, String companyId, Date testInviteSent, Boolean sharedDirect,
+			String noOfQuestionsNotAnswered, Date testStartDate, Date testEndDate) {
+		this.percentageMarksRecieved = percentageMarksRecieved;
+		this.testName = testName;
+		this.user = user;
+		this.noOfAttempts = noOfAttempts;
+		this.pass = pass;
+		this.sectionResults = sectionResults;
+		this.companyId = companyId;
+
 		this.testInviteSent = testInviteSent;
 		this.sharedDirect = sharedDirect;
 		this.noOfQuestionsNotAnswered = noOfQuestionsNotAnswered;
@@ -135,15 +167,14 @@ public class AssessmentTestData {
 	public void setSharedDirect(Boolean sharedDirect) {
 		this.sharedDirect = sharedDirect;
 	}
-	
+
 	public String invitationDate() {
-		
-		if(getTestInviteSent() != null) {
+
+		if (getTestInviteSent() != null) {
 			String pattern = "dd-MM-yyyy HH:mm:ss";
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 			return simpleDateFormat.format(getTestInviteSent());
-		}
-		else {
+		} else {
 			return "NA";
 		}
 	}
@@ -172,9 +203,4 @@ public class AssessmentTestData {
 		this.testEndDate = testEndDate;
 	}
 
-
-	
-	
-	
-	
 }

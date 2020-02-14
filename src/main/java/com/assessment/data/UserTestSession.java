@@ -1,12 +1,14 @@
 package com.assessment.data;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * pk - user & test & companyId
@@ -15,6 +17,8 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class UserTestSession extends Base {
 
 	@NotNull
@@ -23,7 +27,7 @@ public class UserTestSession extends Base {
 	String testName;
 
 	Integer timeTakenInMimnutes;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	Test test;
 
 	Boolean complete = false;

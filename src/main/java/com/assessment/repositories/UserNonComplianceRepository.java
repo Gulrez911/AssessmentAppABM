@@ -14,4 +14,5 @@ public interface UserNonComplianceRepository extends JpaRepository< UserNonCompl
 	
 	@Query("SELECT u FROM UserNonCompliance u WHERE u.user=:user and u.testName=:testName and u.companyId=:companyId")
 	UserNonCompliance findNonCompliance(@Param("user") String user, @Param("testName")  String testName, @Param("companyId") String companyId);
+
 }

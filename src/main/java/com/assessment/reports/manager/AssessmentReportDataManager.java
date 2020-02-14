@@ -15,6 +15,8 @@ import java.util.Set;
 
 import com.assessment.data.Section;
 import com.assessment.data.User;
+import com.assessment.data.UserNonCompliance;
+import com.assessment.repositories.UserNonComplianceRepository;
 import com.assessment.repositories.UserTestSessionRepository;
 import com.assessment.services.SectionService;
 import com.assessment.services.TestService;
@@ -25,41 +27,43 @@ public class AssessmentReportDataManager {
 	 * data fetched by query
 	 */
 	private List<AssessmentTestData> data;
-	
+
 	/**
 	 * between test name and AssessmentTestPerspectiveData
 	 */
-	Map<String,AssessmentTestPerspectiveData> testMap = new LinkedHashMap<>();
-	
+	Map<String, AssessmentTestPerspectiveData> testMap = new LinkedHashMap<>();
+
 	/**
 	 * between test name and AssessmentTestData
 	 */
 	Map<String, List<AssessmentTestData>> databaseDataMap = new LinkedHashMap<>();
-	
+
 	/**
 	 * between user(email) and AssessmentTestData
 	 */
 	Map<String, List<AssessmentTestData>> userMap = new LinkedHashMap<>();
-	
+
 	/**
-	 *  AssessmentUserPerspectiveData
+	 * AssessmentUserPerspectiveData
 	 */
 	List<AssessmentUserPerspectiveData> userPerspectiveData = new ArrayList();
-	
+
 	UserTestSessionRepository userTestSessionRepository;
-	
+
 	TestService testService;
-	
+
 	SectionService sectionService;
-	
+
 	UserService userService;
-	
+
 	String companyId;
-	
+
 	String createdBy;
-	
-	
-	public AssessmentReportDataManager(UserTestSessionRepository repository, SectionService sectionService, UserService userService, String companyId, String createBy) {
+
+	UserNonComplianceRepository userNonComplianceRepo;
+
+	public AssessmentReportDataManager(UserTestSessionRepository repository, SectionService sectionService,
+			UserService userService, String companyId, String createBy) {
 		this.userTestSessionRepository = repository;
 		this.sectionService = sectionService;
 		this.userService = userService;
@@ -68,63 +72,100 @@ public class AssessmentReportDataManager {
 		build(companyId, createdBy);
 		buildUserPerspective(companyId, createBy);
 	}
-	
+
+//	new Constructor
+	public AssessmentReportDataManager(UserTestSessionRepository repository, SectionService sectionService,
+			UserService userService, UserNonComplianceRepository userNonComplianceRepo,
+			String companyId, String createBy) {
+		this.userNonComplianceRepo = userNonComplianceRepo;
+		this.userTestSessionRepository = repository;
+		this.sectionService = sectionService;
+		this.userService = userService;
+		this.companyId = companyId;
+		this.createdBy = createBy;
+		build(companyId, createdBy);
+		buildUserPerspective(companyId, createBy);
+	}
+
+	@SuppressWarnings("null")
 	private void buildUserPerspective(String companyId, String createdBy) {
-		for(AssessmentTestData assessmentTestData : data) {
-			if(userMap.get(assessmentTestData.getUser()) == null) {
+		for (AssessmentTestData assessmentTestData : data) {
+			if (userMap.get(assessmentTestData.getUser()) == null) {
 				List<AssessmentTestData> userData = new ArrayList<>();
 				userData.add(assessmentTestData);
 				userMap.put(assessmentTestData.getUser(), userData);
-			}
-			else {
+			} else {
 				userMap.get(assessmentTestData.getUser()).add(assessmentTestData);
 			}
 		}
 		String pattern = "dd-MM-yyyy HH:mm:ss";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		for(String user : userMap.keySet()) {
+		for (String user : userMap.keySet()) {
 			List<AssessmentTestData> userData = userMap.get(user);
 			User usr = userService.findByPrimaryKey(user, companyId);
 			List<AssessmentUserPerspectiveData> coll = new ArrayList<>();
-			for(AssessmentTestData data : userData) {
+			for (AssessmentTestData data : userData) {
 				AssessmentUserPerspectiveData assessmentUserPerspectiveData = new AssessmentUserPerspectiveData();
+				System.out.println("testName: " + data.getTestName() + " User: "
+						+ data.getUser() + " companyId: "
+						+ data.getCompanyId());
+				UserNonCompliance unon = new UserNonCompliance();
+				try {
+					unon = userNonComplianceRepo.findNonCompliance(user,
+							data.getTestName(), companyId);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				System.out.println("UserNonCompliance::::\n " + unon);
+				if (unon == null) {
+					unon = new UserNonCompliance();
+					unon.setNoOfNonCompliances(0);
+				}
 				assessmentUserPerspectiveData.setEmail(user);
-				assessmentUserPerspectiveData.setFirstName(usr.getFirstName());
-				assessmentUserPerspectiveData.setLastName(usr.getLastName());
+//				assessmentUserPerspectiveData.setFirstName(usr.getFirstName());
+//				assessmentUserPerspectiveData.setLastName(usr.getLastName());
+				assessmentUserPerspectiveData.setFirstName(
+						usr.getFirstName() + " " + usr.getLastName());
 				assessmentUserPerspectiveData.setNoOfAttempts(data.getNoOfAttempts());
-				assessmentUserPerspectiveData.setOverAllScore(data.getPercentageMarksRecieved());
+				assessmentUserPerspectiveData
+						.setOverAllScore(data.getPercentageMarksRecieved());
 				assessmentUserPerspectiveData.setPass(data.getPass());
 				assessmentUserPerspectiveData.setReportCreatedBy(createdBy);
-				assessmentUserPerspectiveData.setReportCreationDate(formatter.format(new Date()));
+				assessmentUserPerspectiveData
+						.setReportCreationDate(formatter.format(new Date()));
 				assessmentUserPerspectiveData.setSectionWiseScore(data.getSectionResults());
 				assessmentUserPerspectiveData.setTestName(data.getTestName());
-				assessmentUserPerspectiveData.setNoOfQuestionsNotAnswered(data.getNoOfQuestionsNotAnswered());
+				assessmentUserPerspectiveData.setNoOfQuestionsNotAnswered(
+						data.getNoOfQuestionsNotAnswered());
 				assessmentUserPerspectiveData.setSharedDirect(data.getSharedDirect());
 				assessmentUserPerspectiveData.setTestInviteSent(data.getTestInviteSent());
+//				changed
+				assessmentUserPerspectiveData
+						.setNoOfNonCompliances(unon.getNoOfNonCompliances());
+//				
 				Date sdate = data.getTestStartDate();
-					if(sdate != null){
-						String s1 = simpleDateFormat.format(sdate);
-						assessmentUserPerspectiveData.setTestStartDate(s1);
-					}
-					else{
-						assessmentUserPerspectiveData.setTestStartDate("NA");
-					}
+				if (sdate != null) {
+					String s1 = simpleDateFormat.format(sdate);
+					assessmentUserPerspectiveData.setTestStartDate(s1);
+				} else {
+					assessmentUserPerspectiveData.setTestStartDate("NA");
+				}
 				Date edate = data.getTestEndDate();
-					if(edate != null){
-						String s1 = simpleDateFormat.format(edate);
-						assessmentUserPerspectiveData.setTestEndDate(s1);
-					}
-					else{
-						assessmentUserPerspectiveData.setTestEndDate("NA");
-					}
-				
+				if (edate != null) {
+					String s1 = simpleDateFormat.format(edate);
+					assessmentUserPerspectiveData.setTestEndDate(s1);
+				} else {
+					assessmentUserPerspectiveData.setTestEndDate("NA");
+				}
+
 				coll.add(assessmentUserPerspectiveData);
 			}
 			Collections.sort(coll, new Comparator<AssessmentUserPerspectiveData>() {
 
 				@Override
-				public int compare(AssessmentUserPerspectiveData o1, AssessmentUserPerspectiveData o2) {
+				public int compare(AssessmentUserPerspectiveData o1,
+						AssessmentUserPerspectiveData o2) {
 					// TODO Auto-generated method stub
 					return Float.compare(o2.getOverAllScore(), o1.getOverAllScore());
 				}
@@ -132,50 +173,53 @@ public class AssessmentReportDataManager {
 			userPerspectiveData.addAll(coll);
 		}
 	}
-	
-	public List<AssessmentUserPerspectiveData> getUserPerspectiveData(){
+
+	public List<AssessmentUserPerspectiveData> getUserPerspectiveData() {
 		return userPerspectiveData;
 	}
-	
+
 	private void build(String companyId, String createdBy) {
+		long start = 0, end = 0;
+		start = System.currentTimeMillis();
+
 		data = userTestSessionRepository.getAllResultsData(companyId);
 		testMap.clear();
 		Map<String, String> testSectionsMap = new LinkedHashMap<>();
-		for(AssessmentTestData assessmentTestData: data) {
-			if(databaseDataMap.get(assessmentTestData.getTestName()) == null) {
+		for (AssessmentTestData assessmentTestData : data) {
+			if (databaseDataMap.get(assessmentTestData.getTestName()) == null) {
+				@SuppressWarnings({ "unchecked", "rawtypes" })
 				List<AssessmentTestData> list = new ArrayList();
 				list.add(assessmentTestData);
 				databaseDataMap.put(assessmentTestData.getTestName(), list);
-			}
-			else {
-				databaseDataMap.get(assessmentTestData.getTestName()).add(assessmentTestData);
+			} else {
+				databaseDataMap.get(assessmentTestData.getTestName())
+						.add(assessmentTestData);
 			}
 //			AssessmentTestPerspectiveData assessmentTestPerspectiveData = new AssessmentTestPerspectiveData();
 //			assessmentTestPerspectiveData.setTestName(assessmentTestData.getTestName());
 //			String sectionsInfo = "";
 
-			//testMap.put(assessmentTestData.getTestName(), assessmentTestData);
+			// testMap.put(assessmentTestData.getTestName(), assessmentTestData);
 		}
-		
-		for(String testName: databaseDataMap.keySet()) {
+
+		for (String testName : databaseDataMap.keySet()) {
 			List<AssessmentTestData> testSpecificData = databaseDataMap.get(testName);
 			AssessmentTestPerspectiveData assessmentTestPerspectiveData = new AssessmentTestPerspectiveData();
 			assessmentTestPerspectiveData.setTestName(testName);
 			String sectionsInfo = "";
-				if(testSectionsMap.get(testName) == null) {
-				List<Section> sections = sectionService.getSectionsForTest(testName, companyId);
-					for(Section section : sections) {
-						sectionsInfo += section.getSectionName()+", ";
+			if (testSectionsMap.get(testName) == null) {
+				List<Section> sections = sectionService.getSectionsForTest(testName,
+						companyId);
+				for (Section section : sections) {
+					sectionsInfo += section.getSectionName() + ", ";
 				}
-					sectionsInfo = sectionsInfo.trim();
-					sectionsInfo = sectionsInfo.substring(0, sectionsInfo.length() - 1);
-					testSectionsMap.put(testName, sectionsInfo);
-			}
-			else {
+				sectionsInfo = sectionsInfo.trim();
+				sectionsInfo = sectionsInfo.substring(0, sectionsInfo.length() - 1);
+				testSectionsMap.put(testName, sectionsInfo);
+			} else {
 				sectionsInfo = testSectionsMap.get(testName);
 			}
-			
-		
+
 			assessmentTestPerspectiveData.setSectionsInfo(sectionsInfo);
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			assessmentTestPerspectiveData.setReportCreationDate(formatter.format(new Date()));
@@ -184,73 +228,111 @@ public class AssessmentReportDataManager {
 			Integer noOfPAss = 0;
 			Float overAllTestScore = 0.0f;
 			DecimalFormat df = new DecimalFormat("##.##");
-				for(AssessmentTestData assessmentTestData : testSpecificData) {
-					if(assessmentTestData.getPass()) {
-						noOfPAss ++;
-					}
-					overAllTestScore += assessmentTestData.getPercentageMarksRecieved();
+			for (AssessmentTestData assessmentTestData : testSpecificData) {
+				if (assessmentTestData.getPass()) {
+					noOfPAss++;
 				}
-			assessmentTestPerspectiveData.setNoOfPassResults(noOfPAss);	
-			Float averageScore = Float.parseFloat(df.format(overAllTestScore/testSpecificData.size()));	
+				overAllTestScore += assessmentTestData.getPercentageMarksRecieved();
+			}
+			assessmentTestPerspectiveData.setNoOfPassResults(noOfPAss);
+			Float averageScore = Float.parseFloat(
+					df.format(overAllTestScore / testSpecificData.size()));
 			assessmentTestPerspectiveData.setAverageScore(averageScore);
 			Collections.sort(testSpecificData, new Comparator<AssessmentTestData>() {
-	
+
 				@Override
 				public int compare(AssessmentTestData o1, AssessmentTestData o2) {
 					// TODO Auto-generated method stub
-					return Float.compare(o2.getPercentageMarksRecieved(), o1.getPercentageMarksRecieved());
+					return Float.compare(o2.getPercentageMarksRecieved(),
+							o1.getPercentageMarksRecieved());
 				}
 			});
-		
-			if(testSpecificData.size() > 0) {
-				assessmentTestPerspectiveData.setHighestScore(testSpecificData.get(0).getPercentageMarksRecieved());
-				if(testSpecificData.size() > 2) {
-					User one = userService.findByPrimaryKey(testSpecificData.get(0).getUser(), companyId);
-					User two = userService.findByPrimaryKey(testSpecificData.get(1).getUser(), companyId);
-					User three = userService.findByPrimaryKey(testSpecificData.get(2).getUser(), companyId);
-					String topCandidates = one.getFirstName()+" "+one.getLastName()+"-"+testSpecificData.get(0).getPercentageMarksRecieved()+", "
-							+two.getFirstName()+" "+two.getLastName()+"-"+testSpecificData.get(1).getPercentageMarksRecieved()+", "
-							+three.getFirstName()+" "+three.getLastName()+"-"+testSpecificData.get(2).getPercentageMarksRecieved();
+
+			if (testSpecificData.size() > 0) {
+				assessmentTestPerspectiveData.setHighestScore(
+						testSpecificData.get(0).getPercentageMarksRecieved());
+				if (testSpecificData.size() > 2) {
+					User one = userService.findByPrimaryKey(
+							testSpecificData.get(0).getUser(),
+							companyId);
+					User two = userService.findByPrimaryKey(
+							testSpecificData.get(1).getUser(),
+							companyId);
+					User three = userService.findByPrimaryKey(
+							testSpecificData.get(2).getUser(),
+							companyId);
+					String topCandidates = one.getFirstName() + " "
+							+ one.getLastName() + "-"
+							+ testSpecificData.get(0)
+									.getPercentageMarksRecieved()
+							+ ", " + two.getFirstName() + " "
+							+ two.getLastName() + "-"
+							+ testSpecificData.get(1)
+									.getPercentageMarksRecieved()
+							+ ", " + three.getFirstName() + " "
+							+ three.getLastName() + "-"
+							+ testSpecificData.get(2)
+									.getPercentageMarksRecieved();
 					assessmentTestPerspectiveData.setTopCandidates(topCandidates);
-					
-					String topCandidatesEmail = one.getEmail()+", "+two.getEmail()+", "+three.getEmail();
-					assessmentTestPerspectiveData.setTopCandidatesEmail(topCandidatesEmail);
-				}
-				else if(testSpecificData.size() == 2) {
-					User one = userService.findByPrimaryKey(testSpecificData.get(0).getUser(), companyId);
-					User two = userService.findByPrimaryKey(testSpecificData.get(1).getUser(), companyId);
-					String topCandidates = one.getFirstName()+" "+one.getLastName()+"-"+testSpecificData.get(0).getPercentageMarksRecieved()+", "
-							+two.getFirstName()+" "+two.getLastName()+"-"+testSpecificData.get(1).getPercentageMarksRecieved();
+
+					String topCandidatesEmail = one.getEmail() + ", "
+							+ two.getEmail() + ", " + three.getEmail();
+					assessmentTestPerspectiveData
+							.setTopCandidatesEmail(topCandidatesEmail);
+				} else if (testSpecificData.size() == 2) {
+					User one = userService.findByPrimaryKey(
+							testSpecificData.get(0).getUser(),
+							companyId);
+					User two = userService.findByPrimaryKey(
+							testSpecificData.get(1).getUser(),
+							companyId);
+					String topCandidates = one.getFirstName() + " "
+							+ one.getLastName() + "-"
+							+ testSpecificData.get(0)
+									.getPercentageMarksRecieved()
+							+ ", " + two.getFirstName() + " "
+							+ two.getLastName() + "-"
+							+ testSpecificData.get(1)
+									.getPercentageMarksRecieved();
 					assessmentTestPerspectiveData.setTopCandidates(topCandidates);
-					
-					String topCandidatesEmail = one.getEmail()+", "+two.getEmail();
-					assessmentTestPerspectiveData.setTopCandidatesEmail(topCandidatesEmail);
-				}
-				else if(testSpecificData.size() == 1) {
-					User one = userService.findByPrimaryKey(testSpecificData.get(0).getUser(), companyId);
-					String topCandidates = one.getFirstName()+" "+one.getLastName()+"-"+testSpecificData.get(0).getPercentageMarksRecieved();
+
+					String topCandidatesEmail = one.getEmail() + ", "
+							+ two.getEmail();
+					assessmentTestPerspectiveData
+							.setTopCandidatesEmail(topCandidatesEmail);
+				} else if (testSpecificData.size() == 1) {
+					User one = userService.findByPrimaryKey(
+							testSpecificData.get(0).getUser(),
+							companyId);
+					String topCandidates = one.getFirstName() + " "
+							+ one.getLastName() + "-"
+							+ testSpecificData.get(0)
+									.getPercentageMarksRecieved();
 					assessmentTestPerspectiveData.setTopCandidates(topCandidates);
 					String topCandidatesEmail = one.getEmail();
-					assessmentTestPerspectiveData.setTopCandidatesEmail(topCandidatesEmail);
+					assessmentTestPerspectiveData
+							.setTopCandidatesEmail(topCandidatesEmail);
 				}
-			}
-			else {
+			} else {
 				assessmentTestPerspectiveData.setTopCandidates("NA");
 				assessmentTestPerspectiveData.setTopCandidatesEmail("NA");
 			}
 			testMap.put(testName, assessmentTestPerspectiveData);
 		}
+		end = System.currentTimeMillis();
+		System.out.println("AssessmentReportDataManager.build() has taken " + (end - start)
+				+ " ms to complete the execution");
 	}
-	
-	public Set<String> getTestNames(){
+
+	public Set<String> getTestNames() {
 		return testMap.keySet();
 	}
-	
-	public AssessmentTestPerspectiveData fetchForTest(String testName){
+
+	public AssessmentTestPerspectiveData fetchForTest(String testName) {
 		return testMap.get(testName);
 	}
 
-	public Collection<AssessmentTestPerspectiveData> getTestPerspectiveData(){
+	public Collection<AssessmentTestPerspectiveData> getTestPerspectiveData() {
 		return testMap.values();
 	}
 }

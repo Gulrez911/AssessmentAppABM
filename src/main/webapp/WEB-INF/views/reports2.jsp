@@ -99,6 +99,8 @@
 	var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -143,13 +145,13 @@
 				<div align="center">
 					<div class="mt-10"></div>
 					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/downloadTestReport'">All
-						Test Report</button>
+						onclick="window.location.href='/AssesmentApp/downloadTestReport'">Test
+						Reports</button>
 					<button type="submit" class="btn btn-success"
 						onclick="window.location.href='/AssesmentApp/downloadUserReport'">All
 						Tests</button>
 					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/frameset?__report=qs.rptdesign'">All
+						onclick="window.location.href='/AssesmentApp/frameset?__report=qs.rptdesign'">
 						User Sessions Report</button>
 					<button type="submit" class="btn btn-success"
 						onclick="window.location.href='/AssesmentApp/frameset?__report=finalreport2new.rptdesign'">Report
@@ -157,23 +159,13 @@
 					<button type="submit" class="btn btn-success"
 						onclick="window.location.href='/AssesmentApp/frameset?__report=test.rptdesign'">Report
 						By Testname</button>
+					<button class="btn btn-success" onclick="javascript:shareOpen()">DownloadUserReport</button>
+					<button class="btn btn-success" onclick="javascript:openDownload()">Download
+						Report</button>
 				</div>
-				<%-- <a href="downloadTestReport"><img
-					src="<%=request.getContextPath()%>/resources/images/testsReport.png"> All
-					Tests Report</a> <a href="downloadUserReport"><img
-					src="<%=request.getContextPath()%>/resources/images/usersReport.png">All
-					User Sessions Report</a> <a target="_blank"
-					href="/AssesmentApp/frameset?__report=qs.rptdesign">Report By Questions</a> <a
-					target="_blank" href="/AssesmentApp/frameset?__report=finalreport2new.rptdesign">Report
-					By Percentile</a> <a target="_blank"
-					href="/AssesmentApp/frameset?__report=test.rptdesign"><img
-					src="<%=request.getContextPath()%>/resources/images/usersReport.png">Report
-					By Testname</a> --%>
 
-				<%-- 								<form id="fileFormQuestions" method="POST" enctype="multipart/form-data"> --%>
-				<!-- 										<input type="file" name="fileQuestions" id="fileQuestions" style="display: none" /> -->
 
-				<%-- 								</form> --%>
+
 
 				<div class="col-md-12">
 					<div class="mt-10"></div>
@@ -262,10 +254,100 @@
 		</div>
 	</footer>
 
+	<script>
+		function shareOpen() {
+			$('#modalcopy').modal('hide');
+			$('#modalshare').modal('show');
+		}
+
+		function openDownload() {
+			console.log("test");
+			$('#modalshare2').modal('show');
+		}
+	</script>
+
+	<div id="modalshare2" class="modal fade modalcopy" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form method="GET" action="downloadReportFilters">
+						Test Name: <form:select path="test.testName" class="form-control"
+							onchange="Change()" id="name">
+							<option value="ALL">ALL</option>
+							<form:options items="${listTest}" itemValue="testName"
+								itemLabel="testName" />
+						</form:select>
+						<br>
+						User Name:<select id="slct" class="form-control" name="userName">
+							<option>ALL</option>
+						</select> 
+						<br>
+						Start Date:<input type="date" name="startDate"/>
+						End Date:<input type="date" name="endDate"/>
+						<br>
+						Result:<select class="form-control" name="result">
+							<option value="ALL">All</option>
+							<option value="true">Pass</option>
+							<option value="false">Fail</option>
+						</select> 
+						<br>
+						Percentage <input type="text" name="min" placeholder="Minimum percentage"/>
+								<input type="text" name="max" placeholder="Maximum percentage"/>
+					
+						<input type="submit" value="Download" style="align-content: center;" />
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="modalshare" class="modal fade modalcopy" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<form method="GET" action="downloadUserReportPdf">
+						<form:select path="test.testName" class="form-control"
+							onchange="Change()" id="name">
+							<option value="Select any option">Select Any Test Name</option>
+							<form:options items="${listTest}" itemValue="testName"
+								itemLabel="testName" />
+						</form:select>
+						<br>
+						<select id="slct" class="form-control" name="userEmail"></select>
+						<input type="submit" value="Download"
+							style="align-content: center;" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
 
+	<script>
+		function Change() {
+			var testN = $('#name').val();
+			console.log(testN)
+			$.ajax({
+				url : "fetchEmail?testN=" + testN,
+				type : 'GET',
+				success : function(response) {
+					console.log(response.listEmail.length)
+					$('.opt').remove();
+					for (i = 0; i < response.listEmail.length; i++) {
+						console.log(response.listEmail[i]);
+						$("#slct").append(
+								"<option class='opt'>" + response.listEmail[i]
+										+ "</option>");
+					}
+				},
+			});
+		}
+	</script>
 	<!-- jQuery -->
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
@@ -318,7 +400,11 @@
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
-
+	<script>
+		$(document).ready(function() {
+			$('.mdb-select').materialSelect();
+		});
+	</script>
 	<script>
 		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;

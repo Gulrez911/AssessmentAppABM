@@ -263,7 +263,7 @@ public class TestController {
 		for (String s : skls) {
 			Skill skill = skillRepository.findById(Long.parseLong(s)).get();
 			skills.add(skill);
-			System.out.println("Skills>>>>>>>>>>>>>>>>"+skill);
+			System.out.println("Skills>>>>>>>>>>>>>>>>" + skill);
 		}
 		return skills;
 	}
@@ -279,9 +279,9 @@ public class TestController {
 			request.getSession().invalidate();
 			mav = new ModelAndView("index");
 			user = new User();
-			user.setEmail("system@iiht.com");
+			user.setEmail("admin@e-assess.com");
 			user.setPassword("1234");
-			user.setCompanyName("IIHT");
+			user.setCompanyName("E-Assess");
 			mav.addObject("user", user);
 			return mav;
 		}
@@ -299,6 +299,7 @@ public class TestController {
 		// Skill skill = skillService.findSkillByNameAndLevel("Java",
 		// SkillLevel.BASIC.getLevel(), user.getCompanyId());
 		test.setSkills(resoveSkillByIds(test.getSkls()));
+		System.out.println("check test email result::::::::::::: "+test.getSentToStudent());
 		// test.getSkills().add(skill);
 		testService.saveOrUpdate(test);
 		request.getSession().setAttribute("test", test);
@@ -637,9 +638,9 @@ public class TestController {
 			request.getSession().invalidate();
 			mav = new ModelAndView("index");
 			user = new User();
-			user.setEmail("system@iiiht.com");
+			user.setEmail("admin@e-assess.com");
 			user.setPassword("1234");
-			user.setCompanyName("IIHT");
+			user.setCompanyName("E-Assess");
 			mav.addObject("user", user);
 			return mav;
 		}
@@ -977,7 +978,7 @@ public class TestController {
 	}
 
 	private void shareTest(String email, Long testId, String cid, String firstName, String lastName, String testName,
-			String random) {
+			String random,String senderEmail) {
 		User user = userService.findByPrimaryKey(email, cid);
 		if (user == null) {
 			User us = new User();
@@ -999,12 +1000,20 @@ public class TestController {
 		String welcomeMailData;
 		try {
 			String html = propertyConfig.getTestLinkHtmlLocation();
+			System.out.println(">>>>. "+propertyConfig);
+			System.out.println("Test HTML Page: "+html);
 			welcomeMailData = FileUtils.readFileToString(new File(html));
 			welcomeMailData = welcomeMailData.replace("{FULL_NAME}", firstName + " " + lastName);
 			welcomeMailData = welcomeMailData.replace("{TEST_NAME}", testName);
 			welcomeMailData = welcomeMailData.replace("{URL}", url);
+			String cc[] = { senderEmail };
+			System.out.println("sender..........."+senderEmail);
+//			EmailGenericMessageThread client = new EmailGenericMessageThread(email,
+//					"Test Link - " + testName + " Sent by E-Assess", welcomeMailData, propertyConfig);
 			EmailGenericMessageThread client = new EmailGenericMessageThread(email,
-					"Test Link - " + testName + " Sent by IIHT", welcomeMailData, propertyConfig);
+					"Test Link - " + testName + " Sent by E-Assess" ,welcomeMailData, propertyConfig);
+			client.setCcArray(cc);
+			client.setCcArray(new String[] {senderEmail});
 			Thread th = new Thread(client);
 			System.out.println("email name........    " + email);
 			th.start();
@@ -1043,10 +1052,12 @@ public class TestController {
 			urlInfo.setUrlDate(date);
 			urlInfo.setTestId(String.valueOf(test.getId()));
 			urlInfo.setUrlId(random);
+			String senderEmail = user.getEmail();
+			urlInfo.setEmail(user.getEmail());
 			urlrepo.save(urlInfo);
 //			
 			shareTest(u.getEmail(), test.getId(), user.getCompanyId(), u.getFirstName(), u.getLastName(),
-					test.getTestName(), random);
+					test.getTestName(), random,senderEmail);
 
 		}
 		mav.addObject("message", "Congratulations! - Email with Test Links shared with users. ");// later
@@ -1064,8 +1075,7 @@ public class TestController {
 	@RequestMapping(value = "/sharePublicTest", method = RequestMethod.GET)
 	public ModelAndView sharePublicTest(@RequestParam String userEmail, @RequestParam String testId,
 			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String existing_name1,
-			@RequestParam String expId, @RequestParam String uemail, HttpServletRequest request,
-			HttpServletResponse response) {
+			@RequestParam String expId, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("TestController.sharePublicTest()");
 		ModelAndView mav = new ModelAndView("test_list2");
 		User user = (User) request.getSession().getAttribute("user");
@@ -1090,7 +1100,9 @@ public class TestController {
 		urlInfo.setUrlDate(date);
 		urlInfo.setTestId(testId);
 		urlInfo.setUrlId(random);
-		urlInfo.setEmail(uemail);
+		urlInfo.setEmail(user.getEmail());
+		System.out.println("senderemail::::::::::::"+user.getEmail());
+		String senderEmail = user.getEmail();
 		urlInfo.setTestName(existing_name1);
 		urlrepo.save(urlInfo);
 //		  String userEmail = request.getParameter("userEmail");
@@ -1099,7 +1111,7 @@ public class TestController {
 //		  String lastName = request.getParameter("lastName");
 //		  String testName = request.getParameter("existing_name1");
 		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1,
-				random);
+				random,senderEmail);
 		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " " + lastName);// later
 		// put
 		// label

@@ -313,18 +313,26 @@ function doSomething(val)
 						<div class="col-md-12">
 							<div class="col-md-6">
 								<div class="row formfields">
-									<div class="col-md-12">
+									<div class="col-md-8">
 										<label class="fieldtitle">Displayed upon exam
 											completion and email communications relating to the exam</label>
 									</div>
-									<div class="col-md-12">
-										<div class="input-field">
-											<input type="checkbox" id="sentToStudent1"
-												name="sentToStudent1" value="true"> <label
-												style="font-size: 12px;" for="sentToStudent1">Email
-												a copy of the student's results to above contact</label> <input
-												type="hidden" name="_sentToStudent" value="on">
-										</div>
+									<div class="col-md-4">
+										<form:checkbox path="test.showFinalScoreToParticipants"
+											label="" />
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-8">
+										<label class="fieldtitle" for="sentToStudent1">Email a
+											copy of the student's results to above contact</label>
+									</div>
+									<div class="col-md-4">
+										<form:checkbox path="test.sentToStudent" label="" />
+
+										<!-- 												showFinalScoreToParticipants -->
 									</div>
 								</div>
 							</div>
@@ -333,11 +341,11 @@ function doSomething(val)
 
 							<div class="col-md-6">
 								<div class="row formfields">
-									<div class="col-md-4">
+									<div class="col-md-8">
 										<label class="fieldtitle">Share Recommendation Engine
 											by Email</label>
 									</div>
-									<div class="col-md-8">
+									<div class="col-md-4">
 										<label> <form:checkbox path="test.sendRecommReport"
 												id="sendRecommReport" label="" />
 										</label>
@@ -347,10 +355,10 @@ function doSomething(val)
 							<!--  -->
 							<div class="col-md-6">
 								<div class="row formfields">
-									<div class="col-md-4">
+									<div class="col-md-8">
 										<label class="fieldtitle">Shuffle Questions in Test</label>
 									</div>
-									<div class="col-md-8">
+									<div class="col-md-4">
 										<div class="input-field">
 											<form:checkbox path="test.randomQuestions" id="random"
 												label="" />

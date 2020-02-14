@@ -16,7 +16,7 @@ import com.assessment.Exceptions.AssessmentGenericException;
 import com.assessment.common.PropertyConfig;
 import com.assessment.services.FileStatusService;
 
-public class EmailGenericMessageThread implements Runnable {
+public class EmailGenericMessageThread2 implements Runnable {
 	private String emailSentTo;
 
 	private String subject;
@@ -31,7 +31,7 @@ public class EmailGenericMessageThread implements Runnable {
 
 	String pdfAttachmentFileName;
 	String ccArray[];
-	static Logger logger = LoggerFactory.getLogger(EmailGenericMessageThread.class);
+	static Logger logger = LoggerFactory.getLogger(EmailGenericMessageThread2.class);
 
 	boolean setStatus = false;
 
@@ -105,7 +105,7 @@ public class EmailGenericMessageThread implements Runnable {
 		}
 	}
 
-	public EmailGenericMessageThread(String emailSentTo, String subject, String message,
+	public EmailGenericMessageThread2(String emailSentTo, String subject, String message,
 			PropertyConfig propertyConfig) {
 		this.emailSentTo = emailSentTo;
 		this.subject = subject;
@@ -114,7 +114,7 @@ public class EmailGenericMessageThread implements Runnable {
 
 	}
 
-	public EmailGenericMessageThread(String emailSentTo, String subject, String message,
+	public EmailGenericMessageThread2(String emailSentTo, String subject, String message,
 			PropertyConfig propertyConfig, FileStatusService fileStatusService) {
 		this.emailSentTo = emailSentTo;
 		this.subject = subject;
@@ -123,7 +123,7 @@ public class EmailGenericMessageThread implements Runnable {
 		this.fileStatusService = fileStatusService;
 	}
 
-	public EmailGenericMessageThread(String emailSentTo, String subject, String message, String cc,
+	public EmailGenericMessageThread2(String emailSentTo, String subject, String message, String cc,
 			PropertyConfig propertyConfig) {
 		this.emailSentTo = emailSentTo;
 		this.subject = subject;
@@ -132,7 +132,7 @@ public class EmailGenericMessageThread implements Runnable {
 		config = propertyConfig;
 	}
 
-	public EmailGenericMessageThread(String emailSentTo, String subject, String message, String cc,
+	public EmailGenericMessageThread2(String emailSentTo, String subject, String message, String cc,
 			PropertyConfig propertyConfig, String pdfAttachmentFile, String pdfAttachmentFileName) {
 		this.emailSentTo = emailSentTo;
 		this.subject = subject;
@@ -262,7 +262,7 @@ public class EmailGenericMessageThread implements Runnable {
 
 }
 
-class FromSender {
+class FromSender2 {
 	String email;
 
 	String password;

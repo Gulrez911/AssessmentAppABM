@@ -184,9 +184,7 @@ public class LoginController {
 		}
 
 		else {
-			// to dashboard
-			// List<Question> questions =
-			// questionService.findQuestions(user.getCompanyId());
+			
 			Page<Question> questions = questionService.findQuestionsByPage(user.getCompanyId(), 0);
 			request.getSession().setAttribute("user", user);
 			request.getSession().setAttribute("companyId", user.getCompanyId());

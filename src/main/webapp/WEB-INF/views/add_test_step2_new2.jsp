@@ -356,7 +356,7 @@
 							<label style="font-size: 16px; color: #202020; font-weight: normal;"
 								class="active">Percent of Qs to be asked - </label> <input type="number"
 								onkeypress="return check(event, value)" oninput="checkLength()" id="txtF"
-								placeholder="Enter percentage" style="width: 15%;" value="100">
+								placeholder="Enter percentage" style="width: 15%;" value="${sectionDto.percentQuestionsAsked}">
 						</div>
 					</div>
 

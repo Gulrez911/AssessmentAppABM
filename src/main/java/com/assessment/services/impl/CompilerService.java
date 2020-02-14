@@ -16,9 +16,12 @@ public class CompilerService {
 
 	
 	public CompileOutput compile(CompileData compileData){
-		 try {
-			URL url = new URL("http://13.233.2.169:8088/compile"); 
-			    HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
+		URL url = null; 
+		try {
+//			 url = new URL("http://13.233.2.169:8088/compile");
+			 url = new URL("http://15.206.187.8:8088/compile");
+//			url = new URL("http://localhost:8080/AssesmentApp/compile");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
 			    connection.setDoOutput(true); 
 			    connection.setInstanceFollowRedirects(false); 
 			    connection.setRequestMethod("POST"); 

@@ -41,6 +41,16 @@ public class AssessmentUserPerspectiveData {
 
 	String noOfQuestionsNotAnswered;
 
+	Integer noOfNonCompliances;
+	
+	public Integer getNoOfNonCompliances() {
+		return noOfNonCompliances;
+	}
+
+	public void setNoOfNonCompliances(Integer noOfNonCompliances) {
+		this.noOfNonCompliances = noOfNonCompliances;
+	}
+
 	Map<String, String> sections_score = new HashMap();
 
 	Map<String, String> sections_noOfQuestionsNotAnswered = new HashMap();

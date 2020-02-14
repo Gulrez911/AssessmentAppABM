@@ -1,14 +1,19 @@
 package com.assessment.data;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
  * pk - sectionName & testName & companyId
  * @author jsutaria
  *
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Section extends Base{
 
 	//types of questions in it like java,java+spring,..

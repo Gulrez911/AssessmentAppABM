@@ -1,16 +1,21 @@
 package com.assessment.data;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
  * pk - email & companyId
  * @author jsutaria
  *
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User extends Base{
 	@NotNull
 	 String email;
