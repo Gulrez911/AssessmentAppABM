@@ -129,11 +129,62 @@
 			}
 		}
 	}
+	
+	function question_list2(page){
+		console.log("Test "+page);
+		if(page===undefined){
+			page=0;
+		}
+		$.ajax({
+			url: "question_list2?page="+page,
+			type: "GET",
+			success: function(response) {
+				$(".tr").remove();
+				console.log(response.qs[0].questionText);
+				for(var i=0; i<response.qs.length; i++){
+					$("#tbl").append(
+					"<tr class='tr'><td>"
+					+response.qs[i].id+
+					"</td><td>"
+					+response.qs[i].questionText+
+					"</td><td>"
+					+response.qs[i].category+
+					"</td><td>"
+					+response.qs[i].difficultyLevel+
+					"</td><td>"
+					+response.qs[i].updatedDate+
+					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
+				}
+				var page = response.page;
+				var TotalPage=response.TotalPage;
+				console.log("current: page: "+page);
+				console.log("total:  "+TotalPage);
+				var cpage=page+1;
+				var ppage=page-1;
+ 				$(".dd").remove(); 
+ 				if(page==0){
+				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:question_list2("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+
+ 	 				}
+ 				else if(page==TotalPage-1){
+ 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
+ 					
+ 	 				}
+
+ 				else{
+ 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:question_list2("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
+					
+ 	 				} 
+				
+			}
+		});
+		
+	};
 </script>
 
 </head>
 
-<body id="top" class="has-header-search">
+<body id="top" class="has-header-search" onload="question_list2()">
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -223,9 +274,9 @@
 				</form>
 				<div class="col-md-12">
 					<div class="col-md-12">
-						<div class="pagination" style="float: right;">
+						<div class="pagination" style="float: right;" id="pagination">
 
-							<c:if test="${showPreviousPage}">
+							<%-- <c:if test="${showPreviousPage}">
 								<a href="question_list?page=${previousPage}${queryParam}"><i
 									class="fa fa-arrow-left"></i></a>
 							</c:if>
@@ -237,7 +288,8 @@
 							<c:if test="${showNextPage}">
 								<a href="question_list?page=${nextPage}${queryParam}"><i
 									class="fa fa-arrow-right"></i></a>
-							</c:if>
+							</c:if> --%>
+							
 						</div>
 					</div>
 				</div>
@@ -253,41 +305,47 @@
 						<div class="widget widget_search">
 
 							<div class="search-form">
-								<form action="searchQuestions" method="get">
+<%-- 								<form action="searchQuestions" method="get"> --%>
 									<input type="text" placeholder="Search a question"
-										name="searchText" id="searchText">
-									<button type="submit" id="search">
-										<i class="fa fa-search"></i>
+										name="searchText" id="searchText" onkeyup="searchQuestion(0)">
+<!-- 									<button type="submit" id="search"> -->
+										<!-- <i class="fa fa-search"></i> -->
 									</button>
-								</form>
+<%-- 								</form> --%>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3" style="padding: 0;">
 						<div class="mt-10"></div>
 						<div class="col-md-4"></div>
-						<div class="col-md-4" style="padding-left: 0;">
-							<a href="javascript:notify('Information', 'Feature coming soon')">
-								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
-							</a>
-						</div>
-						<div class="col-md-4" style="padding: 0;">
-							<a href="javascript:notify('Information', 'Feature coming soon')">
-								<i class="fa fa-filter"></i> <span>Filter</span>
-							</a>
-						</div>
+<!-- 						<div class="col-md-4" style="padding-left: 0;"> -->
+<!-- 							<a href="javascript:notify('Information', 'Feature coming soon')"> -->
+<!-- 								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-4" style="padding: 0;"> -->
+<!-- 							<a href="javascript:notify('Information', 'Feature coming soon')"> -->
+<!-- 								<i class="fa fa-filter"></i> <span>Filter</span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 				<div class="col-md-12">
 					<div class="table-responsive">
-						<table class="table table-striped">
+					
+						<input type="hidden" id="sort" value="asc">
+						<table class="table table-striped" id="tbl">
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>No</th>
-									<th>Question</th>
+									<th onclick='sortTable(this.id)' id="ASC" class="CCC">Question</th>
+									
 									<th style="white-space: nowrap;">Category</th>
-									<th>Difficulty Level</th>
-									<th style="white-space: nowrap;">Updated On</th>
+									
+									<th onclick='sortlevel(this.id)' id="EASY" class="CCC">Difficulty Level</th>
+									
+									<th style="white-space: nowrap;"><span onclick='sortTable(0);'>Updated On</span></th>
+									
 									<th style="white-space: nowrap;">Update</th>
 									<th style="white-space: nowrap;">Delete</th>
 								</tr>
@@ -295,7 +353,7 @@
 							<tbody>
 							<tbody>
 
-								<c:forEach items="${qs}" var="question" varStatus="loop">
+							<%-- 	<c:forEach items="${qs}" var="question" varStatus="loop">
 									<tr>
 
 										<td>${loop.count}</td>
@@ -310,7 +368,7 @@
 										<td><a href="javascript:confirm('${question.id}')">Click
 										</a></td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 							</tbody>
 
 						</table>
@@ -523,6 +581,181 @@
 
 			});
 		}
+
+
+		function searchQuestion(page)
+		{
+
+			if(page===undefined){
+				page=0;
+			}
+			
+			var txt=$("#searchText").val();
+			console.log(txt);
+
+			$.ajax({
+				url:"searchQuestion?searchText="+txt+"&page="+page,
+				type:"GET",
+				success:function(response){
+					$(".tr").remove();
+					console.log(response.qs[0].questionText);
+					for(var i=0; i<response.qs.length; i++){
+						$("#tbl").append(
+						"<tr class='tr'><td>"
+						+response.qs[i].id+
+						"</td><td>"
+						+response.qs[i].questionText+
+						"</td><td>"
+						+response.qs[i].category+
+						"</td><td>"
+						+response.qs[i].difficultyLevel+
+						"</td><td>"
+						+response.qs[i].updatedDate+
+						"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
+					}
+					var page = response.page;
+					var TotalPage=response.TotalPage;
+					console.log("current: page: "+page);
+					console.log("total:  "+TotalPage);
+					var cpage=page+1;
+					var ppage=page-1;
+	 				$(".dd").remove(); 
+	 				if(0==TotalPage-1){
+						$("#pagination").append("<div class='dd'>"+cpage+"</div>")
+	 	 				}
+	 				else if(page==0){
+						$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:searchQuestion("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+		 				}
+	 				else if(page==TotalPage-1){
+	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
+	 					
+	 	 				}
+
+	 				else{
+	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:searchQuestion("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
+						
+	 	 				} 
+					}
+				});
+
+			}
+
+		function sortTable(sort){
+
+// 			if(page===undefined)
+// 				{
+// 					page=0;
+// 				}
+			 
+			 //var sort = $("#sort").val();
+			console.log(sort);
+			 $.ajax({
+			  url:'sortQuestion?sortBy='+sort,
+			  type:'GET',
+			  success: function(response){
+			 
+			   /* $("#tbl tr:not(:first)").remove(); */
+			   $(".tr").remove();
+
+			   for(var i=0; i<response.qs.length; i++){
+					$("#tbl").append(
+					"<tr class='tr'><td>"
+					+response.qs[i].id+
+					"</td><td>"
+					+response.qs[i].questionText+
+					"</td><td>"
+					+response.qs[i].category+
+					"</td><td>"
+					+response.qs[i].difficultyLevel+
+					"</td><td>"
+					+response.qs[i].updatedDate+
+					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
+				}
+				if(response.sortBy=="ASC"){
+					$(".CCC").attr('id',"DESC");
+				}else{
+					$(".CCC").attr('id',"ASC");
+				}
+			 
+			  }
+			 });
+			}
+		
+		function sortlevel(sort,page){
+
+			if(page===undefined)
+				{
+					page=0;
+				}
+// 			 var sort = $("#sort").val();
+			console.log(sort);
+			 $.ajax({
+			  url:'sortDifficultyLevel?sortBy='+sort+"&page="+page,
+			  type:'GET',
+			  success: function(response){
+			 
+			   /* $("#tbl tr:not(:first)").remove(); */
+			   $(".tr").remove();
+
+			   for(var i=0; i<response.qs.length; i++){
+					$("#tbl").append(
+					"<tr class='tr'><td>"
+					+response.qs[i].id+
+					"</td><td>"
+					+response.qs[i].questionText+
+					"</td><td>"
+					+response.qs[i].category+
+					"</td><td>"
+					+response.qs[i].difficultyLevel+
+					"</td><td>"
+					+response.qs[i].updatedDate+
+					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
+				}
+				var level;
+				if(response.sortBy=="EASY"){
+					level="DIFFICULT";
+// 					$(".CCC").attr('id',"DIFFICULT");
+				}else{
+					level="EASY";
+// 					$(".CCC").attr('id',"EASY");
+				}
+
+				var page = response.page;
+				var TotalPage=response.TotalPage;
+				console.log("current: page: "+page);
+				console.log("total:  "+TotalPage);
+				var cpage=page+1;
+				var ppage=page-1;
+ 				$(".dd").remove();
+
+				console.log("TEst:    "+level)
+ 				 
+ 				if(0==TotalPage-1){
+ 						$("#pagination").append("<div class='dd'>"+cpage+"</div>")
+ 	 				}
+ 				else if(page==0){
+ 					if(response.sortBy=="EASY"){
+ 						$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortlevel("+level+","+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+ 					}
+ 					else{
+// 					$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortlevel('EASY',"+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+	 				}
+ 				}
+ 				else if(page==TotalPage-1){
+//  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel('DIFFICULT',"+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
+ 					
+ 	 				}
+
+ 				else{
+ 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:sortlevel("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
+					
+ 	 				} 
+			 
+			  }
+			 });
+			}
+
+		
 	</script>
 
 

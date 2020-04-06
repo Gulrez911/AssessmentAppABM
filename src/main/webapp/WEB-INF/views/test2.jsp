@@ -1201,6 +1201,7 @@ body * {
 	}
 	
 	function next(){
+	 $("#next").removeAttr('href');
 	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
 	if(qType == 'CODING'){
 		var textarea = document.getElementById('codeOfEditor');
@@ -1222,6 +1223,7 @@ body * {
 	}
 	
 	function prev(){
+	$("#back").removeAttr('href');
 	var qType = '${currentQuestion.questionMapperInstance.questionMapper.question.type}';
 	if(qType == 'CODING'){
 		var textarea = document.getElementById('codeOfEditor');
@@ -1254,6 +1256,7 @@ body * {
 	}
 
 	function submitTestCheckNoAnswer(){
+		  $("#next").removeAttr('href');
 		var uanswered = '${totalQuestions - (noAnswered+1)}';
 			if(uanswered == '0'||uanswered=='-1'){
 
@@ -1478,9 +1481,9 @@ body * {
 <script>
 var video = document.querySelector("#videoElement");
 
-if (navigator.mediaDevices.getUserMedia) {
+if (navigator.webkitGetUserMedia) {
 	
-  navigator.mediaDevices.getUserMedia({ video: true })
+navigator.webkitGetUserMedia({ video: true })
     .then(function (stream) {
       video.srcObject = stream;
     })

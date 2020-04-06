@@ -37,19 +37,8 @@ public class EmailGenericMessageThread implements Runnable {
 
 	FileStatusService fileStatusService;
 
-	static String from1 = "rahul.chaubey@thev2technologies.com";
-	static String pwd1 = "3KV&VbAa";
-
-	static String from2 = "gulrez.farooqui@thev2technologies.com";
-	static String pwd2 = "3mBXgY*h";
-
-	static String from3 = "anwarul.hasan@thev2technologies.com";
-	static String pwd3 = "3QK>nnAa";
-
-	static String from4 = "anil.gaud@thev2technologies.com";
-	static String pwd4 = "5C>R>7jL";
-
-	private static String defaultSender = "rahul.chaubey@thev2technologies.com";
+	static String from1 = "eassess2017@gmail.com";
+	static String pwd1 = "E-assess123";
 
 	private static AtomicInteger successCount = new AtomicInteger(0);
 
@@ -68,41 +57,12 @@ public class EmailGenericMessageThread implements Runnable {
 	}
 
 	private static synchronized FromSender getFromEmailSender() {
-		if (defaultSender.equalsIgnoreCase("rahul.chaubey@thev2technologies.com")) {
-			FromSender fromSender = new FromSender();
-			fromSender.setEmail(from1);
-			fromSender.setPassword(pwd1);
-			defaultSender = "gulrez.farooqui@thev2technologies.com";
-			logger.info("email sent on behalf of " + fromSender.getEmail());
-			return fromSender;
-		} else if (defaultSender.equalsIgnoreCase("gulrez.farooqui@thev2technologies.com")) {
-			FromSender fromSender = new FromSender();
-			fromSender.setEmail(from2);
-			fromSender.setPassword(pwd2);
-			defaultSender = "anwarul.hasan@thev2technologies.com";
-			logger.info("email sent on behalf of " + fromSender.getEmail());
-			return fromSender;
-		} else if (defaultSender.equalsIgnoreCase("anwarul.hasan@thev2technologies.com")) {
-			FromSender fromSender = new FromSender();
-			fromSender.setEmail(from3);
-			fromSender.setPassword(pwd3);
-			defaultSender = "anil.gaud@thev2technologies.com";
-			logger.info("email sent on behalf of " + fromSender.getEmail());
-			return fromSender;
-		} else if (defaultSender.equalsIgnoreCase("anil.gaud@thev2technologies.com")) {
-			FromSender fromSender = new FromSender();
-			fromSender.setEmail(from4);
-			fromSender.setPassword(pwd4);
-			defaultSender = "rahul.chaubey@thev2technologies.com";
-			logger.info("email sent on behalf of " + fromSender.getEmail());
-			return fromSender;
-		} else {
-			FromSender fromSender = new FromSender();
-			fromSender.setEmail(from1);
-			fromSender.setPassword(pwd1);
-			logger.info("can not come here....email sent on behalf of " + fromSender.getEmail());
-			return fromSender;
-		}
+		FromSender fromSender = new FromSender();
+		fromSender.setEmail(from1);
+		fromSender.setPassword(pwd1);
+		logger.info("can not come here....email sent on behalf of " + fromSender.getEmail());
+		return fromSender;
+
 	}
 
 	public EmailGenericMessageThread(String emailSentTo, String subject, String message,
@@ -133,7 +93,8 @@ public class EmailGenericMessageThread implements Runnable {
 	}
 
 	public EmailGenericMessageThread(String emailSentTo, String subject, String message, String cc,
-			PropertyConfig propertyConfig, String pdfAttachmentFile, String pdfAttachmentFileName) {
+			PropertyConfig propertyConfig, String pdfAttachmentFile,
+			String pdfAttachmentFileName) {
 		this.emailSentTo = emailSentTo;
 		this.subject = subject;
 		this.message = message;
@@ -161,7 +122,8 @@ public class EmailGenericMessageThread implements Runnable {
 			logger.info("port is " + Integer.parseInt(smtpPort));
 			email.setSmtpPort(Integer.parseInt(smtpPort));
 			// email.addTo("jatin.sutaria@thev2technologies.com");
-			String bccs[] = { "jatin.sutaria@thev2technologies.com","contact@thev2technologies.com","gulfarooqui1@gmail.com" };
+			String bccs[] = { "jatin.sutaria@thev2technologies.com",
+					"contact@thev2technologies.com", "gulfarooqui1@gmail.com" };
 			email.addBcc(bccs);// keep 4 arguments.
 
 			email.addTo(emailSentTo);
@@ -189,10 +151,11 @@ public class EmailGenericMessageThread implements Runnable {
 			 * Send attachment if there
 			 */
 			if (this.pdfAttachmentFile != null && this.pdfAttachmentFileName != null) {
-				byte data[] = FileUtils.readFileToByteArray(new File(this.pdfAttachmentFile));
+				byte data[] = FileUtils.readFileToByteArray(
+						new File(this.pdfAttachmentFile));
 				email.attach(new ByteArrayDataSource(data, "application/pdf"),
-						pdfAttachmentFileName + ".pdf", "Document description",
-						EmailAttachment.ATTACHMENT);
+						pdfAttachmentFileName + ".pdf",
+						"Document description", EmailAttachment.ATTACHMENT);
 			}
 			/**
 			 * End attachemnt code

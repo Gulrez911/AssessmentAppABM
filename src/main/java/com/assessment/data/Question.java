@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.assessment.Exceptions.AssessmentGenericException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Primary key - questionText & companyId
  * @author jsutaria
@@ -102,12 +103,13 @@ public class Question extends Base{
 	private FullStackOptions fullstack = FullStackOptions.JAVA_FULLSTACK;
 	
 	@Transient
+	@JsonIgnore
 	String lang;
 	
-	@Transient
+	@Transient@JsonIgnore
 	String stack;
 	
-	@Transient
+	@Transient@JsonIgnore
 	private String type;
 	
 	@Column(length=2000)
@@ -118,7 +120,7 @@ public class Question extends Base{
 	
 	
 	
-	@Transient
+	@Transient@JsonIgnore
 	private String level;
 	
 	@Column(length=2000)
@@ -139,19 +141,19 @@ public class Question extends Base{
 	@Column(length=2000) 
 	String instructionsIfAny;
 	
-	@Transient
+	@Transient@JsonIgnore
 	String category;
 	
-	@Transient
+	@Transient@JsonIgnore
 	String testCategory;
 	
-	@Transient
+	@Transient@JsonIgnore
 	String updatedDate;
 	
 	/**
 	 * Remove from here. this is related to ui.
 	 */
-	@Transient
+	@Transient@JsonIgnore
 	Boolean selected;
 	
 	

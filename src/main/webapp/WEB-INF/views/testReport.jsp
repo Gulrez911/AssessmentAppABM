@@ -142,31 +142,6 @@
 	<section>
 		<div class="container">
 			<div class="row mt-5">
-				<div align="center">
-					<div class="mt-10"></div>
-					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/downloadTestReport'">Test
-						Reports</button>
-					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/downloadUserReport'">All
-						Tests</button>
-					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/frameset?__report=qs.rptdesign'">
-						User Sessions Report</button>
-					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/frameset?__report=finalreport2new.rptdesign'">Report
-						By Percentile</button>
-					<button type="submit" class="btn btn-success"
-						onclick="window.location.href='/AssesmentApp/frameset?__report=test.rptdesign'">Report
-						By Testname</button>
-					<button class="btn btn-success" onclick="javascript:shareOpen()">DownloadUserReport</button>
-					<button class="btn btn-success" onclick="javascript:openDownload()">Download
-						Report</button>
-				</div>
-
-
-
-
 				<div class="col-md-12">
 					<div class="mt-10"></div>
 					<div class="col-md-5">
@@ -180,44 +155,42 @@
 							<table class="table table-striped">
 								<thead style="background-color: #03a9f4;">
 									<tr>
-										<th><b>No</b></th>
-										<th style="width: 20%"><b>Test Title</b></th>
-										<th><b>Sections</b></th>
-										<th style="width: 5%"><b>Sessions</b></th>
-										<th><b>Passed </b></th>
-										<th><b>Average Score</b></th>
-										<th><b>Highest Score</b></th>
-										<th><b>Top 3</b></th>
+										<th><b>Name</b></th>
 										<th style="width: 20%"><b>Contact</b></th>
-										<th><b>Basic Report</b></th>
-										<th><b>Full Reports</b></th>
+										<th style="width: 5%"><b>Test Name</b></th>
+										<th><b>Section Wise</b></th>
+										<th><b>Test Start </b></th>
+										<th><b>Test End</b></th>
+										<th><b>Result</b></th>
+										<th style="width: 20%"><b>Attempts</b></th>
+										<th><b>No. of Security Breech</b></th>
+										<th><b>URL</b></th>
 									</tr>
 								</thead>
 								<tbody>
 								<tbody>
 
-									<c:forEach items="${testsessions}" var="session"
-										varStatus="loop">
+									<c:forEach items="${reportList}" var="session">
 										<tr>
-											<td>${loop.count}</td>
+											<td>${session.firstName}</td>
 
-											<td><a
-												href="downloadUserReportsForTest2?testName=${session.testName}">${session.testName}</a></td>
+											<td>${session.email}</td>
 
-											<td>${session.sectionsInfo}</td>
-											<td>${session.noOfSessions}</td>
-											<td>${session.noOfPassResults}</td>
-
-											<td>${session.averageScore}</td>
-											<td>${session.highestScore}</td>
-											<td>${session.topCandidates}</td>
-											<td>${session.topCandidatesEmail}</td>
-											<td><a
-												href="downloadUserReportsForTest?testName=${session.testName}">Click
-											</a></td>
-											<td><a
-												href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
-											</a></td>
+											<td>${session.testName}</td>
+											<td>${session.sectionWiseScore}</td>
+											<td>${session.testStartDate}</td>
+											<td>${session.testEndDate}</td>
+											<td>${session.result}</td>
+											<td>${session.noOfAttempts}</td>
+											<td>${session.noOfNonCompliances}</td>
+											<td><a href="${session.urlForUserSession}">Download Report</a></td>
+<%-- 											<td>${session.topCandidatesEmail}</td> --%>
+<!-- 											<td><a -->
+<%-- 												href="downloadUserReportsForTest?testName=${session.testName}">Click --%>
+<!-- 											</a></td> -->
+<!-- 											<td><a -->
+<%-- 												href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click --%>
+<!-- 											</a></td> -->
 
 										</tr>
 									</c:forEach>
@@ -254,120 +227,7 @@
 			</div>
 		</div>
 	</footer>
-
-	<script>
-		function shareOpen() {
-			$('#modalcopy').modal('hide');
-			$('#modalshare').modal('show');
-		}
-
-		function openDownload() {
-			console.log("test");
-			$('#modalshare2').modal('show');
-		}
-	</script>
-
-	<div id="modalshare2" class="modal fade modalcopy" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-body">
-					<form method="GET" action="downloadReportFilters">
-						Test Name: <form:select path="test.testName" class="form-control"
-							onchange="Change()" id="name">
-							<option value="ALL">ALL</option>
-							<form:options items="${listTest}" itemValue="testName"
-								itemLabel="testName" />
-						</form:select>
-						<br>
-						User Name:<select id="slct" class="form-control" name="userName">
-							<option>ALL</option>
-						</select> 
-						<br>
-						Start Date:<input type="date" name="startDate"/>
-						End Date:<input type="date" name="endDate"/>
-						<br>
-						Result:<select class="form-control" name="result">
-							<option value="ALL">All</option>
-							<option value="true">Pass</option>
-							<option value="false">Fail</option>
-						</select> 
-						<br>
-						Percentage <input type="text" name="min" placeholder="Minimum percentage"/>
-								<input type="text" name="max" placeholder="Maximum percentage"/>
-					
-						<input type="submit" value="Download" style="align-content: center;" />
-						
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="modalshare" class="modal fade modalcopy" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-body">
-					<form method="GET" action="downloadUserReportPdf">
-						<form:select path="test.testName" class="form-control"
-							onchange="Change1()" id="name1">
-							<option value="Select any option">Select Any Test Name</option>
-							<form:options items="${listTest}" itemValue="testName"
-								itemLabel="testName" />
-						</form:select>
-						<br>
-						<select id="slct1" class="form-control" name="userEmail"></select>
-						<input type="submit" value="Download"
-							style="align-content: center;" />
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<script>
-		function Change() {
-			var testN = $('#name').val();
-			console.log(testN)
-			$.ajax({
-				url : "fetchEmail?testN=" + testN,
-				type : 'GET',
-				success : function(response) {
-					console.log(response.listEmail.length)
-					$('.opt').remove();
-					for (i = 0; i < response.listEmail.length; i++) {
-						console.log(response.listEmail[i]);
-						$("#slct").append(
-								"<option class='opt'>" + response.listEmail[i]
-										+ "</option>");
-					}
-				},
-			});
-		}
-
-		function Change1() {
-			var testN = $('#name1').val();
-			console.log(testN)
-			$.ajax({
-				url : "fetchEmail?testN=" + testN,
-				type : 'GET',
-				success : function(response) {
-					console.log(response.listEmail.length)
-					$('.opt').remove();
-					for (i = 0; i < response.listEmail.length; i++) {
-						console.log(response.listEmail[i]);
-						$("#slct1").append(
-								"<option class='opt'>" + response.listEmail[i]
-										+ "</option>");
-					}
-				},
-			});
-		}
-	</script>
+ 
 	<!-- jQuery -->
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
@@ -420,31 +280,7 @@
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
-	<script>
-		$(document).ready(function() {
-			$('.mdb-select').materialSelect();
-		});
-	</script>
-	<script>
-		$('#search').on('click', function() {
-			var text = document.getElementById("searchText").value;
-			if (text.length != 0) {
-				window.location = "searchUsrs?searchText=" + text;
-			}
-		});
-		function notify(messageType, message) {
-			var notification = 'Information';
-			$(function() {
-				new PNotify({
-					title : notification,
-					text : message,
-					type : messageType,
-					styling : 'bootstrap3',
-					hide : true
-				});
-			});
-		}
-	</script>
+	 
 </body>
 
 </html>

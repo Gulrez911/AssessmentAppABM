@@ -108,6 +108,7 @@
 		 var date = new Date();
 		    date.setDate(date.getDate() +2);
 		$("#txt2Date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
+		$("#txt2Date2").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
 	});
 </script>
 </head>
@@ -345,26 +346,41 @@
 					<h4 class="modal-title">Share Test</h4>
 				</div>
 				<div class="modal-body">
-					<form method="POST" action="sharePublicTest">
+				
+				 <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Single Share</a>
+
+                        </li>
+                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Bulk Share</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
+                        
+                        <form method="POST" action="sharePublicTest" enctype="multipart/form-data">
 						<div>
 							<label>Existing test name</label> <input id="existing_name1"
-								type="text" readonly="readonly" />
+								type="text" readonly="readonly" name="existing_name1"/>
 						</div>
 						<div>
-							<label>First Name</label> <input id="firstName" type="text" />
+							<label>First Name</label> <input id="firstName" type="text" name="firstName"/>
 						</div>
 						<div>
-							<label>Last name</label> <input id="lastName" type="text" /></a>
+							<label>Last name</label> <input id="lastName" type="text" name="lastName"/></a>
 						</div>
 						<div>
-							<label>Email Id</label> <input id="userEmail" type="text" />
+							<label>Email Id</label> <input id="userEmail" type="text" name="userEmail"/>
 						</div>
 						<div>
 							<label>Public Test URL</label> <input id="publicTestUrl"
 								type="text" readonly="readonly" />
 						</div>
 						<div>
-							<label>Expire Date</label> <input id="txt2Date" />
+							<label>Expire Date</label> <input id="txt2Date" name="expId"/>
 						</div>
 
 						<input type="hidden" name="testId" id="testId" value="" />
@@ -372,12 +388,43 @@
 							<input class="waves-effect waves-light btn" type="button"
 								value="Copy in your Clipboard"
 								onClick="javascript:copyUrlInClipBoard()" /> <input
-								class="waves-effect waves-light btn" type="button" value="Share"
-								onClick="javascript:shareTest()" /> <input
+								class="waves-effect waves-light btn" type="submit" value="Share" /> <input
 								class="waves-effect waves-light btn" type="button" value="Close"
 								data-dismiss="modal" />
 						</div>
-					</form>
+					</form> 
+                        
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="browseTab">
+                        
+                           <form method="POST" action="shareBulkPublicTest" enctype="multipart/form-data">
+						<div>
+							<label>Existing test name</label> <input id="existing_name2"
+								type="text" readonly="readonly" name="existing_name1"/>
+						</div>
+						<div>
+							 <input id="publicTestUrl2"
+								type="hidden" readonly="readonly" />
+						</div>
+						<div><label>Bulk Users</label><input type="file" name="file"></div>
+						<div>
+							<label>Expire Date</label> <input id="txt2Date2" name="expId"/>
+						</div>
+
+						<input type="hidden" name="testId" id="testId2" value="" />
+						<div class="buttons text-center" style="padding-top: 20px;">
+							<input class="waves-effect waves-light btn" type="button"
+								value="Copy in your Clipboard"
+								onClick="javascript:copyUrlInClipBoard()" /> <input
+								class="waves-effect waves-light btn" type="submit" value="Share" /> <input
+								class="waves-effect waves-light btn" type="button" value="Close"
+								data-dismiss="modal" />
+						</div>
+					</form> 
+                        </div>
+                    </div>
+                </div>
+					 
 				</div>
 			</div>
 		</div>
@@ -474,6 +521,9 @@
 			document.getElementById("existing_name1").value = testName;
             document.getElementById("publicTestUrl").value = testPublicUrl;
             document.getElementById("testId").value = testId;
+        	document.getElementById("existing_name2").value = testName;
+            document.getElementById("publicTestUrl2").value = testPublicUrl;
+            document.getElementById("testId2").value = testId;
             $('#modalcopy').modal('hide');
             $('#modalshare').modal('show');
         }

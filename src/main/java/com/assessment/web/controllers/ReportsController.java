@@ -301,6 +301,41 @@ public class ReportsController {
 		}
 		return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+//	testName wise Report for ui
+	
+	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {
+			org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("testReport");
+		long start = 0L;
+		long end = 0L;
+		start = System.currentTimeMillis();
+			User user = (User) request.getSession().getAttribute("user");
+			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+					userTestSessionRepository, sectionService, userService,
+					userNonComplianceRepo, user.getCompanyId(),
+					user.getFirstName() + " " + user.getLastName());
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
+					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
+			for (AssessmentUserPerspectiveData data : collection) {
+				if (data.getTestName().equals(testName)) {
+					data.setCompanyId(user.getCompanyId());
+					data.setUrlForUserSession(propertyConfig.getBaseUrl()
+							+ "downloadUserSessionReportsForTest?testName="
+							+ testName + "&companyId="
+							+ user.getCompanyId() + "&email="
+							+ data.getEmail());
+					collectionForTest.add(data);
+				}
+			}
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String date = formatter.format(new Date());
+			mav.addObject("reportList", collectionForTest);
+			return mav;
+	}
 
 	@RequestMapping(value = { "/downloadUserReport" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
@@ -484,14 +519,20 @@ public class ReportsController {
 			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
 					.getUserPerspectiveData();
 			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-			Date date1 = sdf.parse("01-12-2019 00:00:00");
-			Date date2 = sdf.parse("31-12-2019 00:00:00");
-			Calendar c = Calendar.getInstance();
-			c.setTime(date2);
-			c.add(Calendar.DATE, 1);
-			date2 = c.getTime();
+//			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+//			Date date1 = sdf.parse("01-12-2019 00:00:00");
+//			Date date2 = sdf.parse("31-12-2019 00:00:00");
+//			Calendar c = Calendar.getInstance();
+//			c.setTime(date2);
+//			c.add(Calendar.DATE, 1);
+//			date2 = c.getTime();
 
+			System.out.println(endDate);
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(endDate); 
+			c.add(Calendar.DATE, 1);
+			endDate = c.getTime();
+			System.out.println(endDate);
 			for (AssessmentUserPerspectiveData data : collection) {
 				String testDateString2 = data.getTestStartDate();
 				DateFormat df2 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -506,8 +547,8 @@ public class ReportsController {
 					if (testName.equals("ALL")) {
 						if (userName.equals("ALL")) {
 							if (result.equals("ALL")) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -520,8 +561,8 @@ public class ReportsController {
 									collectionForTest.add(data);
 								}
 							} else if (data.getPass()&&b) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+								if (min <=data.getOverAllScore()
+										&& data.getOverAllScore() <=max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -533,9 +574,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if(!b&&!data.getPass()) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -552,8 +593,8 @@ public class ReportsController {
 							}
 						} else if (data.getEmail().equals(userName)) {
 							if (result.equals("ALL")) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -565,9 +606,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if (data.getPass().equals(b)&&b) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <=max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -579,9 +620,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if(!b&&!data.getPass()) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -600,8 +641,8 @@ public class ReportsController {
 					} else if (data.getTestName().equals(testName)) {
 						if (userName.equals("ALL")) {
 							if (result.equals("ALL")) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -613,9 +654,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if (data.getPass().equals(b)&&b) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -627,9 +668,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if(!b&&!data.getPass()) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -646,8 +687,8 @@ public class ReportsController {
 							}
 						} else if (data.getEmail().equals(userName)) {
 							if (result.equals("ALL")) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -659,9 +700,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)) {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if (data.getPass().equals(b)&&b) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()
@@ -673,9 +714,9 @@ public class ReportsController {
 													+ data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else {
-								if (min < data.getOverAllScore()
-										&& data.getOverAllScore() < max) {
+							} else if(!b&&!data.getPass()) {
+								if (min <= data.getOverAllScore()
+										&& data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
 									data.setUrlForUserSession(
 											propertyConfig.getBaseUrl()

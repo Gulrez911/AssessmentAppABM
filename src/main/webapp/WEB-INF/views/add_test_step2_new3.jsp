@@ -253,6 +253,15 @@
 									value="${sectionDto.sectionName}" placeholder="Enter Section Name">
 							</div>
 						</div>
+						
+						<div class="col-md-2">
+							<div class="widget widget_search">
+
+								<div class="search-form">
+								 Count: <span id="count">${sectionDto.noOfQuestions}</span>
+								</div>
+							</div>
+						</div>
 
 						<div class="col-md-4">
 							<div class="widget widget_search">
@@ -458,7 +467,7 @@
 					tr.style.backgroundColor = '#33FFF9';
 					tdadd.style.display = "none";
 					tdremove.style.display = "";
-
+					$("#count").text(data);
 					//document.getElementById("no-"+sectionName).innerHTML = data;
 
 				},
@@ -488,7 +497,7 @@
 					tr.style.backgroundColor = 'transparent';
 					tdadd.style.display = "";
 					tdremove.style.display = "none";
-
+					$("#count").text(data);
 					//document.getElementById("no-"+sectionName).innerHTML = data;
 
 				},
