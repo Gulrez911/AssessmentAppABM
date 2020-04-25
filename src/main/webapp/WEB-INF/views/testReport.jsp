@@ -150,6 +150,23 @@
 						</h1>
 					</div>
 
+					<div class="col-md-4">
+
+						<div class="widget widget_search">
+							<div class="search-form">
+								<form action="searchTestNameWiseUIReport" method="get">
+									<input type="text" placeholder="Search a Report"
+										name="searchReport" id="searchTestNameWiseUIReport"
+										value="${param.searchReport}"> <input type="hidden"
+										value="${param.testName}" name="testName">
+									<button type="submit" id="search">
+										<i class="fa fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+
 					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-striped">
@@ -172,10 +189,9 @@
 
 									<c:forEach items="${reportList}" var="session">
 										<tr>
-											<td>${session.firstName}</td>
+											<td><a href="javascript:getRank('${session.email}')">${session.firstName}</a></td>
 
 											<td>${session.email}</td>
-
 											<td>${session.testName}</td>
 											<td>${session.sectionWiseScore}</td>
 											<td>${session.testStartDate}</td>
@@ -183,14 +199,15 @@
 											<td>${session.result}</td>
 											<td>${session.noOfAttempts}</td>
 											<td>${session.noOfNonCompliances}</td>
-											<td><a href="${session.urlForUserSession}">Download Report</a></td>
-<%-- 											<td>${session.topCandidatesEmail}</td> --%>
-<!-- 											<td><a -->
-<%-- 												href="downloadUserReportsForTest?testName=${session.testName}">Click --%>
-<!-- 											</a></td> -->
-<!-- 											<td><a -->
-<%-- 												href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click --%>
-<!-- 											</a></td> -->
+											<td><a href="${session.urlForUserSession}">Download
+													Report</a></td>
+											<%-- 											<td>${session.topCandidatesEmail}</td> --%>
+											<!-- 											<td><a -->
+											<%-- 												href="downloadUserReportsForTest?testName=${session.testName}">Click --%>
+											<!-- 											</a></td> -->
+											<!-- 											<td><a -->
+											<%-- 												href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click --%>
+											<!-- 											</a></td> -->
 
 										</tr>
 									</c:forEach>
@@ -209,7 +226,41 @@
 		<!-- /.container -->
 	</section>
 
+<!-- TestRank Popup -->
+	<div id="modalshare" class="modal fade modalcopy" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Test Rank</h4>
+				</div>
+				<div class="modal-body">
 
+					<div role="tabpanel">
+						<!-- Nav tabs -->
+
+						<table id="tbl">
+							<tr>
+								<th>Test Name</th>
+								<th>Rank</th>
+							</tr>
+						</table>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="uploadTab">
+
+
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="browseTab"></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
@@ -227,7 +278,46 @@
 			</div>
 		</div>
 	</footer>
- 
+
+	<!-- JavaScript -->
+	<script>
+		$('#search')
+				.on(
+						'click',
+						function() {
+							var text = document.getElementById("searchReport").value;
+							if (text.length != 0) {
+								window.location = "searchTestNameWiseUIReport?searchReport="
+										+ text + "&testName=" + testName;
+							}
+						});
+	</script>
+
+	<script type="text/javascript">
+		function getRank(email) {
+			console.log(email);
+			$.ajax({
+				url : "getRank?email=" + email/* +"&companyId="+companyId */,
+				method : "GET",
+				success : function(response) {
+					console.log(response.rankList)
+					$(".tr").remove();
+					for (var i = 0; i < response.rankList.length; i++) {
+						$("#tbl").append(
+								"<tr class='tr'><td>"
+										+ response.rankList[i].testName
+										+ "</td><td>"
+										+ response.rankList[i].testId
+										+ "</td><td></tr>")
+					}
+					$('#modalshare').modal('show');
+
+				}
+			});
+		}
+	</script>
+
+
 	<!-- jQuery -->
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
@@ -280,7 +370,7 @@
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
-	 
+
 </body>
 
 </html>

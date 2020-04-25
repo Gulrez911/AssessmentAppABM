@@ -33,6 +33,11 @@ public class TestUserData {
 	public void setTestName(String testName) {
 		this.testName = testName;
 	}
+
+	@Override
+	public String toString() {
+		return "TestUserData [user=" + user + ", testId=" + testId + ", testName=" + testName + "]";
+	}
 	
 	
 

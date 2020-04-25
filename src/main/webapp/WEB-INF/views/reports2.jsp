@@ -144,7 +144,7 @@
 			<div class="row mt-5">
 				<div align="center">
 					<div class="mt-10"></div>
-					<button type="submit" class="btn btn-success"
+					<!-- <button type="submit" class="btn btn-success"
 						onclick="window.location.href='/AssesmentApp/downloadTestReport'">Test
 						Reports</button>
 					<button type="submit" class="btn btn-success"
@@ -158,10 +158,9 @@
 						By Percentile</button>
 					<button type="submit" class="btn btn-success"
 						onclick="window.location.href='/AssesmentApp/frameset?__report=test.rptdesign'">Report
-						By Testname</button>
+						By Testname</button> -->
 					<button class="btn btn-success" onclick="javascript:shareOpen()">DownloadUserReport</button>
-					<button class="btn btn-success" onclick="javascript:openDownload()">Download
-						Report</button>
+					<button class="btn btn-success" onclick="javascript:openDownload()">Download Report</button>
 				</div>
 
 
@@ -174,6 +173,24 @@
 							<b style="font-size: x-large;">${reportType}</b>
 						</h1>
 					</div>
+
+					<div class="col-md-4">
+
+						<div class="widget widget_search">
+							<div class="search-form">
+								<form action="searchReport" method="get">
+									<input type="text" placeholder="Search a Report"
+										name="searchReport" id="searchReport"
+										value="${param.searchReport}">
+									<button type="submit" id="search">
+										<i class="fa fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+
+					</div>
+					
 
 					<div class="col-md-12">
 						<div class="table-responsive">
@@ -273,31 +290,27 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<form method="GET" action="downloadReportFilters">
-						Test Name: <form:select path="test.testName" class="form-control"
+						Test Name:
+						<form:select path="test.testName" class="form-control"
 							onchange="Change()" id="name">
 							<option value="ALL">ALL</option>
 							<form:options items="${listTest}" itemValue="testName"
 								itemLabel="testName" />
 						</form:select>
-						<br>
-						User Name:<select id="slct" class="form-control" name="userName">
+						<br> User Name:<select id="slct" class="form-control"
+							name="userName">
 							<option>ALL</option>
-						</select> 
-						<br>
-						Start Date:<input type="date" name="startDate"/>
-						End Date:<input type="date" name="endDate"/>
-						<br>
-						Result:<select class="form-control" name="result">
+						</select> <br> Start Date:<input type="date" name="startDate" /> End
+						Date:<input type="date" name="endDate" /> <br> Result:<select
+							class="form-control" name="result">
 							<option value="ALL">All</option>
 							<option value="true">Pass</option>
 							<option value="false">Fail</option>
-						</select> 
-						<br>
-						Percentage <input type="text" name="min" placeholder="Minimum percentage"/>
-								<input type="text" name="max" placeholder="Maximum percentage"/>
-					
-						<input type="submit" value="Download" style="align-content: center;" />
-						
+						</select> <br> Percentage <input type="text" name="min"
+							placeholder="Minimum percentage" /> <input type="text" name="max"
+							placeholder="Maximum percentage" /> <input type="submit"
+							value="Download" style="align-content: center;" />
+
 					</form>
 				</div>
 			</div>
@@ -316,8 +329,7 @@
 							<form:options items="${listTest}" itemValue="testName"
 								itemLabel="testName" />
 						</form:select>
-						<br>
-						<select id="slct1" class="form-control" name="userEmail"></select>
+						<br> <select id="slct1" class="form-control" name="userEmail"></select>
 						<input type="submit" value="Download"
 							style="align-content: center;" />
 					</form>
@@ -426,6 +438,14 @@
 		});
 	</script>
 	<script>
+	
+		$('#search').on('click', function() {
+			var text = document.getElementById("searchReport").value;
+			if (text.length != 0) {
+				window.location = "searchReport?searchReport=" + text;
+			}
+		});
+
 		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {

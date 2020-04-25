@@ -9,9 +9,13 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,6 +61,7 @@ import com.assessment.services.SectionService;
 import com.assessment.services.UserService;
 import com.assessment.services.impl.ReportsService;
 import com.assessment.web.dto.TestAnswerData;
+import com.assessment.web.dto.TestUserData;
 import com.assessment.web.dto.UserBySkillDTO;
 
 @Controller
@@ -100,8 +105,7 @@ public class ReportsController {
 		Map<String, Object> map = new HashMap<>();
 		User user = (User) request.getSession().getAttribute("user");
 		System.out.println("TestName: " + testName + " User: " + user.getCompanyId());
-		List<UserTestSession> listRepo = userTestRepo.findUserSessionsForTest(testName,
-				user.getCompanyId());
+		List<UserTestSession> listRepo = userTestRepo.findUserSessionsForTest(testName, user.getCompanyId());
 		System.out.println("size: " + listRepo.size());
 		List<String> list = new ArrayList<>();
 		for (UserTestSession test : listRepo) {
@@ -114,12 +118,11 @@ public class ReportsController {
 
 	@RequestMapping(value = { "/downloadUserReportPdf" }, method = RequestMethod.GET)
 	public ResponseEntity<byte[]> downloadUserReportPdf(final HttpServletRequest request,
-			@RequestParam("testName") String testName, @RequestParam("userEmail") String userEmail)
-			throws Exception {
+			@RequestParam("testName") String testName, @RequestParam("userEmail") String userEmail) throws Exception {
 		User user = (User) request.getSession().getAttribute("user");
 		User usr = userService.findByPrimaryKey(userEmail, user.getCompanyId());
-		String file = this.reportsService.generatedetailedReportForCompositeTest(user.getCompanyId(),
-				testName, userEmail);
+		String file = this.reportsService.generatedetailedReportForCompositeTest(user.getCompanyId(), testName,
+				userEmail);
 
 		byte data[] = FileUtils.readFileToByteArray(new File(file));
 
@@ -134,16 +137,14 @@ public class ReportsController {
 		return response;
 	}
 
-	@RequestMapping(value = { "/showReports" }, method = {
-			org.springframework.web.bind.annotation.RequestMethod.GET })
+	@RequestMapping(value = { "/showReports" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ModelAndView showReports(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("reports2");
 		User user = (User) request.getSession().getAttribute("user");
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
 				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
 				user.getFirstName() + " " + user.getLastName());
-		Collection<AssessmentTestPerspectiveData> data = assessmentReportDataManager
-				.getTestPerspectiveData();
+		Collection<AssessmentTestPerspectiveData> data = assessmentReportDataManager.getTestPerspectiveData();
 		mav.addObject("testsessions", data);
 		mav.addObject("reportType", "Tests & Users Assessment Reports");
 //		
@@ -160,8 +161,7 @@ public class ReportsController {
 		return mav;
 	}
 
-	@RequestMapping(value = { "/showReport" }, method = {
-			org.springframework.web.bind.annotation.RequestMethod.GET })
+	@RequestMapping(value = { "/showReport" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ModelAndView showReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("report");
 
@@ -177,8 +177,8 @@ public class ReportsController {
 			System.out.println("test");
 			User user = userService.findByPrimaryKey(email, companyId);
 			System.out.println("2222222222222222222222");
-			List<QuestionMapperInstance> instances = rep.findQuestionMapperInstancesForUserForTest(
-					testName, email, companyId);
+			List<QuestionMapperInstance> instances = rep.findQuestionMapperInstancesForUserForTest(testName, email,
+					companyId);
 			System.out.println("1111111111111111");
 			List<TestAnswerData> testAnswerDatas = new ArrayList();
 			for (QuestionMapperInstance instance : instances) {
@@ -187,24 +187,15 @@ public class ReportsController {
 				answerData.setLastName(user.getLastName());
 				answerData.setEmail(email);
 				answerData.setTestName(testName);
-				answerData.setProblem(instance.getQuestionMapper().getQuestion()
-						.getQuestionText());
-				answerData.setQuestionCategory(instance.getQuestionMapper().getQuestion()
-						.getQuestionCategory());
-				answerData.setChoice1(instance.getQuestionMapper().getQuestion()
-						.getChoice1());
-				answerData.setChoice2(instance.getQuestionMapper().getQuestion()
-						.getChoice2());
-				answerData.setChoice3(instance.getQuestionMapper().getQuestion()
-						.getChoice3());
-				answerData.setChoice4(instance.getQuestionMapper().getQuestion()
-						.getChoice4());
-				answerData.setChoice5(instance.getQuestionMapper().getQuestion()
-						.getChoice5());
-				answerData.setChoice6(instance.getQuestionMapper().getQuestion()
-						.getChoice6());
-				answerData.setCorrectChoice(instance.getQuestionMapper().getQuestion()
-						.getRightChoices());
+				answerData.setProblem(instance.getQuestionMapper().getQuestion().getQuestionText());
+				answerData.setQuestionCategory(instance.getQuestionMapper().getQuestion().getQuestionCategory());
+				answerData.setChoice1(instance.getQuestionMapper().getQuestion().getChoice1());
+				answerData.setChoice2(instance.getQuestionMapper().getQuestion().getChoice2());
+				answerData.setChoice3(instance.getQuestionMapper().getQuestion().getChoice3());
+				answerData.setChoice4(instance.getQuestionMapper().getQuestion().getChoice4());
+				answerData.setChoice5(instance.getQuestionMapper().getQuestion().getChoice5());
+				answerData.setChoice6(instance.getQuestionMapper().getQuestion().getChoice6());
+				answerData.setCorrectChoice(instance.getQuestionMapper().getQuestion().getRightChoices());
 				answerData.setUserChoice(instance.getUserChoices());
 				answerData.setCorrect(instance.getCorrect().booleanValue() ? "Yes" : "No");
 				answerData.setUserProgram(instance.getCodeByUser());
@@ -231,9 +222,8 @@ public class ReportsController {
 
 	@RequestMapping(value = { "/downloadUserReportsForTestWithExtraAttrs" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ResponseEntity<InputStreamResource> downloadUserReportsForTestWithExtraAttrs(
-			@RequestParam String testName, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ResponseEntity<InputStreamResource> downloadUserReportsForTestWithExtraAttrs(@RequestParam String testName,
+			HttpServletRequest request, HttpServletResponse response) {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			String companyId = user.getCompanyId();
@@ -263,20 +253,16 @@ public class ReportsController {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
+					userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 					user.getFirstName() + " " + user.getLastName());
-			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
 			for (AssessmentUserPerspectiveData data : collection) {
 				if (data.getTestName().equals(testName)) {
 					data.setCompanyId(user.getCompanyId());
-					data.setUrlForUserSession(propertyConfig.getBaseUrl()
-							+ "downloadUserSessionReportsForTest?testName="
-							+ testName + "&companyId="
-							+ user.getCompanyId() + "&email="
-							+ data.getEmail());
+					data.setUrlForUserSession(
+							propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName=" + testName
+									+ "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
 					collectionForTest.add(data);
 				}
 			}
@@ -292,8 +278,8 @@ public class ReportsController {
 			respHeaders.setContentDispositionFormData("attachment", file.getName());
 			InputStreamResource isr = new InputStreamResource(new FileInputStream(file));
 			end = System.currentTimeMillis();
-			System.out.println("ReportsController.downloadUserReportsForTest() has taken "
-					+ (end - start) + " ms to complete the execution");
+			System.out.println("ReportsController.downloadUserReportsForTest() has taken " + (end - start)
+					+ " ms to complete the execution");
 			return new ResponseEntity(isr, respHeaders, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -301,40 +287,36 @@ public class ReportsController {
 		}
 		return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 //	testName wise Report for ui
-	
+
 	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("testReport");
 		long start = 0L;
 		long end = 0L;
 		start = System.currentTimeMillis();
-			User user = (User) request.getSession().getAttribute("user");
-			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
-					user.getFirstName() + " " + user.getLastName());
-			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-					.getUserPerspectiveData();
-			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
-			for (AssessmentUserPerspectiveData data : collection) {
-				if (data.getTestName().equals(testName)) {
-					data.setCompanyId(user.getCompanyId());
-					data.setUrlForUserSession(propertyConfig.getBaseUrl()
-							+ "downloadUserSessionReportsForTest?testName="
-							+ testName + "&companyId="
-							+ user.getCompanyId() + "&email="
-							+ data.getEmail());
-					collectionForTest.add(data);
-				}
+		User user = (User) request.getSession().getAttribute("user");
+		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+				userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
+				user.getFirstName() + " " + user.getLastName());
+		List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
+		List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
+		for (AssessmentUserPerspectiveData data : collection) {
+			if (data.getTestName().equals(testName)) {
+				data.setCompanyId(user.getCompanyId());
+				data.setUrlForUserSession(propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName="
+						+ testName + "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
+				collectionForTest.add(data);
 			}
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			String date = formatter.format(new Date());
-			mav.addObject("reportList", collectionForTest);
-			return mav;
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String date = formatter.format(new Date());
+		mav.addObject("reportList", collectionForTest);
+		mav.addObject("reportType", "Tests & Users Assessment Reports");
+		return mav;
 	}
 
 	@RequestMapping(value = { "/downloadUserReport" }, method = {
@@ -344,11 +326,9 @@ public class ReportsController {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
+					userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 					user.getFirstName() + " " + user.getLastName());
-			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			String date = formatter.format(new Date());
 			String fileName = reportManager.generateUserPerspectiveReport(collection,
@@ -375,11 +355,9 @@ public class ReportsController {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
+					userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 					user.getFirstName() + " " + user.getLastName());
-			Collection<AssessmentTestPerspectiveData> collection = assessmentReportDataManager
-					.getTestPerspectiveData();
+			Collection<AssessmentTestPerspectiveData> collection = assessmentReportDataManager.getTestPerspectiveData();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			String date = formatter.format(new Date());
 			String fileName = reportManager.generateTestPerspectiveReport(collection,
@@ -401,8 +379,7 @@ public class ReportsController {
 
 	@RequestMapping(value = { "/showSkillTags" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView showSkillTags(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView showSkillTags(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		User user = (User) request.getSession().getAttribute("user");
 		ModelAndView mav = new ModelAndView("skill_reports2");
 		Set<Qualifiers> qs = questionRepository.getAllUniqueQualifiers(user.getCompanyId());
@@ -416,8 +393,8 @@ public class ReportsController {
 			HttpServletRequest request, HttpServletResponse response) {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
-			List<QuestionMapperInstance> instances = questionMapperInstanceService
-					.getInstancesOR(skillName, user.getCompanyId());
+			List<QuestionMapperInstance> instances = questionMapperInstanceService.getInstancesOR(skillName,
+					user.getCompanyId());
 			Map<String, List<QuestionMapperInstance>> user_answers_map = new HashMap();
 
 			for (QuestionMapperInstance instance : instances) {
@@ -481,17 +458,14 @@ public class ReportsController {
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
 				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
 				user.getFirstName() + " " + user.getLastName());
-		List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-				.getUserPerspectiveData();
+		List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 		System.out.println(">>>>>>>>>>>" + collection);
 		List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
 		for (AssessmentUserPerspectiveData data : collection) {
 			if (data.getTestName().equals(testName)) {
 				data.setCompanyId(user.getCompanyId());
-				data.setUrlForUserSession(propertyConfig.getBaseUrl()
-						+ "downloadUserSessionReportsForTest?testName="
-						+ testName + "&companyId=" + user.getCompanyId()
-						+ "&email=" + data.getEmail());
+				data.setUrlForUserSession(propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName="
+						+ testName + "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
 				System.out.println("date:::::" + data.toString());
 				collectionForTest.add(data);
 				System.out.println("collection:::::" + collectionForTest.toString());
@@ -504,20 +478,18 @@ public class ReportsController {
 	@RequestMapping(value = { "/downloadReportFilters" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ResponseEntity<InputStreamResource> downloadReportsFilters(@RequestParam String testName,
-			@RequestParam String result, @RequestParam Date startDate, @RequestParam Date endDate,@RequestParam Integer min,@RequestParam Integer max,
-			@RequestParam String userName, HttpServletRequest request,
-			HttpServletResponse response) {
+			@RequestParam String result, @RequestParam Date startDate, @RequestParam Date endDate,
+			@RequestParam Integer min, @RequestParam Integer max, @RequestParam String userName,
+			HttpServletRequest request, HttpServletResponse response) {
 		long start = 0L;
 		long end = 0L;
 		start = System.currentTimeMillis();
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
+					userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 					user.getFirstName() + " " + user.getLastName());
-			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
 //			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 //			Date date1 = sdf.parse("01-12-2019 00:00:00");
@@ -528,8 +500,8 @@ public class ReportsController {
 //			date2 = c.getTime();
 
 			System.out.println(endDate);
-			Calendar c = Calendar.getInstance(); 
-			c.setTime(endDate); 
+			Calendar c = Calendar.getInstance();
+			c.setTime(endDate);
 			c.add(Calendar.DATE, 1);
 			endDate = c.getTime();
 			System.out.println(endDate);
@@ -547,45 +519,27 @@ public class ReportsController {
 					if (testName.equals("ALL")) {
 						if (userName.equals("ALL")) {
 							if (result.equals("ALL")) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass()&&b) {
-								if (min <=data.getOverAllScore()
-										&& data.getOverAllScore() <=max) {
+							} else if (data.getPass() && b) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if(!b&&!data.getPass()) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (!b && !data.getPass()) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 
 								}
@@ -593,45 +547,27 @@ public class ReportsController {
 							}
 						} else if (data.getEmail().equals(userName)) {
 							if (result.equals("ALL")) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)&&b) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <=max) {
+							} else if (data.getPass().equals(b) && b) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if(!b&&!data.getPass()) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (!b && !data.getPass()) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 
 								}
@@ -641,45 +577,27 @@ public class ReportsController {
 					} else if (data.getTestName().equals(testName)) {
 						if (userName.equals("ALL")) {
 							if (result.equals("ALL")) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)&&b) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (data.getPass().equals(b) && b) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if(!b&&!data.getPass()) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (!b && !data.getPass()) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 
 								}
@@ -687,45 +605,27 @@ public class ReportsController {
 							}
 						} else if (data.getEmail().equals(userName)) {
 							if (result.equals("ALL")) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if (data.getPass().equals(b)&&b) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (data.getPass().equals(b) && b) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 								}
-							} else if(!b&&!data.getPass()) {
-								if (min <= data.getOverAllScore()
-										&& data.getOverAllScore() <= max) {
+							} else if (!b && !data.getPass()) {
+								if (min <= data.getOverAllScore() && data.getOverAllScore() <= max) {
 									data.setCompanyId(user.getCompanyId());
-									data.setUrlForUserSession(
-											propertyConfig.getBaseUrl()
-													+ "downloadUserSessionReportsForTest?testName="
-													+ testName
-													+ "&companyId="
-													+ user.getCompanyId()
-													+ "&email="
-													+ data.getEmail());
+									data.setUrlForUserSession(propertyConfig.getBaseUrl()
+											+ "downloadUserSessionReportsForTest?testName=" + testName + "&companyId="
+											+ user.getCompanyId() + "&email=" + data.getEmail());
 									collectionForTest.add(data);
 
 								}
@@ -748,8 +648,8 @@ public class ReportsController {
 			respHeaders.setContentDispositionFormData("attachment", file.getName());
 			InputStreamResource isr = new InputStreamResource(new FileInputStream(file));
 			end = System.currentTimeMillis();
-			System.out.println("ReportsController.downloadUserReportsForTest() has taken "
-					+ (end - start) + " ms to complete the execution");
+			System.out.println("ReportsController.downloadUserReportsForTest() has taken " + (end - start)
+					+ " ms to complete the execution");
 			return new ResponseEntity(isr, respHeaders, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -757,9 +657,107 @@ public class ReportsController {
 		}
 		return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
 	@InitBinder
 	public void initConverter(WebDataBinder binder) {
 		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true);
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
+
+	@RequestMapping(value = "/searchReport", method = RequestMethod.GET)
+	public ModelAndView searchReport(@RequestParam String searchReport, HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("reports2");
+		User user = (User) request.getSession().getAttribute("user");
+		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
+				user.getFirstName() + " " + user.getLastName());
+		// System.out.println("TestName" + data);
+		System.out.println("searchTestNameWiseUIReport>>>>>" + assessmentReportDataManager);
+
+		Collection<AssessmentTestPerspectiveData> data = assessmentReportDataManager.getTestPerspectiveData();
+		System.out.println("data" + data);
+		List<AssessmentTestPerspectiveData> test = new ArrayList<>();
+		for (AssessmentTestPerspectiveData testdata : data) {
+			if (testdata.getTestName().contains(searchReport)) {
+				// data.setCompanyId(user.getCompanyId());
+				test.add(testdata);
+			}
+		}
+		List<Test> listTest = testrepo.findByCompanyId(user.getCompanyId());
+		List<Test> li = new ArrayList<>();
+		for (Test t : listTest) {
+			Test te = new Test();
+			te.setTestName(t.getTestName());
+			li.add(te);
+		}
+		mav.addObject("test", new Test());
+		mav.addObject("listTest", li);
+		mav.addObject("reportType", "Tests & Users Assessment Reports");
+		mav.addObject("testsessions", test);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/searchTestNameWiseUIReport", method = RequestMethod.GET)
+	public ModelAndView searchTestNameWiseUIReport(@RequestParam String searchReport, @RequestParam String testName,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("testReport");
+		User user = (User) request.getSession().getAttribute("user");
+		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
+				user.getFirstName() + " " + user.getLastName());
+		Collection<AssessmentUserPerspectiveData> data = assessmentReportDataManager.getUserPerspectiveData();
+		List<AssessmentUserPerspectiveData> test = new ArrayList<>();
+		for (AssessmentUserPerspectiveData userdata : data) {
+			if (userdata.getTestName().equals(testName)) {
+				if (Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
+						.matcher(userdata.getFirstName()).find()
+						|| Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
+								.matcher(userdata.getEmail()).find()) {
+//				if (((userdata.getFirstName().contains(searchReport) || userdata.getEmail().contains(searchReport)))) {
+					test.add(userdata);
+				}
+			}
+		}
+		mav.addObject("test", new Test());
+		mav.addObject("reportType", "Tests & Users Assessment Reports");
+		mav.addObject("reportList", test);
+		return mav;
+	}
+
+	@GetMapping("/getRank")
+	@ResponseBody
+	public Map<String, Object> getRank(HttpServletRequest request, @RequestParam String email) {
+		Map<String, Object> mapList = new HashMap<>();
+		User user = (User) request.getSession().getAttribute("user");
+		List<TestUserData> list = new ArrayList<>();
+		List<UserTestSession> listUser = userTestRepo.getUser(email, user.getCompanyId());
+		for (UserTestSession session : listUser) {
+			System.out.println("listUser" + listUser);
+			List<UserTestSession> listTest = userTestRepo.getTestName(session.getTestName(), user.getCompanyId());
+			Set<Integer> totalMarksUser = new HashSet<>();
+			for (UserTestSession session1 : listTest) {
+				System.out.println("TestName" + session1.getTestName());
+				totalMarksUser.add(session1.getTotalMarksRecieved());
+			}
+
+			TreeSet<Integer> userRank = (TreeSet<Integer>) new TreeSet<>(totalMarksUser).descendingSet();
+			Iterator<Integer> rankIterator = userRank.iterator();
+			int count = 1;
+			TestUserData testData = new TestUserData();
+			while (rankIterator.hasNext()) {
+				if (session.getTotalMarksRecieved().equals(rankIterator.next())) {
+					testData.setTestName(session.getTestName());
+					testData.setTestId(String.valueOf(count));
+				}
+				count++;
+			}
+			list.add(testData);
+		}
+		mapList.put("rankList", list);
+		System.out.println("List>>>>   " + list);
+		return mapList;
+	}
+
 }

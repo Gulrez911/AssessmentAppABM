@@ -34,4 +34,13 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 
 	@Query(value = "SELECT * FROM UserTestSession u WHERE u.user=:email and u.test_id=:testId",nativeQuery = true)
 	UserTestSession findTestByEmail(@Param("email") String p0,@Param("testId") String testId);
+
+	@Query(value="SELECT * FROM UserTestSession u WHERE u.user=:email and u.companyId=:companyId",nativeQuery= true)
+	List<UserTestSession> getUser(@Param("email")String email, @Param("companyId") String companyId);
+	
+	@Query(value="SELECT * FROM UserTestSession u WHERE u.testName=:testName and u.companyId=:companyId",nativeQuery= true)
+	List<UserTestSession> getTestName(@Param("testName")String testName, @Param("companyId") String companyId);
+
+
 }
+

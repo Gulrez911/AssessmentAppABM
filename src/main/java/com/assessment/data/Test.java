@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Proxy;
+
 import com.assessment.web.dto.SectionDto;
 /**
  * pk - testName & companyId
@@ -18,6 +20,7 @@ import com.assessment.web.dto.SectionDto;
  *Created By Suhel
  */
 @Entity
+@Proxy(lazy = false)
 public class Test extends Base {
 	
 	private String testName;
