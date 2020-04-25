@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 import java.util.List;
-
+import org.apache.tomcat.jni.User;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -217,6 +217,25 @@ public class QuestionServiceImpl implements QuestionService {
 	public void removeQuestion(Long id) {
 		// TODO Auto-generated method stub
 		questionRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Question> getAllQuestionsExcludeAdded(List<Long> addedQIdList, String companyId) {
+		// TODO Auto-generated method stub
+		return questionRepository.getAllQuestionsExcludeAdded(addedQIdList, companyId);
+	}
+
+	@Override
+	public Page<Question> searchQuestionsExAdd(List<Long> ids, String companyId, String searchText,
+			Integer pageNumber) {
+		// TODO Auto-generated method stub
+		return questionRepository.searchQuestionsExAdd(ids,companyId,searchText,PageRequest.of(pageNumber,10));
+	}
+
+	@Override
+	public List<Question> categoryExQ(List<Long> ids, String companyId, String qualifier1) {
+		// TODO Auto-generated method stub
+		return questionRepository.categoryExQ(ids,companyId,qualifier1);
 	}
  
 }

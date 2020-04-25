@@ -29,6 +29,16 @@ public class Section extends Base{
 	
 	Integer noOfQuestions;
 	
+	Integer sectionorder;
+	
+	public Integer getSectionorder() {
+		return sectionorder;
+	}
+
+	public void setSectionorder(Integer sectionorder) {
+		this.sectionorder = sectionorder;
+	}
+
 	@Transient
 	Integer noOfQuestionsToBeAsked;
 

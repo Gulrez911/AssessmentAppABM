@@ -251,7 +251,7 @@
 										<td><input type="checkbox" class="filled-in" /> <label
 											for="chkall"></label></td>
 
-										<td><c:out value="${test.testName}"></c:out></td>
+										<td><a href="downloadOnClickTestName?testName=${test.testName}">${test.testName}</a></td>
 										<td>${test.category}</td>
 										<td>${test.testTimeInMinutes}</td>
 										<td>${test.passPercent}</td>
@@ -356,6 +356,10 @@
                         <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Bulk Share</a>
 
                         </li>
+                        
+                        <li role="presentation"><a href="#arrangeSectionTab" aria-controls="arrangeSectionTab" role="tab" data-toggle="tab">Arrange Sections</a>
+
+                        </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -421,6 +425,11 @@
 								data-dismiss="modal" />
 						</div>
 					</form> 
+                        </div>
+                        
+                        <div role="tabapnel" class="tab-pane" id="arrangeSectionTab">
+                
+                        
                         </div>
                     </div>
                 </div>

@@ -30,6 +30,11 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	@Query(value = "SELECT q FROM Question q WHERE q.qualifier1=:qualifier1 and q.companyId=:companyId")
 	public List<Question> findQuestionsByQualifier1(@Param("companyId") String companyId,
 			@Param("qualifier1") String qualifier1);
+	
+	@Query(value = "SELECT q FROM Question q WHERE q.qualifier1=:qualifier1 and q.id not in(:qds) and q.companyId=:companyId")
+	public List<Question> categoryExQ(@Param("qds")List<Long>idlist,@Param("companyId") String companyId,
+			@Param("qualifier1") String qualifier1);
+
 
 	@Query(value = "SELECT q FROM Question q WHERE q.qualifier1=:qualifier1 and q.qualifier2=:qualifier2 and q.companyId=:companyId", countQuery = "SELECT COUNT(*) FROM Question q WHERE q.qualifier1=:qualifier1 and q.qualifier2=:qualifier2 and q.companyId=:companyId")
 	public Page<Question> findQuestionsByQualifier2(@Param("companyId") String companyId,
@@ -76,6 +81,12 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%", countQuery = "SELECT COUNT(*) FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%")
 	public Page<Question> searchQuestions(@Param("companyId") String companyId,
 			@Param("searchText") String searchText, Pageable pageable);
+	
+	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId and q.id not in(:qids) and q.questionText LIKE %:searchText%", countQuery = "SELECT COUNT(*) FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%")
+	public Page<Question> searchQuestionsExAdd(@Param("qids") List<Long> ids,@Param("companyId") String companyId,
+			@Param("searchText") String searchText, Pageable pageable);
+
+
 
 	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId and q.questionText LIKE %:searchText%")
 	public List<Question> searchQuestions(@Param("companyId") String companyId,
@@ -87,8 +98,11 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
 	// @Query(value="SELECT q FROM Question q WHERE q.companyId=:companyId and
 	// (q.qualifier2 IS NULL or trim(q.qualifier2)='' ) GROUP BY q.qualifier1")
-	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId  GROUP BY q.qualifier1")
+	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId GROUP BY q.qualifier1")
 	public List<Question> getAllLevel1Questions(@Param("companyId") String companyId);
+	
+	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId and q.id not in(:qlist) GROUP BY q.qualifier1")
+	public List<Question> getAllQuestionsExcludeAdded(@Param("qlist") List<Long> addedQIdList , @Param("companyId") String companyId);
 
 	@Query("SELECT " + "    new com.assessment.common.Qualifiers(q.qualifier1, q.qualifier2, q.qualifier3, q.qualifier4, q.qualifier5) "
 			+ "FROM " + "    Question q WHERE q.companyId=:companyId " + "GROUP BY "

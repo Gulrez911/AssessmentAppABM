@@ -326,7 +326,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						</div>
+							</div>
 
 
 
@@ -385,10 +385,12 @@
 			window.location = "addNewSection";
 
 		});
+		//chng1
 		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
-			if (text.length != 0) {
-				window.location = "searchQuestions2?searchText=" + text;
+			//var text1= ${section.sectionName};
+			if (text.length != 0 && text1.length!=0) {
+				window.location  = "searchQuestions2?searchText="+text;
 			}
 		});
 

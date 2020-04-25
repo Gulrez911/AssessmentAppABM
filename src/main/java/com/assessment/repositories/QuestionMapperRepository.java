@@ -16,7 +16,8 @@ public interface QuestionMapperRepository extends JpaRepository<QuestionMapper,L
 	@Query("SELECT COUNT(q) FROM QuestionMapper q WHERE q.sectionName=:sectionName and q.testName=:testName and q.companyId=:companyId")
 	Integer findCountQuestionMapperForTestAndSection(@Param("sectionName") String sectionName, @Param("testName") String testName,   @Param("companyId") String companyId);
 	
+	
 	List<QuestionMapper>  	findByQuestion_id(Long id);
-																																		
-
+	@Query("SELECT q FROM QuestionMapper q WHERE q.testName=:testName and q.companyId=:companyId")
+	List<QuestionMapper> findBytestNameAndcompanyId(@Param("testName") String testName, @Param("companyId") String companyId);
 }

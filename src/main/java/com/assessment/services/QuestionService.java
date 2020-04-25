@@ -15,6 +15,9 @@ public interface QuestionService {
 	public Page<Question> findQuestionsByQualifier1AndPage(String companyId, String qualifier1, Integer pageNumber);
 	public List<Question> findQuestionsByQualifier1(String companyId, String qualifier1);
 	
+	public List<Question> categoryExQ(List<Long> ids,String companyId, String qualifier1);
+
+	
 	public Page<Question> findQuestionsByQualifier2AndPage(String companyId, String qualifier1, String qualifier2, Integer pageNumber);
 	public List<Question> findQuestionsByQualifier2(String companyId, String qualifier1, String qualifier2);
 	
@@ -34,11 +37,17 @@ public interface QuestionService {
 	public Page<Question> searchQuestions(String companyId,   String searchText, Integer pageNumber);
 	public List<Question> searchQuestions( String companyId,   String searchText);
 	
+	public Page<Question> searchQuestionsExAdd(List<Long> ids,String companyId,   String searchText, Integer pageNumber);
+
+	
 	public Question findById(Long id);
 	
 	public Page<Question> findQuestionsByPage(String companyId, Integer pageNumber);
 	
 	public List<Question> getAllLevel1Questions(String companyId);
+	
+	public List<Question> getAllQuestionsExcludeAdded(List<Long> addedQIdList , String companyId);//(id1,id2,id3)
+	
 	
 	public boolean canDeleteQuestion(Long qid);
 	

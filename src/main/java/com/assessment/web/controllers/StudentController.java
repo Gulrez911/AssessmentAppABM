@@ -244,6 +244,7 @@ public class StudentController {
 		request.getSession().setAttribute("testStartDate", (Object) new Date());
 		final List<Section> sections = (List<Section>) this.sectionService.getSectionsForTest(test.getTestName(),
 				test.getCompanyId());
+		
 		int count = 0;
 		final List<SectionInstanceDto> sectionInstanceDtos = new ArrayList<SectionInstanceDto>();
 		final int totalQuestions = test.getTotalMarks();
@@ -269,8 +270,7 @@ public class StudentController {
 					if (section.getPercentQuestionsAsked() == 100) {
 						questionMapperInstance = questionMapperInstanceRep
 								.findUniqueQuestionMapperInstanceForUser(
-										questionMapper.getQuestion()
-												.getQuestionText(),
+										questionMapper.getQuestion().getQuestionText(),
 										test.getTestName(),
 										section.getSectionName(),
 										user.getEmail(), user.getCompanyId());

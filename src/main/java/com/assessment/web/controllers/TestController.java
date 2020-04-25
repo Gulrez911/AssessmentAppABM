@@ -1,4 +1,4 @@
-package com.assessment.web.controllers;
+	package com.assessment.web.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +24,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -58,8 +67,14 @@ import com.assessment.data.Test;
 import com.assessment.data.UniqueUrl;
 import com.assessment.data.User;
 import com.assessment.data.UserType;
+import com.assessment.reports.manager.AssessmentReportDataManager;
+import com.assessment.reports.manager.AssessmentReportsManager;
+import com.assessment.reports.manager.AssessmentUserPerspectiveData;
+import com.assessment.repositories.QuestionMapperRepository;
 import com.assessment.repositories.SkillRepository;
 import com.assessment.repositories.UniqueUrlRepository;
+import com.assessment.repositories.UserNonComplianceRepository;
+import com.assessment.repositories.UserTestSessionRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionMapperInstanceService;
 import com.assessment.services.QuestionService;
@@ -72,9 +87,13 @@ import com.assessment.web.dto.SectionDto;
 @Controller
 @SessionAttributes("test,sectionDTO")
 public class TestController {
+	Logger logger = LoggerFactory.getLogger(ReportsController.class);
 
 	@Autowired
 	UniqueUrlRepository urlrepo;
+	
+	@Autowired
+	AssessmentReportsManager reportManager;
 
 	@Autowired
 	CompanyService companyService;
@@ -102,7 +121,70 @@ public class TestController {
 
 	@Autowired
 	QuestionMapperInstanceService questionMapperInstanceService;
-
+	
+	@Autowired
+	QuestionMapperRepository questionMapperRepository;
+	
+	@Autowired
+	UserTestSessionRepository userTestSessionRepository;
+	@Autowired
+	UserNonComplianceRepository userNonComplianceRepo;
+	
+//	static ArrayList<Long> selectedQues=new ArrayList<Long>();
+	
+	//change start
+	@RequestMapping(value = { "/downloadOnClickTestName" }, method = {
+			org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ResponseEntity<InputStreamResource> downloadOnClickTestName(@RequestParam String testName,
+			HttpServletRequest request, HttpServletResponse response) {
+		long start = 0L;
+		long end = 0L;
+		start = System.currentTimeMillis();
+		try {
+			User user = (User) request.getSession().getAttribute("user");
+			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+					userTestSessionRepository, sectionService, userService,
+					userNonComplianceRepo, user.getCompanyId(),
+					user.getFirstName() + " " + user.getLastName());
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
+					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
+			for (AssessmentUserPerspectiveData data : collection) {
+				if (data.getTestName().equals(testName)) {
+					data.setCompanyId(user.getCompanyId());
+					data.setUrlForUserSession(propertyConfig.getBaseUrl()
+							+ "downloadUserSessionReportsForTest?testName="
+							+ testName + "&companyId="
+							+ user.getCompanyId() + "&email="
+							+ data.getEmail());
+					collectionForTest.add(data);
+				}
+			}
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String date = formatter.format(new Date());
+			String fileName = reportManager.generateUserPerspectiveReport(collectionForTest,
+					user.getFirstName() + " " + user.getLastName(), date);
+			File file = new File(fileName);
+			HttpHeaders respHeaders = new HttpHeaders();
+			MediaType mediaType = MediaType.parseMediaType("application/pdf");
+			respHeaders.setContentType(mediaType);
+			respHeaders.setContentLength(file.length());
+			respHeaders.setContentDispositionFormData("attachment", file.getName());
+			InputStreamResource isr = new InputStreamResource(new FileInputStream(file));
+			end = System.currentTimeMillis();
+			System.out.println("ReportsController.downloadUserReportsForTest() has taken "
+					+ (end - start) + " ms to complete the execution");
+			return new ResponseEntity(isr, respHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("error in downloadUserReportsForTest", e);
+		}
+		return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	//change end
+	
+	
+	
 	@RequestMapping(value = "/testlist", method = RequestMethod.GET)
 	public ModelAndView testlist(@RequestParam(name = "page", required = false) Integer pageNumber,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -167,14 +249,32 @@ public class TestController {
 		ModelAndView mav = null;
 		mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
+		Test test2 = (Test)request.getSession().getAttribute("test");
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
+		//List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
+		List<QuestionMapper> alradyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(), user.getCompanyId());
+		List<Long> ids=new ArrayList<Long>();
+		for(QuestionMapper qm : alradyAddedQ) {
+			if(!qm.getSectionName().equals(sectionDto.getSectionName())) {
+				ids.add(qm.getQuestion().getId());
+			}
+			
+		}
+		List<Question> qToDisplay;
+		if(ids.size()>=1) {
+			qToDisplay = questionService.getAllQuestionsExcludeAdded(ids, user.getCompanyId());
+			
+		}
+		else {
+			qToDisplay = questionService.getAllLevel1Questions(user.getCompanyId());
+		}
+		
 		mav.addObject("sectionDto", sectionDto);
 		if (sectionDto != null) {
-			mav.addObject("qs", process(qs, sectionDto));
+			mav.addObject("qs", process(qToDisplay, sectionDto));
 		} else {
-			mav.addObject("qs", qs);
+			mav.addObject("qs", qToDisplay);
 		}
 
 		mav.addObject("levels", DifficultyLevel.values());
@@ -290,7 +390,7 @@ public class TestController {
 			user = new User();
 			user.setEmail("admin@e-assess.com");
 			user.setPassword("1234");
-			user.setCompanyName("E-Assess");
+			user.setCompanyName("E-Assess");	
 			mav.addObject("user", user);
 			return mav;
 		}
@@ -385,6 +485,7 @@ public class TestController {
 //		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
+		Test test2=(Test)request.getSession().getAttribute("test");
 		if (user != null) {
 			ModelAndView mav1 = new ModelAndView("add_test_step2_new2");
 		}
@@ -406,8 +507,24 @@ public class TestController {
 		mav.addObject("test", test);
 		mav.addObject("sectionDto", dto);
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
-		mav.addObject("qs", qs);
+//		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
+		//Added by vaishnavi
+		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
+		List<Long> ids = new ArrayList<Long>();
+		for(QuestionMapper qm : alreadyAddedQ) {
+			if(!qm.getSectionName().equals(dto.getSectionName())) {
+				ids.add(qm.getQuestion().getId());
+			}
+		}
+		List<Question> allQuestions;
+		if(ids.size()>=1) {
+			allQuestions = questionService.getAllQuestionsExcludeAdded(ids, user.getCompanyId());
+		}
+		else {
+			allQuestions = questionService.getAllLevel1Questions(user.getCompanyId());
+		}
+		//addition end
+		mav.addObject("qs", allQuestions);
 		return mav;
 	}
 
@@ -415,6 +532,7 @@ public class TestController {
 	public ModelAndView goToSection(@RequestParam String sectionName, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
+		Test test2=(Test)request.getSession().getAttribute("test");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -426,11 +544,24 @@ public class TestController {
 				request.getSession().setAttribute("sectionDTO", dto);
 				mav.addObject("sectionDto", dto);
 				// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-				List<Question> questions = questionService
-						.getAllLevel1Questions(user.getCompanyId());
-				mav.addObject("qs", process(questions, dto));
+				//added by vaishnavi
+				List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
+				
+				List<Long> ids = new ArrayList<Long>();
+				for(QuestionMapper qm: alreadyAddedQ) {
+					if( !qm.getSectionName().equals(sectionName) ) {
+						ids.add(qm.getQuestion().getId());
+					}
+				}
+				List<Question> allQuestions;
+				if(ids.size() >= 1)
+					allQuestions = questionService.getAllQuestionsExcludeAdded(ids,user.getCompanyId());
+				else
+					allQuestions = questionService.getAllLevel1Questions(user.getCompanyId());
+				//addition end
+				mav.addObject("qs", process(allQuestions, dto));
 				mav.addObject("test", test);
-				mav.addObject("count",questions.size());
+				mav.addObject("count",allQuestions.size());
 			}
 		}
 
@@ -753,12 +884,14 @@ public class TestController {
 				sectionDto.getPercentQuestionsAsked(), sectionDto.getQuestions().size());
 		Set<Question> questions = sectionDto.getQuestions();
 		for (Question question : questions) {
-
+			//Added by vaishnavi
+//			TestController.selectedQues.add(question.getId());
+			//Addition end
 			sectionService.addQuestionToSection(question, section, 1);
 		}
 		Integer totMarks = testService.computeTestTotalMarksAndSave(test);
 		test.setTotalMarks(totMarks);
-		request.getSession().setAttribute("test", test);
+		request.getSession().setAttribute("test", test);			
 		sectionDto.setNoOfQuestions(sectionDto.getQuestions().size());
 		mav.addObject("sectionDto", sectionDto);
 		mav.addObject("qs", process(qs, sectionDto));
@@ -886,12 +1019,29 @@ public class TestController {
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");
+		Test test2=(Test)request.getSession().getAttribute("test");
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
-		List<Question> questions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
+//		List<Question> questions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
 		mav.addObject("user", user);
 		mav.addObject("sectionDto", sectionDto);
+		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
+		
+		List<Long> ids = new ArrayList<Long>();
+		for(QuestionMapper qm: alreadyAddedQ) {
+			if( !qm.getSectionName().equals(sectionDto.getSectionName()) ) {
+				ids.add(qm.getQuestion().getId());
+			}
+		}
+		List<Question> allQuestions;
+		if(ids.size() >= 1)
+			allQuestions = questionService.categoryExQ(ids, user.getCompanyId(), qualifier1);
+		else
+			allQuestions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
+;
+			
+		
 		mav.addObject("test", test);
-		mav.addObject("qs", process(questions, sectionDto));
+		mav.addObject("qs", process(allQuestions, sectionDto));
 		mav.addObject("levels", DifficultyLevel.values());
 		mav.addObject("types", QuestionType.values());
 		mav.addObject("languages", ProgrammingLanguage.values());
