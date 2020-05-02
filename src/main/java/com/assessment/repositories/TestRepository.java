@@ -3,11 +3,13 @@ package com.assessment.repositories;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.assessment.data.Question;
 import com.assessment.data.Test;
 
 public interface TestRepository extends JpaRepository<com.assessment.data.Test, Long> {
@@ -30,4 +32,11 @@ public interface TestRepository extends JpaRepository<com.assessment.data.Test, 
 
 	@Query("SELECT t FROM Test t WHERE t.id=:testId and t.companyId=:companyId")
 	com.assessment.data.Test findTestById(@Param("testId") Long TestId, @Param("companyId") String companyId);
+	
+	@Query(value = "SELECT t FROM Test t WHERE t.companyId=:companyId", countQuery = "SELECT COUNT(*) FROM Test t WHERE t.companyId=:companyId")
+	public Page<Test> findTestByCompanyIdAndPageNumber(@Param("companyId") String companyId,Pageable pageable);
+
+	Page<Test> findAllByCompanyId(String companyId, Pageable pageable);
+
+
 }

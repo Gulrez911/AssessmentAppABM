@@ -113,7 +113,6 @@
 	function myFunction() {
 		document.getElementById("myDropdown").classList.toggle("show");
 	}
-
 	function filterFunction() {
 		var input, filter, ul, li, a, i;
 		input = document.getElementById("myInput");
@@ -164,13 +163,11 @@
  				$(".dd").remove(); 
  				if(page==0){
 				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:question_list2("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
-
  	 				}
  				else if(page==TotalPage-1){
  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
  					
  	 				}
-
  				else{
  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:question_list2("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
 					
@@ -280,11 +277,9 @@
 								<a href="question_list?page=${previousPage}${queryParam}"><i
 									class="fa fa-arrow-left"></i></a>
 							</c:if>
-
 							<c:if test="${selectedPage != null &&  selectedPage > 0}">
                                     ${selectedPage} / ${totalNumberOfPages}
                                 </c:if>
-
 							<c:if test="${showNextPage}">
 								<a href="question_list?page=${nextPage}${queryParam}"><i
 									class="fa fa-arrow-right"></i></a>
@@ -355,12 +350,8 @@
 
 							<%-- 	<c:forEach items="${qs}" var="question" varStatus="loop">
 									<tr>
-
 										<td>${loop.count}</td>
-
-
 										<td><c:out value="${question.questionText}"></c:out></td>
-
 										<td>${question.category}</td>
 										<td><c:out value="${question.difficultyLevel.level}"></c:out></td>
 										<td><c:out value="${question.updatedDate}"></c:out></td>
@@ -469,38 +460,29 @@
 					$('.collapse').toggleClass('in').toggleClass('hidden-xs')
 							.toggleClass('visible-xs');
 				});
-
 		$('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchQuestions?searchText=" + text;
 			}
 		});
-
 		var isXlsx = function(name) {
 			return name.match(/xlsx$/i)
 		};
-
 		$("#btnfile").click(function() {
 			$("#uploadfile").click();
 		});
-
 		function showFileDialog() {
 			$("#fileQuestions	").click();
 		}
-
 		$(document)
 				.ready(
 						function() {
-
 							var file = $('[name="fileQuestions"]');
 							var imgContainer = $('#imgContainer');
-
 							$('#uploadLink').on('click', function() {
 								// $("#file").click();
-
 							});
-
 							var fileU = document
 									.getElementById('fileQuestions');
 							fileU.addEventListener("change",function() {
@@ -527,7 +509,6 @@
 																		notify(
 																				'Success',
 																				'File Upload Successful');
-
 																	})
 															.fail(
 																	function(
@@ -541,11 +522,8 @@
 															.getElementById('fileQuestions').value = null;
 													return;
 												}
-
 											});
-
 						});
-
 		function notify(messageType, message) {
 			var notification = 'Information';
 			$(function() {
@@ -558,7 +536,6 @@
 				});
 			});
 		}
-
 		function confirm(id) {
 			(new PNotify({
 				title : 'Confirmation Needed',
@@ -578,21 +555,18 @@
 			})).get().on('pnotify.confirm', function() {
 				window.location = "removeQuestionFromList?qid=" + id;
 			}).on('pnotify.cancel', function() {
-
 			});
 		}
 
-
+		
 		function searchQuestion(page)
 		{
-
 			if(page===undefined){
 				page=0;
 			}
 			
 			var txt=$("#searchText").val();
 			console.log(txt);
-
 			$.ajax({
 				url:"searchQuestion?searchText="+txt+"&page="+page,
 				type:"GET",
@@ -630,18 +604,14 @@
 	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
 	 					
 	 	 				}
-
 	 				else{
 	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:searchQuestion("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
 						
 	 	 				} 
 					}
 				});
-
 			}
-
 		function sortTable(sort){
-
 // 			if(page===undefined)
 // 				{
 // 					page=0;
@@ -656,7 +626,6 @@
 			 
 			   /* $("#tbl tr:not(:first)").remove(); */
 			   $(".tr").remove();
-
 			   for(var i=0; i<response.qs.length; i++){
 					$("#tbl").append(
 					"<tr class='tr'><td>"
@@ -682,7 +651,6 @@
 			}
 		
 		function sortlevel(sort,page){
-
 			if(page===undefined)
 				{
 					page=0;
@@ -696,7 +664,6 @@
 			 
 			   /* $("#tbl tr:not(:first)").remove(); */
 			   $(".tr").remove();
-
 			   for(var i=0; i<response.qs.length; i++){
 					$("#tbl").append(
 					"<tr class='tr'><td>"
@@ -719,7 +686,6 @@
 					level="EASY";
 // 					$(".CCC").attr('id',"EASY");
 				}
-
 				var page = response.page;
 				var TotalPage=response.TotalPage;
 				console.log("current: page: "+page);
@@ -727,7 +693,6 @@
 				var cpage=page+1;
 				var ppage=page-1;
  				$(".dd").remove();
-
 				console.log("TEst:    "+level)
  				 
  				if(0==TotalPage-1){
@@ -745,7 +710,6 @@
 //  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel('DIFFICULT',"+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
  					
  	 				}
-
  				else{
  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:sortlevel("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
 					
@@ -754,7 +718,6 @@
 			  }
 			 });
 			}
-
 		
 	</script>
 

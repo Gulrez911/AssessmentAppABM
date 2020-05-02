@@ -43,5 +43,7 @@ public interface TestService {
 	public  List<Test> populateWithPublicUrl(List<Test> tests);
 	
 	public Test populate(Test test);
+	
+	public Page<Test> findTestByPage(String companyId, Integer pageNumber);
 
 }

@@ -110,10 +110,66 @@
 		$("#txt2Date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
 		$("#txt2Date2").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
 	});
+
+
+	function test_list2(page){
+		console.log("Test "+page);
+		if(page===undefined){
+			page=0;
+		}
+		$.ajax({
+			url: "test_list2?page="+page,
+			type: "GET",
+			success: function(response) {
+				$(".tr").remove();
+				console.log(response.qs[0].testName);
+				for(var i=0; i<response.qs.length; i++){
+					$("#tbl").append(
+					/* '<input type="checkbox"' */
+					"<tr class='tr'><td>"
+					+response.qs[i].id+
+					/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
+					"</td><td>" 
+					+response.qs[i].testName+
+					"</td><td>"
+					+response.qs[i].category+
+					"</td><td>"
+					+response.qs[i].testTimeInMinutes+
+					"</td><td>"
+					+response.qs[i].passPercent+
+					"</td><td>"
+					+response.qs[i].cDate+
+					"</td><td>"
+					+response.qs[i].uDate+
+					"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
+				}
+				var page = response.page;
+				var TotalPage=response.TotalPage;
+				console.log("current: page: "+page);
+				console.log("total:  "+TotalPage);
+				var cpage=page+1;
+				var ppage=page-1;
+ 				$(".dd").remove(); 
+ 				if(page==0){
+				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:test_list2("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+ 	 				}
+ 				else if(page==TotalPage-1){
+ 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:test_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
+ 					
+ 	 				}
+ 				else{
+ 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:test_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:test_list2("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
+					
+ 	 				} 
+				
+			}
+		});
+		
+	};
 </script>
 </head>
 
-<body id="top" class="has-header-search">
+<body id="top" class="has-header-search" onload="test_list2()">
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -171,8 +227,8 @@
 
 				<div class="col-md-12">
 					<div class="col-md-12">
-						<div class="pagination" style="float: right;">
-							<c:if test="${showPreviousPage}">
+						<div class="pagination" style="float: right;" id="pagination">
+							<%-- <c:if test="${showPreviousPage}">
 								<a href="${callingMethod}?page=${previousPage}${queryParam}"><i
 									class="fa fa-arrow-left"></i></a>
 							</c:if>
@@ -184,7 +240,7 @@
 							<c:if test="${showNextPage}">
 								<a href="${callingMethod}?page=${nextPage}${queryParam}"><i
 									class="fa fa-arrow-right"></i></a>
-							</c:if>
+							</c:if> --%>
 						</div>
 					</div>
 				</div>
@@ -201,7 +257,7 @@
 
 							<div class="search-form">
 								<form action="searchTests" method="get">
-									<input type="text" placeholder="Search a question"
+									<input type="text" placeholder="Search a Test"
 										name="searchText" id="searchText">
 									<button type="submit" id="search">
 										<i class="fa fa-search"></i>
@@ -213,11 +269,11 @@
 					<div class="col-md-3" style="padding: 0;">
 						<div class="mt-10"></div>
 						<div class="col-md-4"></div>
-						<div class="col-md-4" style="padding-left: 0;">
+						<!-- <div class="col-md-4" style="padding-left: 0;">
 							<a href="javascript:notify('Information', 'Feature coming soon')">
 								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
 							</a>
-						</div>
+						</div> -->
 						<div class="col-md-4" style="padding: 0;">
 							<a href="javascript:notify('Information', 'Feature coming soon')">
 								<i class="fa fa-filter"></i> <span>Filter</span>
@@ -227,17 +283,22 @@
 				</div>
 				<div class="col-md-12">
 					<div class="table-responsive testslisttable">
-						<table class="table table-striped">
+						<input type="hidden" id="sort" value="asc">
+						<table class="table table-striped" id="tbl">
 							<thead style="background-color: #03a9f4;">
 								<tr>
-									<th><input type="checkbox" id="chkall" name="chkall"
-										class="filled-in" /> <label for="chkall"></label></th>
-									<th class="title">Test Title</th>
+									<!-- <th><input type="checkbox" id="chkall" name="chkall"
+										class="filled-in" /> <label for="chkall"></label></th> -->
+									<th>No</th>
+									<th onclick='sortTestTitle(this.id,0)' id="ASC" class="CCC">Test
+										Title</th>
 									<th>Category</th>
 									<th>Test Time In Minutes</th>
 									<th>Pass Percentage</th>
-									<th>Created By</th>
-									<th>Last Update</th>
+									<th onclick='sortByCreatedDate(this.id,0)' id="ASC" class="CCC">Created
+										By</th>
+									<th onclick='sortByUpdateDate(this.id,0)' id="ASC" class="CCC">Last
+										Update</th>
 									<th>Expire Test</th>
 									<th>Update Test</th>
 									<th>Duplicate Test</th>
@@ -246,12 +307,14 @@
 							</thead>
 							<tbody>
 
-								<c:forEach items="${tests}" var="test">
-									<tr>
-										<td><input type="checkbox" class="filled-in" /> <label
-											for="chkall"></label></td>
+								<c:forEach items="${tests}" var="test" varStatus="loop">
+									<tr class="tr">
+										<!-- <td><input type="checkbox" class="filled-in" /> <label
+											for="chkall"></label></td> -->
 
-										<td><a href="downloadOnClickTestName?testName=${test.testName}">${test.testName}</a></td>
+										<td>${loop.count}</td>
+										<td><a
+											href="downloadOnClickTestName?testName=${test.testName}">${test.testName}</a></td>
 										<td>${test.category}</td>
 										<td>${test.testTimeInMinutes}</td>
 										<td>${test.passPercent}</td>
@@ -346,94 +409,100 @@
 					<h4 class="modal-title">Share Test</h4>
 				</div>
 				<div class="modal-body">
-				
-				 <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Single Share</a>
 
-                        </li>
-                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Bulk Share</a>
+					<div role="tabpanel">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#uploadTab"
+								aria-controls="uploadTab" role="tab" data-toggle="tab">Single
+									Share</a></li>
+							<li role="presentation"><a href="#browseTab"
+								aria-controls="browseTab" role="tab" data-toggle="tab">Bulk
+									Share</a></li>
 
-                        </li>
-                        
-                        <li role="presentation"><a href="#arrangeSectionTab" aria-controls="arrangeSectionTab" role="tab" data-toggle="tab">Arrange Sections</a>
+							<li role="presentation"><a href="#arrangeSectionTab"
+								aria-controls="arrangeSectionTab" role="tab" data-toggle="tab">Arrange
+									Sections</a></li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="uploadTab">
 
-                        </li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
-                        
-                        <form method="POST" action="sharePublicTest" enctype="multipart/form-data">
-						<div>
-							<label>Existing test name</label> <input id="existing_name1"
-								type="text" readonly="readonly" name="existing_name1"/>
-						</div>
-						<div>
-							<label>First Name</label> <input id="firstName" type="text" name="firstName"/>
-						</div>
-						<div>
-							<label>Last name</label> <input id="lastName" type="text" name="lastName"/></a>
-						</div>
-						<div>
-							<label>Email Id</label> <input id="userEmail" type="text" name="userEmail"/>
-						</div>
-						<div>
-							<label>Public Test URL</label> <input id="publicTestUrl"
-								type="text" readonly="readonly" />
-						</div>
-						<div>
-							<label>Expire Date</label> <input id="txt2Date" name="expId"/>
-						</div>
+								<form method="POST" action="sharePublicTest"
+									enctype="multipart/form-data">
+									<div>
+										<label>Existing test name</label> <input id="existing_name1"
+											type="text" readonly="readonly" name="existing_name1" />
+									</div>
+									<div>
+										<label>First Name</label> <input id="firstName" type="text"
+											name="firstName" />
+									</div>
+									<div>
+										<label>Last name</label> <input id="lastName" type="text"
+											name="lastName" /></a>
+									</div>
+									<div>
+										<label>Email Id</label> <input id="userEmail" type="text"
+											name="userEmail" />
+									</div>
+									<div>
+										<label>Public Test URL</label> <input id="publicTestUrl"
+											type="text" readonly="readonly" />
+									</div>
+									<div>
+										<label>Expire Date</label> <input id="txt2Date" name="expId" />
+									</div>
 
-						<input type="hidden" name="testId" id="testId" value="" />
-						<div class="buttons text-center" style="padding-top: 20px;">
-							<input class="waves-effect waves-light btn" type="button"
-								value="Copy in your Clipboard"
-								onClick="javascript:copyUrlInClipBoard()" /> <input
-								class="waves-effect waves-light btn" type="submit" value="Share" /> <input
-								class="waves-effect waves-light btn" type="button" value="Close"
-								data-dismiss="modal" />
-						</div>
-					</form> 
-                        
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="browseTab">
-                        
-                           <form method="POST" action="shareBulkPublicTest" enctype="multipart/form-data">
-						<div>
-							<label>Existing test name</label> <input id="existing_name2"
-								type="text" readonly="readonly" name="existing_name1"/>
-						</div>
-						<div>
-							 <input id="publicTestUrl2"
-								type="hidden" readonly="readonly" />
-						</div>
-						<div><label>Bulk Users</label><input type="file" name="file"></div>
-						<div>
-							<label>Expire Date</label> <input id="txt2Date2" name="expId"/>
-						</div>
+									<input type="hidden" name="testId" id="testId" value="" />
+									<div class="buttons text-center" style="padding-top: 20px;">
+										<input class="waves-effect waves-light btn" type="button"
+											value="Copy in your Clipboard"
+											onClick="javascript:copyUrlInClipBoard()" /> <input
+											class="waves-effect waves-light btn" type="submit"
+											value="Share" /> <input class="waves-effect waves-light btn"
+											type="button" value="Close" data-dismiss="modal" />
+									</div>
+								</form>
 
-						<input type="hidden" name="testId" id="testId2" value="" />
-						<div class="buttons text-center" style="padding-top: 20px;">
-							<input class="waves-effect waves-light btn" type="button"
-								value="Copy in your Clipboard"
-								onClick="javascript:copyUrlInClipBoard()" /> <input
-								class="waves-effect waves-light btn" type="submit" value="Share" /> <input
-								class="waves-effect waves-light btn" type="button" value="Close"
-								data-dismiss="modal" />
+							</div>
+							<div role="tabpanel" class="tab-pane" id="browseTab">
+
+								<form method="POST" action="shareBulkPublicTest"
+									enctype="multipart/form-data">
+									<div>
+										<label>Existing test name</label> <input id="existing_name2"
+											type="text" readonly="readonly" name="existing_name1" />
+									</div>
+									<div>
+										<input id="publicTestUrl2" type="hidden" readonly="readonly" />
+									</div>
+									<div>
+										<label>Bulk Users</label><input type="file" name="file">
+									</div>
+									<div>
+										<label>Expire Date</label> <input id="txt2Date2" name="expId" />
+									</div>
+
+									<input type="hidden" name="testId" id="testId2" value="" />
+									<div class="buttons text-center" style="padding-top: 20px;">
+										<input class="waves-effect waves-light btn" type="button"
+											value="Copy in your Clipboard"
+											onClick="javascript:copyUrlInClipBoard()" /> <input
+											class="waves-effect waves-light btn" type="submit"
+											value="Share" /> <input class="waves-effect waves-light btn"
+											type="button" value="Close" data-dismiss="modal" />
+									</div>
+								</form>
+							</div>
+
+							<div role="tabapnel" class="tab-pane" id="arrangeSectionTab">
+
+
+							</div>
 						</div>
-					</form> 
-                        </div>
-                        
-                        <div role="tabapnel" class="tab-pane" id="arrangeSectionTab">
-                
-                        
-                        </div>
-                    </div>
-                </div>
-					 
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -624,6 +693,169 @@ function notify(messageType, message) {
 				});
 			});
 		}
+
+
+function sortTestTitle(sort,page){
+
+/* 		if(page===undefined)
+			{
+				page=0;
+			}
+	 
+	 var sort = $("#sort").val(); */
+	console.log(sort);
+	 $.ajax({
+	  url:'sortTest?sortBy='+sort+"&page="+page,
+	  type:'GET',
+	  success: function(response){
+	 
+		  $(".tr").remove();
+
+		   for(var i=0; i<response.qs.length; i++){
+				$("#tbl").append(
+				/* '<input type="checkbox"' */
+				"<tr class='tr'><td>"
+				+response.qs[i].id+
+				/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
+				"</td><td>" 
+				+response.qs[i].testName+
+				"</td><td>"
+				+response.qs[i].category+
+				"</td><td>"
+				+response.qs[i].testTimeInMinutes+
+				"</td><td>"
+				+response.qs[i].passPercent+
+				"</td><td>"
+				+response.qs[i].cDate+
+				"</td><td>"
+				+response.qs[i].uDate+
+				"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
+			}
+			if(response.sortBy=="ASC"){
+				$(".CCC").attr('id',"DESC");
+			}else{
+				$(".CCC").attr('id',"ASC");
+			}
+
+
+			var page = response.page;
+			var TotalPage=response.TotalPage;
+			console.log("current: page: "+page);
+			console.log("total:  "+TotalPage);
+			var cpage=page+1;
+			var ppage=page-1;
+			$(".dd").remove(); 
+			if(0==TotalPage-1){
+				$("#pagination").append("<div class='dd'>"+cpage+"</div>")
+	 				}
+			else if(page==0){
+				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortTestTitle("+sort+','+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
+ 				}
+			else if(page==TotalPage-1){
+					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortTestTitle("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
+					
+	 				}
+			else{
+					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortTestTitle("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:sortTestTitle("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
+				
+	 				} 
+	  
+	  }
+	 });
+	}
+
+function sortByCreatedDate(sort,page){
+
+	/* 		if(page===undefined)
+				{
+					page=0;
+				}
+		 
+		 var sort = $("#sort").val(); */
+		console.log(sort);
+		 $.ajax({
+		  url:'sortByCreatedDate?sortBy='+sort+"&page="+page,
+		  type:'GET',
+		  success: function(response){
+		 
+			  $(".tr").remove();
+
+			   for(var i=0; i<response.qs.length; i++){
+					$("#tbl").append(
+					/* '<input type="checkbox"' */
+					"<tr class='tr'><td>"
+					+response.qs[i].id+
+					/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
+					"</td><td>" 
+					+response.qs[i].testName+
+					"</td><td>"
+					+response.qs[i].category+
+					"</td><td>"
+					+response.qs[i].testTimeInMinutes+
+					"</td><td>"
+					+response.qs[i].passPercent+
+					"</td><td>"
+					+response.qs[i].cDate+
+					"</td><td>"
+					+response.qs[i].uDate+
+					"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
+				}
+				if(response.sortBy=="ASC"){
+					$(".CCC").attr('id',"DESC");
+				}else{
+					$(".CCC").attr('id',"ASC");
+				}
+
+		  }
+		 });
+		} sortByUpdateDate
+
+		function sortByUpdateDate(sort,page){
+
+			/* 		if(page===undefined)
+						{
+							page=0;
+						}
+				 
+				 var sort = $("#sort").val(); */
+				console.log(sort);
+				 $.ajax({
+				  url:'sortByUpdateDate?sortBy='+sort+"&page="+page,
+				  type:'GET',
+				  success: function(response){
+				 
+					  $(".tr").remove();
+
+					   for(var i=0; i<response.qs.length; i++){
+							$("#tbl").append(
+							/* '<input type="checkbox"' */
+							"<tr class='tr'><td>"
+							+response.qs[i].id+
+							/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
+							"</td><td>" 
+							+response.qs[i].testName+
+							"</td><td>"
+							+response.qs[i].category+
+							"</td><td>"
+							+response.qs[i].testTimeInMinutes+
+							"</td><td>"
+							+response.qs[i].passPercent+
+							"</td><td>"
+							+response.qs[i].cDate+
+							"</td><td>"
+							+response.qs[i].uDate+
+							"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
+						}
+						if(response.sortBy=="ASC"){
+							$(".CCC").attr('id',"DESC");
+						}else{
+							$(".CCC").attr('id',"ASC");
+						}
+
+				  }
+				 });
+				} 
+
 </script>
 	<c:if test="${msgtype != null}">
 		<script>

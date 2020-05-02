@@ -687,7 +687,7 @@ public class QuestionController {
 		}
 		List<String> quest = (List<String>) request.getSession().getAttribute("qu");
 		List<Question> ques = questions.getContent();
-		
+
 		for (Question q : ques) {
 			if (sectionDto.getQuestions().contains(q)) {
 				q.setSelected(true);

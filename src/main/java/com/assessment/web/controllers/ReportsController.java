@@ -316,7 +316,7 @@ public class ReportsController {
 		String date = formatter.format(new Date());
 		mav.addObject("reportList", collectionForTest);
 		mav.addObject("reportType", "Tests & Users Assessment Reports");
-		return mav;
+	return mav;
 	}
 
 	@RequestMapping(value = { "/downloadUserReport" }, method = {

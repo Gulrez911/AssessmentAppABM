@@ -225,4 +225,9 @@ public class TestServiceImpl implements TestService {
 		testRepository.save(test2);
 		return totalMarks;
 	}
+
+	@Override
+	public Page<Test> findTestByPage(String companyId, Integer pageNumber) {
+		return testRepository.findTestByCompanyIdAndPageNumber(companyId, PageRequest.of(pageNumber, 5));
+	}
 }

@@ -11,16 +11,15 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -30,15 +29,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.assessment.Exceptions.AssessmentGenericException;
@@ -72,6 +72,7 @@ import com.assessment.reports.manager.AssessmentReportsManager;
 import com.assessment.reports.manager.AssessmentUserPerspectiveData;
 import com.assessment.repositories.QuestionMapperRepository;
 import com.assessment.repositories.SkillRepository;
+import com.assessment.repositories.TestRepository;
 import com.assessment.repositories.UniqueUrlRepository;
 import com.assessment.repositories.UserNonComplianceRepository;
 import com.assessment.repositories.UserTestSessionRepository;
@@ -129,6 +130,9 @@ public class TestController {
 	UserTestSessionRepository userTestSessionRepository;
 	@Autowired
 	UserNonComplianceRepository userNonComplianceRepo;
+	
+	@Autowired
+	TestRepository testRepo;
 	
 //	static ArrayList<Long> selectedQues=new ArrayList<Long>();
 	
@@ -1440,4 +1444,124 @@ public class TestController {
 		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true);
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
+	
+	@GetMapping("/test_list2")
+	@ResponseBody
+	public Map<String, Object> test_list2(HttpServletRequest request,
+			@RequestParam(name = "page", required = false) Integer pageNumber) {
+		Map<String, Object> mapList = new HashedMap();
+		User user = (User) request.getSession().getAttribute("user");
+		if (pageNumber == null) {
+			pageNumber = 0;
+		}
+		System.out.println(pageNumber);
+		Page<Test> tests = testService.findTestByPage(user.getCompanyId(), pageNumber);
+		mapList.put("levels", DifficultyLevel.values());
+		mapList.put("qs", tests.getContent());
+		mapList.put("page", pageNumber);
+
+		mapList.put("TotalPage", tests.getTotalPages());
+		return mapList;
+	}
+	
+	@GetMapping("/sortTest")
+	@ResponseBody
+	public Map<String, Object> sortTest(HttpServletRequest request,
+			@RequestParam(name = "sortBy", required = false) String sortBy,
+			@RequestParam(name = "page", required = false) Integer pageNumber) {
+		Map<String, Object> mapList = new HashedMap();
+		User user = (User) request.getSession().getAttribute("user");
+
+		if (pageNumber == null) {
+			pageNumber = 0;
+		}
+		Page<Test> tests;
+		if (sortBy.equals("ASC")) {
+			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "testName")));
+			
+		} 
+		else {
+			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "testName")));
+		}
+		System.out.println(">>>>Pg Number"+pageNumber);
+		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
+		System.out.print("TestSort" + tests);
+		//mapList.put("category", tests.get)
+		mapList.put("qs", tests.getContent());
+		mapList.put("page", pageNumber);
+
+		mapList.put("TotalPage", tests.getTotalPages());
+		mapList.put("sortBy", sortBy);
+		return mapList;
+	}
+
+	@GetMapping("/sortByCreatedDate")
+	@ResponseBody
+	public Map<String, Object> sortByCreatedDate(HttpServletRequest request,
+			@RequestParam(name = "sortBy", required = false) String sortBy,
+			@RequestParam(name = "page", required = false) Integer pageNumber) {
+		Map<String, Object> mapList = new HashedMap();
+		User user = (User) request.getSession().getAttribute("user");
+
+		if (pageNumber == null) {
+			pageNumber = 0;
+		}
+		Page<Test> tests;
+		if (sortBy.equals("ASC")) {
+			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "createDate")));
+			
+		} 
+		else {
+			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "createDate")));
+		}
+		System.out.println(">>>>Pg Number"+pageNumber);
+		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
+		System.out.print("TestSort" + tests);
+		//mapList.put("category", tests.get)
+		mapList.put("qs", tests.getContent());
+		mapList.put("page", pageNumber);
+
+		mapList.put("TotalPage", tests.getTotalPages());
+		mapList.put("sortBy", sortBy);
+		return mapList;
+	}
+	
+	@GetMapping("/sortByUpdateDate")
+	@ResponseBody
+	public Map<String, Object> sortBypUdateDate(HttpServletRequest request,
+			@RequestParam(name = "sortBy", required = false) String sortBy,
+			@RequestParam(name = "page", required = false) Integer pageNumber) {
+		Map<String, Object> mapList = new HashedMap();
+		User user = (User) request.getSession().getAttribute("user");
+
+		if (pageNumber == null) {
+			pageNumber = 0;
+		}
+		Page<Test> tests;
+		if (sortBy.equals("ASC")) {
+			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "updateDate")));
+			
+		} 
+		else {
+			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "updateDate")));
+		}
+		System.out.println(">>>>Pg Number"+pageNumber);
+		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
+		System.out.print("TestSort" + tests);
+		//mapList.put("category", tests.get)
+		mapList.put("qs", tests.getContent());
+		mapList.put("page", pageNumber);
+
+		mapList.put("TotalPage", tests.getTotalPages());
+		mapList.put("sortBy", sortBy);
+		return mapList;
+	}
+
+
 }
