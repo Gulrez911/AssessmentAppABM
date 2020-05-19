@@ -7,11 +7,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.assessment.data.Section;
 import com.assessment.data.User;
@@ -47,7 +49,7 @@ public class AssessmentReportDataManager {
 	 * AssessmentUserPerspectiveData
 	 */
 	List<AssessmentUserPerspectiveData> userPerspectiveData = new ArrayList();
-
+	
 	UserTestSessionRepository userTestSessionRepository;
 
 	TestService testService;
@@ -335,4 +337,9 @@ public class AssessmentReportDataManager {
 	public Collection<AssessmentTestPerspectiveData> getTestPerspectiveData() {
 		return testMap.values();
 	}
+
+	public Page<AssessmentUserPerspectiveData> getUserPerspectiveData(String companyId2, Pageable pageable) {
+		return (Page<AssessmentUserPerspectiveData>) userPerspectiveData;
+	}
+	
 }

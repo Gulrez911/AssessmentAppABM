@@ -3,12 +3,14 @@ package com.assessment.reports.manager;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class AssessmentUserPerspectiveData {
 	Logger logger = LoggerFactory.getLogger(AssessmentUserPerspectiveData.class);
@@ -274,4 +276,82 @@ public class AssessmentUserPerspectiveData {
 	public void setTestEndDate(String testEndDate) {
 		this.testEndDate = testEndDate;
 	}
+	
+	//Added By Dhanshree
+	//Name
+	public static Comparator<AssessmentUserPerspectiveData> StuASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+		public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+		   String AssessmentUserPerspectiveDataName1 = s1.getFirstName().toUpperCase();
+		   String AssessmentUserPerspectiveDataName2 = s2.getFirstName().toUpperCase();
+		   //ascending order
+		   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+	    }};
+	    
+	 public static Comparator<AssessmentUserPerspectiveData> StuDESC = new Comparator<AssessmentUserPerspectiveData>() {
+	    	
+		 public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+			   String AssessmentUserPerspectiveDataName1 = s1.getFirstName().toUpperCase();
+			   String AssessmentUserPerspectiveDataName2 = s2.getFirstName().toUpperCase();
+			   //descending order
+			   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+		    }};
+		    
+	//Contact
+	public static Comparator<AssessmentUserPerspectiveData> contactASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+		public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+				   String AssessmentUserPerspectiveDataName1 = s1.getEmail().toUpperCase();
+				   String AssessmentUserPerspectiveDataName2 = s2.getEmail().toUpperCase();
+				   //ascending order
+				   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+			    }};
+		    
+	public static Comparator<AssessmentUserPerspectiveData> contactDESC = new Comparator<AssessmentUserPerspectiveData>() {
+
+		public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+					   String AssessmentUserPerspectiveDataName1 = s1.getEmail().toUpperCase();
+					   String AssessmentUserPerspectiveDataName2 = s2.getEmail().toUpperCase();
+					 //descending order
+					   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+		}};
+		
+		//TestStartDate
+		public static Comparator<AssessmentUserPerspectiveData> startASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+			public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+					   String AssessmentUserPerspectiveDataName1 = s1.getTestStartDate().toUpperCase();
+					   String AssessmentUserPerspectiveDataName2 = s2.getTestStartDate().toUpperCase();
+					   //ascending order
+					   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+				    }};
+			    
+		public static Comparator<AssessmentUserPerspectiveData> startDESC = new Comparator<AssessmentUserPerspectiveData>() {
+
+			public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+						   String AssessmentUserPerspectiveDataName1 = s1.getTestStartDate().toUpperCase();
+						   String AssessmentUserPerspectiveDataName2 = s2.getTestStartDate().toUpperCase();
+						 //descending order
+						   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+			}};
+		
+			//TestEndDate
+			public static Comparator<AssessmentUserPerspectiveData> endASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+				public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+						   String AssessmentUserPerspectiveDataName1 = s1.getTestEndDate().toUpperCase();
+						   String AssessmentUserPerspectiveDataName2 = s2.getTestEndDate().toUpperCase();
+						   //ascending order
+						   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+					    }};
+				    
+			public static Comparator<AssessmentUserPerspectiveData> endDESC = new Comparator<AssessmentUserPerspectiveData>() {
+
+				public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+							   String AssessmentUserPerspectiveDataName1 = s1.getTestEndDate().toUpperCase();
+							   String AssessmentUserPerspectiveDataName2 = s2.getTestEndDate().toUpperCase();
+							 //descending order
+							   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+				}};
+			
 }

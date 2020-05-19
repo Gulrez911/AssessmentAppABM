@@ -227,7 +227,7 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public Page<Test> findTestByPage(String companyId, Integer pageNumber) {
-		return testRepository.findTestByCompanyIdAndPageNumber(companyId, PageRequest.of(pageNumber, 5));
+	public Page<Test> findTestByPage(String companyId, Integer pageNumber,Integer size) {
+		return testRepository.findTestByCompanyIdAndPageNumber(companyId, PageRequest.of(pageNumber, size));
 	}
 }

@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.assessment.data.Question;
 import com.assessment.data.Test;
 
 public interface TestRepository extends JpaRepository<com.assessment.data.Test, Long> {

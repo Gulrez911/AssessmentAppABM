@@ -107,6 +107,7 @@
 												<li><a href="testlist">Tests</a></li>
 												<li><a href="skills">Skills</a></li>
 												<li><a href="showReports">Results</a></li>
+												<li><a href="practice">Practice</a></li>
 												<li><a href="codingSessions">Code Analysis Reports</a></li>
 												<li><a href="showSkillTags">Skill based Reports</a></li>
 												<li class="active"><a href="showProfileParams">Recomm Setting</a></li>
@@ -247,6 +248,7 @@
 										<li><a href="testlist">Tests</a></li>
 										<li><a href="javascript:void(0)">Skills</a></li>
 										<li><a href="showReports">Results</a></li>
+										<li><a href="practice">Practice</a></li>
 										<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 										<li><a href="javascript:void(0)">Skill based Reports</a></li>
 										<li><a href="showProfileParams">Recomm Setting</a></li>

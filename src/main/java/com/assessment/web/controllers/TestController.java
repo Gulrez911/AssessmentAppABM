@@ -1,4 +1,4 @@
-	package com.assessment.web.controllers;
+package com.assessment.web.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -92,7 +92,7 @@ public class TestController {
 
 	@Autowired
 	UniqueUrlRepository urlrepo;
-	
+
 	@Autowired
 	AssessmentReportsManager reportManager;
 
@@ -122,21 +122,21 @@ public class TestController {
 
 	@Autowired
 	QuestionMapperInstanceService questionMapperInstanceService;
-	
+
 	@Autowired
 	QuestionMapperRepository questionMapperRepository;
-	
+
 	@Autowired
 	UserTestSessionRepository userTestSessionRepository;
 	@Autowired
 	UserNonComplianceRepository userNonComplianceRepo;
-	
+
 	@Autowired
 	TestRepository testRepo;
-	
+
 //	static ArrayList<Long> selectedQues=new ArrayList<Long>();
-	
-	//change start
+
+	// change start
 	@RequestMapping(value = { "/downloadOnClickTestName" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ResponseEntity<InputStreamResource> downloadOnClickTestName(@RequestParam String testName,
@@ -147,20 +147,16 @@ public class TestController {
 		try {
 			User user = (User) request.getSession().getAttribute("user");
 			AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
-					userTestSessionRepository, sectionService, userService,
-					userNonComplianceRepo, user.getCompanyId(),
+					userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 					user.getFirstName() + " " + user.getLastName());
-			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager
-					.getUserPerspectiveData();
+			List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 			List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList();
 			for (AssessmentUserPerspectiveData data : collection) {
 				if (data.getTestName().equals(testName)) {
 					data.setCompanyId(user.getCompanyId());
-					data.setUrlForUserSession(propertyConfig.getBaseUrl()
-							+ "downloadUserSessionReportsForTest?testName="
-							+ testName + "&companyId="
-							+ user.getCompanyId() + "&email="
-							+ data.getEmail());
+					data.setUrlForUserSession(
+							propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName=" + testName
+									+ "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
 					collectionForTest.add(data);
 				}
 			}
@@ -176,8 +172,8 @@ public class TestController {
 			respHeaders.setContentDispositionFormData("attachment", file.getName());
 			InputStreamResource isr = new InputStreamResource(new FileInputStream(file));
 			end = System.currentTimeMillis();
-			System.out.println("ReportsController.downloadUserReportsForTest() has taken "
-					+ (end - start) + " ms to complete the execution");
+			System.out.println("ReportsController.downloadUserReportsForTest() has taken " + (end - start)
+					+ " ms to complete the execution");
 			return new ResponseEntity(isr, respHeaders, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,13 +181,11 @@ public class TestController {
 		}
 		return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	//change end
-	
-	
-	
+	// change end
+
 	@RequestMapping(value = "/testlist", method = RequestMethod.GET)
 	public ModelAndView testlist(@RequestParam(name = "page", required = false) Integer pageNumber,
-			HttpServletRequest request, HttpServletResponse response) {
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
 		ModelAndView mav = null;
 		User user = (User) request.getSession().getAttribute("user");
 		mav = new ModelAndView("test_list2");
@@ -200,7 +194,16 @@ public class TestController {
 		}
 		Page<Test> tests = testService.findByCompanyId(user.getCompanyId(), pageNumber);
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
-
+		
+		List<Integer> pageSize = new ArrayList<Integer>();
+		pageSize.add(5);
+		pageSize.add(10);
+		pageSize.add(15);
+		//mapList.put("pageSize", pageSize);
+		mav.addObject("pgSize", pageSize );
+		//mapList.put("test", new Test());
+		mav.addObject("test", new Test());
+		
 		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "testlist", null);
 		return mav;
 	}
@@ -253,27 +256,28 @@ public class TestController {
 		ModelAndView mav = null;
 		mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		Test test2 = (Test)request.getSession().getAttribute("test");
+		Test test2 = (Test) request.getSession().getAttribute("test");
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-		//List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
+		// List<Question> qs =
+		// questionService.getAllLevel1Questions(user.getCompanyId());
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
-		List<QuestionMapper> alradyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(), user.getCompanyId());
-		List<Long> ids=new ArrayList<Long>();
-		for(QuestionMapper qm : alradyAddedQ) {
-			if(!qm.getSectionName().equals(sectionDto.getSectionName())) {
+		List<QuestionMapper> alradyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),
+				user.getCompanyId());
+		List<Long> ids = new ArrayList<Long>();
+		for (QuestionMapper qm : alradyAddedQ) {
+			if (!qm.getSectionName().equals(sectionDto.getSectionName())) {
 				ids.add(qm.getQuestion().getId());
 			}
-			
+
 		}
 		List<Question> qToDisplay;
-		if(ids.size()>=1) {
+		if (ids.size() >= 1) {
 			qToDisplay = questionService.getAllQuestionsExcludeAdded(ids, user.getCompanyId());
-			
-		}
-		else {
+
+		} else {
 			qToDisplay = questionService.getAllLevel1Questions(user.getCompanyId());
 		}
-		
+
 		mav.addObject("sectionDto", sectionDto);
 		if (sectionDto != null) {
 			mav.addObject("qs", process(qToDisplay, sectionDto));
@@ -340,8 +344,7 @@ public class TestController {
 		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
 		Map<String, String> params = new HashMap<>();
 		params.put("searchText", searchText);
-		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "searchTests",
-				params);
+		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "searchTests", params);
 		return mav;
 	}
 
@@ -394,7 +397,7 @@ public class TestController {
 			user = new User();
 			user.setEmail("admin@e-assess.com");
 			user.setPassword("1234");
-			user.setCompanyName("E-Assess");	
+			user.setCompanyName("E-Assess");
 			mav.addObject("user", user);
 			return mav;
 		}
@@ -448,9 +451,8 @@ public class TestController {
 				dto.setSectionName(section.getSectionName());
 				dto.setPercentQuestionsAsked(section.getPercentQuestionsAsked());
 				dto.setNoOfQuestions(s.getNoOfQuestions());
-				List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(
-						test.getTestName(), section.getSectionName(),
-						user.getCompanyId());
+				List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(test.getTestName(),
+						section.getSectionName(), user.getCompanyId());
 				for (QuestionMapper mapper : questionMappers) {
 					dto.getQuestions().add(mapper.getQuestion());
 				}
@@ -489,7 +491,7 @@ public class TestController {
 //		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
-		Test test2=(Test)request.getSession().getAttribute("test");
+		Test test2 = (Test) request.getSession().getAttribute("test");
 		if (user != null) {
 			ModelAndView mav1 = new ModelAndView("add_test_step2_new2");
 		}
@@ -512,22 +514,22 @@ public class TestController {
 		mav.addObject("sectionDto", dto);
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
 //		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
-		//Added by vaishnavi
-		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
+		// Added by vaishnavi
+		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),
+				user.getCompanyId());
 		List<Long> ids = new ArrayList<Long>();
-		for(QuestionMapper qm : alreadyAddedQ) {
-			if(!qm.getSectionName().equals(dto.getSectionName())) {
+		for (QuestionMapper qm : alreadyAddedQ) {
+			if (!qm.getSectionName().equals(dto.getSectionName())) {
 				ids.add(qm.getQuestion().getId());
 			}
 		}
 		List<Question> allQuestions;
-		if(ids.size()>=1) {
+		if (ids.size() >= 1) {
 			allQuestions = questionService.getAllQuestionsExcludeAdded(ids, user.getCompanyId());
-		}
-		else {
+		} else {
 			allQuestions = questionService.getAllLevel1Questions(user.getCompanyId());
 		}
-		//addition end
+		// addition end
 		mav.addObject("qs", allQuestions);
 		return mav;
 	}
@@ -536,7 +538,7 @@ public class TestController {
 	public ModelAndView goToSection(@RequestParam String sectionName, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
-		Test test2=(Test)request.getSession().getAttribute("test");
+		Test test2 = (Test) request.getSession().getAttribute("test");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
 		Test test = (Test) request.getSession().getAttribute("test");
@@ -548,24 +550,25 @@ public class TestController {
 				request.getSession().setAttribute("sectionDTO", dto);
 				mav.addObject("sectionDto", dto);
 				// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-				//added by vaishnavi
-				List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
-				
+				// added by vaishnavi
+				List<QuestionMapper> alreadyAddedQ = questionMapperRepository
+						.findBytestNameAndcompanyId(test2.getTestName(), user.getCompanyId());
+
 				List<Long> ids = new ArrayList<Long>();
-				for(QuestionMapper qm: alreadyAddedQ) {
-					if( !qm.getSectionName().equals(sectionName) ) {
+				for (QuestionMapper qm : alreadyAddedQ) {
+					if (!qm.getSectionName().equals(sectionName)) {
 						ids.add(qm.getQuestion().getId());
 					}
 				}
 				List<Question> allQuestions;
-				if(ids.size() >= 1)
-					allQuestions = questionService.getAllQuestionsExcludeAdded(ids,user.getCompanyId());
+				if (ids.size() >= 1)
+					allQuestions = questionService.getAllQuestionsExcludeAdded(ids, user.getCompanyId());
 				else
 					allQuestions = questionService.getAllLevel1Questions(user.getCompanyId());
-				//addition end
+				// addition end
 				mav.addObject("qs", process(allQuestions, dto));
 				mav.addObject("test", test);
-				mav.addObject("count",allQuestions.size());
+				mav.addObject("count", allQuestions.size());
 			}
 		}
 
@@ -585,8 +588,7 @@ public class TestController {
 			SectionDto dto = (SectionDto) request.getSession().getAttribute("sectionDto");
 			mav.addObject("test", test);
 			mav.addObject("sectionDto", dto);
-			mav.addObject("message",
-					"You can not have a Test with no sections. This section can not be deleted ");// later
+			mav.addObject("message", "You can not have a Test with no sections. This section can not be deleted ");// later
 			// put
 			// it
 			// as
@@ -620,8 +622,7 @@ public class TestController {
 				mav.addObject("sectionDto", dto);
 				request.getSession().setAttribute("sectionDTO", dto);
 				// List<Question> qs = questionService.findQuestions(user.getCompanyId());
-				List<Question> questions = questionService
-						.getAllLevel1Questions(user.getCompanyId());
+				List<Question> questions = questionService.getAllLevel1Questions(user.getCompanyId());
 				mav.addObject("qs", process(questions, dto));
 
 			}
@@ -635,8 +636,7 @@ public class TestController {
 
 	@RequestMapping(value = "/addQuestionToSection", method = RequestMethod.GET)
 	public ModelAndView addQuestionsToSection(@RequestParam String sectionName, @RequestParam String questionId,
-			HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("test") Test test) {
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
 		ModelAndView mav = new ModelAndView("add_test_step2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
@@ -694,8 +694,7 @@ public class TestController {
 
 	@RequestMapping(value = "/removeQuestionToSection", method = RequestMethod.GET)
 	public ModelAndView removeQuestionToSection(@RequestParam String sectionName, @RequestParam String questionId,
-			HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("test") Test test) {
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
 		ModelAndView mav = new ModelAndView("add_test_step2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
@@ -776,8 +775,7 @@ public class TestController {
 	@RequestMapping(value = "/saveSection", method = RequestMethod.GET)
 	@Transactional
 	public ModelAndView saveSection(@RequestParam String sectionTopic, @RequestParam String percentage,
-			HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("test") Test test) {
+			HttpServletRequest request, HttpServletResponse response, @ModelAttribute("test") Test test) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new2");
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("user", user);
@@ -811,14 +809,12 @@ public class TestController {
 		// List<Question> qs = questionService.findQuestions(user.getCompanyId());
 		List<Question> qs = questionService.getAllLevel1Questions(user.getCompanyId());
 
-		boolean edit = questionMapperInstanceService.canEditTest(sectionTopic, test.getTestName(),
-				user.getCompanyId());
+		boolean edit = questionMapperInstanceService.canEditTest(sectionTopic, test.getTestName(), user.getCompanyId());
 		if (!edit) {
 			mav.addObject("sectionDto", sectionDto);
 			mav.addObject("qs", process(qs, sectionDto));
 			mav.addObject("test", test);
-			mav.addObject("message",
-					"Users have started taking this test. You can't edit the test now!");// later
+			mav.addObject("message", "Users have started taking this test. You can't edit the test now!");// later
 			// put
 			// it
 			// as
@@ -884,18 +880,18 @@ public class TestController {
 		 */
 		section.setSectionName(sectionTopic);
 		section.setPercentQuestionsAsked(sectionDto.getPercentQuestionsAsked());
-		sectionService.changeSectionNameAndPercent(section, sectionTopic,
-				sectionDto.getPercentQuestionsAsked(), sectionDto.getQuestions().size());
+		sectionService.changeSectionNameAndPercent(section, sectionTopic, sectionDto.getPercentQuestionsAsked(),
+				sectionDto.getQuestions().size());
 		Set<Question> questions = sectionDto.getQuestions();
 		for (Question question : questions) {
-			//Added by vaishnavi
+			// Added by vaishnavi
 //			TestController.selectedQues.add(question.getId());
-			//Addition end
+			// Addition end
 			sectionService.addQuestionToSection(question, section, 1);
 		}
 		Integer totMarks = testService.computeTestTotalMarksAndSave(test);
 		test.setTotalMarks(totMarks);
-		request.getSession().setAttribute("test", test);			
+		request.getSession().setAttribute("test", test);
 		sectionDto.setNoOfQuestions(sectionDto.getQuestions().size());
 		mav.addObject("sectionDto", sectionDto);
 		mav.addObject("qs", process(qs, sectionDto));
@@ -1023,27 +1019,27 @@ public class TestController {
 		User user = (User) request.getSession().getAttribute("user");
 
 		Test test = (Test) request.getSession().getAttribute("test");
-		Test test2=(Test)request.getSession().getAttribute("test");
+		Test test2 = (Test) request.getSession().getAttribute("test");
 		SectionDto sectionDto = (SectionDto) request.getSession().getAttribute("sectionDTO");
 //		List<Question> questions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
 		mav.addObject("user", user);
 		mav.addObject("sectionDto", sectionDto);
-		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),user.getCompanyId());
-		
+		List<QuestionMapper> alreadyAddedQ = questionMapperRepository.findBytestNameAndcompanyId(test2.getTestName(),
+				user.getCompanyId());
+
 		List<Long> ids = new ArrayList<Long>();
-		for(QuestionMapper qm: alreadyAddedQ) {
-			if( !qm.getSectionName().equals(sectionDto.getSectionName()) ) {
+		for (QuestionMapper qm : alreadyAddedQ) {
+			if (!qm.getSectionName().equals(sectionDto.getSectionName())) {
 				ids.add(qm.getQuestion().getId());
 			}
 		}
 		List<Question> allQuestions;
-		if(ids.size() >= 1)
+		if (ids.size() >= 1)
 			allQuestions = questionService.categoryExQ(ids, user.getCompanyId(), qualifier1);
 		else
 			allQuestions = questionService.findQuestionsByQualifier1(user.getCompanyId(), qualifier1);
-;
-			
-		
+		;
+
 		mav.addObject("test", test);
 		mav.addObject("qs", process(allQuestions, sectionDto));
 		mav.addObject("levels", DifficultyLevel.values());
@@ -1073,9 +1069,8 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/searchQByQ1And2And3", method = RequestMethod.GET)
-	public ModelAndView searchQByQualifier1And2And3(@RequestParam String qualifier1,
-			@RequestParam String qualifier2, @RequestParam String qualifier3, HttpServletRequest request,
-			HttpServletResponse response) {
+	public ModelAndView searchQByQualifier1And2And3(@RequestParam String qualifier1, @RequestParam String qualifier2,
+			@RequestParam String qualifier3, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		List<Question> questions = questionService.findQuestionsByQualifier3(user.getCompanyId(), qualifier1,
@@ -1094,8 +1089,8 @@ public class TestController {
 
 	@RequestMapping(value = "/searchQByQ1And2And3And4", method = RequestMethod.GET)
 	public ModelAndView searchQByQualifier1And2And3And4(@RequestParam String qualifier1,
-			@RequestParam String qualifier2, @RequestParam String qualifier3,
-			@RequestParam String qualifier4, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
+			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		List<Question> questions = questionService.findQuestionsByQualifier4(user.getCompanyId(), qualifier1,
@@ -1114,9 +1109,8 @@ public class TestController {
 
 	@RequestMapping(value = "/searchQByQ1And2And3And4And5", method = RequestMethod.GET)
 	public ModelAndView searchQByQualifier1And2And3And4And5(@RequestParam String qualifier1,
-			@RequestParam String qualifier2, @RequestParam String qualifier3,
-			@RequestParam String qualifier4, @RequestParam String qualifier5, HttpServletRequest request,
-			HttpServletResponse response) {
+			@RequestParam String qualifier2, @RequestParam String qualifier3, @RequestParam String qualifier4,
+			@RequestParam String qualifier5, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("add_test_step2_new3");
 		User user = (User) request.getSession().getAttribute("user");
 		List<Question> questions = questionService.findQuestionsByQualifier5(user.getCompanyId(), qualifier1,
@@ -1151,8 +1145,8 @@ public class TestController {
 		return mav;
 	}
 
-	private void shareTest(String email, Long testId, String cid, String firstName, String lastName,
-			String testName, String random, String senderEmail) {
+	private void shareTest(String email, Long testId, String cid, String firstName, String lastName, String testName,
+			String random, String senderEmail) {
 		User user = userService.findByPrimaryKey(email, cid);
 		if (user == null) {
 			User us = new User();
@@ -1185,8 +1179,7 @@ public class TestController {
 //			EmailGenericMessageThread client = new EmailGenericMessageThread(email,
 //					"Test Link - " + testName + " Sent by E-Assess", welcomeMailData, propertyConfig);
 			EmailGenericMessageThread client = new EmailGenericMessageThread(email,
-					"Test Link - " + testName + " Sent by E-Assess", welcomeMailData,
-					propertyConfig);
+					"Test Link - " + testName + " Sent by E-Assess", welcomeMailData, propertyConfig);
 			client.setCcArray(cc);
 			client.setCcArray(new String[] { senderEmail });
 			Thread th = new Thread(client);
@@ -1198,9 +1191,8 @@ public class TestController {
 			String message = "Test link mail could not be sent for " + email;
 //			EmailGenericMessageThread client = new EmailGenericMessageThread("jatin.sutaria@thev2technologies.com",
 //					"Can not send Test link email", message, propertyConfig);
-			EmailGenericMessageThread client = new EmailGenericMessageThread(
-					"anwarulhasan7860@gmail.com", "Can not send Test link email", message,
-					propertyConfig);
+			EmailGenericMessageThread client = new EmailGenericMessageThread("anwarulhasan7860@gmail.com",
+					"Can not send Test link email", message, propertyConfig);
 			Thread th = new Thread(client);
 			th.start();
 		}
@@ -1250,9 +1242,8 @@ public class TestController {
 
 	@RequestMapping(value = "/sharePublicTest", method = RequestMethod.POST)
 	public ModelAndView sharePublicTest(@RequestParam String userEmail, @RequestParam String testId,
-			@RequestParam String firstName, @RequestParam String lastName,
-			@RequestParam String existing_name1, @RequestParam String expId, HttpServletRequest request,
-			HttpServletResponse response,
+			@RequestParam String firstName, @RequestParam String lastName, @RequestParam String existing_name1,
+			@RequestParam String expId, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name = "file", required = false) MultipartFile file) throws Exception {
 		System.out.println("TestController.sharePublicTest()");
 		ModelAndView mav = new ModelAndView("test_list2");
@@ -1288,10 +1279,9 @@ public class TestController {
 //		  String firstName = request.getParameter("firstName");
 //		  String lastName = request.getParameter("lastName");
 //		  String testName = request.getParameter("existing_name1");
-		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName,
-				existing_name1, random, senderEmail);
-		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " "
-				+ lastName);// later
+		shareTest(userEmail, Long.parseLong(testId), "" + user.getCompanyId(), firstName, lastName, existing_name1,
+				random, senderEmail);
+		mav.addObject("message", "Congratulations! - Email with Test Link shared with " + firstName + " " + lastName);// later
 		// put
 		// label
 		mav.addObject("msgtype", "Success");
@@ -1344,8 +1334,8 @@ public class TestController {
 			urlInfo.setTestName(existing_name1);
 			urlrepo.save(urlInfo);
 			Thread.sleep(1000);
-			shareTest(us.getEmail(), testId, "" + user.getCompanyId(), us.getFirstName(),
-					us.getLastName(), existing_name1, random, senderEmail);
+			shareTest(us.getEmail(), testId, "" + user.getCompanyId(), us.getFirstName(), us.getLastName(),
+					existing_name1, random, senderEmail);
 		}
 		mav.addObject("message", "Congratulations! -  Test Link has been shared successfully");// later
 		// put
@@ -1360,9 +1350,8 @@ public class TestController {
 	private String getUrlForUser(String user, Long testId, String companyId, String random) {
 		String userBytes = Base64.getEncoder().encodeToString(user.getBytes());
 
-		String after = "userId=" + URLEncoder.encode(userBytes) + "&testId="
-				+ URLEncoder.encode(testId.toString()) + "&companyId="
-				+ URLEncoder.encode(companyId) + "&urlid=" + URLEncoder.encode(random);
+		String after = "userId=" + URLEncoder.encode(userBytes) + "&testId=" + URLEncoder.encode(testId.toString())
+				+ "&companyId=" + URLEncoder.encode(companyId) + "&urlid=" + URLEncoder.encode(random);
 		String url = propertyConfig.getBaseUrl() + "startTestSession?" + after;
 		return url;
 	}
@@ -1382,8 +1371,7 @@ public class TestController {
 		Test old = testService.findbyTest(testToDuplicate, user.getCompanyId());
 		Test exist = testService.findbyTest(newTest, user.getCompanyId());
 		if (exist != null) {
-			mav.addObject("message",
-					"Test with a name- " + newTest + " exists. Please use a different name!");// later
+			mav.addObject("message", "Test with a name- " + newTest + " exists. Please use a different name!");// later
 			// put
 			// it as
 			// label
@@ -1414,15 +1402,15 @@ public class TestController {
 			newNection.setTestName(newTest);
 			sectionService.createSection(newNection);
 
-			List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(testToDuplicate,
-					sectionName, user.getCompanyId());
+			List<QuestionMapper> questionMappers = sectionService.getQuestionsForSection(testToDuplicate, sectionName,
+					user.getCompanyId());
 			for (QuestionMapper mapper : questionMappers) {
 				Question q = mapper.getQuestion();
 				sectionService.addQuestionToSection(q, newNection, 1);
 			}
 		}
-		mav.addObject("message", "Congratulations. Test with a name- " + newTest + " duplicated from "
-				+ old.getTestName());// later put
+		mav.addObject("message",
+				"Congratulations. Test with a name- " + newTest + " duplicated from " + old.getTestName());// later put
 		// it as
 		// label
 		mav.addObject("msgtype", "Success");
@@ -1444,31 +1432,12 @@ public class TestController {
 		CustomDateEditor dateEditor = new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy"), true);
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
-	
-	@GetMapping("/test_list2")
-	@ResponseBody
-	public Map<String, Object> test_list2(HttpServletRequest request,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
-		Map<String, Object> mapList = new HashedMap();
-		User user = (User) request.getSession().getAttribute("user");
-		if (pageNumber == null) {
-			pageNumber = 0;
-		}
-		System.out.println(pageNumber);
-		Page<Test> tests = testService.findTestByPage(user.getCompanyId(), pageNumber);
-		mapList.put("levels", DifficultyLevel.values());
-		mapList.put("qs", tests.getContent());
-		mapList.put("page", pageNumber);
 
-		mapList.put("TotalPage", tests.getTotalPages());
-		return mapList;
-	}
-	
 	@GetMapping("/sortTest")
 	@ResponseBody
 	public Map<String, Object> sortTest(HttpServletRequest request,
 			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
+			@RequestParam(name = "page", required = false) Integer pageNumber,@RequestParam(name="size") Integer size,@RequestParam(name="colName")String colName) {
 		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
 
@@ -1476,92 +1445,53 @@ public class TestController {
 			pageNumber = 0;
 		}
 		Page<Test> tests;
-		if (sortBy.equals("ASC")) {
-			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "testName")));
-			
-		} 
-		else {
-			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "testName")));
-		}
-		System.out.println(">>>>Pg Number"+pageNumber);
-		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
-		System.out.print("TestSort" + tests);
-		//mapList.put("category", tests.get)
-		mapList.put("qs", tests.getContent());
-		mapList.put("page", pageNumber);
-
-		mapList.put("TotalPage", tests.getTotalPages());
-		mapList.put("sortBy", sortBy);
-		return mapList;
-	}
-
-	@GetMapping("/sortByCreatedDate")
-	@ResponseBody
-	public Map<String, Object> sortByCreatedDate(HttpServletRequest request,
-			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
-		Map<String, Object> mapList = new HashedMap();
-		User user = (User) request.getSession().getAttribute("user");
-
-		if (pageNumber == null) {
-			pageNumber = 0;
-		}
-		Page<Test> tests;
-		if (sortBy.equals("ASC")) {
-			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "createDate")));
-			
-		} 
-		else {
-			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "createDate")));
-		}
-		System.out.println(">>>>Pg Number"+pageNumber);
-		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
-		System.out.print("TestSort" + tests);
-		//mapList.put("category", tests.get)
-		mapList.put("qs", tests.getContent());
-		mapList.put("page", pageNumber);
-
-		mapList.put("TotalPage", tests.getTotalPages());
-		mapList.put("sortBy", sortBy);
-		return mapList;
-	}
+		if(colName.equals("Title")) {
+			if (sortBy.equals("ASC")) {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "testName")));
 	
-	@GetMapping("/sortByUpdateDate")
-	@ResponseBody
-	public Map<String, Object> sortBypUdateDate(HttpServletRequest request,
-			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
-		Map<String, Object> mapList = new HashedMap();
-		User user = (User) request.getSession().getAttribute("user");
+			} else {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "testName")));
+			}
+		}
+		else if(colName.equals("createDate")) {
+			if (sortBy.equals("ASC")) {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "createDate")));
 
-		if (pageNumber == null) {
-			pageNumber = 0;
+			} else {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "createDate")));
+			}
 		}
-		Page<Test> tests;
-		if (sortBy.equals("ASC")) {
-			tests =  testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.ASC, "updateDate")));
-			
-		} 
+		
 		else {
-			tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 5, Sort.by(Sort.Direction.DESC, "updateDate")));
+			if (sortBy.equals("ASC")) {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "updateDate")));
+
+			} else {
+				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
+						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "updateDate")));
+			}
+			
 		}
-		System.out.println(">>>>Pg Number"+pageNumber);
-		System.out.println("TotalPages>>>>>>>"+tests.getTotalPages());
+		System.out.println(">>>>Pg Number" + pageNumber);
+		System.out.println("TotalPages>>>>>>>" + tests.getTotalPages());
 		System.out.print("TestSort" + tests);
-		//mapList.put("category", tests.get)
-		mapList.put("qs", tests.getContent());
+
+		int srNo=pageNumber*size;
+		mapList.put("srNo", srNo);
+		
+		mapList.put("qs", testService.populateWithPublicUrl(tests.getContent()));
+		//mapList.put("qs", tests.getContent());
 		mapList.put("page", pageNumber);
 
 		mapList.put("TotalPage", tests.getTotalPages());
 		mapList.put("sortBy", sortBy);
+		mapList.put("colName", colName);
 		return mapList;
 	}
-
 
 }

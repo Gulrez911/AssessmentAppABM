@@ -105,71 +105,21 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(document).ready(function() {
-		 var date = new Date();
-		    date.setDate(date.getDate() +2);
-		$("#txt2Date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
-		$("#txt2Date2").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
+		var date = new Date();
+		date.setDate(date.getDate() + 2);
+		$("#txt2Date").datepicker({
+			dateFormat : 'dd-mm-yy'
+		}).datepicker('setDate', date);
+		$("#txt2Date2").datepicker({
+			dateFormat : 'dd-mm-yy'
+		}).datepicker('setDate', date);
 	});
 
-
-	function test_list2(page){
-		console.log("Test "+page);
-		if(page===undefined){
-			page=0;
-		}
-		$.ajax({
-			url: "test_list2?page="+page,
-			type: "GET",
-			success: function(response) {
-				$(".tr").remove();
-				console.log(response.qs[0].testName);
-				for(var i=0; i<response.qs.length; i++){
-					$("#tbl").append(
-					/* '<input type="checkbox"' */
-					"<tr class='tr'><td>"
-					+response.qs[i].id+
-					/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
-					"</td><td>" 
-					+response.qs[i].testName+
-					"</td><td>"
-					+response.qs[i].category+
-					"</td><td>"
-					+response.qs[i].testTimeInMinutes+
-					"</td><td>"
-					+response.qs[i].passPercent+
-					"</td><td>"
-					+response.qs[i].cDate+
-					"</td><td>"
-					+response.qs[i].uDate+
-					"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
-				}
-				var page = response.page;
-				var TotalPage=response.TotalPage;
-				console.log("current: page: "+page);
-				console.log("total:  "+TotalPage);
-				var cpage=page+1;
-				var ppage=page-1;
- 				$(".dd").remove(); 
- 				if(page==0){
-				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:test_list2("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
- 	 				}
- 				else if(page==TotalPage-1){
- 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:test_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
- 					
- 	 				}
- 				else{
- 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:test_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:test_list2("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
-					
- 	 				} 
-				
-			}
-		});
-		
-	};
+	
 </script>
 </head>
 
-<body id="top" class="has-header-search" onload="test_list2()">
+<body id="top" class="has-header-search" onload="sort('ASC', 0,'Title') ">
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -191,6 +141,7 @@
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
+						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
@@ -274,11 +225,27 @@
 								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span>
 							</a>
 						</div> -->
+
+						<div class="col-md-4" style="padding: 0;">
+
+							<form:form  modelAttribute="test">
+								<form:select path="totalMarks" onchange="test_list2(0)" class="form-control" id="pageSize"
+									name="pageSize" multiple="false">
+									<c:forEach var="size" items="${pgSize}">
+										<form:option value="${size}">
+											<c:out value="${size}" />
+										</form:option>
+									</c:forEach>			
+								</form:select>
+							</form:form>
+						</div>
+
 						<div class="col-md-4" style="padding: 0;">
 							<a href="javascript:notify('Information', 'Feature coming soon')">
 								<i class="fa fa-filter"></i> <span>Filter</span>
 							</a>
 						</div>
+
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -287,18 +254,13 @@
 						<table class="table table-striped" id="tbl">
 							<thead style="background-color: #03a9f4;">
 								<tr>
-									<!-- <th><input type="checkbox" id="chkall" name="chkall"
-										class="filled-in" /> <label for="chkall"></label></th> -->
 									<th>No</th>
-									<th onclick='sortTestTitle(this.id,0)' id="ASC" class="CCC">Test
-										Title</th>
+									<th onclick='sort(this.id,0,"Title")' id="ASC" class="CCC">Test Title</th>
 									<th>Category</th>
 									<th>Test Time In Minutes</th>
 									<th>Pass Percentage</th>
-									<th onclick='sortByCreatedDate(this.id,0)' id="ASC" class="CCC">Created
-										By</th>
-									<th onclick='sortByUpdateDate(this.id,0)' id="ASC" class="CCC">Last
-										Update</th>
+									<th onclick='sort(this.id,0,"createDate")' id="ASC" class="CCC">Created Date</th>
+									<th onclick='sort(this.id,0)' id="ASC" class="CCC">Last Update</th>
 									<th>Expire Test</th>
 									<th>Update Test</th>
 									<th>Duplicate Test</th>
@@ -307,7 +269,7 @@
 							</thead>
 							<tbody>
 
-								<c:forEach items="${tests}" var="test" varStatus="loop">
+								<%-- <c:forEach items="${tests}" var="test" varStatus="loop">
 									<tr class="tr">
 										<!-- <td><input type="checkbox" class="filled-in" /> <label
 											for="chkall"></label></td> -->
@@ -320,20 +282,17 @@
 										<td>${test.passPercent}</td>
 										<td><c:out value="${test.cDate}"></c:out></td>
 										<td><c:out value="${test.uDate}"></c:out></td>
-										<td><a onClick="confirm(${test.id}); return false;"
-											href="#">Click to Expire</a></td>
-										<td><a href="updateTest?testId=${test.id}">Click to
-												Update</a></td>
-										<td><a href="javascript:void(0);" class="testname"
-											data-name="${test.testName}" data-toggle="modal"
-											onClick="javascript:duplicateOpen('${test.testName}', '${test.companyId}')"><i
-												class="fa fa-copy"></i></a></td>
-										<td><a href="javascript:void(0);" class="testname"
-											data-name="${test.testName}" data-toggle="modal"
-											onClick="javascript:shareOpen('${test.testName}', '${test.publicUrl}', '${test.id}','${random.nextInt()}')"><i
-												class="fa fa-share-alt"></i></a></td>
+										<td><a onClick="confirm(${test.id}); return false;" href="#">Click to Expire</a></td>
+										
+										<td><a href="updateTest?testId=${test.id}">Click to Update</a></td>
+										
+										<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}" data-toggle="modal"
+											onClick="javascript:duplicateOpen('${test.testName}', '${test.companyId}')"><i class="fa fa-copy"></i></a></td>
+											
+										<td><a href="javascript:void(0);" class="testname" data-name="${test.testName}" data-toggle="modal"
+											onClick="javascript:shareOpen('${test.testName}', '${test.publicUrl}', '${test.id}','${random.nextInt()}')"><i class="fa fa-share-alt"></i></a></td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 							</tbody>
 						</table>
 					</div>
@@ -357,6 +316,7 @@
 					<li><a href="testlist">Tests</a></li>
 					<li><a href="javascript:void(0)">Skills</a></li>
 					<li><a href="showReports">Results</a></li>
+					<li><a href="practice">Practice</a></li>
 					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 					<li><a href="javascript:void(0)">Skill based Reports</a></li>
 					<li><a href="showProfileParams">Recomm Setting</a></li>
@@ -561,127 +521,126 @@
 	<script src="${mainJs17}"></script>
 
 	<script>
-        function dup() {
-            var existing_name = document.getElementById("existing_name").value;
-            var newTest = document.getElementById("newTest").value;
-            var newQual1 = document.getElementById("newQual1").value;
-            var newQual2 = document.getElementById("newQual2").value;
-            if (newTest == '' || newTest == null) {
-                notify('Info', 'Enter a name for the new Test');
-            } else if (newQual1 == '' || newQual1 == null) {
-                notify('Info', 'Enter a Qualifier name for the new Test');
-            } else {
-                window.location = "duplicateTest?existing_name=" + existing_name + "&newTest=" + newTest + "&newQual1=" + newQual1 + "&newQual2=" + newQual2;
-            }
+		function dup() {
+			var existing_name = document.getElementById("existing_name").value;
+			var newTest = document.getElementById("newTest").value;
+			var newQual1 = document.getElementById("newQual1").value;
+			var newQual2 = document.getElementById("newQual2").value;
+			if (newTest == '' || newTest == null) {
+				notify('Info', 'Enter a name for the new Test');
+			} else if (newQual1 == '' || newQual1 == null) {
+				notify('Info', 'Enter a Qualifier name for the new Test');
+			} else {
+				window.location = "duplicateTest?existing_name="
+						+ existing_name + "&newTest=" + newTest + "&newQual1="
+						+ newQual1 + "&newQual2=" + newQual2;
+			}
 
-        }
+		}
 
-        function duplicateOpen(testName, tenantId) {
-            var name = $(this).attr('data-name');
-            console.log('here ' + testName);
-            console.log(tenantId);
-            document.getElementById("existing_name").value = testName;
-            $('#modalcopy').modal('show');
-            $('#modalshare').modal('hide');
-        }
+		function duplicateOpen(testName, tenantId) {
+			var name = $(this).attr('data-name');
+			console.log('here ' + testName);
+			console.log(tenantId);
+			document.getElementById("existing_name").value = testName;
+			$('#modalcopy').modal('show');
+			$('#modalshare').modal('hide');
+		}
 
-        function shareOpen(testName, testPublicUrl, testId,uniqueId) {
-//       		 var date = new Date();
-//       		    date.setDate(date.getDate() +2);
-//       		$("#txt2Date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate',date);
-            var name = $(this).attr('data-name');
-            console.log('here ' + testName);
-//             console.log('rand ' + uniqueId);
-// 			var
-			var str = uniqueId;
-			var uniqURL = testPublicUrl.concat('&uid='+str);
-			console.log(uniqURL)
+		function shareOpen(testName, testPublicUrl, testId) {
+			var name = $(this).attr('data-name');
+			console.log('TestId ' + testId);
+			console.log('here TestName' + testName);
+			console.log('here PublicURL' + testPublicUrl);
+			//var str = uniqueId;
+			//var uniqURL = testPublicUrl.concat('&uid='+str);
+			//console.log(uniqURL)
 			document.getElementById("existing_name1").value = testName;
-            document.getElementById("publicTestUrl").value = testPublicUrl;
-            document.getElementById("testId").value = testId;
-        	document.getElementById("existing_name2").value = testName;
-            document.getElementById("publicTestUrl2").value = testPublicUrl;
-            document.getElementById("testId2").value = testId;
-            $('#modalcopy').modal('hide');
-            $('#modalshare').modal('show');
-        }
-      
-        function copyUrlInClipBoard() {
-            el = document.createElement('textarea');
-            el.value = document.getElementById("publicTestUrl").value;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            //$('#modalshare').modal('hide');
-        }
+			document.getElementById("publicTestUrl").value = testPublicUrl;
+			document.getElementById("testId").value = testId;
+			document.getElementById("existing_name2").value = testName;
+			document.getElementById("publicTestUrl2").value = testPublicUrl;
+			document.getElementById("testId2").value = testId;
+			$('#modalcopy').modal('hide');
+			$('#modalshare').modal('show');
+		}
 
-        function copyUrlClose() {
-            $('#modalshare').modal('hide');
-        }
+		function copyUrlInClipBoard() {
+			el = document.createElement('textarea');
+			el.value = document.getElementById("publicTestUrl").value;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
+			//$('#modalshare').modal('hide');
+		}
 
-        function shareTest() {
-//       		var uemail = document.getElementById("uemail").value;
-            var existing_name1 = document.getElementById("existing_name1").value;
-            var firstName = document.getElementById("firstName").value;
-            var lastName = document.getElementById("lastName").value;
-            var userEmail = document.getElementById("userEmail").value;
-            var testId = document.getElementById("testId").value;
-            var expId = document.getElementById("txt2Date").value;
-            if (firstName == '' || firstName == null) {
-                notify('Info', 'First Name can not be blank');
-            } else if (lastName == '' || lastName == null) {
-                notify('Info', 'Last Name can not be blank');
-            } else if (userEmail == '' || userEmail == null) {
-                notify('Info', 'Email can not be blank');
-            } else if (!validateEmail(userEmail)) {
-                notify('Info', 'Enter a valid email');
-            } else {
-                window.location = "sharePublicTest?existing_name1=" + existing_name1 + "&firstName=" + firstName + "&lastName=" + lastName + "&userEmail=" + userEmail + "&testId=" + testId+"&expId=" + expId;
-            }
+		function copyUrlClose() {
+			$('#modalshare').modal('hide');
+		}
 
-        }
+		function shareTest() {
+			//       		var uemail = document.getElementById("uemail").value;
+			var existing_name1 = document.getElementById("existing_name1").value;
+			var firstName = document.getElementById("firstName").value;
+			var lastName = document.getElementById("lastName").value;
+			var userEmail = document.getElementById("userEmail").value;
+			var testId = document.getElementById("testId").value;
+			var expId = document.getElementById("txt2Date").value;
+			if (firstName == '' || firstName == null) {
+				notify('Info', 'First Name can not be blank');
+			} else if (lastName == '' || lastName == null) {
+				notify('Info', 'Last Name can not be blank');
+			} else if (userEmail == '' || userEmail == null) {
+				notify('Info', 'Email can not be blank');
+			} else if (!validateEmail(userEmail)) {
+				notify('Info', 'Enter a valid email');
+			} else {
+				window.location = "sharePublicTest?existing_name1="
+						+ existing_name1 + "&firstName=" + firstName
+						+ "&lastName=" + lastName + "&userEmail=" + userEmail
+						+ "&testId=" + testId + "&expId=" + expId;
+			}
 
-        function validateEmail(email) {
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
-        }
+		}
 
-        $('#search').on('click', function() {
-            var text = document.getElementById("searchText").value;
-            if (text.length != 0) {
-                window.location = "searchTests?searchText=" + text;
-            }
-        });
+		function validateEmail(email) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
 
+		$('#search').on('click', function() {
+			var text = document.getElementById("searchText").value;
+			if (text.length != 0) {
+				window.location = "searchTests?searchText=" + text;
+			}
+		});
 
+		function confirm(id) {
+			(new PNotify(
+					{
+						title : 'Confirmation Needed',
+						text : 'Are you sure? Students having the link to this exam may no longer be able to take the exam',
+						icon : 'glyphicon glyphicon-question-sign',
+						hide : false,
+						confirm : {
+							confirm : true
+						},
+						buttons : {
+							closer : false,
+							sticker : false
+						},
+						history : {
+							history : false
+						}
+					})).get().on('pnotify.confirm', function() {
+				window.location = "retireTest?testId=" + id;
+			}).on('pnotify.cancel', function() {
 
-        function confirm(id) {
-            (new PNotify({
-                title: 'Confirmation Needed',
-                text: 'Are you sure? Students having the link to this exam may no longer be able to take the exam',
-                icon: 'glyphicon glyphicon-question-sign',
-                hide: false,
-                confirm: {
-                    confirm: true
-                },
-                buttons: {
-                    closer: false,
-                    sticker: false
-                },
-                history: {
-                    history: false
-                }
-            })).get().on('pnotify.confirm', function() {
-                window.location = "retireTest?testId=" + id;
-            }).on('pnotify.cancel', function() {
+			});
+		}
 
-            });
-        }
-
-
- 
-function notify(messageType, message) {
+		function notify(messageType, message) {
 			var notification = 'Information';
 			$(function() {
 				new PNotify({
@@ -694,169 +653,87 @@ function notify(messageType, message) {
 			});
 		}
 
+// Added By Dhanshree
 
-function sortTestTitle(sort,page){
-
-/* 		if(page===undefined)
-			{
-				page=0;
-			}
-	 
-	 var sort = $("#sort").val(); */
-	console.log(sort);
-	 $.ajax({
-	  url:'sortTest?sortBy='+sort+"&page="+page,
-	  type:'GET',
-	  success: function(response){
-	 
-		  $(".tr").remove();
-
-		   for(var i=0; i<response.qs.length; i++){
-				$("#tbl").append(
-				/* '<input type="checkbox"' */
-				"<tr class='tr'><td>"
-				+response.qs[i].id+
-				/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
-				"</td><td>" 
-				+response.qs[i].testName+
-				"</td><td>"
-				+response.qs[i].category+
-				"</td><td>"
-				+response.qs[i].testTimeInMinutes+
-				"</td><td>"
-				+response.qs[i].passPercent+
-				"</td><td>"
-				+response.qs[i].cDate+
-				"</td><td>"
-				+response.qs[i].uDate+
-				"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
-			}
-			if(response.sortBy=="ASC"){
-				$(".CCC").attr('id',"DESC");
-			}else{
-				$(".CCC").attr('id',"ASC");
-			}
-
-
-			var page = response.page;
-			var TotalPage=response.TotalPage;
-			console.log("current: page: "+page);
-			console.log("total:  "+TotalPage);
-			var cpage=page+1;
-			var ppage=page-1;
-			$(".dd").remove(); 
-			if(0==TotalPage-1){
-				$("#pagination").append("<div class='dd'>"+cpage+"</div>")
-	 				}
-			else if(page==0){
-				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortTestTitle("+sort+','+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
- 				}
-			else if(page==TotalPage-1){
-					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortTestTitle("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
-					
-	 				}
-			else{
-					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortTestTitle("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:sortTestTitle("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
-				
-	 				} 
-	  
-	  }
-	 });
-	}
-
-function sortByCreatedDate(sort,page){
-
-	/* 		if(page===undefined)
-				{
-					page=0;
-				}
-		 
-		 var sort = $("#sort").val(); */
-		console.log(sort);
-		 $.ajax({
-		  url:'sortByCreatedDate?sortBy='+sort+"&page="+page,
-		  type:'GET',
-		  success: function(response){
-		 
-			  $(".tr").remove();
-
-			   for(var i=0; i<response.qs.length; i++){
-					$("#tbl").append(
-					/* '<input type="checkbox"' */
-					"<tr class='tr'><td>"
-					+response.qs[i].id+
-					/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
-					"</td><td>" 
-					+response.qs[i].testName+
-					"</td><td>"
-					+response.qs[i].category+
-					"</td><td>"
-					+response.qs[i].testTimeInMinutes+
-					"</td><td>"
-					+response.qs[i].passPercent+
-					"</td><td>"
-					+response.qs[i].cDate+
-					"</td><td>"
-					+response.qs[i].uDate+
-					"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
-				}
-				if(response.sortBy=="ASC"){
-					$(".CCC").attr('id',"DESC");
-				}else{
-					$(".CCC").attr('id',"ASC");
-				}
-
-		  }
-		 });
-		} sortByUpdateDate
-
-		function sortByUpdateDate(sort,page){
-
-			/* 		if(page===undefined)
-						{
+		function sort(sort, page,colName) {
+			 if(page===undefined){
 							page=0;
-						}
+			}
 				 
-				 var sort = $("#sort").val(); */
-				console.log(sort);
-				 $.ajax({
-				  url:'sortByUpdateDate?sortBy='+sort+"&page="+page,
-				  type:'GET',
-				  success: function(response){
-				 
-					  $(".tr").remove();
-
-					   for(var i=0; i<response.qs.length; i++){
-							$("#tbl").append(
-							/* '<input type="checkbox"' */
-							"<tr class='tr'><td>"
-							+response.qs[i].id+
-							/* <input type="checkbox" class="filled-in" /> <label for="chkall"></label>*/
-							"</td><td>" 
-							+response.qs[i].testName+
-							"</td><td>"
-							+response.qs[i].category+
-							"</td><td>"
-							+response.qs[i].testTimeInMinutes+
-							"</td><td>"
-							+response.qs[i].passPercent+
-							"</td><td>"
-							+response.qs[i].cDate+
-							"</td><td>"
-							+response.qs[i].uDate+
-							"</td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >Click to Expire</a></td><td><a href='updateTest?testId=" + response.qs[i].id + "' >Click to Update</a></td></tr>")
+			console.log("Value of sort  in TestTitle: " + sort);
+			var size = $("#pageSize").val();
+			console.log("size:   " + size);
+			console.log("colname:"+colName);
+			$.ajax({
+				url : 'sortTest?sortBy=' + sort + "&page=" + page+"&size="+size+"&colName="+colName,
+				type : 'GET',
+				success : function(response) {
+					console.log("Response val in TestTitle:"+ response.sortBy);
+					var no=response.srNo;
+					$(".tr").remove();
+					for (var i = 0; i < response.qs.length; i++) {
+						var today = null;
+						if (response.qs[i].updateDate != null) {
+							today = new Date(response.qs[i].updateDate).toLocaleDateString('en-GB', {
+												day : 'numeric',
+												month : 'short',
+												year : 'numeric'
+											}).split(' ').join('-');
 						}
-						if(response.sortBy=="ASC"){
-							$(".CCC").attr('id',"DESC");
-						}else{
-							$(".CCC").attr('id',"ASC");
+						else{
+							today="NA";
+							}
+						no=no+1;
+						$("#tbl").append(
+								"<tr class='tr'><td>"
+								+ no+
+								"</td><td><a href='downloadOnClickTestName?testName="+ response.qs[i].testName+"'>"+ response.qs[i].testName+ "</a></td><td>"
+								+ response.qs[i].category+ 
+								"</td><td>"
+								+ response.qs[i].testTimeInMinutes+ 
+								"</td><td>"
+								+ response.qs[i].passPercent+
+								"</td><td>"
+								+ response.qs[i].cDate+ 
+								"</td><td>"
+								+ today+
+								"</td><td><a href='javascript:confirm("+ response.qs[i].id+ ")' >Click to Expire</a></td><td><a href='updateTest?testId="+ response.qs[i].id+ "' >Click to Update</a></td><td><a href='javascript:duplicateOpen(\""+ response.qs[i].testName+ "\",\""+ response.qs[i].companyId+ "\")' ><i class='fa fa-copy'></i></a></td><td><a href='javascript:shareOpen(\""+ response.qs[i].testName+ "\",\""+ response.qs[i].publicUrl+ "\","+ response.qs[i].id+ ")' ><i class='fa fa-share-alt'></i></a></td></tr>")
+							}
+							if (response.sortBy == "ASC") {
+								$("#ASC").attr('id', "DESC");
+							} else {
+								$("#DESC").attr('id', "ASC");
+							}
+
+							var sortBy = response.sortBy;
+							var page = response.page;
+							var TotalPage = response.TotalPage;
+							var colName=response.colName;
+							console.log("current: page: " + page);
+							console.log("total:  " + TotalPage);
+							var cpage = page + 1;
+							var ppage = page - 1;
+							$(".dd").remove();
+							if (0 == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'>" + cpage + "</div>")
+							} 
+							else if (page == 0) {
+								$("#pagination").append("<div class='dd'>"+ cpage+ "<a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ cpage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+							} 
+							else if (page == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ ppage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage + "</div>")
+
+							} 
+							else {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ ppage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage+ "<a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ cpage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+
+							}
 						}
+					});
+		}
+		
 
-				  }
-				 });
-				} 
-
-</script>
+	</script>
 	<c:if test="${msgtype != null}">
 		<script>
 			var notification = 'Information';

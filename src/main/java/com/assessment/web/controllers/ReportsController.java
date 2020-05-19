@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,6 +22,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -290,10 +293,8 @@ public class ReportsController {
 
 //	testName wise Report for ui
 
-	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {
-			org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName, HttpServletRequest request,
-			HttpServletResponse response) {
+	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName, HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("testReport");
 		long start = 0L;
 		long end = 0L;
@@ -316,7 +317,7 @@ public class ReportsController {
 		String date = formatter.format(new Date());
 		mav.addObject("reportList", collectionForTest);
 		mav.addObject("reportType", "Tests & Users Assessment Reports");
-	return mav;
+		return mav;
 	}
 
 	@RequestMapping(value = { "/downloadUserReport" }, method = {
@@ -664,6 +665,7 @@ public class ReportsController {
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
 
+	
 	@RequestMapping(value = "/searchReport", method = RequestMethod.GET)
 	public ModelAndView searchReport(@RequestParam String searchReport, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -699,6 +701,7 @@ public class ReportsController {
 		return mav;
 	}
 
+	
 	@RequestMapping(value = "/searchTestNameWiseUIReport", method = RequestMethod.GET)
 	public ModelAndView searchTestNameWiseUIReport(@RequestParam String searchReport, @RequestParam String testName,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -760,4 +763,101 @@ public class ReportsController {
 		return mapList;
 	}
 
+	@GetMapping("/sortName")
+	@ResponseBody
+	public Map<String, Object> sortName(HttpServletRequest request,
+			@RequestParam(name = "sortBy", required = false) String sortBy,
+			@RequestParam(name = "page", required = false) Integer pageNumber,
+			@RequestParam(required = false) String testName,
+			@RequestParam(name="colName")String colName) {
+		Map<String, Object> mapList = new HashedMap();
+		User user = (User) request.getSession().getAttribute("user");
+		if (pageNumber == null) {
+			pageNumber = 0;
+		}
+		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
+				userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
+				user.getFirstName() + " " + user.getLastName());
+		List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
+		List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList<AssessmentUserPerspectiveData>();
+		for (AssessmentUserPerspectiveData data : collection) {
+			if (data.getTestName().equals(testName)) {
+				data.setCompanyId(user.getCompanyId());
+				data.setUrlForUserSession(propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName="
+						+ testName + "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
+				collectionForTest.add(data);
+			}
+		}
+		
+		if(colName.equals("Name")) {
+			if (sortBy.equals("ASC")) {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.StuASC);
+				System.out.println(">>collection in ASC" + collectionForTest);
+	
+			} else {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.StuDESC);
+				System.out.println(">>collectionForTest in DESC" + collectionForTest);
+			}
+		}else if(colName.equals("TestStart")) { 
+			if (sortBy.equals("ASC")) {
+			  Collections.sort(collectionForTest,AssessmentUserPerspectiveData.startASC);
+			  System.out.println(">>collection in ASC" + collectionForTest);
+			  
+			  } else { 
+				Collections.sort(collectionForTest,AssessmentUserPerspectiveData.startDESC);
+			    System.out.println(">>collectionForTest in DESC" + collectionForTest); 
+			    } 
+		}else if(colName.equals("Contact")){
+			if (sortBy.equals("ASC")) {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.contactASC);
+				System.out.println(">>collection in ASC" + collectionForTest);
+				
+			} else {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.contactDESC);
+				System.out.println(">>collectionForTest in DESC" + collectionForTest);
+			}
+		}else{
+			if (sortBy.equals("ASC")) {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.endASC);
+				System.out.println(">>collection in ASC" + collectionForTest);
+				
+			} else {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.endDESC);
+				System.out.println(">>collectionForTest in DESC" + collectionForTest);
+			}
+		}
+		
+		
+		  int minSize=pageNumber*5; 
+		  int maxSize=minSize+5;
+		  List<AssessmentUserPerspectiveData> pgCollection = new ArrayList<>();
+		  int i=0; 
+		  for(AssessmentUserPerspectiveData as:collectionForTest){ 
+			  if(minSize<=i){
+				  if(maxSize>i){ 
+					  pgCollection.add(as); 
+				  } 
+			  } 
+			  i++; 
+		}
+		  int rem=collectionForTest.size() % 5;
+		  int  totalPage=collectionForTest.size()/5;
+		  if(rem!=0) {
+			   totalPage = totalPage+1;
+		  }
+		System.out.println(">>>>Pg Number" + pageNumber);
+		System.out.print("TestSort" + collection);
+		System.out.println(">>>Total PG:"+totalPage);
+		mapList.put("TotalPage", totalPage);
+		mapList.put("qs", pgCollection);
+		mapList.put("page", pageNumber);
+		mapList.put("sortBy", sortBy);
+		mapList.put("testName", testName);
+		mapList.put("colName", colName);
+		return mapList;
+	}
+	
 }
+
+
+

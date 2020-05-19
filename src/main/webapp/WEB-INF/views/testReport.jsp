@@ -104,7 +104,7 @@
 
 </head>
 
-<body id="top" class="has-header-search">
+<body id="top" class="has-header-search" onload="sortName('ASC', 0,'${param.testName}','Name')">
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -126,6 +126,7 @@
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
 						<li class="active"><a href="showReports">Results</a></li>
+						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
@@ -166,18 +167,26 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-md-12">
+					<div class="col-md-12">
+						<div class="pagination" style="float: right;" id="pagination">
+						
+						</div>
+					</div>
+				</div>
 
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped">
+							<table class="table table-striped" id="tbl">
 								<thead style="background-color: #03a9f4;">
 									<tr>
-										<th><b>Name</b></th>
-										<th style="width: 20%"><b>Contact</b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}','Name')" id="ASC" class="CCC"><b>Name</b></th>
+										<th style="width: 20%" onclick="sortName(this.id,0,'${param.testName}','Contact')" id="ASC" class="CCC"><b>Contact</b></th>
 										<th style="width: 5%"><b>Test Name</b></th>
 										<th><b>Section Wise</b></th>
-										<th><b>Test Start </b></th>
-										<th><b>Test End</b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}','TestStart')" id="ASC" class="CCC"><b>Test Start </b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}')" id="ASC" class="CCC"><b>Test End</b></th>
 										<th><b>Result</b></th>
 										<th style="width: 20%"><b>Attempts</b></th>
 										<th><b>No. of Security Breech</b></th>
@@ -187,10 +196,9 @@
 								<tbody>
 								<tbody>
 
-									<c:forEach items="${reportList}" var="session">
-										<tr>
+									<%-- <c:forEach items="${reportList}" var="session">
+										<tr class="tr">
 											<td><a href="javascript:getRank('${session.email}')">${session.firstName}</a></td>
-
 											<td>${session.email}</td>
 											<td>${session.testName}</td>
 											<td>${session.sectionWiseScore}</td>
@@ -199,18 +207,17 @@
 											<td>${session.result}</td>
 											<td>${session.noOfAttempts}</td>
 											<td>${session.noOfNonCompliances}</td>
-											<td><a href="${session.urlForUserSession}">Download
-													Report</a></td>
-											<%-- 											<td>${session.topCandidatesEmail}</td> --%>
+											<td><a href="${session.urlForUserSession}">Download Report</a></td>
+																						<td>${session.topCandidatesEmail}</td>
 											<!-- 											<td><a -->
-											<%-- 												href="downloadUserReportsForTest?testName=${session.testName}">Click --%>
+																							href="downloadUserReportsForTest?testName=${session.testName}">Click
 											<!-- 											</a></td> -->
 											<!-- 											<td><a -->
-											<%-- 												href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click --%>
+																							href="downloadUserReportsForTestWithExtraAttrs?testName=${session.testName}">Click
 											<!-- 											</a></td> -->
 
 										</tr>
-									</c:forEach>
+									</c:forEach> --%>
 								</tbody>
 
 							</table>
@@ -240,7 +247,7 @@
 					<div role="tabpanel">
 						<!-- Nav tabs -->
 
-						<table id="tbl">
+						<table id="tblRank">
 							<tr>
 								<th>Test Name</th>
 								<th>Rank</th>
@@ -287,8 +294,7 @@
 						function() {
 							var text = document.getElementById("searchReport").value;
 							if (text.length != 0) {
-								window.location = "searchTestNameWiseUIReport?searchReport="
-										+ text + "&testName=" + testName;
+								window.location = "searchTestNameWiseUIReport?searchReport="+ text + "&testName=" + testName;
 							}
 						});
 	</script>
@@ -301,20 +307,90 @@
 				method : "GET",
 				success : function(response) {
 					console.log(response.rankList)
-					$(".tr").remove();
+					$(".trRank").remove();//here is the is issue
 					for (var i = 0; i < response.rankList.length; i++) {
-						$("#tbl").append(
-								"<tr class='tr'><td>"
+						$("#tblRank").append(
+								"<tr class='trRank'><td>"
 										+ response.rankList[i].testName
 										+ "</td><td>"
 										+ response.rankList[i].testId
 										+ "</td><td></tr>")
 					}
 					$('#modalshare').modal('show');
-
 				}
 			});
 		}
+
+		function sortName(sort, page,testName,colName) {
+			 if(page===undefined){
+				page=0;
+			}
+				
+			console.log("Value of sort  in Name: " + sort);
+			console.log("colName:"+colName);
+			$.ajax({
+				url : 'sortName?sortBy=' + sort + "&page=" + page+ "&testName=" + testName+"&colName="+colName,
+				type : 'GET',
+				success : function(response) {
+					console.log("Response val in Name:"+ response.sortBy);
+					console.log(response.qs);
+					var testName=response.testName;
+					$(".tr").remove();
+					for (var i = 0; i < response.qs.length; i++) {
+						$("#tbl").append(
+								"<tr class='tr'><td><a href='javascript:getRank(\""+response.qs[i].email+"\")'>"+response.qs[i].firstName+"</a></td><td>"
+								+ response.qs[i].email+
+								"</td><td>"
+								+response.qs[i].testName+
+								"</td><td>"
+								+response.qs[i].sectionWiseScore+
+								"</td><td>"
+								+response.qs[i].testStartDate+
+								"</td><td>"
+								+response.qs[i].testEndDate+
+								"</td><td>"
+								+response.qs[i].result+
+								"</td><td>"
+								+response.qs[i].noOfAttempts+
+								"</td><td>"
+								+response.qs[i].noOfNonCompliances+
+								"</td><td><a href='" + response.qs[i].urlForUserSession + "' >Download Report</a></td></tr>")
+							}
+							if (response.sortBy == "ASC") {
+								$("#ASC").attr('id', "DESC");
+							} else {
+								$("#DESC").attr('id', "ASC");
+							}
+
+						 	var sortBy = response.sortBy;
+							var page = response.page;
+							var TotalPage = response.TotalPage;
+							var colName=response.colName;
+							console.log("current page: " + page);
+							console.log("total page:  " + TotalPage);
+							console.log(response.colName);
+							var cpage = page + 1;
+							var ppage = page - 1;
+							$(".dd").remove();
+							if (0 == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'>" + cpage + "</div>")
+							} 
+							else if (page == 0) {
+								$("#pagination").append("<div class='dd'>"+ cpage+ "<a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ cpage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+							} 
+							else if (page == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage + "</div>")
+
+							} 
+							else {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage+ "<a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ cpage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+
+							} 
+						}
+
+					});
+		}
+
 	</script>
 
 

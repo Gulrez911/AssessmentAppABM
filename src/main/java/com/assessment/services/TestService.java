@@ -44,6 +44,6 @@ public interface TestService {
 	
 	public Test populate(Test test);
 	
-	public Page<Test> findTestByPage(String companyId, Integer pageNumber);
+	public Page<Test> findTestByPage(String companyId, Integer pageNumber,Integer size);
 
 }
