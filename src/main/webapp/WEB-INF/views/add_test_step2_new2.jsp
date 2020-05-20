@@ -432,7 +432,7 @@
 		    		else
 		    			strng = strng + x[i] + "-";
 		    	}
-		    	alert(strng);
+		    	//alert(strng);
 		    	window.location = "addteststep3?sostr="+strng;
 		    });
 		    

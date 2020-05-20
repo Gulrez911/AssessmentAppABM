@@ -60,6 +60,7 @@ public class Test extends Base {
 	public Boolean getSendRecommReport() {
 		return sendRecommReport;
 	}
+	
 	public void setSendRecommReport(Boolean sendRecommReport) {
 		this.sendRecommReport = sendRecommReport;
 	}
