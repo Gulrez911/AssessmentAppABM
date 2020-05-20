@@ -914,6 +914,7 @@ public class StudentController {
 			QuestionSequence qseq = new QuestionSequence(list_qdto);
 			
 			int seq_no=0;
+			System.out.println("TestDemo");
 			String currSecName = sectDto.getSection().getSectionName();
 			int allSecCountQues = sectDto.getNoOfQuestions();
 			
