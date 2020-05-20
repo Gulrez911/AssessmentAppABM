@@ -3,6 +3,8 @@ package com.assessment.web.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 //Creaated By Suhel
 
 import com.assessment.data.Question;
@@ -19,7 +21,7 @@ public class SectionDto {
 	
 	Set<Question> questions = new HashSet<>();
 
-	
+	Integer sectionOrder;
 	Integer sectionNo;
 	
 
@@ -40,6 +42,14 @@ public class SectionDto {
 	}
 
 	
+
+	public Integer getSectionOrder() {
+		return sectionOrder;
+	}
+
+	public void setSectionOrder(Integer sectionOrder) {
+		this.sectionOrder = sectionOrder;
+	}
 
 	public Integer getSectionNo() {
 		return sectionNo;

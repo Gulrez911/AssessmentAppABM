@@ -87,18 +87,32 @@ public class QuestionMapperInstance
   }
   
   public void setUserChoices(String userChoices) {
-    this.userChoices = userChoices;
-    if (userChoices.length() > 0) {
-      setAnswered(Boolean.valueOf(true));
-      String choices = getQuestionMapper().getQuestion().getRightChoices();
-      String[] correct = choices.split("-");
-      String[] userC = userChoices.split("-");
-      if (Arrays.equals(correct, userC)) {
-        setCorrect(Boolean.valueOf(true));
-      }
-    } else {
-      setAnswered(Boolean.valueOf(false));
-    }
+	  this.userChoices = userChoices;
+		if(this.userChoices != null){
+			if(userChoices.length() > 0) {
+				setAnswered(true);
+				String choices = getQuestionMapper().getQuestion().getRightChoices();
+				String correct[] = choices.split("-");
+				String userC[] = userChoices.split("-");
+				//String correct[] = choices.split("-");
+				//String userC[] = userChoices.split("-");
+				if(Arrays.equals(correct, userC)) {
+					setCorrect(true);
+				}
+			}
+			else {
+				setAnswered(false);
+			}
+		}
+		else{
+			if(getQuestionMapper().getQuestion().getQuestionType().getType().equals(QuestionType.CODING.getType())){
+				setAnswered(true);
+			}
+			else{
+				setAnswered(false);
+			}
+		}
+			
   }
   
   public String getUser()

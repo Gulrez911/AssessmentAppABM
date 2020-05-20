@@ -404,7 +404,7 @@ body * {
 										<c:when test="${currentSection.last==true}">
 
 												<a class="next" href="javascript:submitTest();" id="next">SUBMIT TEST</a>
-										</c:when>
+										</c:when>			
 										<c:otherwise>
 												<a class="next" href="javascript:next();" id="next">Next</a>
 												<!-- <i class="fa fa-long-arrow-right"></i>-->

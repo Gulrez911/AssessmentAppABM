@@ -335,7 +335,6 @@
 		</div>
 	</div>
 
-
 	<!-- Share Test Popup -->
 	<div id="modalshare" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
@@ -427,10 +426,6 @@
 					</form> 
                         </div>
                         
-                        <div role="tabapnel" class="tab-pane" id="arrangeSectionTab">
-                
-                        
-                        </div>
                     </div>
                 </div>
 					 
@@ -532,6 +527,8 @@
             document.getElementById("testId").value = testId;
         	document.getElementById("existing_name2").value = testName;
             document.getElementById("publicTestUrl2").value = testPublicUrl;
+            
+          
             document.getElementById("testId2").value = testId;
             $('#modalcopy').modal('hide');
             $('#modalshare').modal('show');

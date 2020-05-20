@@ -89,6 +89,10 @@
 
 <spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
 <script src="${mainJs1}"></script>
+<!-- Vaisnavi's addition jquery ui -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <!-- end -->
 <spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
 <script src="${mainJs2}"></script>
 <spring:url value="/resources/assets/materialize/js/materialize.min.js" var="mainJs3" />
@@ -251,18 +255,18 @@
 							<label style="font-size: 20px; color: #333;">Sections</label>
 
 
-
+						<div id="sortable" class="quesectiondiv">
 							<c:forEach items="${test.sectionDtos}" var="section">
-								<div class="quesectiondiv">
-									<div class="quesection">
+									<div id="${section.sectionName}"  class="quesection">
 
 										${section.sectionName}- ${section.noOfQuestions} <a
 											href="javascript:removeSection('${section.sectionName}');" id="delete"><i
 											class="fa fa-trash"></i></a> <a id='update'
 											onclick="highlight('${section.sectionName}');"><i class='fa fa-edit'></i></a>
 									</div>
-								</div>
+								
 							</c:forEach>
+							</div>
 							<!--  new added end-->
 							<!-- 																		Java Section <a id="delete"><i class="fa fa-trash"></i></a> <a id="update"><i -->
 							<!-- 																				class="fa fa-edit"></i></a> -->
@@ -274,11 +278,9 @@
 
 
 						<div class="col-md-12 text-right">
-							<a href="testlist"
-								class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
-							<a class="waves-effect waves-light btn cyan mt-20 mb-20"
-								href="gobackStep1Test">Back</a> <a
-								class="waves-effect waves-light btn mt-20 mb-20" href="addteststep3">Next</a>
+							<a href="testlist" class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
+							<a class="waves-effect waves-light btn cyan mt-20 mb-20" href="gobackStep1Test">Back</a> 
+							<a id="nxtbtn" class="waves-effect waves-light btn mt-20 mb-20">Next</a><!-- href="addteststep3" -->
 						</div>
 					</div>
 
@@ -417,6 +419,24 @@
 
 
 	<script type="text/javascript">
+		$(document).ready(function() {
+		    $( "#sortable" ).sortable();
+		    $( "#sortable" ).disableSelection();
+		    
+		    $("#nxtbtn").on("click",function(){
+		    	var x = $( "#sortable" ).sortable("toArray");
+		    	var strng="";
+		    	for( var i=0 ; i < x.length ; i++ ){
+		    		if(i==x.length-1)
+		    			strng=strng + x[i];
+		    		else
+		    			strng = strng + x[i] + "-";
+		    	}
+		    	alert(strng);
+		    	window.location = "addteststep3?sostr="+strng;
+		    });
+		    
+		  } );
 		$(document).on('click', '.addquestion', function() {
 			window.location = "addNewSection";
 		});

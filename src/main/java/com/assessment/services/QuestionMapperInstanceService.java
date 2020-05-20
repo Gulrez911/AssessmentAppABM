@@ -26,4 +26,7 @@ public interface QuestionMapperInstanceService {
 	//public List<QuestionMapperInstance> getInstances(String qualifier1,String qualifier2, String qualifier3,  String qualifier4, String qualifier5,String qualifier6, String companyId);
 	
 	public List<QuestionMapperInstance> getInstancesOR(String qualifier, String companyId);
+	
+	public Integer findAllQuestionsCountForEachSection(String companyId , String testName , String sectionName);
+	public Integer findAnsCountForEachSection(String companyId , String testName , String sectionName);
 }

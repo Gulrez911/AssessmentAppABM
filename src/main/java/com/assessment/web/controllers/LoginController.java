@@ -49,8 +49,8 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView("index");
 		User user = new User();
 		user.setEmail("admin@e-assess.com");
-		user.setPassword("system@iiht.com");
-		user.setCompanyName("e-assess");
+		user.setPassword("1234");
+		user.setCompanyName("IIHT");
 		mav.addObject("user", user);
 		return mav;
 	}

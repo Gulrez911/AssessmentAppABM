@@ -25,7 +25,8 @@
 <spring:url value="/resources/assets/fonts/iconfont/material-icons.css" var="c3" />
 
 <link href="${c3}" rel="stylesheet" type="text/css" />
-
+<!-- jQuery UI style -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- FontAwesome CSS -->
 <spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
 	var="c4" />
@@ -156,23 +157,26 @@
 
 
 				<div class="addteststeps2 col-md-10">
+				<div>
+				</div>
 					<div class="col-md-12">
-						<div class="step2sections">
+					
+						<div class="step2sections" >
 							<label style="font-size: 20px; color: #333;">Sections</label>
 
-
-
+				
+							<div id="sortable" class="quesectiondiv">			
 							<c:forEach items="${test.sectionDtos}" var="section">
-								<div class="quesectiondiv">
-									<div class="quesection">
+									<div id="${section.sectionName}" class="quesection">
 										${section.sectionName}- ${section.noOfQuestions} <a
 											href="javascript:removeSection('${section.sectionName}');" id="delete"><i
 											class="fa fa-trash"></i></a> <a id='update'
 											onclick="highlight('${section.sectionName}');return false"><i
 											class='fa fa-edit'></i></a>
 									</div>
-								</div>
 							</c:forEach>
+							</div>
+							
 							<!--  new added end-->
 							<!-- 																		Java Section <a id="delete"><i class="fa fa-trash"></i></a> <a id="update"><i -->
 							<!-- 																				class="fa fa-edit"></i></a> -->
@@ -181,14 +185,14 @@
 
 							<label class="addquestion"><span>+</span> Add Section </label>
 						</div>
-
+						
 
 						<div class="col-md-12 text-right">
 							<a href="testlist"
 								class="waves-effect waves-light btn submit-button indigo mt-20 mb-20">Cancel</a>
 							<a class="waves-effect waves-light btn cyan mt-20 mb-20"
-								href="gobackStep1Test">Back</a> <a
-								class="waves-effect waves-light btn mt-20 mb-20" href="addteststep3">Next</a>
+								href="gobackStep1Test">Back</a> <a id="nxtbtn"
+								class="waves-effect waves-light btn mt-20 mb-20">Next</a>
 						</div>
 					</div>
 
@@ -339,10 +343,11 @@
 
 
 
-	<!-- jQuery -->
+<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<script src="${mainJs1}"></script><!-- jQuery -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	
 
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
-	<script src="${mainJs1}"></script>
 	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
 	<script src="${mainJs2}"></script>
 	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
@@ -379,8 +384,25 @@
 	<script src="${mainJs16}"></script>
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 	<script src="${mainJs17}"></script>
-
+	
 	<script type="text/javascript">
+		$(document).ready(function() {
+		    $( "#sortable" ).sortable();
+		    $( "#sortable" ).disableSelection();
+		    
+		    $("#nxtbtn").on("click",function(){
+		    	var x = $( "#sortable" ).sortable("toArray");
+		    	var strng="";
+		    	for( var i=0 ; i < x.length ; i++ ){
+		    		if(i==x.length-1)
+		    			strng=strng + x[i];
+		    		else
+		    			strng = strng + x[i] + "-";
+		    	}
+		    	//alert(strng);
+		    	window.location = "addteststep3?sostr="+strng;
+		    });
+		  } );
 		$(document).on('click', '.addquestion', function() {
 			window.location = "addNewSection";
 

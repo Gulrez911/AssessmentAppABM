@@ -46,4 +46,19 @@ public class QuestionSequence {
 		
 		return null;
 	}
+	
+	public Integer getSequenceNo(Long questionMapperId)
+	{
+		int i = 0;
+		int seq_no = 0;
+		for(QuestionInstanceDto qdto : this.questionInstanceDtos) {
+			i++;
+			if(qdto.getQuestionMapperInstance().getQuestionMapper().getId() == questionMapperId)
+			{
+				seq_no=i;
+				break;
+			}
+		}
+		return seq_no;
+	}
 }

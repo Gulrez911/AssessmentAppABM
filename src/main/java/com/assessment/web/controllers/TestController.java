@@ -24,6 +24,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.jboss.logging.Param;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -287,14 +291,41 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/addteststep3", method = RequestMethod.GET)
-	public ModelAndView addteststep3(@ModelAttribute("test") Test test, HttpServletRequest request,
+	public ModelAndView addteststep3(@RequestParam String sostr , @ModelAttribute("test") Test test, HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = null;
 		mav = new ModelAndView("add_test_step3_new");
 		User user = (User) request.getSession().getAttribute("user");
 		// mav.addObject("qs", questions);
 		test = (Test) request.getSession().getAttribute("test");
+		String[] secnameorderArray = sostr.split("-");
 
+		
+		SectionDto sec=null;
+		List<SectionDto> sections2 = new ArrayList<SectionDto>();
+		List<SectionDto> sections = test.getSectionDtos();
+		for(int i = 0 ; i<secnameorderArray.length ; i++) {
+			for(SectionDto cursec: sections) {
+				if(secnameorderArray[i].equalsIgnoreCase(cursec.getSectionName()))
+				{
+					sec = cursec;
+					sec.setSectionOrder(i+1);
+				}
+			}
+			sections2.add(sec);
+		}
+		for(SectionDto dto:sections2) {
+			Section section = new Section();
+			section.setId(dto.getSectionId());
+			section.setSectionorder(dto.getSectionOrder());
+			section.setCompanyId(dto.getCompanyId());
+			section.setCompanyName(user.getCompanyName());
+			section.setTestName(dto.getTestName());
+			section.setSectionName(dto.getSectionName());
+			section.setNoOfQuestions(dto.getNoOfQuestions());
+			section.setPercentQuestionsAsked(dto.getPercentQuestionsAsked());
+			sectionService.createSection(section);
+		}
 		mav.addObject("test", test);
 		List<User> users = userService.findByCompany(user.getCompanyId());
 		mav.addObject("users", process(users, test));

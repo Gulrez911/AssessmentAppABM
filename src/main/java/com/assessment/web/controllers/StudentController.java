@@ -1,6 +1,8 @@
 
 package com.assessment.web.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.File;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
@@ -9,13 +11,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -27,6 +33,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,6 +60,7 @@ import com.assessment.eclipseche.config.response.WorkspaceResponse;
 import com.assessment.eclipseche.services.EclipseCheService;
 import com.assessment.reports.manager.AssessmentUserPerspectiveData;
 import com.assessment.repositories.QuestionMapperInstanceRepository;
+import com.assessment.repositories.SectionRepository;
 import com.assessment.repositories.UniqueUrlRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionMapperInstanceService;
@@ -72,6 +80,8 @@ import com.assessment.web.forms.StudentTestForm;
 
 @Controller
 public class StudentController {
+	@Autowired
+	SectionRepository sectionRepository;
 	@Autowired
 	StudentService studentService;
 	@Autowired
@@ -623,6 +633,7 @@ public class StudentController {
 			currentQuestion.setCode(currentQuestion.getCode().replaceAll("\n", rep));
 			currentQuestion.setCode(currentQuestion.getCode().replaceAll("\t", rept));
 		}
+		//currentQuestion.getQuestionMapperInstance().setAnswered(true);
 		this.setAnswers(request, currentSection, currentQuestion, questionId);
 		QuestionSequence questionSequence = new QuestionSequence(currentSection.getQuestionInstanceDtos());
 		final SectionSequence sectionSequence = new SectionSequence((List) sectionInstanceDtos);
@@ -870,6 +881,143 @@ public class StudentController {
 		return model;
 	}
 
+	//added by Vaishnavi
+	@RequestMapping(value = { "/submDetails" }, method = { RequestMethod.GET })
+	@ResponseBody
+	public Map<String , Map<String,List<Integer>>> submDetails(final HttpServletRequest request, final HttpServletResponse response,
+			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion ,@RequestParam String questionMapperId) {
+		
+		Map<String ,  Map<String,List<Integer>>> hm_allsectionDet = new LinkedHashMap<String , Map<String,List<Integer>>>();
+		/* Return type:
+		 * HashMap: 
+		 * key: sectionname: String
+		 * value: HashMap<String , List<Integer>:
+		 * 			key: "answered"/"unanswered": String
+		 * 			value: List<Integer>: List of question numbers answered and unanswered
+		 **/
+		 
+		SectionInstanceDto curreSection = (SectionInstanceDto) request.getSession().getAttribute("currentSection");
+		//currentQuestion.getQuestionMapperInstance().setAnswered(true);
+			
+		setAnswers(request, curreSection, currentQuestion, questionMapperId);
+		this.saveSection(curreSection, request);
+		
+		final User user = (User) request.getSession().getAttribute("user");
+		final Test test = (Test) request.getSession().getAttribute("test");
+		List<SectionInstanceDto> sectionInstanceDtos = (List) request.getSession().getAttribute("sectionInstanceDtos");
+		List<Section> ordSecList = sectionRepository.getSectionsForTest(test.getTestName(), user.getCompanyId());
+		
+	
+		for(SectionInstanceDto sectDto : sectionInstanceDtos ) {
+				
+			List<QuestionInstanceDto> list_qdto = sectDto.getQuestionInstanceDtos();
+			QuestionSequence qseq = new QuestionSequence(list_qdto);
+			
+			int seq_no=0;
+			String currSecName = sectDto.getSection().getSectionName();
+			int allSecCountQues = sectDto.getNoOfQuestions();
+			
+			List<Integer> answeredSeqNo = new ArrayList<Integer>();
+			List<Integer> unAnsweredSeqNo = new ArrayList<Integer>();
+			LinkedHashMap< String , List<Integer> > hm_ans = new LinkedHashMap<String,List<Integer>>();
+			
+			for(QuestionInstanceDto qdto: list_qdto ) {
+				
+				seq_no = qseq.getSequenceNo(qdto.getQuestionMapperInstance().getQuestionMapper().getId());
+				
+				if(qdto.getQuestionMapperInstance().getAnswered())
+				{
+//					unAnsweredSeqNo.remove(unAnsweredSeqNo.size()-1);
+					answeredSeqNo.add(seq_no);
+					System.out.println("Questions number answered:"+seq_no);
+				}
+				else
+				{
+					unAnsweredSeqNo.add(seq_no);
+					System.out.println("Question number Unanswered:"+seq_no);
+				}
+				
+			}
+			System.out.println();
+			
+			if(answeredSeqNo.size()==0 && unAnsweredSeqNo.size()==0  ) {
+				for(int i=1 ; i<=allSecCountQues ; i++) {
+					unAnsweredSeqNo.add(i);
+				}
+			}
+			
+			hm_ans.put("answered", answeredSeqNo );
+			hm_ans.put("unanswered" , unAnsweredSeqNo );
+			
+			hm_allsectionDet.put(currSecName , hm_ans);
+		}
+
+		return hm_allsectionDet;
+	}
+	//addition end
+	
+	@RequestMapping(value = { "redirect" }, method = { RequestMethod.POST })
+	public ModelAndView redirect(@RequestParam  String sectionName, @RequestParam String question_seq,@RequestParam String timeCounter ,
+			final HttpServletRequest request, final HttpServletResponse response,
+			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion) {
+		ModelAndView model = new ModelAndView("test2");
+		
+		User u = (User) request.getSession().getAttribute("user");
+		Test test = (Test) request.getSession().getAttribute("test");
+		List<SectionInstanceDto> sectionInstanceDtos = (List)request.getSession().getAttribute("sectionInstanceDtos");
+		SectionInstanceDto cursec = (SectionInstanceDto)request.getSession().getAttribute("currentSection");
+		model.addObject("sectionInstanceDtos", (Object) sectionInstanceDtos);	
+		
+		SectionInstanceDto requiredSecDto = null;
+		for(SectionInstanceDto secDto : sectionInstanceDtos) {
+			if(secDto.getSection().getSectionName().equals(sectionName)) {
+				requiredSecDto = secDto;
+				break;
+			}
+		}
+		
+		if(requiredSecDto != null)
+		{
+			requiredSecDto = this.populateWithQuestions(requiredSecDto, test.getTestName(),
+				requiredSecDto.getSection().getSectionName(), u.getCompanyId());
+			
+		}
+		
+		List<QuestionInstanceDto> list_questDto = requiredSecDto.getQuestionInstanceDtos();
+		
+		currentQuestion = list_questDto.get(Integer.parseInt(question_seq)-1);
+		if (currentQuestion.getCode() == null || currentQuestion.getCode().trim().length() == 0) {
+			currentQuestion.setCode(currentQuestion.getQuestionMapperInstance().getQuestionMapper()
+					.getQuestion().getInputCode());
+		}
+		
+		final SectionSequence sectionSequence = new SectionSequence((List) sectionInstanceDtos);
+		QuestionSequence questionSequence;
+		questionSequence = new QuestionSequence(requiredSecDto.getQuestionInstanceDtos());
+		if (this.isQuestionLast(currentQuestion, questionSequence, sectionSequence)) {
+			requiredSecDto.setLast(Boolean.valueOf(true));
+		} else {
+			requiredSecDto.setLast(Boolean.valueOf(false));
+		}
+		if (this.isQuestionFirst(currentQuestion, questionSequence, sectionSequence)) {
+			requiredSecDto.setFirst(Boolean.valueOf(true));
+		} else {
+			requiredSecDto.setFirst(Boolean.valueOf(false));
+		}
+		
+		model.addObject("currentSection",(Object)requiredSecDto);
+		model.addObject("currentQuestion",(Object)currentQuestion);
+		cursec.setCurrent(Boolean.valueOf(false));
+		requiredSecDto.setCurrent(Boolean.valueOf(true));
+		request.getSession().setAttribute("currentSection",(Object)requiredSecDto);
+		this.putMiscellaneousInfoInModel(model, request);
+		this.setTimeInCounter(request, Long.valueOf(timeCounter));
+		this.processPercentages(model, sectionInstanceDtos, test.getTotalMarks());
+		return model;
+	}
+
+	
+	
 	@RequestMapping(value = { "/submitTest" }, method = { RequestMethod.POST })
 	public ModelAndView submitTest(@RequestParam final String questionId, @RequestParam final String timeCounter,
 			final HttpServletRequest request, final HttpServletResponse response,
@@ -940,7 +1088,8 @@ public class StudentController {
 		}
 		return model;
 	}
-
+	
+	
 	@GetMapping({ "/Done" })
 	public String Done(final Model model, final RedirectAttributes attributes, final HttpServletRequest request) {
 		final StudentTestForm studentTestForm = (StudentTestForm) request.getSession().getAttribute("studentTestForm");

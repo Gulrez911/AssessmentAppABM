@@ -25,5 +25,11 @@ public interface QuestionMapperInstanceRepository extends JpaRepository<Question
 	@Query("SELECT q FROM QuestionMapperInstance q WHERE q.companyId=:companyId AND q.codeByUser IS NOT NULL GROUP BY q.questionMapper.id, q.user order by q.createDate desc")
 	List<QuestionMapperInstance> findCodingQuestionMapperInstances(@Param("companyId") String companyId);
 
+	@Query("SELECT count(q) FROM QuestionMapperInstance q WHERE q.companyId=:companyId and q.testName=:testName and q.sectionName=:sectionName")
+	Integer findAllQuestionsCountForEachSection(@Param("companyId")String companyId,@Param("testName") String testName,@Param("sectionName") String sectionName);
+	
+	@Query("SELECT count(q) FROM QuestionMapperInstance q WHERE q.companyId=:companyId and q.testName=:testName and q.sectionName=:sectionName and q.answered = 1")
+	Integer findAnsCountForEachSection(@Param("companyId")String companyId,@Param("testName") String testName,@Param("sectionName") String sectionName);
 }
+
 

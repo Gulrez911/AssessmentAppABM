@@ -15,7 +15,7 @@ public interface SectionRepository extends JpaRepository<Section,Long>{
 	@Query("SELECT s FROM Section s WHERE s.sectionName=:sectionName and s.companyId=:companyId and s.testName=:testName")
 	Section findByPrimaryKey(@Param("testName") String testName, @Param("sectionName") String sectionName, @Param("companyId") String companyId);
 	
-	@Query("SELECT s FROM Section s WHERE s.testName=:testName and s.companyId=:companyId")
+	@Query("SELECT s FROM Section s WHERE s.testName=:testName and s.companyId=:companyId order by sectionorder")
 	public List<Section> getSectionsForTest(@Param("testName") String testName,  @Param("companyId") String companyId);
 
 }

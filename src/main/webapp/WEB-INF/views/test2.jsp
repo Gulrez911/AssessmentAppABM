@@ -14,6 +14,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Assess</title>
 
+
+<style>
+.reddot {
+  height: 35px;
+  width: 35px;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #ff0000;
+  border-style: groove;
+  font-weight: bold;
+  text-align: center;
+  margin:0.3em;
+}
+.greendot {
+  height: 35px;
+  width: 35px;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #0ec00e;
+  border-style: groove;
+  font-weight: bold;
+  text-align: center;
+  margin:0.3em;
+}
+</style>
+
+<style>
+.reddotempty {
+  height: 30px;
+  width: 30px;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #ff0000;
+  border-style: groove;
+  }
+.greendotempty {
+  height: 30px;
+  width: 30px;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #0ec00e;
+  border-style: groove;
+}
+p{
+display:flex;
+}
+span,a{
+margin-left: 10px;
+margin-right: 10px;
+}
+</style>
+
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -114,6 +170,12 @@
 <spring:url value="/resources/scripts/src-min-noconflict/ace.js"
 	var="mainJs5" />
 <script src="${mainJs5}"></script>
+
+<!-- current added 1-05-2020 -->
+<script src="./resources/scripts/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
 		var active = 'true';
@@ -912,23 +974,47 @@ body * {
 								<!-- 																<i class="fa fa-long-arrow-left"></i> -->
 							</c:otherwise>
 						</c:choose>
-						<c:choose>
+						 <c:choose>
 							<c:when test="${currentSection.last==true}">
-								<a href="javascript:submitTestCheckNoAnswer();"
-									class="next waves-effect waves-light btn submit-button mt-30"
+								<a onclick="javascript:submitTestCheckNoAnswer();"
+									class="next subm waves-effect waves-light btn btn-success mt-30"
 									id="next">SUBMIT TEST</a>
 							</c:when>
 							<c:otherwise>
+								<a onclick="javascript:submitTestCheckNoAnswer();"
+									class="next subm waves-effect waves-light btn btn-success mt-30"
+									id="next">SUBMIT TEST</a>
 								<a class="next waves-effect waves-light btn submit-button mt-30"
 									href="javascript:next();" id="next">Next</a>
 								<!-- 																<i class="fa fa-long-arrow-right"></i> -->
 							</c:otherwise>
 						</c:choose>
-
+						
+						
+						
 					</div>
 				</div>
 			</div>
 	</form:form>
+	
+	<div id="modalSub" class="modal fade modalcopy" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"><b>Test Submission</b></h4>
+				</div>
+				<div id="modalSub_body" class="modal-body">
+				</div>
+				<div class="modal-footer">
+        			<button type="button" class="btn" style="background-color: green;border-radius: .25rem;" onclick="submitTest()">Submit</button>
+        			<button type="button" class="btn" data-dismiss="modal" style="background-color: red;border-radius: .25rem;">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
@@ -941,7 +1027,7 @@ body * {
 
 	<!-- jQuery -->
 
-	<%-- <spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	 <spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
 	<script src="${mainJs1}"></script>
 	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
 	<script src="${mainJs2}"></script>
@@ -978,7 +1064,7 @@ body * {
 	<spring:url value="/resources/scripts/src-min-noconflict/ace.js" var="mainJs18" />
 	<script src="${mainJs18}"></script>
 	<spring:url value="/resources/scripts/html2canvas.js" var="mainJs19" />
-	<script src="${mainJs19}"></script> --%>
+	<script src="${mainJs19}"></script>
 
 	<script>
 	    var editor = ace.edit("editor");
@@ -1043,8 +1129,10 @@ body * {
 				window.location = 'changeSection?sectionName='+sectionName+"&timeCounter="+timeCounter;
 				localStorage.setItem('timeCounter', timeCounter);
 			}
-		
+			
+			storeTimeLocal();
 	}
+	
 	
 	function get_center_pos(width, top){
     // top is empty when creating a new notification and is set when recentering
@@ -1219,7 +1307,6 @@ body * {
 		storeTimeLocal();
 	 document.testForm.submit();
 		}
-	
 	}
 	
 	function prev(){
@@ -1254,58 +1341,78 @@ body * {
 	submitTest = 'true';
 	
 	}
-
+	
+	function existsInArray( arrtosrch , elem ) {
+        var bool=false;
+        for(var x=0 ; x<arrtosrch.length ; x++)
+        {
+            if(arrtosrch[x] == elem)
+            {
+                bool = true;
+                break;
+            }
+        }
+        return bool;
+    }	
+	
 	function submitTestCheckNoAnswer(){
-		  $("#next").removeAttr('href');
-		var uanswered = '${totalQuestions - (noAnswered+1)}';
-			if(uanswered == '0'||uanswered=='-1'){
-
-				(new PNotify({
-			    title: 'Confirmation Needed',
-			    text: 'Are you sure you want to submit the test?',
-			    icon: 'glyphicon glyphicon-question-sign',
-			    hide: false,
-			    confirm: {
-				confirm: true
-			    },
-			    buttons: {
-				closer: true,
-				sticker: true
-			    },
-			    history: {
-				history: false
-			    }
-			})).get().on('pnotify.confirm', function() {
-			   submitTest();
-			}).on('pnotify.cancel', function() {
-			   
-			});
-			}
-			else{
-				(new PNotify({
-			    title: 'Confirmation Needed',
-			    text: 'Are you sure you want to submit the test? You still have unanswered Questions?',
-			    icon: 'glyphicon glyphicon-question-sign',
-			    hide: false,
-			    confirm: {
-				confirm: true
-			    },
-			    buttons: {
-				closer: true,
-				sticker: true
-			    },
-			    history: {
-				history: false
-			    }
-			})).get().on('pnotify.confirm', function() {
-			   submitTest();
-			}).on('pnotify.cancel', function() {
-			   
-			});
+		$.ajax({
+			url:"submDetails?questionMapperId=${currentQuestion.questionMapperInstance.questionMapper.id}",
+			type:"GET",
+	        data : $('form[name=testForm]').serialize(),
+			contentType:"application/json",
+			success:function( secwiseDet ){
 				
+				var str="<div>";
+				str = str+"<p>Answered: <span class='greendotempty'></span>Unanswered:<span class='reddotempty'></span></p>";
+				for( var k_sectName in secwiseDet )
+				{
+					str = str+k_sectName+"<br>";
+					
+					var totQ = 0;
+					var ans = new Array();
+					var uans = new Array();
+					
+					for( var k_auans in secwiseDet[k_sectName] )
+					{
+						totQ = totQ + secwiseDet[k_sectName][k_auans].length;
+						
+						if(k_auans == "answered")
+							ans = secwiseDet[k_sectName][k_auans];
+						else
+							uans = secwiseDet[k_sectName][k_auans];
+					}
+					
+					for(var x = 1 ; x<=totQ ; x++){
+						if( existsInArray( ans, x) ){
+							str = str + "<span class='greendot'>"+x+"</span>";
+						}
+						else if( existsInArray( uans, x) ){
+							str = str + "<a onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='reddot'>"+x+"</a>";
+							
+						}
+					}
+					
+					str = str+"<br>";	
+				}
+				str = "<br>"+str+"</div>";
+				$('#modalSub_body').html(str);
+				$('#modalSub').modal('show');
 			}
 			
+		});
+			
 		}
+	
+	function redirectFun(sectionName,question_no){
+		//alert(sectionName +":"+ question_no);
+		//timeCounter = localStorage.getItem('timeCounter-${studentTestForm.firstName}${studentTestForm.lastName}')
+ 		document.testForm.action = "redirect?sectionName="+sectionName+"&question_seq="+question_no+"&timeCounter="+timeCounter;
+		storeTimeLocal();
+		document.testForm.submit();
+		
+	}
+	
 	
 	function storeTimeLocal(){
 	localStorage.setItem('${studentTestForm.firstName}${studentTestForm.lastName}', 'yes');

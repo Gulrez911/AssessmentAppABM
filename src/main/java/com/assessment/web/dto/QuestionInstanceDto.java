@@ -8,7 +8,6 @@ public class QuestionInstanceDto {
 	
 	String style;
 	
-	
 	Boolean one = false;
 	
 	Boolean two = false;

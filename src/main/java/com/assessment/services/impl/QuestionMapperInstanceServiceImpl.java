@@ -142,4 +142,16 @@ public class QuestionMapperInstanceServiceImpl implements
 		return list;
 	}
 
+	@Override
+	public Integer findAllQuestionsCountForEachSection(String companyId, String testName, String sectionName) {
+		// TODO Auto-generated method stub
+		return questionMapperInstanceRepository.findAllQuestionsCountForEachSection(companyId, testName, sectionName);
+	}
+
+	@Override
+	public Integer findAnsCountForEachSection(String companyId, String testName, String sectionName) {
+		// TODO Auto-generated method stub
+		return questionMapperInstanceRepository.findAnsCountForEachSection(companyId, testName, sectionName);
+	}
+
 }
