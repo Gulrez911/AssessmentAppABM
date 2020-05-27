@@ -9,8 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
-
+<title>Add User</title>
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
@@ -85,9 +84,12 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-
+<script>
+	function goback() {
+		window.location = "goback";
+	}
+</script>
 </head>
-
 <body id="top" class="has-header-search">
 
 	<!--header start-->
@@ -106,11 +108,10 @@
 							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
-						<li class="active"><a href="skills">Skills</a></li>
+						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="skillTest">Skill Test</a></li>
+						<li class="active"><a href="skillTest">Skill Test</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
@@ -122,82 +123,64 @@
 	</header>
 	<!--header end-->
 
-
 	<section>
 		<div class="container">
-			<div class="row mt-5">
-				<div class="col-md-12">
-					<div class="col-md-6"></div>
-					<div class="col-md-2">
-						<a href="addSkill" class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-plus-circle"></i> Add New</a>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="mb-30">
+						<h2 class="section-title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdd
+							New Skill</h2>
 					</div>
-					<div class="col-md-2">
-						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-sign-out"></i> Sign Off</a>
-					</div>
-				</div>
+					<form name="tenantForm" method="post" modelAttribute="skillTest" action="saveSkillTest">
 
-				<div class="col-md-12">
-					<div class="mt-10"></div>
-					<div class="col-md-5">
-						<h1 style="color: #b07c2a;">
-							<b>Skills Repository</b>
-						</h1>
-					</div>
-					<div class="col-md-4">
-						<div class="widget widget_search">
+						<div class="col-md-12">
+							<div class="col-md-8">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Skill Name </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.skillName" name="skillName" id="skillName"
+												required="true" />
+										</div>
+									</div>
+								</div>
+							</div>
 
-							<div class="search-form">
-								<form action="searchQuestions" method="get">
-									<input type="text" placeholder="Search a skill" name="searchText"
-										id="searchText">
-									<button type="submit" id="search">
-										<i class="fa fa-search"></i>
-									</button>
-								</form>
+							<div class="col-md-8">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Sub Skill</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.subSkill" name="subSkill" id="subSkill"
+												required="true" />
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-8">
+								<button type="submit" name="submit"
+									class="waves-effect waves-light btn submit-button mt-30">Save</button>
+								<button type="button"
+									class="waves-effect waves-light btn submit-button indigo mt-30"
+									onclick="goback()">Cancel</button>
 							</div>
 						</div>
-					</div>
+					</form>
+
+					<div class="col-md-3"></div>
 				</div>
-				<div class="col-md-12">
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead style="background-color: #03a9f4;">
-								<tr>
-									<th>Serial</th>
-									<th>Skill Name</th>
 
-									<th>Skill Level</th>
-
-									<!--<th>Update Skill</th> -->
-								</tr>
-							</thead>
-
-							<tbody>
-							<tbody>
-
-								<c:forEach items="${skills}" var="skill" varStatus="loop">
-									<tr>
-										<td>${loop.count}</td>
-										<td>${skill.skillName}</td>
-										<td>${skill.level}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-
-						</table>
-					</div>
-
-				</div>
 			</div>
-			<!-- /.row -->
-
 		</div>
-		<!-- /.container -->
 	</section>
-
-
 
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
@@ -208,8 +191,7 @@
 					<li><a href="testlist">Tests</a></li>
 					<li><a href="javascript:void(0)">Skills</a></li>
 					<li><a href="showReports">Results</a></li>
-					<li><a href="practice">Practice</a></li>
-					<li><a href="codingSessions">Code Analysis Reports</a></li>
+					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
 					<li><a href="javascript:void(0)">Skill based Reports</a></li>
 					<li><a href="showProfileParams">Recomm Setting</a></li>
 					<li><a href="listUsers">Users</a></li>
@@ -217,9 +199,6 @@
 			</div>
 		</div>
 	</footer>
-
-
-
 
 
 	<!-- jQuery -->
@@ -263,141 +242,6 @@
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
 	<script src="${mainJs17}"></script>
 
-	<script>
-		/* off-canvas sidebar toggle */
-		$('[data-toggle=offcanvas]').click(
-				function() {
-					$('.row-offcanvas').toggleClass('active');
-					$('.collapse').toggleClass('in').toggleClass('hidden-xs')
-							.toggleClass('visible-xs');
-				});
-
-		$('#search').on('click', function() {
-			var text = document.getElementById("searchText").value;
-			if (text.length != 0) {
-				window.location = "searchQuestions?searchText=" + text;
-			}
-		});
-
-		var isXlsx = function(name) {
-			return name.match(/xlsx$/i)
-		};
-
-		$("#btnfile").click(function() {
-			$("#uploadfile").click();
-		});
-
-		function showFileDialog() {
-			$("#fileQuestions	").click();
-		}
-
-		$(document)
-				.ready(
-						function() {
-
-							var file = $('[name="fileQuestions"]');
-							var imgContainer = $('#imgContainer');
-
-							$('#uploadLink').on('click', function() {
-								// $("#file").click();
-
-							});
-
-							var fileU = document
-									.getElementById('fileQuestions');
-							fileU
-									.addEventListener(
-											"change",
-											function() {
-												if (fileU.files.length > 0) {
-													var filename = $.trim(file
-															.val());
-
-													if (!(isXlsx(filename))) {
-														notify('Error',
-																'Please select an xlsx file to upload');
-														return;
-													}
-
-													$
-															.ajax(
-																	{
-																		xhr : function() {
-																			var xhr = new window.XMLHttpRequest();
-
-																			return xhr;
-																		},
-																		url : 'upload',
-																		type : "POST",
-																		data : new FormData(
-																				document
-																						.getElementById("fileFormQuestions")),
-																		enctype : 'multipart/form-data',
-																		processData : false,
-																		contentType : false
-																	})
-															.done(
-																	function(
-																			data) {
-																		notify(
-																				'Success',
-																				'File Upload Successful');
-
-																	})
-															.fail(
-																	function(
-																			jqXHR,
-																			textStatus) {
-																		notify(
-																				'Failure',
-																				'File Upload Failed. Please contact Administrator');
-																	});
-													document
-															.getElementById('fileQuestions').value = null;
-													return;
-												}
-
-											});
-
-						});
-
-		function notify(messageType, message) {
-			var notification = 'Information';
-			$(function() {
-				new PNotify({
-					title : notification,
-					text : message,
-					type : messageType,
-					styling : 'bootstrap3',
-					hide : true
-				});
-			});
-		}
-
-		function confirm(id) {
-			(new PNotify({
-				title : 'Confirmation Needed',
-				text : 'Are you sure? Do you really want to delete this Q?',
-				icon : 'glyphicon glyphicon-question-sign',
-				hide : false,
-				confirm : {
-					confirm : true
-				},
-				buttons : {
-					closer : false,
-					sticker : false
-				},
-				history : {
-					history : false
-				}
-			})).get().on('pnotify.confirm', function() {
-				window.location = "removeQuestionFromList?qid=" + id;
-			}).on('pnotify.cancel', function() {
-
-			});
-		}
-	</script>
-
 
 	<c:if test="${msgtype != null}">
 		<script>
@@ -413,6 +257,8 @@
 			});
 		</script>
 	</c:if>
+
+
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Question List</title>
+<title>Skill Test</title>
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -106,11 +106,11 @@
 							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
-						<li class="active"><a href="skills">Skills</a></li>
+						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
 						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="skillTest">Skill Test</a></li>
+						<li class="active"><a href="skillTest">Skill Test</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
@@ -129,7 +129,7 @@
 				<div class="col-md-12">
 					<div class="col-md-6"></div>
 					<div class="col-md-2">
-						<a href="addSkill" class="btn waves-effect waves-light col-md-12"><i
+						<a href="addSkillTest" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
@@ -142,14 +142,14 @@
 					<div class="mt-10"></div>
 					<div class="col-md-5">
 						<h1 style="color: #b07c2a;">
-							<b>Skills Repository</b>
+							<b>Skills Test Repository</b>
 						</h1>
 					</div>
 					<div class="col-md-4">
 						<div class="widget widget_search">
 
 							<div class="search-form">
-								<form action="searchQuestions" method="get">
+								<form action="#" method="get">
 									<input type="text" placeholder="Search a skill" name="searchText"
 										id="searchText">
 									<button type="submit" id="search">
@@ -168,7 +168,7 @@
 									<th>Serial</th>
 									<th>Skill Name</th>
 
-									<th>Skill Level</th>
+									<th>Sub Skill</th>
 
 									<!--<th>Update Skill</th> -->
 								</tr>
@@ -177,11 +177,11 @@
 							<tbody>
 							<tbody>
 
-								<c:forEach items="${skills}" var="skill" varStatus="loop">
+								<c:forEach items="${skillTest}" var="skillTest" varStatus="loop">
 									<tr>
 										<td>${loop.count}</td>
-										<td>${skill.skillName}</td>
-										<td>${skill.level}</td>
+										<td>${skillTest.skillName}</td>
+										<td>${skillTest.subSkill}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -264,102 +264,7 @@
 	<script src="${mainJs17}"></script>
 
 	<script>
-		/* off-canvas sidebar toggle */
-		$('[data-toggle=offcanvas]').click(
-				function() {
-					$('.row-offcanvas').toggleClass('active');
-					$('.collapse').toggleClass('in').toggleClass('hidden-xs')
-							.toggleClass('visible-xs');
-				});
-
-		$('#search').on('click', function() {
-			var text = document.getElementById("searchText").value;
-			if (text.length != 0) {
-				window.location = "searchQuestions?searchText=" + text;
-			}
-		});
-
-		var isXlsx = function(name) {
-			return name.match(/xlsx$/i)
-		};
-
-		$("#btnfile").click(function() {
-			$("#uploadfile").click();
-		});
-
-		function showFileDialog() {
-			$("#fileQuestions	").click();
-		}
-
-		$(document)
-				.ready(
-						function() {
-
-							var file = $('[name="fileQuestions"]');
-							var imgContainer = $('#imgContainer');
-
-							$('#uploadLink').on('click', function() {
-								// $("#file").click();
-
-							});
-
-							var fileU = document
-									.getElementById('fileQuestions');
-							fileU
-									.addEventListener(
-											"change",
-											function() {
-												if (fileU.files.length > 0) {
-													var filename = $.trim(file
-															.val());
-
-													if (!(isXlsx(filename))) {
-														notify('Error',
-																'Please select an xlsx file to upload');
-														return;
-													}
-
-													$
-															.ajax(
-																	{
-																		xhr : function() {
-																			var xhr = new window.XMLHttpRequest();
-
-																			return xhr;
-																		},
-																		url : 'upload',
-																		type : "POST",
-																		data : new FormData(
-																				document
-																						.getElementById("fileFormQuestions")),
-																		enctype : 'multipart/form-data',
-																		processData : false,
-																		contentType : false
-																	})
-															.done(
-																	function(
-																			data) {
-																		notify(
-																				'Success',
-																				'File Upload Successful');
-
-																	})
-															.fail(
-																	function(
-																			jqXHR,
-																			textStatus) {
-																		notify(
-																				'Failure',
-																				'File Upload Failed. Please contact Administrator');
-																	});
-													document
-															.getElementById('fileQuestions').value = null;
-													return;
-												}
-
-											});
-
-						});
+		
 
 		function notify(messageType, message) {
 			var notification = 'Information';
@@ -374,28 +279,7 @@
 			});
 		}
 
-		function confirm(id) {
-			(new PNotify({
-				title : 'Confirmation Needed',
-				text : 'Are you sure? Do you really want to delete this Q?',
-				icon : 'glyphicon glyphicon-question-sign',
-				hide : false,
-				confirm : {
-					confirm : true
-				},
-				buttons : {
-					closer : false,
-					sticker : false
-				},
-				history : {
-					history : false
-				}
-			})).get().on('pnotify.confirm', function() {
-				window.location = "removeQuestionFromList?qid=" + id;
-			}).on('pnotify.cancel', function() {
-
-			});
-		}
+		
 	</script>
 
 
