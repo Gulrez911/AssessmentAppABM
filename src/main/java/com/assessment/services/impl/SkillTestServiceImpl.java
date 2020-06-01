@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.assessment.Exceptions.AssessmentGenericException;
-import com.assessment.data.Skill;
 import com.assessment.data.SkillTest;
 import com.assessment.repositories.SkillTestRepository;
 import com.assessment.services.SkillTestService;
@@ -46,5 +45,11 @@ public class SkillTestServiceImpl implements SkillTestService{
 		skillTestRepository.save(skill2);
 		
 	}
+
+	/*
+	 * @Override public String findAllRecord(String skillname) { // TODO
+	 * Auto-generated method stub return
+	 * skillTestRepository.findAllRecord(skillname); }
+	 */
 
 }

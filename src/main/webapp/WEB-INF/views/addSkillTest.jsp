@@ -3,44 +3,51 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Add User</title>
+<title>Add SkillTest</title>
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
 <link href="${c1}" rel="shortcut icon" />
 
 <spring:url
-	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
+	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
 
 <!-- Material Icons CSS -->
-<spring:url value="/resources/assets/fonts/iconfont/material-icons.css" var="c3" />
+<spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
+	var="c3" />
 
 <link href="${c3}" rel="stylesheet" type="text/css" />
 
 <!-- FontAwesome CSS -->
-<spring:url value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+<spring:url
+	value="/resources/assets/fonts/font-awesome/css/font-awesome.min.css"
 	var="c4" />
 
 <link href="${c4}" rel="stylesheet" type="text/css" />
 
 <!-- magnific-popup -->
-<spring:url value="/resources/assets/magnific-popup/magnific-popup.css" var="c5" />
+<spring:url value="/resources/assets/magnific-popup/magnific-popup.css"
+	var="c5" />
 
 <link href="${c5}" rel="stylesheet" type="text/css" />
 
 <!-- owl.carousel -->
-<spring:url value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.carousel.css" var="c6" />
 
 <link href="${c6}" rel="stylesheet" type="text/css" />
 
-<spring:url value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+<spring:url
+	value="/resources/assets/owl.carousel/assets/owl.theme.default.min.css"
 	var="c7" />
 
 <link href="${c7}" rel="stylesheet" type="text/css" />
@@ -49,18 +56,20 @@
 
 <link href="${c8}" rel="stylesheet" type="text/css" />
 
-<!-- materialize -->
+<%-- <!-- materialize -->
 <spring:url value="/resources/assets/materialize/css/materialize.min.css" var="c9" />
 
-<link href="${c9}" rel="stylesheet" type="text/css" />
+<link href="${c9}" rel="stylesheet" type="text/css" /> --%>
 
 <!-- Bootstrap -->
-<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css" var="c10" />
+<spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
+	var="c10" />
 
 <link href="${c10}" rel="stylesheet" type="text/css" />
 
 <!-- shortcodes -->
-<spring:url value="/resources/assets/css/shortcodes/shortcodes.css" var="c11" />
+<spring:url value="/resources/assets/css/shortcodes/shortcodes.css"
+	var="c11" />
 
 <link href="${c11}" rel="stylesheet" type="text/css" />
 
@@ -70,24 +79,53 @@
 <link href="${c12}" rel="stylesheet" type="text/css" />
 
 <!-- RS5.0 Main Stylesheet -->
-<spring:url value="/resources/assets/revolution/css/settings.css" var="c13" />
+<spring:url value="/resources/assets/revolution/css/settings.css"
+	var="c13" />
 
 <link href="${c13}" rel="stylesheet" type="text/css" />
 
 <!-- RS5.0 Layers and Navigation Styles -->
-<spring:url value="/resources/assets/revolution/css/layers.css" var="c14" />
+<spring:url value="/resources/assets/revolution/css/layers.css"
+	var="c14" />
 
 <link href="${c14}" rel="stylesheet" type="text/css" />
-<spring:url value="/resources/assets/revolution/css/navigation.css" var="c15" />
+<spring:url value="/resources/assets/revolution/css/navigation.css"
+	var="c15" />
 
 <link href="${c15}" rel="stylesheet" type="text/css" />
-<spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
+<spring:url value="/resources/assets/css/pnotify.custom.min.css"
+	var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
 <script>
 	function goback() {
 		window.location = "goback";
 	}
+	/* function displayRecord(sb){
+        alert(sb);
+        document.getElementById('subSkill').value = sb;
+      } */
+
+      function searchText() {
+          debugger
+         var skillID= $('#SkillName').val(); 
+         var subSkilName= $('#subSkill').val();
+    	   var search = {
+    	      "skillName" : "skillID",
+    	      "subskillName" : "subSkilName",
+    	   }
+
+    	   $.ajax({
+    	       type: "POST",
+    	       contentType : 'application/json; charset=utf-8',
+    	       dataType : 'json',
+    	       url: "saveSkillTest",
+    	       data: JSON.stringify(search), // Note it is important
+    	       success :function(result) {
+    	         alert(result);
+    	       }
+    	   });
+    	} 
 </script>
 </head>
 <body id="top" class="has-header-search">
@@ -98,8 +136,10 @@
 			<div class="container">
 				<div id="materialize-menu" class="menuzord">
 					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
 					</a>
 					<!--logo end-->
 					<!--mega menu start-->
@@ -110,6 +150,7 @@
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
+						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
 						<li class="active"><a href="skillTest">Skill Test</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
@@ -132,24 +173,81 @@
 						<h2 class="section-title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdd
 							New Skill</h2>
 					</div>
-					<form name="tenantForm" method="post" modelAttribute="skillTest" action="saveSkillTest">
+					<form name="tenantForm" method="post" modelAttribute="skillTest"
+						action="saveSkillTest">
 
 						<div class="col-md-12">
-							<div class="col-md-8">
+							<div class="col-md-6">
 								<div class="row formfields">
 									<div class="col-md-4">
 										<label class="fieldtitle">Skill Name </label>
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="skillTest.skillName" name="skillName" id="skillName"
-												required="true" />
+											<form:input path="skillTest.skillName" name="skillName"
+												id="skillName" required="true" />
+												
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">SubSkill Name </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.subSkill" name="subSkill"
+												id="subSkill" required="true" />
+										</div>
+									</div>
+								</div>
+							</div>
+</div>
+<!-- close div -->
+	                         <div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Skill List</label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<select id="smt">
+												<c:forEach items="${skillTests}" var="skillTests">
+													<option  onclick="displayRecord('${skillTests.subSkill}');" value="${skillTests.skillName}">${skillTests.skillName} - ${skillTests.subSkill}</option>
+												</c:forEach>
+											</select>
 
-							<div class="col-md-8">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<%-- <div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">SubSkill List </label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<select  >
+												<c:forEach items="${skillTests}" var="skillTests">
+													<option value="${skillTests.subSkill}">${skillTests.subSkill}</option>
+												</c:forEach>
+											</select>
+										 <input type="text" id="subSkill" name="subSkill">
+										</div>
+									</div>
+								</div> --%>
+							</div>
+</div>
+							
+
+						</div>
+						
+
+						<%-- <div class="col-md-8">
 								<div class="row formfields">
 									<div class="col-md-4">
 										<label class="fieldtitle">Sub Skill</label>
@@ -164,9 +262,29 @@
 							</div>
 
 						</div>
+						<div class="col-md-8">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Test Name</label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<form:select path="skillTest.testName">
+                                                <c:forEach  items="${test}" var="test">
+                                                
+												<form:option value="${test.testName}">${test.testName}</form:option>
+												
+                                                </c:forEach>
+											</form:select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div> --%>
 						<div class="col-md-12">
 							<div class="col-md-8">
-								<button type="submit" name="submit"
+								<button onclick="searchText" type="submit" name="submit"
 									class="waves-effect waves-light btn submit-button mt-30">Save</button>
 								<button type="button"
 									class="waves-effect waves-light btn submit-button indigo mt-30"
@@ -203,43 +321,55 @@
 
 	<!-- jQuery -->
 
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js" var="mainJs1" />
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
 	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js" var="mainJs2" />
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
 	<script src="${mainJs2}"></script>
 	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
 		var="mainJs3" />
 	<script src="${mainJs3}"></script>
 	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
 	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js" var="mainJs5" />
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
 	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js" var="mainJs6" />
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
 	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js" var="mainJs7" />
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
 	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js" var="mainJs8" />
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
 	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js" var="mainJs9" />
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
 	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js" var="mainJs10" />
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
 	<script src="${mainJs10}"></script>
 	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
 		var="mainJs11" />
 	<script src="${mainJs11}"></script>
-	<spring:url value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
 		var="mainJs12" />
 	<script src="${mainJs12}"></script>
-	<spring:url value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
 		var="mainJs13" />
 	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js" var="mainJs14" />
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
 	<script src="${mainJs14}"></script>
 	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
 	<script src="${mainJs15}"></script>
 	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
 	<script src="${mainJs16}"></script>
-	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js" var="mainJs17" />
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
 	<script src="${mainJs17}"></script>
 
 
@@ -257,7 +387,9 @@
 			});
 		</script>
 	</c:if>
-
+     <script>
+      
+     </script>
 
 </body>
 

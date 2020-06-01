@@ -169,6 +169,7 @@
 									<th>Skill Name</th>
 
 									<th>Sub Skill</th>
+									<th>Test Name</th>
 
 									<!--<th>Update Skill</th> -->
 								</tr>
@@ -177,13 +178,14 @@
 							<tbody>
 							<tbody>
 
-								<c:forEach items="${skillTest}" var="skillTest" varStatus="loop">
+								 <c:forEach items="${skillTest}" var="skillTest" varStatus="loop">
 									<tr>
 										<td>${loop.count}</td>
 										<td>${skillTest.skillName}</td>
 										<td>${skillTest.subSkill}</td>
+										<td>${skillTest.testName}</td>
 									</tr>
-								</c:forEach>
+								</c:forEach> 
 							</tbody>
 
 						</table>

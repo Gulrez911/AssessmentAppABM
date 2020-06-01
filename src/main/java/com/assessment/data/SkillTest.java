@@ -7,6 +7,15 @@ public class SkillTest extends Base {
 
 	private String skillName;
 	private String subSkill;
+    private String testName; 
+	
+	public String getTestName() {
+		return testName;
+	}
+
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
 
 	public String getSkillName() {
 		return skillName;
@@ -26,7 +35,9 @@ public class SkillTest extends Base {
 
 	@Override
 	public String toString() {
-		return "SkillTest [skillName=" + skillName + ", subSkill=" + subSkill + "]";
+		return "SkillTest [skillName=" + skillName + ", subSkill=" + subSkill + ", testName=" + testName + "]";
 	}
+
+	
 
 }
