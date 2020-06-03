@@ -26,7 +26,7 @@ Tab Common CSS
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
 }
 
 .nav-tabs>li i {
@@ -54,7 +54,7 @@ Border Bottom Tab
     padding-left: 0;
 }
 .border-bottom-tab .nav-tabs {
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 .border-bottom-tab .nav-tabs>li,
 .border-bottom-tab .nav-tabs.nav-justified>li {
@@ -167,7 +167,7 @@ Border Tabs
 }
 
 /*Border Background Tab*/
-.border-tab.primary-nav .nav-tabs>li>a, 
+.border-tab.primary-nav .nav-tabs>li>div.navhead, 
 .border-tab.primary-nav .nav-tabs.nav-justified>li>a {
     border: 1px solid transparent;
     background: #03a9f4;

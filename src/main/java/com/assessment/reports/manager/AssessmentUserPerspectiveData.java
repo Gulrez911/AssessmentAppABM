@@ -353,5 +353,44 @@ public class AssessmentUserPerspectiveData {
 							 //descending order
 							   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
 				}};
+				
+				//Result
+				public static Comparator<AssessmentUserPerspectiveData> resultASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+					public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+							   String AssessmentUserPerspectiveDataName1 = s1.getResult().toUpperCase();
+							   String AssessmentUserPerspectiveDataName2 = s2.getResult().toUpperCase();
+							   //ascending order
+							   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+						    }};
+					    
+				public static Comparator<AssessmentUserPerspectiveData> resultDESC = new Comparator<AssessmentUserPerspectiveData>() {
+
+					public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+								   String AssessmentUserPerspectiveDataName1 = s1.getResult().toUpperCase();
+								   String AssessmentUserPerspectiveDataName2 = s2.getResult().toUpperCase();
+								 //descending order
+								   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+					}};
+					
+					//No. of Security Breech(noOfNonCompliances)
+					public static Comparator<AssessmentUserPerspectiveData> securityBreechASC = new Comparator<AssessmentUserPerspectiveData>() {
+
+						public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+								   Integer AssessmentUserPerspectiveDataName1 = s1.getNoOfNonCompliances();
+								   Integer AssessmentUserPerspectiveDataName2 = s2.getNoOfNonCompliances();
+								   //ascending order
+								   return AssessmentUserPerspectiveDataName1.compareTo(AssessmentUserPerspectiveDataName2);
+							    }};
+						    
+					public static Comparator<AssessmentUserPerspectiveData> securityBreechDESC = new Comparator<AssessmentUserPerspectiveData>() {
+
+						public int compare(AssessmentUserPerspectiveData s1, AssessmentUserPerspectiveData s2) {
+							   Integer AssessmentUserPerspectiveDataName1 = s1.getNoOfNonCompliances();
+							   Integer AssessmentUserPerspectiveDataName2 = s2.getNoOfNonCompliances();
+									 //descending order
+									   return AssessmentUserPerspectiveDataName2.compareTo(AssessmentUserPerspectiveDataName1);
+						}};
+					
 			
 }

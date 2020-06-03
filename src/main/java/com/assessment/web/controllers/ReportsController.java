@@ -293,8 +293,10 @@ public class ReportsController {
 
 //	testName wise Report for ui
 
-	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName, HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(value = { "/downloadUserReportsForTest2" }, method = {
+			org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView downloadUserReportsForTest2(@RequestParam String testName, HttpServletRequest request,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("testReport");
 		long start = 0L;
 		long end = 0L;
@@ -665,7 +667,7 @@ public class ReportsController {
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
 
-	
+	//Added by dhanshree
 	@RequestMapping(value = "/searchReport", method = RequestMethod.GET)
 	public ModelAndView searchReport(@RequestParam String searchReport, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -674,15 +676,11 @@ public class ReportsController {
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
 				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
 				user.getFirstName() + " " + user.getLastName());
-		// System.out.println("TestName" + data);
-		System.out.println("searchTestNameWiseUIReport>>>>>" + assessmentReportDataManager);
-
 		Collection<AssessmentTestPerspectiveData> data = assessmentReportDataManager.getTestPerspectiveData();
-		System.out.println("data" + data);
 		List<AssessmentTestPerspectiveData> test = new ArrayList<>();
 		for (AssessmentTestPerspectiveData testdata : data) {
-			if (testdata.getTestName().contains(searchReport)) {
-				// data.setCompanyId(user.getCompanyId());
+			if (Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE).matcher(testdata.getTestName())
+					.find()) {
 				test.add(testdata);
 			}
 		}
@@ -697,37 +695,45 @@ public class ReportsController {
 		mav.addObject("listTest", li);
 		mav.addObject("reportType", "Tests & Users Assessment Reports");
 		mav.addObject("testsessions", test);
-
 		return mav;
 	}
 
-	
-	@RequestMapping(value = "/searchTestNameWiseUIReport", method = RequestMethod.GET)
-	public ModelAndView searchTestNameWiseUIReport(@RequestParam String searchReport, @RequestParam String testName,
-			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("testReport");
+	@GetMapping("/sortReport")
+	@ResponseBody
+	public Map<String, Object> sortReport(HttpServletRequest request,
+			@RequestParam(name = "sortBy", required = false) String sortBy) {
+		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
+
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
 				userTestSessionRepository, sectionService, userService, user.getCompanyId(),
 				user.getFirstName() + " " + user.getLastName());
-		Collection<AssessmentUserPerspectiveData> data = assessmentReportDataManager.getUserPerspectiveData();
-		List<AssessmentUserPerspectiveData> test = new ArrayList<>();
-		for (AssessmentUserPerspectiveData userdata : data) {
-			if (userdata.getTestName().equals(testName)) {
-				if (Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
-						.matcher(userdata.getFirstName()).find()
-						|| Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
-								.matcher(userdata.getEmail()).find()) {
-//				if (((userdata.getFirstName().contains(searchReport) || userdata.getEmail().contains(searchReport)))) {
-					test.add(userdata);
-				}
-			}
+		Collection<AssessmentTestPerspectiveData> collection = assessmentReportDataManager.getTestPerspectiveData();
+		List<AssessmentTestPerspectiveData> collectionForTest = new ArrayList<AssessmentTestPerspectiveData>();
+
+		for (AssessmentTestPerspectiveData testData : collection) {
+			collectionForTest.add(testData);
 		}
-		mav.addObject("test", new Test());
-		mav.addObject("reportType", "Tests & Users Assessment Reports");
-		mav.addObject("reportList", test);
-		return mav;
+		if (sortBy.equals("ASC")) {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testASC);
+			System.out.println(">>collection in ASC" + collectionForTest);
+
+		} else {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testDESC);
+			System.out.println(">>collectionForTest in DESC" + collectionForTest);
+		}
+
+		int srNo = 0 * 10;
+
+		mapList.put("srNo", srNo);
+
+		mapList.put("qs", collectionForTest);
+		mapList.put("sortBy", sortBy);
+		return mapList;
+
 	}
+
+	
 
 	@GetMapping("/getRank")
 	@ResponseBody
@@ -768,27 +774,45 @@ public class ReportsController {
 	public Map<String, Object> sortName(HttpServletRequest request,
 			@RequestParam(name = "sortBy", required = false) String sortBy,
 			@RequestParam(name = "page", required = false) Integer pageNumber,
-			@RequestParam(required = false) String testName,
-			@RequestParam(name="colName")String colName) {
+			@RequestParam(required = false) String testName, @RequestParam(name = "colName") String colName,
+			@RequestParam(required = false) String searchText) {
+
 		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
 		if (pageNumber == null) {
 			pageNumber = 0;
 		}
+
 		AssessmentReportDataManager assessmentReportDataManager = new AssessmentReportDataManager(
 				userTestSessionRepository, sectionService, userService, userNonComplianceRepo, user.getCompanyId(),
 				user.getFirstName() + " " + user.getLastName());
 		List<AssessmentUserPerspectiveData> collection = assessmentReportDataManager.getUserPerspectiveData();
 		List<AssessmentUserPerspectiveData> collectionForTest = new ArrayList<AssessmentUserPerspectiveData>();
+
 		for (AssessmentUserPerspectiveData data : collection) {
 			if (data.getTestName().equals(testName)) {
-				data.setCompanyId(user.getCompanyId());
-				data.setUrlForUserSession(propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName="
-						+ testName + "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
-				collectionForTest.add(data);
+				if (searchText != null) {
+					if (Pattern.compile(Pattern.quote(searchText), Pattern.CASE_INSENSITIVE)
+							.matcher(data.getFirstName()).find()
+							|| Pattern.compile(Pattern.quote(searchText), Pattern.CASE_INSENSITIVE)
+									.matcher(data.getEmail()).find()) {
+						data.setCompanyId(user.getCompanyId());
+						data.setUrlForUserSession(
+								propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName=" + testName
+										+ "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
+						collectionForTest.add(data);
+					}
+				} else {
+					data.setCompanyId(user.getCompanyId());
+					data.setUrlForUserSession(
+							propertyConfig.getBaseUrl() + "downloadUserSessionReportsForTest?testName=" + testName
+									+ "&companyId=" + user.getCompanyId() + "&email=" + data.getEmail());
+					collectionForTest.add(data);
+				}
+
 			}
 		}
-		
+
 		if(colName.equals("Name")) {
 			if (sortBy.equals("ASC")) {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.StuASC);
@@ -816,6 +840,22 @@ public class ReportsController {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.contactDESC);
 				System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
+		}else if(colName.equals("Result")){
+			if (sortBy.equals("ASC")) {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.resultASC);
+				System.out.println(">>collection in ASC" + collectionForTest);
+			} else {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.resultDESC);
+				System.out.println(">>collectionForTest in DESC" + collectionForTest);
+				}
+		}else if(colName.equals("SecurityBreech")){
+			if (sortBy.equals("ASC")) {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.securityBreechASC);
+				System.out.println(">>collection in ASC" + collectionForTest);
+			} else {
+				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.securityBreechDESC);
+				System.out.println(">>collectionForTest in DESC" + collectionForTest);
+			}
 		}else{
 			if (sortBy.equals("ASC")) {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.endASC);
@@ -826,28 +866,27 @@ public class ReportsController {
 				System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
 		}
-		
-		
-		  int minSize=pageNumber*5; 
-		  int maxSize=minSize+5;
-		  List<AssessmentUserPerspectiveData> pgCollection = new ArrayList<>();
-		  int i=0; 
-		  for(AssessmentUserPerspectiveData as:collectionForTest){ 
-			  if(minSize<=i){
-				  if(maxSize>i){ 
-					  pgCollection.add(as); 
-				  } 
-			  } 
-			  i++; 
+
+		int minSize = pageNumber * 5;
+		int maxSize = minSize + 5;
+		List<AssessmentUserPerspectiveData> pgCollection = new ArrayList<>();
+		int i = 0;
+		for (AssessmentUserPerspectiveData as : collectionForTest) {
+			if (minSize <= i) {
+				if (maxSize > i) {
+					pgCollection.add(as);
+				}
+			}
+			i++;
 		}
-		  int rem=collectionForTest.size() % 5;
-		  int  totalPage=collectionForTest.size()/5;
-		  if(rem!=0) {
-			   totalPage = totalPage+1;
-		  }
+		int rem = collectionForTest.size() % 5;
+		int totalPage = collectionForTest.size() / 5;
+		if (rem != 0) {
+			totalPage = totalPage + 1;
+		}
 		System.out.println(">>>>Pg Number" + pageNumber);
 		System.out.print("TestSort" + collection);
-		System.out.println(">>>Total PG:"+totalPage);
+		System.out.println(">>>Total PG:" + totalPage);
 		mapList.put("TotalPage", totalPage);
 		mapList.put("qs", pgCollection);
 		mapList.put("page", pageNumber);
@@ -856,8 +895,5 @@ public class ReportsController {
 		mapList.put("colName", colName);
 		return mapList;
 	}
-	
+
 }
-
-
-

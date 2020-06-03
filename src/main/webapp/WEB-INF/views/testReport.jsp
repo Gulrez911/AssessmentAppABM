@@ -11,6 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Student Result</title>
+<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -155,14 +156,13 @@
 
 						<div class="widget widget_search">
 							<div class="search-form">
-								<form action="searchTestNameWiseUIReport" method="get">
-									<input type="text" placeholder="Search a Report"
-										name="searchReport" id="searchTestNameWiseUIReport"
-										value="${param.searchReport}"> <input type="hidden"
-										value="${param.testName}" name="testName">
-									<button type="submit" id="search">
+								<%-- <form action="searchTestNameWiseUIReport" method="get">
+									<input type="text" placeholder="Search a Report" name="searchReport" id="searchTestNameWiseUIReport" value="${param.searchReport}">  --%>
+										<input type="text" placeholder="Search a Report " name="searchText" id="searchText">
+									 	<input type="hidden" value="${param.testName}" name="testName" id="tName" class="tName"> 
+									 <button type="submit" id="search" onclick="search()">
 										<i class="fa fa-search"></i>
-									</button>
+									</button> 
 								</form>
 							</div>
 						</div>
@@ -181,15 +181,15 @@
 							<table class="table table-striped" id="tbl">
 								<thead style="background-color: #03a9f4;">
 									<tr>
-										<th onclick="sortName(this.id,0,'${param.testName}','Name')" id="ASC" class="CCC"><b>Name</b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}','Name')" id="ASC" class="CCC"><b>Name</b><i class="fa fa-fw fa-sort"></i></th>
 										<th style="width: 20%" onclick="sortName(this.id,0,'${param.testName}','Contact')" id="ASC" class="CCC"><b>Contact</b></th>
 										<th style="width: 5%"><b>Test Name</b></th>
 										<th><b>Section Wise</b></th>
 										<th onclick="sortName(this.id,0,'${param.testName}','TestStart')" id="ASC" class="CCC"><b>Test Start </b></th>
 										<th onclick="sortName(this.id,0,'${param.testName}')" id="ASC" class="CCC"><b>Test End</b></th>
-										<th><b>Result</b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}','Result')" id="ASC" class="CCC"><b>Result</b></th>
 										<th style="width: 20%"><b>Attempts</b></th>
-										<th><b>No. of Security Breech</b></th>
+										<th onclick="sortName(this.id,0,'${param.testName}','SecurityBreech')" id="ASC" class="CCC" ><b>No. of Security Breech</b></th>
 										<th><b>URL</b></th>
 									</tr>
 								</thead>
@@ -287,19 +287,9 @@
 	</footer>
 
 	<!-- JavaScript -->
+	
 	<script>
-		$('#search')
-				.on(
-						'click',
-						function() {
-							var text = document.getElementById("searchReport").value;
-							if (text.length != 0) {
-								window.location = "searchTestNameWiseUIReport?searchReport="+ text + "&testName=" + testName;
-							}
-						});
-	</script>
-
-	<script type="text/javascript">
+ 
 		function getRank(email) {
 			console.log(email);
 			$.ajax({
@@ -321,18 +311,61 @@
 			});
 		}
 
+		
+
+		function searchUIReport(testName) {
+			var txt=$("#searchText").val();
+			$.ajax({
+				url : 'searchTestNameWiseUIReport?searchReport='+ searchText + "&testName=" + testName,
+				type : 'GET',
+				success : function(response) {
+					console.log(response.qs);
+					$(".tr").remove();
+					for (var i = 0; i < response.qs.length; i++) {
+						$("#tbl").append(
+								"<tr class='tr'><td><a href='javascript:getRank(\""+response.qs[i].email+"\")'>"+response.qs[i].firstName+"</a></td><td>"
+								+ response.qs[i].email+
+								"</td><td>"
+								+response.qs[i].testName+
+								"</td><td>"
+								+response.qs[i].sectionWiseScore+
+								"</td><td>"
+								+response.qs[i].testStartDate+
+								"</td><td>"
+								+response.qs[i].testEndDate+
+								"</td><td>"
+								+response.qs[i].result+
+								"</td><td>"
+								+response.qs[i].noOfAttempts+
+								"</td><td>"
+								+response.qs[i].noOfNonCompliances+
+								"</td><td><a href='" + response.qs[i].urlForUserSession + "'>Download Report</a></td></tr>")
+					}
+					
+					if (response.sortBy == "ASC") {
+						$("#ASC").attr('id', "DESC");
+					} else {
+						$("#DESC").attr('id', "ASC");
+					}
+
+				}
+
+				});
+		}
+		
 		function sortName(sort, page,testName,colName) {
 			 if(page===undefined){
 				page=0;
 			}
-				
-			console.log("Value of sort  in Name: " + sort);
+
+			 var search= $("#searchText").val();
+			console.log("Value of sort: " + sort);
 			console.log("colName:"+colName);
 			$.ajax({
-				url : 'sortName?sortBy=' + sort + "&page=" + page+ "&testName=" + testName+"&colName="+colName,
+				url : 'sortName?sortBy=' + sort + "&page=" + page+ "&testName=" + testName+"&colName="+colName+ "&searchText="+search,
 				type : 'GET',
 				success : function(response) {
-					console.log("Response val in Name:"+ response.sortBy);
+					console.log("Response val:"+ response.sortBy);
 					console.log(response.qs);
 					var testName=response.testName;
 					$(".tr").remove();
@@ -391,6 +424,20 @@
 					});
 		}
 
+		function search()
+		{
+			 var testName=$("#tName").val();
+			 sortName('ASC', 0,testName,'Name')
+		}
+
+		$(document).on('keypress',function(e){
+			if(e.which==13){
+				 var testName=$("#tName").val();
+				 sortName('ASC', 0,testName,'Name')
+			}
+		});
+		
+		
 	</script>
 
 

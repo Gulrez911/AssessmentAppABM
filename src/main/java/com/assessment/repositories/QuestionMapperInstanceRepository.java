@@ -3,6 +3,7 @@ package com.assessment.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -30,6 +31,9 @@ public interface QuestionMapperInstanceRepository extends JpaRepository<Question
 	
 	@Query("SELECT count(q) FROM QuestionMapperInstance q WHERE q.companyId=:companyId and q.testName=:testName and q.sectionName=:sectionName and q.answered = 1")
 	Integer findAnsCountForEachSection(@Param("companyId")String companyId,@Param("testName") String testName,@Param("sectionName") String sectionName);
+	
+	@Query("SELECT q.marked_review from QuestionMapperInstance q where q.questionText=:questionText and q.testName=:testName and q.sectionName=:sectionName and q.user=:user and q.companyId=:companyId")
+	boolean getReviewed(@Param("questionText") String questionText, @Param("testName") String testName, @Param("sectionName") String sectionName, @Param("user") String user,@Param("companyId") String companyId);
 }
 
 

@@ -1,5 +1,6 @@
 package com.assessment.reports.manager;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class AssessmentTestPerspectiveData {
@@ -119,6 +120,27 @@ public class AssessmentTestPerspectiveData {
 
 	
 	
+	
+	//Added By Dhanshree
+		//testName
+		public static Comparator<AssessmentTestPerspectiveData> testASC = new Comparator<AssessmentTestPerspectiveData>() {
+
+			public int compare(AssessmentTestPerspectiveData s1, AssessmentTestPerspectiveData s2) {
+			   String AssessmentTestPerspectiveDataName1 = s1.getTestName().toUpperCase();
+			   String AssessmentTestPerspectiveDataName2 = s2.getTestName().toUpperCase();
+			   //ascending order
+			   return AssessmentTestPerspectiveDataName1.compareTo(AssessmentTestPerspectiveDataName2);
+		    }};
+		    
+		 public static Comparator<AssessmentTestPerspectiveData> testDESC = new Comparator<AssessmentTestPerspectiveData>() {
+		    	
+			 public int compare(AssessmentTestPerspectiveData s1, AssessmentTestPerspectiveData s2) {
+				   String AssessmentTestPerspectiveDataName1 = s1.getTestName().toUpperCase();
+				   String AssessmentTestPerspectiveDataName2 = s2.getTestName().toUpperCase();
+				   //descending order
+				   return AssessmentTestPerspectiveDataName2.compareTo(AssessmentTestPerspectiveDataName1);
+			    }};
+			    
 	
 
 }
