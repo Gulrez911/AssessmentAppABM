@@ -11,6 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Student Result</title>
+<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 
@@ -155,15 +156,11 @@
 
 						<div class="widget widget_search">
 							<div class="search-form">
-								<form action="searchTestNameWiseUIReport" method="get">
-									<input type="text" placeholder="Search a Report"
-										name="searchReport" id="searchTestNameWiseUIReport"
-										value="${param.searchReport}"> <input type="hidden"
-										value="${param.testName}" name="testName">
-									<button type="submit" id="search">
+										<input type="text" placeholder="Search a Name " name="searchText" id="searchText">
+									 	<input type="hidden" value="${param.testName}" name="testName" id="tName" class="tName"> 
+									 <button type="submit" id="search" onclick="search()">
 										<i class="fa fa-search"></i>
-									</button>
-								</form>
+									</button> 
 							</div>
 						</div>
 					</div>
@@ -181,15 +178,15 @@
 							<table class="table table-striped" id="tbl">
 								<thead style="background-color: #03a9f4;">
 									<tr>
-										<th onclick="sortName(this.id,0,'${param.testName}','Name')" id="ASC" class="CCC"><b>Name</b></th>
-										<th style="width: 20%" onclick="sortName(this.id,0,'${param.testName}','Contact')" id="ASC" class="CCC"><b>Contact</b></th>
+										<th ><b>Name</b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','Name')" id="Name" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
+										<th style="width: 10%"><b>Contact</b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','Contact')" id="Contact" value="ASC" style="color:black" class="glyphicon glyphicon-sort"></a></th>
 										<th style="width: 5%"><b>Test Name</b></th>
 										<th><b>Section Wise</b></th>
-										<th onclick="sortName(this.id,0,'${param.testName}','TestStart')" id="ASC" class="CCC"><b>Test Start </b></th>
-										<th onclick="sortName(this.id,0,'${param.testName}')" id="ASC" class="CCC"><b>Test End</b></th>
-										<th><b>Result</b></th>
-										<th style="width: 20%"><b>Attempts</b></th>
-										<th><b>No. of Security Breech</b></th>
+										<th><b>Test Start </b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','TestStart')" id="TestStart" value="ASC" style="color:black" class="glyphicon glyphicon-sort"></a></th>
+										<th><b>Test End</b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','TestEnd')" id="TestEnd" value="ASC" style="color:black" class="glyphicon glyphicon-sort"></a></th>
+										<th><b>Result</b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','Result')" id="Result" value="ASC" style="color:black" class="glyphicon glyphicon-sort"></a></th>
+										<th style="width: 7%"><b>Attempts</b></th>
+										<th style="width: 5%"><b>Security Breech</b>&nbsp;&nbsp;&nbsp;<a href="#" onclick="sortName(this.id,0,'${param.testName}','SecurityBreech')" id="SecurityBreech" value="ASC" style="color:black" class="glyphicon glyphicon-sort"></a></th>
 										<th><b>URL</b></th>
 									</tr>
 								</thead>
@@ -287,19 +284,8 @@
 	</footer>
 
 	<!-- JavaScript -->
+	
 	<script>
-		$('#search')
-				.on(
-						'click',
-						function() {
-							var text = document.getElementById("searchReport").value;
-							if (text.length != 0) {
-								window.location = "searchTestNameWiseUIReport?searchReport="+ text + "&testName=" + testName;
-							}
-						});
-	</script>
-
-	<script type="text/javascript">
 		function getRank(email) {
 			console.log(email);
 			$.ajax({
@@ -321,18 +307,28 @@
 			});
 		}
 
-		function sortName(sort, page,testName,colName) {
+		 
+		 function sortName(sort, page,testName,colName) {
 			 if(page===undefined){
 				page=0;
 			}
-				
-			console.log("Value of sort  in Name: " + sort);
+
+			 var search= $("#searchText").val();
+			console.log("-------"+sort);
+
+			var a=$("#"+sort).attr("value");
+			 if(a===undefined){
+					a="ASC";
+			}	
+
+			console.log(">>>"+a);
+			console.log("Value of sort: " + sort);
 			console.log("colName:"+colName);
 			$.ajax({
-				url : 'sortName?sortBy=' + sort + "&page=" + page+ "&testName=" + testName+"&colName="+colName,
+				url : 'sortName?sortBy=' +a+ "&page=" +page+ "&testName=" + testName+"&colName="+colName+"&searchText="+search,
 				type : 'GET',
 				success : function(response) {
-					console.log("Response val in Name:"+ response.sortBy);
+					console.log("Response value:"+ response.sortBy);
 					console.log(response.qs);
 					var testName=response.testName;
 					$(".tr").remove();
@@ -356,16 +352,125 @@
 								+response.qs[i].noOfNonCompliances+
 								"</td><td><a href='" + response.qs[i].urlForUserSession + "' >Download Report</a></td></tr>")
 							}
-							if (response.sortBy == "ASC") {
-								$("#ASC").attr('id', "DESC");
-							} else {
-								$("#DESC").attr('id', "ASC");
+
+							var colName=response.colName;
+							var selector;
+							var name="Name";
+							var contact="Contact";
+							var testStart="TestStart";
+							var testEnd="TestEnd";
+							var result="Result";
+							var securityBreech="SecurityBreech";
+							var className="";
+							if(colName==name){
+								className = $('#'+name).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+name).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+									//$("#ASC").attr('id', "DESC");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+name).removeClass("glyphicon glyphicon-sort-by-alphabet").addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+name).attr('class');
+								$("#"+name).removeClass(className).addClass("glyphicon glyphicon-sort");
+								}
+
+							if(colName==contact){
+								if (response.sortBy == "ASC") {
+									className = $('#'+contact).attr('class');
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+contact).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+									//$("#ASC").attr('id', "DESC");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+contact).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+contact).attr('class');
+								$("#"+contact).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+
+
+							if(colName==result){
+								className = $('#'+result).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+result).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+									//$("#ASC").attr('id', "DESC");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+result).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+result).attr('class');
+								$("#"+result).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+							
+							if(colName==testStart){
+								className = $('#'+testStart).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+testStart).removeClass(className).removeClass("fa fa-sort-numeric-desc").addClass("fa fa-sort-numeric-asc");
+									//$("#ASC").attr('id', "DESC");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+testStart).removeClass(className).addClass("fa fa-sort-numeric-desc");
+								}
+							}else{
+								className = $('#'+testStart).attr('class');
+								$("#"+testStart).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+
+							if(colName==testEnd){
+								className = $('#'+testEnd).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+testEnd).removeClass(className).addClass("fa fa-sort-numeric-asc");
+									//$("#ASC").attr('id', "DESC");
+								}else{
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+testEnd).removeClass(className).addClass("fa fa-sort-numeric-desc");
+								}
+
+							}else{
+								className = $('#'+testEnd).attr('class');
+								$("#"+testEnd).removeClass(className).addClass("glyphicon glyphicon-sort");			
+							}
+
+
+							if(colName==securityBreech){
+								className = $('#'+securityBreech).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+securityBreech).removeClass(className).addClass("fa fa-sort-numeric-asc");
+									//$("#ASC").attr('id', "DESC");
+								}else{
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+securityBreech).removeClass(className).addClass("fa fa-sort-numeric-desc");
+								}
+
+							}else{
+								className = $('#'+securityBreech).attr('class');
+								$("#"+securityBreech).removeClass(className).addClass("glyphicon glyphicon-sort");			
 							}
 
 						 	var sortBy = response.sortBy;
 							var page = response.page;
 							var TotalPage = response.TotalPage;
-							var colName=response.colName;
 							console.log("current page: " + page);
 							console.log("total page:  " + TotalPage);
 							console.log(response.colName);
@@ -380,17 +485,26 @@
 							} 
 							else if (page == TotalPage - 1) {
 								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage + "</div>")
-
 							} 
 							else {
 								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage+ "<a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ cpage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
-
 							} 
 						}
-
 					});
 		}
 
+		function search()
+		{
+			 var testName=$("#tName").val();
+			 sortName('ASC', 0,testName,'Name')
+		}
+		$(document).on('keypress',function(e){
+			if(e.which==13){
+				 var testName=$("#tName").val();
+				 sortName('ASC', 0,testName,'Name')
+			}
+		});
+		
 	</script>
 
 

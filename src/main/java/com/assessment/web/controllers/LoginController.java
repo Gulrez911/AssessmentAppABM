@@ -50,7 +50,7 @@ public class LoginController {
 		User user = new User();
 		user.setEmail("admin@e-assess.com");
 		user.setPassword("1234");
-		user.setCompanyName("IIHT");
+		user.setCompanyName("e-assess");
 		mav.addObject("user", user);
 		return mav;
 	}

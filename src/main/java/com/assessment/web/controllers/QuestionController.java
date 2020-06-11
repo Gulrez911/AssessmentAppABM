@@ -1,9 +1,11 @@
 package com.assessment.web.controllers;
 
 import java.io.File;
-
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +41,6 @@ import com.assessment.Exceptions.AssessmentGenericException;
 import com.assessment.common.CommonUtil;
 import com.assessment.common.ExcelReader;
 import com.assessment.common.PropertyConfig;
-import com.assessment.common.Qualifiers;
 import com.assessment.data.Company;
 import com.assessment.data.DifficultyLevel;
 import com.assessment.data.FullStackOptions;
@@ -51,7 +53,6 @@ import com.assessment.data.User;
 import com.assessment.data.UserType;
 import com.assessment.repositories.QuestionMapperRepository;
 import com.assessment.repositories.QuestionRepository;
-import com.assessment.repositories.UserRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionService;
 import com.assessment.services.UserService;
@@ -94,84 +95,77 @@ public class QuestionController {
 		return mapList;
 	}
 
-	@GetMapping("/searchQuestion")
+	
+	@GetMapping("/sort")
 	@ResponseBody
-	public Map<String, Object> searchQuestion(HttpServletRequest request,
-			@RequestParam(name = "searchText", required = false) String searchText,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
+	public Map<String, Object> sort(HttpServletRequest request,
+			@RequestParam(required = false) String sortBy,
+			@RequestParam(name="page",required = false) Integer pageNumber,
+			@RequestParam(required = false) Integer size,
+			@RequestParam(required = false)String colName,
+			@RequestParam(required = false) String searchText) {
 		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
 
 		if (pageNumber == null) {
 			pageNumber = 0;
 		}
-		Page<Question> questions = questionService.searchQuestions(user.getCompanyId(), searchText, pageNumber);
-		System.out.println(pageNumber);
-		mapList.put("levels", DifficultyLevel.values());
-		mapList.put("qs", questions.getContent());
-		mapList.put("page", pageNumber);
-
-		mapList.put("TotalPage", questions.getTotalPages());
-		return mapList;
-	}
-
-	@GetMapping("/sortQuestion")
-	@ResponseBody
-	public Map<String, Object> sortQuestion(HttpServletRequest request,
-			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
-		Map<String, Object> mapList = new HashedMap();
-		User user = (User) request.getSession().getAttribute("user");
-
-		if (pageNumber == null) {
-			pageNumber = 0;
+		
+		Page<Question> questions = null;
+		
+		if(colName.equals("Question")) {
+			if (sortBy.equals("ASC")) {
+				if (searchText != null) {
+					questions=questionRepository.findAllByCompanyIdAndQuestionTextContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "questionText")));
+			  }
+			  else {
+				  questions=questionRepository.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "questionText")));
+				  System.out.println("QueASC>>"+questions);
+			  }
+			} else {
+				if (searchText != null) {
+						questions=questionRepository.findAllByCompanyIdAndQuestionTextContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "questionText")));
+				  }
+				  else {
+					  questions=questionRepository.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "questionText")));
+					  System.out.println("QueDESC>>"+questions);
+				  }
+			}
+		}else {
+			if (sortBy.equals("ASC")) {
+				if (searchText != null) {
+					questions=questionRepository.findAllByCompanyIdAndQuestionTextContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "difficultyLevel")));
+				}
+				else {
+				questions=questionRepository.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "difficultyLevel")));
+				System.out.println("QueASC>>"+questions);
+				}
+			} else {
+				if (searchText != null) {
+					questions=questionRepository.findAllByCompanyIdAndQuestionTextContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "difficultyLevel")));
+				}
+			  else {
+				questions=questionRepository.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "difficultyLevel")));
+				System.out.println("QueDESC>>"+questions);
+			  }
+			}
 		}
-		Page<Question> questions;
-		if (sortBy.equals("ASC")) {
-			questions = questionRepository.findByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "questionText")));
-		} else {
-			questions = questionRepository.findByCompanyId(user.getCompanyId(),
-					PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "questionText")));
-		}
-		System.out.println(pageNumber);
-		System.out.print("questSort" + questions);
-		mapList.put("levels", DifficultyLevel.values());
-		mapList.put("qs", questions.getContent());
-		mapList.put("page", pageNumber);
-
-		mapList.put("TotalPage", questions.getTotalPages());
+		
+		System.out.println(">>>>Pg Number" + pageNumber);
+		
+		int srNo=pageNumber*10;
+		
+		mapList.put("srNo", srNo);
 		mapList.put("sortBy", sortBy);
-		return mapList;
-	}
-
-	@GetMapping("/sortDifficultyLevel")
-	@ResponseBody
-	public Map<String, Object> sortDifficultyLevel(HttpServletRequest request,
-			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber) {
-		Map<String, Object> mapList = new HashedMap();
-		User user = (User) request.getSession().getAttribute("user");
-
-		if (pageNumber == null) {
-			pageNumber = 0;
-		}
-		Page<Question> questions;
-		if (sortBy.equals("EASY")) {
-			questions = questionRepository.findByDifficultyLevel2(user.getCompanyId(), PageRequest.of(pageNumber, 10));
-		} else {
-			questions = questionRepository.findByDifficultyLevel(user.getCompanyId(), PageRequest.of(pageNumber, 10));
-		}
-		System.out.println(pageNumber);
-		mapList.put("levels", DifficultyLevel.values());
-		mapList.put("qs", questions.getContent());
+		mapList.put("colName", colName);
 		mapList.put("page", pageNumber);
-
+		mapList.put("qs", questions.getContent());
 		mapList.put("TotalPage", questions.getTotalPages());
-		mapList.put("sortBy", sortBy);
+		mapList.put("types", QuestionType.values());
 		return mapList;
 	}
 
+	
 	@RequestMapping(value = "/goback", method = RequestMethod.GET)
 	public ModelAndView goback(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("question_list2");
@@ -313,9 +307,20 @@ public class QuestionController {
 		ModelAndView mav = null;
 		User user = (User) request.getSession().getAttribute("user");
 		List<Question> questions = new ArrayList<Question>();
+	
+		String filename = addimage.getOriginalFilename();
+		String basename = FilenameUtils.getBaseName(filename);
+		String extension = FilenameUtils.getExtension(filename);
+		DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
 		if (addimage != null) {
-			String destination = propertyConfig.getFileServerLocation() + File.separator + "images" + File.separator
-					+ addimage.getOriginalFilename();
+			/*
+			 * String destination = propertyConfig.getFileServerLocation() + File.separator
+			 * + "images" + File.separator + addimage.getOriginalFilename() + new
+			 * SimpleDateFormat("yyyyMMddHHmm'.jpg'").format(new Date());//
+			 * System.currentTimeMillis();
+			 */	
+			 String destination = propertyConfig.getFileServerLocation() + File.separator
+					  + "images" + File.separator + basename + df.format(new Date()) + "." + extension;
 			File file = new File(destination);
 			if (file.exists()) {
 				if (addimage.getOriginalFilename() != null && addimage.getOriginalFilename().trim().length() > 0) {
@@ -324,16 +329,22 @@ public class QuestionController {
 
 			}
 			if (addimage.getOriginalFilename() != null && addimage.getOriginalFilename().trim().length() > 0) {
-				String imageUrl = propertyConfig.getFileServerWebUrl() + "images/" + addimage.getOriginalFilename();
+				String imageUrl = destination;
 				question.setImageUrl(imageUrl);
 				addimage.transferTo(file);
 			}
 
 		}
 
+		
+		String filenameAudio = addaudio.getOriginalFilename();
+		String basenameAudio = FilenameUtils.getBaseName(filenameAudio);
+		String extensionAudio = FilenameUtils.getExtension(filenameAudio);
+		DateFormat df1 = new SimpleDateFormat("yyyyMMddhhmmss");
+		
 		if (addaudio != null) {
 			String destination = propertyConfig.getFileServerLocation() + File.separator + "audios" + File.separator
-					+ addaudio.getOriginalFilename();
+					+ basenameAudio + df1.format(new Date()) + "." + extensionAudio;
 			File file = new File(destination);
 			if (file.exists()) {
 				if (addaudio.getOriginalFilename() != null && addaudio.getOriginalFilename().trim().length() > 0) {
@@ -343,16 +354,22 @@ public class QuestionController {
 			}
 
 			if (addaudio.getOriginalFilename() != null && addaudio.getOriginalFilename().trim().length() > 0) {
-				addaudio.transferTo(file);
-				String audioUrl = propertyConfig.getFileServerWebUrl() + "audios/" + addaudio.getOriginalFilename();
+				String audioUrl = destination;
 				question.setAudioURL(audioUrl);
+				addaudio.transferTo(file);
+				
 			}
 
 		}
-
+           
+		
+		String filenameVideo = addvideo.getOriginalFilename();
+		String basenameVideo = FilenameUtils.getBaseName(filenameVideo);
+		String extensionVideo = FilenameUtils.getExtension(filenameVideo);
+		DateFormat df2 = new SimpleDateFormat("yyyyMMddhhmmss");
 		if (addvideo != null) {
 			String destination = propertyConfig.getFileServerLocation() + File.separator + "videos" + File.separator
-					+ addvideo.getOriginalFilename();
+					+ basenameVideo + df2.format(new Date()) + "." + extensionVideo;
 			File file = new File(destination);
 			if (file.exists()) {
 				if (addvideo.getOriginalFilename() != null && addvideo.getOriginalFilename().trim().length() > 0) {
@@ -360,10 +377,10 @@ public class QuestionController {
 				}
 			}
 
-			if (addvideo.getOriginalFilename() != null && addvideo.getOriginalFilename().trim().length() > 0) {
-				addvideo.transferTo(file);
-				String videoUrl = propertyConfig.getFileServerWebUrl() + "videos/" + addvideo.getOriginalFilename();
+			if (addvideo.getOriginalFilename() != null && addvideo.getOriginalFilename().trim().length() > 0) {			
+				String videoUrl = destination;
 				question.setVideoURL(videoUrl);
+				addvideo.transferTo(file);
 			}
 
 		}
@@ -476,7 +493,6 @@ public class QuestionController {
 		CommonUtil.setCommonAttributesOfPagination(questions2, mav.getModelMap(), 0, "addQuestion", null);
 		return mav;
 	}
-
 	// @RequestMapping(value = "/searchQByQualifier1/{qualifier1}", method =
 	// RequestMethod.GET)
 	// public ModelAndView searchQByQualifier1(@PathVariable String qualifier1,
@@ -747,17 +763,15 @@ public class QuestionController {
 			pageNumber = 0;
 		}
 //		Page<Question> questions = questionService.findQuestionsByPage(user.getCompanyId(), pageNumber);
-
 		List<String> qu = questionService.getQualifier(user.getCompanyId());
 		System.out.println("qu >>>>>>>> " + qu);
 		request.getSession().setAttribute("qu", qu);
-
 		Question question = new Question();
 		mav.addObject("quesqu", question);
 		mav.addObject("qu", qu);
 //		mav.addObject("qs", questions.getContent());
 		mav.addObject("levels", DifficultyLevel.values());
-		mav.addObject("types", QuestionType.values());
+		mav.addObject("types", QuestionType.values());	
 		mav.addObject("languages", ProgrammingLanguage.values());
 //		CommonUtil.setCommonAttributesOfPagination(questions, modelMap, pageNumber, "question_list", null);
 		return mav;
