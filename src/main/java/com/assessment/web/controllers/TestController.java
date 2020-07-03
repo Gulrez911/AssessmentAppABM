@@ -23,10 +23,6 @@ import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.io.FileUtils;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.jboss.logging.Param;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,11 +199,8 @@ public class TestController {
 		pageSize.add(5);
 		pageSize.add(10);
 		pageSize.add(15);
-		//mapList.put("pageSize", pageSize);
-		mav.addObject("pgSize", pageSize );
-		//mapList.put("test", new Test());
+		mav.addObject("pgSize", pageSize);
 		mav.addObject("test", new Test());
-		
 		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "testlist", null);
 		return mav;
 	}
@@ -272,7 +265,6 @@ public class TestController {
 			if (!qm.getSectionName().equals(sectionDto.getSectionName())) {
 				ids.add(qm.getQuestion().getId());
 			}
-
 		}
 		List<Question> qToDisplay;
 		if (ids.size() >= 1) {
@@ -295,7 +287,6 @@ public class TestController {
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("test", test);
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/addteststep3", method = RequestMethod.GET)
@@ -372,8 +363,14 @@ public class TestController {
 			pageNumber = 0;
 		}
 		Page<Test> tests = testService.searchTests(user.getCompanyId(), searchText, pageNumber);
-		mav.addObject("tests", testService.populateWithPublicUrl(tests.getContent()));
+		mav.addObject("test", testService.populateWithPublicUrl(tests.getContent()));
 		Map<String, String> params = new HashMap<>();
+		List<Integer> pageSize = new ArrayList<Integer>();
+		pageSize.add(5);
+		pageSize.add(10);
+		pageSize.add(15);
+		mav.addObject("pgSize", pageSize );
+		mav.addObject("test",new Test());
 		params.put("searchText", searchText);
 		CommonUtil.setCommonAttributesOfPagination(tests, mav.getModelMap(), pageNumber, "searchTests", params);
 		return mav;
@@ -1468,60 +1465,82 @@ public class TestController {
 	@ResponseBody
 	public Map<String, Object> sortTest(HttpServletRequest request,
 			@RequestParam(name = "sortBy", required = false) String sortBy,
-			@RequestParam(name = "page", required = false) Integer pageNumber,@RequestParam(name="size") Integer size,@RequestParam(name="colName")String colName) {
+			@RequestParam(name = "page", required = false) Integer pageNumber,
+			@RequestParam(name="size") Integer size,
+			@RequestParam(name="colName")String colName,
+			@RequestParam(required = false) String searchText) {
 		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
 
 		if (pageNumber == null) {
 			pageNumber = 0;
 		}
+		
 		Page<Test> tests;
+		
 		if(colName.equals("Title")) {
 			if (sortBy.equals("ASC")) {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "testName")));
-	
+				  if (searchText != null) {
+						tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "testName")));
+				  }
+				  else {
+					  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "testName")));
+				  }
 			} else {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "testName")));
+				if (searchText != null) {
+					tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "testName")));
+			  }
+				else {
+				  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "testName")));
+			  }
 			}
-		}
-		else if(colName.equals("createDate")) {
+		}else if(colName.equals("createDate")) {
 			if (sortBy.equals("ASC")) {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "createDate")));
-
+				  if (searchText != null) {
+						tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "createDate")));
+				  }
+				  else {
+					  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "createDate")));
+				  }
 			} else {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "createDate")));
+				if (searchText != null) {
+					tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "createDate")));
+			  }
+				else {
+				  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "createDate")));
+			  }
 			}
-		}
-		
-		else {
+		}else {
 			if (sortBy.equals("ASC")) {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "updateDate")));
-
+				  if (searchText != null) {
+						tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "updateDate")));
+				  }
+				  else {
+					  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.ASC, "updateDate")));
+				  }
 			} else {
-				tests = testRepo.findAllByCompanyId(user.getCompanyId(),
-						PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "updateDate")));
+				if (searchText != null) {
+					tests=testRepo.findAllByCompanyIdAndTestNameContainingIgnoreCase(user.getCompanyId(), searchText, PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "updateDate")));
+			  }
+				else {
+				  tests = testRepo.findAllByCompanyId(user.getCompanyId(),PageRequest.of(pageNumber, size, Sort.by(Sort.Direction.DESC, "updateDate")));
+			  }
 			}
-			
 		}
 		System.out.println(">>>>Pg Number" + pageNumber);
 		System.out.println("TotalPages>>>>>>>" + tests.getTotalPages());
 		System.out.print("TestSort" + tests);
-
-		int srNo=pageNumber*size;
-		mapList.put("srNo", srNo);
 		
+		int srNo=pageNumber*size;
+		
+		mapList.put("srNo", srNo);
 		mapList.put("qs", testService.populateWithPublicUrl(tests.getContent()));
-		//mapList.put("qs", tests.getContent());
 		mapList.put("page", pageNumber);
-
 		mapList.put("TotalPage", tests.getTotalPages());
 		mapList.put("sortBy", sortBy);
 		mapList.put("colName", colName);
+		mapList.put("tests", tests);
+/*		mapList.put("searchText", searchText);*/		
 		return mapList;
 	}
 

@@ -107,6 +107,40 @@
 }
 </style>
 
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
+
 <script>
 	/* When the user clicks on the button,
 	 toggle between hiding and showing the dropdown content */
@@ -194,6 +228,8 @@
 						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
 						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -207,13 +243,26 @@
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+							 	<a href="#">Practice</a>
+								<a href="#">Compete</a>
+								<a href="#">Coding</a>
+								<a href="learningpath">Learning Path</a>
+							 </div>
+						</div>
+						</li>
 						<li><a href="listUsers">Users</a></li>
 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a>
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
@@ -736,7 +785,21 @@
 				});
 			});
 		</script>
+		
 	</c:if>
+	
+	<script>
+		/*$(document).ready(function(){
+			$(".dropbtn").hover(function(){
+				$(".dropdown-content").css("display","block");
+				$(".dropdown").css("display","block");
+			},
+			function(){
+				$(".dropdown-content").css("display","none");
+				$(".dropdown").css("display","none");
+			});
+		});*/
+	</script>
 </body>
 
 </html>

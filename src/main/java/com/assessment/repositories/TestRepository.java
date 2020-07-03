@@ -35,7 +35,13 @@ public interface TestRepository extends JpaRepository<com.assessment.data.Test, 
 	@Query(value = "SELECT t FROM Test t WHERE t.companyId=:companyId", countQuery = "SELECT COUNT(*) FROM Test t WHERE t.companyId=:companyId")
 	public Page<Test> findTestByCompanyIdAndPageNumber(@Param("companyId") String companyId,Pageable pageable);
 
+	
 	Page<Test> findAllByCompanyId(String companyId, Pageable pageable);
+		
+	Page<Test> findAllByCompanyIdAndTestNameContainingIgnoreCase(String companyId, String searchText,Pageable pageable);
 
+
+	@Query("SELECT t.testName FROM Test t WHERE  t.companyId=:companyId and t.testName is not null and t.testName not in (select st.testName from StepTest st where st.companyId=:companyId)")
+	List<String> findtestNameByCompanyId(@Param("companyId") String companyId);
 
 }

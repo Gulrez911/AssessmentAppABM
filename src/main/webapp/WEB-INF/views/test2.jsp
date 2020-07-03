@@ -1069,9 +1069,8 @@ padding: 8px 30px;
 								<!-- 																<i class="fa fa-long-arrow-left"></i> -->
 							</c:otherwise>
 						</c:choose>
-						<a onclick="javascript:finalSubmit();"
-									class="next subm waves-effect waves-light btn btn-success mt-30"
-									id="next">SUBMIT TEST</a>
+						<a class="next subm waves-effect waves-light btn btn-success mt-30"
+									id="btn_subm">SUBMIT TEST</a>
 				  	<a class="next subm waves-effect waves-light btn btn-success mt-30"
 									id="btn_review" name="Mark">Mark for Review</a>
 						 <c:choose>
@@ -1098,6 +1097,7 @@ padding: 8px 30px;
 </div>
 	</form:form>
 	
+	
 	<div id="modalSub" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -1115,6 +1115,7 @@ padding: 8px 30px;
 			</div>
 		</div>
 	</div>
+	
 	
 <footer class="footer footer-four" style="bottom:0;position:fixed;left:0;width:100%;">
 		<div class="secondary-footer brand-bg darken-2 text-center" style="">
@@ -1819,7 +1820,22 @@ padding: 8px 30px;
 				});
 				
 			});
-				
+			
+			
+			$("#btn_subm").on('click',function(){
+				var uanswered = '${totalQuestions - (noAnswered+1)}';
+				var modaltxt = "";
+				if( uanswered == '0' || uanswered == '-1')
+					{
+						modaltxt = "Are you sure you want to submit the test?";
+					}
+				else
+					{
+						modaltxt = "Are you sure you want to submit the test? You still have unanswered questions?";
+					}
+				$('#modalSub_body').html(modaltxt);
+				$('#modalSub').modal("show");
+			});
 		});
 	</script>
 <script>

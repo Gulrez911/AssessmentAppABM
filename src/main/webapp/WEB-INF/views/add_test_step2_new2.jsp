@@ -16,6 +16,7 @@
 
 <link href="${c1}" rel="shortcut icon" />
 
+
 <spring:url
 	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" var="c2" />
 
