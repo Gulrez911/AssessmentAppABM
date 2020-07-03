@@ -162,60 +162,11 @@ li>a.dropbtn{
 			}
 		}
 	}
-	
-	function question_list2(page){
-		console.log("Test "+page);
-		if(page===undefined){
-			page=0;
-		}
-		$.ajax({
-			url: "question_list2?page="+page,
-			type: "GET",
-			success: function(response) {
-				$(".tr").remove();
-				console.log(response.qs[0].questionText);
-				for(var i=0; i<response.qs.length; i++){
-					$("#tbl").append(
-					"<tr class='tr'><td>"
-					+response.qs[i].id+
-					"</td><td>"
-					+response.qs[i].questionText+
-					"</td><td>"
-					+response.qs[i].category+
-					"</td><td>"
-					+response.qs[i].difficultyLevel+
-					"</td><td>"
-					+response.qs[i].updatedDate+
-					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
-				}
-				var page = response.page;
-				var TotalPage=response.TotalPage;
-				console.log("current: page: "+page);
-				console.log("total:  "+TotalPage);
-				var cpage=page+1;
-				var ppage=page-1;
- 				$(".dd").remove(); 
- 				if(page==0){
-				$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:question_list2("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
- 	 				}
- 				else if(page==TotalPage-1){
- 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
- 					
- 	 				}
- 				else{
- 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:question_list2("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:question_list2("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
-					
- 	 				} 
-				
-			}
-		});
-		
-	};
 </script>
-
+	
 </head>
 
-<body id="top" class="has-header-search" onload="question_list2()">
+<body id="top" class="has-header-search" onload="sort('ASC', 0,'Question')">
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -321,21 +272,7 @@ li>a.dropbtn{
 				</form>
 				<div class="col-md-12">
 					<div class="col-md-12">
-						<div class="pagination" style="float: right;" id="pagination">
-
-							<%-- <c:if test="${showPreviousPage}">
-								<a href="question_list?page=${previousPage}${queryParam}"><i
-									class="fa fa-arrow-left"></i></a>
-							</c:if>
-							<c:if test="${selectedPage != null &&  selectedPage > 0}">
-                                    ${selectedPage} / ${totalNumberOfPages}
-                                </c:if>
-							<c:if test="${showNextPage}">
-								<a href="question_list?page=${nextPage}${queryParam}"><i
-									class="fa fa-arrow-right"></i></a>
-							</c:if> --%>
-							
-						</div>
+						<div class="pagination" style="float: right;" id="pagination"></div>
 					</div>
 				</div>
 
@@ -350,13 +287,10 @@ li>a.dropbtn{
 						<div class="widget widget_search">
 
 							<div class="search-form">
-<%-- 								<form action="searchQuestions" method="get"> --%>
-									<input type="text" placeholder="Search a question"
-										name="searchText" id="searchText" onkeyup="searchQuestion(0)">
-<!-- 									<button type="submit" id="search"> -->
-										<!-- <i class="fa fa-search"></i> -->
+									<input type="text" placeholder="Search a question" name="searchText" id="tName" class="tName">
+ 									<button type="submit" id="search" onclick="search()"> 
+										<i class="fa fa-search"></i>
 									</button>
-<%-- 								</form> --%>
 							</div>
 						</div>
 					</div>
@@ -383,13 +317,13 @@ li>a.dropbtn{
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>No</th>
-									<th onclick='sortTable(this.id)' id="ASC" class="CCC">Question</th>
+									<th>Question&nbsp;&nbsp;&nbsp;<a href="#" onclick="sort(this.id,0,'Question')" id="Question" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
 									
 									<th style="white-space: nowrap;">Category</th>
 									
-									<th onclick='sortlevel(this.id)' id="EASY" class="CCC">Difficulty Level</th>
+									<th>Difficulty Level&nbsp;&nbsp;&nbsp;<a href="#" onclick="sort(this.id,0,'difficultyLevel')" id="difficultyLevel" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
 									
-									<th style="white-space: nowrap;"><span onclick='sortTable(0);'>Updated On</span></th>
+									<th style="white-space: nowrap;">Updated On</th>
 									
 									<th style="white-space: nowrap;">Update</th>
 									<th style="white-space: nowrap;">Delete</th>
@@ -608,167 +542,136 @@ li>a.dropbtn{
 			}).on('pnotify.cancel', function() {
 			});
 		}
-		
-		function searchQuestion(page)
-		{
-			if(page===undefined){
-				page=0;
+
+
+		function sort(sort, page,colName) {
+			 if(page===undefined){
+							page=0;
 			}
-			
-			var txt=$("#searchText").val();
-			console.log(txt);
+			 console.log("Page:"+page);
+			 console.log("ColName:"+colName);
+
+			 var a=$("#"+sort).attr("value");
+			 if(a===undefined){
+					a="ASC";
+			}	
+			var search= $("#tName").val();
+			console.log("-------"+search);
+			console.log("Sort-------"+sort);
+			console.log("a>>>>>>" +a);
+			console.log("Value of sort: " + sort);
+//			var size = $("#pageSize").val();
+//			console.log("size:   " + size);
 			$.ajax({
-				url:"searchQuestion?searchText="+txt+"&page="+page,
-				type:"GET",
-				success:function(response){
+				url : 'sort?sortBy=' +a+ "&page="+page+"&colName="+colName+"&searchText="+search,
+				type : 'GET',
+				success : function(response) {
+					console.log(response);
+					console.log("Response value:"+ response.sortBy);
+					var no=response.srNo;
 					$(".tr").remove();
-					console.log(response.qs[0].questionText);
-					for(var i=0; i<response.qs.length; i++){
-						$("#tbl").append(
-						"<tr class='tr'><td>"
-						+response.qs[i].id+
-						"</td><td>"
-						+response.qs[i].questionText+
-						"</td><td>"
-						+response.qs[i].category+
-						"</td><td>"
-						+response.qs[i].difficultyLevel+
-						"</td><td>"
-						+response.qs[i].updatedDate+
-						"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
-					}
-					var page = response.page;
-					var TotalPage=response.TotalPage;
-					console.log("current: page: "+page);
-					console.log("total:  "+TotalPage);
-					var cpage=page+1;
-					var ppage=page-1;
-	 				$(".dd").remove(); 
-	 				if(0==TotalPage-1){
-						$("#pagination").append("<div class='dd'>"+cpage+"</div>")
-	 	 				}
-	 				else if(page==0){
-						$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:searchQuestion("+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
-		 				}
-	 				else if(page==TotalPage-1){
-	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
-	 					
-	 	 				}
-	 				else{
-	 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:searchQuestion("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:searchQuestion("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
-						
-	 	 				} 
-					}
-				});
+					for (var i = 0; i < response.qs.length; i++) {
+						no=no+1;
+						var today = null;
+						if (response.qs[i].updateDate != null) {
+							today = new Date(response.qs[i].updateDate).toLocaleDateString('en-GB', {
+												day : 'numeric',
+												month : 'short',
+												year : 'numeric'
+											}).split(' ').join('-');
+						}
+						else{
+							today="NA";
+							}
+							$("#tbl").append(
+							"<tr class='tr'><td>"
+							+no+
+							"</td><td>"
+							+response.qs[i].questionText+	
+							"</td><td>"
+							+response.qs[i].questionCategory+
+							"</td><td>"
+							+response.qs[i].difficultyLevel+
+							"</td><td>"
+							+today+
+							"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
+						}
+							var colName=response.colName;
+							console.log(":::"+colName);
+							var selector;
+							var question="Question";
+							var difficultyLevel="difficultyLevel";
+							var className="";
+
+							if(colName==question){
+								className = $('#'+question).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+question).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+question).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+question).attr('class');
+								$("#"+question).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+
+							if(colName==difficultyLevel){
+								className = $('#'+difficultyLevel).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+difficultyLevel).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+difficultyLevel).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+difficultyLevel).attr('class');
+								$("#"+difficultyLevel).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+
+
+							var sortBy = response.sortBy;
+							var page = response.page;
+							var TotalPage = response.TotalPage;
+							console.log("Current page: " + page);
+							console.log("Total Pages:  " + TotalPage);
+							var cpage = page + 1;
+							var ppage = page - 1;
+							$(".dd").remove();
+							if (0 == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'>" + cpage + "</div>")
+							} 
+							else if (page == 0) {
+								$("#pagination").append("<div class='dd'>"+ cpage+ "<a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ cpage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+							} 
+							else if (page == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ ppage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage + "</div>")
+
+							} 
+							else {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ ppage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage+ "<a class='tt' href='javascript:sort(\""+ sortBy+ "\","+ cpage+ ",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+
+							}
+						}
+					});
+		}
+
+		function search()
+		{
+			sort('ASC', 0,'Question')
+		}
+
+		$(document).on('keypress',function(e){
+			if(e.which==13){
+				sort('ASC', 0,'Question')
 			}
-		function sortTable(sort){
-// 			if(page===undefined)
-// 				{
-// 					page=0;
-// 				}
-			 
-			 //var sort = $("#sort").val();
-			console.log(sort);
-			 $.ajax({
-			  url:'sortQuestion?sortBy='+sort,
-			  type:'GET',
-			  success: function(response){
-			 
-			   /* $("#tbl tr:not(:first)").remove(); */
-			   $(".tr").remove();
-			   for(var i=0; i<response.qs.length; i++){
-					$("#tbl").append(
-					"<tr class='tr'><td>"
-					+response.qs[i].id+
-					"</td><td>"
-					+response.qs[i].questionText+
-					"</td><td>"
-					+response.qs[i].category+
-					"</td><td>"
-					+response.qs[i].difficultyLevel+
-					"</td><td>"
-					+response.qs[i].updatedDate+
-					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
-				}
-				if(response.sortBy=="ASC"){
-					$(".CCC").attr('id',"DESC");
-				}else{
-					$(".CCC").attr('id',"ASC");
-				}
-			 
-			  }
-			 });
-			}
-		
-		function sortlevel(sort,page){
-			if(page===undefined)
-				{
-					page=0;
-				}
-// 			 var sort = $("#sort").val();
-			console.log(sort);
-			 $.ajax({
-			  url:'sortDifficultyLevel?sortBy='+sort+"&page="+page,
-			  type:'GET',
-			  success: function(response){
-			 
-			   /* $("#tbl tr:not(:first)").remove(); */
-			   $(".tr").remove();
-			   for(var i=0; i<response.qs.length; i++){
-					$("#tbl").append(
-					"<tr class='tr'><td>"
-					+response.qs[i].id+
-					"</td><td>"
-					+response.qs[i].questionText+
-					"</td><td>"
-					+response.qs[i].category+
-					"</td><td>"
-					+response.qs[i].difficultyLevel+
-					"</td><td>"
-					+response.qs[i].updatedDate+
-					"</td><td><a href='addQuestion?qid=" + response.qs[i].id + "' >click</a></td><td><a href='javascript:confirm(" + response.qs[i].id + ")' >click</a></td></tr>")
-				}
-				var level;
-				if(response.sortBy=="EASY"){
-					level="DIFFICULT";
-// 					$(".CCC").attr('id',"DIFFICULT");
-				}else{
-					level="EASY";
-// 					$(".CCC").attr('id',"EASY");
-				}
-				var page = response.page;
-				var TotalPage=response.TotalPage;
-				console.log("current: page: "+page);
-				console.log("total:  "+TotalPage);
-				var cpage=page+1;
-				var ppage=page-1;
- 				$(".dd").remove();
-				console.log("TEst:    "+level)
- 				 
- 				if(0==TotalPage-1){
- 						$("#pagination").append("<div class='dd'>"+cpage+"</div>")
- 	 				}
- 				else if(page==0){
- 					if(response.sortBy=="EASY"){
- 						$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortlevel("+level+","+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
- 					}
- 					else{
-// 					$("#pagination").append("<div class='dd'>"+cpage+"<a class='tt' href='javascript:sortlevel('EASY',"+page+1+")'><i class='fa fa-arrow-right'></i></a></div>")
-	 				}
- 				}
- 				else if(page==TotalPage-1){
-//  					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel('DIFFICULT',"+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"</div>")
- 					
- 	 				}
- 				else{
- 					$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortlevel("+ppage+")'><i class='fa fa-arrow-left'></i></a>"+cpage+"<a class='tt' href='javascript:sortlevel("+cpage+")'><i class='fa fa-arrow-right'></i></a></div>")
-					
- 	 				} 
-			 
-			  }
-			 });
-			}
-		
+		});
 	</script>
 
 

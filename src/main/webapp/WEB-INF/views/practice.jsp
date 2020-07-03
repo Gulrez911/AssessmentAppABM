@@ -121,12 +121,13 @@
 					<ul class="menuzord-menu pull-right">
 						<li><a
 							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li class="active"><a href="question_list">Question Bank</a></li>
+						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
+						<li class="active"><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
+						<li><a href="skillTest">Skill Test</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
@@ -224,6 +225,7 @@
 					<li><a href="skills">Skills</a></li>
 					<li><a href="showReports">Results</a></li>
 					<li><a href="codingSessions">Code Analysis Reports</a></li>
+					<li><a href="skillTest">Skill Test</a></li>
 					<li><a href="showSkillTags">Skill based Reports</a></li>
 					<li><a href="showProfileParams">Recomm Setting</a></li>
 					<li><a href="listUsers">Users</a></li>

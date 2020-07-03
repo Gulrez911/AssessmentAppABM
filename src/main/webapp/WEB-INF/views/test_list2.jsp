@@ -135,8 +135,7 @@
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
-						<li><a
-							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 						<li><a href="question_list">Question Bank</a></li>
 						<li class="active"><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
@@ -207,13 +206,11 @@
 						<div class="widget widget_search">
 
 							<div class="search-form">
-								<form action="searchTests" method="get">
-									<input type="text" placeholder="Search a Test"
-										name="searchText" id="searchText">
-									<button type="submit" id="search">
+								<%-- <form action="searchTests" method="get"> --%>
+									<input type="text" placeholder="Search a Test" name="searchText" id="tName" class="tName">
+									<button type="submit" id="search" onclick="search()">
 										<i class="fa fa-search"></i>
 									</button>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -228,9 +225,8 @@
 
 						<div class="col-md-4" style="padding: 0;">
 
-							<form:form  modelAttribute="test">
-								<form:select path="totalMarks" onchange="sort('ASC', 0,'Title')" class="form-control" id="pageSize"
-									name="pageSize" multiple="false">
+							<form:form modelAttribute="test">
+								<form:select path="totalMarks" onchange="sort('ASC', 0,'Title')" class="form-control" id="pageSize" multiple="false">
 									<c:forEach var="size" items="${pgSize}">
 										<form:option value="${size}">
 											<c:out value="${size}" />
@@ -255,12 +251,12 @@
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>No</th>
-									<th onclick='sort(this.id,0,"Title")' id="ASC" class="CCC">Test Title</th>
+									<th>Test Title&nbsp;&nbsp;&nbsp;<a href="#" onclick="sort(this.id,0,'Title')" id="Title" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
 									<th>Category</th>
 									<th>Test Time In Minutes</th>
 									<th>Pass Percentage</th>
-									<th onclick='sort(this.id,0,"createDate")' id="ASC" class="CCC">Created Date</th>
-									<th onclick='sort(this.id,0)' id="ASC" class="CCC">Last Update</th>
+									<th>Created Date&nbsp;&nbsp;&nbsp;<a href="#" onclick="sort(this.id,0,'createDate')" id="createDate" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
+									<th>Last Update&nbsp;&nbsp;&nbsp;<a href="#" onclick="sort(this.id,0,'updateDate')" id="updateDate" value="ASC" style="color:black" class="glyphicon glyphicon-sort-by-alphabet"></a></th>
 									<th>Expire Test</th>
 									<th>Update Test</th>
 									<th>Duplicate Test</th>
@@ -380,6 +376,9 @@
 								aria-controls="browseTab" role="tab" data-toggle="tab">Bulk
 									Share</a></li>
 
+							<li role="presentation"><a href="#arrangeSectionTab"
+								aria-controls="arrangeSectionTab" role="tab" data-toggle="tab">Arrange
+									Sections</a></li>
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
@@ -452,6 +451,9 @@
 									</div>
 								</form>
 							</div>
+
+							<div role="tabapnel" class="tab-pane" id="arrangeSectionTab">
+
 
 							</div>
 						</div>
@@ -603,12 +605,12 @@
 			return re.test(email);
 		}
 
-		$('#search').on('click', function() {
+		/* $('#search').on('click', function() {
 			var text = document.getElementById("searchText").value;
 			if (text.length != 0) {
 				window.location = "searchTests?searchText=" + text;
 			}
-		});
+		}); */
 
 		function confirm(id) {
 			(new PNotify(
@@ -653,16 +655,25 @@
 			 if(page===undefined){
 							page=0;
 			}
-				 
-			console.log("Value of sort  in TestTitle: " + sort);
+
+			 var a=$("#"+sort).attr("value");
+			 if(a===undefined){
+					a="ASC";
+			}	
+
+			var search= $("#tName").val();
+			console.log("-------"+search);
+			console.log("-------"+sort);
+			console.log("a>>>>>>" +a);
+			console.log("Value of sort: " + sort);
 			var size = $("#pageSize").val();
 			console.log("size:   " + size);
 			console.log("colname:"+colName);
 			$.ajax({
-				url : 'sortTest?sortBy=' + sort + "&page=" + page+"&size="+size+"&colName="+colName,
+				url : 'sortTest?sortBy=' +a+ "&page=" + page+"&size="+size+"&colName="+colName+"&searchText="+search,
 				type : 'GET',
 				success : function(response) {
-					console.log("Response val in TestTitle:"+ response.sortBy);
+					console.log("Response value:"+ response.sortBy);
 					var no=response.srNo;
 					$(".tr").remove();
 					for (var i = 0; i < response.qs.length; i++) {
@@ -693,16 +704,71 @@
 								+ today+
 								"</td><td><a href='javascript:confirm("+ response.qs[i].id+ ")' >Click to Expire</a></td><td><a href='updateTest?testId="+ response.qs[i].id+ "' >Click to Update</a></td><td><a href='javascript:duplicateOpen(\""+ response.qs[i].testName+ "\",\""+ response.qs[i].companyId+ "\")' ><i class='fa fa-copy'></i></a></td><td><a href='javascript:shareOpen(\""+ response.qs[i].testName+ "\",\""+ response.qs[i].publicUrl+ "\","+ response.qs[i].id+ ")' ><i class='fa fa-share-alt'></i></a></td></tr>")
 							}
-							if (response.sortBy == "ASC") {
+							var colName=response.colName;
+							console.log(":::"+colName);
+							var selector;
+							var testTitle="Title";
+							var createDate="createDate";
+							var updateDate="updateDate";
+							var className="";
+
+							if(colName==testTitle){
+								className = $('#'+testTitle).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+								}
+							}else{
+								className = $('#'+testTitle).attr('class');
+								$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort");
+							}
+
+							if(colName==createDate){
+								className = $('#'+createDate).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+createDate).removeClass(className).addClass("fa fa-sort-numeric-asc");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+createDate).removeClass(className).addClass("fa fa-sort-numeric-desc");
+								}
+							}else{
+								className = $('#'+createDate).attr('class');
+								$("#"+createDate).removeClass(className).addClass("glyphicon glyphicon-sort");
+								}
+
+							if(colName==updateDate){
+								className = $('#'+updateDate).attr('class');
+								if (response.sortBy == "ASC") {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "DESC");
+									$("#"+updateDate).removeClass(className).addClass("fa fa-sort-numeric-asc");
+								} else {
+									selector = document.getElementById(colName);
+									selector.setAttribute('value', "ASC");
+									$("#"+updateDate).removeClass(className).addClass("fa fa-sort-numeric-desc");
+								}
+							}else{
+								className = $('#'+updateDate).attr('class');
+								$("#"+updateDate).removeClass(className).addClass("glyphicon glyphicon-sort");
+								}
+							
+							/* if (response.sortBy == "ASC") {
 								$("#ASC").attr('id', "DESC");
 							} else {
 								$("#DESC").attr('id', "ASC");
-							}
+							} */
 
 							var sortBy = response.sortBy;
 							var page = response.page;
 							var TotalPage = response.TotalPage;
-							var colName=response.colName;
 							console.log("current: page: " + page);
 							console.log("total:  " + TotalPage);
 							var cpage = page + 1;
@@ -725,7 +791,17 @@
 						}
 					});
 		}
-		
+
+		function search()
+		{
+			 sort('ASC', 0,'Name')
+		}
+
+		$(document).on('keypress',function(e){
+			if(e.which==13){
+				 sort('ASC', 0,'Name')
+			}
+		});
 
 	</script>
 	<c:if test="${msgtype != null}">

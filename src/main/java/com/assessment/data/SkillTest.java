@@ -57,8 +57,10 @@ public class SkillTest extends Base {
 				+ ", getId()=" + getId() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
-	
-
-	
 
 }
+
+
+	
+
+

@@ -45,6 +45,7 @@ public class UserPracticeController {
 			@RequestParam(name="subs",required = false)String subs,
 			@RequestParam(name="stepn",required = false)String stepn){
 		ModelAndView mav = null;
+		mav = new ModelAndView("user_practice");
 		User user = (User)request.getSession().getAttribute("user");
 		
 		List<String> skills = skilltestrepository.getSkills(user.getCompanyId());
@@ -96,7 +97,6 @@ public class UserPracticeController {
 		
 		
 		System.out.println("User Practice: "+skilln);
-		mav = new ModelAndView("user_practice");
 		mav.addObject("skills", skills);
 		mav.addObject("curskill", skilln);
 		mav.addObject("subskills", subskilln);

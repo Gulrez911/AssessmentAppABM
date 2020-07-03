@@ -46,6 +46,7 @@ public class SkillTestServiceImpl implements SkillTestService{
 		
 	}
 
+
 	@Override
 	public List<String> findAllRecord(String skillname) {
 		// TODO Auto-generated method stub
@@ -73,6 +74,12 @@ public class SkillTestServiceImpl implements SkillTestService{
 //		return skillTestRepository.uniqueSkill();
 //	}
 
-	
+
+	/*
+	 * @Override public String findAllRecord(String skillname) { // TODO
+	 * Auto-generated method stub return
+	 * skillTestRepository.findAllRecord(skillname); }
+	 */
+
 
 }

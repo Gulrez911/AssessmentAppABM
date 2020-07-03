@@ -101,6 +101,7 @@
 	function goback() {
 		window.location = "goback";
 	}
+<<<<<<< HEAD
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -400,6 +401,297 @@
 	<script>
 		
 	</script>
+=======
+	/* function displayRecord(sb){
+        alert(sb);
+        document.getElementById('subSkill').value = sb;
+      } */
+
+      function searchText() {
+          debugger
+         var skillID= $('#SkillName').val(); 
+         var subSkilName= $('#subSkill').val();
+    	   var search = {
+    	      "skillName" : "skillID",
+    	      "subskillName" : "subSkilName",
+    	   }
+
+    	   $.ajax({
+    	       type: "POST",
+    	       contentType : 'application/json; charset=utf-8',
+    	       dataType : 'json',
+    	       url: "saveSkillTest",
+    	       data: JSON.stringify(search), // Note it is important
+    	       success :function(result) {
+    	         alert(result);
+    	       }
+    	   });
+    	} 
+</script>
+</head>
+<body id="top" class="has-header-search">
+
+	<!--header start-->
+	<header id="header" class="tt-nav nav-border-bottom">
+		<div class="header-sticky light-header ">
+			<div class="container">
+				<div id="materialize-menu" class="menuzord">
+					<!--logo start-->
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						alt="" />
+					</a>
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right">
+						<li><a
+							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+						<li><a href="question_list">Question Bank</a></li>
+						<li><a href="testlist">Tests</a></li>
+						<li><a href="skills">Skills</a></li>
+						<li><a href="showReports">Results</a></li>
+						<li><a href="practice">Practice</a></li>
+						<li><a href="codingSessions">Code Analysis Reports</a></li>
+						<li class="active"><a href="skillTest">Skill Test</a></li>
+						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li><a href="showProfileParams">Recomm Setting</a></li>
+						<li><a href="listUsers">Users</a></li>
+					</ul>
+					<!--mega menu end-->
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--header end-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="mb-30">
+						<h2 class="section-title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAdd
+							New Skill</h2>
+					</div>
+					<form name="tenantForm" method="post" modelAttribute="skillTest"
+						action="saveSkillTest">
+
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Skill Name </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.skillName" name="skillName"
+												id="skillName" required="true" />
+												
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">SubSkill Name </label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.subSkill" name="subSkill"
+												id="subSkill" required="true" />
+										</div>
+									</div>
+								</div>
+							</div>
+</div>
+<!-- close div -->
+	                         <div class="col-md-12">
+							<div class="col-md-6">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Skill List</label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<select id="smt">
+												<c:forEach items="${skillTests}" var="skillTests">
+													<option  onclick="displayRecord('${skillTests.subSkill}');" value="${skillTests.skillName}">${skillTests.skillName} - ${skillTests.subSkill}</option>
+												</c:forEach>
+											</select>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<%-- <div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">SubSkill List </label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<select  >
+												<c:forEach items="${skillTests}" var="skillTests">
+													<option value="${skillTests.subSkill}">${skillTests.subSkill}</option>
+												</c:forEach>
+											</select>
+										 <input type="text" id="subSkill" name="subSkill">
+										</div>
+									</div>
+								</div> --%>
+							</div>
+</div>
+							
+
+						</div>
+						
+
+						<%-- <div class="col-md-8">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Sub Skill</label>
+									</div>
+									<div class="col-md-8">
+										<div class="input-field">
+											<form:input path="skillTest.subSkill" name="subSkill" id="subSkill"
+												required="true" />
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-8">
+								<div class="row formfields">
+									<div class="col-md-4">
+										<label class="fieldtitle">Test Name</label>
+									</div>
+									<div class="col-md-8">
+										<div class="dropdown">
+											<form:select path="skillTest.testName">
+                                                <c:forEach  items="${test}" var="test">
+                                                
+												<form:option value="${test.testName}">${test.testName}</form:option>
+												
+                                                </c:forEach>
+											</form:select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div> --%>
+						<div class="col-md-12">
+							<div class="col-md-8">
+								<button onclick="searchText" type="submit" name="submit"
+									class="waves-effect waves-light btn submit-button mt-30">Save</button>
+								<button type="button"
+									class="waves-effect waves-light btn submit-button indigo mt-30"
+									onclick="goback()">Cancel</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="col-md-3"></div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer footer-four">
+		<div class="secondary-footer brand-bg darken-2 text-center">
+			<div class="container">
+				<ul>
+					<li><a href="javascript:void(0)">Dashboard</a></li>
+					<li><a href="question_list">Question Bank</a></li>
+					<li><a href="testlist">Tests</a></li>
+					<li><a href="javascript:void(0)">Skills</a></li>
+					<li><a href="showReports">Results</a></li>
+					<li><a href="javascript:void(0)">Code Analysis Reports</a></li>
+					<li><a href="javascript:void(0)">Skill based Reports</a></li>
+					<li><a href="showProfileParams">Recomm Setting</a></li>
+					<li><a href="listUsers">Users</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- jQuery -->
+
+	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+	<script src="${mainJs16}"></script>
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
+	<script src="${mainJs17}"></script>
+
+
+	<c:if test="${msgtype != null}">
+		<script>
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : '${message}',
+					type : '${msgtype}',
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
+	</c:if>
+     <script>
+      
+     </script>
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM
 
 </body>
 

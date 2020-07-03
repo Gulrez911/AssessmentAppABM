@@ -1,7 +1,6 @@
 package com.assessment.services;
 
 import java.util.List;
-
 import com.assessment.data.SkillTest;
 
 public interface SkillTestService {
@@ -21,4 +20,8 @@ public interface SkillTestService {
 	
 	 SkillTest getByskillsubskill(String skill , String compId, String subskill);
 	
+    
+	
+	/* public String findAllRecord(String skillname); */
+
 }

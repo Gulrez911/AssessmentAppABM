@@ -667,7 +667,7 @@ public class ReportsController {
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
 
-	//Added by dhanshree
+
 	@RequestMapping(value = "/searchReport", method = RequestMethod.GET)
 	public ModelAndView searchReport(@RequestParam String searchReport, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -701,7 +701,8 @@ public class ReportsController {
 	@GetMapping("/sortReport")
 	@ResponseBody
 	public Map<String, Object> sortReport(HttpServletRequest request,
-			@RequestParam(name = "sortBy", required = false) String sortBy) {
+			@RequestParam(name = "sortBy", required = false) String sortBy,
+			@RequestParam(name="colName", required = false)String colName) {
 		Map<String, Object> mapList = new HashedMap();
 		User user = (User) request.getSession().getAttribute("user");
 
@@ -713,7 +714,20 @@ public class ReportsController {
 
 		for (AssessmentTestPerspectiveData testData : collection) {
 			collectionForTest.add(testData);
+
 		}
+		
+		if(colName.equals("Title")) {
+		if (sortBy.equals("ASC")) {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testASC);
+			System.out.println(">>collection in ASC" + collectionForTest);
+
+		} else {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testDESC);
+			System.out.println(">>collectionForTest in DESC" + collectionForTest);
+			}
+		}
+
 		if (sortBy.equals("ASC")) {
 			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testASC);
 			System.out.println(">>collection in ASC" + collectionForTest);
@@ -722,7 +736,6 @@ public class ReportsController {
 			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testDESC);
 			System.out.println(">>collectionForTest in DESC" + collectionForTest);
 		}
-
 		int srNo = 0 * 10;
 
 		mapList.put("srNo", srNo);
@@ -733,8 +746,31 @@ public class ReportsController {
 
 	}
 
-	
-
+	/*
+	 * @RequestMapping(value = "/searchTestNameWiseUIReport", method =
+	 * RequestMethod.GET) public ModelAndView
+	 * searchTestNameWiseUIReport(@RequestParam String searchReport, @RequestParam
+	 * String testName, HttpServletRequest request, HttpServletResponse response) {
+	 * ModelAndView mav = new ModelAndView("testReport"); User user = (User)
+	 * request.getSession().getAttribute("user"); AssessmentReportDataManager
+	 * assessmentReportDataManager = new AssessmentReportDataManager(
+	 * userTestSessionRepository, sectionService, userService, user.getCompanyId(),
+	 * user.getFirstName() + " " + user.getLastName());
+	 * Collection<AssessmentUserPerspectiveData> data =
+	 * assessmentReportDataManager.getUserPerspectiveData();
+	 * List<AssessmentUserPerspectiveData> test = new ArrayList<>(); for
+	 * (AssessmentUserPerspectiveData userdata : data) { if
+	 * (userdata.getTestName().equals(testName)) { if
+	 * (Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
+	 * .matcher(userdata.getFirstName()).find() ||
+	 * Pattern.compile(Pattern.quote(searchReport), Pattern.CASE_INSENSITIVE)
+	 * .matcher(userdata.getEmail()).find()) { // if
+	 * (((userdata.getFirstName().contains(searchReport) ||
+	 * userdata.getEmail().contains(searchReport)))) { test.add(userdata); } } }
+	 * mav.addObject("test", new Test()); mav.addObject("reportType",
+	 * "Tests & Users Assessment Reports"); mav.addObject("reportList", test);
+	 * return mav; }
+	 */
 	@GetMapping("/getRank")
 	@ResponseBody
 	public Map<String, Object> getRank(HttpServletRequest request, @RequestParam String email) {
@@ -856,7 +892,11 @@ public class ReportsController {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.securityBreechDESC);
 				System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
-		}else{
+
+		}
+
+		else if(colName.equals("TestEnd")){
+
 			if (sortBy.equals("ASC")) {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.endASC);
 				System.out.println(">>collection in ASC" + collectionForTest);
@@ -892,8 +932,10 @@ public class ReportsController {
 		mapList.put("page", pageNumber);
 		mapList.put("sortBy", sortBy);
 		mapList.put("testName", testName);
+		//mapList.put("qs",colName);
 		mapList.put("colName", colName);
 		return mapList;
 	}
+	}
 
-}
+

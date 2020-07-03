@@ -116,7 +116,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 			+ "  then '' else CONCAT('',' - ',qualifier5) end) )as qualifier from Question where companyId=?", nativeQuery = true)
 	public List<String> getQualifier(String companyId);
 
-	Page<Question> findByCompanyId(String companyId, Pageable pageable);
+	//Page<Question> findByCompanyId(String companyId, Pageable pageable);
 
 	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId order by field(difficultyLevel,'difficult','medium','easy')", countQuery = "SELECT COUNT(*) FROM Question q WHERE q.companyId=:companyId")
 	public Page<Question> findByDifficultyLevel2(@Param("companyId") String companyId, Pageable pageable);
@@ -126,5 +126,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
 	@Query(value = "SELECT q FROM Question q WHERE q.companyId=:companyId ORDER BY updateDate", countQuery = "SELECT COUNT(*) FROM Question q WHERE q.companyId=:companyId")
 	public Page<Question> sortQuestionsByDate(@Param("companyId") String companyId, Pageable pageable);
+	
+	Page<Question> findAllByCompanyId(String companyId, Pageable pageable);
+	Page<Question> findAllByCompanyIdAndQuestionTextContainingIgnoreCase(String companyId, String searchText,Pageable pageable);
+
 
 }

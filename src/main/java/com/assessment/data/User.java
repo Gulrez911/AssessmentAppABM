@@ -22,6 +22,11 @@ public class User extends Base{
 	 String mobileNumber;
 	 String firstName;
 	 String lastName;
+	 
+	 
+	 int otp;
+	 
+	String resetToken;
 	 @NotNull
 	 String password;
 	 String department;
@@ -34,11 +39,16 @@ public class User extends Base{
 	
 	Boolean internalUser;
 	
+	String verificationStatus;
+	
 	@Transient
 	private String type;
 	
 	@Transient
 	Boolean selected;
+	
+	@Transient
+	String confirmPassword;
 	
 	public String getDepartment() {
 		return department;
@@ -116,6 +126,35 @@ public class User extends Base{
 		this.selected = selected;
 	}
 	
+	
+	public int getOtp() {
+		return otp;
+	}
+	public void setOtp(int otp) {
+		this.otp = otp;
+	}
+	public String getVerificationStatus() {
+		return verificationStatus;
+	}
+	public void setVerificationStatus(String verificationStatus) {
+		this.verificationStatus = verificationStatus;
+	}
+	
+	public String getResetToken() {
+		return resetToken;
+	}
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 			if(getId() == null) {
@@ -137,5 +176,18 @@ public class User extends Base{
 		
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", mobileNumber=" + mobileNumber + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", otp=" + otp + ", resetToken=" + resetToken + ", password=" + password + ", department="
+				+ department + ", userType=" + userType + ", groupOfUser=" + groupOfUser + ", grade=" + grade
+				+ ", internalUser=" + internalUser + ", verificationStatus=" + verificationStatus + ", type=" + type
+				+ ", selected=" + selected + ", confirmPassword=" + confirmPassword + "]";
+	}
+	
+	
 
+	
+	
 }

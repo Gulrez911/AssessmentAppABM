@@ -166,7 +166,7 @@
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>Serial</th>
-									<th>Main Skill</th>
+						<th>Main Skill</th>
 
 									<th>Sub Skill</th>
 									<th>Update</th>
@@ -175,8 +175,6 @@
 									<!--<th>Update Skill</th> -->
 								</tr>
 							</thead>
-
-							<tbody>
 							<tbody>
 
 								 <c:forEach items="${skillTests}" var="skillTest" varStatus="loop">
@@ -186,10 +184,17 @@
 										<td>${skillTest.subSkill}</td>
 										<td><a href="#"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
 										<td><a href="#"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td>
-									</tr>
-								</c:forEach> 
-							</tbody>
 
+									<th>Skill Name</th>
+
+									<th>Sub Skill</th>
+									<th>Test Name</th>
+
+									<!--<th>Update Skill</th> -->
+								</tr>
+								</c:forEach>
+							
+							</tbody>
 						</table>
 					</div>
 

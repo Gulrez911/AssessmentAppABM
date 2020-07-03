@@ -110,6 +110,7 @@
 						<li><a href="showReports">Results</a></li>
 						<li><a href="practice">Practice</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
+						<li><a href="skillTest">Skill Test</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>

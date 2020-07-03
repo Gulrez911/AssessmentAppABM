@@ -198,7 +198,11 @@
 								<thead style="background-color: #03a9f4;">
 									<tr>
 										<th><b>No</b></th>
+<<<<<<< HEAD
 										<th style="width: 20%" onclick='sort(this.id)' id="ASC" class="CCC"><b>Test Title</b></th>
+=======
+										<th style="width: 20%" onclick="sort(this.id,'Title')" id="ASC"><b>Test Title</b></th>
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM
 										<th><b>Sections</b></th>
 										<th style="width: 5%"><b>Sessions</b></th>
 										<th><b>Passed </b></th>
@@ -379,6 +383,7 @@
 			});
 		}
 
+<<<<<<< HEAD
 		function sort(sort) {
 			 /* if(page===undefined){
 				page=0;
@@ -448,6 +453,77 @@
 						}
 
 					});
+=======
+		function sort(sort,colName) {
+
+			/* var a=$("#"+sort).attr("value");
+			 if(a===undefined){
+					a="ASC";
+			}	
+			console.log("a>>>>>>" +a);	 */
+			console.log("Value of sort: " + sort);
+			$.ajax({
+				url : 'sortReport?sortBy=' +sort+"&colName="+colName,
+				type : 'GET',
+				success : function(response) {
+					console.log("Response val:"+ response.sortBy);
+					var colName=response.colName;
+					console.log(response.qs);
+					var no=response.srNo;
+					$(".tr").remove();
+					for(var i=0; i<response.qs.length; i++){
+						no=no+1;
+						$("#tbl").append(
+						"<tr class='tr'><td>"
+						+no+
+						"</td><td><a href='downloadUserReportsForTest2?testName="+response.qs[i].testName+"' >"+ response.qs[i].testName+ "</a></td><td>"						+response.qs[i].sectionsInfo+
+						+response.qs[i].sectionsInfo+
+						"</td><td>"
+						+response.qs[i].noOfSessions+
+						"</td><td>"
+						+response.qs[i].noOfPassResults+
+						"</td><td>"
+						+response.qs[i].averageScore+
+						"</td><td>"
+						+response.qs[i].highestScore+
+						"</td><td>"
+						+response.qs[i].topCandidates+
+						"</td><td>"
+						+response.qs[i].topCandidatesEmail+
+						"</td><td><a href='downloadUserReportsForTest?testName=\""+response.qs[i].testName+"\"'>Click</a></td><td><a href='downloadUserReportsForTestWithExtraAttrs?testName=\""+response.qs[i].testName+"\"' >click</a></td></tr>")
+					}
+
+					console.log(":::"+colName);
+					/* var selector;
+					var testTitle="Title";
+					var className=""; */
+
+					/* if(colName==testTitle){
+						className = $('#'+testTitle).attr('class');
+						if (response.sortBy == "ASC") {
+							selector = document.getElementById(colName);
+							selector.setAttribute('value', "DESC");
+							$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
+						} else {
+							selector = document.getElementById(colName);
+							selector.setAttribute('value', "ASC");
+							$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
+						}
+					}else{
+						className = $('#'+testTitle).attr('class');
+						$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort");
+					} */
+
+					 if (response.sortBy == "ASC") {
+						$("#ASC").attr('id', "DESC");
+					} else {
+						$("#DESC").attr('id', "ASC");
+					} 
+
+				}
+
+			});
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM
 		}
 		
 	</script>
