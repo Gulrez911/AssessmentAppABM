@@ -67,6 +67,24 @@ public class SkillTestServiceImpl implements SkillTestService{
 		
 		return skillTestRepository.getByskillsubskill(skill, compId, subskill);
 	}
+	
+
+
+	@Override
+	public List<SkillTest> findUniqueParentSkill(String companyId) {
+		// TODO Auto-generated method stub
+		return skillTestRepository.findUniqueParentSkill(companyId);
+	}
+
+	 
+
+	
+
+	@Override
+	public List<SkillTest> findAllByCompanyId(String companyId) {
+		return skillTestRepository.findAllByCompanyId(companyId);
+	}
+
 
 //	@Override
 //	public List<SkillTest> getUnique() {

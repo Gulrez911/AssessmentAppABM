@@ -85,15 +85,10 @@ public class UserLoginRegisterController {
 			mav.addObject("msgtype", "Failure");
 			return mav;
 		} else {
-			mav = new ModelAndView("userDashboard");
-			List<String> skills = skilltestrepository.getSkills(user.getCompanyId());
-			for(int i = 0 ; i<skills.size(); i++) {
-				System.out.println(skills.get(i));
-			}
+			mav = new ModelAndView("redirect:/practiceCode");
 			request.getSession().setAttribute("user", user);
 			System.out.println("test3.........    " + user);
 			mav.addObject("userName", user.getFirstName());
-			mav.addObject("skills",skills);
 		}
 		return mav;
 	}

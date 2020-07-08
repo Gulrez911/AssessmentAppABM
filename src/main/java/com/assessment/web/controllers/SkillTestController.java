@@ -1,13 +1,16 @@
 package com.assessment.web.controllers;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +22,6 @@ import com.assessment.data.User;
 import com.assessment.repositories.SkillTestRepository;
 import com.assessment.repositories.TestRepository;
 import com.assessment.services.SkillTestService;
-
-import java.util.Date;
-import java.util.List;
 
 @Controller
 public class SkillTestController {
@@ -39,12 +39,36 @@ public class SkillTestController {
 	@RequestMapping(value = "/skillTest", method = RequestMethod.GET)
 	public ModelAndView getSkillTest(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
-		List<SkillTest> skillTest = skillTestService.getskillTest();
-		ModelAndView mav = new ModelAndView("skillTest");
-		mav.addObject("skillTest", skillTest);
+		List<SkillTest> skillTests = skillTestService.findAllByCompanyId(user.getCompanyId());
+		ModelAndView mav = new ModelAndView("skill_List");
+		System.out.println("SkillTestController.getSkillTest()" + skillTests);
+		mav.addObject("skillTests", skillTests);
 		return mav;
 	}
-
+	@GetMapping("/addSkillTest1")
+	public ModelAndView addSkillTest(HttpServletRequest request,@RequestParam(name="id",required = false) Long id) {
+		User user = (User) request.getSession().getAttribute("user");
+		ModelAndView mav = new ModelAndView("addSkillTest");
+		List<SkillTest> listSkill = skillTestService.findUniqueParentSkill(user.getCompanyId());
+		if(id==null) {
+			SkillTest skillTest = new SkillTest();
+			mav.addObject("skillTest", skillTest);
+		}else {
+			SkillTest skillTest= skillTestRepository.findById(id).get();
+			 if(!skillTest.getIsCheckedFlag()) {
+				 System.out.println("parent only");
+			 }else {
+				 String pskill=skillTest.getParentSkill();
+				 skillTest.setParentSkill(skillTest.getChildSkill());
+				 skillTest.setChildSkill(pskill);
+			 }
+			mav.addObject("skillTest", skillTest);
+		}
+		System.out.println("list unique skill::::                  " + listSkill);
+		mav.addObject("listSkill", listSkill);
+		return mav;
+	}
+	
 	@RequestMapping(value = "/addSkillTest", method = RequestMethod.GET)
 	public ModelAndView addSkill(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
@@ -58,29 +82,43 @@ public class SkillTestController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/saveSkillTest", method = RequestMethod.POST)
-	public String saveSkill(HttpServletRequest request,ModelMap model, HttpServletResponse response,
-			@ModelAttribute("skillTest") SkillTest skillTest,@RequestParam(name="skillName",required = false)String skillName,
-			@RequestParam(name="subskillName",required = false)String subskillName) {
+
+
+	@PostMapping("/saveSkillTest")
+	public ModelAndView saveSkillTest(@ModelAttribute("skillTest") SkillTest skillTest,
+			HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
 		User user = (User) request.getSession().getAttribute("user");
-		List<SkillTest> skillTests = skillTestService.getskillTest();
-		skillTest.setCompanyId(user.getCompanyId());
-		skillTest.setCompanyName(user.getCompanyName());
-		skillTest.setCreateDate(new Date());
-		for(SkillTest sk:skillTests) {
-			String Skillname=sk.getSkillName();
-			String subSKillName=sk.getSubSkill();
-			if(Skillname.equalsIgnoreCase(skillName) && subSKillName.equalsIgnoreCase(subskillName)) {
-				//ModelAndView mab=new ModelAndView("");
-				model.addAttribute("msg","already esists");
-				return "addSkillTest";
+		List<SkillTest> listSkill = skillTestService.findUniqueParentSkill(user.getCompanyId());
+		mav.addObject("listSkill", listSkill);
+		List<SkillTest> skillTest2;
+		mav.addObject("skillTest", new SkillTest());
+		if (skillTest.getIsCheckedFlag()) {
+			skillTest2 = skillTestRepository.findByParentSkillAndChildSkill(
+					skillTest.getParentSkill(), skillTest.getChildSkill());
+			System.out.println("true");
+			if (skillTest2.size()>0) {
+				mav.addObject("message", "Parent and Child Skill already exist");
+				mav.addObject("msgtype", "failure");
+				mav.setViewName("addSkillTest");
+				return mav;
+			}
+		} else {
+			 skillTest2 = skillTestRepository.findByparentSkill(skillTest.getParentSkill());
+			System.out.println("false");
+			if (skillTest2.size()>0) {
+				mav.addObject("message", "Parent Skill already exist");
+				mav.addObject("msgtype", "failure");
+				mav.setViewName("addSkillTest");
+				return mav;
 			}
 		}
-		skillTestService.createSkillTest(skillTest);
-//		ModelAndView mav = new ModelAndView("SkillTest");
-//		SkillTest skillTest2 = new SkillTest();
-//		mav.addObject("skillTest2", skillTest2);
-		return "redirect:/skillTest";
-
+		skillTest.setCompanyId(user.getCompanyId());
+		skillTest.setCompanyName(user.getCompanyName());
+		skillTestRepository.save(skillTest);
+		mav.setViewName("redirect:/skillTest");
+		System.out.println("object:     " + skillTest);
+		return mav;
 	}
 }
+

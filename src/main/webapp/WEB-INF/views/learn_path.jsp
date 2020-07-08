@@ -910,7 +910,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 				$('#ddl_test').html("<option value='default' disabled selected>---Choose Test---</option>")
 				
 				for(var i=0;i<data.length;i++){
-					var testoption = "<option value='"+data[i]+"'>"+data[i]+"</option>";
+					var testoption = "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
 					$('#ddl_test').append(testoption);
 				}
 			}
@@ -1129,6 +1129,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 									stepdetailstable(stn, skn, subs);
 									$("#step_nm_display").val(stn);
 									$('#steptest_modal').modal('show');
+									update_testddl();
 								}	
 							});
 						}
@@ -1180,17 +1181,11 @@ div.dataTables_wrapper div.dataTables_filter input{
 			var subskilln=$('#ddl_subskill').find("option:selected").val();
 			var stepname=$('#step_nm_display').val();
 			var level=$('#ddl_level').find("option:selected").val();
-			var test=$('#ddl_test').find("option:selected").val();
-			
-			if(test != ""){
-				$('#testerr').html("");
-			}
-			else{
-				$('#testerr').html("Please select test");
-			}
-			
-			if(level != ""){
+			var test=$('#ddl_test').find("option:selected").text();
+			var testid = $('#ddl_test').find("option:selected").val();
+			if(level != "" && test != ""){
 				$('#levelerr').html("");
+				$('#testerr').html("");
 				$.ajax({
 					url:'addteststep1',
 					method:'POST',
@@ -1198,6 +1193,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 						stepName: stepname,
 						skillName: skilln,
 						subSkill: subskilln,
+						testId:testid,
 						level: level,
 						testName: test
 					},
@@ -1209,7 +1205,10 @@ div.dataTables_wrapper div.dataTables_filter input{
 				});
 			}
 			else {
-				$('#levelerr').html("Please select the child skill");
+				if(level == null)
+					$('#levelerr').html("Please select the child skill");
+				if(test == null)
+					$('#testerr').html("Please select test");
 			}
 		});
 		

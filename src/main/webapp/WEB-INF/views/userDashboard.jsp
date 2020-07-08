@@ -106,6 +106,43 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
 
 <style>
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #ececec;
+  color: black;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	opacity: 13;
+	
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -256,9 +293,12 @@ div.dataTables_wrapper div.dataTables_filter input{
 </style>
 </head>
 
-<body>
+<body id="top" class="has-header-search">
 		
 		<!--header start-->
+	
+	
+	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
 			<div class="container">
@@ -266,14 +306,16 @@ div.dataTables_wrapper div.dataTables_filter input{
 					<!--logo start-->
 					<a href="javascript:void(0);" class="logo-brand"> <img
 						class="retina"
-						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
 						alt="" />
 					</a>
-					
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right">
-						<li class="active">
+					<ul class="nav navbar-nav">
+						<li><a
+							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+
+						<%-- <li class="active">
 							<a class="dropbtn">Practice</a>
 							<div class="dropdown">
 								<div class="dropdown-content skilldiv" style="background:#b3bdc7">
@@ -282,19 +324,33 @@ div.dataTables_wrapper div.dataTables_filter input{
 									</c:forEach>
 								 </div>
 							</div>
+						</li> --%>
+						<li>
+							<div class="tooltip">
+								<a href="getSubSkill">Coding </a> <span class="tooltiptext">
+									<c:forEach items="${skillList}" var="skill" varStatus="loop">
+										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
+												value="${skill}" /></a><br>
+
+									</c:forEach>
+								</span>
+							</div>
 						</li>
+						<li><a href="#">Compete</a></li>
+						<li><a href="practice">Code-GIG</a></li>
 					</ul>
 					<!--mega menu end-->
-					 </div>
+				</div>
 			</div>
 		</div>
-		
 	</header>
 	<!--header end-->
 
+	
+
 	<section>
 		<div align="center" style="color:green; font-size: 25px;">
-		<b>Welcome ${userName }</b>
+		
 		</div>
 	</section>
 

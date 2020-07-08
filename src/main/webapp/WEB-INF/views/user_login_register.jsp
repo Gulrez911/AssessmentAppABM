@@ -485,7 +485,7 @@
 					$("#vEmail").val(response.email); 
 					console.log("ssssss   ");
 					if(response.msg=="success"){
-						window.open('dashboard');
+						window.open('user_login_register');
 						console.log("Dashboard opened");
 					}
 				},

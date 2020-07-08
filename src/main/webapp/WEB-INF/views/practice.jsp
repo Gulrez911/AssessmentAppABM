@@ -101,11 +101,201 @@
 <spring:url value="/resources/scripts/src-min-noconflict/ace.js"
 	var="mainJs5" />
 <script src="${mainJs5}"></script>
+<style>
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #ececec;
+  color: black;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	opacity: 13;
+	
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+</style>
+
+<style type="text/css">
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 18px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height:18px;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.bigmodal>.modal-dialog {
+          width: 60%;
+          height: 80%; /* New width for default modal */
+        }
+.dropdown-menu {
+	min-width: 387px !important;
+	height: 300px !important;
+	overflow: auto !important;
+}
+
+.drp{
+	display:block;
+	inline-size:auto;
+	font-size:16px;
+	margin-top:15px;
+	border-radius:0.5rem;
+	border-bottom:3px solid #fff;
+	background: #647687;
+	color: #fff;
+}
+.drp>option{
+	padding:7px;
+}
+.skilldiv{
+	border:2px solid #b3bdc7;
+	border-radius:0.7rem;
+}
+.skillcontent{
+	margin:20px;
+	padding:20px;
+	background:#ffffff;
+	height:60px;
+	border-radius:0.7rem;
+	width:200px;
+	text-align:right;
+	color:black;
+}
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.errorclass {
+	color: red;
+	font-style: italic;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+a.dropbtn:hover > .dropdown{display:block;}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+div.container{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+    margin-bottom: 0px;
+    margin-left: 0px;
+    border-style: ridge;
+    height: auto;
+    border-radius: 0.7rem;
+}
+
+
+</style>
 
 </head>
 <body id="top" class="has-header-search">
 
-	<!--   header Start -->
+	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
 			<div class="container">
@@ -118,26 +308,37 @@
 					</a>
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right">
+					<ul class="nav navbar-nav">
 						<li><a
 							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li><a href="question_list">Question Bank</a></li>
-						<li><a href="testlist">Tests</a></li>
-						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li class="active"><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="skillTest">Skill Test</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
-						<li><a href="showProfileParams">Recomm Setting</a></li>
-						<li><a href="listUsers">Users</a></li>
+
+                       <li>
+							<a class="dropbtn">Practice</a>
+							<div class="skilldiv dropdown">
+								<div class="dropdown-content" style="background:#b3bdc7">
+									<c:forEach var="s1" varStatus="status" items="${skills}">
+										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
+									</c:forEach>
+								 </div>
+							</div>
+						</li>				<li class="tooltip">
+								<a href="getSubSkill">Coding </a> <span class="tooltiptext">
+									<c:forEach items="${skillList}" var="skill" varStatus="loop">
+										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
+												value="${skill}" /></a><br>
+
+									</c:forEach>
+								</span>
+							
+						</li>
+						<li><a href="practice">Code-GIG</a></li>
 					</ul>
 					<!--mega menu end-->
 				</div>
 			</div>
 		</div>
 	</header>
-	<!-- header End -->
+	<!--header end-->
 
 	<section>
 		<div class="container">
@@ -151,34 +352,36 @@
 					<button type="button" name="submit"
 						class="waves-effect waves-light btn submit-button indigo mt-30"
 						onclick="runCode()">RunCode</button>
-					<button type="button" class="waves-effect waves-light btn submit-button indigo mt-30" id="btn"
-						onclick="saveCode()">Save</button>
-						<button type="button" class="waves-effect waves-light btn submit-button indigo mt-30" 
-						onclick="addNew()">Add New</button>
+					<button type="button"
+						class="waves-effect waves-light btn submit-button indigo mt-30"
+						id="btn" onclick="saveCode()">Save</button>
+					<button type="button"
+						class="waves-effect waves-light btn submit-button indigo mt-30"
+						id="nbtn" onclick="addNew()">Add New</button>
 					<form:form action="saveCode" modelAttribute="practiceCode"
 						method="post">
-                         
-						<label style="color: black; font-size: 18px">Programming Language</label>
+
+						<label style="color: black; font-size: 18px">Programming
+							Language</label>
 						<form:select path="lang" id="lang" onchange="changeLang()">
 							<form:options items="${langs}" />
 
 						</form:select>
-						<label style="color: black; font-size: 18px">Date Wise Code</label>
+						<label style="color: black; font-size: 18px">Date Wise
+							Code</label>
 						<select id="dateId" onchange="changeDate()">
-						   <c:forEach items="${listCode}" var="listCode">
-						   <option value="${listCode.id}">${listCode.createDate}</option>
-						   </c:forEach>
+							<c:forEach items="${listCode}" var="listCode">
+								<option value="${listCode.id}">${listCode.createDate}</option>
+							</c:forEach>
 						</select>
-					
-						
+
+
 						<div id="aceEditor">
 							<form:textarea path="code" wrap="physical" id="editor" />
 						</div>
 						<form:hidden path="id" id="id" />
 						<input type="hidden" id="codeOfEditor" name="code" value="3487">
 
-
-						<br>
 						<br>
 						<label style="color: black; font-size: 18px">Input</label>
 						<br>
@@ -214,26 +417,7 @@
 	</section>
 
 
-	<footer class="footer footer-four">
-		<div class="secondary-footer brand-bg darken-2 text-center">
-			<div class="container">
-				<ul>
-					<li><a
-						href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-					<li class="active"><a href="question_list">Question Bank</a></li>
-					<li><a href="testlist">Tests</a></li>
-					<li><a href="skills">Skills</a></li>
-					<li><a href="showReports">Results</a></li>
-					<li><a href="codingSessions">Code Analysis Reports</a></li>
-					<li><a href="skillTest">Skill Test</a></li>
-					<li><a href="showSkillTags">Skill based Reports</a></li>
-					<li><a href="showProfileParams">Recomm Setting</a></li>
-					<li><a href="listUsers">Users</a></li>
-				</ul>
-			</div>
-		</div>
-	</footer>
-
+	
 
 	<!-- jQuery -->
 
@@ -289,6 +473,7 @@
 	<script src="${mainJs17}"></script>
 
 	<script>
+
 		var editor = ace.edit("aceEditor");
 		editor.setTheme("ace/theme/solarized_light");
 		var language = $("#lang").val();
@@ -304,29 +489,29 @@
 			editor.session.setMode("ace/mode/csharp");
 		} else if (language == 'Python') {
 			editor.session.setMode("ace/mode/python");
-		}else if (language == 'Ruby') {
+		} else if (language == 'Ruby') {
 			editor.session.setMode("ace/mode/ruby");
-		}else if (language == 'Perl') {
+		} else if (language == 'Perl') {
 			editor.session.setMode("ace/mode/perl");
-		}else if (language == 'Scala') {
+		} else if (language == 'Scala') {
 			editor.session.setMode("ace/mode/scala");
-		}else if (language == 'Go') {
+		} else if (language == 'Go') {
 			editor.session.setMode("ace/mode/go");
-		}else if (language == 'Bash') {
+		} else if (language == 'Bash') {
 			editor.session.setMode("ace/mode/bash");
-		}else if (language == 'Rust') {
+		} else if (language == 'Rust') {
 			editor.session.setMode("ace/mode/rust");
-		}else if (language == 'PHP') {
+		} else if (language == 'PHP') {
 			editor.session.setMode("ace/mode/php");
-		}else if (language == 'Clojure') {
+		} else if (language == 'Clojure') {
 			editor.session.setMode("ace/mode/clojure");
-		}else if (language == 'Plain Javascript') {
+		} else if (language == 'Plain Javascript') {
 			editor.session.setMode("ace/mode/plain_javascript");
-		}else if (language == 'MySql') {
+		} else if (language == 'MySql') {
 			editor.session.setMode("ace/mode/mysql");
-		}else if (language == 'VB.NET') {
+		} else if (language == 'VB.NET') {
 			editor.session.setMode("ace/mode/vbdotnet");
-		}else if (language == 'Objective-C') {
+		} else if (language == 'Objective-C') {
 			editor.session.setMode("ace/mode/objective-c");
 		}
 
@@ -341,11 +526,9 @@
 	</script>
 
 	<script type="text/javascript">
-
-	function changeDate(){
-         var id = $("#dateId").val();
-         window.location = 'practice?id=' +id;
-       
+		function changeDate() {
+			var id = $("#dateId").val();
+			window.location = 'practice?id=' + id;
 
 		};
 		function changeLang() {
@@ -442,13 +625,13 @@
 				lang = '9';
 			} else if (language == 'Bash') {
 				lang = '11';
-			}else if (language == 'Rust') {
+			} else if (language == 'Rust') {
 				lang = '15';
-			}else if (language == 'Go') {
+			} else if (language == 'Go') {
 				lang = '6';
-			}else if(language == "Objective-C"){
-                   lang = '12';
-				}
+			} else if (language == "Objective-C") {
+				lang = '12';
+			}
 
 			var url = 'compile';
 			var data = {};
@@ -481,7 +664,8 @@
 			});
 		}
 
-		function addNew(){
+		function addNew() {
+			$("#nbtn").attr("disabled", true);
 			var code = editor.getValue();
 			var lang = $("#lang").val();
 			var langId = 8;
@@ -536,102 +720,121 @@
 				data : JSON.stringify(data),
 				contentType : "application/json; charset=utf-8",
 				success : function(msg) {
-					
+
 					window.location = 'practice?msg=' + msg;
 				}
 			});
-          
-			}
 
-		function saveCode() {
-			$(document).ready(function(){
-				$("#btn").attr("disabled", true);	
-			var code = editor.getValue();
-			var lang = $("#lang").val();
-			var langId = 8;
-			if (lang == 'Java') {
-				langId = 8;
-			} else if (lang == 'C') {
-				langId = 7;
-			} else if (lang == 'C plusplus') {
-				langId = 7;
-			} else if (lang == 'C sharp') {
-				langId = 10;
-			} else if (lang == 'VB.NET') {
-				langId = 9;
-			} else if (lang == 'Python') {
-				langId = 0;
-			} else if (lang == 'Clojure') {
-				langId = 2;
-			} else if (lang == 'Go') {
-				langId = 6;
-			} else if (lang == 'Plain JavaScript') {
-				langId = 4;
-			} else if (lang == 'PHP') {
-				langId = 3;
-			} else if (lang == 'Ruby') {
-				langId = 1;
-			} else if (lang == 'Scala') {
-				langId = 5;
-			} else if (lang == 'Bash') {
-				langId = 11;
-			} else if (lang == 'Objective-C') {
-				langId = 12;
-			} else if (lang == 'MySql') {
-				langId = 13;
-			} else if (lang == 'Perl') {
-				langId = 14;
-			} else if (lang == 'Rust') {
-				langId = 15;
-			}
-
-			var data = {};
-			data.id=$("#id").val();
-			//data.createDate =$("#date").val();
-			data.lang = lang;
-			data.code = code;
-			data.langId = langId;
-			data.input = "input";
-			data.output = "output";
-			dta = JSON.stringify(data);
-			console.log(data);
-			$.ajax({
-				url : "saveCode",
-				type : 'POST',
-				data : JSON.stringify(data),
-				contentType : "application/json; charset=utf-8",
-				success : function(msg) {
-					
-					window.location =  'practice?msg=' + msg;
-				}
-			});
-			});
 		}
 
-		 
-		
+		function saveCode() {
+			$(document).ready(function() {
+				$("#btn").attr("disabled", true);
+				var code = editor.getValue();
+				var lang = $("#lang").val();
+				var langId = 8;
+				if (lang == 'Java') {
+					langId = 8;
+				} else if (lang == 'C') {
+					langId = 7;
+				} else if (lang == 'C plusplus') {
+					langId = 7;
+				} else if (lang == 'C sharp') {
+					langId = 10;
+				} else if (lang == 'VB.NET') {
+					langId = 9;
+				} else if (lang == 'Python') {
+					langId = 0;
+				} else if (lang == 'Clojure') {
+					langId = 2;
+				} else if (lang == 'Go') {
+					langId = 6;
+				} else if (lang == 'Plain JavaScript') {
+					langId = 4;
+				} else if (lang == 'PHP') {
+					langId = 3;
+				} else if (lang == 'Ruby') {
+					langId = 1;
+				} else if (lang == 'Scala') {
+					langId = 5;
+				} else if (lang == 'Bash') {
+					langId = 11;
+				} else if (lang == 'Objective-C') {
+					langId = 12;
+				} else if (lang == 'MySql') {
+					langId = 13;
+				} else if (lang == 'Perl') {
+					langId = 14;
+				} else if (lang == 'Rust') {
+					langId = 15;
+				}
+
+				var data = {};
+				data.id = $("#id").val();
+				//data.createDate =$("#date").val();
+				data.lang = lang;
+				data.code = code;
+				data.langId = langId;
+				data.input = "input";
+				data.output = "output";
+				dta = JSON.stringify(data);
+				console.log(data);
+				$.ajax({
+					url : "saveCode",
+					type : 'POST',
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(msg) {
+
+						window.location = 'practice?msg=' + msg;
+					}
+				});
+			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function notify(messageType, message) {
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : message,
+					type : messageType,
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		}
 	</script>
 	
 	<script type="text/javascript">
-
-	function notify(messageType, message) {
-		var notification = 'Information';
 		$(function() {
-			new PNotify({
-				title : notification,
-				text : message,
-				type : messageType,
-				styling : 'bootstrap3',
-				hide : true
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+		
+		function loadPage(skn){
+			window.location.href = "userpractice?skilln="+skn;
+		}
+		
+		$(document).ready(function(){
+			$('li>a.dropbtn').hover(function(){
+				$('.dropdown').css('display','block');
+			},
+			function(){
+				$('.dropdown').css('display','none');
+			});
+			$('.dropdown').hover(function(){
+				$('.dropdown').css('display','block');
+			},
+			function(){
+				$('.dropdown').css('display','none');
 			});
 		});
-	}
-
-
-
 	</script>
 	
-		<c:if test="${msgtype != null}">
+
+	<c:if test="${msgtype != null}">
 		<script>
 			var notification = 'Information';
 			$(function() {

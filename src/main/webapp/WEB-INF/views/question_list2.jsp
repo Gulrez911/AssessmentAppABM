@@ -191,6 +191,8 @@ li>a.dropbtn{
 						<li><a href="skills">Skills</a></li>
 						<li><a href="showReports">Results</a></li>
 						<li><a href="practice">Practice</a></li>
+						<li><a href="skillTest">SkillTest</a></li>
+						<li><a href="skillTestLabel">SkillTestlabel</a></li>
 						<li><a href="codingSessions">Code Analysis Reports</a></li>
 						<li><a href="showSkillTags">Skill based Reports</a></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>

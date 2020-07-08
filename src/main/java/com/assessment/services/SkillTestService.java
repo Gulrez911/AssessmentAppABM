@@ -24,4 +24,9 @@ public interface SkillTestService {
 	
 	/* public String findAllRecord(String skillname); */
 
+
+		public List<SkillTest> findUniqueParentSkill(String companyId);
+
+
+		public List<SkillTest> findAllByCompanyId(String companyId);
 }

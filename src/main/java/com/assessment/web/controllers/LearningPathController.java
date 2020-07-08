@@ -1,5 +1,6 @@
 package com.assessment.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import com.assessment.data.SkillLevel;
 import com.assessment.data.SkillStep;
 import com.assessment.data.SkillTest;
 import com.assessment.data.StepTest;
+import com.assessment.data.Test;
 import com.assessment.data.User;
 import com.assessment.repositories.SkillStepRepository;
 import com.assessment.repositories.SkillTestRepository;
@@ -60,11 +62,13 @@ public class LearningPathController {
 			System.out.println(skills.get(i));
 		}
 		
-		List<String> tests_list = testRepository.findtestNameByCompanyId(user.getCompanyId());
-		for(int i = 0 ; i<tests_list.size(); i++) {
-			System.out.println(tests_list.get(i));
+		List<Test> testobj_list = testRepository.findTestsByCompanyId(user.getCompanyId());
+		List<String> testnm_list = new ArrayList<String>();
+		for(int i = 0 ; i<testobj_list.size(); i++) {
+			System.out.println(testobj_list.get(i).getTestName());
+			testnm_list.add(testobj_list.get(i).getTestName());
 		}
-		mav.addObject("testslist",tests_list);
+		mav.addObject("testslist",testnm_list);
 		mav.addObject("skills",skills);
 		mav.addObject("levels", SkillLevel.values());
 		return mav;
@@ -127,10 +131,21 @@ public class LearningPathController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/fetchtestnames",method=RequestMethod.POST)
-	public List<String> fetchtestnames(HttpServletRequest request, HttpServletResponse response){
+	public List<List<String>> fetchtestnames(HttpServletRequest request, HttpServletResponse response){
 		User user = (User)request.getSession().getAttribute("user");
-		List<String> tests_list = testRepository.findtestNameByCompanyId(user.getCompanyId());
-		return tests_list;
+		String compid = user.getCompanyId();
+		List<Test> tests_list = testRepository.findTestsByCompanyId(user.getCompanyId());
+		List<List<String>> test_id_nm = new ArrayList<List<String>>();
+		/*
+		 * test_id_nm = [[testid1,testname1],[testid2,testname2],.....]
+		 */
+		for(Test t : tests_list) {
+			List<String> test_nm_id_for_one = new ArrayList<String>();
+			test_nm_id_for_one.add(String.valueOf( t.getId() ));
+			test_nm_id_for_one.add(t.getTestName());
+			test_id_nm.add(test_nm_id_for_one);
+		}
+		return test_id_nm;
 	}
 	
 	@ResponseBody
@@ -169,9 +184,9 @@ public class LearningPathController {
 		for(SkillStep stp: lststp) {
 			SkillTest skt_inner = stp.getSkilltest();
 			String compId = skt_inner.getCompanyId();
-			String skn = skt_inner.getSkillName();
-			String subsnm = skt_inner.getSubSkill();
-			if(compId.equals(skt.getCompanyId()) && skn.equals(skt.getSkillName()) && subsnm.equals(skt.getSubSkill())) {
+			String skn = skt_inner.getParentSkill();
+			String subsnm = skt_inner.getChildSkill();
+			if(compId.equals(skt.getCompanyId()) && skn.equals(skt.getParentSkill()) && subsnm.equals(skt.getChildSkill())) {
 				List<StepTest> stptstlst = steptestrepository.getBySkillStep(stp);
 				for(StepTest test : stptstlst) {
 					steptestrepository.delete(test);
@@ -219,7 +234,8 @@ public class LearningPathController {
 	public String addteststep1(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name = "stepName",   required = false) String stepName,
 			@RequestParam(name = "skillName",  required = false) String skillName,
-			@RequestParam(name = "subSkill",   required = false) String subSkill, 
+			@RequestParam(name = "subSkill",   required = false) String subSkill,
+			@RequestParam(name = "testId",   required = false) String testId,
 			@RequestParam(name = "teststepstepid",required = false)Long steptestid,
 			@RequestParam(name = "level",   required = false) String level,
 			@RequestParam(name = "testName",   required = false) String testName) {
@@ -241,12 +257,12 @@ public class LearningPathController {
 		stepTest.setTestName(testName);
 		stepTest.setLevel(level);
 		stepTest.setRequired(Boolean.valueOf(false));
-		
+		stepTest.setTestId(testId);
 		SkillStep req_skstp = null;
 		List<SkillStep> skillsteplist = skillsteprepository.findAll();
 		SkillTest sktest = skilltestrepository.getByskillsubskill(skillName, user.getCompanyId(), subSkill);
-		String skn = sktest.getSkillName();
-		String subskname = sktest.getSubSkill();
+		String skn = sktest.getParentSkill();
+		String subskname = sktest.getChildSkill();
 		for( SkillStep x: skillsteplist ) {
 			if( x.getStepName().equalsIgnoreCase(stepName) ) {
 				if( skn.equalsIgnoreCase(skillName) && subskname.equalsIgnoreCase(subSkill)) {
@@ -270,15 +286,15 @@ public class LearningPathController {
 		SkillStep stp = skillsteprepository.findById(l_id).get();
 		String compId = stp.getCompanyId();
 		String stepN = stp.getStepName();
-		String parN = stp.getSkilltest().getSkillName();
-		String chiN = stp.getSkilltest().getSubSkill();
+		String parN = stp.getSkilltest().getParentSkill();
+		String chiN = stp.getSkilltest().getChildSkill();
 		List<StepTest> tests = steptestrepository.findAll();
 		for(StepTest test: tests) {
 			SkillStep test_stp = test.getSkillStep();
 			String t_compId = test_stp.getCompanyId();
 			String t_stepN = test_stp.getStepName();
-			String t_parN = test_stp.getSkilltest().getSkillName();
-			String t_chiN = test_stp.getSkilltest().getSubSkill();
+			String t_parN = test_stp.getSkilltest().getParentSkill();
+			String t_chiN = test_stp.getSkilltest().getChildSkill();
 			if(compId.equals(t_compId) && stepN.equals(t_stepN) && parN.equals(t_parN) && chiN.equals(t_chiN)) {
 				steptestrepository.delete(test);
 			}

@@ -111,7 +111,49 @@
 
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+<style type="text/css">
+ .tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+	opacity: 12;
+}
 
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #ececec;
+  color: black;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	opacity: 1;
+	
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+
+
+</style>
 <style>
 .switch {
   position: relative;
@@ -358,55 +400,44 @@ div.dataTables_wrapper div.dataTables_filter input{
 					<!--logo start-->
 					<a href="javascript:void(0);" class="logo-brand"> <img
 						class="retina"
-						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						src="<%=request.getContextPath()%>/resources/images/Logo.png"
 						alt="" />
 					</a>
-					
-						
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right">
+					<ul class="nav navbar-nav">
 						<li><a
 							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li><a href="question_list">Question Bank</a></li>
-						<li><a href="testlist">Tests</a></li>
-						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
-						<li><a href="showProfileParams">Recomm Setting</a></li>
-						<li>
-						<a class="dropbtn">Profiler</a>
-						<div class="dropdown">
-							<div class="dropdown-content">
-							 	<a href="#">Practice</a>
-								<a href="#">Compete</a>
-								<a href="#">Coding</a>
-								<a href="learningpath">Learning Path</a>
-							 </div>
-						</div>
-						</li>
-						<li class="active">
+
+                       <li>
 							<a class="dropbtn">Practice</a>
-							<div class="dropdown">
-								<div class="dropdown-content skilldiv" style="background:#b3bdc7">
+							<div class="skilldiv dropdown">
+								<div class="dropdown-content" style="background:#b3bdc7">
 									<c:forEach var="s1" varStatus="status" items="${skills}">
 										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
 									</c:forEach>
 								 </div>
 							</div>
+						</li>				
+						<li><a href="practice">Code-GIG</a></li>
+						<li class="tooltip">
+								<a href="getSubSkill">Coding </a> <span class="tooltiptext">
+									<c:forEach items="${skillList}" var="skill" varStatus="loop">
+										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
+												value="${skill}" /></a><br>
+
+									</c:forEach>
+								</span>
+							
 						</li>
-						<li><a href="listUsers">Users</a></li>
-						<!-- <a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-					 </div>
+				</div>
 			</div>
 		</div>
-		
 	</header>
 	<!--header end-->
+
 
 	<section>
 		<div class="col-md-12 headingrow">
@@ -447,7 +478,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 												</div>	
 										</div>
 										<div class="col-md-4">
-											<a class="pull-right btn strtbtn">Start</a>
+											<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&companyId=${test.companyId}&testId=${test.testId}">Start</a>
 										</div>
 									</div>
 								</c:when>
@@ -465,7 +496,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 												</div>	
 										</div>
 										<div class="col-md-4">
-											<a class="pull-right btn strtbtn">Start</a>
+											<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&companyId=${test.companyId}&testId=${test.testId}">Start</a>
 										</div>
 									</div>
 								</c:otherwise>
@@ -589,7 +620,6 @@ div.dataTables_wrapper div.dataTables_filter input{
 		}
 		
 		function loadStepTests(stepname) {
-			alert(stepname);
 			var subsn = $('#ddl_subsk').find('option:selected').text();
 			window.location.href = "userpractice?skilln=${curskill}&subs="+subsn+"&stepn="+stepname;
 		}
@@ -620,6 +650,31 @@ div.dataTables_wrapper div.dataTables_filter input{
 			});	
 		});
 	</script>
+	<script type="text/javascript">
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+	
+	function loadPage(skn){
+		window.location.href = "userpractice?skilln="+skn;
+	}
+	
+	$(document).ready(function(){
+		$('li>a.dropbtn').hover(function(){
+			$('.dropdown').css('display','block');
+		},
+		function(){
+			$('.dropdown').css('display','none');
+		});
+		$('.dropdown').hover(function(){
+			$('.dropdown').css('display','block');
+		},
+		function(){
+			$('.dropdown').css('display','none');
+		});
+	});
+	</script>
+	
 </body>
 
 </html>
