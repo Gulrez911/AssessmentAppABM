@@ -38,6 +38,12 @@ public interface TestRepository extends JpaRepository<com.assessment.data.Test, 
 	Page<Test> findAllByCompanyId(String companyId, Pageable pageable);
 	
 	Page<Test> findAllByCompanyIdAndTestNameContainingIgnoreCase(String companyId, String searchText,Pageable pageable);
+	
+	//Compete
+	List<Test> findAllByTestName(String companyId);
+	
+	@Query("SELECT testName FROM Test t WHERE  t.companyId=:companyId")
+	List<Test> testList(@Param("companyId") String companyId);
 
 
 }

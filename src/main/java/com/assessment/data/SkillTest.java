@@ -5,10 +5,27 @@ import javax.persistence.Entity;
 @Entity
 public class SkillTest extends Base {
 
-	private String skillName;
-	private String subSkill;
-    private String testName; 
-	
+	private String parentSkill;
+	private String childSkill;
+	private String testName;
+	private Boolean isCheckedFlag=false;
+
+	public String getParentSkill() {
+		return parentSkill;
+	}
+
+	public void setParentSkill(String parentSkill) {
+		this.parentSkill = parentSkill;
+	}
+
+	public String getChildSkill() {
+		return childSkill;
+	}
+
+	public void setChildSkill(String childSkill) {
+		this.childSkill = childSkill;
+	}
+
 	public String getTestName() {
 		return testName;
 	}
@@ -17,27 +34,17 @@ public class SkillTest extends Base {
 		this.testName = testName;
 	}
 
-	public String getSkillName() {
-		return skillName;
+	public Boolean getIsCheckedFlag() {
+		return isCheckedFlag;
 	}
 
-	public void setSkillName(String skillName) {
-		this.skillName = skillName;
-	}
-
-	public String getSubSkill() {
-		return subSkill;
-	}
-
-	public void setSubSkill(String subSkill) {
-		this.subSkill = subSkill;
+	public void setIsCheckedFlag(Boolean isCheckedFlag) {
+		this.isCheckedFlag = isCheckedFlag;
 	}
 
 	@Override
 	public String toString() {
-		return "SkillTest [skillName=" + skillName + ", subSkill=" + subSkill + ", testName=" + testName + "]";
+		return "SkillTest [parentSkill=" + parentSkill + ", childSkill=" + childSkill + ", testName="
+				+ testName + ", isCheckedFlag=" + isCheckedFlag + "]";
 	}
-
-	
-
 }

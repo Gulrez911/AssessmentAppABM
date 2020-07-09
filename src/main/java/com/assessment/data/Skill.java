@@ -1,5 +1,4 @@
-
-	package com.assessment.data;
+package com.assessment.data;
 
 	import javax.persistence.Entity;
 	import javax.persistence.EnumType;

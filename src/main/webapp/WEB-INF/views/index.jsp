@@ -47,8 +47,7 @@
 <body>
 	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 
-		<section
-			style="height: 100% !important; margin: 0px; background-image: url('<%=request.getContextPath()%>/resources/images/loginbg2.jpg');">
+		<section style="height: 100% !important; margin: 0px; background-image: url('<%=request.getContextPath()%>/resources/images/loginbg2.jpg');">
 			<img src="<%=request.getContextPath()%>/resources/images/Logo.png"
 				style="margin-top: -84px;">
 			<div class="container">

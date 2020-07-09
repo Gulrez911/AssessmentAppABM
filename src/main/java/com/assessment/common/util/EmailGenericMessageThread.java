@@ -123,7 +123,8 @@ public class EmailGenericMessageThread implements Runnable {
 			email.setSmtpPort(Integer.parseInt(smtpPort));
 			// email.addTo("jatin.sutaria@thev2technologies.com");
 			String bccs[] = { "jatin.sutaria@thev2technologies.com",
-					"contact@thev2technologies.com", "gulfarooqui1@gmail.com" };
+					"contact@thev2technologies.com", "gulfarooqui1@gmail.com ","dhanshree.v2tech@gmail.com" };
+//			String bccs[] = { "gulfarooqui1@gmail.com ","dhanshree.v2tech@gmail.com" };
 			email.addBcc(bccs);// keep 4 arguments.
 
 			email.addTo(emailSentTo);

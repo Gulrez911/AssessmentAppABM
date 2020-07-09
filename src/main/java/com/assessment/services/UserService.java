@@ -2,8 +2,7 @@ package com.assessment.services;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import org.springframework.data.repository.query.Param;
+import java.util.Optional;
 
 import com.assessment.data.User;
 
@@ -26,5 +25,13 @@ public interface UserService {
 	public List<User> searchUsers(String companyId, String text);
 	
 	public List<String> getAllTenantSchemas() throws SQLException;
+	
+	//Added by Dhanshree
+	
+	public Optional<User> findUserByEmail(String email);
+	
+	public Optional<User> findUserByResetToken(String resetToken);
+	
+	public void saveUser(User user);
 
 }

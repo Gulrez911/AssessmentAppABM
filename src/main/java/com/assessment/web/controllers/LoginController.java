@@ -22,6 +22,7 @@ import com.assessment.data.DifficultyLevel;
 import com.assessment.data.Question;
 import com.assessment.data.Test;
 import com.assessment.data.User;
+import com.assessment.repositories.UserRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.QuestionService;
 import com.assessment.services.TestService;
@@ -38,6 +39,8 @@ public class LoginController {
 	CompanyService companyService;
 	@Autowired
 	TestService testService;
+	@Autowired
+	UserRepository userRepo;
 
 	@Autowired
 	PropertyConfig propertyConfig;
@@ -48,7 +51,7 @@ public class LoginController {
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("index");
 		User user = new User();
-		user.setEmail("admin@e-assess.com");
+		user.setEmail("admin@e-assess.com"); 
 		user.setPassword("1234");
 		user.setCompanyName("e-assess");
 		mav.addObject("user", user);
@@ -184,7 +187,7 @@ public class LoginController {
 		}
 
 		else {
-			
+
 			Page<Question> questions = questionService.findQuestionsByPage(user.getCompanyId(), 0);
 			request.getSession().setAttribute("user", user);
 			request.getSession().setAttribute("companyId", user.getCompanyId());

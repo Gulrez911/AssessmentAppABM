@@ -105,8 +105,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	public List<Question> getAllQuestionsExcludeAdded(@Param("qlist") List<Long> addedQIdList , @Param("companyId") String companyId);
 
 	@Query("SELECT " + "    new com.assessment.common.Qualifiers(q.qualifier1, q.qualifier2, q.qualifier3, q.qualifier4, q.qualifier5) "
-			+ "FROM " + "    Question q WHERE q.companyId=:companyId " + "GROUP BY "
-			+ "    q.qualifier1, q.qualifier2, q.qualifier3, q.qualifier4, q.qualifier5")
+			+ "FROM " + "    Question q WHERE q.companyId=:companyId " + "GROUP BY "+ "    q.qualifier1, q.qualifier2, q.qualifier3, q.qualifier4, q.qualifier5")
 	public Set<Qualifiers> getAllUniqueQualifiers(@Param("companyId") String companyId);
 
 	@Query(value = "SELECT distinct CONCAT(qualifier1,'', CONCAT(case when qualifier2 is null or qualifier2 = ''\r\n"

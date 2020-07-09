@@ -43,10 +43,8 @@
 <!-- 		value="/opt/kgate/bin/AssesmentApp/sendTestLink.html"></property> -->
 <!-- 		<property name="resultLinkHtmlLocation" -->
 <!-- 		value="/opt/kgate/bin/AssesmentApp/sendTestResultInfo.html"></property> -->
-		<property name="testLinkHtmlLocation"
-			value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
-		<property name="resultLinkHtmlLocation"
-			value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property>
+		<property name="testLinkHtmlLocation" value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestLink.html"></property>
+		<property name="resultLinkHtmlLocation" value="D:\apache-tomcat-8.0.3\bin\assessment\sendTestResultInfo.html"></property>
 		<property name="hostName" value="${hostName}"></property>
 		<property name="sendFrom" value="${sendFrom}"></property>
 		<property name="sendFromName" value="${sendFromName}"></property>

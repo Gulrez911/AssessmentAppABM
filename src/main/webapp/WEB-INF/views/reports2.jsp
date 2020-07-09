@@ -217,12 +217,10 @@
 										varStatus="loop">
 										<tr class="tr">
 											<td>${loop.count}</td>
-
 											<td><a href="downloadUserReportsForTest2?testName=${session.testName}">${session.testName}</a></td>
 											<td>${session.sectionsInfo}</td>
 											<td>${session.noOfSessions}</td>
 											<td>${session.noOfPassResults}</td>
-
 											<td>${session.averageScore}</td>
 											<td>${session.highestScore}</td>
 											<td>${session.topCandidates}</td>

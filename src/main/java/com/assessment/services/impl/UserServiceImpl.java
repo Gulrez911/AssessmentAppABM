@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.sql.DataSource;
@@ -158,4 +159,19 @@ public class UserServiceImpl implements UserService {
 		return userRepository.searchQuestions(companyId, text);
 	}
 
+	@Override
+	public Optional<User> findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public void saveUser(User user) {
+		userRepository.save(user);		
+	}
+
+	@Override
+	public Optional findUserByResetToken(String resetToken) {
+		return userRepository.findByResetToken(resetToken);
+	}
+	
 }
