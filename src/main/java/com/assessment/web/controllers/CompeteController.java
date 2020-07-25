@@ -178,5 +178,13 @@ public class CompeteController {
 			map.put("id", id); 
 		  return map; 
 	}
+	  
+	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
+	public ModelAndView competeF()
+	{
+		ModelAndView mav=new ModelAndView("competeFront1");
+		return mav;
+		
+	}
 
 }

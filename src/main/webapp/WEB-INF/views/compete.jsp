@@ -40,7 +40,50 @@
 <link href="./resources/assets/revolution/css/navigation.css" rel="stylesheet" type="text/css" />
 <link href="./resources/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css" />
 
+
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<style>
+.dropdown-menu {
+	min-width: 387px !important;
+	height: 300px !important;
+	overflow: auto !important;
+}
+</style>
+
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
 
 
 <!-- Search Box  -->
@@ -75,9 +118,13 @@ $(document).ready(function(){
 			<div class="container">
 				<div id="materialize-menu" class="menuzord">
 					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -86,19 +133,37 @@ $(document).ready(function(){
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="">Compete</a></li>
-						<li><a href="skillTest">Skill Test</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete" class="active">Compete</a>
+								<a href="skillTest">Skill Test</a>
+							 </div>
+						</div>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="showReports">Result</a>
+									<a href="codingSessions">Code Reports</a>
+									<a href="showSkillTags">Skill Reports</a>
+								 </div>
+							</div>
+						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
@@ -107,13 +172,13 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col-md-12">
-					<div class="col-md-6"></div>
+					<div class="col-md-4"></div>
 					<div class="col-md-2">
-						<a href="#" onclick="javascript:addCompete();" class="btn waves-effect waves-light col-md-12">
-							<i class="material-icons fa fa-plus-circle"></i> Add</a>
+						<a href="#" onclick="javascript:addCompete();" class="btn waves-effect waves-light col-md-12" style="color:white;">
+							<i class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
-						<a href="signoff" class="btn waves-effect waves-light col-md-12"> Sign Off</a>
+						<a href="signoff" class="btn waves-effect waves-light col-md-12" style="color:white;"> Sign Off</a>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -143,7 +208,7 @@ $(document).ready(function(){
 									<th>Skill Name</th>
 									<th>Challenge Type</th>
 									<th>No. of Levels</th>
-									<th>Action</th>
+<!-- 									<th>Action</th> -->
 								</tr>
 							</thead>
 
@@ -156,8 +221,8 @@ $(document).ready(function(){
 										<td>${countList.skillName}</td>
 										<td>${countList.challenge}</td>
 										<td>${countList.totalTestCount}</td>
-										<td><a href="#"><i class="fa fa-edit" style="font-size:24px"></i></a>  &nbsp;&nbsp;&nbsp;
-										<a href="#"><i class="fa fa-trash" style="font-size:24px"></i></a></td>
+<!-- 										<td><a href="#"><i class="fa fa-edit" style="font-size:24px"></i></a>  &nbsp;&nbsp;&nbsp; -->
+<!-- 										<a href="#"><i class="fa fa-trash" style="font-size:24px"></i></a></td> -->
 									</tr>
 								</c:forEach> 
 							</tbody> 
@@ -186,9 +251,9 @@ $(document).ready(function(){
 							<div class="input-group">
 								<table style="margin: 0px auto;" id="tbl">
 									<tr>
-<!-- 										<td> -->
-<!-- 											<label><b>Skill</b></label> -->
-<!-- 										</td> -->
+										<td>
+											<label><b>Skill</b></label>
+										</td>
 										<td>
 											<form:select path="skillName" id="skillName" onchange="javascript:getTest();">
 												<option value="select">Select Skill</option>
@@ -198,9 +263,9 @@ $(document).ready(function(){
 									</tr>
 									
 									<tr>
-<!-- 										<td> -->
-<!-- 											<label class="fieldtitle"><b>Challenge</b></label> -->
-<!-- 										</td> -->
+										<td>
+											<label class="fieldtitle"><b>Challenge</b></label>
+										</td>
 										<td>
 											<form:select path="challenge" id="challenge1" onchange="javascript:getTest();" style="width: 130px;height: 26px">
 												<option value="select">Select Challenge</option>
@@ -214,9 +279,9 @@ $(document).ready(function(){
 										 
 									
 									<tr>
-<!-- 										<td> -->
-<!-- 											<label class="fieldtitle"><b>Test Name</b></label> -->
-<!-- 										</td> -->
+										<td>
+											<label class="fieldtitle"><b>Test Name</b></label>
+										</td>
 										   
 										<td>
 											<form:select path="testName" id="testName"  style="width: 130px;height: 26px">
@@ -251,7 +316,7 @@ $(document).ready(function(){
 	
 
 
-	<footer class="footer footer-four">
+	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
@@ -268,7 +333,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 		</div>
-	</footer>
+	</footer> -->	
 
 
 
@@ -298,6 +363,7 @@ $(document).ready(function(){
 
 		function addCompete(){
 			$(".tr1").remove();
+			$("#msg").remove();
 			$("#skillName")[0].selectedIndex = 0;
 			$("#challenge1")[0].selectedIndex = 0;
 			$("#testName")[0].selectedIndex = 0;
@@ -316,7 +382,7 @@ $(document).ready(function(){
 					type : "GET",
 					success : function(response) {
 						console.log("Success Called");
-						$("#result_tr").html('<span style="color:red;">'+response.msg+'</span>');
+						$("#result_tr").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 						getTest();
 					},
 			}); 
@@ -335,9 +401,9 @@ $(document).ready(function(){
 		 			 for (var i =0; i< response.levels.length ; i++){
 						console.log(response.levels[i].testName);
  						$("#result_tr").append(
- 								"<tr class='tr1'><td><label class='fieldtitle'><b>Level"+(i+1)+"</b></label></td><td id="+ response.levels[i].id+ " style='color: #333; background-color:#03a9f4'>"
+ 								"<tr class='tr1'><td><label class='fieldtitle'><b>Level"+(i+1)+"</b></label></td><td id="+ response.levels[i].id+ ">"
  								+ response.levels[i].testName+ 
- 								"<a href='#' id='edit' onclick='javascript:editLevel("+ response.levels[i].id+ ");'><i class='far fa-edit'></i></a></td></tr>")
+ 								"<a href='#' id='edit' onclick='javascript:editLevel("+ response.levels[i].id+ ");'><span class='glyphicon glyphicon-edit'></span></a></td></tr>")
 			 		}
 		 			$('#btnSave').prop('disabled', false);
 		 		},
@@ -364,7 +430,7 @@ $(document).ready(function(){
 		   	                 $("#slct").append("<option>"+response.testList[i]+"</option>");
 		   	              }
 						var span = document.createElement('span');
-						span.innerHTML = '<a id="btn1" class="btn btn-dark" onclick="saveEdit('+response.id+')">Edit</a>';
+						span.innerHTML = '<a id="btn1"  onclick="saveEdit('+response.id+')"><span class="glyphicon glyphicon-saved"></span></a>';
 		   	            dd.appendChild(span);
 	
 			   	         var msg = document.createElement('DIV');
@@ -384,7 +450,7 @@ $(document).ready(function(){
 				 success:function(response){
 					 console.log("Level Edited");
 					 console.log("Message"+response.msg)
-		 			 $("#result_tr").html('<span style="color:red;">'+response.msg+'</span>');
+		 			 $("#result_tr").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 					 getTest();
 				},
 				

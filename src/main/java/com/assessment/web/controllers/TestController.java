@@ -265,7 +265,6 @@ public class TestController {
 			if (!qm.getSectionName().equals(sectionDto.getSectionName())) {
 				ids.add(qm.getQuestion().getId());
 			}
-
 		}
 		List<Question> qToDisplay;
 		if (ids.size() >= 1) {
@@ -288,7 +287,6 @@ public class TestController {
 		Test test = (Test) request.getSession().getAttribute("test");
 		mav.addObject("test", test);
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/addteststep3", method = RequestMethod.GET)

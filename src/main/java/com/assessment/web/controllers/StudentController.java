@@ -27,6 +27,7 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -207,6 +208,7 @@ public class StudentController {
 			studentTest.setPublishedDate(testDetails.getCreateDate());
 			studentTest.setFirstName(userDetails.getFirstName());
 			studentTest.setLastName(userDetails.getLastName());
+			studentTest.setTestId(testId);
 			studentTest.setTestCreatedBy(testDetails.getCreatedBy());
 			final String pattern = "dd-MM-yyyy HH:mm:ss";
 			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -218,8 +220,12 @@ public class StudentController {
 						.format((session3.getUpdateDate() == null) ? session3.getCreateDate()
 								: session3.getUpdateDate()));
 				studentTest.setNoOfAttempts(session3.getNoOfAttempts());
-				model = new ModelAndView("studentNoTest");
+				model = new ModelAndView("intro2");
 				model.addObject("studentTestForm", (Object) studentTest);
+				request.getSession().setAttribute("studentTestForm", (Object) studentTest);
+				model.addObject("userName",
+						(Object) (String.valueOf(userDetails.getFirstName()) + " " + userDetails.getLastName()));
+				this.putMiscellaneousInfoInModel(model, request);
 				return model;
 			}
 			if (session3 != null && !session3.getComplete()) {
@@ -895,7 +901,7 @@ public class StudentController {
 		 * 			key: "answered"/"unanswered": String
 		 * 			value: List<Integer>: List of question numbers answered and unanswered
 		 **/
-		 
+		
 		SectionInstanceDto curreSection = (SectionInstanceDto) request.getSession().getAttribute("currentSection");
 		//currentQuestion.getQuestionMapperInstance().setAnswered(true);
 			
@@ -920,19 +926,24 @@ public class StudentController {
 			
 			List<Integer> answeredSeqNo = new ArrayList<Integer>();
 			List<Integer> unAnsweredSeqNo = new ArrayList<Integer>();
+			List<Integer> review_seqno = new ArrayList<Integer>();
 			LinkedHashMap< String , List<Integer> > hm_ans = new LinkedHashMap<String,List<Integer>>();
 			
 			for(QuestionInstanceDto qdto: list_qdto ) {
 				
 				seq_no = qseq.getSequenceNo(qdto.getQuestionMapperInstance().getQuestionMapper().getId());
+				String qtxt = qdto.getQuestionMapperInstance().getQuestionText();
 				
-				if(qdto.getQuestionMapperInstance().getAnswered())
+				if( questionMapperInstanceRep.getReviewed(qtxt, test.getTestName(), currSecName, user.getEmail(), user.getCompanyId()) ) {
+					review_seqno.add(seq_no);
+					System.out.println("Questions number reviewed:"+seq_no);
+				}
+				else if(qdto.getQuestionMapperInstance().getAnswered() )
 				{
-//					unAnsweredSeqNo.remove(unAnsweredSeqNo.size()-1);
 					answeredSeqNo.add(seq_no);
 					System.out.println("Questions number answered:"+seq_no);
 				}
-				else
+				else 
 				{
 					unAnsweredSeqNo.add(seq_no);
 					System.out.println("Question number Unanswered:"+seq_no);
@@ -941,7 +952,7 @@ public class StudentController {
 			}
 			System.out.println();
 			
-			if(answeredSeqNo.size()==0 && unAnsweredSeqNo.size()==0  ) {
+			if( answeredSeqNo.size()==0 && unAnsweredSeqNo.size()==0 && review_seqno.size()==0  ) {
 				for(int i=1 ; i<=allSecCountQues ; i++) {
 					unAnsweredSeqNo.add(i);
 				}
@@ -949,6 +960,7 @@ public class StudentController {
 			
 			hm_ans.put("answered", answeredSeqNo );
 			hm_ans.put("unanswered" , unAnsweredSeqNo );
+			hm_ans.put("review", review_seqno );
 			
 			hm_allsectionDet.put(currSecName , hm_ans);
 		}
@@ -956,6 +968,35 @@ public class StudentController {
 		return hm_allsectionDet;
 	}
 	//addition end
+	
+	@RequestMapping(value = { "/reviewToggle" }, method = { RequestMethod.POST })
+	@ResponseBody
+	@Transactional
+	public Boolean reviewToggle(final HttpServletRequest request, final HttpServletResponse response,
+			@ModelAttribute("currentQuestion") QuestionInstanceDto currentQuestion ,@RequestParam String revstatus,@RequestParam String sectName, @RequestParam String qText) {
+		final User user = (User) request.getSession().getAttribute("user");
+		final Test test = (Test) request.getSession().getAttribute("test");
+		String testName = "", userN ="", compId="";
+		testName = test.getTestName();
+		userN = user.getEmail();
+		compId = user.getCompanyId();
+		System.out.println("Review Method:"+userN+":\n"+compId+":\n"+testName+":\n"+sectName+":\n"+qText);
+		QuestionMapperInstance qmapperinst = questionMapperInstanceRep.findUniqueQuestionMapperInstanceForUser(qText, testName, sectName, userN, compId) ;
+		
+		Boolean bool=false;
+		 if(revstatus.equals("1")) {
+			bool = true;
+		 }
+		 else {
+			bool = false;
+		 }
+		 
+		 qmapperinst.setMarked_review(bool);
+		 questionMapperInstanceRep.saveAndFlush(qmapperinst);
+		 //submDetails(request, response, currentQuestion, String.valueOf(qmapperinst.getQuestionMapper().getId()));
+		// questionMapperInstanceRep.setReviewed(bool, qText, testName, sectName, userN, compId);
+		 return true;
+	}
 	
 	@RequestMapping(value = { "redirect" }, method = { RequestMethod.POST })
 	public ModelAndView redirect(@RequestParam  String sectionName, @RequestParam String question_seq,@RequestParam String timeCounter ,
@@ -1016,6 +1057,8 @@ public class StudentController {
 		this.processPercentages(model, sectionInstanceDtos, test.getTotalMarks());
 		return model;
 	}
+	
+	
 
 	
 	

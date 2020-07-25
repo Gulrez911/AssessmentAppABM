@@ -99,8 +99,49 @@
 	var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+.dropdown-menu {
+	min-width: 387px !important;
+	height: 300px !important;
+	overflow: auto !important;
+}
+</style>
+
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
 
 </head>
 
@@ -114,9 +155,11 @@
 					<!--logo start-->
 					<a href="javascript:void(0);" class="logo-brand"> <img
 						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
+						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
 						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -125,17 +168,37 @@
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li class="active"><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete">Compete</a>
+								<a href="skillTest">Skill Test</a>
+							 </div>
+						</div>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="showReports"  class="active">Result</a>
+								<a href="codingSessions">Code Reports</a>
+								<a href="showSkillTags">Skill Reports</a>
+							 </div>
+						</div>
+						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
@@ -251,7 +314,7 @@
 
 
 
-	<footer class="footer footer-four">
+	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
@@ -268,7 +331,8 @@
 			</div>
 		</div>
 	</footer>
-
+ -->
+ 
 	<script>
 		function shareOpen() {
 			$('#modalcopy').modal('hide');
@@ -377,20 +441,17 @@
 			});
 		}
 
-		function sort(sort,colName) {
-
-			/* var a=$("#"+sort).attr("value");
-			 if(a===undefined){
-					a="ASC";
-			}	
-			console.log("a>>>>>>" +a);	 */
+		function sort(sort) {
+			 /* if(page===undefined){
+				page=0;
+			} */
+				
 			console.log("Value of sort: " + sort);
 			$.ajax({
-				url : 'sortReport?sortBy=' +sort+"&colName="+colName,
+				url : 'sortReport?sortBy=' +sort,
 				type : 'GET',
 				success : function(response) {
 					console.log("Response val:"+ response.sortBy);
-					var colName=response.colName;
 					console.log(response.qs);
 					var no=response.srNo;
 					$(".tr").remove();
@@ -416,38 +477,39 @@
 						"</td><td><a href='downloadUserReportsForTest?testName=\""+response.qs[i].testName+"\"'>Click</a></td><td><a href='downloadUserReportsForTestWithExtraAttrs?testName=\""+response.qs[i].testName+"\"' >click</a></td></tr>")
 					}
 
-					console.log(":::"+colName);
-					/* var selector;
-					var testTitle="Title";
-					var className=""; */
-
-					/* if(colName==testTitle){
-						className = $('#'+testTitle).attr('class');
-						if (response.sortBy == "ASC") {
-							selector = document.getElementById(colName);
-							selector.setAttribute('value', "DESC");
-							$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet");
-						} else {
-							selector = document.getElementById(colName);
-							selector.setAttribute('value', "ASC");
-							$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort-by-alphabet-alt");
-						}
-					}else{
-						className = $('#'+testTitle).attr('class');
-						$("#"+testTitle).removeClass(className).addClass("glyphicon glyphicon-sort");
-					} */
-
-					 if (response.sortBy == "ASC") {
+					if (response.sortBy == "ASC") {
 						$("#ASC").attr('id', "DESC");
 					} else {
 						$("#DESC").attr('id', "ASC");
-					} 
+					}
 
-				}
+						 	/* var sortBy = response.sortBy;
+							var page = response.page;
+							var TotalPage = response.TotalPage;
+							var colName=response.colName;
+							console.log("current page: " + page);
+							console.log("total page:  " + TotalPage);
+							console.log(response.colName);
+							var cpage = page + 1;
+							var ppage = page - 1;
+							$(".dd").remove();
+							if (0 == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'>" + cpage + "</div>")
+							} 
+							else if (page == 0) {
+								$("#pagination").append("<div class='dd'>"+ cpage+ "<a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ cpage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+							} 
+							else if (page == TotalPage - 1) {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage + "</div>")
 
-			});
-		}
-		
+							} 
+							else {
+								$("#pagination").append("<div class='dd'><a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ ppage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-left'></i></a>"+ cpage+ "<a class='tt' href='javascript:sortName(\""+ sortBy+ "\","+ cpage+ ",\""+ testName+ "\",\""+ colName+ "\")'><i class='fa fa-arrow-right'></i></a></div>")
+
+							}  */
+						}
+
+					});
 	</script>
 	<!-- jQuery -->
 

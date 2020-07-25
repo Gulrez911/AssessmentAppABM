@@ -27,9 +27,12 @@ public class User extends Base{
 	 int otp;
 	 
 	private String resetToken;
+	
+	
 	 @NotNull
 	 String password;
 	 String department;
+	 
 	@Enumerated(EnumType.STRING)
 	private UserType userType = UserType.STUDENT;
 	

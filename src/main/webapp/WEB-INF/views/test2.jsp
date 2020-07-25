@@ -16,13 +16,30 @@
 
 
 <style>
+.sec_nav{
+height: 550px;
+overflow: scroll;
+overflow-x: hidden;
+}
 .reddot {
   height: 35px;
   width: 35px;
   color: #ffffff;
-  border-radius: 50%;
+  border-radius: 25%;
   display: inline-block;
   background-color: #ff0000;
+  border-style: groove;
+  font-weight: bold;
+  text-align: center;
+  margin:0.3em;
+}
+.yellowdot {
+  height: 35px;
+  width: 35px;
+  color: #000000;
+  border-radius: 25%;
+  display: inline-block;
+  background-color:  #ffff33;
   border-style: groove;
   font-weight: bold;
   text-align: center;
@@ -32,41 +49,13 @@
   height: 35px;
   width: 35px;
   color: #ffffff;
-  border-radius: 50%;
+  border-radius: 25%;
   display: inline-block;
   background-color: #0ec00e;
   border-style: groove;
   font-weight: bold;
   text-align: center;
   margin:0.3em;
-}
-</style>
-
-<style>
-.reddotempty {
-  height: 30px;
-  width: 30px;
-  color: #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  background-color: #ff0000;
-  border-style: groove;
-  }
-.greendotempty {
-  height: 30px;
-  width: 30px;
-  color: #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-  background-color: #0ec00e;
-  border-style: groove;
-}
-p{
-display:flex;
-}
-span,a{
-margin-left: 10px;
-margin-right: 10px;
 }
 </style>
 
@@ -286,8 +275,6 @@ margin-right: 10px;
 				}); 
 			    });
 			}
-		
-		
 		}
 		
 		function activeScreen(){
@@ -330,7 +317,8 @@ body * {
 	font-weight: 400;
 	line-height: 19px;
 	text-align: right;
-	padding-right: 15px;
+	padding-right: 0px;
+	margin-top:10px;
 	margin-bottom: 0;
 }
 
@@ -343,7 +331,14 @@ body * {
 .logo img {
 	width: 165px;
 }
-
+.durationinfo {
+	font-size: 20px;
+	background: black;
+    color: beige;
+    border-radius: 0.5rem;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .queno {
 	background-color: #03a9f4;
 	padding: 5px;
@@ -368,6 +363,43 @@ body * {
 	margin-top: 20px;
 }
 
+.fixht{
+height:248px;
+overflow:auto;
+overflow-x:hidden;
+}
+
+@keyframes glowactive_unans {
+  0% { box-shadow: 0 0 -10px #ff0000; }
+  40% { box-shadow: 0 0 20px #ff0000; }
+  60% { box-shadow: 0 0 20px #ff0000; }
+  100% { box-shadow: 0 0 -10px #ff0000; }
+}
+.activeq_anim_unans {
+	animation: glowactive_unans 500ms infinite;
+}
+
+@keyframes glowactive_ans {
+  0% { box-shadow: 0 0 -10px #006622; }
+  40% { box-shadow: 0 0 20px #006622; }
+  60% { box-shadow: 0 0 20px #006622; }
+  100% { box-shadow: 0 0 -10px #006622; }
+}
+.activeq_anim_ans {
+	animation: glowactive_ans 500ms infinite;
+}
+
+@keyframes glowactive_review {
+  0% { box-shadow: 0 0 -10px #ffff1a; }
+  40% { box-shadow: 0 0 20px #ffff1a; }
+  60% { box-shadow: 0 0 20px #ffff1a; }
+  100% { box-shadow: 0 0 -10px #ffff1a; }
+}
+.activeq_anim_review {
+	animation: glowactive_review 500ms infinite;
+}
+
+
 /* .next {
   position: fixed;
   top: 75%;
@@ -379,10 +411,22 @@ body * {
  position: fixed;
   top: 75%;
 } */
-
-.border-tab.primary-nav .nav-tabs>li.active>a, .border-tab.primary-nav .nav-tabs.nav-justified>li.active>a
-	{
+.border-tab .nav-tabs>li>div{
+padding: 8px 30px;
+}
+.border-tab.primary-nav .nav-tabs>li.active>div.navhead, .border-tab.primary-nav .nav-tabs.nav-justified>li.active>a{
 	background-color: #5dcb4c;
+	color: white;
+}
+.border-tab.primary-nav .nav-tabs>li>div.row, .border-tab.primary-nav .nav-tabs>li>div.navhead{
+	margin-bottom:0px;
+}
+.border-tab.primary-nav .nav-tabs>li>div.navhead, .border-tab.primary-nav .nav-tabs.nav-justified>li.active>a{
+	background-color: #03a9f4;
+	border:3px solid transparent;
+}
+.border-tab.primary-nav .nav-tabs>li>div.navhead>div>a, .border-tab.primary-nav .nav-tabs.nav-justified>li.active>a{
+	color: white;
 }
 
 .leftside textarea {
@@ -403,34 +447,62 @@ body * {
 		<header id="header" class="header tt-nav nav-border-bottom"
 			style="height: auto;">
 			<div class="header-sticky light-header ">
-				<div class="container">
-					<div class="col-md-12">
-						<div class="col-md-6">
-							<div class="logo">
+				<div class="container-fluid">
+					<div class="col-md-12" style="margin-top:15px;">
+						  <div class="col-md-2"  style="margin-top:15px;">
+							  <div class="logo">
 								<a href="javascript:void(0);"><img class="retina"
 									src="/AssesmentApp/resources/images/Logo.png"></a>
 							</div>
+							
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-2" style="margin-top:15px;">
+					<div class="promo-info" style="padding-right:0px;padding-top:18px" >
+						<!-- <img
+							src="<%=request.getContextPath()%>/resources/assets/images/testimage.png"
+							style="float: left; padding-right: 15px;"> -->
+						<h2 class="white-text text-bold text-uppercase no-margin"
+							style="color: #000 !important;">${studentTestForm.testName}</h2>
+						<!-- <span class="white-text text-uppercase"
+							style="color: #000 !important;">Assessment</span> -->									
+					</div>
+					</div>
+					
+					
+					
+					<div class="col-md-3">
+					<div class="promo-btn">
+						<div class="durationinfo">
+							<span class="time" id="timer" style="vertical-align: ;"><i id="hours"></i>:<i
+									id="min"></i>:<i id="sec"></i></span>
+									
+						</div>
+				</div>
+							<video autoplay="true" id="videoElement" style="width:85px; height:85px; "></video>
+				</div>
+				
+				<div class="col-md-5">
 							<div class="userheader mt-15">
 								<div class="userinfo">
 									<h4>
-										Welcome ${studentTestForm.userName}<span>${studentTestForm.emailId}</span>
+										Welcome ${studentTestForm.userName}
 									</h4>
 									<img
 										src="<%=request.getContextPath()%>/resources/images/userimg.png">
 								</div>
 							</div>
 						</div>
+					
+						
 					</div>
 				</div>
-			</div>
+			</div> 
 		</header>
 		<!--header end-->
 
 
-		<div class="promo-box gray-bg border-box">
-			<div class="container">
+		<div class="promo-box gray-bg border-box" style="padding:0">
+			<!--  <div class="container">
 				<div class="col-md-12">
 				<div class="col-md-8">
 					<div class="promo-info">
@@ -457,10 +529,13 @@ body * {
 							<video autoplay="true" id="videoElement" style="width:85px; height:85px; "></video>
 				</div>
 				</div>
-			</div>
+			</div>-->
 
+<div class="row">
+<div class="col-md-3">
+<div class="sec_nav">
 			<div class="border-tab primary-nav mb-50">
-				<ul class="nav nav-tabs nav-justified hidden-xs">
+				<ul class="nav nav-tabs nav-stacked hidden-xs">
 					<!-- <li class="active"><a href="javascript:void(0);" id="section1"
 					class="waves-effect waves-light">Basic</a></li>
 				<li class=""><a href="javascript:void(0);" id="section2"
@@ -469,24 +544,37 @@ body * {
 					class="waves-effect waves-light">Coding</a></li>
 				<li class=""><a href="javascript:void(0);" id="section4"
 					class="waves-effect waves-light">Hibernate</a></li> -->
-					<c:forEach var="sectionInstance" varStatus="status"
-						items="${sectionInstanceDtos}">
-						<li ${sectionInstance.style}
-							onclick="javascript:changeSection('${sectionInstance.section.sectionName}');"><a>${sectionInstance.section.sectionName}</a>
+					<c:forEach var="sectionInstance" varStatus="status" items="${sectionInstanceDtos}">
+						<li ${sectionInstance.style}>
+							
+							<div class="row navhead">
+								<div class="col-md-10" onclick="javascript:changeSection('${sectionInstance.section.sectionName}');">
+									<a class="sec_name" style="margin-left:0">${sectionInstance.section.sectionName}</a>
+								</div>
+								<div class="col-md-2">
+									<a class="expand" data-val="${status.index}">+</a>
+								</div>
+							</div>
+							
+							<div class="row li_anuan" id="${status.index}">
+							</div>
+									
 						</li>
-
+						
+						
 					</c:forEach>
 				</ul>
 			</div>
-
-
-			<div class="section">
+</div>
+</div>
+<div class="col-md-9">
+<div class="section">
 				<div class="container">
 					<div class="col-md-12">
 						<div class="queanscenter" id="section1_content">
 							<div class="row">
 								<div class="col-md-4">
-									<div class="progress-section">
+									<!--  <div class="progress-section">
 										<span class="progress-title">${noAnswered} of
 											${totalQuestions} answered</span> <label></label>
 										<div class="progress">
@@ -498,7 +586,7 @@ body * {
 												<span style="color: #0d0d0d">${percentage}%</span>
 											</div>
 										</div>
-									</div>
+									</div>-->
 								</div>
 							</div>
 
@@ -508,10 +596,10 @@ body * {
 
 
 
-									<section class="padding-bottom-50">
+									<section>
 										<div class="container">
 											<div class="row equal-height-row">
-												<div class="col-md-8 mt-50">
+												<div class="col-md-12 mt-20">
 													<div class="valign-wrapper equal-height-column">
 														<div class="hero-intro valign-cell">
 															<div class="queno">
@@ -549,8 +637,12 @@ body * {
 														</div>
 													</div>
 												</div>
-												<div class="col-md-4 hero-thumb equal-height-column">
-													<div class="col-md-12">
+
+											</div>
+							<div class="row">
+										<div class="col-md-12 mt-20">
+						<div class="col-md-12 hero-thumb equal-height-column">
+													<div class="col-md-12 fixht">
 														<ul>
 															<li
 																style="${currentQuestion.questionMapperInstance.questionMapper.question.choice1 == null || 
@@ -624,6 +716,7 @@ body * {
 														</ul>
 													</div>
 												</div>
+											</div>
 											</div>
 										</div>
 									</section>
@@ -954,9 +1047,9 @@ body * {
 								</div>
 							</section>
 						</div>
+</div>
 
-
-						<!-- 																								<a class="back waves-effect waves-light btn submit-button mt-30" -->
+						<!-- <a class="back waves-effect waves-light btn submit-button mt-30" -->
 						<!-- 																										href="javascript:prev();">Back</a> <a -->
 						<!-- 																										class="next waves-effect waves-light btn submit-button mt-30" -->
 						<!-- 																										href="javascript:next();" id="next">Next</a> -->
@@ -964,7 +1057,7 @@ body * {
 
 
 
-
+					<div class="btns_psubn">
 						<c:choose>
 							<c:when test="${currentSection.first==true}">
 							</c:when>
@@ -974,28 +1067,34 @@ body * {
 								<!-- 																<i class="fa fa-long-arrow-left"></i> -->
 							</c:otherwise>
 						</c:choose>
+						<a class="next subm waves-effect waves-light btn btn-success mt-30"
+									id="btn_subm">SUBMIT TEST</a>
+				  	<a class="next subm waves-effect waves-light btn btn-success mt-30"
+									id="btn_review" name="Mark">Mark for Review</a>
 						 <c:choose>
 							<c:when test="${currentSection.last==true}">
-								<a onclick="javascript:submitTestCheckNoAnswer();"
-									class="next subm waves-effect waves-light btn btn-success mt-30"
-									id="next">SUBMIT TEST</a>
+								
 							</c:when>
 							<c:otherwise>
-								<a onclick="javascript:submitTestCheckNoAnswer();"
-									class="next subm waves-effect waves-light btn btn-success mt-30"
-									id="next">SUBMIT TEST</a>
+								
 								<a class="next waves-effect waves-light btn submit-button mt-30"
 									href="javascript:next();" id="next">Next</a>
 								<!-- 																<i class="fa fa-long-arrow-right"></i> -->
 							</c:otherwise>
 						</c:choose>
 						
-						
+					</div>	
 						
 					</div>
 				</div>
+				
 			</div>
+</div>
+
+
+</div>
 	</form:form>
+	
 	
 	<div id="modalSub" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
@@ -1014,16 +1113,19 @@ body * {
 			</div>
 		</div>
 	</div>
-
-
-	<footer class="footer footer-four">
-		<div class="secondary-footer brand-bg darken-2 text-center">
+	
+	
+<footer class="footer footer-four" style="bottom:0;position:fixed;left:0;width:100%;">
+		<div class="secondary-footer brand-bg darken-2 text-center" style="">
 			<div class="container">
 				<p style="margin-bottom: 0;">Copyrigh Â© 2019 e-assess. All
 					Rights Reserved â€“ Privacy Policy For E-Assess Inc</p>
 			</div>
 		</div>
-	</footer>
+</footer>
+
+
+	
 
 	<!-- jQuery -->
 
@@ -1355,7 +1457,7 @@ body * {
         return bool;
     }	
 	
-	function submitTestCheckNoAnswer(){
+	function submitTestCheckNoAnswer(activesec , activeq){
 		$.ajax({
 			url:"submDetails?questionMapperId=${currentQuestion.questionMapperInstance.questionMapper.id}",
 			type:"GET",
@@ -1363,15 +1465,14 @@ body * {
 			contentType:"application/json",
 			success:function( secwiseDet ){
 				
-				var str="<div>";
-				str = str+"<p>Answered: <span class='greendotempty'></span>Unanswered:<span class='reddotempty'></span></p>";
+				var i = 0;
 				for( var k_sectName in secwiseDet )
 				{
-					str = str+k_sectName+"<br>";
-					
+					var str="";
 					var totQ = 0;
 					var ans = new Array();
 					var uans = new Array();
+					var review = new Array();
 					
 					for( var k_auans in secwiseDet[k_sectName] )
 					{
@@ -1379,30 +1480,47 @@ body * {
 						
 						if(k_auans == "answered")
 							ans = secwiseDet[k_sectName][k_auans];
-						else
+						else if (k_auans =="unanswered")
 							uans = secwiseDet[k_sectName][k_auans];
+						else
+							review = secwiseDet[k_sectName][k_auans];
 					}
-					
 					for(var x = 1 ; x<=totQ ; x++){
-						if( existsInArray( ans, x) ){
-							str = str + "<span class='greendot'>"+x+"</span>";
+						if( (i == activesec) && (x == activeq) ){
+							if( existsInArray( ans, x) ){
+								str = str + "<a style='margin-left:7px;' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='greendot activeq_anim_ans'>"+x+"</a>";
+							}
+							else if( existsInArray( uans, x) ){
+								str = str + "<a style='margin-left:7px;' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='reddot activeq_anim_unans'>"+x+"</a>";
+								
+							}
+							else if( existsInArray( review , x) ){
+								str = str + "<a style='margin-left:7px;' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='yellowdot activeq_anim_review'>"+x+"</a>";
+								$("#btn_review").attr('name','Unmark');
+								$('#btn_review').html('Unmark');
+							}
 						}
-						else if( existsInArray( uans, x) ){
-							str = str + "<a onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='reddot'>"+x+"</a>";
+						else{
+							if( existsInArray( ans, x) ){
+								str = str + "<a style='margin-left:7px' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='greendot'>"+x+"</a>";
+							}
+							else if( existsInArray( uans, x) ){
+								str = str + "<a style='margin-left:7px' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='reddot'>"+x+"</a>";
+							}
+							else if( existsInArray( review , x) ){
+								str = str + "<a style='margin-left:7px;' onclick=\"javascript:redirectFun('"+k_sectName+"',"+x+")\" class='yellowdot'>"+x+"</a>";
+							}
 							
 						}
+						
 					}
-					
-					str = str+"<br>";	
+					$('#'+i).html(str);
+					i++;
 				}
-				str = "<br>"+str+"</div>";
-				$('#modalSub_body').html(str);
-				$('#modalSub').modal('show');
+				str="";
 			}
-			
-		});
-			
-		}
+		});	
+	}
 	
 	function redirectFun(sectionName,question_no){
 		//alert(sectionName +":"+ question_no);
@@ -1412,6 +1530,7 @@ body * {
 		document.testForm.submit();
 		
 	}
+	
 	
 	
 	function storeTimeLocal(){
@@ -1573,6 +1692,59 @@ body * {
 		}
 
 
+		function finalSubmit() {
+			  $("#next").removeAttr('href');
+				var uanswered = '${totalQuestions - (noAnswered+1)}';
+					if(uanswered == '0'||uanswered=='-1'){
+
+						(new PNotify({
+					    title: 'Confirmation Needed',
+					    text: 'Are you sure you want to submit the test?',
+					    icon: 'glyphicon glyphicon-question-sign',
+					    hide: false,
+					    confirm: {
+						confirm: true
+					    },
+					    buttons: {
+						closer: true,
+						sticker: true
+					    },
+					    history: {
+						history: false
+					    }
+					})).get().on('pnotify.confirm', function() {
+					   submitTest();
+					}).on('pnotify.cancel', function() {
+					   
+					});
+					}
+					else{
+						(new PNotify({
+					    title: 'Confirmation Needed',
+					    text: 'Are you sure you want to submit the test? You still have unanswered Questions?',
+					    icon: 'glyphicon glyphicon-question-sign',
+					    hide: false,
+					    confirm: {
+						confirm: true
+					    },
+					    buttons: {
+						closer: true,
+						sticker: true
+					    },
+					    history: {
+						history: false
+					    }
+					})).get().on('pnotify.confirm', function() {
+					   submitTest();
+					}).on('pnotify.cancel', function() {
+					   
+					});
+						
+					}
+					
+				}
+			
+		
 		$(document).ready(function () {
     			//Disable cut copy paste
     			$('body').bind('cut copy paste', function (e) {
@@ -1583,6 +1755,85 @@ body * {
     			$("body").on("contextmenu",function(e){
        				return false;
     			});
+		});
+		
+		$(document).ready(function(){
+			
+			$(".li_anuan").css("display","none");
+			$("li.active > div.li_anuan").css("display","block");
+			$("li.active > div.navhead > div > a.expand").html("<b>-</b>");
+			$(".expand").on("click",function(){
+				var id=$(this).data("val");
+				
+				if($("li > div#"+id).css("display") == "block")	{
+					$(this).html("<b>+</b>");
+					$("li > div#"+id).css("display","none");
+				}
+				else {
+					$(this).html("<b>-</b>");
+					$("li > div#"+id).css("display","block");
+				}
+			});
+			
+			var activesec_id = $( "li.active > div.li_anuan" ).attr("id");
+			var active_queno = $( "div.queno>span" ).html();
+			
+			submitTestCheckNoAnswer( activesec_id , active_queno );
+			
+			$("#btn_review").on("click",function(){
+				var sec_name = $("li.active > div.navhead > div.col-md-10 > a").html();
+				var que_txt = $(".qname").html();
+				var btn_nm = $(this).attr("name");
+				
+				var newbtntxt="";
+				var status_rev;
+				
+				if(btn_nm == "Mark"){
+					status_rev = 1;
+					newbtntxt="Unmark";
+				}
+				else{
+					status_rev = 0;
+					newbtntxt = "Mark for Review";
+				}
+				
+				$.ajax({
+					url:"reviewToggle",
+					method: "POST",
+					data : {
+						revstatus:status_rev,
+						sectName: sec_name,
+						qText: que_txt
+					},
+					success:function(data){
+						$("#btn_review").html(newbtntxt);
+						if($("#btn_review").attr("name") == "Mark"){
+							$("#btn_review").attr("name","Unmark");
+						}
+						else{
+							$("#btn_review").attr("name","Mark");
+						}
+						submitTestCheckNoAnswer( activesec_id , active_queno );
+					}
+				});
+				
+			});
+			
+			
+			$("#btn_subm").on('click',function(){
+				var uanswered = '${totalQuestions - (noAnswered+1)}';
+				var modaltxt = "";
+				if( uanswered == '0' || uanswered == '-1')
+					{
+						modaltxt = "Are you sure you want to submit the test?";
+					}
+				else
+					{
+						modaltxt = "Are you sure you want to submit the test? You still have unanswered questions?";
+					}
+				$('#modalSub_body').html(modaltxt);
+				$('#modalSub').modal("show");
+			});
 		});
 	</script>
 <script>
@@ -1597,6 +1848,22 @@ navigator.webkitGetUserMedia({ video: true })
     .catch(function (err0r) {
       console.log("Something went wrong!");
     });
+}
+</script>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
 }
 </script>
 </body>

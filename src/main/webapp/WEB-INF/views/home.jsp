@@ -113,11 +113,11 @@
         .page-footer{
             background-color:#2D1846;
             color: white;
-            background-color: #EFF1F3
+/*             background-color: #EFF1F3; */
             left: 0;
             bottom: 0;
             width: 100%;
-            height:35%;
+            height:31%;
             overflow: hidden;
             position: fixed;
         }
@@ -127,14 +127,12 @@
     <!-- Header start -->
     <div class="topnav">
 			<a href="home" class="logo-brand"> 
-				<img class="retina"
-					src="<%=request.getContextPath()%>/resources/assets/images/Logo.png" width="100" height="30"
-					alt="" />
+				<img class="retina" src="<%=request.getContextPath()%>/resources/assets/images/Logo.png" width="100" height="28" alt="" />
 			</a>        
 			<div class="topnav-right">
-            <a href="practice">Practice</a>
+            <a href="learningpath">Practice</a>
             <a href="compete">Compete</a>
-            <a href="coding">Coding</a>
+            <a href="practice">Coding</a>
             <a href="competative">Competative</a>
             <a href="business">Business</a>
             <a href="loginRegister">Login</a>
@@ -164,171 +162,6 @@
            </div>
          </div>
 
-<!--             <div class="col-lg-5 col-md-6 clearfix signup-top-block" style="background-color: whitesmoke;"> -->
-<!--                 <div class="register-area clearfix"> -->
-<!--                     <div class="login-register-form-section"> -->
-<!--                         <ul class="nav nav-tabs" role="tablist"> -->
-<!--                             <li class="active"><a href="#login" data-toggle="tab">SignIn</a></li> -->
-<!--                             <li><a href="#register" data-toggle="tab">SignUp</a></li> -->
-<!--                         </ul> -->
-
-<!--                         <div class="tab-content"> -->
-<!--                             <div role="tabpanel" class="tab-pane fade in active" id="login"> -->
-<!--                                 <form name="userloginform" class="form-horizontal" method="post" modelAttribute="user" action="authenticateUser"> -->
-<!--                                     <div class="form-group " > -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-user"></i></div> -->
-<!--                                             <input type="email" name="login_email" path="user.email" -->
-<!--                                             id="username" class="form-control" placeholder="Username or email" required="required" value=""> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-key"></i></div> -->
-<!--                                             <input type="password" name="login_password" class="form-control" placeholder="Password" required="required"> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group"> -->
-<!--                                         <a href="#" class="pull-right">Forgot password?</a> -->
-<!--                                     </div>   -->
-<!--                                     <input type="submit" value="Login" class="btn btn-success btn-custom"> -->
-<!--                                 </form> -->
-<!--                             </div> -->
-
-<!--                             <div role="tabpanel" class="tab-pane fade" id="register"> -->
-<!--                                 <form class="form-horizontal" method="post" action=""> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-user"></i></div> -->
-<!--                                             <input type="text" name="register_username" class="form-control" placeholder="First Name" required="required" value=""> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-male"></i></div> -->
-<!--                                             <input type="text" name="register_fullname" class="form-control" placeholder="Last Name" required="required" value=""> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div> -->
-<!--                                             <input type="email" name="register_email" class="form-control" placeholder="Email" required="required" value=""> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-lock"></i></div> -->
-<!--                                             <input type="password" name="register_password" class="form-control" placeholder="Password" required="required"> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <div class="form-group "> -->
-<!--                                         <div class="input-group"> -->
-<!--                                             <div class="input-group-addon"><i class="fa fa-lock"></i></div> -->
-<!--                                             <input type="password" name="register_cpassword" class="form-control" placeholder="Confirm Password" required="required"> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                     <input type="submit" value="Register" class="btn btn-success btn-custom"> -->
-<!--                                 </form> -->
-<!--                             </div> -->
-
-<!--                             <div class="sociable clearfix social-login-button"> -->
-<!--                                 <h5 style="color: black;">Continue With:</h5> -->
-<!--                                 <p> -->
-<!--                                     <a href="#" class="fa fa-instagram"></a>                                     -->
-<!--                                     <a href="#" class="fa fa-linkedin"></a> -->
-<!--                                     <a href="#" class="fa fa-facebook"></a> -->
-<!--                                     <a href="#" class="fa fa-twitter"></a> -->
-<!--                                 </p> -->
-<!--                             </div> -->
-
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-
-<!--         </div> -->
-<!--     </div> -->
-
-<!--      Popup for taking email to send Reset Password link -->
-<!-- 		<div id="resetPassword" class="modal fade modalcopy" role="dialog" data-backdrop="static" data-keyboard="false"> -->
-<!--             <div class="modal-dialog"> -->
-<!--                 Modal content -->
-<!--                 <div class="modal-content"> -->
-<!--                     <div class="modal-header"> -->
-<!--                         <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-<!--                         <h4 class="modal-title">Reset Password</h4> -->
-<!--                         <span id="errorMessage" align="center" style="color:green; font-size: 15px;"></span> -->
-<!--                         <span id="successMessage" align="center" style="color:green; font-size: 15px;"></span> -->
-<!--                     </div> -->
-<!--                     <div class="modal-body"> -->
-<!--                         <div role="tabpanel"> -->
-<!--                             <form name="resetPassword" class="form-horizontal" method="GET" modelAttribute="user" > -->
-<!--                             <div class="input-container"> -->
-<!--                             <div class="form-group "> -->
-<!--                                 <div class="input-group"> -->
-<!--                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>  -->
-<!--                                         <input path="user.email" type="email" name="email" id="emailR" required="true" class="modal-form-input" placeholder="Email/Username" /> -->
-<!--                                         <div class="bar"></div> -->
-<!--                                     </div> -->
-<!--                             </div> -->
-<!--                             </div> -->
-<!--                             <div class="button-container"> -->
-<!--                                 <a href="#" onclick="javascript:reset() " class="btn btn-success btn-custom">Reset Password</a> -->
-<!--                             </div> -->
-                            
-<!--                                 <a href="loginRegister">Back to Login</a> -->
-<!--                             </form> -->
-<!--                             </div> -->
-<!--                             Tab panes -->
-<!--                             <div class="tab-content"> -->
-<!--                                 <div role="tabpanel" class="tab-pane active" id="uploadTab"> -->
-<!--                                 </div> -->
-<!--                                 <div role="tabpanel" class="tab-pane" id="browseTab"></div> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-        
-            
-<!--     Popup on click of register button for OTP verification -->
-<!--             <div id="modalshare" class="modal fade modalcopy" role="dialog" data-backdrop="static" data-keyboard="false"> -->
-<!--             <div class="modal-dialog"> -->
-<!--                 Modal content -->
-<!--                 <div class="modal-content"> -->
-<!--                     <div class="modal-header"> -->
-<!--                         <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-<!--                         <h4 class="modal-title">OTP Verification</h4> -->
-<!--                         <span id="otpMessage"></span> -->
-<!--                     </div> -->
-<!--                     <div class="modal-body"> -->
-<!--                         <div role="tabpanel"> -->
-<!--                             <form name="otpVerification" class="form-horizontal" method="GET" modelAttribute="user"> -->
-<!--                             <table id="tblVerify"> -->
-<!--                                 <tr> -->
-<!--                                     <th> -->
-<!--                                         <input type="text" name="otp"  id="otp" required="true" placeholder="Enter OTP" /> -->
-<!--                                         <input type="hidden" name="email"  id="vEmail" /> -->
-<!--                                         <div class="bar"></div> -->
-<!--                                     </th> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <th><a href="#" onclick="javascript:verifyOtp()" class="btn btn-success btn-custom">Submit</a></th>  -->
-<!--                                 </tr> -->
-<!--                             </table> -->
-<!--                             </form> -->
-<!--                             Tab panes -->
-<!--                             <div class="tab-content"> -->
-<!--                                 <div role="tabpanel" class="tab-pane active" id="uploadTab"> -->
-<!--                                 </div> -->
-<!--                                 <div role="tabpanel" class="tab-pane" id="browseTab"></div> -->
-<!--                             </div> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
 
 <!-- Footer start -->
 <footer class="page-footer font-small mdb-color pt-4">

@@ -56,10 +56,9 @@
 		<!-- <property name="fileServerLocation" -->
 		<!-- value="C:/Users/user/Desktop/Clone Project/23-03-2019/AssessmentApp/Images"></property> -->
 
-		<property name="fileServerLocation"
-			value="/opt/kgate/webapps/file-server/AssesmentApp"></property>
-		<property name="fileServerWebUrl"
-			value="http://159.65.148.176:88/file-server/AssesmentApp/"></property>
+		 <property name="fileServerWebUrl" value="http://localhost:8080/AssesmentApp/resources/Images2/"></property> 
+		 <property name="fileServerLocation" 
+		 value="E:/AssesmentApp3/AssesmentApp2/AssessmentAppABM/src/main/webapp/resources/Images2"></property> 
 
 		<!-- -->
 		<property name="defaultReferenceConfigFileLocation"
@@ -93,7 +92,7 @@
 
 		<!--Local Connection Details -->
 		<property name="jdbcUrl"
-		value="jdbc:mysql://localhost:3306/assessment?createDatabaseIfNotExist=true" />
+		value="jdbc:mysql://localhost:3306/assessment2?createDatabaseIfNotExist=true" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 

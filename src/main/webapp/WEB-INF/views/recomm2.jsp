@@ -81,6 +81,49 @@
 <spring:url value="/resources/assets/css/pnotify.custom.min.css" var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
+
+<style>
+.dropdown-menu {
+	min-width: 387px !important;
+	height: 300px !important;
+	overflow: auto !important;
+}
+</style>
+
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
+
 <script>
 	function goback() {
 		window.location = "goback";
@@ -91,33 +134,57 @@
 
 		<!--header start-->
 		<header id="header" class="tt-nav nav-border-bottom">
-				<div class="header-sticky light-header ">
-						<div class="container">
-								<div id="materialize-menu" class="menuzord">
-										<!--logo start-->
-										<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-												src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
-										</a>
-										<!--logo end-->
-										<!--mega menu start-->
-										<ul class="menuzord-menu pull-right">
-												<li><a
-														href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-												<li><a href="question_list">Question Bank</a></li>
-												<li><a href="testlist">Tests</a></li>
-												<li><a href="skills">Skills</a></li>
-												<li><a href="showReports">Results</a></li>
-												<li><a href="practice">Practice</a></li>
-												<li><a href="codingSessions">Code Analysis Reports</a></li>
-												<li><a href="showSkillTags">Skill based Reports</a></li>
-												<li class="active"><a href="showProfileParams">Recomm Setting</a></li>
-												<li><a href="listUsers">Users</a></li>
-										</ul>
-										<!--mega menu end-->
-								</div>
+		<div class="header-sticky light-header ">
+			<div class="container">
+				<div id="materialize-menu" class="menuzord">
+					<!--logo start-->
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						alt="" />
+					</a>
+					
+						
+					<!--logo end-->
+					<!--mega menu start-->
+					<ul class="menuzord-menu pull-right">
+						<li><a
+							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+						<li><a href="question_list">Question Bank</a></li>
+						<li><a href="testlist">Tests</a></li>
+						<li><a href="skills">Skills</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete">Compete</a>
+								<a href="skillTest">Skill Test</a>
+							 </div>
 						</div>
-				</div>
-		</header>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="showReports">Result</a>
+								<a href="codingSessions">Code Reports</a>
+								<a href="showSkillTags">Skill Reports</a>
+							 </div>
+						</div>
+						</li>
+						<li  class="active"><a href="showProfileParams">Recomm Setting</a></li>
+						<li><a href="listUsers">Users</a></li>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
+					</ul>
+					<!--mega menu end-->
+					 </div>
+				
+			</div>
+		</div>
+		
+	</header>
 		<!--header end-->
 
 		<section>
@@ -239,7 +306,7 @@
 				</div>
 		</section>
 
-		<footer class="footer footer-four">
+		<!-- <footer class="footer footer-four">
 				<div class="secondary-footer brand-bg darken-2 text-center">
 						<div class="container">
 								<ul>
@@ -256,7 +323,7 @@
 								</ul>
 						</div>
 				</div>
-		</footer>
+		</footer> -->
 
 
 		<!-- jQuery -->

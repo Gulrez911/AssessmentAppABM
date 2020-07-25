@@ -56,6 +56,49 @@
 
 	}
 </script>
+
+	<style>
+.dropdown-menu {
+	min-width: 387px !important;
+	height: 300px !important;
+	overflow: auto !important;
+}
+</style>
+
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
+
 </head>
 <body id="top" class="has-header-search">
 
@@ -65,9 +108,13 @@
 			<div class="container">
 				<div id="materialize-menu" class="menuzord">
 					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -76,23 +123,43 @@
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li class="active"><a href="skillTest">Skill Test</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete">Compete</a>
+								<a href="skillTest" class="active">Skill Test</a>
+							 </div>
+						</div>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="showReports">Result</a>
+									<a href="codingSessions">Code Reports</a>
+									<a href="showSkillTags">Skill Reports</a>
+								 </div>
+							</div>
+						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
 	<section>
-		<form:form name="tenantForm" method="post" modelAttribute="skillTest" action="saveSkillTest" id="frm">
+		<form:form name="tenantForm" method="post" modelAttribute="skillTest" action="saveSkillTest"
+			id="frm">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3"></div>
@@ -143,17 +210,20 @@
 											<label class="fieldtitle">Skill List</label>
 										</div>
 										<div class="col-md-8">
-											<div class="dropdown" id="dropID">
-												<form:select path="childSkill" id="smt" style="width: 130px;height: 26px" disabled="true">
+												<form:select path="childSkill" id="smt" style="width: 130px;height: 26px"
+													disabled="true">
 													<option value="select">--Select Skill--</option>
 													<form:options items="${listSkill}" />
+
 												</form:select>
-											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
+
+
 					</div>
 
 
@@ -176,7 +246,7 @@
 		</form:form>
 	</section>
 
-	<footer class="footer footer-four">
+	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
@@ -193,7 +263,7 @@
 			</div>
 		</div>
 	</footer>
-
+ -->
 
 	<!-- jQuery -->
 

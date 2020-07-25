@@ -27,16 +27,9 @@
       function onSignIn(googleUser) {
       // window.location.href='success.jsp';
       var profile = googleUser.getBasicProfile();
-      
+      console.log(profile);
     window.location="loginsuccess?name="+profile.getName()+"&email="+profile.getEmail();
       
-      var imagurl=profile.getImageUrl();
-      var name=profile.getName();
-      var email=profile.getEmail();
-      document.getElementById("myImg").src = imagurl;
-      document.getElementById("name").innerHTML = name;
-      document.getElementById("myP").style.visibility = "hidden";
-      document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=confirmation-page.jsp?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
    }
    </script>
    <button onclick="myFunction()">Sign Out</button>
