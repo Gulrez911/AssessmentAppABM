@@ -1,6 +1,8 @@
 package com.assessment.web.controllers;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +53,7 @@ public class CompeteController {
 	public ModelAndView compete(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		ModelAndView mav = new ModelAndView("compete");
-
+		if(user!=null) {
 		List<Object> countList=competeService.competeListCount();
 		List<CompeteDto> listCompeteDtos = new ArrayList<CompeteDto>();
 		for(Object obj:countList) {
@@ -79,6 +82,10 @@ public class CompeteController {
 		mav.addObject("challengeType", challengeType);
 		mav.addObject("listSkill", listSkill);
 		mav.addObject("compete", compete);
+		}else {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/login");
+		}
 		return mav;
 	}
 
@@ -88,6 +95,9 @@ public class CompeteController {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("compete called");
 		User user = (User) request.getSession().getAttribute("user");
+		
+		Test lTest =  (Test) testRepo.findAllByTestName(testName);
+		System.out.println("testDeatils:"+lTest.getId());
 		
 		int flag=0;
 		List<Compete> compete1= competeService.findBySkillNameAndChallenge(skillName, challenge);
@@ -106,6 +116,8 @@ public class CompeteController {
 			  compete.setSkillName(skillName); 
 			  compete.setChallenge(challenge);
 			  compete.setTestName(testName); 
+//			  compete.setTestId(Long.toString(lTest.getId()));
+			  compete.setTestId(lTest.getId());
 			  competeRepo.save(compete);
 			  System.out.println("Saved" + compete); 
 			  map.put("msg","Level Added Successfully!"); 
@@ -156,6 +168,7 @@ public class CompeteController {
 		  Compete compete= competeService.findByIdAndCompanyId(id, user.getCompanyId()); 
 		  System.out.println("findById Details>>>"+compete);
 		  
+			Test lTest =  (Test) testRepo.findAllByTestName(testName);
 		  String skill=compete.getSkillName();
 		  String challenge=compete.getChallenge();
 			int flag=0;
@@ -169,14 +182,103 @@ public class CompeteController {
 			}
 			
 			if(flag!=1) {
+				compete.setTestId(lTest.getId());
 				compete.setTestName(testName);
 				competeRepo.save(compete);
 				System.out.println("Level updated successfully"+compete.getTestName());
 				map.put("msg", "Level Updated Successfully!");
 			}
-			
+			map.put("user", user);
 			map.put("id", id); 
 		  return map; 
+	}
+	  
+	@RequestMapping(value="/competeFrontSkill" ,method= RequestMethod.GET)
+	public ModelAndView competeFrontSkill(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView("competeFrontSkill");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}
+		mav.addObject("user", user);
+		mav.addObject("challengeType", "Skill Challenge");
+
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/competeFrontCoding" ,method= RequestMethod.GET)
+	public ModelAndView competeFrontCoding(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView("competeFrontCoding");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}
+		mav.addObject("user", user);
+		mav.addObject("challengeType", "Coding Challenge");
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
+	public ModelAndView competeFront(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name="challengeType",required=false) String challengeType,
+			@RequestParam(name="skillName",required = false) String skillName){
+		
+		ModelAndView mav=new ModelAndView("competeFront");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}else {
+			List<Compete> skillList = competeService.findDistinctSkillName(challengeType);
+			System.out.println("Distinct SkillList"+skillList);
+			
+			CompeteDto dto= null;
+//			List<CompeteDto> dtoList = new ArrayList<>();
+//			List<CompeteDto> tList=new ArrayList<CompeteDto>();
+			//BeanUtils.copyProperties(dto, skillList.get(0));
+			List<Compete> testList=competeService.findBySkillNameAndChallenge(skillName, challengeType);
+			
+			  List<String> tests=new ArrayList<>(); 
+			  List<Long> testId=new ArrayList<>();
+			for(Compete c: testList) {
+				  String testName=c.getTestName(); 
+				  tests.add(testName); 
+				  Long tId=c.getTestId();
+				  testId.add(tId);
+//				dto = new CompeteDto();
+//				BeanUtils.copyProperties(c,dto);
+//				dtoList.add(dto);
+//				dto.setDtoList(dtoList);
+//				dto.getTestName();
+			}
+			
+			Map map=new HashMap<Long, String>();
+			System.out.println("testList>>"+testList);
+			System.out.println("IdList>>"+tests);
+			
+			String userId = URLEncoder.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes()));
+			System.out.println("UserID:" + userId);
+			
+			System.out.println("SkillIndex:"+skillList.indexOf(skillName));
+			mav.addObject("tests", tests);
+//			mav.addObject("testList", dto.getDtoList());
+			mav.addObject("testList", testList);
+			mav.addObject("skillList", skillList);
+			mav.addObject("skillIndex",skillList.indexOf(skillName));
+//			mav.addObject("skillName",  dto.getDtoList().get(0).getSkillName());
+			mav.addObject("skillName",skillName);
+			mav.addObject("challengeType", challengeType);
+			mav.addObject("companyId", user.getCompanyId());
+			mav.addObject("testId", testId);
+//			mav.addObject("testId", dto.getDtoList());
+//			mav.addObject("dto", dto.getDtoList());
+			mav.addObject("userId", URLEncoder.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes())));
+		}
+		return mav; 
 	}
 
 }

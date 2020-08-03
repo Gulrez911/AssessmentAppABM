@@ -22,14 +22,12 @@ public class SkillTestServiceImpl implements SkillTestService {
 		skillTestRepository.save(skillTest);
 
 	}
-
+	
 	@Override
-	public List<SkillTest> findUniqueParentSkill(String companyId) {
+	public List<SkillTest> getskillTest() {
 		// TODO Auto-generated method stub
-		return skillTestRepository.findUniqueParentSkill(companyId);
+		return skillTestRepository.findAll();
 	}
-
-	 
 
 	@Override
 	public void updateSkill(SkillTest skillTest) {
@@ -38,8 +36,47 @@ public class SkillTestServiceImpl implements SkillTestService {
 	}
 
 	@Override
+	public List<String> findAllRecord(String skillname) {
+		// TODO Auto-generated method stub
+		return skillTestRepository.findAllRecord(skillname);
+	}
+
+	@Override
+	public int deleteSkillName(String skillname) {
+		// TODO Auto-generated method stub
+		return skillTestRepository.deleteSkillName(skillname);
+	}
+
+	@Override
+	public SkillTest getByskillsubskill(String skill, String compId, String subskill) {
+		// TODO Auto-generated method stub
+		
+		return skillTestRepository.getByskillsubskill(skill, compId, subskill);
+	}
+
+	@Override
+	public List<SkillTest> findUniqueParentSkill(String companyId) {
+		// TODO Auto-generated method stub
+		return skillTestRepository.findUniqueParentSkill(companyId);
+	}
+	 
+	@Override
 	public List<SkillTest> findAllByCompanyId(String companyId) {
 		return skillTestRepository.findAllByCompanyId(companyId);
 	}
+
+
+//	@Override
+//	public List<SkillTest> getUnique() {
+//		// TODO Auto-generated method stub
+//		return skillTestRepository.uniqueSkill();
+//	}
+
+
+	/*
+	 * @Override public String findAllRecord(String skillname) { // TODO
+	 * Auto-generated method stub return
+	 * skillTestRepository.findAllRecord(skillname); }
+	 */
 
 }

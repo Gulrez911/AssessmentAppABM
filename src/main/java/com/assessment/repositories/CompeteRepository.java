@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.assessment.data.Compete;
 
@@ -30,6 +31,11 @@ public interface CompeteRepository extends JpaRepository<Compete, Long> {
 	
 	List<Compete> findBySkillNameAndChallenge(String skillName, String challenge);
 	
-
+	
+//	User Side
+	@Query("SELECT DISTINCT c.skillName FROM Compete c where c.challenge=:challenge")
+	List<Compete> findDistinctSkillName(@Param("challenge") String challenge);
+	
+	
 	
 }

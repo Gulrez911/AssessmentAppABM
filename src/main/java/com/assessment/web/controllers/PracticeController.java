@@ -1,6 +1,5 @@
 package com.assessment.web.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,9 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.assessment.data.PracticeCode;
 import com.assessment.data.User;
+import com.assessment.repositories.SkillTestLabelRepository;
+import com.assessment.repositories.SkillTestRepository;
 import com.assessment.services.CompanyService;
 import com.assessment.services.PracticeService;
 import com.assessment.services.QuestionService;
+import com.assessment.services.StepTestService;
 
 @Controller
 public class PracticeController {
@@ -38,13 +37,31 @@ public class PracticeController {
 
 	@Autowired
 	private CompanyService companyService;
+	
+	@Autowired
+	SkillTestRepository skillTestRepository;
+	
+	@Autowired
+	SkillTestLabelRepository skillTestLabelRepo;
+	
+	@Autowired
+	StepTestService steptestservice;
+	
 
 	@RequestMapping(value = "/practice", method = RequestMethod.GET)
-	public ModelAndView addQuestion(@RequestParam(required = false) String lang,
+	public ModelAndView addQuestion(HttpServletRequest request, HttpServletResponse response,@RequestParam(required = false) String lang,
 			@RequestParam(required = false) Long id,@RequestParam(required = false) String msg) throws Exception {
 		ModelAndView mav = new ModelAndView("practice");
+		User user = (User)request.getSession().getAttribute("user");
 		PracticeCode practiceCode = new PracticeCode();
 		mav.addObject("practiceCode", practiceCode);
+		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
+		mav.addObject("skillList", skillList);
+		String[] skills =  steptestservice.getParentSkillNames(user.getCompanyId());
+		for(int i = 0 ; i<skills.length; i++) {
+			System.out.println(skills[i]);
+		}		
+		mav.addObject("skills",skills);
 		Map<String, String> langs = new HashMap<>();
 		List<PracticeCode> listCode = practiceService.findAllPracticeCode();
 		System.out.println(listCode);

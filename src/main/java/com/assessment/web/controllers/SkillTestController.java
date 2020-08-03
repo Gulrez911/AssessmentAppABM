@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.assessment.data.SkillTest;
+import com.assessment.data.Test;
 import com.assessment.data.User;
 import com.assessment.repositories.SkillTestRepository;
+import com.assessment.repositories.TestRepository;
 import com.assessment.services.SkillTestService;
 
 @Controller
@@ -28,6 +30,9 @@ public class SkillTestController {
 
 	@Autowired
 	SkillTestRepository skillTestRepository;
+	
+	@Autowired
+	TestRepository testRepository;
 
 	@RequestMapping(value = "/skillTest", method = RequestMethod.GET)
 	public ModelAndView getSkillTest(HttpServletRequest request, HttpServletResponse response) {
@@ -38,8 +43,7 @@ public class SkillTestController {
 		mav.addObject("skillTests", skillTests);
 		return mav;
 	}
-
-	@GetMapping("/addSkillTest")
+	@GetMapping("/addSkillTest1")
 	public ModelAndView addSkillTest(HttpServletRequest request,@RequestParam(name="id",required = false) Long id) {
 		User user = (User) request.getSession().getAttribute("user");
 		ModelAndView mav = new ModelAndView("addSkillTest");
@@ -62,10 +66,23 @@ public class SkillTestController {
 		mav.addObject("listSkill", listSkill);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/addSkillTest", method = RequestMethod.GET)
+	public ModelAndView addSkill(HttpServletRequest request, HttpServletResponse response) {
+		User user = (User) request.getSession().getAttribute("user");
+		SkillTest skillTest = new SkillTest();
+		List<Test> test = testRepository.findAll();
+		List<SkillTest> skillTests = skillTestService.getskillTest();
+		ModelAndView mav = new ModelAndView("addSkillTest");
+		mav.addObject("skillTest", skillTest);
+		mav.addObject("skillTests", skillTests);
+		return mav;
+	}
+
+
 
 	@PostMapping("/saveSkillTest")
-	public ModelAndView saveSkillTest(@ModelAttribute("skillTest") SkillTest skillTest,
-			HttpServletRequest request) {
+	public ModelAndView saveSkillTest(@ModelAttribute("skillTest") SkillTest skillTest,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User) request.getSession().getAttribute("user");
 		List<SkillTest> listSkill = skillTestService.findUniqueParentSkill(user.getCompanyId());

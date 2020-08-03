@@ -16,8 +16,7 @@
 
 <link href="${c1}" rel="shortcut icon" />
 
-<spring:url
-	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+<spring:url value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
 	var="c2" />
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
@@ -107,6 +106,40 @@
 }
 </style>
 
+<style >
+li>a.dropbtn{
+	position: relative;
+}
+.dropdown {
+  position: relative;
+  display: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  opacity:100;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content>a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover > .dropdown{display:block}
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
+
+</style>
+
 <script>
 	/* When the user clicks on the button,
 	 toggle between hiding and showing the dropdown content */
@@ -145,28 +178,46 @@
 						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
 						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
-					<ul class="menuzord-menu pull-right">
-						<li><a
-							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+					<ul class="menuzord-menu pull-right" id="myTab">
+						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
 						<li class="active"><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="compete">Compete</a></li>
-						<li><a href="skillTest">Skill Test</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete">Compete</a>
+								<a href="skillTest">Skill Test</a>
+							 </div>
+						</div>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="showReports">Result</a>
+								<a href="codingSessions">Code Reports</a>
+								<a href="showSkillTags">Skill Reports</a>
+							 </div>
+						</div>
+						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
-						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
@@ -223,11 +274,11 @@
 					<input type="file" name="fileQuestions" id="fileQuestions"
 						style="display: none" />
 				</form>
-				<div class="col-md-12">
+				<!-- <div class="col-md-12">
 					<div class="col-md-12">
 						<div class="pagination" style="float: right;" id="pagination"></div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-md-12">
 					<div class="mt-10"></div>
@@ -250,11 +301,7 @@
 					<div class="col-md-3" style="padding: 0;">
 						<div class="mt-10"></div>
 						<div class="col-md-4"></div>
-<!-- 						<div class="col-md-4" style="padding-left: 0;"> -->
-<!-- 							<a href="javascript:notify('Information', 'Feature coming soon')"> -->
-<!-- 								<i class="fa fa-sort-amount-asc"></i> <span>Sort</span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
+						<div class="pagination" style="float: right;" id="pagination"></div>
 <!-- 						<div class="col-md-4" style="padding: 0;"> -->
 <!-- 							<a href="javascript:notify('Information', 'Feature coming soon')"> -->
 <!-- 								<i class="fa fa-filter"></i> <span>Filter</span> -->
@@ -314,7 +361,7 @@
 
 
 
-	<footer class="footer footer-four">
+	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
@@ -332,7 +379,7 @@
 			</div>
 		</div>
 	</footer>
-
+ -->
 
 
 
@@ -391,6 +438,17 @@
 	<script src="${mainJs17}"></script>
 
 	<script>
+// 	$(document).ready(function () {
+// 	    $('.menuzord-menu pull-right li a').click(function(e) {
+
+// 	        $('.menuzord-menu pull-right li.active').removeClass('active');
+
+// 	        var $parent = $(this).parent();
+// 	        $parent.addClass('active');
+// 	        e.preventDefault();
+// 	    });
+// 	});
+		
 		/* off-canvas sidebar toggle */
 		$('[data-toggle=offcanvas]').click(
 				function() {
@@ -413,9 +471,7 @@
 		function showFileDialog() {
 			$("#fileQuestions	").click();
 		}
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							var file = $('[name="fileQuestions"]');
 							var imgContainer = $('#imgContainer');
 							$('#uploadLink').on('click', function() {
@@ -625,6 +681,7 @@
 				sort('ASC', 0,'Question')
 			}
 		});
+
 	</script>
 
 
@@ -641,7 +698,21 @@
 				});
 			});
 		</script>
+		
 	</c:if>
+	
+	<script>
+		/*$(document).ready(function(){
+			$(".dropbtn").hover(function(){
+				$(".dropdown-content").css("display","block");
+				$(".dropdown").css("display","block");
+			},
+			function(){
+				$(".dropdown-content").css("display","none");
+				$(".dropdown").css("display","none");
+			});
+		});*/
+	</script>
 </body>
 
 </html>

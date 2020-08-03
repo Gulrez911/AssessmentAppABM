@@ -311,14 +311,9 @@ public class QuestionController {
 		String filename = addimage.getOriginalFilename();
 		String basename = FilenameUtils.getBaseName(filename);
 		String extension = FilenameUtils.getExtension(filename);
-		DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		if (addimage != null) {
-			/*
-			 * String destination = propertyConfig.getFileServerLocation() + File.separator
-			 * + "images" + File.separator + addimage.getOriginalFilename() + new
-			 * SimpleDateFormat("yyyyMMddHHmm'.jpg'").format(new Date());//
-			 * System.currentTimeMillis();
-			 */	
+				
 			 String destination = propertyConfig.getFileServerLocation() + File.separator
 					  + "images" + File.separator + basename + df.format(new Date()) + "." + extension;
 			File file = new File(destination);
@@ -329,7 +324,7 @@ public class QuestionController {
 
 			}
 			if (addimage.getOriginalFilename() != null && addimage.getOriginalFilename().trim().length() > 0) {
-				String imageUrl = destination;
+				String imageUrl = propertyConfig.getFileServerWebUrl() + "images/" + basename + df.format(new Date()) + "." + extension;
 				question.setImageUrl(imageUrl);
 				addimage.transferTo(file);
 			}
@@ -340,7 +335,7 @@ public class QuestionController {
 		String filenameAudio = addaudio.getOriginalFilename();
 		String basenameAudio = FilenameUtils.getBaseName(filenameAudio);
 		String extensionAudio = FilenameUtils.getExtension(filenameAudio);
-		DateFormat df1 = new SimpleDateFormat("yyyyMMddhhmmss");
+		DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		
 		if (addaudio != null) {
 			String destination = propertyConfig.getFileServerLocation() + File.separator + "audios" + File.separator
@@ -354,7 +349,7 @@ public class QuestionController {
 			}
 
 			if (addaudio.getOriginalFilename() != null && addaudio.getOriginalFilename().trim().length() > 0) {
-				String audioUrl = destination;
+				String audioUrl = propertyConfig.getFileServerWebUrl() + "audios/" +  basenameAudio + df1.format(new Date()) + "." + extensionAudio;
 				question.setAudioURL(audioUrl);
 				addaudio.transferTo(file);
 				
@@ -366,7 +361,7 @@ public class QuestionController {
 		String filenameVideo = addvideo.getOriginalFilename();
 		String basenameVideo = FilenameUtils.getBaseName(filenameVideo);
 		String extensionVideo = FilenameUtils.getExtension(filenameVideo);
-		DateFormat df2 = new SimpleDateFormat("yyyyMMddhhmmss");
+		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		if (addvideo != null) {
 			String destination = propertyConfig.getFileServerLocation() + File.separator + "videos" + File.separator
 					+ basenameVideo + df2.format(new Date()) + "." + extensionVideo;
@@ -378,7 +373,7 @@ public class QuestionController {
 			}
 
 			if (addvideo.getOriginalFilename() != null && addvideo.getOriginalFilename().trim().length() > 0) {			
-				String videoUrl = destination;
+				String videoUrl = propertyConfig.getFileServerWebUrl() + "videos/" + basenameVideo + df2.format(new Date()) + "." + extensionVideo;
 				question.setVideoURL(videoUrl);
 				addvideo.transferTo(file);
 			}

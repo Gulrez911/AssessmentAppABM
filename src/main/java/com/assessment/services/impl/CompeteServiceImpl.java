@@ -29,7 +29,8 @@ public class CompeteServiceImpl implements CompeteService {
 
 	@Override
 	public List<Compete> findBySkillNameAndChallenge(String skillName, String challenge) {
-		return competeRepo.findBySkillNameAndChallenge(skillName, challenge);
+		return  competeRepo.findBySkillNameAndChallenge(skillName, challenge);
+		 
 	}
 
 	@Override
@@ -40,6 +41,11 @@ public class CompeteServiceImpl implements CompeteService {
 	@Override
 	public List<Object> competeListCount() {
 		return competeRepo.competeListCount();
+	}
+
+	@Override
+	public List<Compete> findDistinctSkillName(String challenge) {
+		return competeRepo.findDistinctSkillName(challenge);
 	}
 
 }

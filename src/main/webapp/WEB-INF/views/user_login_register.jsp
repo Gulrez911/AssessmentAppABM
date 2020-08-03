@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
@@ -9,6 +9,9 @@
 
 <html lang="en">
 <head>
+	<%@ page isELIgnored="false" %>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+   	<meta name="google-signin-client_id" content="1031150543105-cqeanuk2t9cfn5sveu27mqr5u1n7com4.apps.googleusercontent.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -77,7 +80,8 @@
         /* Container Design */
         .login-register-form-section {
         max-width: 30%;
-        margin: 0 auto;
+        margin:0 auto;
+        height: 40%;
     }
 
     .login-register-form-section i {
@@ -131,49 +135,6 @@
             opacity: 0.7;
         }
 
-/*          .fa-facebook { 
-             background: #3B5998; *
-             color: white; 
-             padding: 20px; 
-             font-size: 20px; 
-             width: 20px; 
-             text-align: center; 
-             text-decoration: none; 
-             margin: 5px 2px; 
-         } 
- */
-/*         .fa-twitter { */
-/*             background: #55ACEE; */
-/*             color: white; */
-/*             padding: 20px; */
-/*             font-size: 20px; */
-/*             width: 30px; */
-/*             text-align: center; */
-/*             text-decoration: none; */
-/*             margin: 5px 2px; */
-/*         } */
-
-/*         .fa-linkedin { */
-/*             background: #007bb5; */
-/*             color: white; */
-/*             padding: 20px; */
-/*             font-size: 20px; */
-/*             width: 30px; */
-/*             text-align: center; */
-/*             text-decoration: none; */
-/*             margin: 5px 2px; */
-/*         } */
-
-/*         .fa-instagram { */
-/*             background: #125688; */
-/*             color: white; */
-/*             padding: 20px; */
-/*             font-size: 20px; */
-/*             width: 30px; */
-/*             text-align: center; */
-/*             text-decoration: none; */
-/*             margin: 5px 2px; */
-/*         } */
 
         /* Footer Design */
         .page-footer{
@@ -208,10 +169,7 @@
     </div>
     <!-- Header end -->
 
-    <div align="center" style="color:red; font-size: 25px;">
-		<b>${message}</b>
-	</div>
-	
+	<br>
 	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 	
 		<section style="height: 100% !important; margin: 0px;">
@@ -224,8 +182,6 @@
 	                    <li class="active"><a href="#login" data-toggle="tab">SignIn</a></li>
 	                    <li><a href="#register" data-toggle="tab">SignUp</a></li>
 	                </ul>
-						<!-- <h1 class="title">Signin</h1> -->
-						<!-- <a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					<div class="tab-content">
                     	<div role="tabpanel" class="tab-pane fade in active" id="login">
 							<form name="userloginform" class="form-horizontal" method="post" modelAttribute="user" action="authenticateUser">
@@ -245,14 +201,18 @@
 		                                    <div class="input-group-addon"><i class="fa fa-key"></i></div>
 											<form:password path="user.password" name="password"
 												id="password" cssClass="form-control" required="true" placeholder="Password"/>
+											<div class="input-group-addon"><i class="glyphicon glyphicon-eye-open" onclick="showPassword()"></i></div>
 											<div class="bar"></div>
 										</div>
 									</div>
 								</div>
 								
-								
 								<div class="button-container">
 									<button type="submit" name="submit" class="btn btn-success btn-custom">Login</button>
+								</div>
+								
+								<div align="center" style="color:red; font-size: 20px; background-color: #F7F7F7;">
+									<c:out value="${param['message']}"></c:out>
 								</div>
 								
 								<div class="form-group">
@@ -263,6 +223,7 @@
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane fade" id="register">
+							<div id="validator" style="color:red; font-size: 18px;"></div>
 							<form name="userloginform" class="form-horizontal" method="post" modelAttribute="user" action="registerUser">
 									<div class="input-container">
 										<div class="form-group ">
@@ -290,7 +251,7 @@
 			                                <div class="input-group">
 				                                <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
 												<form:input type="number" path="user.mobileNumber" name="mobileNumber" 
-													id="mobileNumber" cssClass="form-control" required="true" placeholder="MobileNumber"/>
+													id="mobileNumber" cssClass="form-control" required="true" placeholder="MobileNumber" maxlength="10"/>
 												<div class="bar"></div>
 											</div>
 										</div>
@@ -313,10 +274,10 @@
 												<form:password path="user.password" name="password1"
 													id="password1" cssClass="form-control" required="true" placeholder="Password"/>
 												<div class="bar"></div>
+												<div class="input-group-addon"><i class="glyphicon glyphicon-eye-open" onclick="showPassword()"></i></div>
 											</div>
 										</div>
 									</div>
-									
 									<div class="input-container">
 										<div class="form-group ">
 		                                	<div class="input-group">
@@ -342,7 +303,11 @@
 									</div>
 								</form>
 							</div>
-							<div>
+							<div align="center" style="color:red; font-size: 20px; background-color: #F7F7F7;">
+<%-- 									<c:out value="${param['message']}"></c:out> --%>
+									${msg}
+							</div>
+							<!-- <div>
 								<p>
 									<span>OR Continue With:</span>
 									<a href="student/showForm" data-return_url="https://www.techgig.com/home?login=true" > 
@@ -351,9 +316,18 @@
 									<a href="student/fbLogin"  data-return_url="https://www.techgig.com/home?login=true" style="background-color:blue;"> 
 										<img src="https://static.techgig.com/Themes/Release/images/tg_images_new/fb-icon.svg" alt="FBIcon" /> 
 									</a>
+									<a>
+										<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+										      <img id="myImg"><br>
+										      <p id="name"></p>
+										      <button onclick="myFunction()">Sign Out</button>
+									</a>
+									<a>
+										<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+									</a>
 									<a href=""></a>
 								</p>
-							</div>
+							</div> -->
 					</div>
 					
 						
@@ -370,30 +344,30 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-<!-- 					 <h4 class="modal-title" style="align: center;">Reset Password</h4>  -->
-					<span id="errorMessage" align="center" style="color:green; font-size: 15px;"></span>
-					<span id="successMessage" align="center" style="color:green; font-size: 15px;"></span>
+				<div class="modal-header" style="background-color: #5CB85C;">
+					<h4 class="modal-title" style=" align-self:center; color: white;">Plesae enter your Username/Email address.You will recieve a link to create new password via email.</h4>
+					<button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div role="tabpanel">
+						<span id="errorMessage" align="center" style="color:green; font-size: 15px;"></span>
+						<span id="successMessage" align="center" style="color:green; font-size: 15px;"></span>
 						<form name="resetPassword" class="form-horizontal" method="GET" modelAttribute="user" >
-						<div class="input-container">
-						<div class="form-group ">
-							<div class="input-group">
-<!-- 									<div class="input-group-addon"><i class="fa fa-envelope"></i></div>  -->
-									<input path="user.email" type="email" name="email" id="emailR" required="true" class="modal-form-input" placeholder="Email/Username" />
+							<table id="resetPassword">
+							<tr>
+								<th>
+									<input path="user.email" type="email" name="email" id="emailR" required="true" class="modal-form-input" placeholder="Email or Username" style="height:34px; width:250px;" />
 									<div class="bar"></div>
-								</div>
-						</div>
-						</div>
-						<div class="button-container">
-							<a href="#" onclick="javascript:reset() " class="btn btn-success btn-custom">Reset Password</a>
-						</div>
-						
-							<a href="loginRegister">Back to Login</a>
+								</th>
+								<th>
+									<a href="#" onclick="javascript:reset() " class="btn btn-success btn-custom">Reset Password</a>
+								</th> 
+							</tr>
+							</table>
 						</form>
+							<a href="loginRegister" style="color:#5CB85C"><u>Back to Login</u></a>
+						
+						
 						</div>
 						<!-- Tab panes -->
 						<div class="tab-content">
@@ -413,25 +387,24 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" style=" align-self:center;">OTP Verification</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<div class="modal-header" style="background-color: #5CB85C;">
+					<h4 class="modal-title" style=" align-self:center; color: white;">OTP Verification</h4>
+					<button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
 					<!-- <span id="otpMessage"></span> -->
 				</div>
 				<div class="modal-body">
 					<div role="tabpanel">
-						<span id="otpMessage"></span>
+						<span id="otpMessage" ><b></b></span>
+						<br>
 						<form name="otpVerification" class="form-horizontal" method="GET" modelAttribute="user">
 						<table id="tblVerify">
 							<tr>
 								<th>
-									<input type="text" name="otp"  id="otp" required="true" placeholder="Enter OTP" />
+									<input type="text" name="otp"  id="otp" required="true" placeholder="Enter OTP" style="height:34px; width:250px; "/>
 									<input type="hidden" name="email"  id="vEmail" />
 									<div class="bar"></div>
 								</th>
-							</tr>
-							<tr>
-								<th><a href="#" onclick="javascript:verifyOtp()" class="btn btn-success btn-custom">Submit</a></th> 
+								<th><a href="#" onclick="javascript:verifyOtp()" class="btn btn-success">Submit</a></th> 
 							</tr>
 						</table>
 						</form>
@@ -448,260 +421,138 @@
 	</div>
 
 
-<!--     Footer start -->
-<!-- <footer class="page-footer font-small mdb-color pt-4"> -->
 
-<!--     Footer Links -->
-<!--     <div class="container text-center text-md-left"> -->
-  
-<!--       Grid row -->
-<!--       <div class="row"> -->
-  
-<!--         Grid column -->
-<!--         <div class="col-md-2 mx-auto"> -->
-  
-<!--           Links -->
-<!--           <h5 class="font-weight-bold text mt-3 mb-4">About Us</h5> -->
-  
-<!--           <ul class="list-unstyled"> -->
-<!--             <li> -->
-<!--               <a href="#!">About Us</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Contact Us</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Join Our Team</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">FAQ</a> -->
-<!--             </li> -->
-<!--           </ul> -->
-  
-<!--         </div> -->
-<!--         Grid column -->
-  
-<!--         <hr class="clearfix w-100 d-md-none"> -->
-  
-<!--         Grid column -->
-<!--         <div class="col-md-2 mx-auto"> -->
-  
-<!--           Links -->
-<!--           <h5 class="font-weight-bold text mt-3 mb-4">For Developer</h5> -->
-  
-<!--           <ul class="list-unstyled"> -->
-<!--             <li> -->
-<!--               <a href="#!">BecomeExpertDeveloper</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Practice Problem</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Solve Challanges</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Coding Environment</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Hackathons</a> -->
-<!--             </li> -->
-<!--           </ul> -->
-  
-<!--         </div> -->
-<!--         Grid column -->
-  
-<!--         <hr class="clearfix w-100 d-md-none"> -->
-  
-<!--         Grid column -->
-<!--         <div class="col-md-2 mx-auto"> -->
-  
-<!--           Links -->
-<!--           <h5 class="font-weight-bold text mt-3 mb-4">For Business</h5> -->
-  
-<!--           <ul class="list-unstyled"> -->
-<!--             <li> -->
-<!--               <a href="#!">Hiring Solutions</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Skill Assessment</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Brand Promotion</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Internal Training</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Organise Hackathons</a> -->
-<!--             </li> -->
-<!--           </ul> -->
-  
-<!--         </div> -->
-<!--         Grid column -->
-  
-<!--         <hr class="clearfix w-100 d-md-none"> -->
-  
-<!--         Grid column -->
-<!--         <div class="col-md-2 mx-auto"> -->
-  
-<!--           Links -->
-<!--           <h5 class="font-weight-bold text mt-3 mb-4">For education</h5> -->
-  
-<!--           <ul class="list-unstyled"> -->
-<!--             <li> -->
-<!--               <a href="#!">Student Assessment</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">LMS</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Live Lectures</a> -->
-<!--             </li> -->
-<!--             <li> -->
-<!--               <a href="#!">Test Library</a> -->
-<!--             </li> -->
-<!--           </ul> -->
-  
-<!--         </div> -->
-<!--         Grid column -->
-  
-<!--         <hr class="clearfix w-100 d-md-none"> -->
-  
-<!--         Grid column -->
-<!--         <div class="col-md-3 mx-auto"> -->
-  
-<!--           Links -->
-<!--           <h5 class="font-weight-bold text mt-3 mb-4">Follow Us</h5> -->
-  
-<!--           <ul class="list-unstyled"> -->
-           
-<!--             <li> -->
-<!--               Social buttons -->
-<!--               <ul class="list-unstyled list-inline text-center" style="margin: 0;"> -->
-<!--                 <li class="list-inline-item"> -->
-<!--                   <a class="btn-floating btn-li mx-1"> -->
-<!--                     <i class="fa fa-linkedin" > </i> -->
-<!--                   </a> -->
-<!--                 </li> -->
-<!--                 <li class="list-inline-item"> -->
-<!--                   <a class="btn-floating btn-fb mx-1"> -->
-<!--                     <i class="fa fa-facebook"> </i> -->
-<!--                   </a> -->
-<!--                 </li> -->
-<!--                 <li class="list-inline-item"> -->
-<!--                   <a class="btn-floating btn-tw mx-1"> -->
-<!--                     <i class="fa fa-twitter"> </i> -->
-<!--                   </a> -->
-<!--              </li> -->
-            
-<!--             <li> -->
-<!--               <P>Subscribe To Our Newsletter</p> -->
-<!--             </li> -->
-<!--             Grid column -->
-<!--             <li> -->
-<%-- 	          <form class="input-group"> --%>
-<!-- 	            <input type="text" class="form-control form-control-sm" placeholder="Your email" -->
-<!-- 	              aria-label="Your email" aria-describedby="basic-addon2" style="height:34px; width:150px; "> -->
-<!-- 	            <div class="input-group-append"> -->
-<!-- 	              <button class="btn btn-success" type="button" >Subscribe</button> -->
-<!-- 	            </div> -->
-<%-- 	          </form> --%>
-<!--           </li> -->
-<!--         </div> -->
-<!--         Grid column -->
-<!--           </ul> -->
-  
-<!--         </div> -->
-<!--         Grid column -->
-        
-<!--       </div> -->
-<!--       Grid row -->
-  
-<!--     </div> -->
-<!--     Footer Links -->
-  
-<!--     Copyright -->
-<!--     <div class="footer-copyright text-center py-3">Copyright @ E-Assess Pvt Ltd. 2020 | All Rights Reserved. -->
-<!--     </div> -->
-<!--     Copyright -->
-  
-<!--   </footer> -->
-<!--   <!-- Footer end --> 
-
-
-<!-- jQuery -->
-	<script src="./resources/assets/js/jquery-2.1.3.min.js"></script>
-	<script src="./resources/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="./resources/assets/materialize/js/materialize.min.js"></script>
-	<script src="./resources/assets/js/menuzord.js"></script>
-	<script src="./resources/assets/js/bootstrap-tabcollapse.min.js"></script>
-	<script src="./resources/assets/js/jquery.easing.min.js"></script>
-	<script src="./resources/assets/js/jquery.sticky.min.js"></script>
-	<script src="./resources/assets/js/smoothscroll.min.js"></script>
-	<script src="./resources/assets/js/jquery.stellar.min.js"></script>
-	<script src="./resources/assets/js/jquery.inview.min.js"></script>
-	<script src="./resources/assets/owl.carousel/owl.carousel.min.js"></script>
-	<script src="./resources/assets/flexSlider/jquery.flexslider-min.js"></script>
-	<script src="./resources/assets/magnific-popup/jquery.magnific-popup.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
-	<script src="./resources/assets/js/scripts.js"></script>
-	<script src="./resources/assets/scripts/custom.js"></script>
-	<script src="./resources/assets/scripts/pnotify.custom.min.js"></script>
+<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
+		var="mainJs1" />
+	<script src="${mainJs1}"></script>
+	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
+		var="mainJs2" />
+	<script src="${mainJs2}"></script>
+	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
+		var="mainJs3" />
+	<script src="${mainJs3}"></script>
+	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
+	<script src="${mainJs4}"></script>
+	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
+		var="mainJs5" />
+	<script src="${mainJs5}"></script>
+	<spring:url value="/resources/assets/js/jquery.easing.min.js"
+		var="mainJs6" />
+	<script src="${mainJs6}"></script>
+	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
+		var="mainJs7" />
+	<script src="${mainJs7}"></script>
+	<spring:url value="/resources/assets/js/smoothscroll.min.js"
+		var="mainJs8" />
+	<script src="${mainJs8}"></script>
+	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
+		var="mainJs9" />
+	<script src="${mainJs9}"></script>
+	<spring:url value="/resources/assets/js/jquery.inview.min.js"
+		var="mainJs10" />
+	<script src="${mainJs10}"></script>
+	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
+		var="mainJs11" />
+	<script src="${mainJs11}"></script>
+	<spring:url
+		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
+		var="mainJs12" />
+	<script src="${mainJs12}"></script>
+	<spring:url
+		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
+		var="mainJs13" />
+	<script src="${mainJs13}"></script>
+	<spring:url value="https://maps.googleapis.com/maps/api/js"
+		var="mainJs14" />
+	<script src="${mainJs14}"></script>
+	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
+	<script src="${mainJs15}"></script>
+	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
+	<script src="${mainJs16}"></script>
+	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
+		var="mainJs17" />
+	<script src="${mainJs17}"></script>
 
   <script type="text/javascript">
-    function myFunction() {
-        var x = document.getElementById("userpassword");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
 
+    function showPassword(){
+    	var a = document.getElementById("password1");
+    	  if (a.type == "password") {
+    	    a.type = "text";
+    	  } else {
+    	    a.type = "password";
+    	  }
+
+    	  var b = document.getElementById("password");
+    	  if (b.type == "password") {
+    	    b.type = "text";
+    	  } else {
+    	    b.type = "password";
+    	  }
+    }
     
 /* Registration OTP Verifiaction */
     function registerClick(){
-	
 			var firstName=$("#firstName").val();
 			var lastName=$("#lastName").val();
 			var mobileNumber=$("#mobileNumber").val();
-			var email=$("#email").val();
 			var password1=$("#password1").val();
 			var password2=$("#confirmPassword").val();
-			console.log(password1+":::    "+password2+":::: "+mobileNumber);
+			console.log(password1+"::: \n   "+password2+"::::\n "+mobileNumber);
 			
              //Empty input validation
             if(firstName == "" || lastName == "" || mobileNumber == "" || email == "" || password1 == "" || password2 == ""){
             	//notify("warning", "All fields are required");
-            	alert("All fields are required!");
+            	//alert("All fields are required!");
+            	$("#validator").text("All fields are required!");
+            	return false;
             } 
             
+	    
     		//Mobile number validation
     		 if (/^\d{10}$/.test(mobileNumber)) {
                   // value is ok, use it
             } else {
-                	alert("Invalid mobile number; Number must be ten digits");
+                  //alert("Invalid mobile number; Number must be ten digits");
+                	$("#validator").text("Mobile number must be ten digits");
                   //notify("warning", "Invalid number; Number must be ten digits");
                   return false
             }
              
-    		 /* var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 		 	/* var reg="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"; */
-//     	     var mailformat = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
+//    	     var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
 //     	     if(email.match(mailformat))
+//     	   	if (!mailformat.test(email.value))
 //     	     {
-//     	     	return true;
-//     	     }
-//     	     else{
-//         	     alert("You have entered an invalid email address!");
+// 	    	   	 alert("You have entered an invalid email address!");
 // 	    	     //notify("warning", "You have entered an invalid email address! ");
 // 	    	     return false;
+//     	     }
+//     	     else{
+//     	     	return true;
+        	    
 //     	     }  
+
+			var emailId=$("#email").val();
+			console.log("\n Email:"+emailId);
+			var atposition=emailId.indexOf("@");  
+			var dotposition=emailId.lastIndexOf(".");  
+			if (atposition<1 || dotposition<atposition+2 || dotposition+2>=emailId.length){  
+			  //alert("Please enter a valid e-mail address!");  
+			  $("#validator").text("Please enter a valid e-mail address!");
+			  return false;  
+			}  
             
 	          /* Pswd & ConfirmPswd validation */ 
+	          if(password1.length<8){
+		          //alert("Password must be at least 8 characters long!");
+		         $("#validator").text("Password must be at least 8 characters long!");
+		          return false;  
+		      }
 			  if (password1 != password2) { 
-				  alert("password did not match please Try again!")
-				// notify("warning", "Password did not match please try again!");
+				  $("#validator").text("password did not match..Please try again!");
+				//alert("password did not match please Try again!")
+				 //notify("warning", "Password did not match please try again!");
 			     return false; 
 			 } 
       		 
@@ -719,17 +570,22 @@
 				dataType:"json",
 				contentType:"application/json",
 				success : function(response) {
-					// alert("done");
 					console.log("saved");
-					$("#otpMessage").text(response.msg);
-					$("#vEmail").val(response.email); 
-					$('#modalshare').modal('show');
+					var a= response.message;
+					if(a == null){
+						$("#otpMessage").text(response.msg);
+						$("#vEmail").val(response.email); 
+						$('#modalshare').modal('show');
+					}else{
+						console.log(" Duplicate user message "+response.message);
+						//alert(response.message);
+						$("#validator").text(response.message);
+					}
 				},
 			});
 		}
 	
     function verifyOtp(){
-
         var otp=$("#otp").val();
         var vEmail=$("#vEmail").val();
 
@@ -743,7 +599,8 @@
                 $("#vEmail").val(response.email); 
                 console.log("ssssss   ");
                 if(response.msg=="success"){
-                    window.open('dashboard');
+                    //window.open('practiceCode');
+                    location.href ="practiceCode";
                     console.log("Dashboard opened");
                 }
             },
@@ -775,6 +632,106 @@
         }); 
     }
 
+/* Social Login */
+//     function statusChangeCallback(response) {
+// 		console.log('statusChangeCallback');
+// 		console.log(response);
+// 		// The response object is returned with a status field that lets the
+// 		// app know the current login status of the person.
+// 		// Full docs on the response object can be found in the documentation
+// 		// for FB.getLoginStatus().
+// 		if (response.status === 'connected') {
+// 			// Logged into your app and Facebook.
+// 			testAPI();
+// 		} else if (response.status === 'not_authorized') {
+// 			// The person is logged into Facebook, but not your app.
+// 			document.getElementById('status').innerHTML = 'Login with Facebook ';
+// 		} else {
+// 			// The person is not logged into Facebook, so we're not sure if
+// 			// they are logged into this app or not.
+// 			document.getElementById('status').innerHTML = 'Login with Facebook ';
+// 		}
+// 	}
+// 	// This function is called when someone finishes with the Login
+// 	// Button. See the onlogin handler attached to it in the sample
+// 	// code below.
+// 	function checkLoginState() {
+// 		FB.getLoginStatus(function(response) {
+// 			statusChangeCallback(response);
+// 		});
+// 	}
+// 	window.fbAsyncInit = function() {
+// 		FB.init({
+// 			appId : '731780804253893',
+// 			cookie : true, // enable cookies to allow the server to access 
+// 			// the session
+// 			xfbml : true, // parse social plugins on this page
+// 			version : 'v2.2' // use version 2.2
+// 		});
+// 		// Now that we've initialized the JavaScript SDK, we call 
+// 		// FB.getLoginStatus(). This function gets the state of the
+// 		// person visiting this page and can return one of three states to
+// 		// the callback you provide. They can be:
+// 		//
+// 		// 1. Logged into your app ('connected')
+// 		// 2. Logged into Facebook, but not your app ('not_authorized')
+// 		// 3. Not logged into Facebook and can't tell if they are logged into
+// 		// your app or not.
+// 		//
+// 		// These three cases are handled in the callback function.
+
+// 		FB.getLoginStatus(function(response) {
+// 			statusChangeCallback(response);
+// 		});
+// 	};
+// 	// Load the SDK asynchronously
+// 	(function(d, s, id) {
+// 		var js, fjs = d.getElementsByTagName(s)[0];
+// 		if (d.getElementById(id))
+// 			return;
+// 		js = d.createElement(s);
+// 		js.id = id;
+// 		js.src = "//connect.facebook.net/en_US/sdk.js";
+// 		fjs.parentNode.insertBefore(js, fjs);
+// 	}(document, 'script', 'facebook-jssdk'));
+
+// 	// Here we run a very simple test of the Graph API after login is
+// 	// successful. See statusChangeCallback() for when this call is made.
+// 	function testAPI() {
+// 		console.log('Welcome! Fetching your information.... ');
+// 		FB.api('/me?fields=name,email', function(response) {
+// 			console.log('Successful login for: ' + response.name);
+
+// 			document.getElementById("status").innerHTML = '<p>Welcome '
+// 					+ response.name
+// 					+ '! <a href=fblogincontroller.jsp?user_name='
+// 					+ response.name.replace(" ", "_") + '&user_email='
+// 					+ response.email
+// 					+ '>Continue with facebook login</a></p>'
+// 		});
+// 	}
+
+// 	//Gmail
+// 	 function onSignIn(googleUser) {
+//       // window.location.href='success.jsp';
+//       var profile = googleUser.getBasicProfile();
+//       var imagurl=profile.getImageUrl();
+//       var name=profile.getName();
+//       var email=profile.getEmail();
+
+//       window.location="loginsuccess?name="+name+"&email="+email;
+      
+//       document.getElementById("myImg").src = imagurl;
+//       document.getElementById("name").innerHTML = name;
+//       document.getElementById("myP").style.visibility = "hidden";
+//  //     document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=loginsuccess?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
+//    }
+    
+//      function myFunction() {
+//         gapi.auth2.getAuthInstance().disconnect();
+//         location.reload();
+//      }
+    
     function notify(messageType, message) {
         var notification = 'Information';
         $(function() {
@@ -787,12 +744,15 @@
             });
         });
     }
-    
+
+   
+
+
 </script>
 
 
-<c:if test="${msgtype != null}">
-    <script>
+	<c:if test="${msgtype != null}">
+		<script>
 			var notification = 'Information';
 			$(function() {
 				new PNotify({
@@ -804,9 +764,8 @@
 				});
 			});
 		</script>
-</c:if>
-
+	</c:if>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

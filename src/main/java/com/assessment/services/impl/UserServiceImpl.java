@@ -173,5 +173,10 @@ public class UserServiceImpl implements UserService {
 	public Optional findUserByResetToken(String resetToken) {
 		return userRepository.findByResetToken(resetToken);
 	}
+
+	@Override
+	public User findByMobileNumberAndEmail(String mobileNumber, String email) {
+		return userRepository.findByMobileNumberAndEmail(mobileNumber, email);
+	}
 	
 }

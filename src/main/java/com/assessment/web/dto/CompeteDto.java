@@ -1,5 +1,8 @@
 package com.assessment.web.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CompeteDto {
 	
 	String skillName;
@@ -8,6 +11,17 @@ public class CompeteDto {
 	
 	Long totalTestCount;
 	
+	String testName;
+	Long testId;
+	
+	List<CompeteDto> dtoList = new ArrayList<>();
+	
+	public List<CompeteDto> getDtoList() {
+		return dtoList;
+	}
+	public void setDtoList(List<CompeteDto> dtoList) {
+		this.dtoList = dtoList;
+	}
 	public String getSkillName() {
 		return skillName;
 	}
@@ -28,11 +42,26 @@ public class CompeteDto {
 	}
 	
 	
+
+	
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+	public Long getTestId() {
+		return testId;
+	}
+	public void setTestId(Long testId) {
+		this.testId = testId;
+	}
 	@Override
 	public String toString() {
 		return "CompeteDto [skillName=" + skillName + ", challenge=" + challenge + ", totalTestCount=" + totalTestCount
-				+ "]";
+				+ ", testName=" + testName + ", testId=" + testId + ", dtoList=" + dtoList + "]";
 	}
+
 	
 	
 	

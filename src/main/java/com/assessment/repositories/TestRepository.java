@@ -35,15 +35,30 @@ public interface TestRepository extends JpaRepository<com.assessment.data.Test, 
 	@Query(value = "SELECT t FROM Test t WHERE t.companyId=:companyId", countQuery = "SELECT COUNT(*) FROM Test t WHERE t.companyId=:companyId")
 	public Page<Test> findTestByCompanyIdAndPageNumber(@Param("companyId") String companyId,Pageable pageable);
 
-	Page<Test> findAllByCompanyId(String companyId, Pageable pageable);
 	
+	Page<Test> findAllByCompanyId(String companyId, Pageable pageable);
+
 	Page<Test> findAllByCompanyIdAndTestNameContainingIgnoreCase(String companyId, String searchText,Pageable pageable);
 	
 	//Compete
-	List<Test> findAllByTestName(String companyId);
+//	List<Test> findAllByTestName(String companyId);
 	
 	@Query("SELECT testName FROM Test t WHERE  t.companyId=:companyId")
 	List<Test> testList(@Param("companyId") String companyId);
+
+
+	@Query("SELECT t FROM Test t WHERE  t.companyId=:companyId and t.testName is not null and t.id not in (select st.testId from StepTest st where st.companyId=:companyId)")
+	List<Test> findTestsByCompanyId(@Param("companyId") String companyId);
+
+	
+	@Query("Select t.testName FROM Test t where t.companyId=:companyId")
+	List<Test> findTest(@Param("companyId") String companyId);
+	
+	@Query("Select t.testName FROM Test t where t.qualifier1=:skill")
+	List<Test> findTestName(@Param("skill") String skill);
+	
+	@Query("Select t FROM Test t where t.testName=:tName")
+	Test  findAllByTestName(@Param("tName") String tName);
 
 
 }

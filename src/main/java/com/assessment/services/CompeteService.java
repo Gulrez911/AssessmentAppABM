@@ -17,4 +17,6 @@ public interface CompeteService {
 	
 	public List<Object> competeListCount();
 	
+	public List<Compete> findDistinctSkillName(String challenge);
+	
 }

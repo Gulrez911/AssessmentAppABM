@@ -20,6 +20,18 @@ public class QuestionMapperInstance
   
   Boolean answered = Boolean.valueOf(false);
   
+  Boolean marked_review = Boolean.valueOf(false);
+  
+  public Boolean getMarked_review() {
+	return marked_review;
+}
+
+public void setMarked_review(Boolean marked_review) {
+	this.marked_review = marked_review;
+}
+
+  //@Column(name="questionText",columnDefinition="LONGTEXT")
+  @Column(length=2000)
   String questionText;
   
   @NotNull

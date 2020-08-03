@@ -6,14 +6,19 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>Welcome ${email} Your name is ${name}
+<%-- <body>Welcome ${email} Your name is ${name} --%>
+<%--       <% --%>
+<!-- //       String name=(String)request.getParameter("name"); -->
+<!-- //       String email=(String)request.getParameter("email"); -->
+<%--        %> --%>
 
-<button onclick="myFunction()">Sign Out</button>
-   <script>
-      function myFunction() {
-      gapi.auth2.getAuthInstance().disconnect();
-      location.reload();
-   }
-   </script>
+<%--      <%=name %><br> --%>
+
+<%--      <%=email %> --%>
+
+Welcome 
+${email} 
+Your name is ${name}
+
 </body>
 </html>

@@ -33,5 +33,10 @@ public interface UserService {
 	public Optional<User> findUserByResetToken(String resetToken);
 	
 	public void saveUser(User user);
+	
+	public User findByMobileNumberAndEmail(String mobileNumber, String email);
+	
+		
+	
 
 }

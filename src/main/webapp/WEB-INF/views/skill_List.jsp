@@ -40,6 +40,48 @@
 <link href="./resources/assets/revolution/css/navigation.css" rel="stylesheet" type="text/css" />
 <link href="./resources/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css" />
 
+	<style>
+	.dropdown-menu {
+		min-width: 387px !important;
+		height: 300px !important;
+		overflow: auto !important;
+	}
+	</style>
+	
+	<style >
+	li>a.dropbtn{
+		position: relative;
+	}
+	.dropdown {
+	  position: relative;
+	  display: none;
+	}
+	
+	.dropdown-content {
+	  display: block;
+	  position: fixed;
+	  background-color: #f1f1f1;
+	  min-width: 160px;
+	  opacity:100;
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	  z-index: 10;
+	}
+	
+	.dropdown-content>a {
+	  color: black;
+	  padding: 12px 16px;
+	  text-decoration: none;
+	  display: block;
+	}
+	
+	.dropbtn:hover > .dropdown{display:block}
+	.dropdown-content a:hover {
+		background-color: #03A9F4;
+		color:#ffffff;
+	}
+	
+	</style>
+
 </head>
 
 <body id="top" class="has-header-search">
@@ -50,9 +92,13 @@
 			<div class="container">
 				<div id="materialize-menu" class="menuzord">
 					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png" alt="" />
+					<a href="javascript:void(0);" class="logo-brand"> <img
+						class="retina"
+						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
+						alt="" />
 					</a>
+					
+						
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -61,19 +107,37 @@
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li><a href="showReports">Results</a></li>
-						<li><a href="practice">Practice</a></li>
-						<li><a href="codingSessions">Code Analysis Reports</a></li>
-						<li><a href="compete">Compete</a></li>
-						<li class="active"><a href="skillTest">Skill Test</a></li>
-						<li><a href="showSkillTags">Skill based Reports</a></li>
+						<li>
+						<a class="dropbtn">Profiler</a>
+						<div class="dropdown">
+							<div class="dropdown-content">
+								<a href="learningpath">Practice</a>
+								<a href="skillTestLabel">Coding</a>
+								<a href="compete">Compete</a>
+								<a href="skillTest" class="active">Skill Test</a>
+							 </div>
+						</div>
+						</li>
+						<li>
+						<a class="dropbtn">Result</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="showReports">Result</a>
+									<a href="codingSessions">Code Reports</a>
+									<a href="showSkillTags">Skill Reports</a>
+								 </div>
+							</div>
+						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
+<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-				</div>
+					 </div>
+				
 			</div>
 		</div>
+		
 	</header>
 	<!--header end-->
 
@@ -84,11 +148,11 @@
 				<div class="col-md-12">
 					<div class="col-md-6"></div>
 					<div class="col-md-2">
-						<a href="addSkillTest" class="btn waves-effect waves-light col-md-12"><i
+						<a href="addSkillTest1" class="btn waves-effect waves-light col-md-12" style="color:white;"><i
 							class="material-icons fa fa-plus-circle"></i> Add New</a>
 					</div>
 					<div class="col-md-2">
-						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
+						<a href="signoff" class="btn waves-effect waves-light col-md-12" style="color:white;"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
 					</div>
 				</div>
@@ -116,16 +180,15 @@
 					</div>
 				</div>
 				<div class="col-md-12">
-					<div class="table-responsive">
-						<table class="table table-striped">
+					<div class="table-responsive" >
+						<table class="table table-striped" >
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>Serial</th>
 									<th>Main Skill</th>
-
 									<th>Sub Skill</th>
-									<th>Update</th>
-									<th>Delete</th>
+<!-- 									<th>Update</th> -->
+<!-- 									<th>Delete</th> -->
 
 									<!--<th>Update Skill</th> -->
 								</tr>
@@ -139,8 +202,8 @@
 										<td>${loop.count}</td>
 										<td>${skillTest.parentSkill}</td>
 										<td>${skillTest.childSkill}</td>
-										<td><a href="addSkillTest?id=${skillTest.id}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
-										<td><a href="#"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td>
+<%-- 										<td><a href="addSkillTest?id=${skillTest.id}"><i class="fa fa-edit" style="font-size:24px"></i></a></td> --%>
+<!-- 										<td><a href="#"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td> -->
 									</tr>
 								</c:forEach> 
 							</tbody>
@@ -158,7 +221,7 @@
 
 
 
-	<footer class="footer footer-four">
+	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
 				<ul>
@@ -169,13 +232,14 @@
 					<li><a href="showReports">Results</a></li>
 					<li><a href="practice">Practice</a></li>
 					<li><a href="codingSessions">Code Analysis Reports</a></li>
+					<li><a href="compete">Compete</a></li>
 					<li><a href="javascript:void(0)">Skill based Reports</a></li>
 					<li><a href="showProfileParams">Recomm Setting</a></li>
 					<li><a href="listUsers">Users</a></li>
 				</ul>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 
 
 

@@ -667,6 +667,7 @@ public class ReportsController {
 		binder.registerCustomEditor(Date.class, dateEditor);
 	}
 
+
 	@RequestMapping(value = "/searchReport", method = RequestMethod.GET)
 	public ModelAndView searchReport(@RequestParam String searchReport, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -713,6 +714,7 @@ public class ReportsController {
 
 		for (AssessmentTestPerspectiveData testData : collection) {
 			collectionForTest.add(testData);
+
 		}
 		
 		if(colName.equals("Title")) {
@@ -724,6 +726,15 @@ public class ReportsController {
 			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testDESC);
 			System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
+		}
+
+		if (sortBy.equals("ASC")) {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testASC);
+			System.out.println(">>collection in ASC" + collectionForTest);
+
+		} else {
+			Collections.sort(collectionForTest, AssessmentTestPerspectiveData.testDESC);
+			System.out.println(">>collectionForTest in DESC" + collectionForTest);
 		}
 		int srNo = 0 * 10;
 
@@ -760,7 +771,6 @@ public class ReportsController {
 	 * "Tests & Users Assessment Reports"); mav.addObject("reportList", test);
 	 * return mav; }
 	 */
-
 	@GetMapping("/getRank")
 	@ResponseBody
 	public Map<String, Object> getRank(HttpServletRequest request, @RequestParam String email) {
@@ -882,7 +892,11 @@ public class ReportsController {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.securityBreechDESC);
 				System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
-		}else if(colName.equals("TestEnd")){
+
+		}
+
+		else if(colName.equals("TestEnd")){
+
 			if (sortBy.equals("ASC")) {
 				Collections.sort(collectionForTest, AssessmentUserPerspectiveData.endASC);
 				System.out.println(">>collection in ASC" + collectionForTest);
@@ -892,7 +906,6 @@ public class ReportsController {
 				System.out.println(">>collectionForTest in DESC" + collectionForTest);
 			}
 		}
-		
 
 		int minSize = pageNumber * 5;
 		int maxSize = minSize + 5;
@@ -923,5 +936,6 @@ public class ReportsController {
 		mapList.put("colName", colName);
 		return mapList;
 	}
+	}
 
-}
+

@@ -19,9 +19,6 @@
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <!------ Include the above in your HEAD tag ---------->
 <script type="text/javascript">
@@ -60,6 +57,7 @@
 				${studentTestForm.testCreatedBy}</h3>
 
 		</div> 
+		<a id="btn_redirect" onclick="redirectToPractice('${studentTestForm.testId}')" class="btn">Next</a>
 		<div class="container">
 			<div class="page-header" style="background-color: #DAA300; color: #fff">
 				<h3>
@@ -76,6 +74,18 @@
 
 
 	</div>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/pnotify.custom.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script>
+		function redirectToPractice(testid){
+			window.location.href = "userpractice?testid="+testid;
+		}
+
+	</script>
+	
 
 </body>
 </html>
