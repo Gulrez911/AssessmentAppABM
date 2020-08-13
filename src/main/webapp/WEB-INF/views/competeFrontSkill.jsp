@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Practice Code</title>
+<title>Compete Skill</title>
 
 <link href="./resources/assets/img/ico/favicon.png" rel="shortcut icon" />
 <link
@@ -51,11 +51,9 @@
 	rel="stylesheet" type="text/css" />
 <link href="./resources/assets/revolution/css/navigation.css"
 	rel="stylesheet" type="text/css" />
-<link href="./resources/assets/css/pnotify.custom.min.css"
-	rel="stylesheet" type="text/css" />
+<link href="./resources/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css" />
+
 <style>
-<<<<<<< HEAD
-=======
  .tooltip {
 	position: relative;
 	display: inline-block;
@@ -238,17 +236,31 @@ div.dataTables_wrapper div.dataTables_filter input{
     height: auto;
     border-radius: 0.7rem;
 }
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 </style>
 
+<style>
+.panel-body {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+.panel-body img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
 
+	
+</style>
 </head>
 
 <body id="top" class="has-header-search">
-<<<<<<< HEAD
-	<c:import url="menucommon.jsp"></c:import>
-	
-=======
 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
@@ -282,8 +294,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out value="${skill}" /></a><br>
 									</c:forEach>
 								</span>
+							
 						</li>
-<!-- 						<li><a href="#">Compete</a></li> -->
 						<li class="tooltip"> 
 								<a>Compete </a> 
 								<ul class="tooltiptext" style="list-style-type: none;">
@@ -291,16 +303,15 @@ div.dataTables_wrapper div.dataTables_filter input{
 										<li><a href="competeFrontCoding">CodingChallenge</a></li>
 								</ul>
 						</li>
-						
-						<li><a href="practice">Code-GIG</a></li>
-<!-- 						<li><a href="signoffUser">SignOff</a></li> -->
-<!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
-<!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
-<!-- 							<ul class="dropdown-menu" role="menu"> -->
-<!-- 								<li><a href="competeFrontSkill">Skill Challenge</a></li> -->
-<!-- 	       						<li><a href="competeFrontCoding">Coding Challenge</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
+<!-- 						<li><a href="#">Compete</a></li> -->
+						<!-- <li class="dropdown">
+							 <a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a>
+							  <ul class="dropdown-menu" role="menu">
+								<li><a href="competeFrontSkill">Skill Challenge</a></li>
+       							<li><a href="competeFrontCoding">Coding Challenge</a></li>
+							  </ul>
+						</li> -->
+						<li><a href="codeGig">Code-GIG</a></li>
 						
 					</ul>
 					<!--mega menu end-->
@@ -311,16 +322,99 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<!--header end-->
 
 
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
-	<section>
-		<!-- <div class="col-md-2">
-						<a href="signoffUser" class="btn waves-effect waves-light col-md-12"><i
-							class="material-icons fa fa-sign-out"></i> Sign Off</a>
-		</div> -->
-
-	</section>
-
-	<!-- jQuery -->
+    <div class="container">    
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="panel panel-primary">
+              <div class="panel-heading" id="Java">Java</div>
+              <div class="panel-body" >
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="Java">
+              	<img src="<%=request.getContextPath()%>/resources/images/Java.jpg" class="img-responsive" style="width:100%" alt="JavaImage">
+              	</a>
+              </div>
+              </div>
+            </div>
+             <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">Python</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="Python">
+              	<img src="<%=request.getContextPath()%>/resources/images/python.jpg" class="img-responsive" style="width:100%" alt="PythonImage">
+              	</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">AI</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="AI">
+              	<img src="<%=request.getContextPath()%>/resources/images/AI2.jpg" class="img-responsive" style="width:100%" alt="AI_Image">
+              	</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-primary">
+              <div class="panel-heading">C</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="C">
+              	<img src="<%=request.getContextPath()%>/resources/images/C1.png" class="img-responsive" style="width:100%" alt="CImage">
+              	</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+      
+      <div class="container">    
+        <div class="row">
+          <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">CPP</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="CPP">
+              	<img src="<%=request.getContextPath()%>/resources/images/CPP.png" class="img-responsive" style="width:100%;" alt="CPPImage">
+              	</a>
+              </div>
+            </div>
+          </div>
+           <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">Big Data</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="BigData">
+              	<img src="<%=request.getContextPath()%>/resources/images/bigdata1.jpg" class="img-responsive" style="width:100%" alt="BigDataImage">
+              	</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">SQL</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="MySQL">
+              	<img src="<%=request.getContextPath()%>/resources/images/SQL1.jpg" class="img-responsive" style="width:100%" alt="PythonImage">
+              	</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3"> 
+            <div class="panel panel-primary">
+              <div class="panel-heading">Node.JS</div>
+              <div class="panel-body">
+              	<a href="#" onclick="javascript:competeTest(this.id);" id="Node.JS">
+              	<img src="<%=request.getContextPath()%>/resources/images/NodeJs.jpg" class="img-responsive" style="width:100%;" alt="NodeJSImage">
+              	</a>
+              </div>
+<!--               <div class="panel-footer">Buy 50 mobiles and get a gift card</div> -->
+            </div>
+          </div> 
+        </div>
+      </div><br>
+      
+      
+      <!-- jQuery -->
 	<script src="./resources/assets/js/jquery-2.1.3.min.js"></script>
 	<script src="./resources/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="./resources/assets/materialize/js/materialize.min.js"></script>
@@ -339,17 +433,55 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<script src="./resources/assets/js/scripts.js"></script>
 	<script src="./resources/assets/scripts/custom.js"></script>
 	<script src="./resources/assets/scripts/pnotify.custom.min.js"></script>
-	<spring:url value="/resources/assets/js/menuscripts.js" var="mainJs18" />
-	<script src="${mainJs18}"></script>
-	<script type="text/javascript">
+	
+	<script>
+		function competeTest(skillName) {
+			var challengeType="Skill";
+			console.log("SkillName:"+skillName+"\nChallenge Type:"+challengeType);
+
+			window.location = 'competeFront?challengeType='+challengeType+'&skillName='+skillName;
+
+		}
+
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
 		
+		function loadPage(skn){
+			window.location.href = "userpractice?skilln="+skn;
+		}
+		
+		$(document).ready(function(){
+			$('li>a.dropbtn').hover(function(){
+				$('.dropdown').css('display','block');
+			},
+			function(){
+				$('.dropdown').css('display','none');
+			});
+			$('.dropdown').hover(function(){
+				$('.dropdown').css('display','block');
+			},
+			function(){
+				$('.dropdown').css('display','none');
+			});
+		});
 	</script>
 
-<!-- 	Welcome <br> -->
-<%-- 	${email} <br> --%>
-<%-- 	Your name is ${name} --%>
 
+	<c:if test="${msgtype != null}">
+		<script>
+			var notification = 'Information';
+			$(function() {
+				new PNotify({
+					title : notification,
+					text : '${message}',
+					type : '${msgtype}',
+					styling : 'bootstrap3',
+					hide : true
+				});
+			});
+		</script>
+	</c:if>
 	
 </body>
-
 </html>

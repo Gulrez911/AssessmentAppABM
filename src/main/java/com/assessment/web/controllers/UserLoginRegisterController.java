@@ -48,9 +48,12 @@ public class UserLoginRegisterController {
 	@Autowired
 	SkillTestRepository skilltestrepository;
 	
+<<<<<<< HEAD
 	@Autowired
 	UserPracticeController upc;
 	
+=======
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("home");
@@ -62,16 +65,47 @@ public class UserLoginRegisterController {
 		ModelAndView mav = new ModelAndView("user_login_register");
 		User user = new User();
 		mav.addObject("user", user);
+		mav.addObject("message", "invalidate google login");
 		return mav;
 	}
 
-	@RequestMapping(value = "/authenticateUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/authenticateUser", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView authenticate(HttpServletRequest request, HttpServletResponse response,
+<<<<<<< HEAD
 			@ModelAttribute("user") User user,@RequestParam(name="from",required=false)String testid) {
+=======
+			@ModelAttribute("user") User user) {
+		User	u = new User();
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		ModelAndView mav = null;
 		System.out.println("test.........    " + user);
+<<<<<<< HEAD
 		System.out.println("from......."+testid);
 		user = userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword());
+=======
+		String emailId = user.getEmail();
+		if(user.getEmail() != null && (user.getPassword() == null || user.getPassword() == "")) {
+			user = userRepo.socialLogin(user.getEmail());
+			if(user == null)
+			{
+			
+				u.setEmail(emailId);
+				u.setCompanyId("e-assess");
+				u.setCompanyName("e-assess");
+				u.setPassword("A");
+				u.setOtp(0);
+				//user.setVerificationStatus("pending");
+				user = u;
+				userRepo.save(user);
+				
+				//open user table from the 
+			}
+		}
+		else {
+			user = userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword());	
+		}
+	
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		System.out.println("test2.........    " + user);
 		if (user == null) {
 			// navigate to exception page
@@ -80,6 +114,7 @@ public class UserLoginRegisterController {
 			mav.addObject("user", user);
 			mav.addObject("message", "Invalid Credentials ");// later put it as label
 			mav.addObject("msgtype", "Failure");
+			user.setEmail(null);
 			return mav;
 		} else {
 			String v_status = user.getVerificationStatus();
@@ -113,13 +148,13 @@ public class UserLoginRegisterController {
 		}
 		return mav;
 	}
-
 	@ResponseBody
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public Map<String,Object> registerUser(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody User u) {
 		Map<String,Object> map=new HashMap<>();
 		System.out.println(u);
+<<<<<<< HEAD
 		User user =  null;
 		try {
 			user = userRepo.findByEmail(u.getEmail()).get();
@@ -170,6 +205,37 @@ public class UserLoginRegisterController {
 		th.start();
 		
 		return "Otp sent successfully";
+=======
+		System.out.println(u.getEmail()+"\n"+u.getMobileNumber());
+		
+		User user1=userService.findByMobileNumberAndEmail(u.getMobileNumber(), u.getEmail());
+		System.out.println("User1"+user1);
+		if(user1==null) {
+			Random rndm_method = new Random();
+			int otp=rndm_method.nextInt(1000000);
+			request.getSession().setAttribute("user", u);
+			u.setCompanyId("e-assess");
+			u.setCompanyName("e-assess");
+			u.setVerificationStatus("verified");
+			u.setOtp(otp);
+			userRepo.save(u);
+			String message="Use this code for verification: "+otp;
+			EmailGenericMessageThread client = new EmailGenericMessageThread(u.getEmail(),
+					"OTP Verification", message, propertyConfig);
+			Thread th = new Thread(client);
+			th.start();
+			System.out.println("Saved"+u);
+			map.put("userName", u.getFirstName());
+			map.put("email", u.getEmail());
+			map.put("msg", "Your otp has been sent to "+u.getEmail());
+			
+		}else {
+//			map.put("message", "User already exits! \t"+u.getEmail()+"\n"+u.getFirstName()+"\t You can SignIn directly!");
+			map.put("message", "User already exists! ");
+			
+		}
+		return map;
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	}
 	
 	@ResponseBody
@@ -284,6 +350,7 @@ public class UserLoginRegisterController {
 	    
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/loginsuccess")
 	public ModelAndView loginsuccess(@RequestParam("name") String name, @RequestParam("email") String email) {
 		ModelAndView mav = new ModelAndView();
@@ -294,6 +361,28 @@ public class UserLoginRegisterController {
 		userRepo.save(user);
 		
 		mav.setViewName("redirect:/practiceCode");
+=======
+	@GetMapping("/signoffUser")
+	public ModelAndView signoffUser(HttpServletRequest request, HttpServletResponse response) {
+		request.getSession().invalidate();
+		User user = new User();
+		ModelAndView mav = new ModelAndView("user_login_register");
+		mav.addObject("user", user);
+		return mav;
+	}
+	
+	@GetMapping("/loginsuccess")
+	public ModelAndView loginsuccess(HttpServletRequest request,@RequestParam("name") String name, @RequestParam("email") String email) {
+		ModelAndView mav = new ModelAndView("practiceCode");
+		User user=(User) request.getSession().getAttribute("user");
+		/*
+		 * User user=new User(); user.setEmail(email); user.setFirstName(name);
+		 * userRepo.save(user);
+		 */
+		
+		
+		//mav.setViewName("redirect:/practiceCode");
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		
 		mav.addObject("name", name);
 		mav.addObject("email", email);

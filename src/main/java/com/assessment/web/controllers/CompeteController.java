@@ -1,13 +1,20 @@
 package com.assessment.web.controllers;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,15 +27,22 @@ import com.assessment.data.Compete;
 import com.assessment.data.SkillTest;
 import com.assessment.data.Test;
 import com.assessment.data.User;
+import com.assessment.data.UserTestSession;
 import com.assessment.repositories.CompeteRepository;
 import com.assessment.repositories.TestRepository;
+import com.assessment.repositories.UserTestSessionRepository;
 import com.assessment.services.CompeteService;
 import com.assessment.services.SkillTestService;
 import com.assessment.services.TestService;
+import com.assessment.services.UserService;
 import com.assessment.web.dto.CompeteDto;
+import com.assessment.web.dto.TestUserData;
 
 @Controller
 public class CompeteController {
+	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	CompeteRepository competeRepo;
@@ -44,13 +58,16 @@ public class CompeteController {
 
 	@Autowired
 	TestRepository testRepo;
+	
+	@Autowired
+	UserTestSessionRepository userTestRepo;
 
 	
 	@RequestMapping(value = "/compete", method = RequestMethod.GET)
 	public ModelAndView compete(HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		ModelAndView mav = new ModelAndView("compete");
-
+		if(user!=null) {
 		List<Object> countList=competeService.competeListCount();
 		List<CompeteDto> listCompeteDtos = new ArrayList<CompeteDto>();
 		for(Object obj:countList) {
@@ -79,6 +96,10 @@ public class CompeteController {
 		mav.addObject("challengeType", challengeType);
 		mav.addObject("listSkill", listSkill);
 		mav.addObject("compete", compete);
+		}else {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/login");
+		}
 		return mav;
 	}
 
@@ -88,6 +109,9 @@ public class CompeteController {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("compete called");
 		User user = (User) request.getSession().getAttribute("user");
+		
+		Test lTest =  (Test) testRepo.findAllByTestName(testName);
+		System.out.println("testDeatils:"+lTest.getId());
 		
 		int flag=0;
 		List<Compete> compete1= competeService.findBySkillNameAndChallenge(skillName, challenge);
@@ -106,6 +130,8 @@ public class CompeteController {
 			  compete.setSkillName(skillName); 
 			  compete.setChallenge(challenge);
 			  compete.setTestName(testName); 
+//			  compete.setTestId(Long.toString(lTest.getId()));
+			  compete.setTestId(lTest.getId());
 			  competeRepo.save(compete);
 			  System.out.println("Saved" + compete); 
 			  map.put("msg","Level Added Successfully!"); 
@@ -156,6 +182,7 @@ public class CompeteController {
 		  Compete compete= competeService.findByIdAndCompanyId(id, user.getCompanyId()); 
 		  System.out.println("findById Details>>>"+compete);
 		  
+			Test lTest =  (Test) testRepo.findAllByTestName(testName);
 		  String skill=compete.getSkillName();
 		  String challenge=compete.getChallenge();
 			int flag=0;
@@ -169,16 +196,18 @@ public class CompeteController {
 			}
 			
 			if(flag!=1) {
+				compete.setTestId(lTest.getId());
 				compete.setTestName(testName);
 				competeRepo.save(compete);
 				System.out.println("Level updated successfully"+compete.getTestName());
 				map.put("msg", "Level Updated Successfully!");
 			}
-			
+			map.put("user", user);
 			map.put("id", id); 
 		  return map; 
 	}
 	  
+<<<<<<< HEAD
 	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
 	public ModelAndView competeF()
 	{
@@ -186,5 +215,134 @@ public class CompeteController {
 		return mav;
 		
 	}
+=======
+	@RequestMapping(value="/competeFrontSkill" ,method= RequestMethod.GET)
+	public ModelAndView competeFrontSkill(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView("competeFrontSkill");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}
+		mav.addObject("user", user);
+		mav.addObject("challengeType", "Skill Challenge");
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/competeFrontCoding" ,method= RequestMethod.GET)
+	public ModelAndView competeFrontCoding(HttpServletRequest request){
+		ModelAndView mav=new ModelAndView("competeFrontCoding");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}
+		mav.addObject("user", user);
+		mav.addObject("challengeType", "Coding Challenge");
+		return mav;
+		
+	}
+	
+	@SuppressWarnings({ "deprecation", "unlikely-arg-type" })
+	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
+	public ModelAndView competeFront(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name="challengeType",required=false) String challengeType,
+			@RequestParam(name="skillName",required = false) String skillName){
+		
+		ModelAndView mav=new ModelAndView("competeFront");
+		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			System.out.println("Session Expired");
+			mav = new ModelAndView("redirect:/loginRegister");
+		}else {
+			List<Compete> skillList = competeService.findDistinctSkillName(challengeType);
+			System.out.println("Distinct SkillList"+skillList);
+			
+			CompeteDto dto= null;
+			List<Compete> testList=competeService.findBySkillNameAndChallenge(skillName, challengeType);
+			Compete compete = new Compete();
+			mav.addObject("compete", compete);
+			
+			List<String> tests=new ArrayList<>(); 
+			List<Long> testId=new ArrayList<>();
+			int i=0;
+			for(Compete c: testList) {
+				  String testName=c.getTestName(); 
+				  if(i==0) {
+					  mav.addObject("testName", testName);
+					  compete.setTestName(testName);
+				  }
+				  i++;
+				  tests.add(testName); 
+				  Long tId=c.getTestId();
+				  testId.add(tId);
+			}
+			compete.setListTestName(tests);
+			
+			System.out.println("testList>>"+testList);
+			System.out.println("SkillIndex:"+skillList.indexOf(skillName));
+			
+			mav.addObject("tests", tests);
+			mav.addObject("testList", testList);
+			mav.addObject("testIndex", testList.indexOf(tests));
+			mav.addObject("skillList", skillList);
+			mav.addObject("skillIndex",skillList.indexOf(skillName));
+			mav.addObject("skillName",skillName);
+			mav.addObject("challengeType", challengeType);
+			mav.addObject("companyId", user.getCompanyId());
+			mav.addObject("testId", testId);
+			mav.addObject("userId", URLEncoder.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes())));
+		}
+		return mav; 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/leaderboard", method = RequestMethod.GET)
+	public Map<String, Object> leaderboard(HttpServletRequest request,
+			@RequestParam("testName") String testName){
+		Map<String, Object> map=new HashMap<>();
+		User user = (User)request.getSession().getAttribute("user");
+		
+		if(user!=null) {
+			List<CompeteDto> dtoList= new ArrayList<CompeteDto>();
+			List<UserTestSession> testSession = userTestRepo.findTestSession(testName, user.getCompanyId());
+			System.out.println("testSession"+testSession);
+			int count = 1;
+			for (UserTestSession userMarks : testSession) {
+				User usrName=userService.findByPrimaryKey(userMarks.getUser(), user.getCompanyId());
+				CompeteDto competeDto= new CompeteDto();
+				competeDto.setfName(usrName.getFirstName());
+				competeDto.setlName(usrName.getLastName());
+				competeDto.setRank(count);
+				count++;
+				competeDto.setScore(userMarks.getPercentageMarksRecieved());
+				
+				dtoList.add(competeDto);
+			}
+			
+			List<Float> usrScore=new ArrayList<Float>();
+			for(CompeteDto score: dtoList)
+			{
+				usrScore.add(score.getScore());
+			}
+			map.put("score", usrScore);
+			map.put("dtoList", dtoList);
+		}
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteLevel", method = RequestMethod.GET)
+	public Map<String, Object> deleteLevel(HttpServletRequest request,@RequestParam("id") String id){
+		Map<String, Object> map=new HashMap<>();
+		User user = (User)request.getSession().getAttribute("user");
+		long testId = Long.valueOf(id);
+		competeRepo.deleteById(testId);
+		return map;
+	}
+	
+	
 }

@@ -61,26 +61,24 @@
     <div class="row">
         <div class="container">
             <div class="login-register-form-section">
-                <!-- <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-                    <li><a href="#register" data-toggle="tab">Register</a></li>
-                </ul> -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="resetPassword">
                         <form class="form-horizontal" method="POST">
    						 <h2 align="center" style="color:2ABB9A; font-size: 25px;"><b>EAssess</b></h2>
-   						 <span id="errorMessage" align="center" style="color:green; font-size: 15px;"></span>
+   						 <span id="errorMessage" align="center" style="color:red; font-size: 15px;"></span>
 						 <span id="msg" align="center" style="color:green; font-size: 15px;"></span>
                             <div class="form-group ">
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-key"></i></div>
                                     <input type="password" name="password" id="pswd1" class="form-control" placeholder="New Password" required="required">
+<!--                                     <div class="input-group-addon"><i class="glyphicon glyphicon-eye-open" onclick="javascript:showPassword()"></i></div> -->
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-key"></i></div>
                                     <input type="password" name="cnfrmPassword" id="pswd2" class="form-control" placeholder="Confirm Password" required="required">
+<!--                                     <div class="input-group-addon"><i class="glyphicon glyphicon-eye-open" onclick="javascript:showPassword()"></i></div> -->
                                 </div>
                             </div>
                             
@@ -129,8 +127,15 @@
 		
 		console.log("p1::"+pswd1+"p2::"+pswd2);
 
+		if(pswd1.length<8){
+	          //alert("Password must be at least 8 characters long!");
+	          $("#errorMessage").text("Password must be at least 8 characters long!");
+	          return false;  
+	    }
+	    
 		if(pswd1!=pswd2){
-				alert("Password did not match: Please try again...");
+				$("#errorMessage").text("Password did not match: Please try again...");
+				//alert("Password did not match: Please try again...");
 				return false;
 			}
 		
@@ -147,6 +152,24 @@
 			}
 		});  
 	}
+
+// 	 function showPassword(){
+// 		var pswd1=$("#pswd1").val();
+// 		var pswd2=$("#pswd2").val();
+// 		console.log("showPswd called");
+		
+// 	 	  if (pswd1.type == "password") {
+// 	 		 pswd1.type = "text";
+// 	 	  } else {
+// 	 		 pswd1.type = "password";
+// 	 	  }
+	
+// 	 	  if (pswd2.type == "password") {
+// 	 		 pswd2.type = "text";
+// 	 	  } else {
+// 	 		 pswd2.type = "password";
+// 	 	  }
+// 	 }
 </script>
 
 </body>

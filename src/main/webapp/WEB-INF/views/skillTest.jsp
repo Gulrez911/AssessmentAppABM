@@ -231,7 +231,7 @@ li>a.dropbtn{
 							<thead style="background-color: #03a9f4;">
 								<tr>
 									<th>Serial</th>
-						<th>Main Skill</th>
+									<th>Main Skill</th>
 
 									<th>Sub Skill</th>
 									<th>Update</th>

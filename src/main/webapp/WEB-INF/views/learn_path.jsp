@@ -438,7 +438,6 @@ div.dataTables_wrapper div.dataTables_filter input{
 						<c:forEach var="level" varStatus="status" items="${levels}">
 							<option value="${level}">${level}</option>
 						</c:forEach>
-						
 					</select>
 					<div id="levelerr" class="errorclass"></div>
 				</div>
@@ -477,7 +476,11 @@ div.dataTables_wrapper div.dataTables_filter input{
 			
       	</div>
       	<div class="modal-footer">
+<<<<<<< HEAD
         	<a class="btn" id="btn_fin_cancel">Finish</a>
+=======
+        	<a class="btn" id="btn_fin_cancel">Save</a>
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
       	</div>
     </div>
   </div>
@@ -515,6 +518,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 
 <!-- Modal for step name end-->
 
+<<<<<<< HEAD
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
@@ -533,6 +537,28 @@ div.dataTables_wrapper div.dataTables_filter input{
 			</div>
 		</div>
 	</footer>
+=======
+
+
+<!-- 	<footer class="footer footer-four"> -->
+<!-- 		<div class="secondary-footer brand-bg darken-2 text-center"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<ul> -->
+<!-- 					<li><a href="javascript:void(0)">Dashboard</a></li> -->
+<!-- 					<li><a href="question_list">Question Bank</a></li> -->
+<!-- 					<li><a href="testlist">Tests</a></li> -->
+<!-- 					<li><a href="javascript:void(0)">Skills</a></li> -->
+<!-- 					<li><a href="showReports">Results</a></li> -->
+<!-- 					<li><a href="practice">Practice</a></li> -->
+<!-- 					<li><a href="codingSessions">Code Analysis Reports</a></li> -->
+<!-- 					<li><a href="javascript:void(0)">Skill based Reports</a></li> -->
+<!-- 					<li><a href="showProfileParams">Recomm Setting</a></li> -->
+<!-- 					<li><a href="listUsers">Users</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
 
 
@@ -1021,10 +1047,14 @@ div.dataTables_wrapper div.dataTables_filter input{
 		$('#sortable_stepnm').sortable();
 		$('#sortable_stepnm').disableSelection();
 		
+<<<<<<< HEAD
 		$('#ddl_skill').prop("disabled",false);
 		$('#ddl_subskill').prop("disabled",false);
 		
 		$('#btn_addtest').attr('disabled',true);
+=======
+$('#btn_addtest').attr('disabled',true);
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		
 		$('#ddl_level').on("change",function(){
 			var level=$('#ddl_level').find("option:selected").val();

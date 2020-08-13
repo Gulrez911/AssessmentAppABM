@@ -18,7 +18,10 @@ public interface SkillTestService {
 	public int deleteSkillName(String skillName);
 	
 	 SkillTest getByskillsubskill(String skill , String compId, String subskill);
+<<<<<<< HEAD
 	 SkillTest getByskillsubskill(String skill , String subskill);
+=======
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	
 	/* public String findAllRecord(String skillname); */
 

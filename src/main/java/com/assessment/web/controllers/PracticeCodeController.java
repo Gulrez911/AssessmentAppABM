@@ -1,29 +1,20 @@
 package com.assessment.web.controllers;
 
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.assessment.data.SkillStep;
-import com.assessment.data.SkillTest;
 import com.assessment.data.SkillTestLabel;
-import com.assessment.data.StepTest;
-import com.assessment.data.Test;
 import com.assessment.data.User;
 import com.assessment.repositories.SkillStepRepository;
 import com.assessment.repositories.SkillTestLabelRepository;
