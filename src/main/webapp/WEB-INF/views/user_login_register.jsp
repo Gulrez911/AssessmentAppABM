@@ -233,6 +233,7 @@
 														id="firstName" cssClass="form-control" required="true" placeholder="FirstName"/>
 													<div class="bar"></div>
 												</div>
+												<span id="fName" style="color:red;"></span>
 										</div>
 									</div>
 									<div class="input-container">
@@ -243,6 +244,7 @@
 													id="lastName" cssClass="form-control" required="true" placeholder="LastName"/>
 												<div class="bar"></div>
 											</div>
+											<span id="LName" style="color:red;"></span>
 										</div>
 									</div>
 									
@@ -254,6 +256,7 @@
 													id="mobileNumber" cssClass="form-control" required="true" placeholder="MobileNumber" maxlength="10"/>
 												<div class="bar"></div>
 											</div>
+										<span id="MobileNo" style="color:red;"></span>
 										</div>
 									</div>
 									
@@ -265,6 +268,7 @@
 													id="email" cssClass="form-control" required="true" placeholder="Email or Username" />
 												<div class="bar"></div>
 											</div>
+											<span id="EmailValidate" style="color:red;"></span>
 										</div>
 									</div>
 									<div class="input-container">
@@ -276,6 +280,7 @@
 												<div class="bar"></div>
 												<div class="input-group-addon"><i class="glyphicon glyphicon-eye-open" onclick="showPassword()"></i></div>
 											</div>
+											<span id="pswdValidate" style="color:red;"></span>
 										</div>
 									</div>
 									<div class="input-container">
@@ -286,6 +291,7 @@
 													id="confirmPassword" cssClass="form-control" required="true" placeholder="Confirm Password"/>
 												<div class="bar"></div>
 											</div>
+											<span id="cnfrmValidate" style="color:red;"></span>
 										</div>
 									</div>
 									
@@ -307,27 +313,27 @@
 <%-- 									<c:out value="${param['message']}"></c:out> --%>
 									${msg}
 							</div>
-							<!-- <div>
+							<div>
 								<p>
 									<span>OR Continue With:</span>
-									<a href="student/showForm" data-return_url="https://www.techgig.com/home?login=true" > 
-										<img src="https://static.techgig.com/Themes/Release/images/tg_images_new/google-plus-icon.svg" alt="GMailIcon" /> 
-									</a>
-									<a href="student/fbLogin"  data-return_url="https://www.techgig.com/home?login=true" style="background-color:blue;"> 
-										<img src="https://static.techgig.com/Themes/Release/images/tg_images_new/fb-icon.svg" alt="FBIcon" /> 
-									</a>
-									<a>
-										<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-										      <img id="myImg"><br>
-										      <p id="name"></p>
-										      <button onclick="myFunction()">Sign Out</button>
-									</a>
-									<a>
-										<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-									</a>
-									<a href=""></a>
+									<table>
+										<tr>
+											<td>
+											<a>
+												<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+												<img id="myImg"><br>
+		<!-- 									<p id="name"></p> -->
+		<!-- 									<div id="status"></div> -->
+		<!-- 									<button onclick="myFunction()">Sign Out</button> -->
+											</a> 
+											</td>
+											<td>
+											<a> <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></a> 
+											</td>
+										</tr>
+									</table>
 								</p>
-							</div> -->
+							</div> 
 					</div>
 					
 						
@@ -493,68 +499,94 @@
     
 /* Registration OTP Verifiaction */
     function registerClick(){
-			var firstName=$("#firstName").val();
-			var lastName=$("#lastName").val();
-			var mobileNumber=$("#mobileNumber").val();
-			var password1=$("#password1").val();
-			var password2=$("#confirmPassword").val();
-			console.log(password1+"::: \n   "+password2+"::::\n "+mobileNumber);
-			
-             //Empty input validation
-            if(firstName == "" || lastName == "" || mobileNumber == "" || email == "" || password1 == "" || password2 == ""){
-            	//notify("warning", "All fields are required");
-            	//alert("All fields are required!");
-            	$("#validator").text("All fields are required!");
-            	return false;
-            } 
-            
-	    
-    		//Mobile number validation
-    		 if (/^\d{10}$/.test(mobileNumber)) {
-                  // value is ok, use it
-            } else {
-                  //alert("Invalid mobile number; Number must be ten digits");
-                	$("#validator").text("Mobile number must be ten digits");
-                  //notify("warning", "Invalid number; Number must be ten digits");
-                  return false
-            }
-             
-		 	/* var reg="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"; */
-//    	     var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-//     	     if(email.match(mailformat))
-//     	   	if (!mailformat.test(email.value))
-//     	     {
-// 	    	   	 alert("You have entered an invalid email address!");
-// 	    	     //notify("warning", "You have entered an invalid email address! ");
-// 	    	     return false;
-//     	     }
-//     	     else{
-//     	     	return true;
-        	    
-//     	     }  
+    	var firstName=$("#firstName").val();
+		var lastName=$("#lastName").val();
+		var mobileNumber=$("#mobileNumber").val();
+		var password1=$("#password1").val();
+		var password2=$("#confirmPassword").val();
+		var emailId=$("#email").val();
+		console.log(firstName+" "+lastName+"\n"+password1+" "+ password2+"\n "+mobileNumber+"\n"+emailId);
 
-			var emailId=$("#email").val();
+			if(firstName == ""){
+				$("#fName").text("First Name required!");
+				return false;
+ 			}
+
+			if(lastName == ""){
+			$("#LName").text("Last Name required!");
+			return false;
+		}
+		
+			var regx=/^[A-za-z]+$/;
+			var regx1=/^[a-zA-Z]*$/;
+        if(!regx.test(firstName)){
+        	console.log("firstName tested");
+        	$("#fName").text("Invalid First Name!");
+        	return false;     
+        }
+
+        if(!regx.test(lastName)){
+        	$("#LName").text("Invalid Last Name!");
+        	return false;     
+        }else{
+        	$("#LName").remove();
+        }
+			
+			if(mobileNumber == ""){
+				$("#MobileNo").text("Mobile Number required!");
+				return false;
+			}
+
+			if (/^\d{10}$/.test(mobileNumber)) {
+             console.log("valid");
+             $("#MobileNo").remove();
+        }else{
+              //alert("Invalid mobile number; Number must be ten digits");
+            	//$("#validator").text("Mobile number must be 10 digits");
+            	$("#MobileNo").text("Mobile number must be 10 digits");
+              return false;
+        }
+
+			if(emailId == ""){
+				$("#EmailValidate").text("Email address required!");
+				return false;
+			}
+
 			console.log("\n Email:"+emailId);
 			var atposition=emailId.indexOf("@");  
 			var dotposition=emailId.lastIndexOf(".");  
 			if (atposition<1 || dotposition<atposition+2 || dotposition+2>=emailId.length){  
 			  //alert("Please enter a valid e-mail address!");  
-			  $("#validator").text("Please enter a valid e-mail address!");
+			  $("#EmailValidate").text("Please enter a valid e-mail address!");
 			  return false;  
-			}  
-            
-	          /* Pswd & ConfirmPswd validation */ 
-	          if(password1.length<8){
+			}else{
+				$("#EmailValidate").remove();
+	 		}
+
+			if(password1 == ""){
+				$("#pswdValidate").text("Password required!");
+				return false;
+			}
+			if(password1.length<8){
 		          //alert("Password must be at least 8 characters long!");
-		         $("#validator").text("Password must be at least 8 characters long!");
+		         $("#pswdValidate").text("Password must be at least 8 characters long!");
 		          return false;  
-		      }
-			  if (password1 != password2) { 
-				  $("#validator").text("password did not match..Please try again!");
+		    }else{
+		    	$("#pswdValidate").remove();
+			}
+
+			if(password2 == ""){
+				$("#cnfrmValidate").text("Confirm Password required!");
+				return false;
+			}
+			if (password1 != password2) { 
+				  $("#cnfrmValidate").text("password did not match..Please try again!");
 				//alert("password did not match please Try again!")
 				 //notify("warning", "Password did not match please try again!");
 			     return false; 
-			 } 
+			 }else{
+				 $("#cnfrmValidate").remove();
+			} 
       		 
 			var userData={};
 			userData["firstName"]=$("#firstName").val();
@@ -632,105 +664,106 @@
         }); 
     }
 
-/* Social Login */
-//     function statusChangeCallback(response) {
-// 		console.log('statusChangeCallback');
-// 		console.log(response);
-// 		// The response object is returned with a status field that lets the
-// 		// app know the current login status of the person.
-// 		// Full docs on the response object can be found in the documentation
-// 		// for FB.getLoginStatus().
-// 		if (response.status === 'connected') {
-// 			// Logged into your app and Facebook.
-// 			testAPI();
-// 		} else if (response.status === 'not_authorized') {
-// 			// The person is logged into Facebook, but not your app.
-// 			document.getElementById('status').innerHTML = 'Login with Facebook ';
-// 		} else {
-// 			// The person is not logged into Facebook, so we're not sure if
-// 			// they are logged into this app or not.
-// 			document.getElementById('status').innerHTML = 'Login with Facebook ';
-// 		}
-// 	}
-// 	// This function is called when someone finishes with the Login
-// 	// Button. See the onlogin handler attached to it in the sample
-// 	// code below.
-// 	function checkLoginState() {
-// 		FB.getLoginStatus(function(response) {
-// 			statusChangeCallback(response);
-// 		});
-// 	}
-// 	window.fbAsyncInit = function() {
-// 		FB.init({
+    /* Social Login */
+    function statusChangeCallback(response) {
+		console.log('statusChangeCallback');
+		console.log(response);
+		// The response object is returned with a status field that lets the
+		// app know the current login status of the person.
+		// Full docs on the response object can be found in the documentation
+		// for FB.getLoginStatus().
+		if (response.status === 'connected') {
+			// Logged into your app and Facebook.
+			testAPI();
+		} else if (response.status === 'not_authorized') {
+			// The person is logged into Facebook, but not your app.
+			document.getElementById('status').innerHTML = 'Login with Facebook ';
+		} else {
+			// The person is not logged into Facebook, so we're not sure if
+			// they are logged into this app or not.
+			document.getElementById('status').innerHTML = 'Login with Facebook ';
+		}
+	}
+	// This function is called when someone finishes with the Login
+	// Button. See the onlogin handler attached to it in the sample
+	// code below.
+	function checkLoginState() {
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	}
+	window.fbAsyncInit = function() {
+		FB.init({
 // 			appId : '731780804253893',
-// 			cookie : true, // enable cookies to allow the server to access 
-// 			// the session
-// 			xfbml : true, // parse social plugins on this page
-// 			version : 'v2.2' // use version 2.2
-// 		});
-// 		// Now that we've initialized the JavaScript SDK, we call 
-// 		// FB.getLoginStatus(). This function gets the state of the
-// 		// person visiting this page and can return one of three states to
-// 		// the callback you provide. They can be:
-// 		//
-// 		// 1. Logged into your app ('connected')
-// 		// 2. Logged into Facebook, but not your app ('not_authorized')
-// 		// 3. Not logged into Facebook and can't tell if they are logged into
-// 		// your app or not.
-// 		//
-// 		// These three cases are handled in the callback function.
+// 			appId : '868678016960604',
+// 			appId : '789985424871827',
+			appId : '786373962189717',
+			cookie : true, // enable cookies to allow the server to access 
+			// the session
+			xfbml : true, // parse social plugins on this page
+			version : 'v2.2' // use version 2.2
+		});
+		// Now that we've initialized the JavaScript SDK, we call 
+		// FB.getLoginStatus(). This function gets the state of the
+		// person visiting this page and can return one of three states to
+		// the callback you provide. They can be:
+		//
+		// 1. Logged into your app ('connected')
+		// 2. Logged into Facebook, but not your app ('not_authorized')
+		// 3. Not logged into Facebook and can't tell if they are logged into
+		// your app or not.
+		//
+		// These three cases are handled in the callback function.
 
-// 		FB.getLoginStatus(function(response) {
-// 			statusChangeCallback(response);
-// 		});
-// 	};
-// 	// Load the SDK asynchronously
-// 	(function(d, s, id) {
-// 		var js, fjs = d.getElementsByTagName(s)[0];
-// 		if (d.getElementById(id))
-// 			return;
-// 		js = d.createElement(s);
-// 		js.id = id;
-// 		js.src = "//connect.facebook.net/en_US/sdk.js";
-// 		fjs.parentNode.insertBefore(js, fjs);
-// 	}(document, 'script', 'facebook-jssdk'));
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+	};
+	// Load the SDK asynchronously
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id))
+			return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 
-// 	// Here we run a very simple test of the Graph API after login is
-// 	// successful. See statusChangeCallback() for when this call is made.
-// 	function testAPI() {
-// 		console.log('Welcome! Fetching your information.... ');
-// 		FB.api('/me?fields=name,email', function(response) {
-// 			console.log('Successful login for: ' + response.name);
+	// Here we run a very simple test of the Graph API after login is
+	// successful. See statusChangeCallback() for when this call is made.
+	function testAPI() {
+		console.log('Welcome! Fetching your information.... ');
+		FB.api('/me?fields=name,email', function(response) {
+			console.log('Successful login for: ' + response.name);
 
-// 			document.getElementById("status").innerHTML = '<p>Welcome '
-// 					+ response.name
-// 					+ '! <a href=fblogincontroller.jsp?user_name='
-// 					+ response.name.replace(" ", "_") + '&user_email='
-// 					+ response.email
-// 					+ '>Continue with facebook login</a></p>'
-// 		});
-// 	}
+			document.getElementById("status").innerHTML = '<p>Welcome '
+					+ response.name
+					+ '! <a href=fblogincontroller.jsp?user_name='
+					+ response.name.replace(" ", "_") + '&user_email='
+					+ response.email
+					+ '>Continue with facebook login</a></p>'
+		});
+	}
 
-// 	//Gmail
-// 	 function onSignIn(googleUser) {
-//       // window.location.href='success.jsp';
-//       var profile = googleUser.getBasicProfile();
-//       var imagurl=profile.getImageUrl();
-//       var name=profile.getName();
-//       var email=profile.getEmail();
-
-//       window.location="loginsuccess?name="+name+"&email="+email;
-      
-//       document.getElementById("myImg").src = imagurl;
-//       document.getElementById("name").innerHTML = name;
-//       document.getElementById("myP").style.visibility = "hidden";
-//  //     document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=loginsuccess?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
-//    }
-    
-//      function myFunction() {
-//         gapi.auth2.getAuthInstance().disconnect();
-//         location.reload();
-//      }
+	//Gmail
+	 function onSignIn(googleUser) {
+      // window.location.href='success.jsp';
+      var profile = googleUser.getBasicProfile();
+      window.location="authenticateUser?name="+profile.getName()+"&email="+profile.getEmail();
+      var imagurl=profile.getImageUrl();
+      var name=profile.getName();
+      var email=profile.getEmail();
+      document.getElementById("myImg").src = imagurl;
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("myP").style.visibility = "hidden";
+      document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=loginsuccess?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
+   }
+	   
+     function myFunction() {
+        gapi.auth2.getAuthInstance().disconnect();
+        location.reload();
+     }
     
     function notify(messageType, message) {
         var notification = 'Information';

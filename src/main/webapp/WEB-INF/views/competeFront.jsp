@@ -21,8 +21,9 @@
 
 <link href="${c2}" rel="stylesheet" type="text/css" />
 <!-- Vaisnavi's addition jquery ui -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <!-- end -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- end -->
 <!-- Material Icons CSS -->
 <spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
 	var="c3" />
@@ -103,29 +104,17 @@
 
 <!-- Popover cdn  -->
 <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-
-<script>
-$(document).ready(function(){
-//     $('[data-toggle="popover"]').popover();   
-    $("#popover").popover({
-        html : true, 
-        content: function() {
-          return $('#popoverContent').html();
-        }
-    });
-});
-</script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
-	.popover {
-  		max-width: 600px;
-	}
+.popover {
+	max-width: 600px;
+}
 
- .tooltip {
+.tooltip {
 	position: relative;
 	display: inline-block;
 	opacity: 12;
@@ -135,7 +124,7 @@ $(document).ready(function(){
 	visibility: hidden;
 	width: 120px;
 	background-color: #ececec;
-  color: black;
+	color: black;
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -143,20 +132,20 @@ $(document).ready(function(){
 	position: absolute;
 	z-index: 1;
 	opacity: 1;
-	
-  top: 100%;
-  left: 50%;
-  margin-left: -60px;
+	top: 100%;
+	left: 50%;
+	margin-left: -60px;
 }
+
 .tooltip .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
+	content: " ";
+	position: absolute;
+	bottom: 100%; /* At the top of the tooltip */
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
 }
 
 .tooltip:hover .tooltiptext {
@@ -164,69 +153,71 @@ $(document).ready(function(){
 }
 
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 18px;
+	position: relative;
+	display: inline-block;
+	width: 45px;
+	height: 18px;
 }
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height:18px;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 18px;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 10px;
-  width: 10px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	content: "";
+	height: 10px;
+	width: 10px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+input:checked+.slider {
+	background-color: #2196F3;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+	border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+	border-radius: 50%;
 }
+
 .bigmodal>.modal-dialog {
-          width: 60%;
-          height: 80%; /* New width for default modal */
-        }
+	width: 60%;
+	height: 80%; /* New width for default modal */
+}
+
 .dropdown-menu {
 	min-width: 387px !important;
 	height: 300px !important;
@@ -234,40 +225,45 @@ input:checked + .slider:before {
 }
 </style>
 
-<style >
-.drp{
-	display:block;
-	inline-size:auto;
-	font-size:16px;
-	margin-top:15px;
-	border-radius:0.5rem;
-	border-bottom:3px solid #fff;
+<style>
+.drp {
+	display: block;
+	inline-size: auto;
+	font-size: 16px;
+	margin-top: 15px;
+	border-radius: 0.5rem;
+	border-bottom: 3px solid #fff;
 	background: #647687;
 	color: #fff;
 }
-.drp>option{
-	padding:7px;
+
+.drp>option {
+	padding: 7px;
 }
-.skilldiv{
-	border:2px solid #b3bdc7;
-	border-radius:0.7rem;
+
+.skilldiv {
+	border: 2px solid #b3bdc7;
+	border-radius: 0.7rem;
 }
-.skillcontent{
-	margin:20px;
-	padding:20px;
-	background:#ffffff;
-	height:60px;
-	border-radius:0.7rem;
-	width:200px;
-	text-align:right;
-	color:black;
+
+.skillcontent {
+	margin: 20px;
+	padding: 20px;
+	background: #ffffff;
+	height: 60px;
+	border-radius: 0.7rem;
+	width: 200px;
+	text-align: right;
+	color: black;
 }
-li>a.dropbtn{
+
+li>a.dropbtn {
 	position: relative;
 }
+
 .dropdown {
-  position: relative;
-  display: none;
+	position: relative;
+	display: none;
 }
 
 .errorclass {
@@ -276,130 +272,147 @@ li>a.dropbtn{
 }
 
 .dropdown-content {
-  display: block;
-  position: fixed;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  opacity:100;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
+	display: block;
+	position: fixed;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	opacity: 100;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 10;
 }
 
 .dropdown-content>a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropbtn:hover > .dropdown{display:block}
+.dropbtn:hover>.dropdown {
+	display: block
+}
+
 .dropdown-content a:hover {
 	background-color: #03A9F4;
-	color:#ffffff;
+	color: #ffffff;
 }
 
-div.container{
-    padding-left: 0px;
-    padding-right: 0px;
+div.container {
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
-div.dataTables_wrapper div.dataTables_filter input{
-    margin-bottom: 0px;
-    margin-left: 0px;
-    border-style: ridge;
-    height: auto;
-    border-radius: 0.7rem;
+div.dataTables_wrapper div.dataTables_filter input {
+	margin-bottom: 0px;
+	margin-left: 0px;
+	border-style: ridge;
+	height: auto;
+	border-radius: 0.7rem;
 }
-.headingrow{
+
+.headingrow {
 	background: #647687;
 	color: #fff;
-	height:60px;
-	font-size:18px;
+	height: 60px;
+	font-size: 18px;
 	vertical-align: center;
-	margin-bottom:30px;
+	margin-bottom: 30px;
 }
 
-.stepdiv{
-	height:52px;
+.stepdiv {
+	height: 52px;
 	font-size: 18px;
-	font-weight:bold;
+	font-weight: bold;
 	padding: 15px;
 	border: hidden;
 }
-.stepdetails{
-	display:none;
-	color:#999999;
-	padding-left:30px;
+
+.stepdetails {
+	display: none;
+	color: #999999;
+	padding-left: 30px;
 }
-.panels{
-	padding:0px;
+
+.panels {
+	padding: 0px;
 	font-size: 16px;
-	border:1px solid #dadada;
-	border-radius:1rem;
+	border: 1px solid #dadada;
+	border-radius: 1rem;
 }
-.stepdetails{
+
+.stepdetails {
 	border-bottom: 1px solid #dadada;
 }
-.activestep{
-	display:block;
+
+.activestep {
+	display: block;
 }
-.inactivestep{
-	display:none;
+
+.inactivestep {
+	display: none;
 }
-.stepTitle{
-	padding:15px;
-	height:67px;
-	border-radius:1rem;
-	border:2px solid #dadada;
-	font-weight:bold;
+
+.stepTitle {
+	padding: 15px;
+	height: 67px;
+	border-radius: 1rem;
+	border: 2px solid #dadada;
+	font-weight: bold;
 	font-size: 22px;
 }
-.testitem{
-	padding:15px 0px 15px;
-	border-bottom:1px solid #dadada;
+
+.testitem {
+	padding: 15px 0px 15px;
+	border-bottom: 1px solid #dadada;
 }
-.testname{
-	font-weight:bold;
+
+.testname {
+	font-weight: bold;
 	font-size: 20px;
-	width:fit-content;
+	width: fit-content;
 }
-.testlvl{
+
+.testlvl {
 	font-size: 16px;
-	width:fit-content;
+	width: fit-content;
 }
-.testdetails{
+
+.testdetails {
 	font-size: 14px;
 	margin-left: 40px;
-	color:#999999;
-	width:fit-content;
+	color: #999999;
+	width: fit-content;
 }
-.moretestdet{
+
+.moretestdet {
 	font-size: 16px;
 	margin-left: 30px;
-	color:#647687;
-	display:none;
-	width:fit-content;
+	color: #647687;
+	display: none;
+	width: fit-content;
 }
-.strtbtn{
-	border:1px solid #dadada;
-	border-radius:0.7rem;
+
+.strtbtn {
+	border: 1px solid #dadada;
+	border-radius: 0.7rem;
 	vertical-align: center;
 }
-.reqlbl{
-	border:1px solid #b01212;
-	color:#b01212;
-	font-size:12px;
-	border-radius:15rem;
-	line-height:18px;
-	display:inline-block;
-	padding:6px;
-	margin-left:20px;
+
+.reqlbl {
+	border: 1px solid #b01212;
+	color: #b01212;
+	font-size: 12px;
+	border-radius: 15rem;
+	line-height: 18px;
+	display: inline-block;
+	padding: 6px;
+	margin-left: 20px;
 }
 </style>
 
 </head>
 
-<body id="top" class="has-header-search">
+<body id="top" class="has-header-search" onload="leaderboard('${testName}')">
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
@@ -414,43 +427,41 @@ div.dataTables_wrapper div.dataTables_filter input{
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="nav navbar-nav">
-						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li class="active">
-							<a class="dropbtn">Practice</a>
+						<li><a
+							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
+						<li class="active"><a class="dropbtn">Practice</a>
 							<div class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
+								<div class="dropdown-content" style="background: #b3bdc7">
 									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
+										<a class="skillcontent" onclick="loadPage('${s1}')"
+											value="${s1}">${s1}</a>
 									</c:forEach>
-								 </div>
-							</div>
-						</li>
-						<li class="tooltip"> 
-								<a href="getSubSkill">Coding </a> 
-								<span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out value="${skill}" /></a><br>
-									</c:forEach>
-								</span>
-						</li>
-<!-- 						<li><a href="#">Compete</a></li> -->
-						<li class="tooltip"> 
-								<a>Compete </a> 
-								<ul class="tooltiptext" style="list-style-type: none;">
-										<li style="margin:0 0 8px 0; "><a href="competeFrontSkill">SkillChallenge</a></li>
-										<li><a href="competeFrontCoding">CodingChallenge</a></li>
-								</ul>
-						</li>
-						
+								</div>
+							</div></li>
+						<li class="tooltip"><a href="getSubSkill">Coding </a> <span
+							class="tooltiptext"> <c:forEach items="${skillList}"
+									var="skill" varStatus="loop">
+									<a style="font-size: x-large;"
+										href="getSubSkill?skill=${skill}"><c:out value="${skill}" /></a>
+									<br>
+								</c:forEach>
+						</span></li>
+						<!-- 						<li><a href="#">Compete</a></li> -->
+						<li class="tooltip"><a>Compete </a>
+							<ul class="tooltiptext" style="list-style-type: none;">
+								<li style="margin: 0 0 8px 0;"><a href="competeFrontSkill">SkillChallenge</a></li>
+								<li><a href="competeFrontCoding">CodingChallenge</a></li>
+							</ul></li>
+
 						<li><a href="practice">Code-GIG</a></li>
-<!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
-<!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
-<!-- 							<ul class="dropdown-menu" role="menu"> -->
-<!-- 								<li><a href="competeFrontSkill">Skill Challenge</a></li> -->
-<!-- 	       						<li><a href="competeFrontCoding">Coding Challenge</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-						
+						<!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
+						<!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
+						<!-- 							<ul class="dropdown-menu" role="menu"> -->
+						<!-- 								<li><a href="competeFrontSkill">Skill Challenge</a></li> -->
+						<!-- 	       						<li><a href="competeFrontCoding">Coding Challenge</a></li> -->
+						<!-- 							</ul> -->
+						<!-- 						</li> -->
+
 					</ul>
 					<!--mega menu end-->
 				</div>
@@ -458,12 +469,14 @@ div.dataTables_wrapper div.dataTables_filter input{
 		</div>
 	</header>
 	<!--header end-->
-	
+
 	<section>
 		<div class="col-md-12 headingrow">
-			<div class='col-md-9' id="competeTest" style="margin-top:15px;">Home // Compete // ${challengeType} Challenge // ${skillName} </div>
+			<div class='col-md-9' id="competeTest" style="margin-top: 15px;">Home
+				// Compete // ${challengeType} Challenge // ${skillName}</div>
 			<div class='col-md-3'>
-				<select class='drp pull-right' id="slct" required="required" onchange="competeTest()" style="width: 50%;">
+				<select class='drp pull-right' id="slct" required="required"
+					onchange="competeTest()" style="width: 50%;">
 					<c:forEach var="skillList" varStatus="status" items="${skillList}">
 						<c:choose>
 							<c:when test="${status.index == skillIndex}">
@@ -477,44 +490,68 @@ div.dataTables_wrapper div.dataTables_filter input{
 				</select>
 			</div>
 		</div>
-				<div class="container">
+		<div class="container">
 			<div class="row">
 				<div class="panels col-md-7">
 					<div class="stepTitle">${skillName}</div>
-					<div style="padding:15px">
+					<div style="padding: 15px">
+						<c:set var="count" value="0" scope="page" />
 						<c:forEach items="${tests}" var="tests" varStatus="loop">
-						<div class="testitem row">
-										<div class="col-md-8">
-											<div class="testname">${tests}</div>
-												<div class="testlvl">${tests} | will Take 60 minutes</div>
-												<div class="testdetails">
-													<a style="color:#999999" onclick="openTestDetails(${skillIndex})">More Details<span style="padding-left:15px;color:#4d90fe;" id="spantest${skillIndex}" class="glyphicon glyphicon-chevron-down"></span></a>
-												</div>
-												<div class="moretestdet" style="display:none;" id="moretestdet${skillIndex}">
-													Your score: 0/100<br>
-													Re-attempt the test to improve your score
-												</div>	
-										</div>
-										<div class="col-md-4">
-											<c:forEach var="id" varStatus="status" items="${testId}">
-												<c:choose>
-													<c:when test="${status.index == loop.index}">
-														<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&testId=${id}&companyId=${companyId}&sharedDirect=yes">Start</a>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</div>
+							<div class="testitem row">
+								<div class="col-md-8">
+									<div class="testname">${tests}</div>
+									<c:set var="count" value="${count+1}"/>
+									<div class="testlvl">Level <c:out value="${count}" />|Will Take 60 minutes</div>
+									<div class="testdetails">
+										<a style="color: #999999" onclick="openTestDetails(${loop.index})">More Details<span style="padding-left: 15px; color: #4d90fe;" id="spantest${loop.index}" class="glyphicon glyphicon-chevron-down"></span></a>
 									</div>
+									<div class="moretestdet" style="display: none;" id="moretestdet${loop.index}">
+												Your score: ${dtoList.score}  0/100<br> Re-attempt the test to improve your score
+									</div>
+								</div>
+								<div class="col-md-4">
+									<c:forEach var="id" varStatus="status" items="${testId}">
+										<c:choose>
+											<c:when test="${status.index == loop.index}">
+												<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&testId=${id}&companyId=${companyId}&sharedDirect=yes">Start</a>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+								</div>
+							</div>
 						</c:forEach>
 					</div>
 				</div>
-				<div class="col-md-2" ></div>
-		
+				<div class="col-md-1"></div>
+				<div class="col-md-4">
+					<h4>Leaderboard</h4>
+					<div id="popoverTitle" style="border:2px solid #DADADA;border-radius: 10px; ; padding: 15px">
+						<form:form method="GET" modelAttribute="compete">
+							<form:select path="testName" class="form-control" id="slctTest"
+								required="required" onchange="javascript:leaderboard(this.value);">
+								<form:options items="${tests}" />
+							</form:select>
+						</form:form>
+						<br>
+						<table class="table table-striped" id="tbl">
+							<thead style="background-color: #03a9f4;">
+								<tr>
+									<th>Name</th>
+									<th>Rank</th>
+									<th>Score</th>
+								</tr>
+							</thead>
+
+						</table>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</section>
-	
+
 	<!-- jQuery -->
-	
+
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
 		var="mainJs1" />
@@ -566,41 +603,68 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
-	
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
 
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  
-  <script type="text/javascript">
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript">
 
   function competeTest() {
 		var challengeType= new URL(location.href).searchParams.get("challengeType");
 		var skillName = $("#slct").val();
 		console.log("SkillName:"+skillName+"\nChallenge Type:"+challengeType);
 		window.location = 'competeFront?challengeType='+challengeType+'&skillName='+skillName;
-
 	}
 
+	function leaderboard(testName){
+		console.log("testName:"+testName);
+		$.ajax({
+			url : 'leaderboard?testName='+testName,
+			type : 'GET',
+			success : function(response) {
+				console.log("success leaderboard");
+				$(".tr").remove();
+				for (var i = 0; i < response.dtoList.length; i++) {
+					var scoreInPercent=response.dtoList[i].score + "%";
+					var fName=response.dtoList[i].fName;
+					var lName=response.dtoList[i].lName;
+					var name= fName + " " +lName;
+					console.log("Full name"+name);
+					
+					$("#tbl").append(
+							"<tr class='tr'><td>"
+							+ name+
+							"</td><td>"
+							+ response.dtoList[i].rank+
+							"</td><td>"
+							+ scoreInPercent +
+							"</td></tr>"
+						)
+				} 
+			}
+		});
+	}
 
-//   function startTest(){
-// 	  window.location = 'startTestSession?userId='+${userId}+'&testId='+${testId}+'&companyId='+${companyId}+'&sharedDirect=yes';
-// 	}
-  
-  function openStepDetails(index){
-		var divid = "stepdet"+index;
-		var statusdisp = document.getElementById(divid).className;
-		if( statusdisp === "inactivestep stepdetails" ) {
-			document.getElementById(divid).className = "activestep stepdetails";
-			document.getElementById("span"+index).className = "glyphicon glyphicon-chevron-up";
+	function openTestDetails(index){
+		console.log(index);
+		var divid = "moretestdet"+index;
+		var statusdisp = document.getElementById(divid).style.display;
+		console.log(statusdisp);
+		if( statusdisp === "none" ) {
+			document.getElementById(divid).style.display = "block";
+			document.getElementById("spantest"+index).className = "glyphicon glyphicon-chevron-up";
 		}
 		else {
-			document.getElementById(divid).className = "inactivestep stepdetails";
-			document.getElementById("span"+index).className = "glyphicon glyphicon-chevron-down";
+			document.getElementById(divid).style.display = "none";
+			document.getElementById("spantest"+index).className = "glyphicon glyphicon-chevron-down";
 		}
 	}
 </script>
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	
 	$(function() {
@@ -626,7 +690,5 @@ div.dataTables_wrapper div.dataTables_filter input{
 		});
 	});
 </script>
-  </script>
-
 </body>
 </html>

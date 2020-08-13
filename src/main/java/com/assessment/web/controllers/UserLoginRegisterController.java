@@ -59,23 +59,47 @@ public class UserLoginRegisterController {
 		ModelAndView mav = new ModelAndView("user_login_register");
 		User user = new User();
 		mav.addObject("user", user);
+		mav.addObject("message", "invalidate google login");
 		return mav;
 	}
 
-	@RequestMapping(value = "/authenticateUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/authenticateUser", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView authenticate(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User user) {
+		User	u = new User();
 		ModelAndView mav = null;
 		System.out.println("test.........    " + user);
-		user = userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		String emailId = user.getEmail();
+		if(user.getEmail() != null && (user.getPassword() == null || user.getPassword() == "")) {
+			user = userRepo.socialLogin(user.getEmail());
+			if(user == null)
+			{
+			
+				u.setEmail(emailId);
+				u.setCompanyId("e-assess");
+				u.setCompanyName("e-assess");
+				u.setPassword("A");
+				u.setOtp(0);
+				//user.setVerificationStatus("pending");
+				user = u;
+				userRepo.save(user);
+				
+				//open user table from the 
+			}
+		}
+		else {
+			user = userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword());	
+		}
+	
 		System.out.println("test2.........    " + user);
 		if (user == null) {
 			// navigate to exception page
 			mav = new ModelAndView("redirect:/loginRegister");
 			user = new User();
 			mav.addObject("user", user);
-			mav.addObject("message", "Invalid Credentials! Please try again. ");// later put it as label
+			mav.addObject("message", "Invalid Credentials ");// later put it as label
 			mav.addObject("msgtype", "Failure");
+			user.setEmail(null);
 			return mav;
 		} else {
 			mav = new ModelAndView("redirect:/practiceCode");
@@ -85,7 +109,6 @@ public class UserLoginRegisterController {
 		}
 		return mav;
 	}
-
 	@ResponseBody
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public Map<String,Object> registerUser(HttpServletRequest request, HttpServletResponse response,

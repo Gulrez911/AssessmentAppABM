@@ -286,6 +286,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 						</li>
 						
 						<li><a href="practice">Code-GIG</a></li>
+<!-- 						<li><a href="signoffUser">SignOff</a></li> -->
 <!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
 <!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
 <!-- 							<ul class="dropdown-menu" role="menu"> -->

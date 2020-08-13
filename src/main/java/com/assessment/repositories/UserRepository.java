@@ -38,4 +38,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByOtpAndEmail(int otp,String email);
 	
 	User findByMobileNumberAndEmail(String mobileNumber, String email);
+
+	@Query("SELECT u FROM User u WHERE u.email=:email")
+	User socialLogin(@Param("email") String email);
 }

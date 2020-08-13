@@ -1,6 +1,9 @@
 package com.assessment.data;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,8 +14,17 @@ public class Compete extends Base {
 	private String testName;
 	@JsonIgnore
 	private Long testId;
-
 	
+	@Transient
+	List<String> listTestName;
+	
+	
+	public List<String> getListTestName() {
+		return listTestName;
+	}
+	public void setListTestName(List<String> listTestName) {
+		this.listTestName = listTestName;
+	}
 	public String getSkillName() {
 		return skillName;
 	}

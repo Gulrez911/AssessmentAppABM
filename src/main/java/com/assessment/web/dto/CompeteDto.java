@@ -14,6 +14,12 @@ public class CompeteDto {
 	String testName;
 	Long testId;
 	
+	String fName;
+	String lName;
+	Integer rank;
+	Float score;
+	
+	
 	List<CompeteDto> dtoList = new ArrayList<>();
 	
 	public List<CompeteDto> getDtoList() {
@@ -41,9 +47,6 @@ public class CompeteDto {
 		this.totalTestCount = totalTestCount;
 	}
 	
-	
-
-	
 	public String getTestName() {
 		return testName;
 	}
@@ -56,14 +59,38 @@ public class CompeteDto {
 	public void setTestId(Long testId) {
 		this.testId = testId;
 	}
+	public Integer getRank() {
+		return rank;
+	}
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+	public Float getScore() {
+		return score;
+	}
+	public void setScore(Float score) {
+		this.score = score;
+	}
+	
+	public String getfName() {
+		return fName;
+	}
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+	public String getlName() {
+		return lName;
+	}
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+	
 	@Override
 	public String toString() {
 		return "CompeteDto [skillName=" + skillName + ", challenge=" + challenge + ", totalTestCount=" + totalTestCount
-				+ ", testName=" + testName + ", testId=" + testId + ", dtoList=" + dtoList + "]";
+				+ ", testName=" + testName + ", testId=" + testId + ", fName=" + fName + ", lName=" + lName + ", rank="
+				+ rank + ", score=" + score + ", dtoList=" + dtoList + "]";
 	}
-
 	
 	
-	
-
 }

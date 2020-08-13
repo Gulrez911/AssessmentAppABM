@@ -58,9 +58,13 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+<link rel="stylesheet" href="./resources/Profiler/css/chosen.css"/>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script> -->
+
+<!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css"> -->
 
 <!-- <script src="jquery-3.5.1.min.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js"></script> -->
@@ -110,14 +114,14 @@ li>a.dropbtn{
 
 
 <!-- Search Box  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script>
 
 
-	 $(function($) {
-		    $(".chzn-select").chosen();
+// 	 $(function($) {
+// 		    $(".chzn-select").chosen();
 		   
-		});
+// 		});
 
 	$(document).ready(function(){
 	  $("#myInput").on("keyup", function() {
@@ -303,9 +307,11 @@ li>a.dropbtn{
 						<div role="tabpanel" class="tab-pane active" id="uploadTab">
 <%-- 							<form:form id="addForm" class="form-horizontal"  method="GET" modelAttribute="compete">  --%>
 								<form id="addForm" method="GET" > 
+								
 								<div class="form-group">
 									<label><b>Select Skill</b></label>
-										<select class="form-control" id="skillName" onchange="javascript:getTest();">
+										<select class="form-control chosen" id="skillName" onchange="javascript:getTest();">
+
 											<option value="default" disabled selected>Select Skill</option>
 											<c:forEach var="listSkill" varStatus="status" items="${listSkill}">
 												<option value="${listSkill}">${listSkill}</option>
@@ -314,7 +320,7 @@ li>a.dropbtn{
 								</div>
 								<div class="form-group">
 									<label><b>Select Challenge</b></label>
-									<select class="form-control" id="challenge1" onchange="javascript:getTest();">
+									<select class="form-control chosen" id="challenge1" onchange="javascript:getTest();">
 										<option value="default" disabled selected>Select Challenge</option>
 										<c:forEach var="challengeType" varStatus="status" items="${challengeType}">
 											<option value="${challengeType}">${challengeType}</option>
@@ -324,39 +330,20 @@ li>a.dropbtn{
 								
 								<div id="levels1"></div>
 									<table id="levels">
+									
 									</table>
 								<br>
 								<div class="form-group">
 									<label for="testName"><b>Select Test</b></label>
-									<select id="testName" name="testName" class="form-control chzn-select" onchange="javascript:getTest();">
+									<select id="testName" name="testName" class="form-control chosen" onchange="javascript:getTest();">
+									
 										<option value="default" disabled selected>Select Test</option>
 										<c:forEach var="testList" varStatus="status" items="${testList}">
-											<option value="${testList}">${testList}</option>
+											<option value="${testList}" >${testList}</option>
 										</c:forEach>
 									</select>
-									<a href="#" onclick="javascript:addLevel();" id="addLevel" class="btn info" >Add Level</a>
 								</div>
-								
-								<%-- <div class="form-group">
-								
-									  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-									  <div id="myDropdown" class="dropdown-content">
-									    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-									    <c:forEach var="testList" varStatus="status" items="${testList}">
-												<option value="${testList}">${testList}</option>
-										</c:forEach>
-									  </div>
-								<div class="dropdown">
-										<button onclick="myFunction()" class="dropbtn">Dropdown</button>
-									  <div id="myDropdown" class="dropdown-content">
-									    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-									    <c:forEach var="testList" varStatus="status" items="${testList}">
-												<option value="${testList}">${testList}</option>
-										</c:forEach>
-									  </div>
-								</div>
-								</div> --%>
-								
+									<a href="#" onclick="javascript:addLevel();" id="addLevel" class="btn btn-primary" >Add Level</a>
 								<div class="modal-footer">
 									<a href="compete" class="btn btn-primary">Save</a>
 								</div>
@@ -367,7 +354,6 @@ li>a.dropbtn{
 			</div>
 		</div>
 	</div>
- 
 
 	<!-- jQuery -->
 
@@ -376,6 +362,9 @@ li>a.dropbtn{
 	<script src="${mainJs1}"></script>
 	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
 		var="mainJs2" />
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+		
 	<script src="${mainJs2}"></script>
 	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
 		var="mainJs3" />
@@ -422,37 +411,10 @@ li>a.dropbtn{
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
 	
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
 
-// function myFunction() {
-// 	  document.getElementById("myDropdown").classList.toggle("show");
-// 	}
-
-// 	function filterFunction() {
-// 	  var input, filter, ul, li, a, i;
-// 	  input = document.getElementById("myInput");
-// 	  filter = input.value.toUpperCase();
-// 	  div = document.getElementById("myDropdown");
-// 	  a = div.getElementsByTagName("a");
-// 	  for (i = 0; i < a.length; i++) {
-// 	    txtValue = a[i].textContent || a[i].innerText;
-// 	    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-// 	      a[i].style.display = "";
-// 	    } else {
-// 	      a[i].style.display = "none";
-// 	    }
-// 	  }
-// 	}
-
-// /* $(function () {
-//     $('select').selectpicker();
-// });  */
-
-// $(function(){
-//     $(".chzn-select").chosen();
-// });
-
+    $(".chosen").chosen();
 
 function addCompete(){
 	$('#modaladdChallenge').modal('show');
@@ -466,6 +428,7 @@ function addCompete(){
 
 	$('#addLevel').attr('disabled',true);
 	$('#skillName, #challenge1, #testName').on("change",function(){
+		 $("#msg").remove();
 		var skillName=$('#skillName').find("option:selected").val();
 		var challenge=$('#challenge1').find("option:selected").val();
 		var testName=$('#testName').find("option:selected").val();
@@ -499,6 +462,7 @@ function addLevel(){
 
 				$('#addLevel').attr('disabled',true);
 				$('#skillName, #challenge1, #testName').on("change",function(){
+					 $("#msg").remove();
 					var skillName=$('#skillName').find("option:selected").val();
 					var challenge=$('#challenge1').find("option:selected").val();
 					var testName=$('#testName').find("option:selected").val();
@@ -532,15 +496,48 @@ function addLevel(){
 					$("#levels").append(
 							"<tr class='tr1'><td><label class='fieldtitle'><b>Level"+(i+1)+"</b></label></td><td id="+ response.levels[i].id+ ">"
 							+ response.levels[i].testName+ 
-							"&nbsp;&nbsp; <a href='#' id='edit' onclick='javascript:editLevel("+ response.levels[i].id+ ");'><span class='glyphicon glyphicon-edit'></span>Edit</a></td></tr>")
+							"</td><td id='edit'>&nbsp;&nbsp; <a href='#' id='edit' onclick='javascript:editLevel("+ response.levels[i].id+ ");'><span class='glyphicon glyphicon-edit'></span>Edit</a></td><td><a href='#' id='delete' onclick='javascript:deleteLevel("+ response.levels[i].id+ ");'><span id='delete' class='fa fa-trash'></span>Delete</a></td></tr>")
 	 		}
  			$('#btnSave').prop('disabled', false);
  		},
 		});
 	}
 
+	 function deleteLevel(id){
+			bootbox.confirm({
+				title: "Delete Confirmation",
+				message: "Are you sure you want to Cancel?",
+				buttons: {
+			        confirm: {
+			            label: 'Ok',
+			            className: 'btn-success'
+			        },
+			        cancel: {
+			            label: 'Cancel',
+			            className: 'btn-danger'
+			        }
+			    },
+			    callback:function(x){
+			    	if( x == true){
+			    		$.ajax({
+							url:"deleteLevel?id="+id,
+							type:"GET",
+							 success:function(response){
+								 console.log("delete ajax success called");
+								 var msg="Test deleted successfully!";
+					 			 $("#levels1").html('<span id="msg" style="color:red;">'+msg+'</span>');
+								 getTest();
+							},
+						});
+					}
+			    }
+			});
+		}
+	
+
 	function editLevel(id){
   	 	console.log("editLevel Called \t"+id);
+  	 	
 		 $.ajax({
 			 url:"getTestNames?id="+id,
 			 type:"GET",
@@ -595,6 +592,7 @@ function addLevel(){
 
 			 $('#addLevel').attr('disabled',true);
 			 $('#skillName, #challenge1, #testName').on("change",function(){
+				 $("#msg").remove();
 			 	var skillName=$('#skillName').find("option:selected").val();
 			 	var challenge=$('#challenge1').find("option:selected").val();
 			 	var testName=$('#testName').find("option:selected").val();
@@ -620,6 +618,7 @@ function addLevel(){
 
 		$('#addLevel').attr('disabled',true);
 		$('#skillName, #challenge1, #testName').on("change",function(){
+			 $("#msg").remove();
 			var skillName=$('#skillName').find("option:selected").val();
 			var challenge=$('#challenge1').find("option:selected").val();
 			var testName=$('#testName').find("option:selected").val();
@@ -636,16 +635,7 @@ function addLevel(){
 
 </script>
 
-    <!-- <script type="text/javascript">
-
-    $('#document').ready(function(){
-        $('#btn-show-modal').on('click', function(){
-            $('.form-control').val('');
-        });
-    });
-
-
-    </script> -->
+     
 
 	<c:if test="${msgtype != null}">
 		<script>
