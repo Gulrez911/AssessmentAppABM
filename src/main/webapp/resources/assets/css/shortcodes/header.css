@@ -441,6 +441,10 @@ header.sticky .menuzord-menu>li>a,
     right: 10px;
     font-size: 15px
 }
+.dropdown-content a:hover {
+	background-color: #03A9F4;
+	color:#ffffff;
+}
 .menuzord-menu>li>.megamenu {
     width: 100%;
     padding: 20px;

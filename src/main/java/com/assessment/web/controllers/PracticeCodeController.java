@@ -53,6 +53,7 @@ public class PracticeCodeController {
 	public ModelAndView addQ(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("practiceCode");
 		User user = (User)request.getSession().getAttribute("user");
+		//Objects required for header
 		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
 		mav.addObject("skillList", skillList);
 		String[] skills =  steptestservice.getParentSkillNames();
@@ -60,6 +61,8 @@ public class PracticeCodeController {
 			System.out.println(skills[i]);
 		}		
 		mav.addObject("skills",skills);
+		mav.addObject("user",user);
+		//Objects required for header end
  		return mav;
 	}
 	

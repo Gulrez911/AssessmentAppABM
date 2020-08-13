@@ -346,7 +346,6 @@ li>a.dropbtn{
   display: block;
 }
 
-.dropbtn:hover > .dropdown{display:block}
 .dropdown-content a:hover {
 	background-color: #03A9F4;
 	color:#ffffff;
@@ -453,54 +452,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 </head>
 
 <body id="top" class="has-header-search">
-
-	<!--header start-->
-	<header id="header" class="tt-nav nav-border-bottom">
-		<div class="header-sticky light-header ">
-			<div class="container">
-				<div id="materialize-menu" class="menuzord">
-					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img
-						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
-						alt="" />
-					</a>
-					<!--logo end-->
-					<!--mega menu start-->
-					<ul class="nav navbar-nav">
-						<li><a
-							href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-
-                       <li>
-							<a class="dropbtn">Practice</a>
-							<div class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
-									</c:forEach>
-								 </div>
-							</div>
-						</li>	
-						
-						<li class="tooltip">
-								<a href="getSubSkill">Coding </a> <span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
-												value="${skill}" /></a><br>
-
-									</c:forEach>
-								</span>
-							
-						</li>
-						<li><a href="#">Compete</a></li>			
-						<li><a href="practice">Code-GIG</a></li>
-					</ul>
-					<!--mega menu end-->
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--header end-->
+	<c:import url="menucommon.jsp"></c:import>
 
 
 	<section>
@@ -523,7 +475,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="panels col-md-7">
+				<div class="panels col-md-7" style="padding:0px;">
 					<div class="stepTitle">${curStep.stepName}</div>
 					<div style="padding:15px">
 					<c:set var="count" value="0"/>
@@ -853,6 +805,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
+	<spring:url value="/resources/assets/js/menuscripts.js" var="mainJs18" />
+	<script src="${mainJs18}"></script>
 	
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
@@ -924,20 +878,6 @@ div.dataTables_wrapper div.dataTables_filter input{
 	}
 	
 	$(document).ready(function(){
-		$('li>a.dropbtn').hover(function(){
-			$('.dropdown').css('display','block');
-		},
-		function(){
-			$('.dropdown').css('display','none');
-		});
-		$('.dropdown').hover(function(){
-			$('.dropdown').css('display','block');
-		},
-		function(){
-			$('.dropdown').css('display','none');
-		});
-	});
-	
 
     function showPassword(){
     	var a = document.getElementById("password1");
@@ -1195,7 +1135,9 @@ div.dataTables_wrapper div.dataTables_filter input{
         gapi.auth2.getAuthInstance().disconnect();
         location.reload();
      }
-
+		
+    
+    
 	</script>
 	
 </body>

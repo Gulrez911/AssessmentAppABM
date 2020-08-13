@@ -53,6 +53,10 @@ public class PracticeController {
 			@RequestParam(required = false) Long id,@RequestParam(required = false) String msg) throws Exception {
 		ModelAndView mav = new ModelAndView("practice");
 		User user = (User)request.getSession().getAttribute("user");
+		if(user == null) {
+			ModelAndView mav1 = new ModelAndView("redirect:/loginRegister");
+			return mav1;
+		}
 		PracticeCode practiceCode = new PracticeCode();
 		mav.addObject("practiceCode", practiceCode);
 		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
@@ -65,6 +69,7 @@ public class PracticeController {
 		Map<String, String> langs = new HashMap<>();
 		List<PracticeCode> listCode = practiceService.findAllPracticeCode();
 		System.out.println(listCode);
+		
 		// System.out.println(practiceCode.getCreateDate() +
 		// ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		mav.addObject("listCode", listCode);
@@ -86,6 +91,7 @@ public class PracticeController {
 		langs.put("Objective-C", "Objective-C");
 		langs.put("Rust", "Rust");
 		mav.addObject("langs", langs);
+		
 		practiceCode.setLang("Java");
 		if (lang == null) {
 			practiceCode.setCode(
@@ -97,7 +103,9 @@ public class PracticeController {
 		}
 		if (id != null) {
 			practiceCode = practiceService.findByDate(id);
+			int current_idx = 0;
 			mav.addObject("practiceCode", practiceCode);
+			mav.addObject("current",current_idx);
 		}
 		
 		if(msg != null)

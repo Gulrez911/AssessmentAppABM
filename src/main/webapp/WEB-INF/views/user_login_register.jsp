@@ -148,7 +148,7 @@
 
     </style>
 </head>
-<body style="background-color: black;">
+<body style="background-color: black;" id="lr_body">
     <!-- Header start -->
     <div class="topnav">
 			<a href="home" class="logo-brand"> 
@@ -166,11 +166,11 @@
         </div>
     </div>
     <!-- Header end -->
-
+	
 <!--     <div align="center" style="color:red; font-size: 25px;"> -->
 <%-- 		<b>${message}</b> --%>
 <!-- 	</div> -->
-	
+	<input type="hidden" value="${message}" id="ip_msg">
 	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 	
 		<section style="height: 100% !important; margin: 0px;">
@@ -403,7 +403,11 @@
 									<input type="hidden" name="email"  id="vEmail" />
 									<div class="bar"></div>
 								</th>
-								<th><a href="#" onclick="javascript:verifyOtp()" class="btn btn-success">Submit</a></th> 
+								<th>
+									<a href="#" style="margin-right:2px;" onclick="javascript:verifyOtp()" class="btn btn-success">Submit</a>OR
+									<a href="#" style="margin-left:2px;" onclick="resendOtp()" class="btn btn-success">Resend OTP</a>
+								</th>
+								
 							</tr>
 						</table>
 						</form>
@@ -441,8 +445,32 @@
 	<script src="./resources/assets/scripts/pnotify.custom.min.js"></script>
 
   <script type="text/javascript">
-
-    function showPassword(){
+  	document.getElementById("lr_body").onload = function(){
+  		const urlParams = new URLSearchParams(window.location.search);
+  		const msg = urlParams.get('message');
+  		const email = urlParams.get('email');
+  		if( msg == "Otp not verified" ) {
+  			document.getElementById("vEmail").value = email;
+  			$('#modalshare').modal('show');
+  		}
+  	};
+  	
+  	function resendOtp(){
+  		const urlParams = new URLSearchParams(window.location.search);
+  		const em = urlParams.get('email');
+  		$.ajax({
+  			url: "resendOTP",
+  			method: "POST",
+  			data:{
+  				email: em
+  			},
+  			success:function(data){
+  				alert(data);
+  			}
+  		});
+  	}
+  
+   function showPassword(){
     	var a = document.getElementById("password1");
     	  if (a.type == "password") {
     	    a.type = "text";
@@ -460,8 +488,6 @@
     
 /* Registration OTP Verifiaction */
     function registerClick(){
-
-    		
 	
 			var firstName=$("#firstName").val();
 			var lastName=$("#lastName").val();
@@ -535,10 +561,18 @@
 				success : function(response) {
 					// alert("done");
 					console.log("saved");
-					$("#otpMessage").text(response.msg);
-					$("#vEmail").val(response.email); 
-					$('#modalshare').modal('show');
-				},
+					if(response["msg"]=="Invalid Email"){
+						alert("Email already exists!Please login");
+						console.log("if exec");
+					}
+					else{
+						$("#otpMessage").text(response.msg);
+						$("#vEmail").val(response.email); 
+						$('#modalshare').modal('show');
+						console.log("else exec")
+					}
+					
+				}
 			});
 		}
 	
@@ -700,7 +734,6 @@
      }
 
 </script>
-
 
 <c:if test="${msgtype != null}">
     <script>

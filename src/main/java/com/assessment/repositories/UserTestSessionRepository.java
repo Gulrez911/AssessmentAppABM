@@ -44,7 +44,10 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	
 	@Query("select u from UserTestSession u where u.user=:usern and u.test=:test")
 	public UserTestSession findByUserAndTest(@Param("usern")String usern, @Param("test")Test t);
-
+	
+	
+	@Query("select u from UserTestSession u where u.user=:usern and u.companyId=:companyId")
+	public List<UserTestSession> findTestListForUser(@Param("companyId")String companyId, @Param("usern")String usern);
 
 }
 

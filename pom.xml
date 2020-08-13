@@ -428,6 +428,13 @@
 		    <version>3.1.0.RELEASE</version>
 		</dependency>
 		
+    <!--  Gson dependency -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+		
 
 	</dependencies>
 	<build>

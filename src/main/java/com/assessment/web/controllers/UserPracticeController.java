@@ -76,7 +76,7 @@ public class UserPracticeController {
 			user = new User();
 			mav.addObject("user",user);
 		}
-		String[] skills = steptestservice.getParentSkillNames();
+		String[] skills = steptestservice.getParentSkillNames();//only skills that have some tests and steps in it
 		
 				
 		for(int i = 0 ; i<skills.length; i++) {
@@ -165,7 +165,7 @@ public class UserPracticeController {
 				}
 			}
 			
-			if(user != null) {
+			if(user != null) {//to load user data like total marks, obtained etc.
 				String email = user.getEmail();
 				stptst_lst = steptestservice.getBySkillStep(reqstp);
 				List<UserTestSession> uts_list = new ArrayList<UserTestSession>();
