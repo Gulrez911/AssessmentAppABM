@@ -56,9 +56,6 @@
 <link href="${c16}" rel="stylesheet" type="text/css" />
 
 
-<<<<<<< HEAD
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-=======
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 <link rel="stylesheet" href="./resources/Profiler/css/chosen.css"/>
@@ -89,7 +86,6 @@ li>a.dropbtn{
   position: relative;
   display: none;
 }
-
 .dropdown-content {
   display: block;
   position: fixed;
@@ -99,76 +95,27 @@ li>a.dropbtn{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
 }
-
 .dropdown-content>a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
 .dropbtn:hover > .dropdown{display:block}
 .dropdown-content a:hover {
 	background-color: #03A9F4;
 	color:#ffffff;
 }
-
-</style>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
-
-<style>
-.dropdown-menu {
-	min-width: 387px !important;
-	height: 300px !important;
-	overflow: auto !important;
-}
-</style>
-
-<style >
-li>a.dropbtn{
-	position: relative;
-}
-.dropdown {
-  position: relative;
-  display: none;
-}
-
-.dropdown-content {
-  display: block;
-  position: fixed;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  opacity:100;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
-}
-
-.dropdown-content>a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropbtn:hover > .dropdown{display:block}
-.dropdown-content a:hover {
-	background-color: #03A9F4;
-	color:#ffffff;
-}
-
 </style>
 
 
 <!-- Search Box  -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script>
-
-
 // 	 $(function($) {
 // 		    $(".chzn-select").chosen();
 		   
 // 		});
-
 	$(document).ready(function(){
 	  $("#myInput").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
@@ -176,10 +123,8 @@ li>a.dropbtn{
 	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	    });
 	  });
-
 		
 	});
-
 	 
 	/* $(document).ready(function(){
 		  //Chosen
@@ -219,23 +164,6 @@ li>a.dropbtn{
 						<div class="dropdown">
 							<div class="dropdown-content">
 								<a href="learningpath">Practice</a>
-<<<<<<< HEAD
-								<a href="skillTestLabel">Coding</a>
-								<a href="compete" class="active">Compete</a>
-								<a href="skillTest">Skill Test</a>
-							 </div>
-						</div>
-						</li>
-						<li>
-						<a class="dropbtn">Result</a>
-							<div class="dropdown">
-								<div class="dropdown-content">
-									<a href="showReports">Result</a>
-									<a href="codingSessions">Code Reports</a>
-									<a href="showSkillTags">Skill Reports</a>
-								 </div>
-							</div>
-=======
 								<a href="skillTestLabel"  class="active">Coding</a>
 								<a href="compete">Compete</a>
 								<a href="skillTest">Skill Test</a>
@@ -251,7 +179,6 @@ li>a.dropbtn{
 								<a href="showSkillTags">Skill Reports</a>
 							 </div>
 						</div>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 						</li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
@@ -271,29 +198,16 @@ li>a.dropbtn{
 		<div class="container">
 			<div class="row mt-5">
 				<div class="col-md-12">
-<<<<<<< HEAD
-					<div class="col-md-4"></div>
-=======
 					<div class="col-md-6"></div>
 
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 					<div class="col-md-2">
-<<<<<<< HEAD
-						<a href="#" onclick="javascript:addCompete();" class="btn waves-effect waves-light col-md-12" style="color:white;">
-							<i class="material-icons fa fa-plus-circle"></i> Add New</a>
-=======
 							<a href="#" onclick="javascript:addCompete();" class="btn waves-effect waves-light col-md-12" style="color:white;">
 							<i class="material-icons fa fa-plus-circle"></i> Add New</a>
 
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 					</div>
 					<div class="col-md-2">
-<<<<<<< HEAD
-						<a href="signoff" class="btn waves-effect waves-light col-md-12" style="color:white;"> Sign Off</a>
-=======
 						<a href="signoff" class="btn waves-effect waves-light col-md-12"><i
 							class="material-icons fa fa-sign-out"></i> Sign Off</a>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 					</div>
 				</div>
 
@@ -323,7 +237,7 @@ li>a.dropbtn{
 									<th>Skill Name</th>
 									<th>Challenge Type</th>
 									<th>No. of Levels</th>
-<!-- 									<th>Action</th> -->
+									<th>Action</th>
 								</tr>
 							</thead>
 
@@ -336,10 +250,7 @@ li>a.dropbtn{
 										<td>${countList.skillName}</td>
 										<td>${countList.challenge}</td>
 										<td>${countList.totalTestCount}</td>
-<<<<<<< HEAD
-=======
 										<td><a href="#" onclick="javascript:addCompete();"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 <!-- 										<td><a href="#"><i class="fa fa-edit" style="font-size:24px"></i></a>  &nbsp;&nbsp;&nbsp; -->
 <!-- 										<a href="#"><i class="fa fa-trash" style="font-size:24px"></i></a></td> -->
 									</tr>
@@ -353,91 +264,6 @@ li>a.dropbtn{
 		</div><!-- /.container -->
 	</section>
 	
-<<<<<<< HEAD
-	
-<!--  Popup for add challenge-->
-		<div id="add" class="modal fade modalcopy" role="dialog" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body">
-					<div role="tabpanel">
-						<form:form id="addForm" class="form-horizontal"  method="GET" modelAttribute="compete"> 
-						<div class="input-container">
-						<div class="form-group ">
-							<div class="input-group">
-								<table style="margin: 0px auto;" id="tbl">
-									<tr>
-										<td>
-											<label><b>Skill</b></label>
-										</td>
-										<td>
-											<form:select path="skillName" id="skillName" onchange="javascript:getTest();">
-												<option value="select">Select Skill</option>
-												<form:options items="${listSkill}" />
-											</form:select>
-										</td>
-									</tr>
-									
-									<tr>
-										<td>
-											<label class="fieldtitle"><b>Challenge</b></label>
-										</td>
-										<td>
-											<form:select path="challenge" id="challenge1" onchange="javascript:getTest();" style="width: 130px;height: 26px">
-												<option value="select">Select Challenge</option>
-												<form:options items="${challengeType}" />
-											</form:select>
-										</td>
-									</tr>
-									
-									<tr id="result_tr" class="tr">
-									</tr>
-										 
-									
-									<tr>
-										<td>
-											<label class="fieldtitle"><b>Test Name</b></label>
-										</td>
-										   
-										<td>
-											<form:select path="testName" id="testName"  style="width: 130px;height: 26px">
-												<option value="select">Select Test Name</option>
- 												<form:options items="${testList}" />	
-											</form:select>
-										</td>
-																			
-										<td>
-											<a href="#" onclick="javascript:addLevel();" id="addLevel" class="btn info">Add Level</a>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						</div>
-						<div class="button-container">
-							<a type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" disabled="true">Save</a>						
-						</div>
-						</form:form>
-						</div> <!-- tab Pannel end  -->
-						<!-- Tab panes -->
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="uploadTab">
-							</div>
-							<div role="tabpanel" class="tab-pane" id="browseTab"></div>
-						</div>
-					</div> <!--  Modal body end -->
-				</div>
-			</div>
-		</div>
-	
-
-
-=======
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	<!-- <footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
@@ -455,11 +281,7 @@ li>a.dropbtn{
 				</ul>
 			</div>
 		</div>
-<<<<<<< HEAD
-	</footer> -->	
-=======
 	</footer> -->
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
 
 	<!--  Popup for add challenge-->
@@ -526,82 +348,6 @@ li>a.dropbtn{
 
 	<!-- jQuery -->
 
-<<<<<<< HEAD
-
-	<script>
-
-		function addCompete(){
-			$(".tr1").remove();
-			$("#msg").remove();
-			$("#skillName")[0].selectedIndex = 0;
-			$("#challenge1")[0].selectedIndex = 0;
-			$("#testName")[0].selectedIndex = 0;
-			$('#add').modal('show');
-		}
-
-		function addLevel(){
-			 var skillName=$("#skillName").val(); 
-			 var challenge=$("#challenge1").val();
-			 var testName=$("#testName").val();
-
-			 console.log("skillName:::"+skillName+":Challenge:::"+challenge+":testName:::"+testName);  
-
-			 $.ajax({
-					url : "addLevel?skillName="+skillName+"&challenge="+challenge+"&testName="+testName,
-					type : "GET",
-					success : function(response) {
-						console.log("Success Called");
-						$("#result_tr").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
-						getTest();
-					},
-			}); 
-		} 
-
- 		 function getTest(){
- 			 var skillName=$("#skillName").val(); 
-			 var challenge=$("#challenge1").val();
- 			 $.ajax({
- 	 			 url:"getTestLevel?skillName="+skillName+"&challenge="+challenge,
-	 			 type:"GET",
-	 			 success:function(response){
-		 			 console.log("success response called");
-		 			 console.log(response.levels);
-		 			 $(".tr1").remove();
-		 			 for (var i =0; i< response.levels.length ; i++){
-						console.log(response.levels[i].testName);
- 						$("#result_tr").append(
- 								"<tr class='tr1'><td><label class='fieldtitle'><b>Level"+(i+1)+"</b></label></td><td id="+ response.levels[i].id+ ">"
- 								+ response.levels[i].testName+ 
- 								"<a href='#' id='edit' onclick='javascript:editLevel("+ response.levels[i].id+ ");'><span class='glyphicon glyphicon-edit'></span></a></td></tr>")
-			 		}
-		 			$('#btnSave').prop('disabled', false);
-		 		},
- 	 		});
- 	 	}
-
-   	 	function editLevel(id){
-   	   	 	console.log("editLevel Called"+id);
- 			 $.ajax({
- 	 			 url:"getTestNames?id="+id,
-	 			 type:"GET",
-	 			 success:function(response){
-		 			 	console.log("success called");
-		 			 	console.log("Id::"+response.id);
-		 			 	
-			 			 $("#"+response.id).html("");
-			 			 var dd=document.getElementById(response.id);
-			 			 var selct = document.createElement("SELECT");
-			 			 selct.id="slct";
-			 			 dd.appendChild(selct);	 	
-		   	             var len = response.testList.length;
-		   	             console.log(response.testList[i])
-		   	             for( var i = 0; i<len; i++){
-		   	                 $("#slct").append("<option>"+response.testList[i]+"</option>");
-		   	              }
-						var span = document.createElement('span');
-						span.innerHTML = '<a id="btn1"  onclick="saveEdit('+response.id+')"><span class="glyphicon glyphicon-saved"></span></a>';
-		   	            dd.appendChild(span);
-=======
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
  		var="mainJs1" /> 
 	<script src="${mainJs1}"></script>
@@ -655,13 +401,10 @@ li>a.dropbtn{
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
-
     $(".chosen").chosen();
-
 function addCompete(){
 	$('#modaladdChallenge').modal('show');
 // 	$('#testName').selectpicker();
@@ -671,30 +414,12 @@ function addCompete(){
 	$("#skillName")[0].selectedIndex = 0;
 	$("#challenge1")[0].selectedIndex = 0;
 	$("#testName")[0].selectedIndex = 0;
-
-<<<<<<< HEAD
-   	 	function saveEdit(id){
-   	   	 	var testName=$("#slct").val();
-			$.ajax({
-				url:"updateLevel?testName="+testName+"&id="+id,
-				type:"GET",
-				 success:function(response){
-					 console.log("Level Edited");
-					 console.log("Message"+response.msg)
-		 			 $("#result_tr").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
-					 getTest();
-				},
-				
-			});
-   	   	}
-=======
 	$('#addLevel').attr('disabled',true);
 	$('#skillName, #challenge1, #testName').on("change",function(){
 		 $("#msg").remove();
 		var skillName=$('#skillName').find("option:selected").val();
 		var challenge=$('#challenge1').find("option:selected").val();
 		var testName=$('#testName').find("option:selected").val();
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		
 		if(skillName != "default" && challenge != "default" && testName != "default"){
 			$('#addLevel').attr("disabled",false);
@@ -705,13 +430,11 @@ function addCompete(){
 	});
 		
 }
-
 function addLevel(){
 	
 	 var skillName=$("#skillName").val(); 
 	 var challenge=$("#challenge1").val();
 	 var testName=$("#testName").val();
-
 	 console.log("skillName:::"+skillName+":Challenge:::"+challenge+":testName:::"+testName); 
 		
 	 $.ajax({
@@ -722,7 +445,6 @@ function addLevel(){
 				$("#levels1").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 				$("#testName")[0].selectedIndex = 0;
 				getTest();
-
 				$('#addLevel').attr('disabled',true);
 				$('#skillName, #challenge1, #testName').on("change",function(){
 					 $("#msg").remove();
@@ -740,7 +462,6 @@ function addLevel(){
 			},
 	}); 
 } 
-
 	 function getTest(){
 // 		 var skillName=$("#skillName").val(); 
 // 	 	 var challenge=$("#challenge1").val();
@@ -765,7 +486,6 @@ function addLevel(){
  		},
 		});
 	}
-
 	 function deleteLevel(id){
 			bootbox.confirm({
 				title: "Delete Confirmation",
@@ -797,7 +517,6 @@ function addLevel(){
 			});
 		}
 	
-
 	function editLevel(id){
   	 	console.log("editLevel Called \t"+id);
   	 	
@@ -807,7 +526,6 @@ function addLevel(){
 			 success:function(response){
  			 	console.log("success called");
  			 	console.log("Id::"+response.id);
-
 				$("addLevel").attr("disabled",true);
 				$("#edit").attr("disabled",true);
 				
@@ -832,16 +550,12 @@ function addLevel(){
 				var span = document.createElement('span');
 				span.innerHTML = '<a id="btn1" onclick="saveEdit('+response.id+')" style="color:blue;">Save</a>';
    	            dd.appendChild(span);
-
 	   	         var msg = document.createElement('DIV');
 	   	         msg.id="Msg";
 	   	      	 dd.appendChild(msg);
-
 	            }
 	        });
   	}
-
-
 	function saveEdit(id){
   	 	var testName=$("#slct"+id).val();
 	$.ajax({
@@ -852,7 +566,6 @@ function addLevel(){
 			 console.log("Message"+response.msg)
  			 $("#levels1").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 			 getTest();
-
 			 $('#addLevel').attr('disabled',true);
 			 $('#skillName, #challenge1, #testName').on("change",function(){
 				 $("#msg").remove();
@@ -871,14 +584,12 @@ function addLevel(){
 		
 	});
   	}
-
 	function editFront(){
 		$('#modaladdChallenge').modal('show');
 		$(".tr1").remove();
 		$("#msg").remove();
 		$("#skillName")[0].selectedIndex = 0;
 		$("#challenge1")[0].selectedIndex = 0;
-
 		$('#addLevel').attr('disabled',true);
 		$('#skillName, #challenge1, #testName').on("change",function(){
 			 $("#msg").remove();
@@ -895,7 +606,6 @@ function addLevel(){
 		});
 		
 	}
-
 </script>
 
      

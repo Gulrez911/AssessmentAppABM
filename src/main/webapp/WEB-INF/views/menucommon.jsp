@@ -54,18 +54,18 @@
 <link href="./resources/assets/css/pnotify.custom.min.css"
 	rel="stylesheet" type="text/css" />
 <style>
- .tooltip {
+.tooltip {
 	position: relative;
 	display: inline-block;
 	opacity: 12;
-	font-size:20px;
+	font-size: 20px;
 }
 
 .tooltip .tooltiptext {
 	visibility: hidden;
 	width: 120px;
 	background-color: #ececec;
-  color: black;
+	color: black;
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -73,128 +73,136 @@
 	position: absolute;
 	z-index: 1;
 	opacity: 1;
-	
-  top: 100%;
-  left: 50%;
-  margin-left: -60px;
+	top: 100%;
+	left: 50%;
+	margin-left: -60px;
 }
+
 .tooltip .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
+	content: " ";
+	position: absolute;
+	bottom: 100%; /* At the top of the tooltip */
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
 }
 
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 }
+
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 45px;
-  height: 18px;
+	position: relative;
+	display: inline-block;
+	width: 45px;
+	height: 18px;
 }
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height:18px;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 18px;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 10px;
-  width: 10px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	content: "";
+	height: 10px;
+	width: 10px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+input:checked+.slider {
+	background-color: #2196F3;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+	border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+	border-radius: 50%;
 }
+
 .bigmodal>.modal-dialog {
-          width: 60%;
-          height: 80%; /* New width for default modal */
-        }
+	width: 60%;
+	height: 80%; /* New width for default modal */
+}
+
 .dropdown-menu {
 	min-width: 387px !important;
 	height: 300px !important;
 	overflow: auto !important;
 }
 
-.drp{
-	display:block;
-	inline-size:auto;
-	font-size:16px;
-	margin-top:15px;
-	border-radius:0.5rem;
-	border-bottom:3px solid #fff;
+.drp {
+	display: block;
+	inline-size: auto;
+	font-size: 16px;
+	margin-top: 15px;
+	border-radius: 0.5rem;
+	border-bottom: 3px solid #fff;
 	background: #647687;
 	color: #fff;
 }
-.drp>option{
-	padding:7px;
+
+.drp>option {
+	padding: 7px;
 }
-.skilldiv{
-	border:2px solid #b3bdc7;
-	border-radius:0.7rem;
+
+.skilldiv {
+	border: 2px solid #b3bdc7;
+	border-radius: 0.7rem;
 }
-.skillcontent{
-	margin:20px;
-	padding:20px;
-	background:#ffffff;
-	height:60px;
-	border-radius:0.7rem;
-	width:200px;
-	text-align:right;
-	color:black;
+
+.skillcontent {
+	margin: 20px;
+	padding: 20px;
+	background: #ffffff;
+	height: 60px;
+	border-radius: 0.7rem;
+	width: 200px;
+	text-align: right;
+	color: black;
 }
-li>a.dropbtn{
+
+li>a.dropbtn {
 	position: relative;
 }
+
 .dropdown {
-  position: relative;
-  display: none;
+	position: relative;
+	display: none;
 }
 
 .errorclass {
@@ -203,37 +211,36 @@ li>a.dropbtn{
 }
 
 .dropdown-content {
-  display: block;
-  position: fixed;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  opacity:100;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
+	display: block;
+	position: fixed;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	opacity: 100;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 10;
 }
 
 .dropdown-content>a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 /* .dropdown-content a:hover { */
 /* 	background-color: #03A9F4; */
 /* 	color:#ffffff; */
 /* } */
-
-div.container{
-    padding-left: 0px;
-    padding-right: 0px;
+div.container {
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
-div.dataTables_wrapper div.dataTables_filter input{
-    margin-bottom: 0px;
-    margin-left: 0px;
-    border-style: ridge;
-    height: auto;
-    border-radius: 0.7rem;
+div.dataTables_wrapper div.dataTables_filter input {
+	margin-bottom: 0px;
+	margin-left: 0px;
+	border-style: ridge;
+	height: auto;
+	border-radius: 0.7rem;
 }
 </style>
 
@@ -245,63 +252,58 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header" style="">
-				<div id="materialize-menu" class="menuzord" style="box-shadow:10px 10px 8px #e3e1dc;padding:5px;">
-					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand" style="margin: 5px 200px 5px 20px;"> <img
-						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
-						alt="" />
-					</a>
-					<!--logo end-->
-					<!--mega menu start-->
-					<ul class="nav navbar-nav" style="font-size:20px;font-weight:bold;">
-						<li><a href="user_profile_student_profile?email=${user.email}">Dashboard</a></li>
-						<li>
-							<a id="pract_drp" class="dropbtn">Practice</a>
-							<div id="pract_drpdn" class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
-									</c:forEach>
-								 </div>
+			<div id="materialize-menu" class="menuzord"
+				style="box-shadow: 10px 10px 8px #e3e1dc; padding: 5px;">
+				<!--logo start-->
+				<a href="javascript:void(0);" class="logo-brand"
+					style="margin: 5px 200px 5px 20px;"> <img class="retina"
+					src="<%=request.getContextPath()%>/resources/images/Logo.png"
+					alt="" />
+				</a>
+				<!--logo end-->
+				<!--mega menu start-->
+				<ul class="nav navbar-nav"
+					style="font-size: 20px; font-weight: bold;">
+					<li><a href="user_profile_student_profile?email=${user.email}">Dashboard</a></li>
+					<li><a id="pract_drp" class="dropbtn">Practice</a>
+						<div id="pract_drpdn" class="skilldiv dropdown">
+							<div class="dropdown-content" style="background: #b3bdc7">
+								<c:forEach var="s1" varStatus="status" items="${skills}">
+									<a class="skillcontent" onclick="loadPage('${s1}')"
+										value="${s1}">${s1}</a>
+								</c:forEach>
 							</div>
-						</li>
-						<li> 
-							<a id="coding_drp" href="getSubSkill" class="dropbtn">Coding </a> 
-							<div id="code_drpdn" class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a class="skillcontent" style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
-												value="${skill}" /></a>
-									</c:forEach>
-								 </div>
+						</div>
+					</li>
+					<li>
+						<a id="coding_drp" href="getSubSkill" class="dropbtn">Coding</a>
+						<div id="code_drpdn" class="skilldiv dropdown">
+							<div class="dropdown-content" style="background: #b3bdc7">
+								<c:forEach items="${skillList}" var="skill" varStatus="loop">
+									<a class="skillcontent" style="font-size: large;"
+										href="getSubSkill?skill=${skill}"><c:out value="${skill}" /></a>
+								</c:forEach>
 							</div>
-						</li>
-						<!--  <li class="tooltip"> 
-								<a href="getSubSkill">Coding </a> 
-								<span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
-												value="${skill}" /></a><br>
-									</c:forEach>
-								</span>
-							
-						</li>-->
-						<li><a href="#">Compete</a></li>
-						<li><a href="practice">Code-GIG</a></li>
-						
-					</ul>
-					<!--mega menu end-->
-				</div>
+						</div>
+					</li>
+					<li><a id="comp_drp" class="dropbtn">Compete</a>
+						<div id="comp_drpdn" class="skilldiv dropdown">
+							<div class="dropdown-content" style="background: #b3bdc7">
+								<a class="skillcontent" style="font-size: large;" href="competeFrontSkill">SkillChallenge</a> 
+								<a class="skillcontent" style="font-size: large;" href="competeFrontCoding">CodingChallenge</a>
+							</div>
+						</div>
+					</li>
+					<li><a href="practice">Code-GIG</a></li>
+				</ul>
+				<!--mega menu end-->
+			</div>
 		</div>
 	</header>
 	<!--header end-->
 
 
-	<section>
-
-
-	</section>
+	<section></section>
 
 	<!-- jQuery -->
 	<script src="./resources/assets/js/jquery-2.1.3.min.js"></script>
@@ -324,33 +326,31 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<script src="./resources/assets/scripts/pnotify.custom.min.js"></script>
 	<script type="text/javascript">
 		//$(function() {
-			//$('[data-toggle="tooltip"]').tooltip()
+		//$('[data-toggle="tooltip"]').tooltip()
 		//})
-		
-		function loadPage(skn){
-			window.location.href = "userpractice?skilln="+skn;
+
+		function loadPage(skn) {
+			window.location.href = "userpractice?skilln=" + skn;
 		}
-		
-		$(document).ready(function(){
-			$('#pract_drp').hover(function(){
-				$('#pract_drpdn').css('display','block');
-			},
-			function(){
-				$('#pract_drpdn').css('display','none');
+
+		$(document).ready(function() {
+			$('#pract_drp').hover(function() {
+				$('#pract_drpdn').css('display', 'block');
+			}, function() {
+				$('#pract_drpdn').css('display', 'none');
 			});
-			
-			$('#pract_drpdn').hover(function(){
-				$('#pract_drpdn').css('display','block');
-			},
-			function(){
-				$('#pract_drpdn').css('display','none');
+
+			$('#pract_drpdn').hover(function() {
+				$('#pract_drpdn').css('display', 'block');
+			}, function() {
+				$('#pract_drpdn').css('display', 'none');
 			});
 		});
 	</script>
 
 
 
-	
+
 </body>
 
 </html>

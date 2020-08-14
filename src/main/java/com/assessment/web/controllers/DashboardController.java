@@ -296,8 +296,15 @@ public class DashboardController{
 		for (LearnersProfileParam param : li) {
 			set.add(param.getQualifier1());
 		}
-		mav.addObject("lmsadmin", user2.getFirstName() + " " + user2.getLastName());
-		mav.addObject("name", user.getFirstName() + " " + user.getLastName());
+		String l_name=null;
+		if(user2.getLastName()==null) {
+			l_name = "";
+		}
+		else {
+			l_name = user2.getLastName();
+		}
+		mav.addObject("lmsadmin", user2.getFirstName() + " " + l_name );
+		mav.addObject("name", user.getFirstName() + " " + l_name);
 		if(listPichart.size()>0) {
 			String qualifier2=listPichart.get(0).getQualifier2();
 			mav.addObject("qualifier2", qualifier2);

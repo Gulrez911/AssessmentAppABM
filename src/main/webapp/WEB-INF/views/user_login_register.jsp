@@ -9,10 +9,9 @@
 
 <html lang="en">
 <head>
-<<<<<<< HEAD
-=======
+
 	<%@ page isELIgnored="false" %>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
    	<meta name="google-signin-client_id" content="1031150543105-cqeanuk2t9cfn5sveu27mqr5u1n7com4.apps.googleusercontent.com">
     <meta charset="UTF-8">
@@ -171,16 +170,15 @@
         </div>
     </div>
     <!-- Header end -->
-<<<<<<< HEAD
+
 	
 <!--     <div align="center" style="color:red; font-size: 25px;"> -->
 <%-- 		<b>${message}</b> --%>
 <!-- 	</div> -->
 	<input type="hidden" value="${message}" id="ip_msg">
-=======
+
 
 	<br>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 	
 		<section style="height: 100% !important; margin: 0px;">
@@ -332,41 +330,39 @@
 							<div>
 								<p>
 									<span>OR Continue With:</span>
-<<<<<<< HEAD
 									<!-- <a href="student/showForm" data-return_url="https://www.techgig.com/home?login=true" > 
 										<img src="https://static.techgig.com/Themes/Release/images/tg_images_new/google-plus-icon.svg" alt="GMailIcon" /> 
 									</a> -->
 									<!-- <a href="student/fbLogin"  data-return_url="https://www.techgig.com/home?login=true" style="background-color:blue;"> 
 										<img src="https://static.techgig.com/Themes/Release/images/tg_images_new/fb-icon.svg" alt="FBIcon" /> 
 									</a> -->
-									<a>
-										<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-										      <img id="myImg"><br>
-										      <p id="name"></p>
-										      <button onclick="myFunction()">Sign Out</button>
-									</a>
-									<a>
-										<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-									</a>
-									<a href=""></a>
-=======
+<!-- 									<a> -->
+<!-- 										<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div> -->
+<!-- 										      <img id="myImg"><br> -->
+<!-- 										      <p id="name"></p> -->
+<!-- 										      <button onclick="myFunction()">Sign Out</button> -->
+<!-- 									</a> -->
+<!-- 									<a> -->
+<!-- 										<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> -->
+<!-- 									</a> -->
+<!-- 									<a href=""></a> -->
+
 									<table>
 										<tr>
 											<td>
-											<a>
-												<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-												<img id="myImg"><br>
-		<!-- 									<p id="name"></p> -->
-		<!-- 									<div id="status"></div> -->
-		<!-- 									<button onclick="myFunction()">Sign Out</button> -->
-											</a> 
+												<a>
+													<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+													<img id="myImg"><br>
+												</a> 
 											</td>
 											<td>
-											<a> <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></a> 
+												<a> 
+													<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+												</a> 
 											</td>
 										</tr>
 									</table>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 								</p>
 							</div> 
 					</div>
@@ -386,11 +382,10 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header" style="background-color: #5CB85C;">
-<<<<<<< HEAD
+
 					<h4 class="modal-title" style=" align-self:center; color: white;">Enter your email address & we'll send you link to reset password.</h4>
-=======
-					<h4 class="modal-title" style=" align-self:center; color: white;">Plesae enter your Username/Email address.You will recieve a link to create new password via email.</h4>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+			<h4 class="modal-title" style=" align-self:center; color: white;">Plesae enter your Username/Email address.You will recieve a link to create new password via email.</h4>
+
 					<button type="button" class="close" data-dismiss="modal" style="color: white;">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -401,11 +396,11 @@
 							<table id="resetPassword">
 							<tr>
 								<th>
-<<<<<<< HEAD
+
 									<input path="user.email" type="email" name="email" id="emailR" required="true" class="modal-form-input" placeholder="Email/Username" style="height:34px; width:250px;" />
-=======
+
 									<input path="user.email" type="email" name="email" id="emailR" required="true" class="modal-form-input" placeholder="Email or Username" style="height:34px; width:250px;" />
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 									<div class="bar"></div>
 								</th>
 								<th>
@@ -453,15 +448,13 @@
 									<input type="hidden" name="email"  id="vEmail" />
 									<div class="bar"></div>
 								</th>
-<<<<<<< HEAD
+
 								<th>
 									<a href="#" style="margin-right:2px;" onclick="javascript:verifyOtp()" class="btn btn-success">Submit</a>OR
 									<a href="#" style="margin-left:2px;" onclick="resendOtp()" class="btn btn-success">Resend OTP</a>
 								</th>
 								
-=======
-								<th><a href="#" onclick="javascript:verifyOtp()" class="btn btn-success">Submit</a></th> 
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 							</tr>
 						</table>
 						</form>
@@ -479,7 +472,7 @@
 
 
 
-<<<<<<< HEAD
+
 <!-- jQuery -->
 	<script src="./resources/assets/js/jquery-2.1.3.min.js"></script>
 	<script src="./resources/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -758,35 +751,7 @@
 	}
 
 	//Gmail
-	 function onSignIn(googleUser) {
-      // window.location.href='success.jsp';
-      var profile = googleUser.getBasicProfile();
-      var imagurl=profile.getImageUrl();
-      var name=profile.getName();
-      var email=profile.getEmail();
-      document.getElementById("myImg").src = imagurl;
-      document.getElementById("name").innerHTML = name;
-      document.getElementById("myP").style.visibility = "hidden";
-      document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=loginsuccess?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
-   }
-    
-    function notify(messageType, message) {
-        var notification = 'Information';
-        $(function() {
-            new PNotify({
-                title : notification,
-                text : message,
-                type : messageType,
-                styling : 'bootstrap3',
-                hide : true
-            });
-        });
-    }
-
-    function myFunction() {
-        gapi.auth2.getAuthInstance().disconnect();
-        location.reload();
-     }
+	
 
 </script>
 
@@ -805,7 +770,6 @@
 		</script>
 </c:if>
 
-=======
 <spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
 		var="mainJs1" />
 	<script src="${mainJs1}"></script>
@@ -1138,6 +1102,7 @@
       document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href=loginsuccess?email='+email+'&name='+name+'/>Continue with Google login</a></p>'
    }
 	   
+	   
      function myFunction() {
         gapi.auth2.getAuthInstance().disconnect();
         location.reload();
@@ -1176,7 +1141,6 @@
 			});
 		</script>
 	</c:if>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>

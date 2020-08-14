@@ -41,7 +41,7 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	
 	@Query(value="SELECT * FROM UserTestSession u WHERE u.testName=:testName and u.companyId=:companyId",nativeQuery= true)
 	List<UserTestSession> getTestName(@Param("testName")String testName, @Param("companyId") String companyId);
-<<<<<<< HEAD
+
 	
 	@Query("select u from UserTestSession u where u.user=:usern and u.test=:test")
 	public UserTestSession findByUserAndTest(@Param("usern")String usern, @Param("test")Test t);
@@ -50,11 +50,10 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	@Query("select u from UserTestSession u where u.user=:usern and u.companyId=:companyId")
 	public List<UserTestSession> findTestListForUser(@Param("companyId")String companyId, @Param("usern")String usern);
 
-=======
 
 	//compete leaderboard
 	@Query(value="SELECT * FROM UserTestSession u WHERE u.testName=:testName and u.companyId=:companyId ORDER BY u.percentageMarksRecieved desc limit 10",nativeQuery= true)
 	List<UserTestSession> findTestSession(@Param("testName") String testName, @Param("companyId") String companyId);
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 }
 

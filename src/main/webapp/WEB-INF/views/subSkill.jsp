@@ -2,11 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< HEAD
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-=======
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -16,14 +12,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Practice</title>
-<<<<<<< HEAD
-=======
-  
-<spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
-<link href="${c1}" rel="shortcut icon" />
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
-<<<<<<< HEAD
 
 <spring:url value="/resources/assets/img/ico/favicon.png" var="c1" />
 <link href="${c1}" rel="shortcut icon" />
@@ -37,16 +26,6 @@
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- end -->
-=======
-<spring:url
-	value="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
-	var="c2" />
-
-<link href="${c2}" rel="stylesheet" type="text/css" />
-<!-- Vaisnavi's addition jquery ui -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <!-- end -->
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 <!-- Material Icons CSS -->
 <spring:url value="/resources/assets/fonts/iconfont/material-icons.css"
 	var="c3" />
@@ -132,14 +111,10 @@
 -->
 
 
-<<<<<<< HEAD
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
-=======
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 <style type="text/css">
- .tooltip {
+.tooltip {
 	position: relative;
 	display: inline-block;
 	opacity: 12;
@@ -149,7 +124,7 @@
 	visibility: hidden;
 	width: 120px;
 	background-color: #ececec;
-  color: black;
+	color: black;
 	text-align: center;
 	border-radius: 6px;
 	padding: 5px 0;
@@ -157,37 +132,25 @@
 	position: absolute;
 	z-index: 1;
 	opacity: 1;
-<<<<<<< HEAD
 	top: 100%;
 	left: 50%;
 	margin-left: -60px;
-=======
-	
-  top: 100%;
-  left: 50%;
-  margin-left: -60px;
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 }
+
 .tooltip .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
+	content: " ";
+	position: absolute;
+	bottom: 100%; /* At the top of the tooltip */
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
 }
 
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 </style>
 <style>
 .switch {
@@ -263,7 +226,6 @@ input:checked+.slider:before {
 }
 </style>
 
-<<<<<<< HEAD
 <style>
 .drp {
 	display: block;
@@ -272,16 +234,6 @@ input:checked+.slider:before {
 	margin-top: 15px;
 	border-radius: 0.5rem;
 	border-bottom: 3px solid #fff;
-=======
-<style >
-.drp{
-	display:block;
-	inline-size:auto;
-	font-size:16px;
-	margin-top:15px;
-	border-radius:0.5rem;
-	border-bottom:3px solid #fff;
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	background: #647687;
 	color: #fff;
 }
@@ -315,7 +267,6 @@ li>a.dropbtn {
 	display: none;
 }
 
-
 .errorclass {
 	color: red;
 	font-style: italic;
@@ -338,14 +289,10 @@ li>a.dropbtn {
 	display: block;
 }
 
-<<<<<<< HEAD
 .dropbtn:hover>.dropdown {
 	display: block
 }
 
-=======
-.dropbtn:hover > .dropdown{display:block}
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 .dropdown-content a:hover {
 	background-color: #03A9F4;
 	color: #ffffff;
@@ -363,16 +310,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 	height: auto;
 	border-radius: 0.7rem;
 }
-.headingrow{
-	background: #647687;
-	color: #fff;
-	height:60px;
-	font-size:18px;
-	vertical-align: center;
-	margin-bottom:30px;
-}
 
-<<<<<<< HEAD
 .headingrow {
 	background: #647687;
 	color: #fff;
@@ -470,158 +408,14 @@ div.dataTables_wrapper div.dataTables_filter input {
 	display: inline-block;
 	padding: 6px;
 	margin-left: 20px;
-=======
-.stepdiv{
-	height:52px;
-	font-size: 18px;
-	font-weight:bold;
-	padding: 15px;
-	border: hidden;
-}
-.stepdetails{
-	display:none;
-	color:#999999;
-	padding-left:30px;
-}
-.panels{
-	padding:0px;
-	font-size: 16px;
-	border:1px solid #dadada;
-	border-radius:1rem;
-}
-.stepdetails{
-	border-bottom: 1px solid #dadada;
-}
-.activestep{
-	display:block;
-}
-.inactivestep{
-	display:none;
-}
-.stepTitle{
-	padding:15px;
-	height:67px;
-	border-radius:1rem;
-	border:2px solid #dadada;
-	font-weight:bold;
-	font-size: 22px;
-}
-.testitem{
-	padding:15px 0px 15px;
-	border-bottom:1px solid #dadada;
-}
-.testname{
-	font-weight:bold;
-	font-size: 20px;
-	width:fit-content;
-}
-.testlvl{
-	font-size: 16px;
-	width:fit-content;
-}
-.testdetails{
-	font-size: 14px;
-	margin-left: 40px;
-	color:#999999;
-	width:fit-content;
-}
-.moretestdet{
-	font-size: 16px;
-	margin-left: 30px;
-	color:#647687;
-	display:none;
-	width:fit-content;
-}
-.strtbtn{
-	border:1px solid #dadada;
-	border-radius:0.7rem;
-	vertical-align: center;
-}
-.reqlbl{
-	border:1px solid #b01212;
-	color:#b01212;
-	font-size:12px;
-	border-radius:15rem;
-	line-height:18px;
-	display:inline-block;
-	padding:6px;
-	margin-left:20px;
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 }
 </style>
 </head>
 
 <body id="top" class="has-header-search">
-<<<<<<< HEAD
 	<c:import url="menucommon.jsp"></c:import>
-=======
-
-	<!--header start-->
-	<header id="header" class="tt-nav nav-border-bottom">
-		<div class="header-sticky light-header ">
-			<div class="container">
-				<div id="materialize-menu" class="menuzord">
-					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img
-						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
-						alt="" />
-					</a>
-					<!--logo end-->
-					<!--mega menu start-->
-					<ul class="nav navbar-nav">
-						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li>
-							<a class="dropbtn">Practice</a>
-							<div class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
-									</c:forEach>
-								 </div>
-							</div>
-						</li>
-						<li class="tooltip"> 
-								<a href="getSubSkill">Coding </a> 
-								<span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
-												value="${skill}" /></a><br>
-
-									</c:forEach>
-								</span>
-							
-						</li>
-<!-- 						<li><a href="#">Compete</a></li> -->
-						<!-- <li class="dropdown">
-							 <a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a>
-							  <ul class="dropdown-menu" role="menu">
-								<li><a href="competeFrontSkill">Skill Challenge</a></li>
-       							<li><a href="competeFrontCoding">Coding Challenge</a></li>
-							  </ul>
-						</li> -->
-						<li class="tooltip"> 
-							<a>Compete </a> 
-							<ul class="tooltiptext" style="list-style-type: none;">
-								<li style="margin:0 0 8px 0; "><a href="competeFrontSkill">SkillChallenge</a></li>
-								<li><a href="competeFrontCoding">CodingChallenge</a></li>
-							</ul>
-						</li>
-						<li><a href="practice">Code-GIG</a></li>
-						
-					</ul>
-					<!--mega menu end-->
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--header end-->
-
-
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	<section>
 		<div class="col-md-12 headingrow">
-<<<<<<< HEAD
 			<div class='col-md-9' id="learnpathdisp" style="margin-top: 15px;">Home
 				// Coding // ${skill} // ${subSkill}</div>
 			<div class='col-md-3'>
@@ -640,39 +434,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-=======
-			<div class='col-md-9' id="learnpathdisp" style="margin-top:15px;">Home // Coding // ${skill} // ${subSkill}</div>
-			<div class='col-md-3'>
-				<select class='drp pull-right' id="slct" required="required" onchange="getTest()">
-				<!-- <option disabled="disabled" selected value="">--choose
-								subskill--</option> -->
-							<c:forEach items="${listSubSkill}" varStatus="status" var="listSubSkill">
-								<c:choose>
-									<c:when test="${status.index == current}">
-										<option value="${listSubSkill}-${skill}" selected>${listSubSkill}</option>
-									</c:when>
-									<c:otherwise>
-										<option value="${listSubSkill}-${skill}">${listSubSkill}</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach> 
-					<%-- <c:forEach var="s2" varStatus="status" items="${subskills}">
-						<c:choose>
-							<c:when test="${status.index == subsidx}">
-								<option value="${s2}" selected>${s2}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${s2}">${s2}</option>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach> --%>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 				</select>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-<<<<<<< HEAD
 				<div class="panels col-md-7" style="padding:0px;">
 					<div class="stepTitle">${subSkill}</div>
 					<div style="padding: 15px">
@@ -704,84 +470,12 @@ div.dataTables_wrapper div.dataTables_filter input {
 					</div>
 				</div>
 				<div class="col-md-1"></div>
-=======
-				<div class="panels col-md-7">
-					<div class="stepTitle">${subSkill}</div>
-					<div style="padding:15px">
-						<c:forEach items="${listAll}" var="listAll" varStatus="loop">
-						<div class="testitem row">
-										<div class="col-md-8">
-											<div class="testname">${listAll.label}</div>
-												<div class="testlvl">${listAll.level} | will Take ${listAll.test.testTimeInMinutes} minutes</div>
-												<div class="testdetails">
-													<a style="color:#999999" onclick="openTestDetails(${status.index})">More Details<span style="padding-left:15px;color:#4d90fe;" id="spantest${status.index}" class="glyphicon glyphicon-chevron-down"></span></a>
-												</div>
-												<div class="moretestdet" style="display:none;" id="moretestdet${loop.index}">
-													Your score: 0/100<br>
-													Re-attempt the test to improve your score
-												</div>	
-										</div>
-										<div class="col-md-4">
-											<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&testId=${listAll.test.id}&companyId=${listAll.test.companyId}&sharedDirect=yes">Start</a>
-										</div>
-									</div>
-							<%-- <c:choose>
-								<c:when test="${test.required == true}">
-									<div class="testitem row">
-										<div class="col-md-8">
-											<div class="testname">${test.testName} <div class="reqlbl">Required</div></div>
-												<div class="testlvl">${test.level} | will Take 30 minutes</div>
-												<div class="testdetails">
-													<a style="color:#999999" onclick="openTestDetails(${status.index})">More Details<span style="padding-left:15px;color:#4d90fe;" id="spantest${status.index}" class="glyphicon glyphicon-chevron-down"></span></a>
-												</div>
-												<div class="moretestdet" style="display:none;" id="moretestdet${status.index}">
-													Your score: 0/100<br>
-													Re-attempt the test to improve your score
-												</div>	
-										</div>
-										<div class="col-md-4">
-											<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&companyId=${test.companyId}&testId=${test.testId}">Start</a>
-										</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="testitem row">
-										<div class="col-md-8">
-											<div class="testname">${listAll.label}</div>
-												<div class="testlvl">${listAll.level} | will Take ${listAll.test.testTimeInMinutes} minutes</div>
-												<div class="testdetails">
-													<a style="color:#999999" onclick="openTestDetails(${status.index})">More Details<span style="padding-left:15px;color:#4d90fe;" id="spantest${status.index}" class="glyphicon glyphicon-chevron-down"></span></a>
-												</div>
-												<div class="moretestdet" style="display:none;" id="moretestdet${status.index}">
-													Your score: 0/100<br>
-													Re-attempt the test to improve your score
-												</div>	
-										</div>
-										<div class="col-md-4">
-											<a class="pull-right btn strtbtn" href="startTestSession?userId=${userId}&companyId=${test.companyId}&testId=${test.testId}">Start</a>
-										</div>
-									</div>
-								</c:otherwise>
-							</c:choose> --%>
-							
-						</c:forEach>
-					</div>
-				</div>
-				<div class="col-md-1">
-				</div>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 			</div>
 		</div>
 	</section>
-<<<<<<< HEAD
 
 
-=======
-	
-	
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 	<!-- jQuery -->
-<<<<<<< HEAD
 
 
 	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
@@ -845,70 +539,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 	<script type="text/javascript">
-=======
-	
-
-	<spring:url value="/resources/assets/js/jquery-2.1.3.min.js"
-		var="mainJs1" />
-	<script src="${mainJs1}"></script>
-	<spring:url value="/resources/assets/bootstrap/js/bootstrap.min.js"
-		var="mainJs2" />
-	<script src="${mainJs2}"></script>
-	<spring:url value="/resources/assets/materialize/js/materialize.min.js"
-		var="mainJs3" />
-	<script src="${mainJs3}"></script>
-	<spring:url value="/resources/assets/js/menuzord.js" var="mainJs4" />
-	<script src="${mainJs4}"></script>
-	<spring:url value="/resources/assets/js/bootstrap-tabcollapse.min.js"
-		var="mainJs5" />
-	<script src="${mainJs5}"></script>
-	<spring:url value="/resources/assets/js/jquery.easing.min.js"
-		var="mainJs6" />
-	<script src="${mainJs6}"></script>
-	<spring:url value="/resources/assets/js/jquery.sticky.min.js"
-		var="mainJs7" />
-	<script src="${mainJs7}"></script>
-	<spring:url value="/resources/assets/js/smoothscroll.min.js"
-		var="mainJs8" />
-	<script src="${mainJs8}"></script>
-	<spring:url value="/resources/assets/js/jquery.stellar.min.js"
-		var="mainJs9" />
-	<script src="${mainJs9}"></script>
-	<spring:url value="/resources/assets/js/jquery.inview.min.js"
-		var="mainJs10" />
-	<script src="${mainJs10}"></script>
-	<spring:url value="/resources/assets/owl.carousel/owl.carousel.min.js"
-		var="mainJs11" />
-	<script src="${mainJs11}"></script>
-	<spring:url
-		value="/resources/assets/flexSlider/jquery.flexslider-min.js"
-		var="mainJs12" />
-	<script src="${mainJs12}"></script>
-	<spring:url
-		value="/resources/assets/magnific-popup/jquery.magnific-popup.min.js"
-		var="mainJs13" />
-	<script src="${mainJs13}"></script>
-	<spring:url value="https://maps.googleapis.com/maps/api/js"
-		var="mainJs14" />
-	<script src="${mainJs14}"></script>
-	<spring:url value="/resources/assets/js/scripts.js" var="mainJs15" />
-	<script src="${mainJs15}"></script>
-	<spring:url value="/resources/assets/scripts/custom.js" var="mainJs16" />
-	<script src="${mainJs16}"></script>
-	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
-		var="mainJs17" />
-	<script src="${mainJs17}"></script>
-	
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
-
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-	
-	<script type="text/javascript">
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		
 		function openTestDetails(index){
 			var divid = "moretestdet"+index;

@@ -356,7 +356,7 @@ body {
 				<div class="col-md-6">
 					<div class="rightsideinfo">
 						<ul>
-							<li><a href="#">${lmsadmin} <img id="img2" src="images/user.png"></a></li>
+							<li><a href="#">${lmsadmin} <i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
 						</ul>
 					</div>
 				</div>

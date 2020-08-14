@@ -107,11 +107,19 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.3/css/fixedHeader.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
 -->
+ <!-- Compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
+
+<link rel="stylesheet" href="./resources/Profiler/css/chosen.css"/>
 
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
 
 <style>
+.chosen-container *{
+	box-sizing: border-box;
+    width: 567px;
+ }
 .switch {
   position: relative;
   display: inline-block;
@@ -381,7 +389,7 @@ div.dataTables_wrapper div.dataTables_filter input{
       	<div class="modal-body">
 			<form method="POST" action=""> 
 				<div class='form-group'>
-					<select class="form-control" id="ddl_skill">
+					<select class="form-control chosen" id="ddl_skill">
 						<option value="default" disabled selected>---Choose Parent Skill---</option>
 						<c:forEach var="skill" varStatus="status" items="${skills}">
 							<option value="${skill}">${skill}</option>
@@ -390,7 +398,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 					<div id="parentskillerr" class="errorclass"></div>
 				</div>
 				<div class='form-group'>
-					<select class="form-control" id="ddl_subskill">
+					<select class="form-control chosen" id="ddl_subskill">
 						<option value="" disabled selected>---Choose Child Skill---</option>
 					</select>
 					<div id="childskillerr" class="errorclass"></div>
@@ -431,19 +439,20 @@ div.dataTables_wrapper div.dataTables_filter input{
 					<a id="editnmenbl" onclick="enableEdit()" class="btn">Edit</a>
 					<a onclick="saveStepn()" class="btn">Save</a>
 				</div>
-				<div style="border:2px solid #03A9F4;border-radius:0.7rem;padding:10px">
+				<div style="border:2px solid #03A9F4;border-radius:0.7rem;padding:10px;width:590px;">
 				<div class='form-group'>
-					<select class="form-control" id="ddl_level">
+					<select class="form-control chosen" id="ddl_level">
 						<option value="default" disabled selected>---Choose Level---</option>
 						<c:forEach var="level" varStatus="status" items="${levels}">
 							<option value="${level}">${level}</option>
 						</c:forEach>
+						
 					</select>
 					<div id="levelerr" class="errorclass"></div>
 				</div>
 				
 				<div class='form-group'>
-					<select class="form-control" id="ddl_test">
+					<select class="form-control chosen" id="ddl_test">
 						<option value="default" disabled selected>---Choose Test---</option>
 					</select>
 					<div id="testerr" class="errorclass"></div>
@@ -476,11 +485,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 			
       	</div>
       	<div class="modal-footer">
-<<<<<<< HEAD
         	<a class="btn" id="btn_fin_cancel">Finish</a>
-=======
-        	<a class="btn" id="btn_fin_cancel">Save</a>
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
       	</div>
     </div>
   </div>
@@ -518,7 +523,6 @@ div.dataTables_wrapper div.dataTables_filter input{
 
 <!-- Modal for step name end-->
 
-<<<<<<< HEAD
 	<footer class="footer footer-four">
 		<div class="secondary-footer brand-bg darken-2 text-center">
 			<div class="container">
@@ -537,28 +541,6 @@ div.dataTables_wrapper div.dataTables_filter input{
 			</div>
 		</div>
 	</footer>
-=======
-
-
-<!-- 	<footer class="footer footer-four"> -->
-<!-- 		<div class="secondary-footer brand-bg darken-2 text-center"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<ul> -->
-<!-- 					<li><a href="javascript:void(0)">Dashboard</a></li> -->
-<!-- 					<li><a href="question_list">Question Bank</a></li> -->
-<!-- 					<li><a href="testlist">Tests</a></li> -->
-<!-- 					<li><a href="javascript:void(0)">Skills</a></li> -->
-<!-- 					<li><a href="showReports">Results</a></li> -->
-<!-- 					<li><a href="practice">Practice</a></li> -->
-<!-- 					<li><a href="codingSessions">Code Analysis Reports</a></li> -->
-<!-- 					<li><a href="javascript:void(0)">Skill based Reports</a></li> -->
-<!-- 					<li><a href="showProfileParams">Recomm Setting</a></li> -->
-<!-- 					<li><a href="listUsers">Users</a></li> -->
-<!-- 				</ul> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</footer> -->
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
 
 
@@ -641,7 +623,13 @@ div.dataTables_wrapper div.dataTables_filter input{
 	-->
 	<!-- Bootbox -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+	
 	<script>
+	
 	
 	window.stepLearnpathArr = new Array();
 	window.oldstepnm="";
@@ -993,7 +981,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 				
 				for(var i=0;i<data.length;i++){
 					var testoption = "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
-					$('#ddl_test').append(testoption);
+					$('#ddl_test').append(testoption).trigger("chosen:updated");
 				}
 			}
 		});
@@ -1011,7 +999,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 					$('#ddl_subskill').html('<option value="" disabled selected>---Choose Child Skill---</option>');
 					for(var i = 0; i<subskilllist.length; i++){
 						var item = '<option value="'+subskilllist[i]+'">'+subskilllist[i]+'</option>';
-						$('#ddl_subskill').append(item);
+						$('#ddl_subskill').append(item).trigger("chosen:updated");
 					}
 				}
 				else	{
@@ -1023,9 +1011,10 @@ div.dataTables_wrapper div.dataTables_filter input{
 						else{
 							var item = '<option value="'+subskilllist[i]+'">'+subskilllist[i]+'</option>';
 						}
-						$('#ddl_subskill').append(item);
+						$('#ddl_subskill').append(item).trigger("chosen:updated");
 					}
 				}
+				$('#ddl_subskill').chosen();
 			}
 		});
 	}
@@ -1043,18 +1032,15 @@ div.dataTables_wrapper div.dataTables_filter input{
 	
 	$(document).ready(function(){
 		$('.hidfirst').hide();	
+		$('.chosen').chosen();
 		
 		$('#sortable_stepnm').sortable();
 		$('#sortable_stepnm').disableSelection();
 		
-<<<<<<< HEAD
 		$('#ddl_skill').prop("disabled",false);
 		$('#ddl_subskill').prop("disabled",false);
 		
 		$('#btn_addtest').attr('disabled',true);
-=======
-$('#btn_addtest').attr('disabled',true);
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 		
 		$('#ddl_level').on("change",function(){
 			var level=$('#ddl_level').find("option:selected").val();

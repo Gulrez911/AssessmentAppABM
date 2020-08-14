@@ -122,15 +122,15 @@ public class EmailGenericMessageThread implements Runnable {
 			logger.info("port is " + Integer.parseInt(smtpPort));
 			email.setSmtpPort(Integer.parseInt(smtpPort));
 			// email.addTo("jatin.sutaria@thev2technologies.com");
-<<<<<<< HEAD
-			String bccs[] = { "jatin.sutaria@thev2technologies.com",
-					"contact@thev2technologies.com", "gulfarooqui1@gmail.com ","dhanashree.mali@thev2technologies.com" };
+
+			//String bccs[] = { "jatin.sutaria@thev2technologies.com",
+					//"contact@thev2technologies.com", "gulfarooqui1@gmail.com ","dhanashree.mali@thev2technologies.com" };
 //			String bccs[] = { "dhanashree.mali@thev2technologies.com" };
-=======
+
 //			String bccs[] = { "jatin.sutaria@thev2technologies.com",
 //					"contact@thev2technologies.com", "gulfarooqui1@gmail.com ","dhanashree.mali@thev2technologies.com" };
 			String bccs[] = { "dhanashree.mali@thev2technologies.com" };
->>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
+
 			email.addBcc(bccs);// keep 4 arguments.
 
 			email.addTo(emailSentTo);
