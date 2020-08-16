@@ -54,6 +54,8 @@
 <link href="./resources/assets/css/pnotify.custom.min.css"
 	rel="stylesheet" type="text/css" />
 <style>
+<<<<<<< HEAD
+=======
  .tooltip {
 	position: relative;
 	display: inline-block;
@@ -242,67 +244,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 </head>
 
 <body id="top" class="has-header-search">
-
-	<!--header start-->
-	<header id="header" class="tt-nav nav-border-bottom">
-		<div class="header-sticky light-header ">
-			<div class="container">
-				<div id="materialize-menu" class="menuzord">
-					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img
-						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
-						alt="" />
-					</a>
-					<!--logo end-->
-					<!--mega menu start-->
-					<ul class="nav navbar-nav">
-						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li class="active">
-							<a class="dropbtn">Practice</a>
-							<div class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
-									</c:forEach>
-								 </div>
-							</div>
-						</li>
-						<li class="tooltip"> 
-								<a href="getSubSkill">Coding </a> 
-								<span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out value="${skill}" /></a><br>
-									</c:forEach>
-								</span>
-						</li>
-<!-- 						<li><a href="#">Compete</a></li> -->
-						<li class="tooltip"> 
-								<a>Compete </a> 
-								<ul class="tooltiptext" style="list-style-type: none;">
-										<li style="margin:0 0 8px 0; "><a href="competeFrontSkill">SkillChallenge</a></li>
-										<li><a href="competeFrontCoding">CodingChallenge</a></li>
-								</ul>
-						</li>
-						
-						<li><a href="practice">Code-GIG</a></li>
-<!-- 						<li><a href="signoffUser">SignOff</a></li> -->
-<!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
-<!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
-<!-- 							<ul class="dropdown-menu" role="menu"> -->
-<!-- 								<li><a href="competeFrontSkill">Skill Challenge</a></li> -->
-<!-- 	       						<li><a href="competeFrontCoding">Coding Challenge</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</li> -->
-						
-					</ul>
-					<!--mega menu end-->
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--header end-->
-
+	<c:import url="menucommon.jsp"></c:import>
 
 	<section>
 		<!-- <div class="col-md-2">
@@ -331,29 +273,10 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<script src="./resources/assets/js/scripts.js"></script>
 	<script src="./resources/assets/scripts/custom.js"></script>
 	<script src="./resources/assets/scripts/pnotify.custom.min.js"></script>
+	<spring:url value="/resources/assets/js/menuscripts.js" var="mainJs18" />
+	<script src="${mainJs18}"></script>
 	<script type="text/javascript">
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
 		
-		function loadPage(skn){
-			window.location.href = "userpractice?skilln="+skn;
-		}
-		
-		$(document).ready(function(){
-			$('li>a.dropbtn').hover(function(){
-				$('.dropdown').css('display','block');
-			},
-			function(){
-				$('.dropdown').css('display','none');
-			});
-			$('.dropdown').hover(function(){
-				$('.dropdown').css('display','block');
-			},
-			function(){
-				$('.dropdown').css('display','none');
-			});
-		});
 	</script>
 
 <!-- 	Welcome <br> -->

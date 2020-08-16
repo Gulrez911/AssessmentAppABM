@@ -126,4 +126,16 @@ public class UserTestSessionServiceImpl implements UserTestSessionService{
 	  {
 	    return userTestSessionRep.findTestByEmail(email,testId);
 	  }
+
+	@Override
+	public UserTestSession findByUserAndTest(String usern, Test t) {
+		// TODO Auto-generated method stub
+		return userTestSessionRep.findByUserAndTest(usern, t);
+	}
+
+	@Override
+	public List<UserTestSession> findTestListForUser(String companyId, String usern) {
+		// TODO Auto-generated method stub
+		return userTestSessionRep.findTestListForUser(companyId, usern);
+	}
 }

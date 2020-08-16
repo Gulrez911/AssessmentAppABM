@@ -25,6 +25,17 @@ public class PracticeCode extends Base {
 	@Column(length = 2000)
 	private String output;
 	
+	@Column(length = 2000)
+	private String codeName;
+	
+	public String getCodeName() {
+		return codeName;
+	}
+
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
+	}
+
 	@Column
 	Date createDate;
 	
@@ -82,8 +93,10 @@ public class PracticeCode extends Base {
 	@Override
 	public String toString() {
 		return "PracticeCode [langId=" + langId + ", lang=" + lang + ", code=" + code + ", input=" + input + ", output="
-				+ output + ", createDate=" + createDate + "]";
+				+ output + ", codeName=" + codeName + ", createDate=" + createDate + "]";
 	}
+
+	
 
 
 }

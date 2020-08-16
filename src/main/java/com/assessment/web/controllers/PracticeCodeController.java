@@ -44,13 +44,16 @@ public class PracticeCodeController {
 	public ModelAndView addQ(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("practiceCode");
 		User user = (User)request.getSession().getAttribute("user");
+		//Objects required for header
 		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
 		mav.addObject("skillList", skillList);
-		String[] skills =  steptestservice.getParentSkillNames(user.getCompanyId());
+		String[] skills =  steptestservice.getParentSkillNames();
 		for(int i = 0 ; i<skills.length; i++) {
 			System.out.println(skills[i]);
 		}		
 		mav.addObject("skills",skills);
+		mav.addObject("user",user);
+		//Objects required for header end
  		return mav;
 	}
 	
@@ -63,7 +66,7 @@ public class PracticeCodeController {
 		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
 		User user = (User) request.getSession().getAttribute("user");
 		mav.addObject("skillList", skillList);
-		String[] skills =  steptestservice.getParentSkillNames(user.getCompanyId());
+		String[] skills =  steptestservice.getParentSkillNames();
 		for(int i = 0 ; i<skills.length; i++) {
 			System.out.println(skills[i]);
 		}		

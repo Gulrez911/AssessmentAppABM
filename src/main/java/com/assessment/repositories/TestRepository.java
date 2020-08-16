@@ -32,6 +32,9 @@ public interface TestRepository extends JpaRepository<com.assessment.data.Test, 
 	@Query("SELECT t FROM Test t WHERE t.id=:testId and t.companyId=:companyId")
 	com.assessment.data.Test findTestById(@Param("testId") Long TestId, @Param("companyId") String companyId);
 	
+	@Query("SELECT t FROM Test t WHERE t.id=:testId")
+	com.assessment.data.Test findTestById(@Param("testId") Long TestId);
+	
 	@Query(value = "SELECT t FROM Test t WHERE t.companyId=:companyId", countQuery = "SELECT COUNT(*) FROM Test t WHERE t.companyId=:companyId")
 	public Page<Test> findTestByCompanyIdAndPageNumber(@Param("companyId") String companyId,Pageable pageable);
 

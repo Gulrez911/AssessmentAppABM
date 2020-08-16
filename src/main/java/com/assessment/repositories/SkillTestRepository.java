@@ -30,6 +30,9 @@ public interface SkillTestRepository extends JpaRepository<SkillTest, Long>{
 	  
 	  @Query("Select st from SkillTest st where st.parentSkill=:skillName and st.companyId=:companyId and st.childSkill=:subskill ")
 	  public SkillTest getByskillsubskill(@Param("skillName")String skillName, @Param("companyId")String companyId, @Param("subskill")String subskill);
+	  
+	  @Query("Select st from SkillTest st where st.parentSkill=:skillName and st.childSkill=:subskill ")
+	  public SkillTest getByskillsubskill(@Param("skillName")String skillName, @Param("subskill")String subskill);
 
 	  @Query("Select Distinct(s.parentSkill) FROM SkillTest s where s.companyId=:companyId")
 		List<SkillTest> findUniqueParentSkill(@Param("companyId") String companyId);

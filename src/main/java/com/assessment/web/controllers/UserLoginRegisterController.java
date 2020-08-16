@@ -47,6 +47,8 @@ public class UserLoginRegisterController {
 	UserRepository userRepo;
 	@Autowired
 	SkillTestRepository skilltestrepository;
+	@Autowired
+	UserPracticeController upc;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) {
@@ -63,24 +65,25 @@ public class UserLoginRegisterController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/authenticateUser", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/authenticateUser", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView authenticate(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("user") User user) {
-		User	u = new User();
+			@ModelAttribute("user") User user,@RequestParam(name="from",required=false)String testid) {
+		User u = new User();
 		ModelAndView mav = null;
 		System.out.println("test.........    " + user);
 		String emailId = user.getEmail();
 		if(user.getEmail() != null && (user.getPassword() == null || user.getPassword() == "")) {
 			user = userRepo.socialLogin(user.getEmail());
+			String username[] = emailId.split("@");
 			if(user == null)
 			{
-			
 				u.setEmail(emailId);
 				u.setCompanyId("e-assess");
 				u.setCompanyName("e-assess");
 				u.setPassword("A");
+				u.setFirstName(username[0]);
 				u.setOtp(0);
-				//user.setVerificationStatus("pending");
+				u.setVerificationStatus("verified");
 				user = u;
 				userRepo.save(user);
 				
@@ -90,7 +93,6 @@ public class UserLoginRegisterController {
 		else {
 			user = userRepo.findByEmailAndPassword(user.getEmail(), user.getPassword());	
 		}
-	
 		System.out.println("test2.........    " + user);
 		if (user == null) {
 			// navigate to exception page
@@ -99,33 +101,70 @@ public class UserLoginRegisterController {
 			mav.addObject("user", user);
 			mav.addObject("message", "Invalid Credentials ");// later put it as label
 			mav.addObject("msgtype", "Failure");
-			user.setEmail(null);
 			return mav;
 		} else {
-			mav = new ModelAndView("redirect:/practiceCode");
-			request.getSession().setAttribute("user", user);
-			System.out.println("test3.........    " + user);
-			mav.addObject("userName", user.getFirstName());
+			String v_status = user.getVerificationStatus();
+			if(v_status!=null) {
+				if(v_status.equalsIgnoreCase("verified")) {
+					if(testid != null)
+					{
+						request.getSession().setAttribute("user", user);
+						mav = new ModelAndView("redirect:/userpractice?testid="+testid);
+					}
+					else {
+						mav = new ModelAndView("redirect:/user_profile_student_profile?email="+user.getEmail());
+						request.getSession().setAttribute("user", user);
+						System.out.println("test3.........    " + user);
+						mav.addObject("userName", user.getFirstName());
+					}
+				}
+				else {
+					mav = new ModelAndView("redirect:/loginRegister");
+					mav.addObject("email", user.getEmail());
+					mav.addObject("message", "Otp not verified");// later put it as label
+					mav.addObject("msgtype", "Failure");
+				}
+			}
+			else {
+				mav = new ModelAndView("redirect:/loginRegister");
+				mav.addObject("email", user.getEmail());
+				mav.addObject("message", "Otp not verified");// later put it as label
+				mav.addObject("msgtype", "Failure");
+			}
 		}
 		return mav;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public Map<String,Object> registerUser(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody User u) {
-		Map<String,Object> map=new HashMap<>();
-		System.out.println(u);
 		System.out.println(u.getEmail()+"\n"+u.getMobileNumber());
 		
 		User user1=userService.findByMobileNumberAndEmail(u.getMobileNumber(), u.getEmail());
 		System.out.println("User1"+user1);
-		if(user1==null) {
+		
+		Map<String,Object> map=new HashMap<>();
+		System.out.println(u);
+
+		User user =  null;
+		try {
+			user = userRepo.findByEmail(u.getEmail()).get();
+		}
+		catch(Exception e){
+			user = null;
+		}
+		
+		if(user != null) {
+			map.put("msg","Invalid Email");
+		}
+		else {
 			Random rndm_method = new Random();
 			int otp=rndm_method.nextInt(1000000);
 			request.getSession().setAttribute("user", u);
 			u.setCompanyId("e-assess");
 			u.setCompanyName("e-assess");
-			u.setVerificationStatus("verified");
+			u.setVerificationStatus("pending");
 			u.setOtp(otp);
 			userRepo.save(u);
 			String message="Use this code for verification: "+otp;
@@ -137,15 +176,32 @@ public class UserLoginRegisterController {
 			map.put("userName", u.getFirstName());
 			map.put("email", u.getEmail());
 			map.put("msg", "Your otp has been sent to "+u.getEmail());
-			
-		}else {
-//			map.put("message", "User already exits! \t"+u.getEmail()+"\n"+u.getFirstName()+"\t You can SignIn directly!");
-			map.put("message", "User already exists! ");
-			
+					
 		}
 		return map;
 	}
+		
+		
+	@ResponseBody
+	@RequestMapping(value = "/resendOTP", method = RequestMethod.POST)
+	public String resendOTP(HttpServletRequest request, HttpServletResponse response,
+	@RequestParam("email")String email ) {
+		Random rndm_method = new Random();
+		int otp=rndm_method.nextInt(1000000);
+		User u = userRepo.findByEmail(email).get();
+		u.setOtp(otp);
+		u.setVerificationStatus("pending");
+		userRepo.save(u);
+		String message="Use this code for verification: "+otp;
+		EmailGenericMessageThread client = new EmailGenericMessageThread(u.getEmail(),
+				"OTP Verification", message, propertyConfig);
+		Thread th = new Thread(client);
+		th.start();
+		
+		return "Otp sent successfully";
+	}
 
+	
 	@ResponseBody
 	@RequestMapping(value = "/verifyOtp", method = RequestMethod.GET)
 	public Map<String,Object> verifyOtp(@RequestParam("otp") int otp,@RequestParam("email") String email) {
@@ -156,6 +212,8 @@ public class UserLoginRegisterController {
 			map.put("msg","Incorrect OTP");
 		}else {
 			map.put("msg","success");
+			u.setVerificationStatus("verified");
+			userRepo.save(u);
 		}
 		System.out.println("checked");
 		return map;
@@ -256,6 +314,20 @@ public class UserLoginRegisterController {
 	    
 	}
 	
+
+//	@GetMapping("/loginsuccess")
+//	public ModelAndView loginsuccess(@RequestParam("name") String name, @RequestParam("email") String email) {
+//		ModelAndView mav = new ModelAndView();
+//		
+//		User user=new User();
+//		user.setEmail(email);
+//		user.setFirstName(name);
+//		userRepo.save(user);
+//		
+//		mav.setViewName("redirect:/practiceCode");
+//		return mav;
+//	}
+
 	@GetMapping("/signoffUser")
 	public ModelAndView signoffUser(HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().invalidate();
@@ -276,6 +348,7 @@ public class UserLoginRegisterController {
 		
 		
 		//mav.setViewName("redirect:/practiceCode");
+
 		
 		mav.addObject("name", name);
 		mav.addObject("email", email);

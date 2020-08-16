@@ -29,14 +29,14 @@ public class StepTestServiceImpl implements StepTestService {
 		return steptestrepo.getBySkillStep(skstp);
 	}
 	@Override
-	public StepTest getByTestId(String testId, String companyId) {
+	public StepTest getByTestId(String testId) {
 		// TODO Auto-generated method stub
-		return steptestrepo.getByTestId(testId, companyId);
+		return steptestrepo.getByTestId(testId);
 	}
 	@Override
-	public String[] getParentSkillNames(String compId) {
+	public String[] getParentSkillNames() {
 		// TODO Auto-generated method stub
-		return steptestrepo.getParentSkillNames(compId);
+		return steptestrepo.getParentSkillNames();
 	}
  
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.assessment.data.Test;
 import com.assessment.data.UserTestSession;
 import com.assessment.reports.manager.AssessmentTestData;
 
@@ -41,8 +42,18 @@ public interface UserTestSessionRepository extends JpaRepository<UserTestSession
 	@Query(value="SELECT * FROM UserTestSession u WHERE u.testName=:testName and u.companyId=:companyId",nativeQuery= true)
 	List<UserTestSession> getTestName(@Param("testName")String testName, @Param("companyId") String companyId);
 
+	
+	@Query("select u from UserTestSession u where u.user=:usern and u.test=:test")
+	public UserTestSession findByUserAndTest(@Param("usern")String usern, @Param("test")Test t);
+	
+	
+	@Query("select u from UserTestSession u where u.user=:usern and u.companyId=:companyId")
+	public List<UserTestSession> findTestListForUser(@Param("companyId")String companyId, @Param("usern")String usern);
+
+
 	//compete leaderboard
 	@Query(value="SELECT * FROM UserTestSession u WHERE u.testName=:testName and u.companyId=:companyId ORDER BY u.percentageMarksRecieved desc limit 10",nativeQuery= true)
 	List<UserTestSession> findTestSession(@Param("testName") String testName, @Param("companyId") String companyId);
+
 }
 

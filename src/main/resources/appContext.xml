@@ -90,9 +90,13 @@
 <!-- 		<property name="user" value="new_ass_user" /> -->
 <!-- 		<property name="password" value="Welcome@123" /> -->
 
+<!-- <property name="jdbcUrl" value="jdbc:mysql://159.65.148.176:3306/eassess2?createDatabaseIfNotExist=true" /> -->
+<!-- 		<property name="user" value="digital_user" /> -->
+<!-- 		<property name="password" value="Welcome@123" /> -->
+
 		<!--Local Connection Details -->
 		<property name="jdbcUrl"
-		value="jdbc:mysql://localhost:3306/assessment?createDatabaseIfNotExist=true" />
+		value="jdbc:mysql://localhost:3306/assessment2?createDatabaseIfNotExist=true" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 

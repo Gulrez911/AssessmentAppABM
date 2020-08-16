@@ -208,6 +208,7 @@ public class StudentController {
 			studentTest.setPublishedDate(testDetails.getCreateDate());
 			studentTest.setFirstName(userDetails.getFirstName());
 			studentTest.setLastName(userDetails.getLastName());
+			studentTest.setTestId(testId);
 			studentTest.setTestCreatedBy(testDetails.getCreatedBy());
 			final String pattern = "dd-MM-yyyy HH:mm:ss";
 			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -219,8 +220,12 @@ public class StudentController {
 						.format((session3.getUpdateDate() == null) ? session3.getCreateDate()
 								: session3.getUpdateDate()));
 				studentTest.setNoOfAttempts(session3.getNoOfAttempts());
-				model = new ModelAndView("studentNoTest");
+				model = new ModelAndView("intro2");
 				model.addObject("studentTestForm", (Object) studentTest);
+				request.getSession().setAttribute("studentTestForm", (Object) studentTest);
+				model.addObject("userName",
+						(Object) (String.valueOf(userDetails.getFirstName()) + " " + userDetails.getLastName()));
+				this.putMiscellaneousInfoInModel(model, request);
 				return model;
 			}
 			if (session3 != null && !session3.getComplete()) {

@@ -27,4 +27,7 @@ public interface SkillStepRepository extends JpaRepository<SkillStep, Long>{
 	@Query("Select st from SkillStep st where st.companyId=:compId and st.skilltest=:skilltest")
 	public List<SkillStep> getAllStepsForSkillTest(@Param("compId")String companyId,@Param("skilltest")SkillTest st);
 	
+	@Query("Select st from SkillStep st where st.skilltest=:skilltest")
+	public List<SkillStep> getAllStepsForSkillTest(@Param("skilltest")SkillTest st);
+	
 }

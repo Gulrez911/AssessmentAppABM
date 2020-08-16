@@ -367,58 +367,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 
 </head>
 <body id="top" class="has-header-search">
-
-	<!--header start-->
-	<header id="header" class="tt-nav nav-border-bottom">
-		<div class="header-sticky light-header ">
-			<div class="container">
-				<div id="materialize-menu" class="menuzord">
-					<!--logo start-->
-					<a href="javascript:void(0);" class="logo-brand"> <img
-						class="retina"
-						src="<%=request.getContextPath()%>/resources/images/Logo.png"
-						alt="" />
-					</a>
-					<!--logo end-->
-					<!--mega menu start-->
-					<ul class="nav navbar-nav">
-						<li><a href="javascript:notify('Information', 'We will release the feature pretty soon! Please wait for our next release');">Dashboard</a></li>
-						<li>
-							<a class="dropbtn">Practice</a>
-							<div class="skilldiv dropdown">
-								<div class="dropdown-content" style="background:#b3bdc7">
-									<c:forEach var="s1" varStatus="status" items="${skills}">
-										<a class="skillcontent" onclick="loadPage('${s1}')" value="${s1}">${s1}</a>
-									</c:forEach>
-								 </div>
-							</div>
-						</li>
- 						<li class="tooltip"> 
-								<a href="getSubSkill">Coding </a> 
-								<span class="tooltiptext">
-									<c:forEach items="${skillList}" var="skill" varStatus="loop">
-										<a style="font-size: x-large;" href="getSubSkill?skill=${skill}"><c:out
-												value="${skill}" /></a><br>
-									</c:forEach>
-								</span>
-							
-						</li>
-						<li class="tooltip"> 
-								<a>Compete </a> 
-								<ul class="tooltiptext" style="list-style-type: none;">
-										<li style="margin:0 0 8px 0; "><a href="competeFrontSkill">SkillChallenge</a></li>
-										<li><a href="competeFrontCoding">CodingChallenge</a></li>
-								</ul>
-						</li>
-						<li><a href="practice"  class="active">Code-GIG</a></li>
-						
-					</ul>
-					<!--mega menu end-->
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--header end-->
+	<c:import url="menucommon.jsp"></c:import>
 
 	<section>
 		<div class="container">
@@ -447,13 +396,21 @@ div.dataTables_wrapper div.dataTables_filter input{
 							<form:options items="${langs}" />
 
 						</form:select>
-						<label style="color: black; font-size: 18px">Date Wise
+						<label style="color: black; font-size: 18px">Select
 							Code</label>
-						<select id="dateId" onchange="changeDate()">
-							<c:forEach items="${listCode}" var="listCode">
-								<option value="${listCode.id}">${listCode.createDate}</option>
+						<form:select id="dateId" onchange="changeDate()" path="codeName">
+							<c:forEach items="${listCode}" var="listCode" varStatus="status">
+								<%-- <option value="${listCode.id}">${listCode.codeName}</option> --%>
+								<c:choose>
+									<c:when test="${status.index == current}">
+										<option value="${listCode.id}">${listCode.codeName}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${listCode.id}">${listCode.codeName}</option>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
-						</select>
+						</form:select>
 
 
 						<div id="aceEditor">
@@ -463,6 +420,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 						<input type="hidden" id="codeOfEditor" name="code" value="3487">
 
 						<br>
+						<label style="color: black; font-size: 18px">Enter Name Of Your Code</label>
+						<form:input path="codeName" id="cName"/><br>
 						<label style="color: black; font-size: 18px">Input</label>
 						<br>
 						<form:textarea path="input" id="input" style="height:30px"
@@ -472,7 +431,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 						<label style="color: black; font-size: 18px">Output</label>
 						<br>
 						<form:textarea style="overflow-y: scroll" path="output"
-							id="output" disabled="true" cols="70" />
+							id="output" disabled="true" cols="70" /><br>
+						
 
 					</form:form>
 				</div>
@@ -551,6 +511,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
+	<spring:url value="/resources/assets/js/menuscripts.js" var="mainJs18" />
+	<script src="${mainJs18}"></script>
 
 	<script>
 
@@ -611,6 +573,16 @@ div.dataTables_wrapper div.dataTables_filter input{
 			window.location = 'practice?id=' + id;
 
 		};
+
+		window.onload = function() {
+		    var selItem = sessionStorage.getItem("SelItem");  
+		    $('#dateId').val(selItem);
+		    }
+		    $('#dateId').change(function() { 
+		        var selVal = $(this).val();
+		        sessionStorage.setItem("SelItem", selVal);
+		    });
+		    
 		function changeLang() {
 			var Language = $("#lang").val();
 			window.location = 'practice?lang=' + Language;
@@ -745,9 +717,14 @@ div.dataTables_wrapper div.dataTables_filter input{
 		}
 
 		function addNew() {
-			$("#nbtn").attr("disabled", true);
+			/* $("#nbtn").attr("disabled", true); */
 			var code = editor.getValue();
 			var lang = $("#lang").val();
+			var codeName = $("#cName").val();
+			if(codeName == ""){
+				notify("Info", "Please Enter Name of your Code");
+				return false;
+				}
 			var langId = 8;
 			if (lang == 'Java') {
 				langId = 8;
@@ -790,8 +767,9 @@ div.dataTables_wrapper div.dataTables_filter input{
 			data.lang = lang;
 			data.code = code;
 			data.langId = langId;
-			data.input = "input";
-			data.output = "output";
+			data.input = $("#input").val();
+			data.output = $("#output").val();
+			data.codeName = codeName;
 			dta = JSON.stringify(data);
 			console.log(data);
 			$.ajax({
@@ -806,12 +784,16 @@ div.dataTables_wrapper div.dataTables_filter input{
 			});
 
 		}
-
 		function saveCode() {
 			$(document).ready(function() {
-				$("#btn").attr("disabled", true);
+			/* 	$("#btn").attr("disabled", true); */
 				var code = editor.getValue();
 				var lang = $("#lang").val();
+				var codeName = $("#cName").val();
+				if(codeName == ""){
+					notify("Info", "Please Enter Name of your Code");
+					return false;
+					}
 				var langId = 8;
 				if (lang == 'Java') {
 					langId = 8;
@@ -855,8 +837,9 @@ div.dataTables_wrapper div.dataTables_filter input{
 				data.lang = lang;
 				data.code = code;
 				data.langId = langId;
-				data.input = "input";
-				data.output = "output";
+				data.input = $("#input").val();
+				data.output = $("#output").val();
+				data.codeName = codeName;
 				dta = JSON.stringify(data);
 				console.log(data);
 				$.ajax({
@@ -893,27 +876,9 @@ div.dataTables_wrapper div.dataTables_filter input{
 			$('[data-toggle="tooltip"]').tooltip()
 		})
 		
-		function loadPage(skn){
-			window.location.href = "userpractice?skilln="+skn;
-		}
-		
-		$(document).ready(function(){
-			$('li>a.dropbtn').hover(function(){
-				$('.dropdown').css('display','block');
-			},
-			function(){
-				$('.dropdown').css('display','none');
-			});
-			$('.dropdown').hover(function(){
-				$('.dropdown').css('display','block');
-			},
-			function(){
-				$('.dropdown').css('display','none');
-			});
-		});
-	</script>
 	
-
+	
+</script>
 	<c:if test="${msgtype != null}">
 		<script>
 			var notification = 'Information';

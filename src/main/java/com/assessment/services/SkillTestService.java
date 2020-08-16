@@ -18,6 +18,9 @@ public interface SkillTestService {
 	public int deleteSkillName(String skillName);
 	
 	 SkillTest getByskillsubskill(String skill , String compId, String subskill);
+
+	 SkillTest getByskillsubskill(String skill , String subskill);
+
 	
 	/* public String findAllRecord(String skillname); */
 

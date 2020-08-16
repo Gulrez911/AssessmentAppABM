@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.assessment.data.Question;
 import com.assessment.data.User;
+import com.assessment.data.UserType;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -28,6 +29,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("SELECT u FROM User u WHERE u.email=:email and u.password=:password")
 	User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
 	
+	
+	@Query("SELECT u FROM User u where u.userType=:ut")
+	List<User> findByUserType(@Param("ut")UserType ut);
 	//Added by Dhanshree
 	Optional<User> findByEmail(String email);
 	Optional<User> findByResetToken(String resetToken);

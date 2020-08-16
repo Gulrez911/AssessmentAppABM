@@ -74,6 +74,7 @@ public class LearningPathController {
 		return mav;
 	}
 	
+	//fetching subskills on selecting skill
 	@ResponseBody
 	@RequestMapping(value = "/fetchsubskills", method = RequestMethod.POST)
 	public List<String> fetchsubskills(HttpServletRequest request, HttpServletResponse response,@RequestParam String selSkill){
@@ -87,6 +88,8 @@ public class LearningPathController {
 		return subskills;
 	}
 	
+	
+	//add new step in param skill and subskill	
 	@ResponseBody
 	@RequestMapping(value = "/addskillstep",method=RequestMethod.POST)
 	public String addskillstep(HttpServletRequest request, HttpServletResponse response,
@@ -120,6 +123,7 @@ public class LearningPathController {
 		
 	}
 	
+	//get list of stepnames all [[id,ps,cs,stpnm1],[id,ps,cs,stpnm2],[],[],[],[]...] = main table
 	@ResponseBody
 	@RequestMapping(value = "/getSkillStep",method=RequestMethod.POST)
 	public String[][] getSkillStep(HttpServletRequest request, HttpServletResponse response){
@@ -129,6 +133,7 @@ public class LearningPathController {
 		return list_skill_step;
 	}
 	
+	//get testid , name list for all tests.
 	@ResponseBody
 	@RequestMapping(value = "/fetchtestnames",method=RequestMethod.POST)
 	public List<List<String>> fetchtestnames(HttpServletRequest request, HttpServletResponse response){
@@ -148,6 +153,7 @@ public class LearningPathController {
 		return test_id_nm;
 	}
 	
+	//test details: [[testname, skillLevel, required, id] [] [] []...... ]  Test table
 	@ResponseBody
 	@RequestMapping(value = "/getStepTestDetails",method=RequestMethod.POST)
 	public String[][] getStepTestDetails(HttpServletRequest request, HttpServletResponse response,
@@ -158,6 +164,7 @@ public class LearningPathController {
 		return list_step_test_details;
 	}
 	
+	//change step name (edit)
 	@ResponseBody
 	@RequestMapping(value = "/editStepn",method=RequestMethod.POST)
 	public String editStepn(HttpServletRequest request, HttpServletResponse response,
@@ -173,6 +180,8 @@ public class LearningPathController {
 		return "edited";
 	}
 	
+	
+	//delete test, steps for given par and childskill.
 	@ResponseBody
 	@RequestMapping(value = "/delLearnPath",method=RequestMethod.POST)
 	public String delLearnPath(HttpServletRequest request, HttpServletResponse response,
@@ -197,6 +206,7 @@ public class LearningPathController {
 		return "All dlt";
 	}
 	
+	//get step names for user selected parent and child skill [[stp_id,step_nm],[][]...]
 	@ResponseBody
 	@RequestMapping(value = "/fetchstepname",method=RequestMethod.POST)
 	public String[][] fetchstepnames(HttpServletRequest request, HttpServletResponse response,
@@ -206,15 +216,16 @@ public class LearningPathController {
 		return list_step_names;
 	}
 	
+	//to work with sortable UI user will send hyphen separated list of step names in specified order
 	@ResponseBody
 	@RequestMapping(value = "/saveorder",method=RequestMethod.POST)
 	public String saveorder(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam String stepn_ord){
 		User user = (User)request.getSession().getAttribute("user");
-		String[] stepord = stepn_ord.split("-");
+		String[] stepord = stepn_ord.split("-");//orderwise list of stepnames
 		
 		SkillStep step = null;
-		List<SkillStep> skillStep_list = skillsteprepository.findAll();
+		List<SkillStep> skillStep_list = skillsteprepository.findAll();//all steps
 		for(int i = 0; i<stepord.length; i++) {
 			for(int j=0;j<skillStep_list.size();j++) {
 				step = skillStep_list.get(j);
@@ -229,6 +240,7 @@ public class LearningPathController {
 		return "success";
 	}
 	
+	//add new test 
 	@ResponseBody
 	@RequestMapping(value = "/addteststep1", method=RequestMethod.POST)
 	public String addteststep1(HttpServletRequest request, HttpServletResponse response,
@@ -278,6 +290,7 @@ public class LearningPathController {
 		return status;
 	}
 	
+	//delete step (from sortable UI)
 	@ResponseBody
 	@RequestMapping(value = "/deleteStep", method = RequestMethod.POST)
 	public String deleteStep(HttpServletRequest request, HttpServletResponse response,@RequestParam String id){
@@ -303,6 +316,7 @@ public class LearningPathController {
 		return "success";
 	}
 	
+	//required or not toggle
 	@ResponseBody					
 	@RequestMapping(value = "/setReqTest", method = RequestMethod.POST)
 	public String setReqTest(HttpServletRequest request, HttpServletResponse response,
@@ -316,6 +330,7 @@ public class LearningPathController {
 		return "success";
 	}
 	
+	//delete test
 	@ResponseBody					
 	@RequestMapping(value = "/delTest", method = RequestMethod.POST)
 	public String delTest(HttpServletRequest request, HttpServletResponse response,

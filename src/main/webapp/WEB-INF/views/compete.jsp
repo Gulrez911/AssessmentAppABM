@@ -86,7 +86,6 @@ li>a.dropbtn{
   position: relative;
   display: none;
 }
-
 .dropdown-content {
   display: block;
   position: fixed;
@@ -96,33 +95,27 @@ li>a.dropbtn{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10;
 }
-
 .dropdown-content>a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-
 .dropbtn:hover > .dropdown{display:block}
 .dropdown-content a:hover {
 	background-color: #03A9F4;
 	color:#ffffff;
 }
-
 </style>
 
 
 <!-- Search Box  -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script>
-
-
 // 	 $(function($) {
 // 		    $(".chzn-select").chosen();
 		   
 // 		});
-
 	$(document).ready(function(){
 	  $("#myInput").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
@@ -130,10 +123,8 @@ li>a.dropbtn{
 	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	    });
 	  });
-
 		
 	});
-
 	 
 	/* $(document).ready(function(){
 		  //Chosen
@@ -413,9 +404,7 @@ li>a.dropbtn{
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
-
     $(".chosen").chosen();
-
 function addCompete(){
 	$('#modaladdChallenge').modal('show');
 // 	$('#testName').selectpicker();
@@ -425,7 +414,6 @@ function addCompete(){
 	$("#skillName")[0].selectedIndex = 0;
 	$("#challenge1")[0].selectedIndex = 0;
 	$("#testName")[0].selectedIndex = 0;
-
 	$('#addLevel').attr('disabled',true);
 	$('#skillName, #challenge1, #testName').on("change",function(){
 		 $("#msg").remove();
@@ -442,13 +430,11 @@ function addCompete(){
 	});
 		
 }
-
 function addLevel(){
 	
 	 var skillName=$("#skillName").val(); 
 	 var challenge=$("#challenge1").val();
 	 var testName=$("#testName").val();
-
 	 console.log("skillName:::"+skillName+":Challenge:::"+challenge+":testName:::"+testName); 
 		
 	 $.ajax({
@@ -459,7 +445,6 @@ function addLevel(){
 				$("#levels1").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 				$("#testName")[0].selectedIndex = 0;
 				getTest();
-
 				$('#addLevel').attr('disabled',true);
 				$('#skillName, #challenge1, #testName').on("change",function(){
 					 $("#msg").remove();
@@ -477,7 +462,6 @@ function addLevel(){
 			},
 	}); 
 } 
-
 	 function getTest(){
 // 		 var skillName=$("#skillName").val(); 
 // 	 	 var challenge=$("#challenge1").val();
@@ -502,7 +486,6 @@ function addLevel(){
  		},
 		});
 	}
-
 	 function deleteLevel(id){
 			bootbox.confirm({
 				title: "Delete Confirmation",
@@ -534,7 +517,6 @@ function addLevel(){
 			});
 		}
 	
-
 	function editLevel(id){
   	 	console.log("editLevel Called \t"+id);
   	 	
@@ -544,7 +526,6 @@ function addLevel(){
 			 success:function(response){
  			 	console.log("success called");
  			 	console.log("Id::"+response.id);
-
 				$("addLevel").attr("disabled",true);
 				$("#edit").attr("disabled",true);
 				
@@ -569,16 +550,12 @@ function addLevel(){
 				var span = document.createElement('span');
 				span.innerHTML = '<a id="btn1" onclick="saveEdit('+response.id+')" style="color:blue;">Save</a>';
    	            dd.appendChild(span);
-
 	   	         var msg = document.createElement('DIV');
 	   	         msg.id="Msg";
 	   	      	 dd.appendChild(msg);
-
 	            }
 	        });
   	}
-
-
 	function saveEdit(id){
   	 	var testName=$("#slct"+id).val();
 	$.ajax({
@@ -589,7 +566,6 @@ function addLevel(){
 			 console.log("Message"+response.msg)
  			 $("#levels1").html('<span id="msg" style="color:red;">'+response.msg+'</span>');
 			 getTest();
-
 			 $('#addLevel').attr('disabled',true);
 			 $('#skillName, #challenge1, #testName').on("change",function(){
 				 $("#msg").remove();
@@ -608,14 +584,12 @@ function addLevel(){
 		
 	});
   	}
-
 	function editFront(){
 		$('#modaladdChallenge').modal('show');
 		$(".tr1").remove();
 		$("#msg").remove();
 		$("#skillName")[0].selectedIndex = 0;
 		$("#challenge1")[0].selectedIndex = 0;
-
 		$('#addLevel').attr('disabled',true);
 		$('#skillName, #challenge1, #testName').on("change",function(){
 			 $("#msg").remove();
@@ -632,7 +606,6 @@ function addLevel(){
 		});
 		
 	}
-
 </script>
 
      

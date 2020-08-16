@@ -18,13 +18,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.assessment.data.SkillStep;
 import com.assessment.data.SkillTest;
 import com.assessment.data.StepTest;
+import com.assessment.data.Test;
 import com.assessment.data.User;
+import com.assessment.data.UserTestSession;
 import com.assessment.repositories.SkillStepRepository;
 import com.assessment.repositories.SkillTestLabelRepository;
 import com.assessment.repositories.SkillTestRepository;
 import com.assessment.repositories.StepTestRepository;
+import com.assessment.repositories.TestRepository;
 import com.assessment.services.SkillTestService;
 import com.assessment.services.StepTestService;
+import com.assessment.services.UserTestSessionService;
 
 @Controller
 @SessionAttributes
@@ -45,6 +49,12 @@ public class UserPracticeController {
 	@Autowired
 	SkillTestLabelRepository skillTestLabelRepo;
 	
+	@Autowired
+	TestRepository testrepository;
+	
+	@Autowired
+	UserTestSessionService usertestsessionservice;
+	
 	@GetMapping(value="/userpractice")
 	public ModelAndView userPractice(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name="skilln",required=false) String skilln,
@@ -56,16 +66,24 @@ public class UserPracticeController {
 		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
 		mav.addObject("skillList", skillList);
 		User user = (User)request.getSession().getAttribute("user");
-		String userId=URLEncoder
-				.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes()));
-		mav.addObject("userId", userId);
-		String[] skills = steptestservice.getParentSkillNames(user.getCompanyId());
+		if(user != null) {
+			String userId=URLEncoder
+					.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes()));
+			mav.addObject("userId", userId);
+			mav.addObject("user",user);
+		}
+		else {
+			user = new User();
+			mav.addObject("user",user);
+		}
+		String[] skills = steptestservice.getParentSkillNames();//only skills that have some tests and steps in it
+		
 				
 		for(int i = 0 ; i<skills.length; i++) {
 			System.out.println(skills[i]);
 		}
 		if(testid != null) {
-			StepTest st = steptestservice.getByTestId(testid, user.getCompanyId());
+			StepTest st = steptestservice.getByTestId(testid);
 			skilln = st.getSkillStep().getSkilltest().getParentSkill();
 			subs = st.getSkillStep().getSkilltest().getChildSkill();
 			stepn = st.getSkillStep().getStepName();
@@ -78,8 +96,8 @@ public class UserPracticeController {
 		List<SkillStep> stp_lst = null;
 		SkillTest st = null;
 		for(String subskn : subskilln) {
-			st = skilltestservice.getByskillsubskill(skilln, user.getCompanyId(), subskn);
-			stp_lst = skillStepRepository.getAllStepsForSkillTest(user.getCompanyId(),st);
+			st = skilltestservice.getByskillsubskill(skilln, subskn);
+			stp_lst = skillStepRepository.getAllStepsForSkillTest(st);
 			if(stp_lst.size() == 0) {
 				to_remsub.add(subskn);
 			}
@@ -110,9 +128,9 @@ public class UserPracticeController {
 		else
 			subsnm = subs;
 		
-		skt = skilltestservice.getByskillsubskill(skilln, user.getCompanyId(), subsnm);
+		skt = skilltestservice.getByskillsubskill(skilln, subsnm);
 		
-		List<SkillStep> stepnms = skillStepRepository.getAllStepsForSkillTest(user.getCompanyId(),skt) ;
+		List<SkillStep> stepnms = skillStepRepository.getAllStepsForSkillTest(skt) ;
 		List<SkillStep> to_rem = new ArrayList<SkillStep>();
 		List<StepTest> s_tests = null; 
 		
@@ -146,7 +164,38 @@ public class UserPracticeController {
 						reqstp = stp1;
 				}
 			}
-			stptst_lst = steptestservice.getBySkillStep(reqstp);
+			
+			if(user != null) {//to load user data like total marks, obtained etc.
+				String email = user.getEmail();
+				stptst_lst = steptestservice.getBySkillStep(reqstp);
+				List<UserTestSession> uts_list = new ArrayList<UserTestSession>();
+				for(StepTest stpt : stptst_lst) {
+					Test t = testrepository.findTestById(Long.valueOf(stpt.getTestId()));
+					UserTestSession uts = usertestsessionservice.findByUserAndTest(email, t);
+					uts_list.add(uts);					
+				}
+				mav.addObject("usertestsessionlist",uts_list);
+			}
+			
+			if(user != null) {
+				String email = user.getEmail();
+				stptst_lst = steptestservice.getBySkillStep(reqstp);
+				List<String> bool_appeared = new ArrayList<String>();
+				for(StepTest stpt : stptst_lst) {
+					Test t = testrepository.findTestById(Long.valueOf(stpt.getTestId()));
+					UserTestSession uts = usertestsessionservice.findByUserAndTest(email, t);
+					if(uts!=null){
+						bool_appeared.add("Appeared");
+					}
+					else {
+						bool_appeared.add("Not Appeared");
+					}
+				}
+				mav.addObject("appearedlist", bool_appeared);
+			}
+		
+			
+			
 			
 			List<List<Integer>> countsfortests = new ArrayList<List<Integer>>();
 			for(SkillStep stp : stepnms ) {
@@ -174,6 +223,7 @@ public class UserPracticeController {
 			mav.addObject("defaultSteps", stepnms);
 			mav.addObject("tests", stptst_lst);
 			mav.addObject("curStep", reqstp);
+			mav.addObject("curStepIdx",stepnms.indexOf(reqstp));
 			mav.addObject("counts", countsfortests);
 			mav.addObject("NoStepErr","");
 			return mav;

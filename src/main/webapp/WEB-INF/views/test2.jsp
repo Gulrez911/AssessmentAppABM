@@ -111,6 +111,7 @@ overflow-x: hidden;
 <link href="${c9}" rel="stylesheet" type="text/css" />
 
 <!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <spring:url value="/resources/assets/bootstrap/css/bootstrap.min.css"
 	var="c10" />
 
@@ -275,8 +276,6 @@ overflow-x: hidden;
 				}); 
 			    });
 			}
-		
-		
 		}
 		
 		function activeScreen(){
@@ -360,17 +359,24 @@ body * {
 	float: left;
 	width: 92%;
 }
-
+.modal-backdrop.in{
+	opacity: .5;
+    z-index: -1;
+}
 .input-field {
 	margin-top: 20px;
 }
-
+.promo-box.border-box{
+	border: none;
+}
 .fixht{
 height:248px;
 overflow:auto;
 overflow-x:hidden;
 }
-
+div#fullSP{
+ 	background:#f5f5f5;
+}
 @keyframes glowactive_unans {
   0% { box-shadow: 0 0 -10px #ff0000; }
   40% { box-shadow: 0 0 20px #ff0000; }
@@ -442,7 +448,8 @@ padding: 8px 30px;
 }
 </style>
 </head>
-<body id="top" class="has-header-search" onload="setTimeOnLoad()">
+<body id="top" class="has-header-search" style="background:#f5f5f5" onload="setTimeOnLoad()">
+	<div id="fullSP">
 	<form:form id="testForm" name="testForm" method="POST"
 		modelAttribute="currentQuestion">
 		<!--header start-->
@@ -485,6 +492,8 @@ padding: 8px 30px;
 				
 				<div class="col-md-5">
 							<div class="userheader mt-15">
+							<a href="#" onclick="fullScreen()" class="button" style="margin-right:5px;">Full Screen</a>
+<!-- 							<a href="#" onclick="fullScreen()" class="button" style="margin-right:5px;"><span class="glyphicon glyphicon-fullscreen"></span></a> -->
 								<div class="userinfo">
 									<h4>
 										Welcome ${studentTestForm.userName}
@@ -1095,10 +1104,9 @@ padding: 8px 30px;
 
 
 </div>
+
 	</form:form>
-	
-	
-	<div id="modalSub" class="modal fade modalcopy" role="dialog">
+		<div id="modalSub" class="modal fade modalcopy" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -1116,6 +1124,9 @@ padding: 8px 30px;
 		</div>
 	</div>
 	
+</div>	
+	
+
 	
 <footer class="footer footer-four" style="bottom:0;position:fixed;left:0;width:100%;">
 		<div class="secondary-footer brand-bg darken-2 text-center" style="">
@@ -1169,8 +1180,29 @@ padding: 8px 30px;
 	<script src="${mainJs18}"></script>
 	<spring:url value="/resources/scripts/html2canvas.js" var="mainJs19" />
 	<script src="${mainJs19}"></script>
+	
+	
 
 	<script>
+	
+		function fullScreen(){
+			var elem = document.getElementById("fullSP");
+			if (elem.requestFullscreen) {
+		    	elem.requestFullscreen();
+		  	} 
+			else if (elem.mozRequestFullScreen) { /* Firefox */
+		  		elem.mozRequestFullScreen();
+		  	} 
+			else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+		    	elem.webkitRequestFullscreen();
+		  	} 
+			else if (elem.msRequestFullscreen) { /* IE/Edge */
+		   		elem.msRequestFullscreen();
+		 	}
+			elem.style.height="100%";
+			
+		}
+	
 	    var editor = ace.edit("editor");
 	    editor.setTheme("ace/theme/solarized_light");
 	   //editor.setTheme("ace/theme/theme-github");

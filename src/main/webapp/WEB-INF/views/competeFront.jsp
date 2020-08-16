@@ -371,6 +371,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 </head>
 
 <body id="top" class="has-header-search" onload="leaderboard('${testName}')">
+<<<<<<< HEAD
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
@@ -420,6 +421,10 @@ div.dataTables_wrapper div.dataTables_filter input {
 		</div>
 	</header>
 	<!--header end-->
+=======
+	
+	<c:import url="menucommon.jsp"></c:import>
+>>>>>>> branch 'master' of https://github.com/Gulrez911/AssessmentAppABM.git
 
 	<section>
 		<div class="col-md-12 headingrow">
@@ -428,7 +433,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 			<div class='col-md-3'>
 				<select class='drp pull-right' id="slct" required="required"
 					onchange="competeTest()" style="width: 50%;">
-					<c:forEach var="skillList" varStatus="status" items="${skillList}">
+					<c:forEach var="skillList" varStatus="status" items="${skillList1}">
 						<c:choose>
 							<c:when test="${status.index == skillIndex}">
 								<option value="${skillList}" selected>${skillList}</option>
@@ -554,6 +559,9 @@ div.dataTables_wrapper div.dataTables_filter input {
 	<spring:url value="/resources/assets/scripts/pnotify.custom.min.js"
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
+	<spring:url value="/resources/assets/js/menuscripts.js" var="mainJs18" />
+	<script src="${mainJs18}"></script>
+	
 
 	<script
 		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -621,21 +629,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 	function loadPage(skn){
 		window.location.href = "userpractice?skilln="+skn;
 	}
-	
-	$(document).ready(function(){
-		$('li>a.dropbtn').hover(function(){
-			$('.dropdown').css('display','block');
-		},
-		function(){
-			$('.dropdown').css('display','none');
-		});
-		$('.dropdown').hover(function(){
-			$('.dropdown').css('display','block');
-		},
-		function(){
-			$('.dropdown').css('display','none');
-		});
-	});
 </script>
 </body>
 </html>

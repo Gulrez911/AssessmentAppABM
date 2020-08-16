@@ -65,6 +65,12 @@ public class SkillTestServiceImpl implements SkillTestService {
 		return skillTestRepository.findAllByCompanyId(companyId);
 	}
 
+	@Override
+	public SkillTest getByskillsubskill(String skill, String subskill) {
+		// TODO Auto-generated method stub
+		return skillTestRepository.getByskillsubskill(skill, subskill);
+	}
+
 
 //	@Override
 //	public List<SkillTest> getUnique() {

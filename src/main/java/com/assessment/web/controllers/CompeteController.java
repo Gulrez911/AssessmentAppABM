@@ -24,10 +24,12 @@ import com.assessment.data.Test;
 import com.assessment.data.User;
 import com.assessment.data.UserTestSession;
 import com.assessment.repositories.CompeteRepository;
+import com.assessment.repositories.SkillTestLabelRepository;
 import com.assessment.repositories.TestRepository;
 import com.assessment.repositories.UserTestSessionRepository;
 import com.assessment.services.CompeteService;
 import com.assessment.services.SkillTestService;
+import com.assessment.services.StepTestService;
 import com.assessment.services.TestService;
 import com.assessment.services.UserService;
 import com.assessment.web.dto.CompeteDto;
@@ -56,6 +58,11 @@ public class CompeteController {
 	@Autowired
 	UserTestSessionRepository userTestRepo;
 
+	@Autowired
+	StepTestService steptestservice;
+	
+	@Autowired
+	SkillTestLabelRepository skillTestLabelRepo;
 	
 	@RequestMapping(value = "/compete", method = RequestMethod.GET)
 	public ModelAndView compete(HttpServletRequest request, HttpServletResponse response) {
@@ -201,6 +208,15 @@ public class CompeteController {
 		  return map; 
 	}
 	  
+
+//	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
+//	public ModelAndView competeF()
+//	{
+//		ModelAndView mav=new ModelAndView("competeFront1");
+//		return mav;
+//		
+//	}
+
 	@RequestMapping(value="/competeFrontSkill" ,method= RequestMethod.GET)
 	public ModelAndView competeFrontSkill(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView("competeFrontSkill");
@@ -211,6 +227,12 @@ public class CompeteController {
 		}
 		mav.addObject("user", user);
 		mav.addObject("challengeType", "Skill Challenge");
+		//lists for header
+		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
+		mav.addObject("skillList", skillList);
+		String[] skills =  steptestservice.getParentSkillNames();
+		mav.addObject("skills", skills);
+		//end
 
 		return mav;
 		
@@ -226,6 +248,12 @@ public class CompeteController {
 		}
 		mav.addObject("user", user);
 		mav.addObject("challengeType", "Coding Challenge");
+		//lists for header
+		List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();
+		mav.addObject("skillList", skillList);
+		String[] skills =  steptestservice.getParentSkillNames();
+		mav.addObject("skills", skills);
+		//end
 		return mav;
 		
 	}
@@ -234,7 +262,7 @@ public class CompeteController {
 	@RequestMapping(value="/competeFront" ,method= RequestMethod.GET)
 	public ModelAndView competeFront(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name="challengeType",required=false) String challengeType,
-			@RequestParam(name="skillName",required = false) String skillName){
+			@RequestParam(name="skillName",required = false) String skillName ){
 		
 		ModelAndView mav=new ModelAndView("competeFront");
 		User user = (User)request.getSession().getAttribute("user");
@@ -242,8 +270,8 @@ public class CompeteController {
 			System.out.println("Session Expired");
 			mav = new ModelAndView("redirect:/loginRegister");
 		}else {
-			List<Compete> skillList = competeService.findDistinctSkillName(challengeType);
-			System.out.println("Distinct SkillList"+skillList);
+			List<Compete> skillList1 = competeService.findDistinctSkillName(challengeType);
+			System.out.println("Distinct SkillList"+skillList1);
 			
 			CompeteDto dto= null;
 			List<Compete> testList=competeService.findBySkillNameAndChallenge(skillName, challengeType);
@@ -263,20 +291,25 @@ public class CompeteController {
 				  tests.add(testName); 
 				  Long tId=c.getTestId();
 				  testId.add(tId);
+				  
 			}
 			compete.setListTestName(tests);
 			
 			System.out.println("testList>>"+testList);
-			System.out.println("SkillIndex:"+skillList.indexOf(skillName));
+			System.out.println("SkillIndex:"+skillList1.indexOf(skillName));
 			
+			String[] skills =  steptestservice.getParentSkillNames();//required for practice header to work *1
+			List<String> skillList = skillTestLabelRepo.findUniqueParentSkill();//required for coding header to work *2
+			mav.addObject("skillList", skillList);//*2
 			mav.addObject("tests", tests);
 			mav.addObject("testList", testList);
 			mav.addObject("testIndex", testList.indexOf(tests));
-			mav.addObject("skillList", skillList);
-			mav.addObject("skillIndex",skillList.indexOf(skillName));
+			mav.addObject("skillList1", skillList1);
+			mav.addObject("skillIndex",skillList1.indexOf(skillName));
 			mav.addObject("skillName",skillName);
 			mav.addObject("challengeType", challengeType);
 			mav.addObject("companyId", user.getCompanyId());
+			mav.addObject("skills",skills);//*1
 			mav.addObject("testId", testId);
 			mav.addObject("userId", URLEncoder.encode(Base64.getEncoder().encodeToString(user.getEmail().getBytes())));
 		}

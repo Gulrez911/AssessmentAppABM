@@ -27,4 +27,10 @@ public interface StepTestRepository extends JpaRepository<StepTest,Long> {
 	
 	@Query(value="select distinct SkillTest.parentSkill from StepTest join SkillStep on SkillStep.id = StepTest.skillStep_id join SkillTest on SkillStep.skilltest_id = SkillTest.id where StepTest.companyId=:compId",nativeQuery=true)
 	public String[] getParentSkillNames(@Param("compId")String compid);
+	
+	@Query("Select st from StepTest st where st.testId=:testId")
+	public StepTest getByTestId(@Param("testId")String testId);
+	
+	@Query(value="select distinct SkillTest.parentSkill from StepTest join SkillStep on SkillStep.id = StepTest.skillStep_id join SkillTest on SkillStep.skilltest_id = SkillTest.id",nativeQuery=true)
+	public String[] getParentSkillNames();
 }
