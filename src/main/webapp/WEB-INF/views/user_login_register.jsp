@@ -701,7 +701,7 @@
 			cookie : true, // enable cookies to allow the server to access 
 			// the session
 			xfbml : true, // parse social plugins on this page
-			version : 'v2.2' // use version 2.2
+			version : 'v4.0' // use version 2.2
 		});
 		// Now that we've initialized the JavaScript SDK, we call 
 		// FB.getLoginStatus(). This function gets the state of the
@@ -737,15 +737,16 @@
 		FB.api('/me?fields=name,email', function(response) {
 			console.log('Successful login for: ' + response.name);
 
-			document.getElementById("status").innerHTML = '<p>Welcome '
+			window.location="authenticateUser?name="+response.name.replace(" ", "_")+"&email="+response.email;
+
+			/* document.getElementById("status").innerHTML = '<p>Welcome '
 					+ response.name
 					+ '! <a href=fblogincontroller.jsp?user_name='
 					+ response.name.replace(" ", "_") + '&user_email='
 					+ response.email
-					+ '>Continue with facebook login</a></p>'
+					+ '>Continue with facebook login</a></p>' */
 		});
 	}
-
 	//Gmail
 	 function onSignIn(googleUser) {
       // window.location.href='success.jsp';

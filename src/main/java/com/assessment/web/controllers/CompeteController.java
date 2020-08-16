@@ -4,17 +4,12 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +31,6 @@ import com.assessment.services.SkillTestService;
 import com.assessment.services.TestService;
 import com.assessment.services.UserService;
 import com.assessment.web.dto.CompeteDto;
-import com.assessment.web.dto.TestUserData;
 
 @Controller
 public class CompeteController {

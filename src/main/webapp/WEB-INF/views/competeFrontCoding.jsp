@@ -240,7 +240,7 @@ div.dataTables_wrapper div.dataTables_filter input{
 
 .panel-body {
   position: relative;
-  width: 200px;
+  width: 265px;
   height: 100px;
   overflow: hidden;
 }
@@ -325,7 +325,7 @@ div.dataTables_wrapper div.dataTables_filter input{
         <div class="row">
           <div class="col-sm-3">
             <div class="panel panel-primary">
-              <div class="panel-heading" id="Java">Java</div>
+              <div class="panel-heading" id="Java"><a href="#" onclick="javascript:competeTest(this.id);" id="Java" style="color: white;">Java</a></div>
               <div class="panel-body" >
               	<a href="#" onclick="javascript:competeTest(this.id);" id="Java">
               	<img src="<%=request.getContextPath()%>/resources/images/Java.jpg" class="img-responsive" style="width:100%" alt="JavaImage">
@@ -335,7 +335,7 @@ div.dataTables_wrapper div.dataTables_filter input{
             </div>
              <div class="col-sm-3"> 
             <div class="panel panel-primary">
-              <div class="panel-heading">Python</div>
+              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="Python" style="color: white;">Python</a></div>
               <div class="panel-body">
               	<a href="#" onclick="javascript:competeTest(this.id);" id="Python">
               	<img src="<%=request.getContextPath()%>/resources/images/python.jpg" class="img-responsive" style="width:100%" alt="PythonImage">
@@ -345,7 +345,7 @@ div.dataTables_wrapper div.dataTables_filter input{
           </div>
           <div class="col-sm-3"> 
             <div class="panel panel-primary">
-              <div class="panel-heading">AI</div>
+              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="AI" style="color: white;">AI</a></div>
               <div class="panel-body">
               	<a href="#" onclick="javascript:competeTest(this.id);" id="AI">
               	<img src="<%=request.getContextPath()%>/resources/images/AI2.jpg" class="img-responsive" style="width:100%" alt="AI_Image">
@@ -355,7 +355,7 @@ div.dataTables_wrapper div.dataTables_filter input{
           </div>
           <div class="col-sm-3">
             <div class="panel panel-primary">
-              <div class="panel-heading">C</div>
+              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="C" style="color: white;">C</a></div>
               <div class="panel-body">
               	<a href="#" onclick="javascript:competeTest(this.id);" id="C">
               	<img src="<%=request.getContextPath()%>/resources/images/C1.png" class="img-responsive" style="width:100%" alt="CImage">

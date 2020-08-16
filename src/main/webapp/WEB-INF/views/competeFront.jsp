@@ -113,13 +113,11 @@
 .popover {
 	max-width: 600px;
 }
-
 .tooltip {
 	position: relative;
 	display: inline-block;
 	opacity: 12;
 }
-
 .tooltip .tooltiptext {
 	visibility: hidden;
 	width: 120px;
@@ -136,7 +134,6 @@
 	left: 50%;
 	margin-left: -60px;
 }
-
 .tooltip .tooltiptext::after {
 	content: " ";
 	position: absolute;
@@ -147,24 +144,20 @@
 	border-style: solid;
 	border-color: transparent transparent black transparent;
 }
-
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 }
-
 .switch {
 	position: relative;
 	display: inline-block;
 	width: 45px;
 	height: 18px;
 }
-
 .switch input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
-
 .slider {
 	position: absolute;
 	cursor: pointer;
@@ -177,7 +170,6 @@
 	-webkit-transition: .4s;
 	transition: .4s;
 }
-
 .slider:before {
 	position: absolute;
 	content: "";
@@ -189,35 +181,28 @@
 	-webkit-transition: .4s;
 	transition: .4s;
 }
-
 input:checked+.slider {
 	background-color: #2196F3;
 }
-
 input:focus+.slider {
 	box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked+.slider:before {
 	-webkit-transform: translateX(26px);
 	-ms-transform: translateX(26px);
 	transform: translateX(26px);
 }
-
 /* Rounded sliders */
 .slider.round {
 	border-radius: 34px;
 }
-
 .slider.round:before {
 	border-radius: 50%;
 }
-
 .bigmodal>.modal-dialog {
 	width: 60%;
 	height: 80%; /* New width for default modal */
 }
-
 .dropdown-menu {
 	min-width: 387px !important;
 	height: 300px !important;
@@ -236,16 +221,13 @@ input:checked+.slider:before {
 	background: #647687;
 	color: #fff;
 }
-
 .drp>option {
 	padding: 7px;
 }
-
 .skilldiv {
 	border: 2px solid #b3bdc7;
 	border-radius: 0.7rem;
 }
-
 .skillcontent {
 	margin: 20px;
 	padding: 20px;
@@ -256,21 +238,17 @@ input:checked+.slider:before {
 	text-align: right;
 	color: black;
 }
-
 li>a.dropbtn {
 	position: relative;
 }
-
 .dropdown {
 	position: relative;
 	display: none;
 }
-
 .errorclass {
 	color: red;
 	font-style: italic;
 }
-
 .dropdown-content {
 	display: block;
 	position: fixed;
@@ -280,28 +258,23 @@ li>a.dropbtn {
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 10;
 }
-
 .dropdown-content>a {
 	color: black;
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
 }
-
 .dropbtn:hover>.dropdown {
 	display: block
 }
-
 .dropdown-content a:hover {
 	background-color: #03A9F4;
 	color: #ffffff;
 }
-
 div.container {
 	padding-left: 0px;
 	padding-right: 0px;
 }
-
 div.dataTables_wrapper div.dataTables_filter input {
 	margin-bottom: 0px;
 	margin-left: 0px;
@@ -309,7 +282,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 	height: auto;
 	border-radius: 0.7rem;
 }
-
 .headingrow {
 	background: #647687;
 	color: #fff;
@@ -318,7 +290,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 	vertical-align: center;
 	margin-bottom: 30px;
 }
-
 .stepdiv {
 	height: 52px;
 	font-size: 18px;
@@ -326,32 +297,26 @@ div.dataTables_wrapper div.dataTables_filter input {
 	padding: 15px;
 	border: hidden;
 }
-
 .stepdetails {
 	display: none;
 	color: #999999;
 	padding-left: 30px;
 }
-
 .panels {
 	padding: 0px;
 	font-size: 16px;
 	border: 1px solid #dadada;
 	border-radius: 1rem;
 }
-
 .stepdetails {
 	border-bottom: 1px solid #dadada;
 }
-
 .activestep {
 	display: block;
 }
-
 .inactivestep {
 	display: none;
 }
-
 .stepTitle {
 	padding: 15px;
 	height: 67px;
@@ -360,30 +325,25 @@ div.dataTables_wrapper div.dataTables_filter input {
 	font-weight: bold;
 	font-size: 22px;
 }
-
 .testitem {
 	padding: 15px 0px 15px;
 	border-bottom: 1px solid #dadada;
 }
-
 .testname {
 	font-weight: bold;
 	font-size: 20px;
 	width: fit-content;
 }
-
 .testlvl {
 	font-size: 16px;
 	width: fit-content;
 }
-
 .testdetails {
 	font-size: 14px;
 	margin-left: 40px;
 	color: #999999;
 	width: fit-content;
 }
-
 .moretestdet {
 	font-size: 16px;
 	margin-left: 30px;
@@ -391,13 +351,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 	display: none;
 	width: fit-content;
 }
-
 .strtbtn {
 	border: 1px solid #dadada;
 	border-radius: 0.7rem;
 	vertical-align: center;
 }
-
 .reqlbl {
 	border: 1px solid #b01212;
 	color: #b01212;
@@ -454,13 +412,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 							</ul></li>
 
 						<li><a href="practice">Code-GIG</a></li>
-						<!-- 						<li class="dropdown" style="display: block;width: 150px;"> -->
-						<!-- 							<a href="competeFront" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compete <span class="caret"></span></a> -->
-						<!-- 							<ul class="dropdown-menu" role="menu"> -->
-						<!-- 								<li><a href="competeFrontSkill">Skill Challenge</a></li> -->
-						<!-- 	       						<li><a href="competeFrontCoding">Coding Challenge</a></li> -->
-						<!-- 							</ul> -->
-						<!-- 						</li> -->
 
 					</ul>
 					<!--mega menu end-->
@@ -612,14 +563,12 @@ div.dataTables_wrapper div.dataTables_filter input {
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 	<script type="text/javascript">
-
   function competeTest() {
 		var challengeType= new URL(location.href).searchParams.get("challengeType");
 		var skillName = $("#slct").val();
 		console.log("SkillName:"+skillName+"\nChallenge Type:"+challengeType);
 		window.location = 'competeFront?challengeType='+challengeType+'&skillName='+skillName;
 	}
-
 	function leaderboard(testName){
 		console.log("testName:"+testName);
 		$.ajax({
@@ -648,7 +597,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 			}
 		});
 	}
-
 	function openTestDetails(index){
 		console.log(index);
 		var divid = "moretestdet"+index;
@@ -665,7 +613,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 	}
 </script>
 	<script type="text/javascript">
-
 	
 	$(function() {
 		$('[data-toggle="tooltip"]').tooltip()
