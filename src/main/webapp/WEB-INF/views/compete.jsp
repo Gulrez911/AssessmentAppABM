@@ -110,12 +110,9 @@ li>a.dropbtn{
 
 
 <!-- Search Box  -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-// 	 $(function($) {
-// 		    $(".chzn-select").chosen();
-		   
-// 		});
+	
 	$(document).ready(function(){
 	  $("#myInput").on("keyup", function() {
 	    var value = $(this).val().toLowerCase();
@@ -126,12 +123,6 @@ li>a.dropbtn{
 		
 	});
 	 
-	/* $(document).ready(function(){
-		  //Chosen
-		 $(".limitedNumbSelect2").select2({
-        maximumSelectionLength: 1,
-    	placeholder: "Which are two of most productive days of your week"
-    })		 */
 	</script>
 	
 </head>

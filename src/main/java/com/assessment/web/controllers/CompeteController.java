@@ -224,6 +224,9 @@ public class CompeteController {
 		if(user == null) {
 			System.out.println("Session Expired");
 			mav = new ModelAndView("redirect:/loginRegister");
+		}else {
+			List<Compete> skillList1 = competeService.findDistinctSkillName("Skill");
+			mav.addObject("SkillList", skillList1);
 		}
 		mav.addObject("user", user);
 		mav.addObject("challengeType", "Skill Challenge");
@@ -245,6 +248,10 @@ public class CompeteController {
 		if(user == null) {
 			System.out.println("Session Expired");
 			mav = new ModelAndView("redirect:/loginRegister");
+		}else {
+			List<Compete> skillList1 = competeService.findDistinctSkillName("Coding");
+			mav.addObject("SkillList", skillList1);
+			
 		}
 		mav.addObject("user", user);
 		mav.addObject("challengeType", "Coding Challenge");

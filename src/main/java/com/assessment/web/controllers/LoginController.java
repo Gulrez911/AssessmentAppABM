@@ -161,9 +161,9 @@ public class LoginController {
 		request.getSession().invalidate();
 		User user = new User();
 		ModelAndView mav = new ModelAndView("index");
-		user.setEmail("system@iiiht.com");
-		user.setPassword("1234");
-		user.setCompanyName("IIHT");
+//		user.setEmail("system@iiiht.com");
+//		user.setPassword("1234");
+//		user.setCompanyName("IIHT");
 		mav.addObject("user", user);
 		return mav;
 	}

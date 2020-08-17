@@ -96,7 +96,7 @@
 
 		<!--Local Connection Details -->
 		<property name="jdbcUrl"
-		value="jdbc:mysql://localhost:3306/assessment2?createDatabaseIfNotExist=true" />
+		value="jdbc:mysql://localhost:3306/assessment?createDatabaseIfNotExist=true" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 

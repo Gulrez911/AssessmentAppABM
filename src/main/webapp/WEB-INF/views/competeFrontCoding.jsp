@@ -55,6 +55,69 @@
 
 <style type="text/css">
 
+.card-box {
+    position: relative;
+    color: #fff;
+    padding: 20px 10px 40px;
+    margin: 20px 0px;
+    transition: box-shadow .3s;
+}
+.card-box:hover {
+    text-decoration: none;
+    color: #f1f1f1;
+   	box-shadow: 0 0 18px rgba(33,33,33,.2); 
+}
+.card-box:hover .icon i {
+    font-size: 100px;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+.card-box .inner {
+    padding: 5px 10px 0 10px;
+}
+.card-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: center;
+}
+.card-box p {
+    font-size: 15px;
+}
+.card-box .icon {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.card-box .card-box-footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-decoration: none;
+}
+.card-box:hover .card-box-footer {
+    background: rgba(0, 0, 0, 0.3);
+}
+.bg-blue {
+    background-color: #00c0ef !important;
+}
+
+
+
+
+
+
  .tooltip {
 	position: relative;
 	display: inline-block;
@@ -238,23 +301,6 @@ div.dataTables_wrapper div.dataTables_filter input{
     border-radius: 0.7rem;
 }
 
-.panel-body {
-  position: relative;
-  width: 265px;
-  height: 100px;
-  overflow: hidden;
-}
-.panel-body img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
-}
-
 </style>
 
 </head>
@@ -265,94 +311,19 @@ div.dataTables_wrapper div.dataTables_filter input{
 	
     <div class="container">    
         <div class="row">
-          <div class="col-sm-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading" id="Java"><a href="#" onclick="javascript:competeTest(this.id);" id="Java" style="color: white;">Java</a></div>
-              <div class="panel-body" >
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="Java">
-              	<img src="<%=request.getContextPath()%>/resources/images/Java.jpg" class="img-responsive" style="width:100%" alt="JavaImage">
-              	</a>
-              </div>
-              </div>
+	      <c:forEach var="SkillList" varStatus="loop" items="${SkillList}">
+		      <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-blue">
+                    <div class="inner">
+                        <h3 class="card-title text-center" style="color: white;">${SkillList}</h3>
+                    </div>
+		                <a href="#" class="card-box-footer" onclick="javascript:competeTest('${SkillList}');" style="color: white;">View More <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
-             <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="Python" style="color: white;">Python</a></div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="Python">
-              	<img src="<%=request.getContextPath()%>/resources/images/python.jpg" class="img-responsive" style="width:100%" alt="PythonImage">
-              	</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="AI" style="color: white;">AI</a></div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="AI">
-              	<img src="<%=request.getContextPath()%>/resources/images/AI2.jpg" class="img-responsive" style="width:100%" alt="AI_Image">
-              	</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="panel panel-primary">
-              <div class="panel-heading"><a href="#" onclick="javascript:competeTest(this.id);" id="C" style="color: white;">C</a></div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="C">
-              	<img src="<%=request.getContextPath()%>/resources/images/C1.png" class="img-responsive" style="width:100%" alt="CImage">
-              	</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><br>
+	      </c:forEach>
+      	</div>
+      </div>
       
-      <%-- <div class="container">    
-        <div class="row">
-          <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading">CPP</div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="CPP">
-              	<img src="<%=request.getContextPath()%>/resources/images/CPP.png" class="img-responsive" style="width:100%;" alt="CPPImage">
-              	</a>
-              </div>
-            </div>
-          </div>
-           <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading">Big Data</div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="BigData">
-              	<img src="<%=request.getContextPath()%>/resources/images/bigdata1.jpg" class="img-responsive" style="width:100%" alt="BigDataImage">
-              	</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading">SQL</div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="MySQL">
-              	<img src="<%=request.getContextPath()%>/resources/images/SQL1.jpg" class="img-responsive" style="width:100%" alt="PythonImage">
-              	</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3"> 
-            <div class="panel panel-primary">
-              <div class="panel-heading">Node.JS</div>
-              <div class="panel-body">
-              	<a href="#" onclick="javascript:competeTest(this.id);" id="Node.JS">
-              	<img src="<%=request.getContextPath()%>/resources/images/NodeJs.jpg" class="img-responsive" style="width:100%;" alt="NodeJSImage">
-              	</a>
-              </div>
-<!--               <div class="panel-footer">Buy 50 mobiles and get a gift card</div> -->
-            </div>
-          </div> 
-        </div>
-      </div><br> --%>
       
       
       <!-- jQuery -->
@@ -380,6 +351,8 @@ div.dataTables_wrapper div.dataTables_filter input{
 	
 	<script>
 		function competeTest(skillName) {
+			 
+			debugger;
 			var challengeType="Coding";
 			console.log("SkillName:"+skillName+"\nChallenge Type:"+challengeType);
 

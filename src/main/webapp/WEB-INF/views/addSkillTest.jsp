@@ -3,7 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="com.assessment.data.*, java.text.*, java.util.*"%>
 <html lang="en">
 <head>
@@ -11,39 +12,53 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Add SkillTest</title>
 <link href="./resources/assets/img/ico/favicon.png" rel="shortcut icon" />
-<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900" rel="stylesheet"
-	type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Raleway:400,300,500,700,900"
+	rel="stylesheet" type="text/css" />
 <!-- Material Icons CSS -->
-<link href="./resources/assets/fonts/iconfont/material-icons.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/fonts/iconfont/material-icons.css"
+	rel="stylesheet" type="text/css" />
 <!-- FontAwesome CSS -->
-<link href="./resources/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
+<link
+	href="./resources/assets/fonts/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
 <!-- magnific-popup -->
-<link href="./resources/assets/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
-<link href="./resources/assets/owl.carousel/assets/owl.carousel.css" rel="stylesheet"
-	type="text/css" />
-<link href="./resources/assets/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet"
-	type="text/css" />
+<link href="./resources/assets/magnific-popup/magnific-popup.css"
+	rel="stylesheet" type="text/css" />
+<link href="./resources/assets/owl.carousel/assets/owl.carousel.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="./resources/assets/owl.carousel/assets/owl.theme.default.min.css"
+	rel="stylesheet" type="text/css" />
 <!-- flexslider -->
-<link href="./resources/assets/flexSlider/flexslider.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/flexSlider/flexslider.css"
+	rel="stylesheet" type="text/css" />
 <!-- Bootstrap -->
-<link href="./resources/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
 <!-- shortcodes -->
-<link href="./resources/assets/css/shortcodes/shortcodes.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/css/shortcodes/shortcodes.css"
+	rel="stylesheet" type="text/css" />
 <!-- Style CSS -->
-<link href="./resources/assets/style.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/style.css" rel="stylesheet"
+	type="text/css" />
 <!-- RS5.0 Main Stylesheet -->
-<link href="./resources/assets/revolution/css/settings.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/revolution/css/settings.css"
+	rel="stylesheet" type="text/css" />
 <!-- RS5.0 Layers and Navigation Styles -->
-<link href="./resources/assets/revolution/css/layers.css" rel="stylesheet" type="text/css" />
-<link href="./resources/assets/revolution/css/navigation.css" rel="stylesheet" type="text/css" />
-<link href="./resources/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css" />
+<link href="./resources/assets/revolution/css/layers.css"
+	rel="stylesheet" type="text/css" />
+<link href="./resources/assets/revolution/css/navigation.css"
+	rel="stylesheet" type="text/css" />
+<link href="./resources/assets/css/pnotify.custom.min.css"
+	rel="stylesheet" type="text/css" />
 <script>
 	function goback() {
 		window.location = "skillTest";
 	}
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
 </script>
@@ -57,7 +72,7 @@
 	}
 </script>
 
-	<style>
+<style>
 .dropdown-menu {
 	min-width: 387px !important;
 	height: 300px !important;
@@ -65,38 +80,41 @@
 }
 </style>
 
-<style >
-li>a.dropbtn{
+<style>
+li>a.dropbtn {
 	position: relative;
 }
+
 .dropdown {
-  position: relative;
-  display: none;
+	position: relative;
+	display: none;
 }
 
 .dropdown-content {
-  display: block;
-  position: fixed;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  opacity:100;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
+	display: block;
+	position: fixed;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	opacity: 100;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 10;
 }
 
 .dropdown-content>a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropbtn:hover > .dropdown{display:block}
+.dropbtn:hover>.dropdown {
+	display: block
+}
+
 .dropdown-content a:hover {
 	background-color: #03A9F4;
-	color:#ffffff;
+	color: #ffffff;
 }
-
 </style>
 
 </head>
@@ -113,8 +131,8 @@ li>a.dropbtn{
 						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
 						alt="" />
 					</a>
-					
-						
+
+
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -123,43 +141,37 @@ li>a.dropbtn{
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li>
-						<a class="dropbtn">Profiler</a>
-						<div class="dropdown">
-							<div class="dropdown-content">
-								<a href="learningpath">Practice</a>
-								<a href="skillTestLabel">Coding</a>
-								<a href="compete">Compete</a>
-								<a href="skillTest" class="active">Skill Test</a>
-							 </div>
-						</div>
-						</li>
-						<li>
-						<a class="dropbtn">Result</a>
+						<li><a class="dropbtn">Profiler</a>
 							<div class="dropdown">
 								<div class="dropdown-content">
-									<a href="showReports">Result</a>
-									<a href="codingSessions">Code Reports</a>
-									<a href="showSkillTags">Skill Reports</a>
-								 </div>
-							</div>
-						</li>
+									<a href="learningpath">Practice</a> <a href="skillTestLabel">Coding</a>
+									<a href="compete">Compete</a> <a href="skillTest"
+										class="active">Skill Test</a>
+								</div>
+							</div></li>
+						<li><a class="dropbtn">Result</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="showReports">Result</a> <a href="codingSessions">Code
+										Reports</a> <a href="showSkillTags">Skill Reports</a>
+								</div>
+							</div></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
-<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
+						<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-					 </div>
-				
+				</div>
+
 			</div>
 		</div>
-		
+
 	</header>
 	<!--header end-->
 
 	<section>
-		<form:form name="tenantForm" method="post" modelAttribute="skillTest" action="saveSkillTest"
-			id="frm">
+		<form:form name="tenantForm" method="post" modelAttribute="skillTest"
+			action="saveSkillTest" id="frm">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3"></div>
@@ -176,7 +188,8 @@ li>a.dropbtn{
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:input path="parentSkill" name="skillName" id="pskill" required="true" />
+											<form:input path="parentSkill" name="skillName" id="pskill"
+												required="true" />
 											<form:hidden path="id" />
 
 										</div>
@@ -193,7 +206,7 @@ li>a.dropbtn{
 									</div>
 									<div class="col-md-8">
 										<div class="input-field">
-											<form:checkbox path="isCheckedFlag" id="chkPassport"  />
+											<form:checkbox path="isCheckedFlag" id="chkPassport" />
 											Nested Skill
 										</div>
 									</div>
@@ -210,12 +223,12 @@ li>a.dropbtn{
 											<label class="fieldtitle">Skill List</label>
 										</div>
 										<div class="col-md-8">
-												<form:select path="childSkill" id="smt" style="width: 130px;height: 26px"
-													disabled="true">
-													<option value="select">--Select Skill--</option>
-													<form:options items="${listSkill}" />
+											<form:select path="childSkill" id="smt"
+												style="width: 130px;height: 26px" disabled="true">
+												<option value="select">--Select Skill--</option>
+												<form:options items="${listSkill}" />
 
-												</form:select>
+											</form:select>
 										</div>
 									</div>
 								</div>
@@ -230,9 +243,8 @@ li>a.dropbtn{
 					<div class="buttons text-center">
 						<div class="col-md-12">
 							<div class="col-md-8">
-								<a id="sbtn" class="btn btn-primary">Save</a>
-								<button type="button" class="waves-effect waves-light btn submit-button indigo mt-30"
-									onclick="goback()">Cancel</button>
+								<button id="sbtn" type="button" class="btn btn-primary">Save</button>&nbsp;
+								<button type="button" class="btn btn-success" onclick="goback()">Cancel</button>
 							</div>
 						</div>
 					</div>
@@ -279,7 +291,8 @@ li>a.dropbtn{
 	<script src="./resources/assets/js/jquery.inview.min.js"></script>
 	<script src="./resources/assets/owl.carousel/owl.carousel.min.js"></script>
 	<script src="./resources/assets/flexSlider/jquery.flexslider-min.js"></script>
-	<script src="./resources/assets/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script
+		src="./resources/assets/magnific-popup/jquery.magnific-popup.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="./resources/assets/js/scripts.js"></script>
 	<script src="./resources/assets/scripts/custom.js"></script>

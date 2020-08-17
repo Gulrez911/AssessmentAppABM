@@ -99,7 +99,22 @@
 	var="c16" />
 
 <link href="${c16}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+<!-- <script src="https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js"></script> -->
 
+<script type="text/javascript">
+		$(function($) {
+			$(".chzn-select").chosen();
+			$('.chosen-container').css({ 'width':'100%' });
+		});
+	</script> 
 <style>
 .dropdown-menu {
 	min-width: 387px !important;
@@ -108,38 +123,41 @@
 }
 </style>
 
-<style >
-li>a.dropbtn{
+<style>
+li>a.dropbtn {
 	position: relative;
 }
+
 .dropdown {
-  position: relative;
-  display: none;
+	position: relative;
+	display: none;
 }
 
 .dropdown-content {
-  display: block;
-  position: fixed;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  opacity:100;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
+	display: block;
+	position: fixed;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	opacity: 100;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 10;
 }
 
 .dropdown-content>a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropbtn:hover > .dropdown{display:block}
+.dropbtn:hover>.dropdown {
+	display: block
+}
+
 .dropdown-content a:hover {
 	background-color: #03A9F4;
-	color:#ffffff;
+	color: #ffffff;
 }
-
 </style>
 
 
@@ -147,6 +165,7 @@ li>a.dropbtn{
 
 <body id="top" class="has-header-search">
 
+	 
 	<!--header start-->
 	<header id="header" class="tt-nav nav-border-bottom">
 		<div class="header-sticky light-header ">
@@ -158,8 +177,8 @@ li>a.dropbtn{
 						src="<%=request.getContextPath()%>/resources/assets/images/Logo.png"
 						alt="" />
 					</a>
-					
-						
+
+
 					<!--logo end-->
 					<!--mega menu start-->
 					<ul class="menuzord-menu pull-right">
@@ -168,37 +187,31 @@ li>a.dropbtn{
 						<li><a href="question_list">Question Bank</a></li>
 						<li><a href="testlist">Tests</a></li>
 						<li><a href="skills">Skills</a></li>
-						<li>
-						<a class="dropbtn">Profiler</a>
-						<div class="dropdown">
-							<div class="dropdown-content">
-								<a href="learningpath">Practice</a>
-								<a href="skillTestLabel"  class="active">Coding</a>
-								<a href="compete">Compete</a>
-								<a href="skillTest">Skill Test</a>
-							 </div>
-						</div>
-						</li>
-						<li>
-						<a class="dropbtn">Result</a>
-						<div class="dropdown">
-							<div class="dropdown-content">
-								<a href="showReports">Result</a>
-								<a href="codingSessions">Code Reports</a>
-								<a href="showSkillTags">Skill Reports</a>
-							 </div>
-						</div>
-						</li>
+						<li><a class="dropbtn">Profiler</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="learningpath">Practice</a> <a href="skillTestLabel"
+										class="active">Coding</a> <a href="compete">Compete</a> <a
+										href="skillTest">Skill Test</a>
+								</div>
+							</div></li>
+						<li><a class="dropbtn">Result</a>
+							<div class="dropdown">
+								<div class="dropdown-content">
+									<a href="showReports">Result</a> <a href="codingSessions">Code
+										Reports</a> <a href="showSkillTags">Skill Reports</a>
+								</div>
+							</div></li>
 						<li><a href="showProfileParams">Recomm Setting</a></li>
 						<li><a href="listUsers">Users</a></li>
-<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
+						<!-- 						<a href="/AssesmentApp/OnetPage">Assessment Profiler</a> -->
 					</ul>
 					<!--mega menu end-->
-					 </div>
-				
+				</div>
+
 			</div>
 		</div>
-		
+
 	</header>
 	<!--header end-->
 
@@ -212,7 +225,9 @@ li>a.dropbtn{
 					<div class="col-md-2">
 						<button type="button" id="btn-show-modal"
 							class="btn waves-effect waves-light col-md-12"
-							data-toggle="modal" data-target="#modaladdSkill"><i class="material-icons fa fa-plus-circle"></i>Add New</button>
+							data-toggle="modal" data-target="#modaladdSkill">
+							<i class="material-icons fa fa-plus-circle"></i>Add New
+						</button>
 
 					</div>
 					<div class="col-md-2">
@@ -255,8 +270,8 @@ li>a.dropbtn{
 									<th>Test Name</th>
 									<th>Label Name</th>
 									<th>Level</th>
-<!-- 									<th>Update</th> -->
-									
+									<!-- 									<th>Update</th> -->
+
 
 									<!--<th>Update Skill</th> -->
 								</tr>
@@ -264,8 +279,7 @@ li>a.dropbtn{
 
 							<tbody>
 							<tbody>
-								<c:forEach items="${allList}" var="list"
-									varStatus="loop">
+								<c:forEach items="${allList}" var="list" varStatus="loop">
 									<tr>
 										<td>${loop.count}</td>
 										<td>${list.parentSkill}</td>
@@ -273,8 +287,8 @@ li>a.dropbtn{
 										<td>${list.testName}</td>
 										<td>${list.label}</td>
 										<td>${list.level}</td>
-<!-- 										<td><a href="#"><i class="fa fa-edit" style="font-size: 24px"></i></a></td> -->
-										
+										<!-- 										<td><a href="#"><i class="fa fa-edit" style="font-size: 24px"></i></a></td> -->
+
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -325,9 +339,11 @@ li>a.dropbtn{
 								modelAttribute="skillTestLabel">
 								<div class="form-group">
 									<label>Select Parent Skill</label>
-									<form:select class="form-control" path="parentSkill" id="selectSkill" onchange="subSkill()" required="required">
-										<option  disabled="disabled" selected value="">--choose Main
-											Skill--</option>
+									<form:select class="form-control chzn-select"
+										path="parentSkill" id="selectSkill" onchange="subSkill()"
+										required="required">
+										<option disabled="disabled" selected value="">--choose
+											Main Skill--</option>
 										<form:options items="${pSkill}" />
 
 									</form:select>
@@ -340,8 +356,10 @@ li>a.dropbtn{
 										<form:options items="${cSkill}" />
 
 									</form:select> --%>
-									<select id="slct" class="form-control" name="childSkill" required="required">
-									<option  disabled="disabled" selected value="">--choose subskill--</option>
+									<select id="slct" class="form-control" name="childSkill"
+										required="required">
+										<option disabled="disabled" selected value="">--choose
+											subskill--</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -352,13 +370,15 @@ li>a.dropbtn{
 										<form:options items="${tName}" />
 
 									</form:select> --%>
-									<select id="slct1" class="form-control" name="testName" required="required"></select>
+									<select id="slct1" class="form-control" name="testName" class="form-control chzn-select"
+										required="required"></select>
 								</div>
 								<div class="form-group">
 									<label>Select Level Here</label>
-									<form:select class="form-control" path="level"  required="required">
-										<option  disabled="disabled" selected value="">--Choose Level--
-											</option>
+									<form:select class="form-control" path="level"
+										required="required">
+										<option disabled="disabled" selected value="">--Choose
+											Level--</option>
 										<option value="EASY">EASY</option>
 										<option value="MEDIUM">MEDIUM</option>
 										<option value="HARD">HARD</option>
@@ -367,7 +387,8 @@ li>a.dropbtn{
 								</div>
 								<div class="form-group">
 									<label>Enter Label Name</label>
-									<form:input class="form-control" path="label" required="required" placeholder="Enter label here"/>
+									<form:input class="form-control" path="label"
+										required="required" placeholder="Enter label here" />
 								</div>
 								<div class="modal-footer">
 									<button class="btn btn-primary" data-dismiss="modal">Cancel</button>
@@ -439,26 +460,27 @@ li>a.dropbtn{
 		var="mainJs17" />
 	<script src="${mainJs17}"></script>
 
-<script>
-
- function subSkill() {
-		    var skill = $("#selectSkill").val();
-             console.log(skill)
-		    $.ajax({
-		        url: "fetchSubSkill?skill=" + skill,
-		        type: 'GET',
-		        success : function(response) {
+	<script>
+		function subSkill() {
+			var skill = $("#selectSkill").val();
+			console.log(skill)
+			$.ajax({
+				url : "fetchSubSkill?skill=" + skill,
+				type : 'GET',
+				success : function(response) {
 					console.log(response.listSubSkill.length)
 					$('.opt').remove();
 					for (i = 0; i < response.listSubSkill.length; i++) {
+						console.log("child skill")
 						console.log(response.listSubSkill[i]);
 						$("#slct").append(
-								"<option class='opt'>" + response.listSubSkill[i]
+								"<option class='opt'>"
+										+ response.listSubSkill[i]
 										+ "</option>");
 					}
 
 					console.log(response.listTest.length)
-					
+
 					for (i = 0; i < response.listTest.length; i++) {
 						console.log(response.listTest[i]);
 						$("#slct1").append(
@@ -466,27 +488,22 @@ li>a.dropbtn{
 										+ "</option>");
 					}
 
-					
 				},
 
-		    });
+			});
+
+		}
+	</script>
+
+	<script type="text/javascript">
+		$('#document').ready(function() {
+			$('#btn-show-modal').on('click', function() {
+				$('.form-control').val('');
+			});
+		});
+
 		
-
-	 }
-
-
-</script>
-
-    <script type="text/javascript">
-
-    $('#document').ready(function(){
-        $('#btn-show-modal').on('click', function(){
-            $('.form-control').val('');
-        });
-    });
-
-
-    </script>
+	</script>
 
 	<c:if test="${msgtype != null}">
 		<script>
